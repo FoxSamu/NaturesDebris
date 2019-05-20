@@ -16,7 +16,7 @@ import modernity.common.util.RegistryHandler;
 
 @Mod( "modernity" )
 public class Modernity {
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger( "Modernity" );
 
     public static ProxyCommon proxy;
 
@@ -51,6 +51,7 @@ public class Modernity {
     private void initProxy( Dist dist ) {
         proxy.registerListeners();
         MinecraftForge.EVENT_BUS.register( proxy );
+        LOGGER.info( "Modernity proxy initialized for dist {}: {}", dist, proxy );
         MinecraftForge.EVENT_BUS.post( new ModernityProxyReadyEvent( dist, proxy ) );
     }
 }
