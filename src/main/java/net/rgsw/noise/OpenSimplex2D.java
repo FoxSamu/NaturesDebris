@@ -2,8 +2,6 @@ package net.rgsw.noise;
 
 import net.minecraft.util.math.MathHelper;
 
-import modernity.api.util.MathUtil;
-
 /**
  * 2D open simplex noise.
  *

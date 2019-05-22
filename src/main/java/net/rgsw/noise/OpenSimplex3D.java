@@ -2,8 +2,6 @@ package net.rgsw.noise;
 
 import net.minecraft.util.math.MathHelper;
 
-import modernity.api.util.MathUtil;
-
 public class OpenSimplex3D extends Noise3D {
 
     private static final double STRETCH_CONSTANT_3D = - 1D / 6;              //(1/Math.sqrt(3+1)-1)/3;
