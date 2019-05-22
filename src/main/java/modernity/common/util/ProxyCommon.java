@@ -2,7 +2,9 @@ package modernity.common.util;
 
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
+import modernity.common.command.MDCommands;
 import modernity.common.world.dim.MDDimensions;
 
 public class ProxyCommon {
@@ -17,6 +19,11 @@ public class ProxyCommon {
 
     public void registerListeners() {
 
+    }
+
+    @SubscribeEvent
+    public void serverStart( FMLServerStartingEvent event ) {
+        MDCommands.register( event.getCommandDispatcher() );
     }
 
     @SubscribeEvent

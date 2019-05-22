@@ -3,7 +3,6 @@ package modernity.common.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.tree.LiteralCommandNode;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.util.ResourceLocation;
@@ -21,7 +20,13 @@ public class MDCommands {
     private static final String TK_MAIN_RESULT_VERSION = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:main.version" ) );
 
     public static void register( CommandDispatcher<CommandSource> dispatcher ) {
-        LiteralArgumentBuilder<CommandSource> root = Commands.literal( "modernity" );
+        register( "modernity", dispatcher );
+        register( "md", dispatcher );
+        register( "m", dispatcher );
+    }
+
+    public static void register( String alias, CommandDispatcher<CommandSource> dispatcher ) {
+        LiteralArgumentBuilder<CommandSource> root = Commands.literal( alias );
         root.executes( MDCommands::invokeMain );
 
         ArrayList<LiteralArgumentBuilder<CommandSource>> commandList = new ArrayList<>();
@@ -33,9 +38,7 @@ public class MDCommands {
             root.then( comm );
         }
 
-        LiteralCommandNode<CommandSource> node = dispatcher.register( root );
-        dispatcher.register( Commands.literal( "md" ).redirect( node ) );
-        dispatcher.register( Commands.literal( "m" ).redirect( node ) );
+        dispatcher.register( root );
     }
 
     private static int invokeMain( CommandContext<CommandSource> ctx ) {

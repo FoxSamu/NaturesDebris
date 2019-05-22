@@ -47,10 +47,20 @@ public class TPDimCommand {
         return teleport( src, dimen );
     }
 
+//    private static DimensionType getTypeFromID( int id ) {
+//        DimensionType type = DimensionType.getById( id );
+//        if( type == null ) {
+//            ForgeRegistry<ModDimension> registry = (ForgeRegistry<ModDimension>) ForgeRegistries.MOD_DIMENSIONS;
+//            ModDimension dim = registry.getValue( id + 1 );
+//            DimensionManager
+//        }
+//
+//    }
 
     private static int teleport( CommandSource source, int dim ) {
         DimensionType type = DimensionType.getById( dim );
         if( type == null ) {
+            System.out.println( dim );
             source.sendErrorMessage( new TextComponentTranslation( TK_ERROR_INVALID, dim ) );
             return 0;
         }

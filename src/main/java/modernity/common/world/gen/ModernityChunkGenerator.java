@@ -1,20 +1,25 @@
 package modernity.common.world.gen;
 
+import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
+import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
+import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.WorldGenRegion;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 
+import modernity.common.world.gen.terrain.ModernitySurfaceGenerator;
 import modernity.common.world.gen.terrain.ModernityTerrainGenerator;
 
 import javax.annotation.Nullable;
@@ -30,6 +35,7 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityChunkGe
     private final BiomeProvider provider;
 
     private final ModernityTerrainGenerator terrain;
+    private final ModernitySurfaceGenerator surface;
 
     public ModernityChunkGenerator( World world, BiomeProvider provider ) {
         this.world = world;
@@ -38,11 +44,21 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityChunkGe
         this.rand = new Random( seed );
 
         terrain = new ModernityTerrainGenerator( world, provider );
+        surface = new ModernitySurfaceGenerator( world, provider );
     }
 
     @Override
     public void makeBase( IChunk chunk ) {
+        int cx = chunk.getPos().x;
+        int cz = chunk.getPos().z;
+
+        Biome[] biomes = provider.getBiomeBlock( cx * 16, cz * 16, 16, 16 );
+        chunk.setBiomes( biomes );
+
         terrain.generateTerrain( chunk );
+        surface.generateSurface( chunk );
+        chunk.createHeightMap( Heightmap.Type.WORLD_SURFACE_WG, Heightmap.Type.OCEAN_FLOOR_WG );
+        chunk.setStatus( ChunkStatus.BASE );
     }
 
     @Override
@@ -62,7 +78,7 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityChunkGe
 
     @Override
     public List<Biome.SpawnListEntry> getPossibleCreatures( EnumCreatureType creatureType, BlockPos pos ) {
-        return null;
+        return Lists.newArrayList();
     }
 
     @Nullable
@@ -73,7 +89,7 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityChunkGe
 
     @Override
     public ModernityChunkGenSettings getSettings() {
-        return null;
+        return settings;
     }
 
     @Override
@@ -94,22 +110,22 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityChunkGe
 
     @Override
     public Long2ObjectMap<StructureStart> getStructureReferenceToStartMap( Structure<? extends IFeatureConfig> structureIn ) {
-        return null;
+        return new Long2ObjectOpenHashMap<>();
     }
 
     @Override
     public Long2ObjectMap<LongSet> getStructurePositionToReferenceMap( Structure<? extends IFeatureConfig> structureIn ) {
-        return null;
+        return new Long2ObjectOpenHashMap<>();
     }
 
     @Override
     public BiomeProvider getBiomeProvider() {
-        return null;
+        return provider;
     }
 
     @Override
     public long getSeed() {
-        return 0;
+        return seed;
     }
 
     @Override
@@ -119,6 +135,6 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityChunkGe
 
     @Override
     public int getMaxHeight() {
-        return 0;
+        return 256;
     }
 }

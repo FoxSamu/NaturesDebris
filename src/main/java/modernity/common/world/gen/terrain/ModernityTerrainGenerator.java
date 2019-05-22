@@ -3,6 +3,7 @@ package modernity.common.world.gen.terrain;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.IChunk;
@@ -19,11 +20,11 @@ public class ModernityTerrainGenerator {
     private static final int BUFF_SIZE_Y = 33;
     private static final int BUFF_SIZE_Z = 5;
 
-    private static final double MAIN_NOISE_SIZE_H = 684.412;
-    private static final double MAIN_NOISE_SIZE_V = 2053.236;
+    private static final double MAIN_NOISE_SIZE_H = 24.2206;
+    private static final double MAIN_NOISE_SIZE_V = 11.1103;
 
-    private static final double MIX_NOISE_SIZE_H = 8.55515;
-    private static final double MIX_NOISE_SIZE_V = 34.2206;
+    private static final double MIX_NOISE_SIZE_H = 8.22306;
+    private static final double MIX_NOISE_SIZE_V = 5.55515;
 
     private static final int BUFF_SIZE = BUFF_SIZE_X * BUFF_SIZE_Y * BUFF_SIZE_Z;
 
@@ -80,7 +81,6 @@ public class ModernityTerrainGenerator {
         int cx = pos.x;
         int cz = pos.z;
         fillNoiseBuffer( cx, cz );
-        fillNoiseBuffer( 3, 3 );
 
         double[] buffer = noiseBuffer.get();
 
@@ -155,8 +155,8 @@ public class ModernityTerrainGenerator {
         for( int x = 0; x < BUFF_SIZE_X; x++ ) {
             for( int z = 0; z < BUFF_SIZE_Z; z++ ) {
 
-                double minHeight = 4;
-                double maxHeight = 6;
+                double minHeight = 2;
+                double maxHeight = 8;
 
                 for( int y = 0; y < BUFF_SIZE_Y; y++ ) {
                     double weightValue = Y_BUFFER[ y ];
@@ -182,10 +182,10 @@ public class ModernityTerrainGenerator {
     }
 
     private double genNoise( int x, int y, int z ) {
-        double a = noiseA.generate( x, y, z ) * 50;
-        double b = noiseB.generate( x, y, z ) * 50;
-        double mix = mixNoise.generate( x, y, z ) * 4;
-        return MathUtil.lerp( a, b, MathUtil.invLerp( - 1, 1, mix ) );
+        double a = noiseA.generate( x, y, z );
+        double b = noiseB.generate( x, y, z );
+        double mix = mixNoise.generate( x, y, z ) * 2;
+        return MathHelper.clampedLerp( a, b, MathUtil.invLerp( - 1, 1, mix ) ) * 40;
     }
 
     private int index( int x, int y, int z ) {

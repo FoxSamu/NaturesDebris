@@ -64,6 +64,6 @@ public class ModernityDimension extends Dimension {
 
     @Override
     public DimensionType getType() {
-        return null;
+        return MDDimensions.MODERNITY.getType();
     }
 }
