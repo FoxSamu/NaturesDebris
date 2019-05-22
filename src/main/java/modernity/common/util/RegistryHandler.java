@@ -8,6 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import modernity.common.block.MDBlocks;
 import modernity.common.item.MDItems;
+import modernity.common.registry.MDRegistries;
 import modernity.common.world.dim.MDDimensions;
 
 public class RegistryHandler {
@@ -26,6 +27,11 @@ public class RegistryHandler {
     @SubscribeEvent
     public void registerDimensions( RegistryEvent.Register<ModDimension> event ) {
         MDDimensions.register( event.getRegistry() );
+    }
+
+    @SubscribeEvent
+    public void registerRegistries( RegistryEvent.NewRegistry event ) {
+        MDRegistries.register();
     }
 
 }

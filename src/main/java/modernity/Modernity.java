@@ -7,11 +7,13 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import modernity.api.event.ModernityProxyReadyEvent;
+import modernity.common.command.MDCommands;
 import modernity.common.util.ProxyCommon;
 import modernity.common.util.RegistryHandler;
 
@@ -28,6 +30,7 @@ public class Modernity {
         FMLJavaModLoadingContext.get().getModEventBus().addListener( this::clientSetup );
         FMLJavaModLoadingContext.get().getModEventBus().addListener( this::serverSetup );
         FMLJavaModLoadingContext.get().getModEventBus().addListener( this::loadComplete );
+        FMLJavaModLoadingContext.get().getModEventBus().addListener( this::serverStart );
 
         FMLJavaModLoadingContext.get().getModEventBus().register( new RegistryHandler() );
     }
@@ -54,6 +57,10 @@ public class Modernity {
 
     private void loadComplete( FMLLoadCompleteEvent event ) {
         proxy.loadComplete();
+    }
+
+    private void serverStart( FMLServerStartingEvent event ) {
+        MDCommands.register( event.getCommandDispatcher() );
     }
 
     private void initProxy( Dist dist ) {
