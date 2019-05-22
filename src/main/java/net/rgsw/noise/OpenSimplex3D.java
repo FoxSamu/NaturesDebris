@@ -1,6 +1,7 @@
 package net.rgsw.noise;
 
 import net.minecraft.util.math.MathHelper;
+import net.rgsw.MathUtil;
 
 public class OpenSimplex3D extends Noise3D {
 

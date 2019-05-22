@@ -1,6 +1,7 @@
 package net.rgsw.noise;
 
 import net.minecraft.util.math.MathHelper;
+import net.rgsw.MathUtil;
 
 /**
  * 2D open simplex noise.

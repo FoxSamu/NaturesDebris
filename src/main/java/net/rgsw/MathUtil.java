@@ -6,7 +6,7 @@
  * Date: 1 - 15 - 2019
  */
 
-package net.rgsw.noise;
+package net.rgsw;
 
 public class MathUtil {
 
