@@ -89,6 +89,6 @@ public class Perlin2D extends Noise2D {
         double lerp12 = this.lerp( dot1, dot2, smoothx );
         double lerp34 = this.lerp( dot3, dot4, smoothx );
 
-        return ( this.lerp( lerp12, lerp34, smoothy ) + 1 ) / 2;
+        return this.lerp( lerp12, lerp34, smoothy );
     }
 }

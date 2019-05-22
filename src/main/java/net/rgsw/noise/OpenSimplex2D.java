@@ -1,6 +1,5 @@
 package net.rgsw.noise;
 
-import net.minecraft.util.math.MathHelper;
 import net.rgsw.MathUtil;
 
 /**
@@ -161,6 +160,6 @@ public class OpenSimplex2D extends Noise2D {
             value += attn_ext * attn_ext * this.extrapolate( xsv_ext, ysv_ext, dx_ext, dy_ext );
         }
 
-        return MathHelper.clamp( MathUtil.invLerp( - 1, 1, value / NORM_CONSTANT_2D ), 0, 1 );
+        return MathUtil.clamp( value / NORM_CONSTANT_2D, - 1, 1 );
     }
 }

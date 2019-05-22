@@ -1,6 +1,5 @@
 package net.rgsw.noise;
 
-import net.minecraft.util.math.MathHelper;
 import net.rgsw.MathUtil;
 
 public class OpenSimplex3D extends Noise3D {
@@ -595,6 +594,6 @@ public class OpenSimplex3D extends Noise3D {
             value += attn_ext1 * attn_ext1 * this.extrapolate( xsv_ext1, ysv_ext1, zsv_ext1, dx_ext1, dy_ext1, dz_ext1 );
         }
 
-        return MathHelper.clamp( MathUtil.invLerp( - 1, 1, value / NORM_CONSTANT_3D ), 0, 1 );
+        return MathUtil.clamp( value / NORM_CONSTANT_3D, 0, 1 );
     }
 }

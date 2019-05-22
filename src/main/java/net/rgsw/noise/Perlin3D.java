@@ -128,6 +128,6 @@ public class Perlin3D extends Noise3D {
         double lerp78 = this.lerp( dot7, dot8, smoothx );
         double lerp5678 = this.lerp( lerp56, lerp78, smoothy );
 
-        return ( this.lerp( lerp1234, lerp5678, smoothz ) + 1 ) / 2;
+        return this.lerp( lerp1234, lerp5678, smoothz );
     }
 }

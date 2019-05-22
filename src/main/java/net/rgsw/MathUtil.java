@@ -41,4 +41,8 @@ public class MathUtil {
         return t * t * t * ( t * ( t * 6 - 15 ) + 10 );
     }
 
+    public static double clamp( double t, double min, double max ) {
+        return t < min ? min : t > max ? max : t;
+    }
+
 }
