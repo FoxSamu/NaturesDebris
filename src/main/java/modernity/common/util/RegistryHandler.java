@@ -2,10 +2,12 @@ package modernity.common.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+import modernity.common.biome.MDBiomes;
 import modernity.common.block.MDBlocks;
 import modernity.common.item.MDItems;
 import modernity.common.registry.MDRegistries;
@@ -22,6 +24,11 @@ public class RegistryHandler {
     public void registerItems( RegistryEvent.Register<Item> event ) {
         MDBlocks.registerItems( event.getRegistry() );
         MDItems.register( event.getRegistry() );
+    }
+
+    @SubscribeEvent
+    public void registerBiomes( RegistryEvent.Register<Biome> event ) {
+        MDBiomes.register( event.getRegistry() );
     }
 
     @SubscribeEvent

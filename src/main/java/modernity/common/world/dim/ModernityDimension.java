@@ -1,6 +1,5 @@
 package modernity.common.world.dim;
 
-import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
@@ -10,6 +9,7 @@ import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.IChunkGenerator;
 
+import modernity.common.biome.MDBiomes;
 import modernity.common.world.gen.ModernityChunkGenerator;
 
 import javax.annotation.Nullable;
@@ -22,7 +22,7 @@ public class ModernityDimension extends Dimension {
 
     @Override
     public IChunkGenerator<?> createChunkGenerator() {
-        return new ModernityChunkGenerator( world, new SingleBiomeProvider( new SingleBiomeProviderSettings().setBiome( Biomes.NETHER ) ) );
+        return new ModernityChunkGenerator( world, new SingleBiomeProvider( new SingleBiomeProviderSettings().setBiome( MDBiomes.MEADOW ) ) );
     }
 
     @Nullable
