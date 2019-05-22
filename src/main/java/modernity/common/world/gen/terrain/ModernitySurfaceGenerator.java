@@ -16,8 +16,9 @@ public class ModernitySurfaceGenerator {
     private static final double DEPTH_NOISE_SIZE_H = 28.733918;
     private static final double DEPTH_NOISE_SIZE_V = 1.4252741;
 
-    private static final IBlockState GRASS = MDBlocks.GRASS.getDefaultState();
-    private static final IBlockState DIRT = MDBlocks.DIRT.getDefaultState();
+    private static final IBlockState GRASS = MDBlocks.DARK_GRASS.getDefaultState();
+    private static final IBlockState DIRT = MDBlocks.DARK_DIRT.getDefaultState();
+    private static final IBlockState BEDROCK = MDBlocks.MODERN_BEDROCK.getDefaultState();
 
     private final World world;
     private final long seed;
@@ -52,6 +53,9 @@ public class ModernitySurfaceGenerator {
                     } else if( ctrl > 0 ) {
                         ctrl--;
                         chunk.setBlockState( rpos, DIRT, false );
+                    }
+                    if( y < 5 && y <= rand.nextInt( 5 ) ) {
+                        chunk.setBlockState( rpos, BEDROCK, false );
                     }
                 }
             }

@@ -33,6 +33,12 @@ public class ProxyClient extends ProxyCommon {
         MDItems.registerClient( mc.getItemColors() );
     }
 
+    @Override
+    public void registerListeners() {
+        super.registerListeners();
+//        MinecraftForge.EVENT_BUS.register( new FogEffectHandler() );
+    }
+
     @SuppressWarnings( "deprecation" )
     public void addResourceManagerReloadListener( IResourceManagerReloadListener listener ) {
         IResourceManager manager = mc.getResourceManager();

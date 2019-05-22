@@ -2,7 +2,7 @@ package modernity.api.util;
 
 public class ColorUtil {
     public static int rgb( int r, int g, int b ) {
-        return r << 16 & g << 8 & b;
+        return r << 16 | g << 8 | b;
     }
 
     public static int darken( int col, double amount ) {
@@ -11,9 +11,9 @@ public class ColorUtil {
         int g = col >>> 8 & 0xff;
         int b = col & 0xff;
 
-        r *= amount;
-        g *= amount;
-        b *= amount;
+        r = (int) ( r * ( 1 - amount ) );
+        g = (int) ( g * ( 1 - amount ) );
+        b = (int) ( b * ( 1 - amount ) );
 
         return rgb( r, g, b );
     }
@@ -28,9 +28,9 @@ public class ColorUtil {
         g = 255 - g;
         b = 255 - b;
 
-        r *= amount;
-        g *= amount;
-        b *= amount;
+        r = (int) ( r * ( 1 - amount ) );
+        g = (int) ( g * ( 1 - amount ) );
+        b = (int) ( b * ( 1 - amount ) );
 
         return rgb( 255 - r, 255 - g, 255 - b );
     }

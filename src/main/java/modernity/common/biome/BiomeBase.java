@@ -14,10 +14,10 @@ import modernity.api.util.ColorUtil;
 import java.util.Random;
 
 public class BiomeBase extends Biome {
-    protected static final FractalPerlin3D GRASS_COLOR_VARIATION = new FractalPerlin3D( 58291250, 5.16292137, 5.16292137, 5.16292137, 2 );
-    protected static final FractalPerlin3D FOLIAGE_COLOR_VARIATION = new FractalPerlin3D( 58291250, 5.16292137, 5.16292137, 5.16292137, 2 );
-    protected static final FractalPerlin3D WATER_COLOR_VARIATION = new FractalPerlin3D( 58291250, 5.16292137, 5.16292137, 5.16292137, 2 );
-    protected static final FractalPerlin3D FOG_COLOR_VARIATION = new FractalPerlin3D( 58291250, 5.16292137, 5.16292137, 5.16292137, 2 );
+    protected static final FractalPerlin3D GRASS_COLOR_VARIATION = new FractalPerlin3D( 58291250, 9.16292137, 9.16292137, 9.16292137, 2 );
+    protected static final FractalPerlin3D FOLIAGE_COLOR_VARIATION = new FractalPerlin3D( 81725122, 9.16292137, 9.16292137, 9.16292137, 2 );
+    protected static final FractalPerlin3D WATER_COLOR_VARIATION = new FractalPerlin3D( 21516663, 9.16292137, 9.16292137, 9.16292137, 2 );
+    protected static final FractalPerlin3D FOG_COLOR_VARIATION = new FractalPerlin3D( 62278189, 26.29517772, 26.29517772, 26.29517772, 2 );
 
     protected final float baseHeight;
     protected final float heightVar;
@@ -59,19 +59,19 @@ public class BiomeBase extends Biome {
     }
 
     public int getMDWaterColor( BlockPos pos ) {
-        return ColorUtil.darken( waterColor, WATER_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.2 );
+        return ColorUtil.darken( waterColor, WATER_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
     }
 
     public int getGrassColor( BlockPos pos ) {
-        return ColorUtil.darken( grassColor, WATER_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.2 );
+        return ColorUtil.darken( grassColor, GRASS_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
     }
 
     public int getFoliageColor( BlockPos pos ) {
-        return ColorUtil.darken( foliageColor, WATER_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.2 );
+        return ColorUtil.darken( foliageColor, FOLIAGE_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
     }
 
     public int getFogColor( BlockPos pos ) {
-        return ColorUtil.darken( fogColor, FOG_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.2 );
+        return ColorUtil.darken( fogColor, FOG_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
     }
 
     public float getFogDensity() {

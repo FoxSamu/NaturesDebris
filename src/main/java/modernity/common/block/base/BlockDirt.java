@@ -20,6 +20,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.api.block.IColoredBlock;
+import modernity.api.util.ColorUtil;
+import modernity.client.util.MDBiomeValues;
 import modernity.common.block.MDBlocks;
 
 import javax.annotation.Nullable;
@@ -86,7 +88,7 @@ public class BlockDirt extends BlockBase {
                 if( ! world.isAreaLoaded( pos, 3 ) )
                     return;
                 if( ! canRemainAt( world, pos ) ) {
-                    world.setBlockState( pos, MDBlocks.DIRT.getDefaultState() );
+                    world.setBlockState( pos, MDBlocks.DARK_DIRT.getDefaultState() );
                 } else {
                     if( world.getLight( pos.up() ) >= 9 ) {
                         for( int i = 0; i < 4; ++ i ) {
@@ -95,7 +97,7 @@ public class BlockDirt extends BlockBase {
                                 return;
                             }
 
-                            if( world.getBlockState( growPos ).getBlock() == MDBlocks.DIRT && canGrowAt( world, growPos ) ) {
+                            if( world.getBlockState( growPos ).getBlock() == MDBlocks.DARK_DIRT && canGrowAt( world, growPos ) ) {
                                 world.setBlockState( growPos, this.getDefaultState() );
                             }
                         }
@@ -108,7 +110,7 @@ public class BlockDirt extends BlockBase {
 
     @Override
     public IItemProvider getItemDropped( IBlockState state, World worldIn, BlockPos pos, int fortune ) {
-        return MDBlocks.DIRT;
+        return MDBlocks.DARK_DIRT;
     }
 
     @Override
@@ -137,6 +139,7 @@ public class BlockDirt extends BlockBase {
     }
 
     public static class ColoredGrass extends BlockDirt implements IColoredBlock {
+        protected static final int GRASS_ITEM_COLOR = ColorUtil.rgb( 0, 109, 38 );
 
         public ColoredGrass( Type type, Properties properties, Item.Properties itemProps ) {
             super( type, properties, itemProps );
@@ -149,13 +152,13 @@ public class BlockDirt extends BlockBase {
         @OnlyIn( Dist.CLIENT )
         @Override
         public int colorMultiplier( IBlockState state, @Nullable IWorldReaderBase reader, @Nullable BlockPos pos, int tintIndex ) {
-            return 0x006b23;
+            return MDBiomeValues.get( reader, pos, MDBiomeValues.GRASS_COLOR );
         }
 
         @OnlyIn( Dist.CLIENT )
         @Override
         public int colorMultiplier( ItemStack stack, int tintIndex ) {
-            return 0x006b23;
+            return GRASS_ITEM_COLOR;
         }
     }
 }
