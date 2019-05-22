@@ -37,12 +37,10 @@ public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoC
     private StackTraceElement retainer;
     private Thread retainerThread;
 
-    // A small thread that controls cleanup
-    private static Thread cleanupThread;
 
-
+    // Use a small thread that controls cleaning up old instances
     private static void restartCleanup() {
-        cleanupThread = new Thread( () -> {
+        Thread cleanupThread = new Thread( () -> {
             while( true ) {
                 cleanup();
                 try {
@@ -159,7 +157,7 @@ public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoC
         }
         killFromDeadThreads();
         if( USED.size() >= warningLimit + 30 ) {
-            LOGGER.warn( "Using a lot of EcoBlockPos instances! Amount of used instances is " + USED.size() + "... Execute '/mddebug dumpEBPRetainers' for info about in-use retainer methods..." );
+            LOGGER.warn( "Using a lot of EcoBlockPos instances! Amount of used instances is " + USED.size() + "..." ); // Removed: "Execute '/mddebug dumpEBPRetainers' for info about in-use retainer methods..."
             warningLimit = USED.size();
         }
     }
@@ -692,11 +690,8 @@ public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoC
     static class EBPIterator implements Iterator<EcoBlockPos> {
 
         private final EcoBlockPos pos = EcoBlockPos.retain();
-        private int index;
-        private final int total;
         private final int fromx;
         private final int fromy;
-        private final int fromz;
         private final int tox;
         private final int toy;
         private final int toz;
@@ -704,11 +699,10 @@ public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoC
         EBPIterator( int fromx, int fromy, int fromz, int tox, int toy, int toz ) {
             this.fromx = fromx;
             this.fromy = fromy;
-            this.fromz = fromz;
             this.tox = tox;
             this.toy = toy;
             this.toz = toz;
-            total = ( toz - fromz ) * ( toy - fromy ) * ( tox - fromx );
+            pos.setPos( fromx, fromy, fromz );
         }
 
         @Override
