@@ -5,12 +5,14 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.IChunk;
 import net.rgsw.MathUtil;
 import net.rgsw.noise.FractalPerlin3D;
 
 import modernity.api.util.EcoBlockPos;
+import modernity.common.biome.BiomeBase;
 import modernity.common.block.MDBlocks;
 
 import java.util.Random;
@@ -152,11 +154,34 @@ public class ModernityTerrainGenerator {
             noiseBuffer.set( buff );
         }
 
+        Biome[] biomes = this.provider.getBiomes( cx * 4 - 3, cz * 4 - 3, 12, 12 );
+
         for( int x = 0; x < BUFF_SIZE_X; x++ ) {
             for( int z = 0; z < BUFF_SIZE_Z; z++ ) {
 
-                double minHeight = 2;
-                double maxHeight = 8;
+                double heightVar = 0;
+                double heightBase = 0;
+
+                for( int x1 = - 3; x1 <= 3; x1++ ) {
+                    for( int z1 = - 3; z1 <= 3; z1++ ) {
+                        int bx = x1 + x + 3;
+                        int bz = z1 + z + 3;
+
+                        BiomeBase b = (BiomeBase) biomes[ bz * 12 + bx ];
+
+                        heightVar += b.getHeightVar();
+                        heightBase += b.getBaseHeight();
+                    }
+                }
+
+                heightVar /= 49;
+                heightBase /= 49;
+
+                heightVar /= 8;
+                heightBase /= 8;
+
+                double minHeight = heightBase - heightVar;
+                double maxHeight = heightBase + heightVar;
 
                 for( int y = 0; y < BUFF_SIZE_Y; y++ ) {
                     double weightValue = Y_BUFFER[ y ];
