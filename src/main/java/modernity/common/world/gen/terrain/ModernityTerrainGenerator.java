@@ -174,11 +174,8 @@ public class ModernityTerrainGenerator {
                     }
                 }
 
-                heightVar /= 49;
-                heightBase /= 49;
-
-                heightVar /= 8;
-                heightBase /= 8;
+                heightVar /= 49 * 8;
+                heightBase /= 49 * 8;
 
                 double minHeight = heightBase - heightVar;
                 double maxHeight = heightBase + heightVar;
