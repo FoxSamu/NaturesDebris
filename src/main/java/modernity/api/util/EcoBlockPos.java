@@ -20,6 +20,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Used in world generation to prevent large GC lag spikes. Use of immutable blockpos in worldgen is one of the most
@@ -27,8 +28,10 @@ import java.util.List;
  */
 public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoCloseable {
     private static final Logger LOGGER = LogManager.getLogger( "EcoBlockPos" );
-    private static final ArrayList<PosInstance> FREE = new ArrayList<>();
-    private static final ArrayList<PosInstance> USED = new ArrayList<>();
+
+    // Use vectors to keep thread safeness
+    private static final Vector<PosInstance> FREE = new Vector<>();
+    private static final Vector<PosInstance> USED = new Vector<>();
     private final PosInstance inst = new PosInstance( this );
     private static final PosInstance NULL_INST = new PosInstance( null );
 
@@ -69,6 +72,7 @@ public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoC
 
     public static synchronized EcoBlockPos retain() {
         PosInstance pos;
+        // MAYBE: Synchronize FREE? Possible exceptions may occur (never occured for now)
         if( FREE.isEmpty() ) {
             pos = new EcoBlockPos().inst;
             pos.pos.retained = true;
@@ -140,25 +144,29 @@ public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoC
     }
 
     public static synchronized void cleanup() {
+        // No synchronization on FREE: the vector synchronizes itself when clearing
         if( FREE.size() > 200 ) {
             int size = FREE.size();
             killFree();
             LOGGER.info( "Removed " + size + " free EcoBlockPos instances..." );
         }
         int removed = 0;
-        while( USED.contains( null ) ) {
-            if( USED.remove( null ) ) removed++;
-        }
-        while( USED.contains( NULL_INST ) ) {
-            if( USED.remove( NULL_INST ) ) removed++;
-        }
-        if( removed > 10 ) {
-            LOGGER.info( "Removed " + removed + " null EcoBlockPos references..." );
-        }
-        killFromDeadThreads();
-        if( USED.size() >= warningLimit + 30 ) {
-            LOGGER.warn( "Using a lot of EcoBlockPos instances! Amount of used instances is " + USED.size() + "..." ); // Removed: "Execute '/mddebug dumpEBPRetainers' for info about in-use retainer methods..."
-            warningLimit = USED.size();
+        // Synchronize on USED to prevent modification during cleanup
+        synchronized( USED ) {
+            while( USED.contains( null ) ) {
+                if( USED.remove( null ) ) removed++;
+            }
+            while( USED.contains( NULL_INST ) ) {
+                if( USED.remove( NULL_INST ) ) removed++;
+            }
+            if( removed > 10 ) {
+                LOGGER.info( "Removed " + removed + " null EcoBlockPos references..." );
+            }
+            killFromDeadThreads();
+            if( USED.size() >= warningLimit + 30 ) {
+                LOGGER.warn( "Using a lot of EcoBlockPos instances! Amount of used instances is " + USED.size() + "..." ); // Removed: "Execute '/mddebug dumpEBPRetainers' for info about in-use retainer methods..."
+                warningLimit = USED.size();
+            }
         }
     }
 
