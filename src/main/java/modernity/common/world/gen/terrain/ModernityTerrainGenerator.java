@@ -119,6 +119,11 @@ public class ModernityTerrainGenerator {
                                 int posz = z + z4 * 4;
 
                                 IBlockState state = Blocks.AIR.getDefaultState();
+
+                                if( posy < 64 ) {
+                                    state = MDBlocks.MODERNIZED_WATER.getDefaultState();
+                                }
+
                                 if( noise > 0 ) {
                                     state = MDBlocks.ROCK.getDefaultState();
                                 }

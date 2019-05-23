@@ -15,7 +15,9 @@ import net.minecraftforge.registries.IForgeRegistry;
 import modernity.api.block.IColoredBlock;
 import modernity.common.block.base.BlockBase;
 import modernity.common.block.base.BlockDirt;
+import modernity.common.block.base.BlockFluid;
 import modernity.common.block.base.BlockNoDrop;
+import modernity.common.fluid.MDFluids;
 import modernity.common.item.MDItemGroups;
 
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class MDBlocks {
     public static final BlockNoDrop MODERN_BEDROCK = blockItem( new BlockNoDrop( "modern_bedrock", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( - 1F, 3600000F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockDirt DARK_DIRT = blockItem( new BlockDirt( BlockDirt.TYPE_DIRT, Block.Properties.create( Material.GROUND, MaterialColor.DIRT ).hardnessAndResistance( 0.5F ).sound( SoundType.GROUND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockDirt DARK_GRASS = blockItem( new BlockDirt.ColoredGrass( BlockDirt.TYPE_GRASS, Block.Properties.create( Material.GROUND, MaterialColor.GRASS ).hardnessAndResistance( 0.6F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockFluid MODERNIZED_WATER = blockOnly( new BlockFluid( "modernized_water", MDFluids.MODERNIZED_WATER, Block.Properties.create( Material.WATER, MaterialColor.WATER ).doesNotBlockMovement().hardnessAndResistance( 100F ) ) );
 
     public static void register( IForgeRegistry<Block> registry ) {
         for( Entry e : ENTRIES ) {

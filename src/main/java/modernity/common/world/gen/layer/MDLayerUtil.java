@@ -20,6 +20,7 @@ public class MDLayerUtil {
         factory = GenLayerZoom.NORMAL.apply( contextFactory.apply( 3979L ), factory );
         factory = GenLayerZoom.NORMAL.apply( contextFactory.apply( 3980L ), factory );
         factory = GenLayerZoom.NORMAL.apply( contextFactory.apply( 3981L ), factory );
+        factory = GenLayerZoom.NORMAL.apply( contextFactory.apply( 3982L ), factory );
 
         IAreaFactory<T> factory1 = GenLayerVoronoiZoom.INSTANCE.apply( contextFactory.apply( 9818L ), factory );
         return ImmutableList.of( factory, factory1, factory );

@@ -27,6 +27,7 @@ import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.biome.BiomeColors;
 
 import modernity.api.block.fluid.ICustomRenderFluid;
+import modernity.api.block.fluid.IGaseousFluid;
 
 import java.util.HashMap;
 import java.util.stream.Collectors;
@@ -86,11 +87,13 @@ public class MDFluidRenderer extends BlockFluidRenderer {
         return otherState.getFluid().isEquivalentTo( state.getFluid() );
     }
 
-    private static boolean shouldRenderSideForHeight( IBlockReader world, BlockPos pos, EnumFacing face, float height ) {
+    private static boolean shouldRenderSideForHeight( IBlockReader world, BlockPos pos, EnumFacing face, float height, boolean gas ) {
         BlockPos offset = pos.offset( face );
         IBlockState state = world.getBlockState( offset );
         if( state.isSolid() ) {
-            VoxelShape shape1 = VoxelShapes.create( 0.0D, 0.0D, 0.0D, 1.0D, (double) height, 1.0D );
+            VoxelShape shape1 = gas ?
+                    VoxelShapes.create( 0, 1 - height, 0, 1, 1, 1 ) :
+                    VoxelShapes.create( 0, 0, 0, 1, height, 1 );
             VoxelShape shape2 = state.getRenderShape( world, offset );
             return VoxelShapes.isCubeSideCovered( shape1, shape2, face );
         } else {
@@ -98,9 +101,19 @@ public class MDFluidRenderer extends BlockFluidRenderer {
         }
     }
 
+    private static double ty( double y, boolean gas ) {
+        if( gas ) y = 1 - y;
+        return y;
+    }
+
     public boolean render( IWorldReader world, BlockPos pos, BufferBuilder buffer, IFluidState state ) {
         boolean isLava = state.isTagged( FluidTags.LAVA );
         boolean custom = false; // MAYBE: Is this still needed?
+
+        boolean gas = state.getFluid() instanceof IGaseousFluid;
+        EnumFacing down = gas ? EnumFacing.UP : EnumFacing.DOWN;
+        EnumFacing up = gas ? EnumFacing.DOWN : EnumFacing.UP;
+        int fall = gas ? - 1 : 1;
 
         TextureAtlasSprite overlayTex = this.overlaySprite;
 
@@ -146,8 +159,8 @@ public class MDFluidRenderer extends BlockFluidRenderer {
 
 
         // Determine which sides should render
-        boolean renderUp = ! isAdjacentFluidSameAs( world, pos, EnumFacing.UP, state );
-        boolean renderDown = ! isAdjacentFluidSameAs( world, pos, EnumFacing.DOWN, state ) && ! shouldRenderSideForHeight( world, pos, EnumFacing.DOWN, 0.8888889F );
+        boolean renderUp = ! isAdjacentFluidSameAs( world, pos, up, state );
+        boolean renderDown = ! isAdjacentFluidSameAs( world, pos, down, state ) && ! shouldRenderSideForHeight( world, pos, down, 0.8888889F, gas );
         boolean renderNorth = ! isAdjacentFluidSameAs( world, pos, EnumFacing.NORTH, state );
         boolean renderSouth = ! isAdjacentFluidSameAs( world, pos, EnumFacing.SOUTH, state );
         boolean renderWest = ! isAdjacentFluidSameAs( world, pos, EnumFacing.WEST, state );
@@ -160,17 +173,17 @@ public class MDFluidRenderer extends BlockFluidRenderer {
             boolean somethingRendered = false;
 
             // Determine the height of each corner
-            float nwHeight = this.getFluidHeight( world, pos, state.getFluid() );
-            float swHeight = this.getFluidHeight( world, pos.south(), state.getFluid() );
-            float seHeight = this.getFluidHeight( world, pos.east().south(), state.getFluid() );
-            float neHeight = this.getFluidHeight( world, pos.east(), state.getFluid() );
+            float nwHeight = this.getFluidHeight( world, pos, state.getFluid(), fall );
+            float swHeight = this.getFluidHeight( world, pos.south(), state.getFluid(), fall );
+            float seHeight = this.getFluidHeight( world, pos.east().south(), state.getFluid(), fall );
+            float neHeight = this.getFluidHeight( world, pos.east(), state.getFluid(), fall );
 
             double dx = pos.getX();
             double dy = pos.getY();
             double dz = pos.getZ();
 
             // Render up
-            if( renderUp && ! shouldRenderSideForHeight( world, pos, EnumFacing.UP, Math.min( Math.min( nwHeight, swHeight ), Math.min( seHeight, neHeight ) ) ) ) {
+            if( renderUp && ! shouldRenderSideForHeight( world, pos, up, Math.min( Math.min( nwHeight, swHeight ), Math.min( seHeight, neHeight ) ), gas ) ) {
                 somethingRendered = true;
 
                 // Stop z-fighting
@@ -225,17 +238,31 @@ public class MDFluidRenderer extends BlockFluidRenderer {
                 float g = 1.0F * green;
                 float b = 1.0F * blue;
 
-                buffer.pos( dx + 0.0D, dy + nwHeight, dz + 0.0D ).color( r, g, b, 1.0F ).tex( texU1, texV1 ).lightmap( lightU, lightV ).endVertex();
-                buffer.pos( dx + 0.0D, dy + swHeight, dz + 1.0D ).color( r, g, b, 1.0F ).tex( texU2, texV2 ).lightmap( lightU, lightV ).endVertex();
-                buffer.pos( dx + 1.0D, dy + seHeight, dz + 1.0D ).color( r, g, b, 1.0F ).tex( texU3, texV3 ).lightmap( lightU, lightV ).endVertex();
-                buffer.pos( dx + 1.0D, dy + neHeight, dz + 0.0D ).color( r, g, b, 1.0F ).tex( texU4, texV4 ).lightmap( lightU, lightV ).endVertex();
+                if( gas ) {
+                    buffer.pos( dx + 1.0D, dy + ( 1 - neHeight ), dz + 0.0D ).color( r, g, b, 1.0F ).tex( texU4, texV4 ).lightmap( lightU, lightV ).endVertex();
+                    buffer.pos( dx + 1.0D, dy + ( 1 - seHeight ), dz + 1.0D ).color( r, g, b, 1.0F ).tex( texU3, texV3 ).lightmap( lightU, lightV ).endVertex();
+                    buffer.pos( dx + 0.0D, dy + ( 1 - swHeight ), dz + 1.0D ).color( r, g, b, 1.0F ).tex( texU2, texV2 ).lightmap( lightU, lightV ).endVertex();
+                    buffer.pos( dx + 0.0D, dy + ( 1 - nwHeight ), dz + 0.0D ).color( r, g, b, 1.0F ).tex( texU1, texV1 ).lightmap( lightU, lightV ).endVertex();
+                } else {
+                    buffer.pos( dx + 0.0D, dy + nwHeight, dz + 0.0D ).color( r, g, b, 1.0F ).tex( texU1, texV1 ).lightmap( lightU, lightV ).endVertex();
+                    buffer.pos( dx + 0.0D, dy + swHeight, dz + 1.0D ).color( r, g, b, 1.0F ).tex( texU2, texV2 ).lightmap( lightU, lightV ).endVertex();
+                    buffer.pos( dx + 1.0D, dy + seHeight, dz + 1.0D ).color( r, g, b, 1.0F ).tex( texU3, texV3 ).lightmap( lightU, lightV ).endVertex();
+                    buffer.pos( dx + 1.0D, dy + neHeight, dz + 0.0D ).color( r, g, b, 1.0F ).tex( texU4, texV4 ).lightmap( lightU, lightV ).endVertex();
+                }
 
                 // Render surface visible underwater when not below solid block
-                if( state.shouldRenderSides( world, pos.up() ) ) {
-                    buffer.pos( dx + 0.0D, dy + nwHeight, dz + 0.0D ).color( r, g, b, 1.0F ).tex( texU1, texV1 ).lightmap( lightU, lightV ).endVertex();
-                    buffer.pos( dx + 1.0D, dy + neHeight, dz + 0.0D ).color( r, g, b, 1.0F ).tex( texU4, texV4 ).lightmap( lightU, lightV ).endVertex();
-                    buffer.pos( dx + 1.0D, dy + seHeight, dz + 1.0D ).color( r, g, b, 1.0F ).tex( texU3, texV3 ).lightmap( lightU, lightV ).endVertex();
-                    buffer.pos( dx + 0.0D, dy + swHeight, dz + 1.0D ).color( r, g, b, 1.0F ).tex( texU2, texV2 ).lightmap( lightU, lightV ).endVertex();
+                if( state.shouldRenderSides( world, pos.up( fall ) ) ) {
+                    if( gas ) {
+                        buffer.pos( dx + 0.0D, dy + ( 1 - swHeight ), dz + 1.0D ).color( r, g, b, 1.0F ).tex( texU2, texV2 ).lightmap( lightU, lightV ).endVertex();
+                        buffer.pos( dx + 1.0D, dy + ( 1 - seHeight ), dz + 1.0D ).color( r, g, b, 1.0F ).tex( texU3, texV3 ).lightmap( lightU, lightV ).endVertex();
+                        buffer.pos( dx + 1.0D, dy + ( 1 - neHeight ), dz + 0.0D ).color( r, g, b, 1.0F ).tex( texU4, texV4 ).lightmap( lightU, lightV ).endVertex();
+                        buffer.pos( dx + 0.0D, dy + ( 1 - nwHeight ), dz + 0.0D ).color( r, g, b, 1.0F ).tex( texU1, texV1 ).lightmap( lightU, lightV ).endVertex();
+                    } else {
+                        buffer.pos( dx + 0.0D, dy + nwHeight, dz + 0.0D ).color( r, g, b, 1.0F ).tex( texU1, texV1 ).lightmap( lightU, lightV ).endVertex();
+                        buffer.pos( dx + 1.0D, dy + neHeight, dz + 0.0D ).color( r, g, b, 1.0F ).tex( texU4, texV4 ).lightmap( lightU, lightV ).endVertex();
+                        buffer.pos( dx + 1.0D, dy + seHeight, dz + 1.0D ).color( r, g, b, 1.0F ).tex( texU3, texV3 ).lightmap( lightU, lightV ).endVertex();
+                        buffer.pos( dx + 0.0D, dy + swHeight, dz + 1.0D ).color( r, g, b, 1.0F ).tex( texU2, texV2 ).lightmap( lightU, lightV ).endVertex();
+                    }
                 }
             }
 
@@ -249,18 +276,25 @@ public class MDFluidRenderer extends BlockFluidRenderer {
                 float maxV = fluidTex[ 0 ].getMaxV();
 
                 // Compute light
-                int light = this.getCombinedLightUpMax( world, pos.down() );
-                int lightU = light >> 16 & '\uffff';
-                int lightV = light & '\uffff';
+                int light = this.getCombinedLightUpMax( world, pos.down( fall ) );
+                int lightU = light >> 16 & 0xffff;
+                int lightV = light & 0xffff;
 
                 float r = 0.5F * red;
                 float g = 0.5F * green;
                 float b = 0.5F * blue;
 
-                buffer.pos( dx + 0.0D, dy, dz + 1.0D ).color( r, g, b, 1.0F ).tex( minU, maxV ).lightmap( lightU, lightV ).endVertex();
-                buffer.pos( dx + 0.0D, dy, dz + 0.0D ).color( r, g, b, 1.0F ).tex( minU, minV ).lightmap( lightU, lightV ).endVertex();
-                buffer.pos( dx + 1.0D, dy, dz + 0.0D ).color( r, g, b, 1.0F ).tex( maxU, minV ).lightmap( lightU, lightV ).endVertex();
-                buffer.pos( dx + 1.0D, dy, dz + 1.0D ).color( r, g, b, 1.0F ).tex( maxU, maxV ).lightmap( lightU, lightV ).endVertex();
+                if( gas ) {
+                    buffer.pos( dx + 1.0D, dy + 1, dz + 1.0D ).color( r, g, b, 1.0F ).tex( maxU, maxV ).lightmap( lightU, lightV ).endVertex();
+                    buffer.pos( dx + 1.0D, dy + 1, dz + 0.0D ).color( r, g, b, 1.0F ).tex( maxU, minV ).lightmap( lightU, lightV ).endVertex();
+                    buffer.pos( dx + 0.0D, dy + 1, dz + 0.0D ).color( r, g, b, 1.0F ).tex( minU, minV ).lightmap( lightU, lightV ).endVertex();
+                    buffer.pos( dx + 0.0D, dy + 1, dz + 1.0D ).color( r, g, b, 1.0F ).tex( minU, maxV ).lightmap( lightU, lightV ).endVertex();
+                } else {
+                    buffer.pos( dx + 0.0D, dy + 0, dz + 1.0D ).color( r, g, b, 1.0F ).tex( minU, maxV ).lightmap( lightU, lightV ).endVertex();
+                    buffer.pos( dx + 0.0D, dy + 0, dz + 0.0D ).color( r, g, b, 1.0F ).tex( minU, minV ).lightmap( lightU, lightV ).endVertex();
+                    buffer.pos( dx + 1.0D, dy + 0, dz + 0.0D ).color( r, g, b, 1.0F ).tex( maxU, minV ).lightmap( lightU, lightV ).endVertex();
+                    buffer.pos( dx + 1.0D, dy + 0, dz + 1.0D ).color( r, g, b, 1.0F ).tex( maxU, maxV ).lightmap( lightU, lightV ).endVertex();
+                }
             }
 
             // Render sides
@@ -317,7 +351,7 @@ public class MDFluidRenderer extends BlockFluidRenderer {
                 }
 
                 // Render this side
-                if( shouldRender && ! shouldRenderSideForHeight( world, pos, side, Math.max( leftHeight, rightHeight ) ) ) {
+                if( shouldRender && ! shouldRenderSideForHeight( world, pos, side, Math.max( leftHeight, rightHeight ), gas ) ) {
                     somethingRendered = true;
 
                     // Determine the side texture seen from inside the fluid
@@ -348,17 +382,31 @@ public class MDFluidRenderer extends BlockFluidRenderer {
                     float b = 1.0F * brightness * blue;
 
 
-                    buffer.pos( minX, dy + leftHeight, minZ ).color( r, g, b, 1.0F ).tex( minU, leftV ).lightmap( lightU, lightV ).endVertex();
-                    buffer.pos( maxX, dy + rightHeight, maxZ ).color( r, g, b, 1.0F ).tex( maxU, rightV ).lightmap( lightU, lightV ).endVertex();
-                    buffer.pos( maxX, dy + 0.0D, maxZ ).color( r, g, b, 1.0F ).tex( maxU, maxV ).lightmap( lightU, lightV ).endVertex();
-                    buffer.pos( minX, dy + 0.0D, minZ ).color( r, g, b, 1.0F ).tex( minU, maxV ).lightmap( lightU, lightV ).endVertex();
+                    if( gas ) {
+                        buffer.pos( minX, dy + 1, minZ ).color( r, g, b, 1.0F ).tex( minU, maxV ).lightmap( lightU, lightV ).endVertex();
+                        buffer.pos( maxX, dy + 1, maxZ ).color( r, g, b, 1.0F ).tex( maxU, maxV ).lightmap( lightU, lightV ).endVertex();
+                        buffer.pos( maxX, dy + ( 1 - rightHeight ), maxZ ).color( r, g, b, 1.0F ).tex( maxU, rightV ).lightmap( lightU, lightV ).endVertex();
+                        buffer.pos( minX, dy + ( 1 - leftHeight ), minZ ).color( r, g, b, 1.0F ).tex( minU, leftV ).lightmap( lightU, lightV ).endVertex();
+                    } else {
+                        buffer.pos( minX, dy + leftHeight, minZ ).color( r, g, b, 1.0F ).tex( minU, leftV ).lightmap( lightU, lightV ).endVertex();
+                        buffer.pos( maxX, dy + rightHeight, maxZ ).color( r, g, b, 1.0F ).tex( maxU, rightV ).lightmap( lightU, lightV ).endVertex();
+                        buffer.pos( maxX, dy, maxZ ).color( r, g, b, 1.0F ).tex( maxU, maxV ).lightmap( lightU, lightV ).endVertex();
+                        buffer.pos( minX, dy, minZ ).color( r, g, b, 1.0F ).tex( minU, maxV ).lightmap( lightU, lightV ).endVertex();
+                    }
 
                     // Block overlay
                     if( texture != this.overlaySprite ) {
-                        buffer.pos( minX, dy + 0.0D, minZ ).color( r, g, b, 1.0F ).tex( minU, maxV ).lightmap( lightU, lightV ).endVertex();
-                        buffer.pos( maxX, dy + 0.0D, maxZ ).color( r, g, b, 1.0F ).tex( maxU, maxV ).lightmap( lightU, lightV ).endVertex();
-                        buffer.pos( maxX, dy + rightHeight, maxZ ).color( r, g, b, 1.0F ).tex( maxU, rightV ).lightmap( lightU, lightV ).endVertex();
-                        buffer.pos( minX, dy + leftHeight, minZ ).color( r, g, b, 1.0F ).tex( minU, leftV ).lightmap( lightU, lightV ).endVertex();
+                        if( gas ) {
+                            buffer.pos( minX, dy + ( 1 - leftHeight ), minZ ).color( r, g, b, 1.0F ).tex( minU, leftV ).lightmap( lightU, lightV ).endVertex();
+                            buffer.pos( maxX, dy + ( 1 - rightHeight ), maxZ ).color( r, g, b, 1.0F ).tex( maxU, rightV ).lightmap( lightU, lightV ).endVertex();
+                            buffer.pos( maxX, dy + 1, maxZ ).color( r, g, b, 1.0F ).tex( maxU, maxV ).lightmap( lightU, lightV ).endVertex();
+                            buffer.pos( minX, dy + 1, minZ ).color( r, g, b, 1.0F ).tex( minU, maxV ).lightmap( lightU, lightV ).endVertex();
+                        } else {
+                            buffer.pos( minX, dy, minZ ).color( r, g, b, 1.0F ).tex( minU, maxV ).lightmap( lightU, lightV ).endVertex();
+                            buffer.pos( maxX, dy, maxZ ).color( r, g, b, 1.0F ).tex( maxU, maxV ).lightmap( lightU, lightV ).endVertex();
+                            buffer.pos( maxX, dy + rightHeight, maxZ ).color( r, g, b, 1.0F ).tex( maxU, rightV ).lightmap( lightU, lightV ).endVertex();
+                            buffer.pos( minX, dy + leftHeight, minZ ).color( r, g, b, 1.0F ).tex( minU, leftV ).lightmap( lightU, lightV ).endVertex();
+                        }
                     }
                 }
             }
@@ -377,13 +425,13 @@ public class MDFluidRenderer extends BlockFluidRenderer {
         return ( myLightU > upLightU ? myLightU : upLightU ) | ( myLightV > upLightV ? myLightV : upLightV ) << 16;
     }
 
-    private float getFluidHeight( IWorldReaderBase reader, BlockPos pos, Fluid fluid ) {
+    private float getFluidHeight( IWorldReaderBase reader, BlockPos pos, Fluid fluid, int fall ) {
         int i = 0;
         float f = 0.0F;
 
         for( int j = 0; j < 4; ++ j ) {
             BlockPos offPos = pos.add( - ( j & 1 ), 0, - ( j >> 1 & 1 ) );
-            if( reader.getFluidState( offPos.up() ).getFluid().isEquivalentTo( fluid ) ) {
+            if( reader.getFluidState( offPos.up( fall ) ).getFluid().isEquivalentTo( fluid ) ) {
                 return 1.0F;
             }
 

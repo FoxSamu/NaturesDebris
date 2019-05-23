@@ -9,6 +9,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import modernity.common.biome.MDBiomes;
 import modernity.common.block.MDBlocks;
+import modernity.common.fluid.FluidEntry;
+import modernity.common.fluid.MDFluids;
 import modernity.common.item.MDItems;
 import modernity.common.registry.MDRegistries;
 import modernity.common.world.dim.MDDimensions;
@@ -29,6 +31,11 @@ public class RegistryHandler {
     @SubscribeEvent
     public void registerBiomes( RegistryEvent.Register<Biome> event ) {
         MDBiomes.register( event.getRegistry() );
+    }
+
+    @SubscribeEvent
+    public void registerFluids( RegistryEvent.Register<FluidEntry> event ) {
+        MDFluids.register( event.getRegistry() );
     }
 
     @SubscribeEvent
