@@ -6,6 +6,7 @@ import net.minecraft.resources.IResourceManager;
 import net.minecraft.resources.IResourceManagerReloadListener;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
+import modernity.client.particle.MDParticleManager;
 import modernity.client.render.block.MDBlockRendererDispatcher;
 import modernity.common.block.MDBlocks;
 import modernity.common.item.MDItems;
@@ -29,8 +30,11 @@ public class ProxyClient extends ProxyCommon {
 
         addResourceManagerReloadListener( dispatcher );
 
+        mc.particles = new MDParticleManager( mc.world, mc.textureManager );
+
         MDBlocks.registerClient( mc.getBlockColors(), mc.getItemColors() );
         MDItems.registerClient( mc.getItemColors() );
+
     }
 
     @Override

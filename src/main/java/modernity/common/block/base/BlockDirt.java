@@ -2,6 +2,7 @@ package modernity.common.block.base;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
@@ -159,6 +160,11 @@ public class BlockDirt extends BlockBase {
         @Override
         public int colorMultiplier( ItemStack stack, int tintIndex ) {
             return GRASS_ITEM_COLOR;
+        }
+
+        @Override
+        public boolean addDestroyEffects( IBlockState state, World world, BlockPos pos, ParticleManager manager ) {
+            return false;
         }
     }
 }
