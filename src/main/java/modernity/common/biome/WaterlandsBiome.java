@@ -7,7 +7,7 @@ public class WaterlandsBiome extends BiomeBase {
         super(
                 "waterlands", new Builder()
                         .baseHeight( 63F )
-                        .heightVariation( 3F )
+                        .heightVariation( 7F )
                         .fogColor( ColorUtil.rgb( 0, 0, 21 ) )
                         .fogDensity( 0.01F )
                         .grassColor( ColorUtil.rgb( 12, 109, 0 ) )

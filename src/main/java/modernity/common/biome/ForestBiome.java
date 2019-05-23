@@ -7,7 +7,7 @@ public class ForestBiome extends BiomeBase {
         super(
                 "forest", new Builder()
                         .baseHeight( 70F )
-                        .heightVariation( 8F )
+                        .heightVariation( 12F )
                         .fogColor( ColorUtil.rgb( 0, 0, 21 ) )
                         .fogDensity( 0.01F )
                         .grassColor( ColorUtil.rgb( 0, 109, 38 ) )
