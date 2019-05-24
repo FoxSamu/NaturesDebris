@@ -21,6 +21,10 @@ public class ProxyCommon {
 
     }
 
+    public boolean fancyGraphics() {
+        return false;
+    }
+
     @SubscribeEvent
     public void serverStart( FMLServerStartingEvent event ) {
         MDCommands.register( event.getCommandDispatcher() );

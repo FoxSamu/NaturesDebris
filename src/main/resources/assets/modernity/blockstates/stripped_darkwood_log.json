@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "modernity:block/stripped_darkwood_log"
+    },
+    "axis=z": {
+      "model": "modernity:block/stripped_darkwood_log", "x": 90
+    },
+    "axis=x": {
+      "model": "modernity:block/stripped_darkwood_log", "x": 90, "y": 90
+    }
+  }
+}

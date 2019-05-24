@@ -30,11 +30,17 @@ public class ProxyClient extends ProxyCommon {
 
         addResourceManagerReloadListener( dispatcher );
 
+
         mc.particles = new MDParticleManager( mc.world, mc.textureManager );
 
         MDBlocks.registerClient( mc.getBlockColors(), mc.getItemColors() );
         MDItems.registerClient( mc.getItemColors() );
 
+    }
+
+    @Override
+    public boolean fancyGraphics() {
+        return mc.gameSettings.fancyGraphics;
     }
 
     @Override

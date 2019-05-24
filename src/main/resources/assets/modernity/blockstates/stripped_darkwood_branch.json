@@ -1,0 +1,76 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "root": "up|down"
+      },
+      "apply": { "model": "modernity:block/stripped_darkwood_branch_center" }
+    },
+    {
+      "when": {
+        "root": "east|west"
+      },
+      "apply": { "model": "modernity:block/stripped_darkwood_branch_center", "x": 90, "y": 90 }
+    },
+    {
+      "when": {
+        "root": "north|south"
+      },
+      "apply": { "model": "modernity:block/stripped_darkwood_branch_center", "x": 90 }
+    },
+    {
+      "when": {
+        "OR": [
+          { "root": "up" },
+          { "down": "true" }
+        ]
+      },
+      "apply": { "model": "modernity:block/stripped_darkwood_branch_end_bottom" }
+    },
+    {
+      "when": {
+        "OR": [
+          { "root": "down" },
+          { "up": "true" }
+        ]
+      },
+      "apply": { "model": "modernity:block/stripped_darkwood_branch_end_top" }
+    },
+    {
+      "when": {
+        "OR": [
+          { "root": "south" },
+          { "north": "true" }
+        ]
+      },
+      "apply": { "model": "modernity:block/stripped_darkwood_branch_end_top", "x": 90 }
+    },
+    {
+      "when": {
+        "OR": [
+          { "root": "north" },
+          { "south": "true" }
+        ]
+      },
+      "apply": { "model": "modernity:block/stripped_darkwood_branch_end_bottom", "x": 90 }
+    },
+    {
+      "when": {
+        "OR": [
+          { "root": "east" },
+          { "west": "true" }
+        ]
+      },
+      "apply": { "model": "modernity:block/stripped_darkwood_branch_end_bottom", "x": 90, "y": 90 }
+    },
+    {
+      "when": {
+        "OR": [
+          { "root": "west" },
+          { "east": "true" }
+        ]
+      },
+      "apply": { "model": "modernity:block/stripped_darkwood_branch_end_top", "x": 90, "y": 90 }
+    }
+  ]
+}
