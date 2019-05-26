@@ -50,22 +50,22 @@ public class ModernityChunkGenSettings implements IChunkGenSettings {
     }
 
     @Override
-    public int func_204748_h() {
+    public int getShipwreckDistance() {
         return 0;
     }
 
     @Override
-    public int func_211730_k() {
+    public int getShipwreckSeparation() {
         return 0;
     }
 
     @Override
-    public int func_204026_h() {
+    public int getOceanRuinDistance() {
         return 0;
     }
 
     @Override
-    public int func_211727_m() {
+    public int getOceanRuinSeparation() {
         return 0;
     }
 

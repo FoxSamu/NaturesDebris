@@ -20,6 +20,7 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 
 import modernity.common.world.gen.terrain.ModernitySurfaceGenerator;
+import modernity.common.world.gen.terrain.ModernityTerrainDecorator;
 import modernity.common.world.gen.terrain.ModernityTerrainGenerator;
 
 import javax.annotation.Nullable;
@@ -36,6 +37,7 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityChunkGe
 
     private final ModernityTerrainGenerator terrain;
     private final ModernitySurfaceGenerator surface;
+    private final ModernityTerrainDecorator decorator;
 
     public ModernityChunkGenerator( World world, BiomeProvider provider ) {
         this.world = world;
@@ -45,6 +47,7 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityChunkGe
 
         terrain = new ModernityTerrainGenerator( world, provider );
         surface = new ModernitySurfaceGenerator( world, provider );
+        decorator = new ModernityTerrainDecorator( world, provider, this );
     }
 
     @Override
@@ -68,7 +71,7 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityChunkGe
 
     @Override
     public void decorate( WorldGenRegion region ) {
-
+        decorator.decorate( region );
     }
 
     @Override

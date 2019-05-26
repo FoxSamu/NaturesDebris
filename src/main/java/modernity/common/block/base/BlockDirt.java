@@ -37,14 +37,14 @@ public class BlockDirt extends BlockBase {
     public final Type type;
 
     public BlockDirt( Type type, Properties properties, Item.Properties itemProps ) {
-        super( type.id, properties.needsRandomTick(), itemProps );
+        super( type.id, properties.tickRandomly(), itemProps );
         this.type = type;
 
         setDefaultState( getStateContainer().getBaseState().with( SNOWY, false ) );
     }
 
     public BlockDirt( Type type, Properties properties ) {
-        super( type.id, properties.needsRandomTick() );
+        super( type.id, properties.tickRandomly() );
         this.type = type;
 
         setDefaultState( getStateContainer().getBaseState().with( SNOWY, false ) );

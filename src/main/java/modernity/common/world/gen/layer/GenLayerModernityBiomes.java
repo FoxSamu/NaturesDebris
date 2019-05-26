@@ -10,9 +10,9 @@ import modernity.common.biome.MDBiomes;
 public enum GenLayerModernityBiomes implements IAreaTransformer0 {
     INSTANCE;
 
-    private static final int MEADOW = IRegistry.field_212624_m.getId( MDBiomes.MEADOW );
-    private static final int FOREST = IRegistry.field_212624_m.getId( MDBiomes.FOREST );
-    private static final int WATERLANDS = IRegistry.field_212624_m.getId( MDBiomes.WATERLANDS );
+    private static final int MEADOW = IRegistry.BIOME.getId( MDBiomes.MEADOW );
+    private static final int FOREST = IRegistry.BIOME.getId( MDBiomes.FOREST );
+    private static final int WATERLANDS = IRegistry.BIOME.getId( MDBiomes.WATERLANDS );
 
     private static final int[] biomes = {
             MEADOW,

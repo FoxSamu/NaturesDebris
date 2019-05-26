@@ -46,18 +46,18 @@ public class BlockLeaves extends BlockBase implements IShearable {
     public BlockLeaves( String id, Tag<Block> logTag, Properties properties, Item.Properties itemProps ) {
         super( id, properties, itemProps );
         this.logTag = logTag;
-        setDefaultState( stateContainer.getBaseState().with( DISTANCE, 7 ).with( PERSISTENT, Boolean.FALSE ) );
+        setDefaultState( stateContainer.getBaseState().with( DISTANCE, 1 ).with( PERSISTENT, Boolean.FALSE ) );
     }
 
     public BlockLeaves( String id, Tag<Block> logTag, Properties properties ) {
         super( id, properties );
         this.logTag = logTag;
-        setDefaultState( stateContainer.getBaseState().with( DISTANCE, 7 ).with( PERSISTENT, Boolean.FALSE ) );
+        setDefaultState( stateContainer.getBaseState().with( DISTANCE, 1 ).with( PERSISTENT, Boolean.FALSE ) );
     }
 
     @Override
     @SuppressWarnings( "deprecation" )
-    public boolean getTickRandomly( IBlockState state ) {
+    public boolean ticksRandomly( IBlockState state ) {
         return state.get( DISTANCE ) == 7 && ! state.get( PERSISTENT );
     }
 
@@ -73,7 +73,7 @@ public class BlockLeaves extends BlockBase implements IShearable {
     @Override
     @SuppressWarnings( "deprecation" )
     public void tick( IBlockState state, World world, BlockPos pos, Random random ) {
-        world.setBlockState( pos, updateDistance( state, world, pos ), 3 );
+        world.setBlockState( pos, updateDistance( state, world, pos ), 4 );
     }
 
     @Override
@@ -124,7 +124,7 @@ public class BlockLeaves extends BlockBase implements IShearable {
             double x = pos.getX() + rand.nextFloat();
             double y = pos.getY() - 0.05D;
             double z = pos.getZ() + rand.nextFloat();
-            world.spawnParticle( Particles.DRIPPING_WATER, x, y, z, 0, 0, 0 );
+            world.addParticle( Particles.DRIPPING_WATER, x, y, z, 0, 0, 0 );
         }
 
     }

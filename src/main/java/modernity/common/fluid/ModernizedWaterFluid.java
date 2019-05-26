@@ -55,7 +55,7 @@ public abstract class ModernizedWaterFluid extends ImprovedFluid implements ICus
                 worldIn.playSound( (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false );
             }
         } else if( random.nextInt( 10 ) == 0 ) {
-            worldIn.spawnParticle( Particles.UNDERWATER, (double) ( (float) pos.getX() + random.nextFloat() ), (double) ( (float) pos.getY() + random.nextFloat() ), (double) ( (float) pos.getZ() + random.nextFloat() ), 0.0D, 0.0D, 0.0D );
+            worldIn.addParticle( Particles.UNDERWATER, (double) ( (float) pos.getX() + random.nextFloat() ), (double) ( (float) pos.getY() + random.nextFloat() ), (double) ( (float) pos.getZ() + random.nextFloat() ), 0.0D, 0.0D, 0.0D );
         }
 
     }

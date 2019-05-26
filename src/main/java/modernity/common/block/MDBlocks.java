@@ -37,7 +37,7 @@ public class MDBlocks {
     public static final BlockLog DARKWOOD_LOG = blockItem( new BlockStripableLog( "darkwood_log", STRIPPED_DARKWOOD_LOG, Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockBase STRIPPED_DARKWOOD_BARK = blockItem( new BlockBase( "stripped_darkwood_bark", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockBase DARKWOOD_BARK = blockItem( new BlockStripable( "darkwood_bark", STRIPPED_DARKWOOD_BARK, Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
-    public static final BlockLeaves DARKWOOD_LEAVES = blockItem( new BlockLeaves.ColoredFoliage( "darkwood_leaves", MDBlockTags.DARKWOOD_LOG, Block.Properties.create( Material.LEAVES ).hardnessAndResistance( 0.2F ).needsRandomTick().sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockLeaves DARKWOOD_LEAVES = blockItem( new BlockLeaves.ColoredFoliage( "darkwood_leaves", MDBlockTags.DARKWOOD_LOG, Block.Properties.create( Material.LEAVES ).hardnessAndResistance( 0.2F ).tickRandomly().sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     public static void register( IForgeRegistry<Block> registry ) {
         for( Entry e : ENTRIES ) {

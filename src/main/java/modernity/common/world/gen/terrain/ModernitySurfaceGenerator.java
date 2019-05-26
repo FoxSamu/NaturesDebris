@@ -49,7 +49,7 @@ public class ModernitySurfaceGenerator {
                         ctrl = - 1;
                     } else if( ctrl == - 1 && chunk.getBlockState( rpos ).getMaterial().blocksMovement() ) {
                         ctrl = (int) ( 3 + 2 * depthNoise.generate( x + cx * 16, y, z + cz * 16 ) );
-                        chunk.setBlockState( rpos, GRASS, false );
+                        chunk.setBlockState( rpos, y < 63 ? DIRT : GRASS, false );
                     } else if( ctrl > 0 ) {
                         ctrl--;
                         chunk.setBlockState( rpos, DIRT, false );

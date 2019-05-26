@@ -228,6 +228,11 @@ public class BlockBranch extends BlockBase implements IBucketPickupHandler, ILiq
         return world.setBlockState( pos, state, 11 );
     }
 
+    public static IBlockState withFluid( IBlockState state, IWorld world, BlockPos pos ) {
+        IFluidState fluid = world.getFluidState( pos );
+        return state.with( WATERLOGGED, EWaterlogType.getType( fluid ) );
+    }
+
     @Override
     public Item createBlockItem() {
         return new ItemBranch( this, itemProps ).setRegistryName( getRegistryName() );
@@ -238,7 +243,7 @@ public class BlockBranch extends BlockBase implements IBucketPickupHandler, ILiq
         return false;
     }
 
-    private static BooleanProperty facingProperty( EnumFacing facing ) {
+    public static BooleanProperty facingProperty( EnumFacing facing ) {
         switch( facing ) {
             default:
             case UP:
@@ -271,7 +276,7 @@ public class BlockBranch extends BlockBase implements IBucketPickupHandler, ILiq
                 }
             } else if( fluidState.getFluid() == MDFluids.MODERNIZED_WATER ) {
                 if( ! world.isRemote() ) {
-                    world.setBlockState( pos, state.with( WATERLOGGED, EWaterlogType.WATER ), 3 );
+                    world.setBlockState( pos, state.with( WATERLOGGED, EWaterlogType.MODERNIZED_WATER ), 3 );
                     world.getPendingFluidTicks().scheduleTick( pos, MDFluids.MODERNIZED_WATER, MDFluids.MODERNIZED_WATER.getTickRate( world ) );
                 }
             } else {

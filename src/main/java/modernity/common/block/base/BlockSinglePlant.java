@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -22,10 +23,12 @@ import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
 import modernity.client.util.MDBiomeValues;
 import modernity.common.block.MDBlocks;
+import modernity.common.world.gen.decorate.util.IBlockProvider;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
-public class BlockSinglePlant extends BlockNoDrop {
+public class BlockSinglePlant extends BlockNoDrop implements IBlockProvider {
     public BlockSinglePlant( String id, Properties properties, Item.Properties itemProps ) {
         super( id, properties, itemProps );
     }
@@ -99,6 +102,15 @@ public class BlockSinglePlant extends BlockNoDrop {
     @Override
     public boolean isValidPosition( IBlockState state, IWorldReaderBase world, BlockPos pos ) {
         return canRemainAt( world, pos, state );
+    }
+
+    @Override
+    public boolean provide( IWorld world, BlockPos pos, Random rand ) {
+        if( canRemainAt( world, pos, world.getBlockState( pos ) ) && ! world.getBlockState( pos ).getMaterial().blocksMovement() ) {
+            world.setBlockState( pos, getDefaultState(), 2 | 16 );
+            return true;
+        }
+        return false;
     }
 
     public static class ColoredGrass extends BlockSinglePlant implements IColoredBlock {

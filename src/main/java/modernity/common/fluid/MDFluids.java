@@ -24,7 +24,7 @@ public class MDFluids {
             int id = entries.getID( entry );
             ResourceLocation name = entries.getRegistryName();
 
-            IRegistry.field_212619_h.register( id, name, entry.getFluid() );
+            IRegistry.FLUID.register( id, name, entry.getFluid() );
 
             for( IFluidState state : entry.getFluid().getStateContainer().getValidStates() ) {
                 Fluid.STATE_REGISTRY.add( state );

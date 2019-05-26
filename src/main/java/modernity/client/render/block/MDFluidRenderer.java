@@ -60,7 +60,7 @@ public class MDFluidRenderer extends BlockFluidRenderer {
         this.overlaySprite = map.getSprite( ModelBakery.LOCATION_WATER_OVERLAY );
 
         // Collect sprites of custom fluids
-        IRegistry<Fluid> fluids = IRegistry.field_212619_h;
+        IRegistry<Fluid> fluids = IRegistry.FLUID;
         for( Fluid fluid : fluids.stream().collect( Collectors.toSet() ) ) {
             if( fluid instanceof ICustomRenderFluid ) {
                 ICustomRenderFluid crFluid = (ICustomRenderFluid) fluid;

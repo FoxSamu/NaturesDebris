@@ -73,7 +73,7 @@ public class MDDimensions {
     @SubscribeEvent
     public void load( final FMLLoadCompleteEvent event ) {
         Set<ResourceLocation> locs = new HashSet<>();
-        locs.addAll( IRegistry.field_212622_k.getKeys() );
+        locs.addAll( IRegistry.DIMENSION_TYPE.keySet() );
         locs.addAll( ForgeRegistries.MOD_DIMENSIONS.getKeys() );
         dimensionResLocs = ImmutableSet.copyOf( locs );
     }
