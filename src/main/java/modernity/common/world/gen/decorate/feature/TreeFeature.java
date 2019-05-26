@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.IChunkGenSettings;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
 import modernity.api.util.BlockUpdates;
@@ -19,7 +20,7 @@ import modernity.common.block.base.BlockBranch;
 import java.util.Random;
 import java.util.Set;
 
-public abstract class TreeFeature extends ImprovedFeature<NoFeatureConfig> {
+public abstract class TreeFeature extends Feature<NoFeatureConfig> {
 
     private final IBlockState leaves;
     private final IBlockState log;
@@ -32,7 +33,7 @@ public abstract class TreeFeature extends ImprovedFeature<NoFeatureConfig> {
     }
 
     @Override
-    public boolean generate( IWorld world, IChunkGenerator<? extends IChunkGenSettings> chunkGen, Random rand, BlockPos pos, NoFeatureConfig config ) {
+    public boolean place( IWorld world, IChunkGenerator<? extends IChunkGenSettings> chunkGen, Random rand, BlockPos pos, NoFeatureConfig config ) {
         return generateTree( world, pos, rand );
     }
 

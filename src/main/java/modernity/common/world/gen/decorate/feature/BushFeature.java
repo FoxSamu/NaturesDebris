@@ -4,6 +4,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.IChunkGenSettings;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 import modernity.api.util.EcoBlockPos;
@@ -11,10 +12,10 @@ import modernity.common.world.gen.decorate.util.IBlockProvider;
 
 import java.util.Random;
 
-public class BushFeature extends ImprovedFeature<BushFeature.Config> {
+public class BushFeature extends Feature<BushFeature.Config> {
 
     @Override
-    public boolean generate( IWorld world, IChunkGenerator<? extends IChunkGenSettings> chunkGen, Random rand, BlockPos pos, Config config ) {
+    public boolean place( IWorld world, IChunkGenerator<? extends IChunkGenSettings> chunkGen, Random rand, BlockPos pos, Config config ) {
         int placed = 0;
 
         try( EcoBlockPos rpos = EcoBlockPos.retain() ) {
