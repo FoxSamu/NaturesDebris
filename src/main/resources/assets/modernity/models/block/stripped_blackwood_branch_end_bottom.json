@@ -1,6 +1,6 @@
 {
   "parent": "modernity:block/branch_end_bottom",
   "textures": {
-    "branch": "modernity:block/darkwood_branch"
+    "branch": "modernity:block/stripped_blackwood_branch"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "modernity:block/darkwood_log"
+    "all": "modernity:block/blackwood_log"
   }
 }

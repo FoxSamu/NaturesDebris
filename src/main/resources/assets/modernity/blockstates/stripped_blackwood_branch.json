@@ -4,19 +4,19 @@
       "when": {
         "root": "up|down"
       },
-      "apply": { "model": "modernity:block/stripped_darkwood_branch_center" }
+      "apply": { "model": "modernity:block/stripped_blackwood_branch_center" }
     },
     {
       "when": {
         "root": "east|west"
       },
-      "apply": { "model": "modernity:block/stripped_darkwood_branch_center", "x": 90, "y": 90 }
+      "apply": { "model": "modernity:block/stripped_blackwood_branch_center", "x": 90, "y": 90 }
     },
     {
       "when": {
         "root": "north|south"
       },
-      "apply": { "model": "modernity:block/stripped_darkwood_branch_center", "x": 90 }
+      "apply": { "model": "modernity:block/stripped_blackwood_branch_center", "x": 90 }
     },
     {
       "when": {
@@ -25,7 +25,7 @@
           { "down": "true" }
         ]
       },
-      "apply": { "model": "modernity:block/stripped_darkwood_branch_end_bottom" }
+      "apply": { "model": "modernity:block/stripped_blackwood_branch_end_bottom" }
     },
     {
       "when": {
@@ -34,7 +34,7 @@
           { "up": "true" }
         ]
       },
-      "apply": { "model": "modernity:block/stripped_darkwood_branch_end_top" }
+      "apply": { "model": "modernity:block/stripped_blackwood_branch_end_top" }
     },
     {
       "when": {
@@ -43,7 +43,7 @@
           { "north": "true" }
         ]
       },
-      "apply": { "model": "modernity:block/stripped_darkwood_branch_end_top", "x": 90 }
+      "apply": { "model": "modernity:block/stripped_blackwood_branch_end_top", "x": 90 }
     },
     {
       "when": {
@@ -52,7 +52,7 @@
           { "south": "true" }
         ]
       },
-      "apply": { "model": "modernity:block/stripped_darkwood_branch_end_bottom", "x": 90 }
+      "apply": { "model": "modernity:block/stripped_blackwood_branch_end_bottom", "x": 90 }
     },
     {
       "when": {
@@ -61,7 +61,7 @@
           { "west": "true" }
         ]
       },
-      "apply": { "model": "modernity:block/stripped_darkwood_branch_end_bottom", "x": 90, "y": 90 }
+      "apply": { "model": "modernity:block/stripped_blackwood_branch_end_bottom", "x": 90, "y": 90 }
     },
     {
       "when": {
@@ -70,7 +70,7 @@
           { "east": "true" }
         ]
       },
-      "apply": { "model": "modernity:block/stripped_darkwood_branch_end_top", "x": 90, "y": 90 }
+      "apply": { "model": "modernity:block/stripped_blackwood_branch_end_top", "x": 90, "y": 90 }
     }
   ]
 }
