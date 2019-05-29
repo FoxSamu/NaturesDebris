@@ -11,6 +11,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 
 import modernity.common.biome.ModernityBiomeProvider;
 import modernity.common.world.gen.ModernityChunkGenerator;
+import modernity.common.world.gen.ModernityGenSettings;
 
 import javax.annotation.Nullable;
 
@@ -22,7 +23,7 @@ public class ModernityDimension extends Dimension {
 
     @Override
     public IChunkGenerator<?> createChunkGenerator() {
-        return new ModernityChunkGenerator( world, new ModernityBiomeProvider( world.getWorldInfo() ) );
+        return new ModernityChunkGenerator( world, new ModernityBiomeProvider( world.getWorldInfo() ), new ModernityGenSettings() );
     }
 
     @Nullable

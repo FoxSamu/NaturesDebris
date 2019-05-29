@@ -79,8 +79,8 @@ public class BiomeBase extends Biome {
     }
 
     public static class Builder extends BiomeBuilder {
-        private Float heightBase;
-        private Float heightVar;
+        private Float heightBase = 0F;
+        private Float heightVar = 0F;
         private Integer grassColor;
         private Integer foliageColor;
         private Integer waterColor;
@@ -99,6 +99,18 @@ public class BiomeBase extends Biome {
             downfall( 0 );
             super.waterColor( 0x3F76E4 );
             waterFogColor( 0x050533 );
+        }
+
+        @Override
+        public BiomeBase.Builder depth( float value ) {
+            super.depth( value );
+            return this;
+        }
+
+        @Override
+        public BiomeBase.Builder scale( float value ) {
+            super.scale( value );
+            return this;
         }
 
         @Override

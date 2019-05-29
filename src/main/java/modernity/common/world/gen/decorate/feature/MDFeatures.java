@@ -7,6 +7,6 @@ public class MDFeatures {
     public static final DarkwoodTreeFeature DARKWOOD_TREE = new DarkwoodTreeFeature(
             MDBlocks.BLACKWOOD_LEAVES.getDefaultState(),
             MDBlocks.BLACKWOOD_LOG.getDefaultState(),
-            MDBlocks.DARKWOOD_BRANCH.getDefaultState()
+            MDBlocks.BLACKWOOD_BRANCH.getDefaultState()
     );
 }

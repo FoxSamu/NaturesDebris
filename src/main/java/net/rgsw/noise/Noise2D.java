@@ -8,6 +8,8 @@
 
 package net.rgsw.noise;
 
+import net.rgsw.MathUtil;
+
 public abstract class Noise2D {
     protected final int seed;
     protected final double scaleX;
@@ -33,6 +35,13 @@ public abstract class Noise2D {
 
     public abstract double generate( double x, double y );
 
+    public double generateMultiplied( double x, double y, double mult ) {
+        return generate( x, y ) * mult;
+    }
+
+    public double generateInRange( double x, double y, double min, double max ) {
+        return MathUtil.lerp( min, max, ( generate( x, y ) + 1 ) / 2 );
+    }
 
     public double generate( int x, int y ) {
         return this.generate( (double) x, (double) y );

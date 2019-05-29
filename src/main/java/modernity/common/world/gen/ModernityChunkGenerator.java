@@ -27,8 +27,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public class ModernityChunkGenerator implements IChunkGenerator<ModernityChunkGenSettings> {
-    private final ModernityChunkGenSettings settings = new ModernityChunkGenSettings();
+public class ModernityChunkGenerator implements IChunkGenerator<ModernityGenSettings> {
+    private final ModernityGenSettings settings;
 
     private final World world;
     private final long seed;
@@ -39,14 +39,16 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityChunkGe
     private final ModernitySurfaceGenerator surface;
     private final ModernityTerrainDecorator decorator;
 
-    public ModernityChunkGenerator( World world, BiomeProvider provider ) {
+    public ModernityChunkGenerator( World world, BiomeProvider provider, ModernityGenSettings settings ) {
         this.world = world;
         this.seed = world.getSeed();
         this.provider = provider;
         this.rand = new Random( seed );
 
-        terrain = new ModernityTerrainGenerator( world, provider );
-        surface = new ModernitySurfaceGenerator( world, provider );
+        this.settings = settings;
+
+        terrain = new ModernityTerrainGenerator( world, provider, settings );
+        surface = new ModernitySurfaceGenerator( world, provider, settings );
         decorator = new ModernityTerrainDecorator( world, provider, this );
     }
 
@@ -91,7 +93,7 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityChunkGe
     }
 
     @Override
-    public ModernityChunkGenSettings getSettings() {
+    public ModernityGenSettings getSettings() {
         return settings;
     }
 

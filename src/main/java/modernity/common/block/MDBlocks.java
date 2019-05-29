@@ -24,6 +24,7 @@ public class MDBlocks {
     private static final ArrayList<Entry> ENTRIES_ITEM = Lists.newArrayList();
 
     public static final BlockBase ROCK = blockItem( new BlockBase( "rock", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockBase DARKROCK = blockItem( new BlockBase( "darkrock", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockNoDrop MODERN_BEDROCK = blockItem( new BlockNoDrop( "modern_bedrock", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( - 1F, 3600000F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockDirt DARK_DIRT = blockItem( new BlockDirt( BlockDirt.TYPE_DIRT, Block.Properties.create( Material.GROUND, MaterialColor.DIRT ).hardnessAndResistance( 0.5F ).sound( SoundType.GROUND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockDirt DARK_GRASS = blockItem( new BlockDirt.ColoredGrass( BlockDirt.TYPE_GRASS, Block.Properties.create( Material.GROUND, MaterialColor.GRASS ).hardnessAndResistance( 0.6F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
@@ -31,6 +32,8 @@ public class MDBlocks {
     public static final BlockSinglePlant DARK_TALLGRASS = blockItem( new BlockSinglePlant.ColoredGrass( "dark_tall_grass", Block.Properties.create( Material.VINE, MaterialColor.GRASS ).doesNotBlockMovement().hardnessAndResistance( 0 ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Darkwood tree
+    public static final BlockBranch STRIPPED_BLACKWOOD_BRANCH = blockItem( new BlockBranch( "stripped_blackwood_branch", 0.25, Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockBranch BLACKWOOD_BRANCH = blockItem( new BlockStripableBranch( "blackwood_branch", 0.25, STRIPPED_BLACKWOOD_BRANCH, Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockLog STRIPPED_BLACKWOOD_LOG = blockItem( new BlockLog( "stripped_blackwood_log", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockLog BLACKWOOD_LOG = blockItem( new BlockStripableLog( "blackwood_log", STRIPPED_BLACKWOOD_LOG, Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockBase STRIPPED_BLACKWOOD_BARK = blockItem( new BlockBase( "stripped_blackwood_bark", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );

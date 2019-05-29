@@ -13,9 +13,8 @@ import modernity.common.world.gen.decorate.feature.MDFeatures;
 public class MeadowBiome extends BiomeBase {
     public MeadowBiome() {
         super(
-                "meadow", new BiomeBase.Builder()
-                        .baseHeight( 64F )
-                        .heightVariation( 18F )
+                "meadow", new Builder()
+                        .depth( 0.125F ).scale( 0.05F )
                         .fogColor( ColorUtil.rgb( 0, 0, 21 ) )
                         .fogDensity( 0.01F )
                         .grassColor( ColorUtil.rgb( 0, 109, 38 ) )

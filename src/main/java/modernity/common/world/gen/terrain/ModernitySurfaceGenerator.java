@@ -8,32 +8,33 @@ import net.rgsw.noise.FractalOpenSimplex3D;
 
 import modernity.api.util.EcoBlockPos;
 import modernity.common.block.MDBlocks;
+import modernity.common.world.gen.ModernityGenSettings;
 
 import java.util.Random;
 
 public class ModernitySurfaceGenerator {
 
-    private static final double DEPTH_NOISE_SIZE_H = 28.733918;
-    private static final double DEPTH_NOISE_SIZE_V = 1.4252741;
+    // TODO: Use biome surface builders
 
     private static final IBlockState GRASS = MDBlocks.DARK_GRASS.getDefaultState();
     private static final IBlockState DIRT = MDBlocks.DARK_DIRT.getDefaultState();
     private static final IBlockState BEDROCK = MDBlocks.MODERN_BEDROCK.getDefaultState();
 
     private final World world;
-    private final long seed;
     private final Random rand;
     private final BiomeProvider provider;
 
     private final FractalOpenSimplex3D depthNoise;
+    private final ModernityGenSettings settings;
 
-    public ModernitySurfaceGenerator( World world, BiomeProvider provider ) {
+    public ModernitySurfaceGenerator( World world, BiomeProvider provider, ModernityGenSettings settings ) {
         this.world = world;
-        this.seed = world.getSeed();
+        long seed = world.getSeed();
         this.provider = provider;
         this.rand = new Random( seed );
+        this.settings = settings;
 
-        depthNoise = new FractalOpenSimplex3D( rand.nextInt(), DEPTH_NOISE_SIZE_H, DEPTH_NOISE_SIZE_V, DEPTH_NOISE_SIZE_H, 4 );
+        depthNoise = new FractalOpenSimplex3D( rand.nextInt(), settings.getSurfaceNoiseSizeX(), settings.getSurfaceNoiseSizeY(), settings.getSurfaceNoiseSizeZ(), settings.getSurfaceNoiseSizeOctaves() );
     }
 
     public void generateSurface( IChunk chunk ) {
@@ -49,7 +50,7 @@ public class ModernitySurfaceGenerator {
                         ctrl = - 1;
                     } else if( ctrl == - 1 && chunk.getBlockState( rpos ).getMaterial().blocksMovement() ) {
                         ctrl = (int) ( 3 + 2 * depthNoise.generate( x + cx * 16, y, z + cz * 16 ) );
-                        chunk.setBlockState( rpos, y < 63 ? DIRT : GRASS, false );
+                        chunk.setBlockState( rpos, y < settings.getWaterLevel() - 1 ? DIRT : GRASS, false );
                     } else if( ctrl > 0 ) {
                         ctrl--;
                         chunk.setBlockState( rpos, DIRT, false );

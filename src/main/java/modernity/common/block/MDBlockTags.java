@@ -12,5 +12,6 @@ public class MDBlockTags {
     public static final Tag<Block> LEAVES = new BlockTags.Wrapper( new ResourceLocation( "modernity:leaves" ) );
     public static final Tag<Block> DARKWOOD_LEAVES = new BlockTags.Wrapper( new ResourceLocation( "modernity:leaves/blackwood_leaves" ) );
 
-
+    public static final Tag<Block> ROCK = new BlockTags.Wrapper( new ResourceLocation( "modernity:rock" ) );
+    public static final Tag<Block> DARKROCK = new BlockTags.Wrapper( new ResourceLocation( "modernity:rock/darkrock" ) );
 }
