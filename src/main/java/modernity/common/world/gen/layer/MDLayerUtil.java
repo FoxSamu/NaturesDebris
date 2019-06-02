@@ -10,11 +10,13 @@ import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
 import net.minecraft.world.gen.layer.GenLayerZoom;
 
+import modernity.api.util.EMDDimension;
+
 import java.util.function.LongFunction;
 
 public class MDLayerUtil {
     public static <T extends IArea, C extends IContextExtended<T>> ImmutableList<IAreaFactory<T>> buildModernityProcedure( LongFunction<C> contextFactory ) {
-        IAreaFactory<T> factory = GenLayerModernityBiomes.INSTANCE.apply( contextFactory.apply( 5291L ) );
+        IAreaFactory<T> factory = new ModernityBiomeFactory( EMDDimension.SURFACE, contextFactory.apply( 5291L ) );
         factory = GenLayerZoom.NORMAL.apply( contextFactory.apply( 3977L ), factory );
         factory = GenLayerZoom.NORMAL.apply( contextFactory.apply( 3978L ), factory );
         factory = GenLayerZoom.NORMAL.apply( contextFactory.apply( 3979L ), factory );

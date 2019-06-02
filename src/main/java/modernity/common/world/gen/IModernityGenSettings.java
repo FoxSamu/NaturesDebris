@@ -20,8 +20,8 @@ public interface IModernityGenSettings {
     double getBaseBiomeScale();        // 0
     double getBiomeDepthMultiplier();  // 1
     double getBiomeScaleMultiplier();  // 1
-    double getHeightScale();           // 8.5
-    double getHeightStretch();         // 12
+    double getHeightScale();           // 12
+    double getHeightStretch();         // 8.5
 
     double getSurfaceNoiseSizeX();     // 28.733918
     double getSurfaceNoiseSizeY();     // 1.4252741

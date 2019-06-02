@@ -10,17 +10,17 @@ import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.decorate.feature.BushFeature;
 import modernity.common.world.gen.decorate.feature.MDFeatures;
 
-public class WaterlandsBiome extends BiomeBase {
-    public WaterlandsBiome() {
+public class SwampBiome extends BiomeBase {
+    public SwampBiome() {
         super(
-                "waterlands", new Builder()
-                        .depth( - 0.1F ).scale( 0.07F )
+                "swamp", new Builder()
+                        .depth( - 0.2F ).scale( 0.1F )
                         .fogColor( ColorUtil.rgb( 0, 0, 21 ) )
                         .fogDensity( 0.01F )
-                        .grassColor( ColorUtil.rgb( 12, 109, 0 ) )
-                        .foliageColor( ColorUtil.rgb( 0, 86, 5 ) )
-                        .waterColor( ColorUtil.rgb( 17, 49, 91 ) )
-                        .waterFogDensity( 0.01F )
+                        .grassColor( ColorUtil.rgb( 12, 57, 18 ) )
+                        .foliageColor( ColorUtil.rgb( 0, 57, 25 ) )
+                        .waterColor( ColorUtil.rgb( 57, 68, 60 ) )
+                        .waterFogDensity( 0.03F )
         );
 
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature( MDFeatures.BUSH, new BushFeature.Config( 100, 6, MDBlocks.DARK_TALLGRASS ), AT_SURFACE, new FrequencyConfig( 5 ) ) );

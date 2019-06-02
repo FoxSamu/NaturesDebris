@@ -98,12 +98,12 @@ public class ModernityGenSettings extends ChunkGenSettings implements IModernity
 
     @Override
     public double getHeightScale() {
-        return 8.5;
+        return 12;
     }
 
     @Override
     public double getHeightStretch() {
-        return 12;
+        return 8.5;
     }
 
     @Override
