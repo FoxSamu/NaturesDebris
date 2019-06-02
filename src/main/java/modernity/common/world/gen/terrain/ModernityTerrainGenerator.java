@@ -90,8 +90,8 @@ public class ModernityTerrainGenerator {
         this.biomeWeights = new float[ r2 * r2 ];
         for( int x = - r; x <= r; ++ x ) {
             for( int z = - r; z <= r; ++ z ) {
-                double dx = x / 2D * r;
-                double dz = z / 2D * r;
+                double dx = x / (double) r * 2;
+                double dz = z / (double) r * 2;
                 float weight = 10.0F / MathHelper.sqrt( dx * dx + dz * dz + 0.2F );
                 this.biomeWeights[ x + r + ( z + r ) * r2 ] = weight;
             }
