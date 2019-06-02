@@ -73,7 +73,7 @@ public class BlockLeaves extends BlockBase implements IShearable {
     @Override
     @SuppressWarnings( "deprecation" )
     public void tick( IBlockState state, World world, BlockPos pos, Random random ) {
-        world.setBlockState( pos, updateDistance( state, world, pos ), 4 );
+        world.setBlockState( pos, updateDistance( state, world, pos ), 2 | 4 );
     }
 
     @Override
