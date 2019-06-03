@@ -12,6 +12,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import modernity.MDInfo;
 import modernity.api.event.ModernityCommandSetupEvent;
+import modernity.api.event.ModernityDebugCommandSetupEvent;
 
 import java.util.ArrayList;
 
@@ -20,19 +21,28 @@ public class MDCommands {
     private static final String TK_MAIN_RESULT_VERSION = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:main.version" ) );
 
     public static void register( CommandDispatcher<CommandSource> dispatcher ) {
-        register( "modernity", dispatcher );
-        register( "md", dispatcher );
-        register( "m", dispatcher );
-    }
-
-    public static void register( String alias, CommandDispatcher<CommandSource> dispatcher ) {
-        LiteralArgumentBuilder<CommandSource> root = Commands.literal( alias );
-        root.executes( MDCommands::invokeMain );
 
         ArrayList<LiteralArgumentBuilder<CommandSource>> commandList = new ArrayList<>();
 
         TPDimCommand.createCommand( commandList );
         MinecraftForge.EVENT_BUS.post( new ModernityCommandSetupEvent( commandList ) );
+        register( "modernity", dispatcher, commandList );
+        register( "md", dispatcher, commandList );
+        register( "m", dispatcher, commandList );
+
+
+        ArrayList<LiteralArgumentBuilder<CommandSource>> debugCommandList = new ArrayList<>();
+
+        EBPRetCommand.createCommand( debugCommandList );
+        MinecraftForge.EVENT_BUS.post( new ModernityDebugCommandSetupEvent( debugCommandList ) );
+        register( "mddebug", dispatcher, debugCommandList );
+        register( "mdd", dispatcher, debugCommandList );
+        register( "mdebug", dispatcher, debugCommandList );
+    }
+
+    public static void register( String alias, CommandDispatcher<CommandSource> dispatcher, ArrayList<LiteralArgumentBuilder<CommandSource>> commandList ) {
+        LiteralArgumentBuilder<CommandSource> root = Commands.literal( alias );
+        root.executes( MDCommands::invokeMain );
 
         for( LiteralArgumentBuilder<CommandSource> comm : commandList ) {
             root.then( comm );

@@ -164,7 +164,7 @@ public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoC
             }
             killFromDeadThreads();
             if( USED.size() >= warningLimit + 30 ) {
-                LOGGER.warn( "Using a lot of EcoBlockPos instances! Amount of used instances is " + USED.size() + "..." ); // Removed: "Execute '/mddebug dumpEBPRetainers' for info about in-use retainer methods..."
+                LOGGER.warn( "Using a lot of EcoBlockPos instances! Amount of used instances is " + USED.size() + "... Execute '/mddebug dumpEBPRetainers' command for info about in-use retainer methods..." );
                 warningLimit = USED.size();
             }
         }
