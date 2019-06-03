@@ -204,10 +204,10 @@ public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoC
      * Puts this blockpos back into the pool
      */
     public synchronized final void release() {
-        if( USED.contains( this.inst ) ) {
-            USED.remove( this.inst );
-            FREE.add( this.inst );
-            this.retained = false;
+        if( USED.contains( inst ) ) {
+            USED.remove( inst );
+            FREE.add( inst );
+            retained = false;
         }
     }
 
@@ -215,54 +215,54 @@ public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoC
      * Feeds this blockpos to the garbage collector by deleting it's reference.
      */
     public final synchronized void kill() {
-        this.retained = false;
-        USED.remove( this.inst );
+        retained = false;
+        USED.remove( inst );
     }
 
     // These methods are used to return a value and release a blockpos at the same time (convenience)...
 
     public final synchronized boolean release( boolean t ) {
-        this.release();
+        release();
         return t;
     }
 
     public final synchronized byte release( byte t ) {
-        this.release();
+        release();
         return t;
     }
 
     public final synchronized short release( short t ) {
-        this.release();
+        release();
         return t;
     }
 
     public final synchronized int release( int t ) {
-        this.release();
+        release();
         return t;
     }
 
     public final synchronized long release( long t ) {
-        this.release();
+        release();
         return t;
     }
 
     public final synchronized char release( char t ) {
-        this.release();
+        release();
         return t;
     }
 
     public final synchronized double release( double t ) {
-        this.release();
+        release();
         return t;
     }
 
     public final synchronized float release( float t ) {
-        this.release();
+        release();
         return t;
     }
 
     public final synchronized <T> T release( T t ) {
-        this.release();
+        release();
         return t;
     }
 
@@ -271,59 +271,59 @@ public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoC
      * @return The block pos with the coordinates of the released instance.
      */
     public final synchronized BlockPos immutableAndRelease() {
-        BlockPos immutable = this.toImmutable();
-        this.release();
+        BlockPos immutable = toImmutable();
+        release();
         return immutable;
     }
 
     public final synchronized boolean kill( boolean t ) {
-        this.kill();
+        kill();
         return t;
     }
 
     public final synchronized byte kill( byte t ) {
-        this.kill();
+        kill();
         return t;
     }
 
     public final synchronized short kill( short t ) {
-        this.kill();
+        kill();
         return t;
     }
 
     public final synchronized int kill( int t ) {
-        this.kill();
+        kill();
         return t;
     }
 
     public final synchronized long kill( long t ) {
-        this.kill();
+        kill();
         return t;
     }
 
     public final synchronized char kill( char t ) {
-        this.kill();
+        kill();
         return t;
     }
 
     public final synchronized double kill( double t ) {
-        this.kill();
+        kill();
         return t;
     }
 
     public final synchronized float kill( float t ) {
-        this.kill();
+        kill();
         return t;
     }
 
     public final synchronized <T> T kill( T t ) {
-        this.kill();
+        kill();
         return t;
     }
 
     public final synchronized BlockPos immutableAndKill() {
-        BlockPos immutable = this.toImmutable();
-        this.kill();
+        BlockPos immutable = toImmutable();
+        kill();
         return immutable;
     }
 
@@ -337,62 +337,62 @@ public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoC
 
     public EcoBlockPos moveDown() {
         checkStatus();
-        return (EcoBlockPos) this.move( EnumFacing.DOWN, 1 );
+        return move( EnumFacing.DOWN, 1 );
     }
 
     public EcoBlockPos moveUp() {
         checkStatus();
-        return (EcoBlockPos) this.move( EnumFacing.UP, 1 );
+        return move( EnumFacing.UP, 1 );
     }
 
     public EcoBlockPos moveEast() {
         checkStatus();
-        return (EcoBlockPos) this.move( EnumFacing.EAST, 1 );
+        return move( EnumFacing.EAST, 1 );
     }
 
     public EcoBlockPos moveWest() {
         checkStatus();
-        return (EcoBlockPos) this.move( EnumFacing.WEST, 1 );
+        return move( EnumFacing.WEST, 1 );
     }
 
     public EcoBlockPos moveNorth() {
         checkStatus();
-        return (EcoBlockPos) this.move( EnumFacing.NORTH, 1 );
+        return move( EnumFacing.NORTH, 1 );
     }
 
     public EcoBlockPos moveSouth() {
         checkStatus();
-        return (EcoBlockPos) this.move( EnumFacing.SOUTH, 1 );
+        return move( EnumFacing.SOUTH, 1 );
     }
 
     public EcoBlockPos moveDown( int offset ) {
         checkStatus();
-        return (EcoBlockPos) this.move( EnumFacing.DOWN, offset );
+        return move( EnumFacing.DOWN, offset );
     }
 
     public EcoBlockPos moveUp( int offset ) {
         checkStatus();
-        return (EcoBlockPos) this.move( EnumFacing.UP, offset );
+        return move( EnumFacing.UP, offset );
     }
 
     public EcoBlockPos moveEast( int offset ) {
         checkStatus();
-        return (EcoBlockPos) this.move( EnumFacing.EAST, offset );
+        return move( EnumFacing.EAST, offset );
     }
 
     public EcoBlockPos moveWest( int offset ) {
         checkStatus();
-        return (EcoBlockPos) this.move( EnumFacing.WEST, offset );
+        return move( EnumFacing.WEST, offset );
     }
 
     public EcoBlockPos moveNorth( int offset ) {
         checkStatus();
-        return (EcoBlockPos) this.move( EnumFacing.NORTH, offset );
+        return move( EnumFacing.NORTH, offset );
     }
 
     public EcoBlockPos moveSouth( int offset ) {
         checkStatus();
-        return (EcoBlockPos) this.move( EnumFacing.SOUTH, offset );
+        return move( EnumFacing.SOUTH, offset );
     }
 
     public EcoBlockPos addPos( BlockPos pos ) {
@@ -419,27 +419,27 @@ public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoC
     }
 
     @Override
-    public MutableBlockPos setPos( Vec3i vec ) {
+    public EcoBlockPos setPos( Vec3i vec ) {
         checkStatus();
-        return super.setPos( vec );
+        return (EcoBlockPos) super.setPos( vec );
     }
 
     @Override
-    public MutableBlockPos setPos( Entity entityIn ) {
+    public EcoBlockPos setPos( Entity entityIn ) {
         checkStatus();
-        return super.setPos( entityIn );
+        return (EcoBlockPos) super.setPos( entityIn );
     }
 
     @Override
-    public MutableBlockPos setPos( int xIn, int yIn, int zIn ) {
+    public EcoBlockPos setPos( int xIn, int yIn, int zIn ) {
         checkStatus();
-        return super.setPos( xIn, yIn, zIn );
+        return (EcoBlockPos) super.setPos( xIn, yIn, zIn );
     }
 
     @Override
-    public MutableBlockPos setPos( double xIn, double yIn, double zIn ) {
+    public EcoBlockPos setPos( double xIn, double yIn, double zIn ) {
         checkStatus();
-        return super.setPos( xIn, yIn, zIn );
+        return (EcoBlockPos) super.setPos( xIn, yIn, zIn );
     }
 
     @Override
@@ -485,15 +485,15 @@ public final class EcoBlockPos extends BlockPos.MutableBlockPos implements AutoC
     }
 
     @Override
-    public MutableBlockPos move( EnumFacing facing ) {
+    public EcoBlockPos move( EnumFacing facing ) {
         checkStatus();
-        return super.move( facing );
+        return (EcoBlockPos) super.move( facing );
     }
 
     @Override
-    public MutableBlockPos move( EnumFacing facing, int n ) {
+    public EcoBlockPos move( EnumFacing facing, int n ) {
         checkStatus();
-        return super.move( facing, n );
+        return (EcoBlockPos) super.move( facing, n );
     }
 
     @Override
