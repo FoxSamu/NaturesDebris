@@ -23,10 +23,6 @@ public class Modernity {
 
     public static Dist dist;
 
-    static {
-        System.out.println( "--------ABCDEFGHIJKLMNOPQRSTUVWXYZ---------pitten" );
-    }
-
     public Modernity() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener( this::commonSetup );
         FMLJavaModLoadingContext.get().getModEventBus().addListener( this::clientSetup );

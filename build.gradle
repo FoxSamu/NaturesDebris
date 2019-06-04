@@ -120,9 +120,9 @@ task signJar(dependsOn: 'reobfJar') {
                     verbose: true,
                     preservelastmodified: "true"
             )
-            println "Signed jar: ${jar.archivePath}"
+            println "Jar signed: ${jar.archivePath}"
         } else {
-            println "Did not sign jar: no keystore specified"
+            println "No keystore property found, jar will not be signed"
         }
     }
 //    if (canJarBeSigned()) {
