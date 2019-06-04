@@ -82,8 +82,8 @@ public abstract class ModernizedWaterFluid extends ImprovedFluid implements ICus
         return MDBlocks.MODERNIZED_WATER.getDefaultState().with( BlockFlowingFluid.LEVEL, getLevelFromState( state ) );
     }
 
-    public boolean isEquivalentTo( Fluid fluidIn ) {
-        return fluidIn == MDFluids.MODERNIZED_WATER || fluidIn == MDFluids.MODERNIZED_WATER_FLOWING;
+    public boolean isEquivalentTo( Fluid fluid ) {
+        return fluid == MDFluids.MODERNIZED_WATER || fluid == MDFluids.MODERNIZED_WATER_FLOWING;
     }
 
     public int getLevelDecreasePerBlock( IWorldReaderBase world ) {

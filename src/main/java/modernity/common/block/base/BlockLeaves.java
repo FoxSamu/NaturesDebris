@@ -46,13 +46,13 @@ public class BlockLeaves extends BlockBase implements IShearable {
     public BlockLeaves( String id, Tag<Block> logTag, Properties properties, Item.Properties itemProps ) {
         super( id, properties, itemProps );
         this.logTag = logTag;
-        setDefaultState( stateContainer.getBaseState().with( DISTANCE, 1 ).with( PERSISTENT, Boolean.FALSE ) );
+        setDefaultState( stateContainer.getBaseState().with( DISTANCE, 7 ).with( PERSISTENT, false ) );
     }
 
     public BlockLeaves( String id, Tag<Block> logTag, Properties properties ) {
         super( id, properties );
         this.logTag = logTag;
-        setDefaultState( stateContainer.getBaseState().with( DISTANCE, 1 ).with( PERSISTENT, Boolean.FALSE ) );
+        setDefaultState( stateContainer.getBaseState().with( DISTANCE, 7 ).with( PERSISTENT, false ) );
     }
 
     @Override
@@ -73,6 +73,7 @@ public class BlockLeaves extends BlockBase implements IShearable {
     @Override
     @SuppressWarnings( "deprecation" )
     public void tick( IBlockState state, World world, BlockPos pos, Random random ) {
+        System.out.println( "Leaves ticked" );
         world.setBlockState( pos, updateDistance( state, world, pos ), 2 | 4 );
     }
 

@@ -1,3 +1,4 @@
+// Setup for build script itself
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
@@ -8,42 +9,61 @@ buildscript {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 version = 'indev-0.0.1'
-group = 'com.redgalaxy' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'net.rgsw'
 archivesBaseName = 'modernity'
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+// Use Java 1.8
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+
+project.ext.canJarBeSigned = {
+    return getVariable('mdKeyStore') != null && (!isDeploymentEnv || isDeploymentRelease)
+}
+
+//Returns the public fingerprint, may be empty ("")
+project.ext.getProjectFingerprint = {
+    if (canJarBeSigned()) {
+        return getVariable('mdSignSHA1').replaceAll(':', '').toLowerCase()
+    }
+    return ''
+}
+
+//Attempts to get a project variable and if none is found it tries to read from a system environment variable
+project.ext.getVariable = { key ->
+    return project.hasProperty(key) ? project.property(key) : ENV[key]
+}
+
+project.ext.ENV = System.getenv()
+project.ext.isDeploymentEnv = ENV['DEPLOY_ENV'] != null && 'true'.equals(ENV['DEPLOY_ENV'])
+project.ext.isDeploymentRelease = project.isDeploymentEnv && ENV['DEPLOY_BUILD_TYPE'] != null && 'release'.equals(ENV['DEPLOY_BUILD_TYPE'])
+project.ext.buildnumber = project.isDeploymentEnv ? ENV['DEPLOY_BUILD_NUMBER'] : ''
+
+project.ext.modid = 'modernity'
+
 
 minecraft {
-    // The mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   Snapshot are built nightly.
-    // stable_#            Stables are built at the discretion of the MCP team.
-    // Use non-default mappings at your own risk. they may not always work.
-    // Simply re-run your setup task after changing the mappings to update your workspace.
+    // Snapshot mappings: May 26, 2019
     mappings channel: 'snapshot', version: '20190526-1.13.2'
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
-    
+
+    // TODO: Access transformer
     // accessTransformer = file('build/resources/main/META-INF/accesstransformer.cfg')
 
-    // Default run configurations.
-    // These can be tweaked, removed, or duplicated as needed.
     runs {
         client {
             workingDirectory project.file('run')
 
-            // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
-            // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
 
             mods {
-                examplemod {
+                modernity {
                     source sourceSets.main
                 }
             }
@@ -52,15 +72,11 @@ minecraft {
         server {
             workingDirectory project.file('run')
 
-            // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
-            // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
-            
 
             mods {
-                examplemod {
+                modernity {
                     source sourceSets.main
                 }
             }
@@ -69,32 +85,12 @@ minecraft {
 }
 
 dependencies {
-    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
-    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
-    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.13.2-25.0.208'
-
-    // You may put jars on which you depend on in ./libs or you may define them like so..
-    // compile "some.group:artifact:version:classifier"
-    // compile "some.group:artifact:version"
-
-    // Real examples
-    // compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    // compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // The 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    // provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // These dependencies get remapped to your current MCP mappings
-    // deobf 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // For more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
+    // compile 'dep' // Specifies a dependency
+    // provided 'dep' // May not exist at runtime
+    // deobf 'dep' // Remaps a dependency
 }
 
-// Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
         attributes([
@@ -109,14 +105,41 @@ jar {
     }
 }
 
-// Example configuration to allow publishing using the maven-publish task
-// we define a custom artifact that is sourced from the reobfJar output task
-// and then declare that to be published
-// Note you'll need to add a repository here
+task signJar(dependsOn: 'reobfJar') {
+    doLast {
+        println ":$project.name:${name}"
+        ant.signjar(
+                destDir: "${jar.archivePath.parentFile}",
+                jar: "${jar.archivePath}",
+                alias: getVariable('mdKeyStoreAlias'),
+                storetype: "jks",
+                keystore: getVariable('mdKeyStore'),
+                storepass: getVariable('mdKeyStorePass'),
+                keypass: getVariable('mdKeyStoreKeyPass'),
+                verbose: true,
+                preservelastmodified: "true"
+        )
+        println "Signed jar: ${jar.archivePath}"
+    }
+//    if (canJarBeSigned()) {
+//        keyStore = getVariable('mdKeyStore')
+//        alias = getVariable('mdKeyStoreAlias')
+//        storePass = getVariable('mdKeyStorePass')
+//        keyPass = getVariable('mdKeyStoreKeyPass')
+//        inputFile = jar.archivePath
+//        outputFile = jar.archivePath
+//    }
+}
+
+
+build {
+    dependsOn signJar
+}
+
 def reobfFile = file("$buildDir/reobfJar/output.jar")
 def reobfArtifact = artifacts.add('default', reobfFile) {
     type 'jar'
-    builtBy 'reobfJar'
+    builtBy 'signJar'
 }
 publishing {
     publications {

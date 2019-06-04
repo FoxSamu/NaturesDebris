@@ -1,9 +1,10 @@
 package modernity.common.world.gen.decorate.feature;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -17,6 +18,7 @@ import modernity.api.util.EcoBlockPos;
 import modernity.common.block.MDBlockTags;
 import modernity.common.block.base.BlockBranch;
 
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -32,13 +34,77 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
         this.branch = branch;
     }
 
+    public boolean generate( IWorld world, Random rand, BlockPos pos ) {
+        Set<BlockPos> changedBlocks = Sets.newHashSet();
+
+        boolean generated = generateTree( changedBlocks, world, pos, rand );
+
+        // Changed blocks at each leaf distance (logs = 0)
+        List<Set<BlockPos>> distLayers = Lists.newArrayList();
+
+        for( int layer = 0; layer < 6; layer++ ) {
+            distLayers.add( Sets.newHashSet() );
+        }
+
+        // Update the leaf distances
+        try( BlockPos.PooledMutableBlockPos mpos = BlockPos.PooledMutableBlockPos.retain() ) {
+
+            // Update the leaves around logs to distance 1
+            if( generated && ! changedBlocks.isEmpty() ) {
+                for( BlockPos change : Lists.newArrayList( changedBlocks ) ) {
+                    for( EnumFacing facing : EnumFacing.values() ) {
+                        mpos.setPos( change ).move( facing );
+                        if( ! changedBlocks.contains( mpos ) ) {
+                            IBlockState state = world.getBlockState( mpos );
+                            if( state.has( BlockStateProperties.DISTANCE_1_7 ) ) {
+                                // Add the leaves to the next list of changes
+                                distLayers.get( 0 ).add( mpos.toImmutable() );
+                                setBlockState( world, mpos, state.with( BlockStateProperties.DISTANCE_1_7, 1 ) );
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Update the leaves around leaves with changed distance: they probably need to be updated too
+            for( int dist = 1; dist < 6; dist++ ) {
+                Set<BlockPos> changedLeaves = distLayers.get( dist - 1 );
+                Set<BlockPos> nextChanges = distLayers.get( dist );
+
+                for( BlockPos change : changedLeaves ) {
+                    for( EnumFacing facing : EnumFacing.values() ) {
+                        mpos.setPos( change ).move( facing );
+                        if( ! changedLeaves.contains( mpos ) && ! nextChanges.contains( mpos ) ) {
+                            IBlockState state = world.getBlockState( mpos );
+                            if( state.has( BlockStateProperties.DISTANCE_1_7 ) ) {
+                                int currDist = state.get( BlockStateProperties.DISTANCE_1_7 );
+                                if( currDist > dist + 1 ) {
+                                    IBlockState newState = state.with( BlockStateProperties.DISTANCE_1_7, dist + 1 );
+                                    setBlockState( world, mpos, newState );
+                                    nextChanges.add( mpos.toImmutable() );
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return generated;
+    }
+
+    @Override
+    protected void setBlockState( IWorld world, BlockPos pos, IBlockState state ) {
+        world.setBlockState( pos, state, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+    }
+
     @Override
     public boolean place( IWorld world, IChunkGenerator<? extends IChunkGenSettings> chunkGen, Random rand, BlockPos pos, NoFeatureConfig config ) {
-        return generateTree( world, pos, rand );
+        return generate( world, rand, pos );
     }
 
 
-    public abstract boolean generateTree( IWorld world, BlockPos pos, Random rand );
+    public abstract boolean generateTree( Set<BlockPos> changedBlocks, IWorld world, BlockPos pos, Random rand );
 
     public void generateLeaves( IWorld world, BlockPos pos, Random rand, int size, int height, int cornerCutoff, int hangingLeavesLength, int skipChance ) {
         try( EcoBlockPos rpos = EcoBlockPos.retain() ) {
@@ -73,14 +139,15 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
         }
     }
 
-    public void generateLog( IWorld world, BlockPos pos, EnumFacing facing, int len, EcoBlockPos rpos ) {
+    public void generateLog( Set<BlockPos> changed, IWorld world, BlockPos pos, EnumFacing facing, int len, EcoBlockPos rpos ) {
         for( int i = 0; i < len; i++ ) {
             rpos.setPos( pos );
             rpos.move( facing, i );
 
             IBlockState state = world.getBlockState( rpos );
-            if( ! state.getMaterial().blocksMovement() || state.isIn( BlockTags.LEAVES ) ) {
+            if( ! state.getMaterial().blocksMovement() || state.isIn( MDBlockTags.LEAVES ) ) {
                 world.setBlockState( rpos, log.with( BlockStateProperties.AXIS, facing.getAxis() ), BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+                changed.add( rpos.toImmutable() );
             }
         }
     }
@@ -100,7 +167,7 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
         }
     }
 
-    public void generateBranch( IWorld world, BlockPos pos, Random rand, EnumFacing root, EnumFacing facing, int len, int subBranchChance, int leaveConnectChance, EcoBlockPos rpos, EnumFacing.Axis axis ) {
+    public void generateBranch( Set<BlockPos> changed, IWorld world, BlockPos pos, Random rand, EnumFacing root, EnumFacing facing, int len, int subBranchChance, int leaveConnectChance, EcoBlockPos rpos, EnumFacing.Axis axis ) {
         for( int i = 0; i < len; i++ ) {
             rpos.setPos( pos );
             rpos.move( facing, i );
@@ -113,25 +180,25 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
                 EnumFacing left = EnumFacing.getFacingFromAxis( EnumFacing.AxisDirection.NEGATIVE, axis );
                 flags |= facingFlag( left );
                 rpos.move( left );
-                IBlockState branchBlock = generateBranchBlock( world, rpos, rand, left, leaveConnectChance, 0 );
+                IBlockState branchBlock = generateBranchBlock( changed, world, rpos, rand, left, leaveConnectChance, 0 );
                 world.setBlockState( rpos, branchBlock, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
             }
             if( rightBranch ) {
                 EnumFacing right = EnumFacing.getFacingFromAxis( EnumFacing.AxisDirection.POSITIVE, axis );
                 flags |= facingFlag( right );
                 rpos.move( right );
-                IBlockState branchBlock = generateBranchBlock( world, rpos, rand, right, leaveConnectChance, 0 );
+                IBlockState branchBlock = generateBranchBlock( changed, world, rpos, rand, right, leaveConnectChance, 0 );
                 world.setBlockState( rpos, branchBlock, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
             }
 
             IBlockState state = world.getBlockState( rpos );
-            if( ! state.getMaterial().blocksMovement() || state.isIn( BlockTags.LEAVES ) ) {
-                world.setBlockState( rpos, generateBranchBlock( world, rpos, rand, i == 0 ? root : facing, leaveConnectChance, flags ), BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+            if( ! state.getMaterial().blocksMovement() || state.isIn( MDBlockTags.LEAVES ) ) {
+                world.setBlockState( rpos, generateBranchBlock( changed, world, rpos, rand, i == 0 ? root : facing, leaveConnectChance, flags ), BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
             }
         }
     }
 
-    private IBlockState generateBranchBlock( IWorld world, EcoBlockPos pos, Random rand, EnumFacing root, int leaveConnectChance, int flags ) {
+    private IBlockState generateBranchBlock( Set<BlockPos> changed, IWorld world, EcoBlockPos pos, Random rand, EnumFacing root, int leaveConnectChance, int flags ) {
         for( EnumFacing facing : EnumFacing.values() ) {
             int flag = facingFlag( facing );
             if( facing == root.getOpposite() ) {
@@ -145,6 +212,7 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
             }
             pos.move( facing, - 1 );
         }
+        changed.add( pos.toImmutable() );
         return branch( root, flags );
     }
 

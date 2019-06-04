@@ -55,7 +55,7 @@ public class BlockSapling extends BlockBase {
     public void growOlder( IBlockState state, IWorld world, BlockPos pos, Random rand ) {
         if( state.get( AGE ) == 5 ) {
             world.removeBlock( pos );
-            feature.generateTree( world, pos, rand );
+            feature.generate( world, rand, pos );
         } else {
             world.setBlockState( pos, state.with( AGE, state.get( AGE ) + 1 ), BlockUpdates.CAUSE_UPDATE | BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_RENDER | BlockUpdates.NO_NEIGHBOR_REACTIONS );
         }
