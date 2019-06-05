@@ -125,16 +125,7 @@ task signJar(dependsOn: 'reobfJar') {
             println "No keystore property found, jar will not be signed"
         }
     }
-//    if (canJarBeSigned()) {
-//        keyStore = getVariable('mdKeyStore')
-//        alias = getVariable('mdKeyStoreAlias')
-//        storePass = getVariable('mdKeyStorePass')
-//        keyPass = getVariable('mdKeyStoreKeyPass')
-//        inputFile = jar.archivePath
-//        outputFile = jar.archivePath
-//    }
 }
-
 
 build {
     dependsOn signJar
