@@ -24,9 +24,9 @@ import java.util.Set;
 
 public abstract class TreeFeature extends Feature<NoFeatureConfig> {
 
-    private final IBlockState leaves;
-    private final IBlockState log;
-    private final IBlockState branch;
+    protected final IBlockState leaves;
+    protected final IBlockState log;
+    protected final IBlockState branch;
 
     public TreeFeature( IBlockState leaves, IBlockState log, IBlockState branch ) {
         this.leaves = leaves;

@@ -4,7 +4,7 @@ import modernity.common.block.MDBlocks;
 
 public class MDFeatures {
     public static final BushFeature BUSH = new BushFeature();
-    public static final DarkwoodTreeFeature DARKWOOD_TREE = new DarkwoodTreeFeature(
+    public static final HangTreeFeature BLACKWOOD_TREE = new HangTreeFeature(
             MDBlocks.BLACKWOOD_LEAVES.getDefaultState(),
             MDBlocks.BLACKWOOD_LOG.getDefaultState(),
             MDBlocks.BLACKWOOD_BRANCH.getDefaultState()
