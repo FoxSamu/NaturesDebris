@@ -77,7 +77,7 @@ class CopyFiles {
             FileInputStream fis = new FileInputStream( from );
             int i;
 
-            while( ( i = fis.read() ) > 0 ) {
+            while( ( i = fis.read() ) >= 0 ) {
                 fos.write( i );
             }
             System.out.printf( "Copied %s to %s\n", from, to );

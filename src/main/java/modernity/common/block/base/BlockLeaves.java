@@ -28,6 +28,7 @@ import net.minecraftforge.common.IShearable;
 import modernity.Modernity;
 import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
+import modernity.api.util.EcoBlockPos;
 import modernity.client.util.MDBiomeValues;
 
 import javax.annotation.Nonnull;
@@ -73,7 +74,6 @@ public class BlockLeaves extends BlockBase implements IShearable {
     @Override
     @SuppressWarnings( "deprecation" )
     public void tick( IBlockState state, World world, BlockPos pos, Random random ) {
-        System.out.println( "Leaves ticked" );
         world.setBlockState( pos, updateDistance( state, world, pos ), 2 | 4 );
     }
 
@@ -97,10 +97,10 @@ public class BlockLeaves extends BlockBase implements IShearable {
     private IBlockState updateDistance( IBlockState state, IWorld world, BlockPos pos ) {
         int dist = 7;
 
-        try( BlockPos.PooledMutableBlockPos mpos = BlockPos.PooledMutableBlockPos.retain() ) {
+        try( EcoBlockPos rpos = EcoBlockPos.retain() ) {
             for( EnumFacing facing : EnumFacing.values() ) {
-                mpos.setPos( pos ).move( facing );
-                dist = Math.min( dist, getDistance( world.getBlockState( mpos ) ) + 1 );
+                rpos.setPos( pos ).move( facing );
+                dist = Math.min( dist, getDistance( world.getBlockState( rpos ) ) + 1 );
                 if( dist == 1 ) {
                     break;
                 }
