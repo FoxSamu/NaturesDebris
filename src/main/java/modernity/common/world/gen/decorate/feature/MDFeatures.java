@@ -7,6 +7,6 @@ public class MDFeatures {
     public static final HangTreeFeature BLACKWOOD_TREE = new HangTreeFeature(
             MDBlocks.BLACKWOOD_LEAVES.getDefaultState(),
             MDBlocks.BLACKWOOD_LOG.getDefaultState(),
-            MDBlocks.BLACKWOOD_BRANCH.getDefaultState()
+            null // MDBlocks.BLACKWOOD_BRANCH.getDefaultState()
     );
 }

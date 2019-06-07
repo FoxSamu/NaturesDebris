@@ -52,7 +52,8 @@ public class SignedIntegerProperty extends AbstractProperty<Integer> {
     public Optional<Integer> parseValue( String value ) {
         try {
             int neg = value.charAt( 0 ) == 'n' ? - 1 : 1;
-            Integer val = Integer.valueOf( value.substring( 1 ) ) * neg;
+            int off = value.charAt( 0 ) == 'p' || neg < 0 ? 1 : 0;
+            Integer val = Integer.valueOf( value.substring( off ) ) * neg;
             return allowedValues.contains( val ) ? Optional.of( val ) : Optional.empty();
         } catch( Exception exc ) {
             return Optional.empty();

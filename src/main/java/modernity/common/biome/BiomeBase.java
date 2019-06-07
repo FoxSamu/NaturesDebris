@@ -9,8 +9,6 @@ import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.rgsw.noise.FractalPerlin3D;
 
-import modernity.api.util.ColorUtil;
-
 import java.util.Random;
 
 public class BiomeBase extends Biome {
@@ -59,19 +57,19 @@ public class BiomeBase extends Biome {
     }
 
     public int getMDWaterColor( BlockPos pos ) {
-        return ColorUtil.darken( waterColor, WATER_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
+        return waterColor; // ColorUtil.darken( waterColor, WATER_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
     }
 
     public int getGrassColor( BlockPos pos ) {
-        return ColorUtil.darken( grassColor, GRASS_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
+        return grassColor; // ColorUtil.darken( grassColor, GRASS_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
     }
 
     public int getFoliageColor( BlockPos pos ) {
-        return ColorUtil.darken( foliageColor, FOLIAGE_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
+        return foliageColor; // ColorUtil.darken( foliageColor, FOLIAGE_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
     }
 
     public int getFogColor( BlockPos pos ) {
-        return ColorUtil.darken( fogColor, FOG_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
+        return fogColor; // ColorUtil.darken( fogColor, FOG_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
     }
 
     public float getFogDensity() {
