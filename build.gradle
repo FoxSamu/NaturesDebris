@@ -47,6 +47,9 @@ project.ext.buildnumber = project.isDeploymentEnv ? ENV['DEPLOY_BUILD_NUMBER'] :
 
 project.ext.modid = 'modernity'
 
+repositories {
+    mavenLocal()
+}
 
 minecraft {
     // Snapshot mappings: May 26, 2019
@@ -86,7 +89,8 @@ minecraft {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.13.2-25.0.208'
-    // compile 'dep' // Specifies a dependency
+    compile 'net.rgsw:tasklib:1.0'
+    
     // provided 'dep' // May not exist at runtime
     // deobf 'dep' // Remaps a dependency
 }
