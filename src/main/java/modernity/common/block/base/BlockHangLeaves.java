@@ -5,7 +5,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.EnumFacing;
@@ -19,13 +18,14 @@ import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
 import modernity.api.util.EcoBlockPos;
 import modernity.client.util.MDBiomeValues;
+import modernity.common.block.prop.SignedIntegerProperty;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BlockHangLeaves extends BlockLeaves {
     public static final int MAX_DIST = 10;
-    public static final IntegerProperty DISTANCE = IntegerProperty.create( "distance", - 1, MAX_DIST );
+    public static final SignedIntegerProperty DISTANCE = SignedIntegerProperty.create( "distance", - 1, MAX_DIST );
 
     private final Tag<Block> logTag;
 
@@ -59,7 +59,9 @@ public class BlockHangLeaves extends BlockLeaves {
     @Override
     @SuppressWarnings( "deprecation" )
     public void tick( IBlockState state, World world, BlockPos pos, Random random ) {
-        world.setBlockState( pos, updateDistance( state, world, pos ), 2 | 4 );
+        if( ! world.isRemote ) {
+            world.setBlockState( pos, updateDistance( state, world, pos ), 2 | 4 );
+        }
     }
 
     @Override

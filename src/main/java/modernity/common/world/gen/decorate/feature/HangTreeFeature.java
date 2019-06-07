@@ -12,6 +12,8 @@ import modernity.api.util.BlockUpdates;
 import modernity.api.util.EcoBlockPos;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.base.BlockBranch;
+import modernity.common.block.base.BlockHangLeaves;
+import modernity.common.block.prop.SignedIntegerProperty;
 
 import java.util.Random;
 import java.util.Set;
@@ -76,7 +78,7 @@ public class HangTreeFeature extends TreeFeature {
 //            generateLeaves( world, rpos, rand, rand.nextInt( 2 ) + 1, 2, 1, - 1, - 1 );
 
             IBlockState branch = BlockBranch.withFluid( branch( facing, true, true, true, true, true, false ), world, rpos );
-            world.setBlockState( rpos, branch, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+            world.setBlockState( rpos, branch, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS | BlockUpdates.NO_RENDER );
             changed.add( rpos.toImmutable() );
         }
 
@@ -86,14 +88,14 @@ public class HangTreeFeature extends TreeFeature {
 
             if( ! world.getBlockState( rpos ).getMaterial().blocksMovement() ) {
                 IBlockState branch = BlockBranch.withFluid( branch( facing, 32 | facingFlag( facing.getOpposite() ) ), world, rpos );
-                world.setBlockState( rpos, branch, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+                world.setBlockState( rpos, branch, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS | BlockUpdates.NO_RENDER );
                 changed.add( rpos.toImmutable() );
             }
 
             rpos.moveUp( leaveHeight );
 
             IBlockState branch = BlockBranch.withFluid( branch( facing, true, true, true, true, true, false ), world, rpos );
-            world.setBlockState( rpos, branch, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+            world.setBlockState( rpos, branch, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS | BlockUpdates.NO_RENDER );
             changed.add( rpos.toImmutable() );
         }
 
@@ -165,7 +167,7 @@ public class HangTreeFeature extends TreeFeature {
 
                 for( int i = 0; i < len; i++ ) {
                     rpos.move( facing );
-                    world.setBlockState( rpos, log.with( BlockStateProperties.AXIS, axis ), BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+                    world.setBlockState( rpos, log.with( BlockStateProperties.AXIS, axis ), BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS | BlockUpdates.NO_RENDER );
                     changed.add( rpos.toImmutable() );
                 }
 
@@ -176,7 +178,7 @@ public class HangTreeFeature extends TreeFeature {
 
                 for( int i = 0; i < len; i++ ) {
                     rpos.move( facing );
-                    world.setBlockState( rpos, log.with( BlockStateProperties.AXIS, axis ), BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+                    world.setBlockState( rpos, log.with( BlockStateProperties.AXIS, axis ), BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS | BlockUpdates.NO_RENDER );
                     changed.add( rpos.toImmutable() );
                 }
             }
@@ -213,8 +215,23 @@ public class HangTreeFeature extends TreeFeature {
         return true;
     }
 
+    @Override
+    protected boolean isDecayableLeaf( IBlockState state ) {
+        return state.has( BlockHangLeaves.DISTANCE ) && state.get( BlockHangLeaves.DISTANCE ) > 0;
+    }
+
+    @Override
+    protected SignedIntegerProperty getLeafDistanceProperty() {
+        return BlockHangLeaves.DISTANCE;
+    }
+
+    @Override
+    protected int getLeafDistanceMax() {
+        return 10;
+    }
+
     public IBlockState hangingBlock( Random rand ) {
-        return leaves;
+        return leaves.with( BlockHangLeaves.DISTANCE, - 1 );
     }
 
     public int hangingLength( Random rand, IBlockState hanger ) {

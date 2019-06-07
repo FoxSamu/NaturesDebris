@@ -25,6 +25,8 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.biome.BiomeColors;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.api.block.fluid.IGaseousFluid;
@@ -33,6 +35,7 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class MDFluidRenderer extends BlockFluidRenderer {
+    private static final Logger LOGGER = LogManager.getLogger( "FluidRenderer" );
     public static final ResourceLocation LOCATION_LAVA_STILL = new ResourceLocation( "block/lava_still" );
     public static final ResourceLocation LOCATION_WATER_STILL = new ResourceLocation( "block/water_still" );
     private HashMap<Fluid, TextureAtlasSprite[]> customSprites = Maps.newHashMap();
@@ -142,7 +145,6 @@ public class MDFluidRenderer extends BlockFluidRenderer {
                 this.customSprites.put( fluid, fluidTex = new TextureAtlasSprite[] {
                         still, flow, overlay
                 } );
-
             }
             color = ( (ICustomRenderFluid) state.getFluid() ).getColor( state, pos, world );
 
@@ -410,7 +412,6 @@ public class MDFluidRenderer extends BlockFluidRenderer {
                     }
                 }
             }
-
             return somethingRendered;
         }
     }

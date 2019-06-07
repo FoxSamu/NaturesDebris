@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.state.AbstractProperty;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -42,12 +43,15 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
         // Changed blocks at each leaf distance (logs = 0)
         List<Set<BlockPos>> distLayers = Lists.newArrayList();
 
-        for( int layer = 0; layer < 6; layer++ ) {
+        AbstractProperty<Integer> distance = getLeafDistanceProperty();
+        int maxDist = getLeafDistanceMax();
+
+        for( int layer = 0; layer < maxDist; layer++ ) {
             distLayers.add( Sets.newHashSet() );
         }
 
         // Update the leaf distances
-        try( BlockPos.PooledMutableBlockPos mpos = BlockPos.PooledMutableBlockPos.retain() ) {
+        try( EcoBlockPos mpos = EcoBlockPos.retain() ) {
 
             // Update the leaves around logs to distance 1
             if( generated && ! changedBlocks.isEmpty() ) {
@@ -56,10 +60,10 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
                         mpos.setPos( change ).move( facing );
                         if( ! changedBlocks.contains( mpos ) ) {
                             IBlockState state = world.getBlockState( mpos );
-                            if( state.has( BlockStateProperties.DISTANCE_1_7 ) ) {
+                            if( isDecayableLeaf( state ) ) {
                                 // Add the leaves to the next list of changes
                                 distLayers.get( 0 ).add( mpos.toImmutable() );
-                                setBlockState( world, mpos, state.with( BlockStateProperties.DISTANCE_1_7, 1 ) );
+                                setBlockState( world, mpos, state.with( distance, 1 ) );
                             }
                         }
                     }
@@ -67,7 +71,7 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
             }
 
             // Update the leaves around leaves with changed distance: they probably need to be updated too
-            for( int dist = 1; dist < 6; dist++ ) {
+            for( int dist = 1; dist < maxDist; dist++ ) {
                 Set<BlockPos> changedLeaves = distLayers.get( dist - 1 );
                 Set<BlockPos> nextChanges = distLayers.get( dist );
 
@@ -76,10 +80,10 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
                         mpos.setPos( change ).move( facing );
                         if( ! changedLeaves.contains( mpos ) && ! nextChanges.contains( mpos ) ) {
                             IBlockState state = world.getBlockState( mpos );
-                            if( state.has( BlockStateProperties.DISTANCE_1_7 ) ) {
-                                int currDist = state.get( BlockStateProperties.DISTANCE_1_7 );
+                            if( isDecayableLeaf( state ) ) {
+                                int currDist = state.get( distance );
                                 if( currDist > dist + 1 ) {
-                                    IBlockState newState = state.with( BlockStateProperties.DISTANCE_1_7, dist + 1 );
+                                    IBlockState newState = state.with( distance, dist + 1 );
                                     setBlockState( world, mpos, newState );
                                     nextChanges.add( mpos.toImmutable() );
                                 }
@@ -93,9 +97,21 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
         return generated;
     }
 
+    protected AbstractProperty<Integer> getLeafDistanceProperty() {
+        return BlockStateProperties.DISTANCE_1_7;
+    }
+
+    protected int getLeafDistanceMax() {
+        return 6;
+    }
+
+    protected boolean isDecayableLeaf( IBlockState state ) {
+        return state.has( getLeafDistanceProperty() );
+    }
+
     @Override
     protected void setBlockState( IWorld world, BlockPos pos, IBlockState state ) {
-        world.setBlockState( pos, state, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+        world.setBlockState( pos, state, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS | BlockUpdates.NO_RENDER );
     }
 
     @Override
@@ -129,7 +145,7 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
                     IBlockState state = world.getBlockState( rpos );
                     Material mat = state.getMaterial();
                     if( state.canBeReplacedByLeaves( world, rpos ) || mat == Material.VINE ) {
-                        world.setBlockState( rpos, leaves, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+                        world.setBlockState( rpos, leaves, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS | BlockUpdates.NO_RENDER );
                         if( hangingLeavesLength > 0 && rand.nextInt( 4 ) == 0 ) {
                             generateHangingLeaves( world, rpos, rand, hangingLeavesLength );
                         }
@@ -160,7 +176,7 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
             IBlockState state = world.getBlockState( pos );
             Material mat = state.getMaterial();
             if( state.canBeReplacedByLeaves( world, pos ) || mat == Material.VINE ) {
-                world.setBlockState( pos, leaves, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+                world.setBlockState( pos, leaves, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS | BlockUpdates.NO_RENDER );
             } else {
                 break;
             }
@@ -181,19 +197,19 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
                 flags |= facingFlag( left );
                 rpos.move( left );
                 IBlockState branchBlock = generateBranchBlock( changed, world, rpos, rand, left, leaveConnectChance, 0 );
-                world.setBlockState( rpos, branchBlock, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+                world.setBlockState( rpos, branchBlock, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS | BlockUpdates.NO_RENDER );
             }
             if( rightBranch ) {
                 EnumFacing right = EnumFacing.getFacingFromAxis( EnumFacing.AxisDirection.POSITIVE, axis );
                 flags |= facingFlag( right );
                 rpos.move( right );
                 IBlockState branchBlock = generateBranchBlock( changed, world, rpos, rand, right, leaveConnectChance, 0 );
-                world.setBlockState( rpos, branchBlock, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+                world.setBlockState( rpos, branchBlock, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS | BlockUpdates.NO_RENDER );
             }
 
             IBlockState state = world.getBlockState( rpos );
             if( ! state.getMaterial().blocksMovement() || state.isIn( MDBlockTags.LEAVES ) ) {
-                world.setBlockState( rpos, generateBranchBlock( changed, world, rpos, rand, i == 0 ? root : facing, leaveConnectChance, flags ), BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+                world.setBlockState( rpos, generateBranchBlock( changed, world, rpos, rand, i == 0 ? root : facing, leaveConnectChance, flags ), BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS | BlockUpdates.NO_RENDER );
             }
         }
     }
@@ -207,7 +223,7 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
             }
 
             pos.move( facing );
-            if( rand.nextInt( leaveConnectChance ) == 0 && world.getBlockState( pos ).isIn( MDBlockTags.DARKWOOD_LEAVES ) ) {
+            if( rand.nextInt( leaveConnectChance ) == 0 && world.getBlockState( pos ).isIn( MDBlockTags.BLACKWOOD_LEAVES ) ) {
                 flags |= flag;
             }
             pos.move( facing, - 1 );

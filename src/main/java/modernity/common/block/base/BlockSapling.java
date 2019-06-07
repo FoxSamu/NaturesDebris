@@ -18,20 +18,21 @@ import modernity.common.item.MDItemTags;
 import modernity.common.world.gen.decorate.feature.TreeFeature;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
 public class BlockSapling extends BlockBase {
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_5;
 
-    private final TreeFeature feature;
+    private final Supplier<TreeFeature> feature;
 
-    public BlockSapling( String id, TreeFeature feature, Properties properties, Item.Properties itemProps ) {
+    public BlockSapling( String id, Supplier<TreeFeature> feature, Properties properties, Item.Properties itemProps ) {
         super( id, properties, itemProps );
         initDefaultState();
         this.feature = feature;
     }
 
-    public BlockSapling( String id, TreeFeature feature, Properties properties ) {
+    public BlockSapling( String id, Supplier<TreeFeature> feature, Properties properties ) {
         super( id, properties );
         initDefaultState();
         this.feature = feature;
@@ -55,7 +56,7 @@ public class BlockSapling extends BlockBase {
     public void growOlder( IBlockState state, IWorld world, BlockPos pos, Random rand ) {
         if( state.get( AGE ) == 5 ) {
             world.removeBlock( pos );
-            feature.generate( world, rand, pos );
+            feature.get().generate( world, rand, pos );
         } else {
             world.setBlockState( pos, state.with( AGE, state.get( AGE ) + 1 ), BlockUpdates.CAUSE_UPDATE | BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_RENDER | BlockUpdates.NO_NEIGHBOR_REACTIONS );
         }

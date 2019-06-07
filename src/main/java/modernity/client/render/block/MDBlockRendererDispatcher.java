@@ -24,6 +24,7 @@ import java.util.Random;
 
 public class MDBlockRendererDispatcher extends BlockRendererDispatcher {
     private final BlockModelShapes blockModelShapes;
+    private final BlockModelCache blockModelCache;
     private final BlockModelRenderer blockModelRenderer;
     private final ChestRenderer chestRenderer = new ChestRenderer();
     private final MDFluidRenderer fluidRenderer;
@@ -31,9 +32,10 @@ public class MDBlockRendererDispatcher extends BlockRendererDispatcher {
 
     public MDBlockRendererDispatcher( BlockModelShapes bms, BlockColors colors ) {
         super( bms, colors );
-        this.blockModelShapes = bms;
-        this.blockModelRenderer = new ForgeBlockModelRenderer( colors );
-        this.fluidRenderer = new MDFluidRenderer();
+        blockModelShapes = bms;
+        blockModelCache = new BlockModelCache( bms );
+        blockModelRenderer = new ForgeBlockModelRenderer( colors );
+        fluidRenderer = new MDFluidRenderer();
     }
 
     public BlockModelShapes getBlockModelShapes() {
@@ -62,7 +64,8 @@ public class MDBlockRendererDispatcher extends BlockRendererDispatcher {
             } else {
                 switch( enumblockrendertype ) {
                     case MODEL:
-                        return this.blockModelRenderer.renderModel( world, this.getModelForState( state ), state, pos, buff, true, rand, state.getPositionRandom( pos ), modelData );
+                        IBakedModel model = this.getModelForState( state );
+                        return this.blockModelRenderer.renderModel( world, model, state, pos, buff, true, rand, state.getPositionRandom( pos ), modelData );
                     case ENTITYBLOCK_ANIMATED:
                         return false;
                     default:

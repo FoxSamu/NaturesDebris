@@ -9,7 +9,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
@@ -42,11 +41,11 @@ public class BlockLeaves extends BlockBase implements IShearable {
         this.sapling = sapling;
     }
 
-    @Override
-    @SuppressWarnings( "deprecation" )
-    public int getOpacity( IBlockState state, IBlockReader world, BlockPos pos ) {
-        return 1;
-    }
+//    @Override
+//    @SuppressWarnings( "deprecation" )
+//    public int getOpacity( IBlockState state, IBlockReader world, BlockPos pos ) {
+//        return 1;
+//    }
 
     @Override
     @OnlyIn( Dist.CLIENT )
