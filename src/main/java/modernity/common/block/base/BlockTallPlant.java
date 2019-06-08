@@ -12,6 +12,7 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
@@ -24,6 +25,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
 import modernity.api.util.EcoBlockPos;
+import modernity.api.util.MDVoxelShapes;
 import modernity.client.util.MDBiomeValues;
 import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
@@ -211,6 +213,9 @@ public class BlockTallPlant extends BlockNoDrop implements IBlockProvider {
     }
 
     public static class ColoredGrass extends BlockTallPlant implements IColoredBlock {
+        public static final VoxelShape GRASS_END_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 10, 14 );
+        public static final VoxelShape GRASS_MIDDLE_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 16, 14 );
+
         protected static final int GRASS_ITEM_COLOR = ColorUtil.rgb( 0, 109, 38 );
 
         public ColoredGrass( String id, Properties properties, Item.Properties itemProps ) {
@@ -243,6 +248,12 @@ public class BlockTallPlant extends BlockNoDrop implements IBlockProvider {
         @Override
         public EnumOffsetType getOffsetType() {
             return EnumOffsetType.XZ;
+        }
+
+        @Override
+        public VoxelShape getShape( IBlockState state, IBlockReader world, BlockPos pos ) {
+            Vec3d off = state.getOffset( world, pos );
+            return ( state.get( TOP ) ? GRASS_END_SHAPE : GRASS_MIDDLE_SHAPE ).withOffset( off.x, off.y, off.z );
         }
     }
 }
