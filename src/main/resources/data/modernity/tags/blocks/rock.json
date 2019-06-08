@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#modernity:rock/rock",
     "#modernity:rock/darkrock"
   ]
 }
