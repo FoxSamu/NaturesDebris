@@ -12,7 +12,6 @@ public class MDBlockTags {
     public static final Tag<Block> BLACKWOOD_LEAVES = tag( "leaves/blackwood_leaves" );
     public static final Tag<Block> LEAVES = tag( "leaves" );
 
-    public static final Tag<Block> DARKROCK = tag( "rock/darkrock" );
     public static final Tag<Block> ROCK = tag( "rock" );
 
     private static Tag<Block> tag( String id ) {
