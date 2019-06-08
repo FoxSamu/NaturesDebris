@@ -7,13 +7,18 @@ import net.minecraft.item.Item;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import modernity.api.util.BlockUpdates;
+import modernity.api.util.MDVoxelShapes;
 import modernity.common.item.MDItemTags;
 import modernity.common.world.gen.decorate.feature.TreeFeature;
 
@@ -21,6 +26,7 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public class BlockSapling extends BlockBase {
+    public static final VoxelShape SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 12, 14 );
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_5;
 
@@ -69,5 +75,20 @@ public class BlockSapling extends BlockBase {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public BlockRenderLayer getRenderLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
+
+    @Override
+    public VoxelShape getShape( IBlockState state, IBlockReader world, BlockPos pos ) {
+        return SHAPE;
+    }
+
+    @Override
+    public VoxelShape getCollisionShape( IBlockState state, IBlockReader worldIn, BlockPos pos ) {
+        return VoxelShapes.empty();
     }
 }
