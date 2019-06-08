@@ -8,10 +8,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.api.util.ColorUtil;
-import modernity.api.util.EcoBlockPos;
 import modernity.common.biome.BiomeBase;
 
 public class MDBiomeValues {
+    private static final int CACHE_SIZE = 32;
+
     public static final ColorResolver WATER_COLOR = BiomeBase::getMDWaterColor;
     public static final ColorResolver FOG_COLOR = BiomeBase::getFogColor;
     public static final ColorResolver GRASS_COLOR = BiomeBase::getGrassColor;
@@ -21,7 +22,7 @@ public class MDBiomeValues {
     public static final ValueResolver WATER_FOG_DENSITY = BiomeBase::getWaterFogDensity;
 
     private static int getColor( IWorldReaderBase world, BlockPos pos, ColorResolver resolver, int radius ) {
-        EcoBlockPos rpos = EcoBlockPos.retain();
+        BlockPos.MutableBlockPos rpos = new BlockPos.MutableBlockPos();
         int tot = 0;
 
         int r = 0;
@@ -30,8 +31,7 @@ public class MDBiomeValues {
 
         for( int x = - radius; x <= radius; x++ ) {
             for( int z = - radius; z <= radius; z++ ) {
-                rpos.setPos( pos );
-                rpos.addPos( x, 0, z );
+                rpos.setPos( pos.getX() + x, pos.getY(), pos.getZ() + z );
 
                 Biome biome = world.getBiome( rpos );
 
@@ -47,8 +47,6 @@ public class MDBiomeValues {
             }
         }
 
-        rpos.release();
-
         if( tot == 0 ) tot = 1;
         r /= tot;
         g /= tot;
@@ -62,15 +60,14 @@ public class MDBiomeValues {
     }
 
     private static float getValue( IWorldReaderBase world, BlockPos pos, ValueResolver resolver, int radius ) {
-        EcoBlockPos rpos = EcoBlockPos.retain();
+        BlockPos.MutableBlockPos rpos = new BlockPos.MutableBlockPos();
         int tot = 0;
 
         float value = 0;
 
         for( int x = - radius; x <= radius; x++ ) {
             for( int z = - radius; z <= radius; z++ ) {
-                rpos.setPos( pos );
-                rpos.addPos( x, 0, z );
+                rpos.setPos( pos.getX() + x, pos.getY(), pos.getZ() + z );
 
                 Biome biome = world.getBiome( rpos );
 
@@ -83,8 +80,6 @@ public class MDBiomeValues {
                 }
             }
         }
-
-        rpos.release();
 
         if( tot == 0 ) tot = 1;
         value /= tot;
