@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "minecraft:water",
-    "minecraft:flowing_water",
-    "modernity:modernized_water",
-    "modernity:modernized_water_flowing"
-  ]
-}

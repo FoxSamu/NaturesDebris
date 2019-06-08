@@ -3,9 +3,7 @@
   "values": [
     "modernity:blackwood_log",
     "modernity:blackwood_bark",
-    "modernity:blackwood_branch",
     "modernity:stripped_blackwood_log",
-    "modernity:stripped_blackwood_bark",
-    "modernity:stripped_blackwood_branch"
+    "modernity:stripped_blackwood_bark"
   ]
 }
