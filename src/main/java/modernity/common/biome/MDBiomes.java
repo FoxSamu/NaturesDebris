@@ -8,6 +8,8 @@ import modernity.api.util.EMDDimension;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MDBiomes {
     private static final EnumMap<EMDDimension, ArrayList<Entry>> ENTRIES = new EnumMap<>( EMDDimension.class );
@@ -38,6 +40,10 @@ public class MDBiomes {
     public static <B extends BiomeBase> B registerBiomeGen( EMDDimension dimen, B base, int weight ) {
         ENTRIES.computeIfAbsent( dimen, dim -> new ArrayList<>() ).add( new Entry( dimen, base, weight ) );
         return base;
+    }
+
+    public static List<BiomeBase> getBiomesFor( EMDDimension dimen ) {
+        return ENTRIES.get( dimen ).stream().map( elem -> elem.biome ).collect( Collectors.toList() );
     }
 
     public static class GenProfile {

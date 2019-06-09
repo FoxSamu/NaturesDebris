@@ -10,6 +10,7 @@ import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.decorate.feature.BushFeature;
 import modernity.common.world.gen.decorate.feature.MDFeatures;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
+import modernity.common.world.gen.surface.GrassSurfaceGenerator;
 
 public class MeadowBiome extends BiomeBase {
     public MeadowBiome() {
@@ -23,6 +24,7 @@ public class MeadowBiome extends BiomeBase {
                         .foliageColor( ColorUtil.rgb( 32, 86, 49 ) )
                         .waterColor( ColorUtil.rgb( 1, 13, 150 ) )
                         .waterFogDensity( 0.01F )
+                        .surfaceGenerator( new GrassSurfaceGenerator() )
         );
 
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature( MDFeatures.BUSH, new BushFeature.Config( 120, 6, MDBlocks.DARK_TALLGRASS ), AT_SURFACE, new FrequencyConfig( 12 ) ) );

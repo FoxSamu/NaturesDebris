@@ -44,10 +44,10 @@ public class ModernityTerrainGenerator {
         this.rand = new Random( seed );
 
         this.settings = settings;
-        noiseA = new FractalPerlin3D( rand.nextInt(), 30, 8 );
-        noiseB = new FractalPerlin3D( rand.nextInt(), 30, 8 );
-        mixNoise = new FractalPerlin3D( rand.nextInt(), 6, 16 );
-        depthNoise = new FractalPerlin2D( rand.nextInt(), 15, 16 );
+        noiseA = new FractalPerlin3D( rand.nextInt(), 31.577299, 8 );
+        noiseB = new FractalPerlin3D( rand.nextInt(), 31.577299, 8 );
+        mixNoise = new FractalPerlin3D( rand.nextInt(), 8.4223, 16 );
+        depthNoise = new FractalPerlin2D( rand.nextInt(), 15.2151, 16 );
 
     }
 
@@ -161,7 +161,7 @@ public class ModernityTerrainGenerator {
                 double depthNoise = this.depthNoise.generateMultiplied( x + cx * 4, z + cz * 4, 4 );
                 if( depthNoise < 0 ) {
                     depthNoise *= - 1;
-                    depthNoise /= 2;
+                    depthNoise /= 4;
                 } else {
                     depthNoise *= 15;
                     if( depthNoise > 4 ) {
@@ -169,7 +169,7 @@ public class ModernityTerrainGenerator {
                     }
                 }
 
-                depthNoise -= 2;
+                depthNoise -= 3;
                 depthNoise *= - 0.25;
 
                 scale /= max * 8;

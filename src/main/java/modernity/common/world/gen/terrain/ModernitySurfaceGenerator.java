@@ -6,10 +6,14 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.IChunk;
 import net.rgsw.noise.FractalOpenSimplex3D;
 
+import modernity.api.util.EMDDimension;
 import modernity.api.util.EcoBlockPos;
+import modernity.common.biome.BiomeBase;
+import modernity.common.biome.MDBiomes;
 import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.ModernityGenSettings;
 
+import java.util.List;
 import java.util.Random;
 
 public class ModernitySurfaceGenerator {
@@ -35,6 +39,11 @@ public class ModernitySurfaceGenerator {
         this.settings = settings;
 
         depthNoise = new FractalOpenSimplex3D( rand.nextInt(), settings.getSurfaceNoiseSizeX(), settings.getSurfaceNoiseSizeY(), settings.getSurfaceNoiseSizeZ(), settings.getSurfaceNoiseSizeOctaves() );
+
+        List<BiomeBase> biomes = MDBiomes.getBiomesFor( EMDDimension.SURFACE );
+        for( BiomeBase biome : biomes ) {
+            biome.getSurfaceGen().init( rand, settings );
+        }
     }
 
     public void generateSurface( IChunk chunk ) {
@@ -43,21 +52,14 @@ public class ModernitySurfaceGenerator {
         EcoBlockPos rpos = EcoBlockPos.retain();
         for( int x = 0; x < 16; x++ ) {
             for( int z = 0; z < 16; z++ ) {
-                int ctrl = 0;
-                for( int y = 255; y >= 0; y-- ) {
+                for( int y = 4; y >= 0; y-- ) {
                     rpos.setPos( x, y, z );
-                    if( ctrl >= 0 && ! chunk.getBlockState( rpos ).getMaterial().blocksMovement() ) {
-                        ctrl = - 1;
-                    } else if( ctrl == - 1 && chunk.getBlockState( rpos ).getMaterial().blocksMovement() ) {
-                        ctrl = (int) ( 3 + 2 * depthNoise.generate( x + cx * 16, y, z + cz * 16 ) );
-                        chunk.setBlockState( rpos, y < settings.getWaterLevel() - 1 ? DIRT : GRASS, false );
-                    } else if( ctrl > 0 ) {
-                        ctrl--;
-                        chunk.setBlockState( rpos, DIRT, false );
-                    }
-                    if( y < 5 && y <= rand.nextInt( 5 ) ) {
+                    if( y <= rand.nextInt( 5 ) ) {
                         chunk.setBlockState( rpos, BEDROCK, false );
                     }
+
+                    BiomeBase biome = (BiomeBase) chunk.getBiomes()[ x << 4 | z ];
+                    biome.getSurfaceGen().generateSurface( chunk, cx, cz, x, z, rand, biome, depthNoise, rpos, settings );
                 }
             }
         }

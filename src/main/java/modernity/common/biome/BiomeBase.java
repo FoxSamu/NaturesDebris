@@ -10,6 +10,7 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.rgsw.noise.FractalPerlin3D;
 
 import modernity.api.util.ColorUtil;
+import modernity.common.world.gen.surface.ISurfaceGenerator;
 
 import java.util.Random;
 
@@ -30,10 +31,12 @@ public class BiomeBase extends Biome {
     protected final int foliageColor;
     protected final int fogColor;
 
+    protected final ISurfaceGenerator surfaceGen;
+
     protected BiomeBase( String id, Builder builder ) {
         super( builder );
         setRegistryName( "modernity:" + id );
-        if( builder.heightBase != null && builder.heightVar != null && builder.waterFogDensity != null && builder.fogDensity != null && builder.waterColor != null && builder.grassColor != null && builder.foliageColor != null && builder.fogColor != null ) {
+        if( builder.heightBase != null && builder.heightVar != null && builder.waterFogDensity != null && builder.fogDensity != null && builder.waterColor != null && builder.grassColor != null && builder.foliageColor != null && builder.fogColor != null && builder.surfaceGen != null ) {
             this.waterColor = builder.waterColor;
             this.grassColor = builder.grassColor;
             this.foliageColor = builder.foliageColor;
@@ -44,6 +47,8 @@ public class BiomeBase extends Biome {
             this.heightDiff = builder.heightDiff;
             this.waterFogDensity = builder.waterFogDensity;
             this.fogDensity = builder.fogDensity;
+
+            this.surfaceGen = builder.surfaceGen;
         } else {
             throw new IllegalStateException( "You are missing parameters to build a proper biome for " + this.getClass().getSimpleName() + "\n" + builder );
         }
@@ -63,6 +68,10 @@ public class BiomeBase extends Biome {
 
     public float getWaterFogDensity() {
         return waterFogDensity;
+    }
+
+    public ISurfaceGenerator getSurfaceGen() {
+        return surfaceGen;
     }
 
     public int getMDWaterColor( BlockPos pos ) {
@@ -95,6 +104,7 @@ public class BiomeBase extends Biome {
         private Float waterFogDensity;
         private Float fogDensity;
         private Integer fogColor;
+        private ISurfaceGenerator surfaceGen;
 
         @SuppressWarnings( "ConstantConditions" )
         public Builder() {
@@ -167,6 +177,11 @@ public class BiomeBase extends Biome {
             return this;
         }
 
+        public BiomeBase.Builder surfaceGenerator( ISurfaceGenerator value ) {
+            surfaceGen = value;
+            return this;
+        }
+
         @Override
         public String toString() {
             String old = super.toString();
@@ -174,12 +189,14 @@ public class BiomeBase extends Biome {
 
             old += ",\nbaseHeigt=" + heightBase;
             old += ",\nheightVariation=" + heightVar;
+            old += ",\nheightDifference=" + heightDiff;
             old += ",\nfogDensity=" + fogDensity;
             old += ",\nwaterFogDensity=" + waterFogDensity;
             old += ",\ngrassColor=#" + Integer.toString( grassColor, 16 );
             old += ",\nfoliageColor=#" + Integer.toString( foliageColor, 16 );
             old += ",\nwaterColor=#" + Integer.toString( waterColor, 16 );
             old += ",\nfogColor=#" + Integer.toString( fogColor, 16 );
+            old += ",\nsurfaceGenerator=" + surfaceGen;
             old += "\n}";
             return old;
         }

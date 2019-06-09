@@ -10,6 +10,7 @@ import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.decorate.feature.BushFeature;
 import modernity.common.world.gen.decorate.feature.MDFeatures;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
+import modernity.common.world.gen.surface.GrassSurfaceGenerator;
 
 import java.util.Random;
 import java.util.function.Function;
@@ -28,6 +29,7 @@ public class LushMeadowBiome extends BiomeBase {
                         .foliageColor( ColorUtil.rgb( 32, 86, 49 ) )
                         .waterColor( ColorUtil.rgb( 1, 13, 150 ) )
                         .waterFogDensity( 0.01F )
+                        .surfaceGenerator( new GrassSurfaceGenerator() )
         );
 
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature( MDFeatures.BUSH, new BushFeature.Config( 120, 6, ( world, pos, rand ) -> MDBlocks.DARK_TALLGRASS.provide( world, pos, rand, GRASS_HEIGHT_PROVIDER ) ), AT_SURFACE, new FrequencyConfig( 24 ) ) );

@@ -10,19 +10,21 @@ import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.decorate.feature.BushFeature;
 import modernity.common.world.gen.decorate.feature.MDFeatures;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
+import modernity.common.world.gen.surface.SwampSurfaceGenerator;
 
 public class SwampBiome extends BiomeBase {
     public SwampBiome() {
         super(
                 "swamp", new Builder()
                         .depth( - 0.2F ).scale( 0.1F )
-                        .heightDifference( 2 ).baseHeight( 65 ).heightVariation( 4 )
+                        .heightDifference( 1 ).baseHeight( 63 ).heightVariation( 4 )
                         .fogColor( ColorUtil.rgb( 0, 0, 21 ) )
                         .fogDensity( 0.01F )
                         .grassColor( ColorUtil.rgb( 12, 57, 18 ) )
                         .foliageColor( ColorUtil.rgb( 0, 57, 25 ) )
                         .waterColor( ColorUtil.rgb( 57, 68, 60 ) )
                         .waterFogDensity( 0.03F )
+                        .surfaceGenerator( new SwampSurfaceGenerator() )
         );
 
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature( MDFeatures.BUSH, new BushFeature.Config( 100, 6, MDBlocks.DARK_TALLGRASS ), AT_SURFACE, new FrequencyConfig( 5 ) ) );
