@@ -9,6 +9,8 @@ import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.rgsw.noise.FractalPerlin3D;
 
+import modernity.api.util.ColorUtil;
+
 import java.util.Random;
 
 public class BiomeBase extends Biome {
@@ -17,8 +19,10 @@ public class BiomeBase extends Biome {
     protected static final FractalPerlin3D WATER_COLOR_VARIATION = new FractalPerlin3D( 21516663, 9.16292137, 9.16292137, 9.16292137, 2 );
     protected static final FractalPerlin3D FOG_COLOR_VARIATION = new FractalPerlin3D( 62278189, 26.29517772, 26.29517772, 26.29517772, 2 );
 
-    protected final float baseHeight;
-    protected final float heightVar;
+
+    protected final float baseHeight;  // Main height of the biome
+    protected final float heightDiff;  // Difference between minimum height and maximum height
+    protected final float heightVar;   // Factor of noise added to the main height
     protected final float waterFogDensity;
     protected final float fogDensity;
     protected final int waterColor;
@@ -37,6 +41,7 @@ public class BiomeBase extends Biome {
 
             this.baseHeight = builder.heightBase;
             this.heightVar = builder.heightVar;
+            this.heightDiff = builder.heightDiff;
             this.waterFogDensity = builder.waterFogDensity;
             this.fogDensity = builder.fogDensity;
         } else {
@@ -52,6 +57,10 @@ public class BiomeBase extends Biome {
         return heightVar;
     }
 
+    public float getHeightDiff() {
+        return heightDiff;
+    }
+
     public float getWaterFogDensity() {
         return waterFogDensity;
     }
@@ -61,15 +70,15 @@ public class BiomeBase extends Biome {
     }
 
     public int getGrassColor( BlockPos pos ) {
-        return grassColor; // ColorUtil.darken( grassColor, GRASS_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
+        return ColorUtil.darken( grassColor, GRASS_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
     }
 
     public int getFoliageColor( BlockPos pos ) {
-        return foliageColor; // ColorUtil.darken( foliageColor, FOLIAGE_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
+        return ColorUtil.darken( foliageColor, FOLIAGE_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
     }
 
     public int getFogColor( BlockPos pos ) {
-        return fogColor; // ColorUtil.darken( fogColor, FOG_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
+        return ColorUtil.darken( fogColor, FOG_COLOR_VARIATION.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.14 );
     }
 
     public float getFogDensity() {
@@ -77,8 +86,9 @@ public class BiomeBase extends Biome {
     }
 
     public static class Builder extends BiomeBuilder {
-        private Float heightBase = 0F;
-        private Float heightVar = 0F;
+        private Float heightBase;
+        private Float heightVar;
+        private Float heightDiff;
         private Integer grassColor;
         private Integer foliageColor;
         private Integer waterColor;
@@ -129,6 +139,11 @@ public class BiomeBase extends Biome {
 
         public BiomeBase.Builder heightVariation( float value ) {
             heightVar = value;
+            return this;
+        }
+
+        public BiomeBase.Builder heightDifference( float value ) {
+            heightDiff = value;
             return this;
         }
 

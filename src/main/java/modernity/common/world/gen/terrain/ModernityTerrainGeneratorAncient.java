@@ -191,7 +191,7 @@ public class ModernityTerrainGeneratorAncient {
                     }
                 }
 
-                int max = ( 6 + r * 2 ) * ( 6 + r * 2 );
+                int max = ( 1 + r * 2 ) * ( 1 + r * 2 );
                 scale /= max;
                 depth /= max;
 

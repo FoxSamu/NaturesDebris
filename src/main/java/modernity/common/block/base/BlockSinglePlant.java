@@ -6,26 +6,21 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-import modernity.api.block.IColoredBlock;
-import modernity.api.util.ColorUtil;
-import modernity.client.util.MDBiomeValues;
+import modernity.api.util.MDVoxelShapes;
 import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BlockSinglePlant extends BlockNoDrop implements IBlockProvider {
@@ -113,27 +108,15 @@ public class BlockSinglePlant extends BlockNoDrop implements IBlockProvider {
         return false;
     }
 
-    public static class ColoredGrass extends BlockSinglePlant implements IColoredBlock {
-        protected static final int GRASS_ITEM_COLOR = ColorUtil.rgb( 0, 109, 38 );
+    public static class Melion extends BlockSinglePlant {
+        public static final VoxelShape MELION_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 12, 14 );
 
-        public ColoredGrass( String id, Properties properties, Item.Properties itemProps ) {
+        public Melion( String id, Properties properties, Item.Properties itemProps ) {
             super( id, properties, itemProps );
         }
 
-        public ColoredGrass( String id, Properties properties ) {
+        public Melion( String id, Properties properties ) {
             super( id, properties );
-        }
-
-        @OnlyIn( Dist.CLIENT )
-        @Override
-        public int colorMultiplier( IBlockState state, @Nullable IWorldReaderBase reader, @Nullable BlockPos pos, int tintIndex ) {
-            return MDBiomeValues.get( reader, pos, MDBiomeValues.GRASS_COLOR );
-        }
-
-        @OnlyIn( Dist.CLIENT )
-        @Override
-        public int colorMultiplier( ItemStack stack, int tintIndex ) {
-            return GRASS_ITEM_COLOR;
         }
 
         @Override
@@ -144,6 +127,40 @@ public class BlockSinglePlant extends BlockNoDrop implements IBlockProvider {
         @Override
         public EnumOffsetType getOffsetType() {
             return EnumOffsetType.XZ;
+        }
+
+        @Override
+        public VoxelShape getShape( IBlockState state, IBlockReader world, BlockPos pos ) {
+            Vec3d off = state.getOffset( world, pos );
+            return MELION_SHAPE.withOffset( off.x, off.y, off.z );
+        }
+    }
+
+    public static class Millium extends BlockSinglePlant {
+        public static final VoxelShape MILLIUM_SHAPE = MDVoxelShapes.create16( 1, 0, 1, 15, 8, 15 );
+
+        public Millium( String id, Properties properties, Item.Properties itemProps ) {
+            super( id, properties.lightValue( 5 ), itemProps );
+        }
+
+        public Millium( String id, Properties properties ) {
+            super( id, properties.lightValue( 5 ) );
+        }
+
+        @Override
+        public boolean canBlockSustain( IBlockState state ) {
+            return state.getBlock() == MDBlocks.DARK_DIRT || state.getBlock() == MDBlocks.DARK_GRASS;
+        }
+
+        @Override
+        public EnumOffsetType getOffsetType() {
+            return EnumOffsetType.XZ;
+        }
+
+        @Override
+        public VoxelShape getShape( IBlockState state, IBlockReader world, BlockPos pos ) {
+            Vec3d off = state.getOffset( world, pos );
+            return MILLIUM_SHAPE.withOffset( off.x, off.y, off.z );
         }
     }
 }

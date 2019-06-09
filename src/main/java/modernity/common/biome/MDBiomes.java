@@ -14,12 +14,13 @@ public class MDBiomes {
 
 
     public static final MeadowBiome MEADOW = registerBiomeGen( EMDDimension.SURFACE, new MeadowBiome(), 1000 );
+    public static final LushMeadowBiome LUSH_MEADOW = registerBiomeGen( EMDDimension.SURFACE, new LushMeadowBiome(), 1000 );
     public static final ForestBiome FOREST = registerBiomeGen( EMDDimension.SURFACE, new ForestBiome(), 1000 );
     public static final WaterlandsBiome WATERLANDS = registerBiomeGen( EMDDimension.SURFACE, new WaterlandsBiome(), 1000 );
     public static final SwampBiome SWAMP = registerBiomeGen( EMDDimension.SURFACE, new SwampBiome(), 1000 );
 
     public static void register( IForgeRegistry<Biome> registry ) {
-        registry.registerAll( MEADOW, FOREST, WATERLANDS, SWAMP );
+        registry.registerAll( MEADOW, LUSH_MEADOW, FOREST, WATERLANDS, SWAMP );
     }
 
     public static class Entry {
