@@ -148,7 +148,7 @@ public class HangTreeFeature extends TreeFeature {
             // Log
             rpos.setPos( pos );
             rpos.moveDown();
-            for( int i = - 1; i < height; i++ ) {
+            for( int i = - 1; i <= height; i++ ) {
                 world.setBlockState( rpos, log.with( BlockStateProperties.AXIS, EnumFacing.Axis.Y ), 2 | 16 );
                 rpos.moveUp();
             }
@@ -162,8 +162,8 @@ public class HangTreeFeature extends TreeFeature {
 
 
                 // Root
-                rpos.setPos( pos );
-                len = rand.nextInt( 2 ) + 1;
+                rpos.setPos( pos ).moveDown();
+                len = rand.nextInt( 4 ) == 0 ? 2 : 1;
 
                 for( int i = 0; i < len; i++ ) {
                     rpos.move( facing );
