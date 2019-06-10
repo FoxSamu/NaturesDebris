@@ -12,7 +12,7 @@ public class ModernityGenSettings extends ChunkGenSettings implements IModernity
 
     @Override
     public int getBiomeBlendRadius() {
-        return 3;
+        return 2;
     }
 
     @Override

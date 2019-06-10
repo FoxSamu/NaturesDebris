@@ -3,6 +3,7 @@ package modernity.common.world.gen.terrain;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
@@ -37,6 +38,11 @@ public class ModernityTerrainGenerator {
 
     private final ThreadLocal<double[]> noiseBuffer = new ThreadLocal<>();
 
+    private final float[] biomeWeights;
+
+    private final int r;
+    private final int r2;
+
     public ModernityTerrainGenerator( World world, BiomeProvider provider, ModernityGenSettings settings ) {
         this.world = world;
         this.seed = world.getSeed();
@@ -44,11 +50,23 @@ public class ModernityTerrainGenerator {
         this.rand = new Random( seed );
 
         this.settings = settings;
-        noiseA = new FractalPerlin3D( rand.nextInt(), 31.577299, 8 );
-        noiseB = new FractalPerlin3D( rand.nextInt(), 31.577299, 8 );
-        mixNoise = new FractalPerlin3D( rand.nextInt(), 8.4223, 16 );
-        depthNoise = new FractalPerlin2D( rand.nextInt(), 15.2151, 16 );
+        noiseA = new FractalPerlin3D( rand.nextInt(), 38.577299, 8 );
+        noiseB = new FractalPerlin3D( rand.nextInt(), 38.577299, 8 );
+        mixNoise = new FractalPerlin3D( rand.nextInt(), 12.4223, 16 );
+        depthNoise = new FractalPerlin2D( rand.nextInt(), 17.2151, 16 );
 
+        r = settings.getBiomeBlendRadius();
+        r2 = r * 2 + 1;
+
+        this.biomeWeights = new float[ r2 * r2 ];
+        for( int x = - r; x <= r; ++ x ) {
+            for( int z = - r; z <= r; ++ z ) {
+                double dx = x / (double) r * 2;
+                double dz = z / (double) r * 2;
+                float weight = 10.0F / MathHelper.sqrt( dx * dx + dz * dz + 0.2F );
+                this.biomeWeights[ x + r + ( z + r ) * r2 ] = weight;
+            }
+        }
     }
 
     public void generateTerrain( IChunk chunk ) {
@@ -132,10 +150,6 @@ public class ModernityTerrainGenerator {
             noiseBuffer.set( buff );
         }
 
-        int r = settings.getBiomeBlendRadius();
-
-        int max = ( 1 + r * 2 ) * ( 1 + r * 2 );
-
         Biome[] biomes = this.provider.getBiomes( cx * 4 - r, cz * 4 - r, 6 + r * 2, 6 + r * 2 );
 
         for( int x = 0; x < BUFF_SIZE_X; x++ ) {
@@ -144,17 +158,31 @@ public class ModernityTerrainGenerator {
                 double scale = 0;
                 double depth = 0;
                 double variation = 0;
+                double total = 0;
+
+                BiomeBase centerBiome = (BiomeBase) biomes[ x + r + ( z + r ) * ( 5 + r2 ) ];
 
                 for( int x1 = - r; x1 <= r; x1++ ) {
                     for( int z1 = - r; z1 <= r; z1++ ) {
                         int bx = x1 + x + r;
                         int bz = z1 + z + r;
 
-                        BiomeBase b = (BiomeBase) biomes[ bz * ( 6 + r * 2 ) + bx ];
+                        BiomeBase biome = (BiomeBase) biomes[ bz * ( 6 + r * 2 ) + bx ];
+                        double dpt = biome.getBaseHeight();
 
-                        variation += b.getHeightVar();
-                        scale += b.getHeightDiff();
-                        depth += b.getBaseHeight();
+                        double wgt = biomeWeights[ x1 + r + ( z1 + r ) * r2 ];
+                        wgt /= dpt + 2;
+
+                        if( dpt > centerBiome.getBaseHeight() ) {
+                            wgt /= 2.0F;
+                        }
+
+                        double weight = biome.getBlendWeight() * wgt;
+
+                        variation += biome.getHeightVar() * weight;
+                        scale += biome.getHeightDiff() * weight;
+                        depth += dpt * weight;
+                        total += weight;
                     }
                 }
 
@@ -172,9 +200,9 @@ public class ModernityTerrainGenerator {
                 depthNoise -= 3;
                 depthNoise *= - 0.25;
 
-                scale /= max * 8;
-                depth /= max * 8;
-                variation /= max * 8;
+                scale /= total * 8;
+                depth /= total * 8;
+                variation /= total * 8;
 
                 depth += depthNoise * variation;
 

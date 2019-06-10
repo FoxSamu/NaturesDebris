@@ -24,6 +24,7 @@ public class BiomeBase extends Biome {
     protected final float baseHeight;  // Main height of the biome
     protected final float heightDiff;  // Difference between minimum height and maximum height
     protected final float heightVar;   // Factor of noise added to the main height
+    protected final float blendWeight; // Weight when blending biome heights
     protected final float waterFogDensity;
     protected final float fogDensity;
     protected final int waterColor;
@@ -36,7 +37,7 @@ public class BiomeBase extends Biome {
     protected BiomeBase( String id, Builder builder ) {
         super( builder );
         setRegistryName( "modernity:" + id );
-        if( builder.heightBase != null && builder.heightVar != null && builder.waterFogDensity != null && builder.fogDensity != null && builder.waterColor != null && builder.grassColor != null && builder.foliageColor != null && builder.fogColor != null && builder.surfaceGen != null ) {
+        if( builder.heightBase != null && builder.heightVar != null && builder.heightDiff != null && builder.waterFogDensity != null && builder.fogDensity != null && builder.waterColor != null && builder.grassColor != null && builder.foliageColor != null && builder.fogColor != null && builder.surfaceGen != null ) {
             this.waterColor = builder.waterColor;
             this.grassColor = builder.grassColor;
             this.foliageColor = builder.foliageColor;
@@ -45,6 +46,8 @@ public class BiomeBase extends Biome {
             this.baseHeight = builder.heightBase;
             this.heightVar = builder.heightVar;
             this.heightDiff = builder.heightDiff;
+            this.blendWeight = builder.blendWeight;
+
             this.waterFogDensity = builder.waterFogDensity;
             this.fogDensity = builder.fogDensity;
 
@@ -64,6 +67,10 @@ public class BiomeBase extends Biome {
 
     public float getHeightDiff() {
         return heightDiff;
+    }
+
+    public float getBlendWeight() {
+        return blendWeight;
     }
 
     public float getWaterFogDensity() {
@@ -98,6 +105,7 @@ public class BiomeBase extends Biome {
         private Float heightBase;
         private Float heightVar;
         private Float heightDiff;
+        private Float blendWeight = 1F;
         private Integer grassColor;
         private Integer foliageColor;
         private Integer waterColor;
@@ -154,6 +162,11 @@ public class BiomeBase extends Biome {
 
         public BiomeBase.Builder heightDifference( float value ) {
             heightDiff = value;
+            return this;
+        }
+
+        public BiomeBase.Builder blendWeight( float value ) {
+            blendWeight = value;
             return this;
         }
 

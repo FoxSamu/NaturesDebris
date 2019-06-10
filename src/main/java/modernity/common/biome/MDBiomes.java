@@ -21,8 +21,10 @@ public class MDBiomes {
     public static final WaterlandsBiome WATERLANDS = registerBiomeGen( EMDDimension.SURFACE, new WaterlandsBiome(), 1000 );
     public static final SwampBiome SWAMP = registerBiomeGen( EMDDimension.SURFACE, new SwampBiome(), 1000 );
 
+    public static final RiverBiome RIVER = new RiverBiome();
+
     public static void register( IForgeRegistry<Biome> registry ) {
-        registry.registerAll( MEADOW, LUSH_MEADOW, FOREST, WATERLANDS, SWAMP );
+        registry.registerAll( MEADOW, LUSH_MEADOW, FOREST, WATERLANDS, SWAMP, RIVER );
     }
 
     public static class Entry {
