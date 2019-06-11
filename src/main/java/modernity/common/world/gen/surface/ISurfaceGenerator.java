@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2019 RedGalaxy & co.
+ * Licensed under the Apache Licence v2.0.
+ * Do not redistribute.
+ *
+ * By  : RGSW
+ * Date: 6 - 11 - 2019
+ */
+
 package modernity.common.world.gen.surface;
 
 import net.minecraft.world.chunk.IChunk;

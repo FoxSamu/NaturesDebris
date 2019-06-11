@@ -1,9 +1,10 @@
 /*
- * Copyright (c) 2018 Red Galaxy Software.
- * Licensed under Apache License 2.0.
+ * Copyright (c) 2019 RedGalaxy & co.
+ * Licensed under the Apache Licence v2.0.
+ * Do not redistribute.
  *
- * By  : RgSW
- * Date: 11 - 18 - 2018
+ * By  : RGSW
+ * Date: 6 - 11 - 2019
  */
 
 package net.rgsw.noise;
