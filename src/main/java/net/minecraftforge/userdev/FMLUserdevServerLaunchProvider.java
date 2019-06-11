@@ -1,9 +1,7 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
- * Licensed under the Apache Licence v2.0.
- * Do not redistribute.
+ * This file belongs to the missing files in Forge Userdev (gradle generates an empty directory somehow).
+ * This file is under copyright of forge and does not belong to the modernity.
  *
- * By  : RGSW
  * Date: 6 - 11 - 2019
  */
 
