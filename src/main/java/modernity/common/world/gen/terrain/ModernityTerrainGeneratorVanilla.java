@@ -12,6 +12,7 @@ import modernity.api.noise.NoiseImprovedOctaves;
 import modernity.api.util.EcoBlockPos;
 import modernity.common.world.gen.ModernityGenSettings;
 
+@Deprecated
 public class ModernityTerrainGeneratorVanilla {
     private static final int BUFF_SIZE_X = 5;
     private static final int BUFF_SIZE_Y = 33;
