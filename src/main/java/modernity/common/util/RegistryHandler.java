@@ -4,12 +4,13 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 12 - 2019
  */
 
 package modernity.common.util;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.ModDimension;
@@ -18,6 +19,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import modernity.common.biome.MDBiomes;
 import modernity.common.block.MDBlocks;
+import modernity.common.entity.MDEntityTypes;
 import modernity.common.fluid.FluidEntry;
 import modernity.common.fluid.MDFluids;
 import modernity.common.item.MDItems;
@@ -50,6 +52,11 @@ public class RegistryHandler {
     @SubscribeEvent
     public void registerDimensions( RegistryEvent.Register<ModDimension> event ) {
         MDDimensions.register( event.getRegistry() );
+    }
+
+    @SubscribeEvent
+    public void registerEntities( RegistryEvent.Register<EntityType<?>> event ) {
+        MDEntityTypes.register( event.getRegistry() );
     }
 
     @SubscribeEvent

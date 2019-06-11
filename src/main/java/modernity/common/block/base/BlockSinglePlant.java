@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 12 - 2019
  */
 
 package modernity.common.block.base;
@@ -170,6 +170,34 @@ public class BlockSinglePlant extends BlockNoDrop implements IBlockProvider {
         public VoxelShape getShape( IBlockState state, IBlockReader world, BlockPos pos ) {
             Vec3d off = state.getOffset( world, pos );
             return MILLIUM_SHAPE.withOffset( off.x, off.y, off.z );
+        }
+    }
+
+    public static class Mint extends BlockSinglePlant {
+        public static final VoxelShape MINT_SHAPE = MDVoxelShapes.create16( 1, 0, 1, 15, 9, 15 );
+
+        public Mint( String id, Properties properties, Item.Properties itemProps ) {
+            super( id, properties, itemProps );
+        }
+
+        public Mint( String id, Properties properties ) {
+            super( id, properties );
+        }
+
+        @Override
+        public boolean canBlockSustain( IBlockState state ) {
+            return state.getBlock() == MDBlocks.DARK_DIRT || state.getBlock() == MDBlocks.DARK_GRASS;
+        }
+
+        @Override
+        public EnumOffsetType getOffsetType() {
+            return EnumOffsetType.XZ;
+        }
+
+        @Override
+        public VoxelShape getShape( IBlockState state, IBlockReader world, BlockPos pos ) {
+            Vec3d off = state.getOffset( world, pos );
+            return MINT_SHAPE.withOffset( off.x, off.y, off.z );
         }
     }
 }

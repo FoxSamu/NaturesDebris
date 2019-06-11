@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 12 - 2019
  */
 
 package modernity.common.block.base;
@@ -40,6 +40,8 @@ import java.util.Random;
 public class BlockDirt extends BlockBase {
     public static final Type TYPE_DIRT = new Type( "dark_dirt", false, false, BlockRenderLayer.SOLID );
     public static final Type TYPE_GRASS = new Type( "dark_grass", true, true, BlockRenderLayer.CUTOUT_MIPPED );
+    public static final Type TYPE_COARSE_DIRT = new Type( "coarse_dark_dirt", false, false, BlockRenderLayer.SOLID );
+    public static final Type TYPE_HUMUS = new Type( "humus", false, false, BlockRenderLayer.SOLID );
 
     public static final BooleanProperty SNOWY = BooleanProperty.create( "snowy" );
 

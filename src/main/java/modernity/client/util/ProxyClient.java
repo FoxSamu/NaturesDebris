@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 12 - 2019
  */
 
 package modernity.client.util;
@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import modernity.client.particle.MDParticleManager;
 import modernity.client.render.block.MDBlockRendererDispatcher;
 import modernity.common.block.MDBlocks;
+import modernity.common.entity.MDEntityTypes;
 import modernity.common.item.MDItems;
 import modernity.common.util.ProxyCommon;
 
@@ -28,6 +29,8 @@ public class ProxyClient extends ProxyCommon {
     @Override
     public void init() {
         super.init();
+
+        MDEntityTypes.registerClient();
     }
 
     @Override
@@ -44,7 +47,6 @@ public class ProxyClient extends ProxyCommon {
 
         MDBlocks.registerClient( mc.getBlockColors(), mc.getItemColors() );
         MDItems.registerClient( mc.getItemColors() );
-
     }
 
     @Override
