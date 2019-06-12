@@ -36,6 +36,8 @@ public class MDBlocks {
     // Rocks
     public static final BlockBase ROCK = blockItem( new BlockBase( "rock", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockBase DARKROCK = blockItem( new BlockBase( "darkrock", Block.Properties.create( Material.ROCK, MaterialColor.BLACK ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockBase LIGHTROCK = blockItem( new BlockBase( "lightrock", Block.Properties.create( Material.ROCK, MaterialColor.SNOW ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ).lightValue( 15 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockBase REDROCK = blockItem( new BlockBase( "redrock", Block.Properties.create( Material.ROCK, MaterialColor.TNT ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockNoDrop MODERN_BEDROCK = blockItem( new BlockNoDrop( "modern_bedrock", Block.Properties.create( Material.ROCK, MaterialColor.BLACK ).hardnessAndResistance( - 1F, 3600000F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     public static final BlockBase ASPHALT = blockItem( new BlockBase( "asphalt_block", Block.Properties.create( MDMaterial.ASPHALT, MaterialColor.BLACK ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
