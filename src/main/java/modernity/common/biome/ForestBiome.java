@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 12 - 2019
  */
 
 package modernity.common.biome;
@@ -20,7 +20,7 @@ import modernity.common.world.gen.decorate.feature.BushFeature;
 import modernity.common.world.gen.decorate.feature.LakeFeature;
 import modernity.common.world.gen.decorate.feature.MDFeatures;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
-import modernity.common.world.gen.surface.GrassSurfaceGenerator;
+import modernity.common.world.gen.surface.HumusSurfaceGenerator;
 
 public class ForestBiome extends BiomeBase {
     public ForestBiome() {
@@ -34,7 +34,7 @@ public class ForestBiome extends BiomeBase {
                         .foliageColor( ColorUtil.rgb( 27, 91, 54 ) )
                         .waterColor( ColorUtil.rgb( 45, 61, 163 ) )
                         .waterFogDensity( 0.01F )
-                        .surfaceGenerator( new GrassSurfaceGenerator() )
+                        .surfaceGenerator( new HumusSurfaceGenerator() )
         );
 
         addFeature( GenerationStage.Decoration.LOCAL_MODIFICATIONS, createCompositeFeature( MDFeatures.LAKE, new LakeFeature.Config( MDBlocks.MODERNIZED_WATER, null, null, MDBlocks.DARK_GRASS ), LAKE_WATER, new LakeChanceConfig( 5 ) ) );
