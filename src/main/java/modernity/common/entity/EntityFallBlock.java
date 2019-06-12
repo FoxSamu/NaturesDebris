@@ -125,7 +125,6 @@ public class EntityFallBlock extends Entity {
     }
 
     public void tick() {
-        System.out.println( "Ticking fall block" );
         if( fallTile.isAir( world, new BlockPos( this ) ) ) {
             remove();
         } else {

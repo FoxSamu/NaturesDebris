@@ -33,7 +33,6 @@ import java.util.Random;
 public class RenderFallBlock extends Render<EntityFallBlock> {
     public RenderFallBlock( RenderManager manager ) {
         super( manager );
-        System.out.println( "Created fall block renderer" );
         this.shadowSize = 0.5F;
     }
 
