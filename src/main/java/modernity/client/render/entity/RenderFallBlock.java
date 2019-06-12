@@ -37,7 +37,7 @@ public class RenderFallBlock extends Render<EntityFallBlock> {
     }
 
     public void doRender( EntityFallBlock entity, double x, double y, double z, float entityYaw, float partialTicks ) {
-        IBlockState state = entity.getFallingTile();
+        IBlockState state = entity.getFallingBlock();
         if( state.getRenderType() == EnumBlockRenderType.MODEL ) {
 
             World world = entity.getWorldObj();

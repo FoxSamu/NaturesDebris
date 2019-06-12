@@ -42,11 +42,11 @@ import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import modernity.common.block.base.BlockFall;
+import modernity.common.entity.data.MDDataSerializers;
 
 import java.util.List;
 
 public class EntityFallBlock extends Entity {
-    private IBlockState fallTile = Blocks.SAND.getDefaultState();
     public int fallTime;
     public boolean shouldDropItem = true;
     private boolean dontSetBlock;
@@ -57,6 +57,7 @@ public class EntityFallBlock extends Entity {
 
     private float fallHurtAmount = 2.0F;
     public NBTTagCompound tileEntityData;
+    private static final DataParameter<IBlockState> FALLING_BLOCK = EntityDataManager.createKey( EntityFallBlock.class, MDDataSerializers.BLOCK_STATE );
     protected static final DataParameter<BlockPos> ORIGIN = EntityDataManager.createKey( EntityFallBlock.class, DataSerializers.BLOCK_POS );
 
     public EntityFallBlock( World world ) {
@@ -66,7 +67,7 @@ public class EntityFallBlock extends Entity {
     public EntityFallBlock( World world, double x, double y, double z, IBlockState fallingBlockState ) {
         this( world );
 
-        fallTile = fallingBlockState;
+        dataManager.set( FALLING_BLOCK, fallingBlockState );
         preventEntitySpawning = true;
 
         setSize( 0.98F, 0.98F );
@@ -118,6 +119,7 @@ public class EntityFallBlock extends Entity {
 
     protected void registerData() {
         dataManager.register( ORIGIN, BlockPos.ORIGIN );
+        dataManager.register( FALLING_BLOCK, Blocks.SAND.getDefaultState() );
     }
 
     public boolean canBeCollidedWith() {
@@ -125,6 +127,7 @@ public class EntityFallBlock extends Entity {
     }
 
     public void tick() {
+        IBlockState fallTile = getFallingBlock();
         if( fallTile.isAir( world, new BlockPos( this ) ) ) {
             remove();
         } else {
@@ -259,7 +262,7 @@ public class EntityFallBlock extends Entity {
             int i = MathHelper.ceil( distance - 1.0F );
             if( i > 0 ) {
                 List<Entity> list = Lists.newArrayList( world.getEntitiesWithinAABBExcludingEntity( this, getBoundingBox() ) );
-                boolean flag = fallTile.isIn( BlockTags.ANVIL );
+                boolean flag = getFallingBlock().isIn( BlockTags.ANVIL );
                 DamageSource damagesource = flag ? DamageSource.ANVIL : DamageSource.FALLING_BLOCK;
 
                 for( Entity entity : list ) {
@@ -267,11 +270,11 @@ public class EntityFallBlock extends Entity {
                 }
 
                 if( flag && rand.nextDouble() < 0.05 + i * 0.05D ) {
-                    IBlockState state = BlockAnvil.damage( fallTile );
+                    IBlockState state = BlockAnvil.damage( getFallingBlock() );
                     if( state == null ) {
                         dontSetBlock = true;
                     } else {
-                        fallTile = state;
+                        setFallingBlock( state );
                     }
                 }
             }
@@ -280,28 +283,29 @@ public class EntityFallBlock extends Entity {
     }
 
     protected void writeAdditional( NBTTagCompound compound ) {
-        compound.put( "BlockState", NBTUtil.writeBlockState( fallTile ) );
+        compound.put( "BlockState", NBTUtil.writeBlockState( getFallingBlock() ) );
         compound.putInt( "Time", fallTime );
         compound.putBoolean( "DropItem", shouldDropItem );
         compound.putBoolean( "HurtEntities", hurtEntities );
         compound.putFloat( "FallHurtAmount", fallHurtAmount );
         compound.putFloat( "GravityScale", gravityScale );
-        compound.putString( "FloatIn", floatIn.getId().toString() );
+        compound.putString( "FloatIn", floatIn == null ? "" : floatIn.getId().toString() );
         compound.putInt( "FallHurtMax", fallHurtMax );
-        if( this.tileEntityData != null ) {
+        if( tileEntityData != null ) {
             compound.put( "TileEntityData", tileEntityData );
         }
 
     }
 
+    @SuppressWarnings( "deprecation" )
     protected void readAdditional( NBTTagCompound compound ) {
-        fallTile = NBTUtil.readBlockState( compound.getCompound( "BlockState" ) );
+        IBlockState fallTile = NBTUtil.readBlockState( compound.getCompound( "BlockState" ) );
         fallTime = compound.getInt( "Time" );
         if( compound.contains( "HurtEntities", 99 ) ) {
             hurtEntities = compound.getBoolean( "HurtEntities" );
             fallHurtAmount = compound.getFloat( "FallHurtAmount" );
             fallHurtMax = compound.getInt( "FallHurtMax" );
-        } else if( this.fallTile.isIn( BlockTags.ANVIL ) ) {
+        } else if( fallTile.isIn( BlockTags.ANVIL ) ) {
             hurtEntities = true;
         }
 
@@ -318,16 +322,19 @@ public class EntityFallBlock extends Entity {
         }
 
         if( compound.contains( "FloatIn" ) ) {
-            MinecraftServer server = world.getServer();
-            if( server != null ) {
-                floatIn = server.getNetworkTagManager().getFluids().get( new ResourceLocation( compound.getString( "FloatIn" ) ) );
+            String s = compound.getString( "FloatIn" );
+            if( ! s.isEmpty() ) {
+                MinecraftServer server = world.getServer();
+                if( server != null ) {
+                    floatIn = server.getNetworkTagManager().getFluids().get( new ResourceLocation( s ) );
+                }
             }
         }
 
         if( fallTile.isAir() ) {
             fallTile = Blocks.SAND.getDefaultState();
         }
-
+        setFallingBlock( fallTile );
     }
 
     @OnlyIn( Dist.CLIENT )
@@ -346,11 +353,15 @@ public class EntityFallBlock extends Entity {
 
     public void fillCrashReport( CrashReportCategory category ) {
         super.fillCrashReport( category );
-        category.addDetail( "Immitating BlockState", fallTile.toString() );
+        category.addDetail( "Immitating BlockState", getFallingBlock().toString() );
     }
 
-    public IBlockState getFallingTile() {
-        return fallTile;
+    public IBlockState getFallingBlock() {
+        return dataManager.get( FALLING_BLOCK );
+    }
+
+    protected void setFallingBlock( IBlockState state ) {
+        dataManager.set( FALLING_BLOCK, state );
     }
 
     public boolean ignoreItemEntityData() {

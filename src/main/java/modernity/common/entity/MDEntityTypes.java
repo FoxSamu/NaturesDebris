@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class MDEntityTypes {
     private static final ArrayList<EntityType<?>> ENTRIES = new ArrayList<>();
 
-    public static final EntityType<EntityFallBlock> FALL_BLOCK = register( "fall_block", EntityType.Builder.create( EntityFallBlock.class, EntityFallBlock::new ) );
+    public static final EntityType<EntityFallBlock> FALL_BLOCK = register( "fall_block", EntityType.Builder.create( EntityFallBlock.class, EntityFallBlock::new ).tracker( 160, 20, true ) );
 
     public static <T extends Entity> EntityType<T> register( String id, EntityType.Builder<T> builder ) {
         EntityType<T> entry = builder.build( "modernity:" + id );

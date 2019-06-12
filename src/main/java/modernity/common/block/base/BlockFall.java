@@ -13,7 +13,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Particles;
@@ -27,6 +26,8 @@ import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import modernity.common.entity.EntityFallBlock;
 
 import java.util.Random;
 
@@ -64,9 +65,9 @@ public class BlockFall extends BlockBase {
         if( canFallThrough( world.getBlockState( pos.down() ) ) && pos.getY() >= 0 ) {
             if( ! BlockFalling.fallInstantly && world.isAreaLoaded( pos.add( - 32, - 32, - 32 ), pos.add( 32, 32, 32 ) ) ) {
                 if( ! world.isRemote ) {
-                    EntityFallingBlock entity = new EntityFallingBlock( world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getBlockState( pos ) );
-//                    entity.setFloatIn( floatIn() );
-//                    entity.setGravityScale( (float) gravityScale() );
+                    EntityFallBlock entity = new EntityFallBlock( world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getBlockState( pos ) );
+                    entity.setFloatIn( floatIn() );
+                    entity.setGravityScale( (float) gravityScale() );
                     onStartFalling( entity );
                     world.spawnEntity( entity );
                 }
@@ -91,7 +92,7 @@ public class BlockFall extends BlockBase {
         }
     }
 
-    protected void onStartFalling( EntityFallingBlock fallingEntity ) {
+    protected void onStartFalling( EntityFallBlock fallingEntity ) {
     }
 
     /**
@@ -137,6 +138,6 @@ public class BlockFall extends BlockBase {
 
     @OnlyIn( Dist.CLIENT )
     public int getDustColor( IBlockState state ) {
-        return 0xffffff;
+        return dustColor;
     }
 }
