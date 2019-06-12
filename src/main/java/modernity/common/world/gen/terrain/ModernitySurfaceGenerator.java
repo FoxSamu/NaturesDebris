@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 12 - 2019
  */
 
 package modernity.common.world.gen.terrain;
@@ -67,7 +67,7 @@ public class ModernitySurfaceGenerator {
                         chunk.setBlockState( rpos, BEDROCK, false );
                     }
 
-                    BiomeBase biome = (BiomeBase) chunk.getBiomes()[ x << 4 | z ];
+                    BiomeBase biome = (BiomeBase) chunk.getBiomes()[ z << 4 | x ];
                     biome.getSurfaceGen().generateSurface( chunk, cx, cz, x, z, rand, biome, depthNoise, rpos, settings );
                 }
             }

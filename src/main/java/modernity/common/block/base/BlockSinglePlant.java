@@ -27,7 +27,6 @@ import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 
 import modernity.api.util.MDVoxelShapes;
-import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
 
 import java.util.Random;
@@ -130,7 +129,7 @@ public class BlockSinglePlant extends BlockNoDrop implements IBlockProvider {
 
         @Override
         public boolean canBlockSustain( IBlockState state ) {
-            return state.getBlock() == MDBlocks.DARK_DIRT || state.getBlock() == MDBlocks.DARK_GRASS;
+            return state.getBlock() instanceof BlockDirt;
         }
 
         @Override
@@ -158,7 +157,7 @@ public class BlockSinglePlant extends BlockNoDrop implements IBlockProvider {
 
         @Override
         public boolean canBlockSustain( IBlockState state ) {
-            return state.getBlock() == MDBlocks.DARK_DIRT || state.getBlock() == MDBlocks.DARK_GRASS;
+            return state.getBlock() instanceof BlockDirt;
         }
 
         @Override
@@ -186,7 +185,7 @@ public class BlockSinglePlant extends BlockNoDrop implements IBlockProvider {
 
         @Override
         public boolean canBlockSustain( IBlockState state ) {
-            return state.getBlock() == MDBlocks.DARK_DIRT || state.getBlock() == MDBlocks.DARK_GRASS;
+            return state.getBlock() instanceof BlockDirt;
         }
 
         @Override

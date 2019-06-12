@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 12 - 2019
  */
 
 package modernity.common.block.base;
@@ -36,7 +36,6 @@ import modernity.api.util.ColorUtil;
 import modernity.api.util.EcoBlockPos;
 import modernity.api.util.MDVoxelShapes;
 import modernity.client.util.MDBiomeValues;
-import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
 
 import javax.annotation.Nullable;
@@ -251,7 +250,7 @@ public class BlockTallPlant extends BlockNoDrop implements IBlockProvider {
 
         @Override
         public boolean canBlockSustain( IBlockState state ) {
-            return state.getBlock() == MDBlocks.DARK_DIRT || state.getBlock() == MDBlocks.DARK_GRASS;
+            return state.getBlock() instanceof BlockDirt;
         }
 
         @Override

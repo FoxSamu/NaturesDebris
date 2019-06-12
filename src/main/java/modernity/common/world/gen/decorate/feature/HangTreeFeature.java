@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 12 - 2019
  */
 
 package modernity.common.world.gen.decorate.feature;
@@ -19,8 +19,8 @@ import net.rgsw.noise.FractalPerlin3D;
 
 import modernity.api.util.BlockUpdates;
 import modernity.api.util.EcoBlockPos;
-import modernity.common.block.MDBlocks;
 import modernity.common.block.base.BlockBranch;
+import modernity.common.block.base.BlockDirt;
 import modernity.common.block.base.BlockHangLeaves;
 import modernity.common.block.prop.SignedIntegerProperty;
 
@@ -45,7 +45,7 @@ public class HangTreeFeature extends TreeFeature {
     }
 
     private boolean isSustainable( IBlockState state ) {
-        return state.getBlock() == MDBlocks.DARK_GRASS || state.getBlock() == MDBlocks.DARK_DIRT;
+        return state.getBlock() instanceof BlockDirt;
     }
 
     // Fallback: this was the old generator
