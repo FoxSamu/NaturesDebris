@@ -1,7 +1,9 @@
 {
   "replace": false,
   "values": [
-    "modernity:rock/rock",
-    "modernity:rock/darkrock"
+    "modernity:rock",
+    "modernity:darkrock",
+    "modernity:lightrock",
+    "modernity:redrock"
   ]
 }
