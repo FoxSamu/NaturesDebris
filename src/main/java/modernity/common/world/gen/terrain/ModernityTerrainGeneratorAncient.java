@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 15 - 2019
  */
 
 package modernity.common.world.gen.terrain;
@@ -256,7 +256,7 @@ public class ModernityTerrainGeneratorAncient {
 //                    } else if( y > maxHeight ) {
 //                        noise = - 50;
 //                    } else {
-//                        double prog = MathUtil.invLerp( minHeight, maxHeight, y );
+//                        double prog = MathUtil.unlerp( minHeight, maxHeight, y );
 //                        noise = genNoise( x + cx * 4, y, z + cz * 4 );
 //                        noise += MathUtil.lerp( 40, - 40, prog );
 //                    }
@@ -279,7 +279,7 @@ public class ModernityTerrainGeneratorAncient {
         double a = noiseA.generate( x, y, z ) * 256;
         double b = noiseB.generate( x, y, z ) * 256;
         double mix = mixNoise.generate( x, y, z ) * 65536;
-        return MathHelper.clampedLerp( a, b, MathUtil.invLerp( - 1, 1, mix ) );
+        return MathHelper.clampedLerp( a, b, MathUtil.unlerp( - 1, 1, mix ) );
     }
 
     private int index( int x, int y, int z ) {

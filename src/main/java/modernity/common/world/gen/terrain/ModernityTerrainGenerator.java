@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 15 - 2019
  */
 
 package modernity.common.world.gen.terrain;
@@ -221,7 +221,7 @@ public class ModernityTerrainGenerator {
 
                 for( int y = 0; y < BUFF_SIZE_Y; y++ ) {
                     // Apply height difference and height scale
-                    double density = MathUtil.lerp( - 1, 1, MathUtil.invLerp( minh, maxh, y ) );
+                    double density = MathUtil.lerp( - 1, 1, MathUtil.unlerp( minh, maxh, y ) );
 
                     double a = noiseA.generateMultiplied( x + cx * 4, y, z + cz * 4, 6 );
                     double b = noiseB.generateMultiplied( x + cx * 4, y, z + cz * 4, 6 );

@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 15 - 2019
  */
 
 package modernity.common.biome;
@@ -21,6 +21,7 @@ import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.storage.WorldInfo;
 
 import modernity.common.world.gen.layer.MDLayerUtil;
+import modernity.common.world.gen.structure.MDStructures;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -99,6 +100,7 @@ public class ModernityBiomeProvider extends BiomeProvider {
     }
 
     public boolean hasStructure( Structure<?> structure ) {
+        if( structure == MDStructures.CAVE_STRUCTURE ) return true;
         return this.hasStructureCache.computeIfAbsent( structure, struct -> {
             for( Biome biome : this.biomes ) {
                 if( biome.hasStructure( struct ) ) {

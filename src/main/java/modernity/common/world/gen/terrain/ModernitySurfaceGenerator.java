@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 12 - 2019
+ * Date: 6 - 15 - 2019
  */
 
 package modernity.common.world.gen.terrain;
@@ -27,8 +27,6 @@ import java.util.Random;
 
 public class ModernitySurfaceGenerator {
 
-    // TODO: Use biome surface builders
-
     private static final IBlockState GRASS = MDBlocks.DARK_GRASS.getDefaultState();
     private static final IBlockState DIRT = MDBlocks.DARK_DIRT.getDefaultState();
     private static final IBlockState BEDROCK = MDBlocks.MODERN_BEDROCK.getDefaultState();
@@ -39,6 +37,8 @@ public class ModernitySurfaceGenerator {
 
     private final FractalOpenSimplex3D depthNoise;
     private final ModernityGenSettings settings;
+
+    private final ThreadLocal<int[]> heightmapLocal = ThreadLocal.withInitial( () -> new int[ 256 ] );
 
     public ModernitySurfaceGenerator( World world, BiomeProvider provider, ModernityGenSettings settings ) {
         this.world = world;
@@ -55,10 +55,13 @@ public class ModernitySurfaceGenerator {
         }
     }
 
-    public void generateSurface( IChunk chunk ) {
+    public int[] generateSurface( IChunk chunk ) {
         int cx = chunk.getPos().x;
         int cz = chunk.getPos().z;
         EcoBlockPos rpos = EcoBlockPos.retain();
+
+        int[] caveHeightmap = heightmapLocal.get();
+
         for( int x = 0; x < 16; x++ ) {
             for( int z = 0; z < 16; z++ ) {
                 for( int y = 4; y >= 0; y-- ) {
@@ -66,13 +69,23 @@ public class ModernitySurfaceGenerator {
                     if( y <= rand.nextInt( 5 ) ) {
                         chunk.setBlockState( rpos, BEDROCK, false );
                     }
-
-                    BiomeBase biome = (BiomeBase) chunk.getBiomes()[ z << 4 | x ];
-                    biome.getSurfaceGen().generateSurface( chunk, cx, cz, x, z, rand, biome, depthNoise, rpos, settings );
                 }
+
+                BiomeBase biome = (BiomeBase) chunk.getBiomes()[ z << 4 | x ];
+                biome.getSurfaceGen().generateSurface( chunk, cx, cz, x, z, rand, biome, depthNoise, rpos, settings );
+
+                int caveHeight = 0;
+                for( int y = 0; y < 256; y++ ) {
+                    rpos.setPos( x, y, z );
+                    if( chunk.getBlockState( rpos ).isAir( chunk, rpos ) ) {
+                        caveHeight = y;
+                        break;
+                    }
+                }
+                caveHeightmap[ x + z * 16 ] = caveHeight;
             }
         }
 
-        rpos.release();
+        return rpos.release( caveHeightmap );
     }
 }

@@ -3,10 +3,12 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 6 - 11 - 2019
+ * Date: 6 - 15 - 2019
  */
 
 package net.rgsw.noise;
+
+import net.rgsw.MathUtil;
 
 public class FractalOpenSimplex3D extends Noise3D {
 
@@ -60,16 +62,14 @@ public class FractalOpenSimplex3D extends Noise3D {
         y /= this.scaleY;
         z /= this.scaleZ;
 
-        double t = 0;
         double d = 1;
         double n = 0;
 
         for( OpenSimplex3D noise : this.noiseOctaves ) {
-            t += 1 / d;
             n += noise.generate( x * d, y * d, z * d ) / d;
             d *= 2;
         }
-        return n / t;
+        return MathUtil.clamp( n, - 1, 1 );
     }
 
     public void setSeed( int seed ) {

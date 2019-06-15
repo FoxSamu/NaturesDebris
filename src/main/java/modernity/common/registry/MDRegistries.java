@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 15 - 2019
  */
 
 package modernity.common.registry;
@@ -26,11 +26,11 @@ public class MDRegistries {
     }
 
     public static void register() {
-        RegistryBuilder<FluidEntry> commandRegistryBuilder = new RegistryBuilder<>();
-        commandRegistryBuilder.setName( new ResourceLocation( "modernity:fluids" ) );
-        commandRegistryBuilder.setType( FluidEntry.class );
-        commandRegistryBuilder.setIDRange( 5, Integer.MAX_VALUE );
-        commandRegistryBuilder.add( (IForgeRegistry.BakeCallback<FluidEntry>) ( owner, stage ) -> MDFluids.inject() );
-        fluids = (ForgeRegistry<FluidEntry>) commandRegistryBuilder.create();
+        RegistryBuilder<FluidEntry> fluids = new RegistryBuilder<>();
+        fluids.setName( new ResourceLocation( "modernity:fluids" ) );
+        fluids.setType( FluidEntry.class );
+        fluids.setIDRange( 5, Integer.MAX_VALUE );
+        fluids.add( (IForgeRegistry.BakeCallback<FluidEntry>) ( owner, stage ) -> MDFluids.inject() );
+        MDRegistries.fluids = (ForgeRegistry<FluidEntry>) fluids.create();
     }
 }

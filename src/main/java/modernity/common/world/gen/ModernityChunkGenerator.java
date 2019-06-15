@@ -4,16 +4,18 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 15 - 2019
  */
 
 package modernity.common.world.gen;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
-import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.util.ExpiringMap;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -28,12 +30,15 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 
+import modernity.common.world.gen.structure.MDStructures;
+import modernity.common.world.gen.terrain.ModernityCaveGenerator;
 import modernity.common.world.gen.terrain.ModernitySurfaceGenerator;
 import modernity.common.world.gen.terrain.ModernityTerrainDecorator;
 import modernity.common.world.gen.terrain.ModernityTerrainGenerator;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class ModernityChunkGenerator implements IChunkGenerator<ModernityGenSettings> {
@@ -46,7 +51,11 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityGenSett
 
     private final ModernityTerrainGenerator terrain;
     private final ModernitySurfaceGenerator surface;
+    private final ModernityCaveGenerator cave;
     private final ModernityTerrainDecorator decorator;
+
+    protected final Map<Structure<? extends IFeatureConfig>, Long2ObjectMap<StructureStart>> structureStartCache = Maps.newHashMap();
+    protected final Map<Structure<? extends IFeatureConfig>, Long2ObjectMap<LongSet>> structureReferenceCache = Maps.newHashMap();
 
     public ModernityChunkGenerator( World world, BiomeProvider provider, ModernityGenSettings settings ) {
         this.world = world;
@@ -58,6 +67,7 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityGenSett
 
         terrain = new ModernityTerrainGenerator( world, provider, settings );
         surface = new ModernitySurfaceGenerator( world, provider, settings );
+        cave = new ModernityCaveGenerator( world, provider, settings );
         decorator = new ModernityTerrainDecorator( world, provider, this );
     }
 
@@ -70,14 +80,17 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityGenSett
         chunk.setBiomes( biomes );
 
         terrain.generateTerrain( chunk );
-        surface.generateSurface( chunk );
+        int[] hm = surface.generateSurface( chunk );
+        cave.generateCaves( chunk, hm );
+
+        MDStructures.CAVE_STRUCTURE.addCaves( chunk, cx, cz, hm );
+
         chunk.createHeightMap( Heightmap.Type.WORLD_SURFACE_WG, Heightmap.Type.OCEAN_FLOOR_WG );
         chunk.setStatus( ChunkStatus.BASE );
     }
 
     @Override
     public void carve( WorldGenRegion region, GenerationStage.Carving carvingStage ) {
-
     }
 
     @Override
@@ -87,7 +100,6 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityGenSett
 
     @Override
     public void spawnMobs( WorldGenRegion region ) {
-
     }
 
     @Override
@@ -112,24 +124,22 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityGenSett
     }
 
     @Override
-    public boolean hasStructure( Biome biomeIn, Structure<? extends IFeatureConfig> structureIn ) {
-        return false;
+    public boolean hasStructure( Biome biome, Structure<? extends IFeatureConfig> structure ) {
+        return biome.hasStructure( structure );
     }
 
     @Nullable
     @Override
-    public IFeatureConfig getStructureConfig( Biome biomeIn, Structure<? extends IFeatureConfig> structureIn ) {
-        return null;
+    public IFeatureConfig getStructureConfig( Biome biome, Structure<? extends IFeatureConfig> struct ) {
+        return biome.getStructureConfig( struct );
     }
 
-    @Override
-    public Long2ObjectMap<StructureStart> getStructureReferenceToStartMap( Structure<? extends IFeatureConfig> structureIn ) {
-        return new Long2ObjectOpenHashMap<>();
+    public Long2ObjectMap<StructureStart> getStructureReferenceToStartMap( Structure<? extends IFeatureConfig> struct ) {
+        return this.structureStartCache.computeIfAbsent( struct, structure -> Long2ObjectMaps.synchronize( new ExpiringMap<>( 8192, 10000 ) ) );
     }
 
-    @Override
-    public Long2ObjectMap<LongSet> getStructurePositionToReferenceMap( Structure<? extends IFeatureConfig> structureIn ) {
-        return new Long2ObjectOpenHashMap<>();
+    public Long2ObjectMap<LongSet> getStructurePositionToReferenceMap( Structure<? extends IFeatureConfig> struct ) {
+        return this.structureReferenceCache.computeIfAbsent( struct, structure -> Long2ObjectMaps.synchronize( new ExpiringMap<>( 8192, 10000 ) ) );
     }
 
     @Override

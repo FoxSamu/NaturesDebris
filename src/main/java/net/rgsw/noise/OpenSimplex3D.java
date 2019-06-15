@@ -3,7 +3,7 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 6 - 11 - 2019
+ * Date: 6 - 15 - 2019
  */
 
 package net.rgsw.noise;
@@ -602,6 +602,6 @@ public class OpenSimplex3D extends Noise3D {
             value += attn_ext1 * attn_ext1 * this.extrapolate( xsv_ext1, ysv_ext1, zsv_ext1, dx_ext1, dy_ext1, dz_ext1 );
         }
 
-        return MathUtil.clamp( value / NORM_CONSTANT_3D, 0, 1 );
+        return MathUtil.clamp( value / NORM_CONSTANT_3D, - 1, 1 );
     }
 }

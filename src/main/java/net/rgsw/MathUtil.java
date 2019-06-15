@@ -3,7 +3,7 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 6 - 11 - 2019
+ * Date: 6 - 15 - 2019
  */
 
 package net.rgsw;
@@ -15,7 +15,7 @@ public class MathUtil {
      * @param a
      * @param b
      * @param x Value between 0 and 1
-     * @see MathUtil#invLerp(double, double, double)
+     * @see MathUtil#unlerp(double, double, double)
      */
     public static double lerp( double a, double b, double x ) {
         return a + x * ( b - a );
@@ -28,7 +28,7 @@ public class MathUtil {
      * @param x Value between a and b
      * @see MathUtil#lerp(double, double, double)
      */
-    public static double invLerp( double a, double b, double x ) {
+    public static double unlerp( double a, double b, double x ) {
         return ( x - a ) / ( b - a );
     }
 

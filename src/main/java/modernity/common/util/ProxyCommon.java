@@ -4,22 +4,28 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 15 - 2019
  */
 
 package modernity.common.util;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
 import modernity.common.command.MDCommands;
+import modernity.common.handler.CapabilityHandler;
+import modernity.common.handler.StructureSyncHandler;
+import modernity.common.net.MDPackets;
 import modernity.common.world.dim.MDDimensions;
+import modernity.common.world.gen.structure.MDStructures;
 
 public class ProxyCommon {
 
     public void init() {
-
+        MDStructures.register();
+        MDPackets.register();
     }
 
     public void loadComplete() {
@@ -27,7 +33,8 @@ public class ProxyCommon {
     }
 
     public void registerListeners() {
-
+        MinecraftForge.EVENT_BUS.register( new CapabilityHandler() );
+        MinecraftForge.EVENT_BUS.register( new StructureSyncHandler() );
     }
 
     public boolean fancyGraphics() {

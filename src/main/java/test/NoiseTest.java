@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 15 - 2019
  */
 
 package test;
@@ -178,7 +178,7 @@ public class NoiseTest extends JFrame {
 
                         depthNoise /= 8; // ?                   // 0.05             0.125
                     }
-                    depthNoise = MathUtil.invLerp( - 1 / 2.8, 1 / 8D, depthNoise );
+                    depthNoise = MathUtil.unlerp( - 1 / 2.8, 1 / 8D, depthNoise );
                     depthNoise = MathUtil.clamp( depthNoise, 0, 1 );
                     this.g2.setColor( new Color( (float) depthNoise, (float) depthNoise, (float) depthNoise ) );
                     this.g2.fillRect( i * this.res, j * this.res, this.res, this.res );
