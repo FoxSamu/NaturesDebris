@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.block.base;
@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
 import modernity.api.util.EcoBlockPos;
-import modernity.client.util.MDBiomeValues;
+import modernity.client.util.BiomeValues;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -135,7 +135,7 @@ public class BlockDecayLeaves extends BlockLeaves {
 
         @Override
         public int colorMultiplier( IBlockState state, @Nullable IWorldReaderBase reader, @Nullable BlockPos pos, int tintIndex ) {
-            return MDBiomeValues.get( reader, pos, MDBiomeValues.FOLIAGE_COLOR );
+            return BiomeValues.get( reader, pos, BiomeValues.FOLIAGE_COLOR );
         }
 
         @Override

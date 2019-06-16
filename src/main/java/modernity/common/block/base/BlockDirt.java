@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 12 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.block.base;
@@ -31,7 +31,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
-import modernity.client.util.MDBiomeValues;
+import modernity.client.util.BiomeValues;
 import modernity.common.block.MDBlocks;
 
 import javax.annotation.Nullable;
@@ -164,7 +164,7 @@ public class BlockDirt extends BlockBase {
         @OnlyIn( Dist.CLIENT )
         @Override
         public int colorMultiplier( IBlockState state, @Nullable IWorldReaderBase reader, @Nullable BlockPos pos, int tintIndex ) {
-            return MDBiomeValues.get( reader, pos, MDBiomeValues.GRASS_COLOR );
+            return BiomeValues.get( reader, pos, BiomeValues.GRASS_COLOR );
         }
 
         @OnlyIn( Dist.CLIENT )

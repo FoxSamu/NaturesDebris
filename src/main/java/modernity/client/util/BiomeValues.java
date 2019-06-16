@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.client.util;
@@ -19,7 +19,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import modernity.api.util.ColorUtil;
 import modernity.common.biome.BiomeBase;
 
-public class MDBiomeValues {
+public class BiomeValues {
     private static final int CACHE_SIZE = 32;
 
     public static final ColorResolver WATER_COLOR = BiomeBase::getMDWaterColor;

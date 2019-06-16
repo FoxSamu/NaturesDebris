@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.block.base;
@@ -29,7 +29,7 @@ import net.minecraftforge.common.IShearable;
 import modernity.Modernity;
 import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
-import modernity.client.util.MDBiomeValues;
+import modernity.client.util.BiomeValues;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -147,7 +147,7 @@ public class BlockLeaves extends BlockBase implements IShearable {
 
         @Override
         public int colorMultiplier( IBlockState state, @Nullable IWorldReaderBase reader, @Nullable BlockPos pos, int tintIndex ) {
-            return MDBiomeValues.get( reader, pos, MDBiomeValues.FOLIAGE_COLOR );
+            return BiomeValues.get( reader, pos, BiomeValues.FOLIAGE_COLOR );
         }
 
         @Override

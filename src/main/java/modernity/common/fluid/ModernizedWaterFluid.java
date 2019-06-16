@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.fluid;
@@ -33,7 +33,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.api.block.fluid.ICustomRenderFluid;
-import modernity.client.util.MDBiomeValues;
+import modernity.client.util.BiomeValues;
 import modernity.common.block.MDBlocks;
 
 import javax.annotation.Nullable;
@@ -133,7 +133,7 @@ public abstract class ModernizedWaterFluid extends ImprovedFluid implements ICus
 
     @Override
     public int getColor( IFluidState state, BlockPos pos, IWorldReaderBase world ) {
-        return MDBiomeValues.get( world, pos, MDBiomeValues.WATER_COLOR );
+        return BiomeValues.get( world, pos, BiomeValues.WATER_COLOR );
     }
 
     public static class Flowing extends ModernizedWaterFluid {
