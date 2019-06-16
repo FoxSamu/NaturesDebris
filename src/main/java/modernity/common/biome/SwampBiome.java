@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.biome;
@@ -28,7 +28,7 @@ public class SwampBiome extends BiomeBase {
         super(
                 "swamp", new Builder()
                         .depth( - 0.2F ).scale( 0.1F )
-                        .heightDifference( 1 ).baseHeight( 63 ).heightVariation( 4 )
+                        .heightDifference( 1 ).baseHeight( - 1 ).heightVariation( 4 )
                         .fogColor( ColorUtil.rgb( 0, 0, 21 ) )
                         .fogDensity( 0.01F )
                         .grassColor( ColorUtil.rgb( 12, 57, 18 ) )

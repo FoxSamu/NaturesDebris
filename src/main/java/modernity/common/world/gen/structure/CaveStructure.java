@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 15 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.world.gen.structure;
@@ -34,6 +34,7 @@ import java.util.Random;
  * anything.
  */
 public class CaveStructure extends Structure<NoFeatureConfig> {
+    public static final String NAME = "MDCave";
     @Override
     protected boolean hasStartAt( IChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ ) {
         return true;
@@ -51,7 +52,7 @@ public class CaveStructure extends Structure<NoFeatureConfig> {
 
     @Override
     protected String getStructureName() {
-        return "MDCave";
+        return NAME;
     }
 
     @Override
@@ -123,7 +124,7 @@ public class CaveStructure extends Structure<NoFeatureConfig> {
 
         public void applyLimitMap( int[] hm ) {
             for( int i = 0; i < hm.length; i++ ) {
-                limitMap.setAt( i, hm[ i ] );
+                limitMap.setAt( i, Math.max( hm[ i ], 0 ) );
             }
         }
 
@@ -147,6 +148,20 @@ public class CaveStructure extends Structure<NoFeatureConfig> {
             long[] caveLimits = tagCompound.getLongArray( "CaveLimits" );
             int len = Math.min( caveLimits.length, limitMap.getBackingLongArray().length );
             System.arraycopy( caveLimits, 0, limitMap.getBackingLongArray(), 0, len );
+        }
+
+        public BlockPos randomPosInCave( Random rand, int xoff, int zoff ) {
+            int x = rand.nextInt( 16 );
+            int z = rand.nextInt( 16 );
+            int y = rand.nextInt( getLimit( x, z ) + 1 );
+            return new BlockPos( x + xoff, y, z + zoff );
+        }
+
+        public BlockPos randomPosNotInCave( Random rand, int xoff, int zoff ) {
+            int x = rand.nextInt( 16 );
+            int z = rand.nextInt( 16 );
+            int y = 255 - rand.nextInt( 255 - getLimit( x, z ) );
+            return new BlockPos( x + xoff, y, z + zoff );
         }
     }
 }

@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.biome;
@@ -26,7 +26,7 @@ public class WaterlandsBiome extends BiomeBase {
         super(
                 "waterlands", new Builder()
                         .depth( - 0.1F ).scale( 0.07F )
-                        .heightDifference( 2 ).baseHeight( 64 ).heightVariation( 0 )
+                        .heightDifference( 2 ).baseHeight( 0 ).heightVariation( 0 )
                         .fogColor( ColorUtil.rgb( 0, 0, 21 ) )
                         .fogDensity( 0.01F )
                         .grassColor( ColorUtil.rgb( 12, 109, 0 ) )

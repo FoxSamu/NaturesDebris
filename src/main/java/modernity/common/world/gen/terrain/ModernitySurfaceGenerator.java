@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 15 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.world.gen.terrain;
@@ -77,8 +77,8 @@ public class ModernitySurfaceGenerator {
                 int caveHeight = 0;
                 for( int y = 0; y < 256; y++ ) {
                     rpos.setPos( x, y, z );
-                    if( chunk.getBlockState( rpos ).isAir( chunk, rpos ) ) {
-                        caveHeight = y;
+                    if( ! chunk.getBlockState( rpos ).getMaterial().blocksMovement() ) {
+                        caveHeight = y - 1;
                         break;
                     }
                 }

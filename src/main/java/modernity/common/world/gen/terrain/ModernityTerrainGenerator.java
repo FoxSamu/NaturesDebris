@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 15 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.world.gen.terrain;
@@ -161,6 +161,8 @@ public class ModernityTerrainGenerator {
 
         Biome[] biomes = this.provider.getBiomes( cx * 4 - r, cz * 4 - r, 6 + r * 2, 6 + r * 2 );
 
+        int mainHeight = 72;
+
         for( int x = 0; x < BUFF_SIZE_X; x++ ) {
             for( int z = 0; z < BUFF_SIZE_Z; z++ ) {
 
@@ -180,10 +182,10 @@ public class ModernityTerrainGenerator {
                         double dpt = biome.getBaseHeight();
 
                         double wgt = biomeWeights[ x1 + r + ( z1 + r ) * r2 ];
-                        wgt /= dpt + 2;
+                        wgt /= dpt + 66;
 
                         if( dpt > centerBiome.getBaseHeight() ) {
-                            wgt /= 2.0F;
+                            wgt /= 2;
                         }
 
                         double weight = biome.getBlendWeight() * wgt;
@@ -210,8 +212,11 @@ public class ModernityTerrainGenerator {
                 depthNoise *= - 0.25;
 
                 scale /= total * 8;
-                depth /= total * 8;
+                depth /= total;
                 variation /= total * 8;
+
+                depth += mainHeight;
+                depth /= 8;
 
                 depth += depthNoise * variation;
 

@@ -3,14 +3,14 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 6 - 11 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package net.rgsw.noise;
 
 import net.rgsw.MathUtil;
 
-public abstract class Noise2D {
+public abstract class Noise2D implements INoise2D {
     protected final int seed;
     protected final double scaleX;
     protected final double scaleY;

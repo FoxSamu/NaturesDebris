@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.biome;
@@ -25,7 +25,7 @@ public class RiverBiome extends BiomeBase {
         super(
                 "river", new Builder()
                         .depth( - 0.1F ).scale( 0.07F )
-                        .heightDifference( 2 ).baseHeight( 58 ).heightVariation( 0 )
+                        .heightDifference( 2 ).baseHeight( - 6 ).heightVariation( 0 )
                         .blendWeight( 2 )
                         .fogColor( ColorUtil.rgb( 0, 0, 21 ) )
                         .fogDensity( 0.01F )

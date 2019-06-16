@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 12 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.biome;
@@ -27,7 +27,7 @@ public class ForestBiome extends BiomeBase {
         super(
                 "forest", new Builder()
                         .depth( 0.125F ).scale( 0.07F )
-                        .heightDifference( 3 ).baseHeight( 68 ).heightVariation( 6 )
+                        .heightDifference( 3 ).baseHeight( 4 ).heightVariation( 6 )
                         .fogColor( ColorUtil.rgb( 0, 0, 21 ) )
                         .fogDensity( 0.01F )
                         .grassColor( ColorUtil.rgb( 0, 109, 58 ) )

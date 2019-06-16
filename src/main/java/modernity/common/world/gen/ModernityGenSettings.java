@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.world.gen;
@@ -117,7 +117,7 @@ public class ModernityGenSettings extends ChunkGenSettings implements IModernity
 
     @Override
     public int getWaterLevel() {
-        return 64;
+        return 72;
     }
 
     @Override

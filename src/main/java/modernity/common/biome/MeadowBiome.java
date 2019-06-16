@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.biome;
@@ -28,7 +28,7 @@ public class MeadowBiome extends BiomeBase {
         super(
                 "meadow", new Builder()
                         .depth( 0.125F ).scale( 0.05F )
-                        .heightDifference( 2 ).baseHeight( 66 ).heightVariation( 3 )
+                        .heightDifference( 2 ).baseHeight( 2 ).heightVariation( 3 )
                         .fogColor( ColorUtil.rgb( 0, 0, 21 ) )
                         .fogDensity( 0.01F )
                         .grassColor( ColorUtil.rgb( 0, 109, 38 ) )

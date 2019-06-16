@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 15 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity.common.world.gen;
@@ -14,6 +14,7 @@ import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import it.unimi.dsi.fastutil.longs.LongSet;
+import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ExpiringMap;
 import net.minecraft.util.math.BlockPos;
@@ -29,12 +30,12 @@ import net.minecraft.world.gen.WorldGenRegion;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
+import net.rgsw.noise.FractalOpenSimplex3D;
 
+import modernity.api.util.IntArrays;
+import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.structure.MDStructures;
-import modernity.common.world.gen.terrain.ModernityCaveGenerator;
-import modernity.common.world.gen.terrain.ModernitySurfaceGenerator;
-import modernity.common.world.gen.terrain.ModernityTerrainDecorator;
-import modernity.common.world.gen.terrain.ModernityTerrainGenerator;
+import modernity.common.world.gen.terrain.*;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -54,6 +55,8 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityGenSett
     private final ModernityCaveGenerator cave;
     private final ModernityTerrainDecorator decorator;
 
+    private final NoiseBlockGenerator darkrockGen;
+
     protected final Map<Structure<? extends IFeatureConfig>, Long2ObjectMap<StructureStart>> structureStartCache = Maps.newHashMap();
     protected final Map<Structure<? extends IFeatureConfig>, Long2ObjectMap<LongSet>> structureReferenceCache = Maps.newHashMap();
 
@@ -69,6 +72,12 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityGenSett
         surface = new ModernitySurfaceGenerator( world, provider, settings );
         cave = new ModernityCaveGenerator( world, provider, settings );
         decorator = new ModernityTerrainDecorator( world, provider, this );
+
+        darkrockGen = new NoiseBlockGenerator(
+                new FractalOpenSimplex3D( rand.nextInt(), 43.51234, 4 ).subtract( 0.3 ),
+                BlockMatcher.forBlock( MDBlocks.ROCK ),
+                MDBlocks.DARKROCK.getDefaultState()
+        );
     }
 
     @Override
@@ -83,7 +92,11 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityGenSett
         int[] hm = surface.generateSurface( chunk );
         cave.generateCaves( chunk, hm );
 
+        IntArrays.add( hm, - 4 );
+
         MDStructures.CAVE_STRUCTURE.addCaves( chunk, cx, cz, hm );
+
+        darkrockGen.generate( chunk );
 
         chunk.createHeightMap( Heightmap.Type.WORLD_SURFACE_WG, Heightmap.Type.OCEAN_FLOOR_WG );
         chunk.setStatus( ChunkStatus.BASE );
