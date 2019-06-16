@@ -4,10 +4,10 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 12 - 2019
+ * Date: 6 - 16 - 2019
  */
 
-package modernity.common.util;
+package modernity.common.handler;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;

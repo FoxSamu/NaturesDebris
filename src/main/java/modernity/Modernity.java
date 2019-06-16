@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 16 - 2019
  */
 
 package modernity;
@@ -21,8 +21,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import modernity.api.event.ModernityProxyReadyEvent;
+import modernity.common.handler.RegistryHandler;
 import modernity.common.util.ProxyCommon;
-import modernity.common.util.RegistryHandler;
 
 @Mod( "modernity" )
 public class Modernity {
