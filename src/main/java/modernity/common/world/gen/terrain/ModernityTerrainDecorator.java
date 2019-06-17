@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 16 - 2019
+ * Date: 6 - 17 - 2019
  */
 
 package modernity.common.world.gen.terrain;
@@ -30,6 +30,8 @@ import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 
 import modernity.common.block.MDBlocks;
+import modernity.common.world.gen.decorate.feature.FluidFallFeature;
+import modernity.common.world.gen.decorate.feature.MDFeatures;
 import modernity.common.world.gen.decorate.placement.MDPlacements;
 import modernity.common.world.gen.util.BlockPredicates;
 
@@ -60,9 +62,11 @@ public class ModernityTerrainDecorator {
             this.features.put( stage, Lists.newArrayList() );
         }
 
+        addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( Feature.MINABLE, new MinableConfig( BlockPredicates.ROCK_TYPES, MDBlocks.DARK_DIRT.getDefaultState(), 50 ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 2 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( Feature.MINABLE, new MinableConfig( BlockPredicates.ROCK_TYPES, MDBlocks.DARKROCK.getDefaultState(), 50 ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 3 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( Feature.MINABLE, new MinableConfig( BlockPredicates.ROCK_TYPES, MDBlocks.LIGHTROCK.getDefaultState(), 30 ), MDPlacements.IN_CAVE_WITH_CHANCE, new ChanceConfig( 2 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( Feature.MINABLE, new MinableConfig( BlockPredicates.ROCK_TYPES, MDBlocks.REDROCK.getDefaultState(), 40 ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 1 ) ) );
+        addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( MDFeatures.FLUID_FALL, new FluidFallFeature.Config( MDBlocks.MODERNIZED_WATER, FluidFallFeature.STILL | FluidFallFeature.FLOWING ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 15 ) ) );
     }
 
     public void decorate( WorldGenRegion region ) {

@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 15 - 2019
+ * Date: 6 - 17 - 2019
  */
 
 package modernity.common.world.gen.decorate.feature;
@@ -19,5 +19,6 @@ public class MDFeatures {
             MDBlocks.BLACKWOOD_LOG.getDefaultState(),
             null // MDBlocks.BLACKWOOD_BRANCH.getDefaultState()
     );
+    public static final FluidFallFeature FLUID_FALL = new FluidFallFeature();
 
 }
