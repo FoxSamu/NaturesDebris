@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "modernity:block/salt_crystal_block"
+  }
+}

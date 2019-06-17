@@ -17,10 +17,9 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
-import modernity.api.block.fluid.IGaseousFluid;
 import modernity.api.util.BlockUpdates;
 import modernity.api.util.EcoBlockPos;
-import modernity.common.block.base.BlockFluid;
+import modernity.common.fluid.ImprovedFluid;
 
 import java.util.Random;
 
@@ -30,13 +29,15 @@ public class FluidFallFeature extends Feature<FluidFallFeature.Config> {
 
     @Override
     public boolean place( IWorld world, IChunkGenerator<? extends IChunkGenSettings> generator, Random rand, BlockPos pos, Config config ) {
-        boolean gas = config.fluid.getFluidState( config.fluid.getDefaultState() ).getFluid() instanceof IGaseousFluid;
-        EnumFacing noSupport = gas ? EnumFacing.DOWN : EnumFacing.UP;
+        if( ! world.getBlockState( pos ).getMaterial().blocksMovement() ) return false;
+
+        EnumFacing noSupport = config.fluid.isGas() ? EnumFacing.DOWN : EnumFacing.UP;
 
         try( EcoBlockPos rpos = EcoBlockPos.retain() ) {
             int supportingSides = 0;
             for( EnumFacing facing : EnumFacing.values() ) {
-                if( facing == noSupport ) continue; // This side does not support such fluid blocks...
+                if( facing == noSupport ) continue; // Fluid would never fall this way
+
                 rpos.setPos( pos );
                 rpos.offset( facing );
 
@@ -46,12 +47,13 @@ public class FluidFallFeature extends Feature<FluidFallFeature.Config> {
             }
 
             if( supportingSides == 5 && ( config.typeFlags & STILL ) > 0 ) {
-                world.setBlockState( pos, config.fluid.getDefaultState(), BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+                world.setBlockState( pos, config.fluid.getBlockState( config.fluid.getStillFluid().getDefaultState() ), BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+                world.getPendingFluidTicks().scheduleTick( pos, config.fluid.getStillFluid(), 0 );
                 return true;
             }
             if( supportingSides == 4 && ( config.typeFlags & FLOWING ) > 0 ) {
-                world.setBlockState( pos, config.fluid.getDefaultState(), BlockUpdates.CAUSE_UPDATE | BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
-                world.getPendingFluidTicks().scheduleTick( pos, config.fluid.getFluidState( config.fluid.getDefaultState() ).getFluid(), 0 );
+                world.setBlockState( pos, config.fluid.getBlockState( config.fluid.getStillFluid().getDefaultState() ), BlockUpdates.NOTIFY_CLIENTS );
+                world.getPendingFluidTicks().scheduleTick( pos, config.fluid.getStillFluid(), 0 );
                 return true;
             }
             return false;
@@ -60,9 +62,9 @@ public class FluidFallFeature extends Feature<FluidFallFeature.Config> {
 
     public static class Config implements IFeatureConfig {
         private final int typeFlags;
-        private final BlockFluid fluid;
+        private final ImprovedFluid fluid;
 
-        public Config( BlockFluid fluid, int typeFlags ) {
+        public Config( ImprovedFluid fluid, int typeFlags ) {
             this.typeFlags = typeFlags;
             this.fluid = fluid;
         }

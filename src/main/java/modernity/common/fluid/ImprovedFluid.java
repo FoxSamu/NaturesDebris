@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 17 - 2019
  */
 
 package modernity.common.fluid;
@@ -510,4 +510,7 @@ public abstract class ImprovedFluid extends Fluid {
     public boolean isGas() {
         return isGas;
     }
+
+    @Override
+    public abstract IBlockState getBlockState( IFluidState state );
 }

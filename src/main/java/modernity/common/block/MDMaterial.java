@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 12 - 2019
+ * Date: 6 - 17 - 2019
  */
 
 package modernity.common.block;
@@ -16,6 +16,7 @@ import net.minecraft.block.material.MaterialColor;
 public class MDMaterial {
     public static final Material ASH = new Builder( MaterialColor.BLACK_TERRACOTTA ).build();
     public static final Material ASPHALT = new Builder( MaterialColor.BLACK ).requiresTool().build();
+    public static final Material CRYSTAL = new Builder( MaterialColor.SNOW ).notOpaque().build();
 
 
     public static class Builder {

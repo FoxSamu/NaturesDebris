@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 17 - 2019
  */
 
 package modernity.common.item;
@@ -17,11 +17,15 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import modernity.api.item.IColoredItem;
+import modernity.common.item.base.ItemBase;
 
 import java.util.ArrayList;
 
 public class MDItems {
     private static final ArrayList<Entry> ENTRIES = Lists.newArrayList();
+
+    public static final ItemBase SALT_DUST = item( new ItemBase( "salt_dust", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemBase SALT_NUGGET = item( new ItemBase( "salt_nugget", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     public static void register( IForgeRegistry<Item> registry ) {
         for( Entry e : ENTRIES ) {

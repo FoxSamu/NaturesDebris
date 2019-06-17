@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 12 - 2019
+ * Date: 6 - 17 - 2019
  */
 
 package modernity.common.block;
@@ -44,6 +44,7 @@ public class MDBlocks {
 
     // Dusts
     public static final BlockFall ASH_BLOCK = blockItem( new BlockFall( "ash_block", 0x333333, Block.Properties.create( MDMaterial.ASH, MaterialColor.GRAY ).hardnessAndResistance( 0.4F ).sound( SoundType.SAND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockFall SALT_DUST_BLOCK = blockItem( new BlockFall( "salt_dust_block", 0xffffff, Block.Properties.create( Material.SAND, MaterialColor.SNOW ).hardnessAndResistance( 0.4F ).sound( SoundType.SAND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Soils
     public static final BlockDirt DARK_DIRT = blockItem( new BlockDirt( BlockDirt.TYPE_DIRT, Block.Properties.create( Material.GROUND, MaterialColor.DIRT ).hardnessAndResistance( 0.5F ).sound( SoundType.GROUND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
@@ -84,6 +85,13 @@ public class MDBlocks {
     public static final BlockBase BLACKWOOD_BARK = blockItem( new BlockStripable( "blackwood_bark", STRIPPED_BLACKWOOD_BARK, Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockSapling BLACKWOOD_SAPLING = blockItem( new BlockSapling( "blackwood_sapling", () -> MDFeatures.BLACKWOOD_TREE, Block.Properties.create( Material.VINE, MaterialColor.GRASS ).hardnessAndResistance( 0 ).tickRandomly().sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockHangLeaves BLACKWOOD_LEAVES = blockItem( new BlockHangLeaves.ColoredFoliage( "blackwood_leaves", MDBlockTags.BLACKWOOD_LOG, BLACKWOOD_SAPLING, Block.Properties.create( Material.LEAVES ).hardnessAndResistance( 0.2F ).tickRandomly().sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+    // Ores
+    public static final BlockOre SALT_ORE = blockItem( new BlockOre.Salt( "salt_ore", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+    // Salt
+    public static final BlockTranslucent SALT_BLOCK = blockItem( new BlockTranslucent.Salt( "salt_block", Block.Properties.create( MDMaterial.CRYSTAL ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
 
     public static void register( IForgeRegistry<Block> registry ) {
         for( Entry e : ENTRIES ) {

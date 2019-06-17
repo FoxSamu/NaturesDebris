@@ -31,6 +31,7 @@ import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 
 import modernity.common.block.MDBlocks;
+import modernity.common.fluid.MDFluids;
 import modernity.common.world.gen.ModernityGenSettings;
 import modernity.common.world.gen.decorate.feature.DepositFeature;
 import modernity.common.world.gen.decorate.feature.FluidFallFeature;
@@ -70,9 +71,9 @@ public class ModernityTerrainDecorator {
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( Feature.MINABLE, new MinableConfig( BlockPredicates.ROCK_TYPES, MDBlocks.DARKROCK.getDefaultState(), 50 ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 3 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( Feature.MINABLE, new MinableConfig( BlockPredicates.ROCK_TYPES, MDBlocks.LIGHTROCK.getDefaultState(), 30 ), MDPlacements.IN_CAVE_WITH_CHANCE, new ChanceConfig( 2 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( Feature.MINABLE, new MinableConfig( BlockPredicates.ROCK_TYPES, MDBlocks.REDROCK.getDefaultState(), 40 ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 1 ) ) );
-        addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( MDFeatures.FLUID_FALL, new FluidFallFeature.Config( MDBlocks.MODERNIZED_WATER, FluidFallFeature.STILL | FluidFallFeature.FLOWING ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 30 ) ) );
-        addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, IBlockState::isFullCube, MDBlocks.DARK_SAND.getDefaultState() ), MDPlacements.AT_SURFACE_BELOW_HEIGHT, new AtSurfaceBelowHeight.FrequencyConfig( settings.getWaterLevel() - 1, 8 ) ) );
-        addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, IBlockState::isFullCube, MDBlocks.DARK_CLAY.getDefaultState() ), MDPlacements.AT_SURFACE_BELOW_HEIGHT, new AtSurfaceBelowHeight.ChanceConfig( settings.getWaterLevel() - 1, 2 ) ) );
+        addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature( MDFeatures.FLUID_FALL, new FluidFallFeature.Config( MDFluids.MODERNIZED_WATER, FluidFallFeature.STILL | FluidFallFeature.FLOWING ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 30 ) ) );
+        addFeature( GenerationStage.Decoration.RAW_GENERATION, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, IBlockState::isFullCube, MDBlocks.DARK_SAND.getDefaultState() ), MDPlacements.AT_SURFACE_BELOW_HEIGHT, new AtSurfaceBelowHeight.FrequencyConfig( settings.getWaterLevel() - 1, 12 ) ) );
+        addFeature( GenerationStage.Decoration.RAW_GENERATION, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, IBlockState::isFullCube, MDBlocks.DARK_CLAY.getDefaultState() ), MDPlacements.AT_SURFACE_BELOW_HEIGHT, new AtSurfaceBelowHeight.ChanceConfig( settings.getWaterLevel() - 1, 2 ) ) );
     }
 
     public void decorate( WorldGenRegion region ) {
