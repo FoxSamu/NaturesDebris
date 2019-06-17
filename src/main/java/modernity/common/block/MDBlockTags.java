@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 17 - 2019
  */
 
 package modernity.common.block;
@@ -22,6 +22,10 @@ public class MDBlockTags {
     public static final Tag<Block> LEAVES = tag( "leaves" );
 
     public static final Tag<Block> ROCK = tag( "rock" );
+
+
+
+    public static final Tag<Block> SALT_SOURCE = tag( "salt_source" );
 
     private static Tag<Block> tag( String id ) {
         return new BlockTags.Wrapper( new ResourceLocation( "modernity", id ) );

@@ -10,6 +10,7 @@
 package modernity.common.block.base;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -18,7 +19,10 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import modernity.client.particle.SaltParticle;
 import modernity.common.item.MDItems;
+
+import java.util.Random;
 
 public class BlockTranslucent extends BlockBase {
 
@@ -48,6 +52,19 @@ public class BlockTranslucent extends BlockBase {
 
         public Salt( String id, Properties properties ) {
             super( id, properties );
+        }
+
+        @Override
+        public void animateTick( IBlockState state, World world, BlockPos pos, Random rand ) {
+            if( rand.nextInt( 3 ) == 0 ) {
+                if( world.getBlockState( pos.down() ).getMaterial().blocksMovement() ) return;
+
+                double x = rand.nextDouble() + pos.getX();
+                double y = - 0.05 + pos.getY();
+                double z = rand.nextDouble() + pos.getZ();
+
+                Minecraft.getInstance().particles.addEffect( new SaltParticle( world, x, y, z, 0, 0, 0 ) );
+            }
         }
 
         @Override

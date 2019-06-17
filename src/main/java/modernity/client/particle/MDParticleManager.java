@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 17 - 2019
  */
 
 package modernity.client.particle;
@@ -32,6 +32,7 @@ import java.util.Random;
 public class MDParticleManager extends ParticleManager {
     private final Random rand = new Random();
 
+
     public MDParticleManager( World world, TextureManager renderer ) {
         super( world, renderer );
 
@@ -41,25 +42,25 @@ public class MDParticleManager extends ParticleManager {
     @Override
     public void addBlockDestroyEffects( BlockPos pos, IBlockState state ) {
         if( ! state.isAir( this.world, pos ) ) {
-            VoxelShape voxelshape = state.getShape( this.world, pos );
-            voxelshape.forEachBox( ( p_199284_3_, p_199284_5_, p_199284_7_, p_199284_9_, p_199284_11_, p_199284_13_ ) -> {
-                double d1 = Math.min( 1.0D, p_199284_9_ - p_199284_3_ );
-                double d2 = Math.min( 1.0D, p_199284_11_ - p_199284_5_ );
-                double d3 = Math.min( 1.0D, p_199284_13_ - p_199284_7_ );
-                int i = Math.max( 2, MathHelper.ceil( d1 / 0.25D ) );
-                int j = Math.max( 2, MathHelper.ceil( d2 / 0.25D ) );
-                int k = Math.max( 2, MathHelper.ceil( d3 / 0.25D ) );
+            VoxelShape shape = state.getShape( this.world, pos );
+            shape.forEachBox( ( minx, miny, minz, maxx, maxy, maxz ) -> {
+                double sx = Math.min( 1, maxx - minx );
+                double sy = Math.min( 1, maxy - miny );
+                double sz = Math.min( 1, maxz - minz );
+                int xsize = Math.max( 2, MathHelper.ceil( sx / 0.25 ) );
+                int ysize = Math.max( 2, MathHelper.ceil( sy / 0.25 ) );
+                int zsize = Math.max( 2, MathHelper.ceil( sz / 0.25 ) );
 
-                for( int l = 0; l < i; ++ l ) {
-                    for( int i1 = 0; i1 < j; ++ i1 ) {
-                        for( int j1 = 0; j1 < k; ++ j1 ) {
-                            double d4 = ( (double) l + 0.5D ) / (double) i;
-                            double d5 = ( (double) i1 + 0.5D ) / (double) j;
-                            double d6 = ( (double) j1 + 0.5D ) / (double) k;
-                            double d7 = d4 * d1 + p_199284_3_;
-                            double d8 = d5 * d2 + p_199284_5_;
-                            double d9 = d6 * d3 + p_199284_7_;
-                            this.addEffect( new ParticleDiggingModernity( this.world, (double) pos.getX() + d7, (double) pos.getY() + d8, (double) pos.getZ() + d9, d4 - 0.5D, d5 - 0.5D, d6 - 0.5D, state ).setBlockPos( pos ) );
+                for( int x = 0; x < xsize; ++ x ) {
+                    for( int y = 0; y < ysize; ++ y ) {
+                        for( int z = 0; z < zsize; ++ z ) {
+                            double xv = ( x + 0.5 ) / xsize;
+                            double yv = ( y + 0.5 ) / ysize;
+                            double zv = ( z + 0.5 ) / zsize;
+                            double xoff = xv * sx + minx;
+                            double yoff = yv * sy + miny;
+                            double zoff = zv * sz + minz;
+                            addEffect( new ParticleDiggingModernity( world, pos.getX() + xoff, pos.getY() + yoff, pos.getZ() + zoff, xv - 0.5, yv - 0.5, zv - 0.5, state ).setBlockPos( pos ) );
                         }
                     }
                 }
@@ -69,48 +70,48 @@ public class MDParticleManager extends ParticleManager {
     }
 
     public void addBlockHitEffects( BlockPos pos, EnumFacing side ) {
-        IBlockState iblockstate = this.world.getBlockState( pos );
-        if( iblockstate.getRenderType() != EnumBlockRenderType.INVISIBLE ) {
-            int i = pos.getX();
-            int j = pos.getY();
-            int k = pos.getZ();
-            AxisAlignedBB axisalignedbb = iblockstate.getShape( this.world, pos ).getBoundingBox();
-            double d0 = (double) i + this.rand.nextDouble() * ( axisalignedbb.maxX - axisalignedbb.minX - (double) 0.2F ) + (double) 0.1F + axisalignedbb.minX;
-            double d1 = (double) j + this.rand.nextDouble() * ( axisalignedbb.maxY - axisalignedbb.minY - (double) 0.2F ) + (double) 0.1F + axisalignedbb.minY;
-            double d2 = (double) k + this.rand.nextDouble() * ( axisalignedbb.maxZ - axisalignedbb.minZ - (double) 0.2F ) + (double) 0.1F + axisalignedbb.minZ;
+        IBlockState state = world.getBlockState( pos );
+        if( state.getRenderType() != EnumBlockRenderType.INVISIBLE ) {
+            int ix = pos.getX();
+            int iy = pos.getY();
+            int iz = pos.getZ();
+            AxisAlignedBB box = state.getShape( world, pos ).getBoundingBox();
+            double x = ix + rand.nextDouble() * ( box.maxX - box.minX - 0.2 ) + 0.1 + box.minX;
+            double y = iy + rand.nextDouble() * ( box.maxY - box.minY - 0.2 ) + 0.1 + box.minY;
+            double z = iz + rand.nextDouble() * ( box.maxZ - box.minZ - 0.2 ) + 0.1 + box.minZ;
             if( side == EnumFacing.DOWN ) {
-                d1 = (double) j + axisalignedbb.minY - (double) 0.1F;
+                y = iy + box.minY - 0.1;
             }
 
             if( side == EnumFacing.UP ) {
-                d1 = (double) j + axisalignedbb.maxY + (double) 0.1F;
+                y = iy + box.maxY + 0.1;
             }
 
             if( side == EnumFacing.NORTH ) {
-                d2 = (double) k + axisalignedbb.minZ - (double) 0.1F;
+                z = iz + box.minZ - 0.1;
             }
 
             if( side == EnumFacing.SOUTH ) {
-                d2 = (double) k + axisalignedbb.maxZ + (double) 0.1F;
+                z = iz + box.maxZ + 0.1;
             }
 
             if( side == EnumFacing.WEST ) {
-                d0 = (double) i + axisalignedbb.minX - (double) 0.1F;
+                x = ix + box.minX - 0.1;
             }
 
             if( side == EnumFacing.EAST ) {
-                d0 = (double) i + axisalignedbb.maxX + (double) 0.1F;
+                x = ix + box.maxX + 0.1;
             }
 
-            this.addEffect( new ParticleDiggingModernity( this.world, d0, d1, d2, 0.0D, 0.0D, 0.0D, iblockstate ).setBlockPos( pos ).multiplyVelocity( 0.2F ).multipleParticleScaleBy( 0.6F ) );
+            addEffect( new ParticleDiggingModernity( world, x, y, z, 0, 0, 0, state ).setBlockPos( pos ).multiplyVelocity( 0.2F ).multipleParticleScaleBy( 0.6F ) );
         }
     }
 
     @OnlyIn( Dist.CLIENT )
     public static class Factory implements IParticleFactory<BlockParticleData> {
-        public Particle makeParticle( BlockParticleData typeIn, World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed ) {
-            IBlockState iblockstate = typeIn.getBlockState();
-            return ! iblockstate.isAir() && iblockstate.getBlock() != Blocks.MOVING_PISTON ? new ParticleDiggingModernity( worldIn, x, y, z, xSpeed, ySpeed, zSpeed, iblockstate ).init() : null;
+        public Particle makeParticle( BlockParticleData data, World world, double x, double y, double z, double xv, double yv, double zv ) {
+            IBlockState state = data.getBlockState();
+            return ! state.isAir() && state.getBlock() != Blocks.MOVING_PISTON ? new ParticleDiggingModernity( world, x, y, z, xv, yv, zv, state ).init() : null;
         }
     }
 }
