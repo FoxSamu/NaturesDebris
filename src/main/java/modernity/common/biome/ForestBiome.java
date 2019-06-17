@@ -4,23 +4,26 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 16 - 2019
+ * Date: 6 - 17 - 2019
  */
 
 package modernity.common.biome;
 
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.LakeChanceConfig;
 
 import modernity.api.util.ColorUtil;
 import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.decorate.feature.BushFeature;
+import modernity.common.world.gen.decorate.feature.DepositFeature;
 import modernity.common.world.gen.decorate.feature.LakeFeature;
 import modernity.common.world.gen.decorate.feature.MDFeatures;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
 import modernity.common.world.gen.surface.HumusSurfaceGenerator;
+import modernity.common.world.gen.util.BlockPredicates;
 
 public class ForestBiome extends BiomeBase {
     public ForestBiome() {
@@ -44,5 +47,9 @@ public class ForestBiome extends BiomeBase {
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature( MDFeatures.BUSH, new BushFeature.Config( 81, 7, new IBlockProvider.ChooseRandom( MDBlocks.BLUE_MELION, MDBlocks.ORANGE_MELION, MDBlocks.INDIGO_MELION, MDBlocks.YELLOW_MELION, MDBlocks.MAGENTA_MELION, MDBlocks.RED_MELION, MDBlocks.WHITE_MELION ) ), AT_SURFACE, new FrequencyConfig( 1 ) ) );
 
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature( MDFeatures.BLACKWOOD_TREE, IFeatureConfig.NO_FEATURE_CONFIG, AT_SURFACE, new FrequencyConfig( 6 ) ) );
+        addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.ROCK.getDefaultState() ), AT_SURFACE_WITH_CHANCE, new ChanceConfig( 8 ) ) );
+        addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.DARKROCK.getDefaultState() ), AT_SURFACE_WITH_CHANCE, new ChanceConfig( 16 ) ) );
+        addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.LIGHTROCK.getDefaultState() ), AT_SURFACE_WITH_CHANCE, new ChanceConfig( 128 ) ) );
+        addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.REDROCK.getDefaultState() ), AT_SURFACE_WITH_CHANCE, new ChanceConfig( 48 ) ) );
     }
 }

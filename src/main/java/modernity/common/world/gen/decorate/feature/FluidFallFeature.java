@@ -51,6 +51,7 @@ public class FluidFallFeature extends Feature<FluidFallFeature.Config> {
             }
             if( supportingSides == 4 && ( config.typeFlags & FLOWING ) > 0 ) {
                 world.setBlockState( pos, config.fluid.getDefaultState(), BlockUpdates.CAUSE_UPDATE | BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+                world.getPendingFluidTicks().scheduleTick( pos, config.fluid.getFluidState( config.fluid.getDefaultState() ).getFluid(), 0 );
                 return true;
             }
             return false;

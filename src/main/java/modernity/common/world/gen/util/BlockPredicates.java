@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 16 - 2019
+ * Date: 6 - 17 - 2019
  */
 
 package modernity.common.world.gen.util;
@@ -21,4 +21,7 @@ public class BlockPredicates {
                     state.getBlock() == MDBlocks.DARKROCK ||
                     state.getBlock() == MDBlocks.LIGHTROCK ||
                     state.getBlock() == MDBlocks.REDROCK;
+
+    public static final Predicate<IBlockState> TRUE = state -> true;
+    public static final Predicate<IBlockState> FALSE = state -> false;
 }

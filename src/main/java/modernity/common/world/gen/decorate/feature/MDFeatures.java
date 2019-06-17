@@ -17,8 +17,9 @@ public class MDFeatures {
     public static final HangTreeFeature BLACKWOOD_TREE = new HangTreeFeature(
             MDBlocks.BLACKWOOD_LEAVES.getDefaultState(),
             MDBlocks.BLACKWOOD_LOG.getDefaultState(),
-            null // MDBlocks.BLACKWOOD_BRANCH.getDefaultState()
+            null // TODO: Remove branch param as they're definitely removed...
     );
     public static final FluidFallFeature FLUID_FALL = new FluidFallFeature();
+    public static final DepositFeature DEPOSIT = new DepositFeature();
 
 }
