@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 17 - 2019
+ * Date: 6 - 18 - 2019
  */
 
 package modernity.common.block.base;
@@ -56,7 +56,7 @@ public class BlockTranslucent extends BlockBase {
 
         @Override
         public void animateTick( IBlockState state, World world, BlockPos pos, Random rand ) {
-            if( rand.nextInt( 3 ) == 0 ) {
+            if( rand.nextInt( 5 ) == 0 ) {
                 if( world.getBlockState( pos.down() ).getMaterial().blocksMovement() ) return;
 
                 double x = rand.nextDouble() + pos.getX();
@@ -70,13 +70,16 @@ public class BlockTranslucent extends BlockBase {
         @Override
         public void getDrops( IBlockState state, NonNullList<ItemStack> drops, World world, BlockPos pos, int fortune ) {
             int nuggetAmount = world.rand.nextInt( Math.max( 6 - fortune, 1 ) ) == 0 ? world.rand.nextInt( 3 ) : 0;
-            int dustAmount = world.rand.nextInt( fortune + 1 ) + 1;
-            // TODO: Drop crystals
+            int dustAmount = world.rand.nextInt( fortune * 2 + 1 ) + 2;
+            int crystalAmount = world.rand.nextInt( 80 ) < fortune + 1 ? 1 : 0;
             if( nuggetAmount > 0 ) {
                 drops.add( new ItemStack( MDItems.SALT_NUGGET, nuggetAmount ) );
             }
             if( dustAmount > 0 ) {
                 drops.add( new ItemStack( MDItems.SALT_DUST, dustAmount ) );
+            }
+            if( crystalAmount > 0 ) {
+                drops.add( new ItemStack( this, crystalAmount ) );
             }
         }
 
