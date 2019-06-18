@@ -78,6 +78,8 @@ public class MDBlocks {
 
     public static final BlockSinglePlant MINT_PLANT = blockItem( new BlockSinglePlant.Mint( "mint_plant", Block.Properties.create( Material.VINE, MaterialColor.GRASS ).doesNotBlockMovement().hardnessAndResistance( 0.2F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
+    public static final BlockSaltCrystal SALT_CRYSTAL = blockItem( new BlockSaltCrystal( "salt_crystal", Block.Properties.create( MDMaterial.CRYSTAL ).doesNotBlockMovement().hardnessAndResistance( 0.2F ).sound( SoundType.GLASS ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
     // Darkwood tree
     public static final BlockLog STRIPPED_BLACKWOOD_LOG = blockItem( new BlockLog( "stripped_blackwood_log", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockLog BLACKWOOD_LOG = blockItem( new BlockStripableLog( "blackwood_log", STRIPPED_BLACKWOOD_LOG, Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
@@ -88,10 +90,11 @@ public class MDBlocks {
 
     // Ores
     public static final BlockOre SALT_ORE = blockItem( new BlockOre.Salt( "salt_ore", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockOre ALUMINIUM_ORE = blockItem( new BlockOre( "aluminium_ore", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
-    // Salt
+    // Minerals
     public static final BlockTranslucent SALT_BLOCK = blockItem( new BlockTranslucent.Salt( "salt_block", Block.Properties.create( Material.GLASS, MaterialColor.SNOW ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
-    public static final BlockSaltCrystal SALT_CRYSTAL = blockItem( new BlockSaltCrystal( "salt_crystal", Block.Properties.create( MDMaterial.CRYSTAL ).doesNotBlockMovement().hardnessAndResistance( 0.2F ).sound( SoundType.GLASS ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockBase ALUMINIUM_BLOCK = blockItem( new BlockBase( "aluminium_block", Block.Properties.create( Material.IRON, MaterialColor.IRON ).hardnessAndResistance( 5F, 6F ).sound( SoundType.METAL ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
 
     public static void register( IForgeRegistry<Block> registry ) {
