@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "modernity:item/aluminium_ingot"
+    "layer0": "modernity:item/aluminium"
   }
 }
