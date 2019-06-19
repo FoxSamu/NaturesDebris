@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 18 - 2019
+ * Date: 6 - 19 - 2019
  */
 
 package modernity.common.block;
@@ -79,6 +79,7 @@ public class MDBlocks {
     public static final BlockSinglePlant MINT_PLANT = blockItem( new BlockSinglePlant.Mint( "mint_plant", Block.Properties.create( Material.VINE, MaterialColor.GRASS ).doesNotBlockMovement().hardnessAndResistance( 0.2F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     public static final BlockSaltCrystal SALT_CRYSTAL = blockItem( new BlockSaltCrystal( "salt_crystal", Block.Properties.create( MDMaterial.CRYSTAL ).doesNotBlockMovement().hardnessAndResistance( 0.2F ).sound( SoundType.GLASS ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockHangingPlant MURINA = blockItem( new BlockHangingPlant.ColoredMurina( "murina", Block.Properties.create( Material.VINE, MaterialColor.GRASS ).doesNotBlockMovement().hardnessAndResistance( 0 ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Darkwood tree
     public static final BlockLog STRIPPED_BLACKWOOD_LOG = blockItem( new BlockLog( "stripped_blackwood_log", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );

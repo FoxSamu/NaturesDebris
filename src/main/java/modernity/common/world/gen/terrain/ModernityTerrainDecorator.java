@@ -77,6 +77,7 @@ public class ModernityTerrainDecorator {
         addFeature( GenerationStage.Decoration.RAW_GENERATION, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, IBlockState::isFullCube, MDBlocks.DARK_CLAY.getDefaultState() ), MDPlacements.AT_SURFACE_BELOW_HEIGHT, new AtSurfaceBelowHeight.ChanceConfig( settings.getWaterLevel() - 1, 4 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature( MDFeatures.BUSH, new BushFeature.Config( 50, 5, MDBlocks.SALT_CRYSTAL ), MDPlacements.AT_SURFACE_BELOW_HEIGHT, new AtSurfaceBelowHeight.ChanceConfig( settings.getWaterLevel() - 1, 35 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature( MDFeatures.BUSH, new BushFeature.Config( 50, 5, MDBlocks.SALT_CRYSTAL ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 4 ) ) );
+        addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature( MDFeatures.BUSH, new BushFeature.Config( 80, 8, MDBlocks.MURINA ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 7 ) ) );
     }
 
     public void decorate( WorldGenRegion region ) {
