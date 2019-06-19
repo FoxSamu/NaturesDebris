@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 18 - 2019
+ * Date: 6 - 19 - 2019
  */
 
 package modernity.common.block.base;
@@ -64,8 +64,8 @@ public class BlockSaltCrystal extends BlockSinglePlant implements ILiquidContain
             12
     };
 
-    private static final AxisAlignedBB[] STATE_BOXES = new AxisAlignedBB[ 11 ];
-    private static final VoxelShape[] STATE_SHAPES = new VoxelShape[ 11 ];
+    private static final AxisAlignedBB[] STATE_BOXES = new AxisAlignedBB[ 12 ];
+    private static final VoxelShape[] STATE_SHAPES = new VoxelShape[ 12 ];
 
     static {
         for( int i = 0; i <= 11; i++ ) {
@@ -163,10 +163,11 @@ public class BlockSaltCrystal extends BlockSinglePlant implements ILiquidContain
                 npos.move( loc.getX(), 0, loc.getZ() );
 
                 // Try to grow on a higher or lower block
+                npos.move( EnumFacing.UP );
                 if( ! canRemainAt( world, npos, getDefaultState() ) ) {
-                    npos.move( EnumFacing.UP );
+                    npos.move( EnumFacing.DOWN );
                     if( ! canRemainAt( world, npos, getDefaultState() ) )
-                        npos.move( EnumFacing.DOWN, 2 );
+                        npos.move( EnumFacing.DOWN );
                 }
 
                 // Compute weight
@@ -201,28 +202,30 @@ public class BlockSaltCrystal extends BlockSinglePlant implements ILiquidContain
             npos.setPos( pos );
             npos.move( loc.getX(), 0, loc.getZ() );
 
+            npos.move( EnumFacing.UP );
             if( ! canRemainAt( world, npos, getDefaultState() ) ) {
-                npos.move( EnumFacing.UP );
+                npos.move( EnumFacing.DOWN );
                 if( ! canRemainAt( world, npos, getDefaultState() ) )
-                    npos.move( EnumFacing.DOWN, 2 );
+                    npos.move( EnumFacing.DOWN );
             }
 
             // Grow to the selected block...
             IBlockState s = world.getBlockState( npos );
             if( canRemainAt( world, npos, getDefaultState() ) && ( s.getMaterial().isLiquid() || s.isAir( world, npos ) ) ) {
-                world.setBlockState( pos, getDefaultState() );
+                world.setBlockState( npos, getDefaultState().with( NATURAL, rand.nextInt( 5 ) == 0 ).with( WATERLOGGED, EWaterlogType.getType( world.getFluidState( pos ) ) ) );
             }
         }
     }
 
     public int calculateGrowWeight( World world, BlockPos pos, BlockPos.MutableBlockPos mpos ) {
         int chance = 0;
+        // Use modernized water as salt source
         if( world.getFluidState( pos ).getFluid() == MDFluids.MODERNIZED_WATER ) {
             chance += 44;
         }
 
+        // Find block sources
         int sources = 0;
-
         for( int x = - 1; x <= 1; x++ ) {
             for( int z = - 1; z <= 1; z++ ) {
                 mpos.setPos( pos );
@@ -325,6 +328,13 @@ public class BlockSaltCrystal extends BlockSinglePlant implements ILiquidContain
         int nuggetAmount = world.rand.nextInt( Math.max( 6 - fortune, 1 ) * 2 ) == 0 ? world.rand.nextInt( 2 ) : 0;
         int dustAmount = world.rand.nextInt( fortune + 1 ) + 1;
         int crystalAmount = world.rand.nextInt( 100 ) < fortune + 1 ? 1 : 0;
+
+        if( state.get( AGE ) != 11 ) {
+            nuggetAmount = 0;
+            crystalAmount = 0;
+            dustAmount = world.rand.nextInt( 7 / ( fortune + 1 ) ) == 0 ? 1 : 0;
+        }
+
         if( nuggetAmount > 0 ) {
             drops.add( new ItemStack( MDItems.SALT_NUGGET, nuggetAmount ) );
         }

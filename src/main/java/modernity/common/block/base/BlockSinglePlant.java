@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 12 - 2019
+ * Date: 6 - 19 - 2019
  */
 
 package modernity.common.block.base;
@@ -12,7 +12,6 @@ package modernity.common.block.base;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
@@ -69,8 +68,8 @@ public class BlockSinglePlant extends BlockNoDrop implements IBlockProvider {
     }
 
     public void destroy( World world, BlockPos pos, IBlockState state ) {
-        world.setBlockState( pos, Blocks.AIR.getDefaultState(), 3 );
-        dropBlockAsItemWithChance( state, world, pos, 1, 0 );
+        world.removeBlock( pos );
+        state.dropBlockAsItem( world, pos, 0 );
     }
 
     @Override

@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 18 - 2019
+ * Date: 6 - 19 - 2019
  */
 
 package modernity.common.block.base;
@@ -20,6 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import modernity.client.particle.SaltParticle;
+import modernity.common.block.MDBlocks;
 import modernity.common.item.MDItems;
 
 import java.util.Random;
@@ -79,7 +80,7 @@ public class BlockTranslucent extends BlockBase {
                 drops.add( new ItemStack( MDItems.SALT_DUST, dustAmount ) );
             }
             if( crystalAmount > 0 ) {
-                drops.add( new ItemStack( this, crystalAmount ) );
+                drops.add( new ItemStack( MDBlocks.SALT_CRYSTAL, crystalAmount ) );
             }
         }
 

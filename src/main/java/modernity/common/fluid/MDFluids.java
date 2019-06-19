@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 19 - 2019
  */
 
 package modernity.common.fluid;
@@ -31,7 +31,7 @@ public class MDFluids {
         ForgeRegistry<FluidEntry> entries = MDRegistries.fluids();
         for( FluidEntry entry : entries ) {
             int id = entries.getID( entry );
-            ResourceLocation name = entries.getRegistryName();
+            ResourceLocation name = entry.getRegistryName();
 
             IRegistry.FLUID.register( id, name, entry.getFluid() );
 
