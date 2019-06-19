@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 15 - 2019
+ * Date: 6 - 19 - 2019
  */
 
 package modernity.common.world.gen.terrain;
@@ -25,19 +25,12 @@ import modernity.common.world.gen.ModernityGenSettings;
 import java.util.Random;
 
 public class ModernityCaveGenerator {
-    private static final int CHUNK_SIZE = 16;
     private static final double XZ_CAVE_SCALE = 0.08;
     private static final double Y_CAVE_SCALE = 0.15;
     private static final double XZ_FORM_SCALE = 0.5;
     private static final double Y_FORM_SCALE = 0.3;
     private static final double FORM_SCALE = 0.4;
-    private static final double XZ_BREAK_SCALE = 0.05;
-    private static final double BREAK_SCALE = 0.85;
     private static final double BASE_LIMIT = - 0.3;
-    private static final int LOWER_BOUND = 10;
-    private static final int UPPER_BOUND = 20;
-    private static final double SHOULDNT_BREAK = 3.5;
-    private static final double RIDGE_EXTENTS = 0.5;
 
     private final World world;
     private final long seed;
