@@ -53,8 +53,8 @@ public class ItemBucketBase extends ItemBase {
         ItemStack held = player.getHeldItem( hand );
         RayTraceResult rtr = rayTrace( world, player, containing == Fluids.EMPTY );
 
-        ActionResult<ItemStack> ret = ForgeEventFactory.onBucketUse( player, world, held, rtr );
-        if( ret != null ) return ret;
+        ActionResult<ItemStack> hooked = ForgeEventFactory.onBucketUse( player, world, held, rtr );
+        if( hooked != null ) return hooked;
 
         if( rtr == null ) {
             return new ActionResult<>( EnumActionResult.PASS, held );

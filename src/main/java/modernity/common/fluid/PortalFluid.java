@@ -12,7 +12,6 @@ package modernity.common.fluid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
-import net.minecraft.init.Items;
 import net.minecraft.init.Particles;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -34,6 +33,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.common.block.MDBlocks;
+import modernity.common.item.MDItems;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -60,7 +60,7 @@ public abstract class PortalFluid extends ImprovedFluid implements ICustomRender
     }
 
     public Item getFilledBucket() {
-        return Items.WATER_BUCKET;
+        return MDItems.PORTAL_BUCKET;
     }
 
     @OnlyIn( Dist.CLIENT )

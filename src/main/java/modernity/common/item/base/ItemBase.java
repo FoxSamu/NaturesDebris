@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 26 - 2019
  */
 
 package modernity.common.item.base;
@@ -16,7 +16,13 @@ import modernity.common.item.MDItems;
 public class ItemBase extends Item implements MDItems.Entry {
     public ItemBase( String id, Properties properties ) {
         super( properties );
-        setRegistryName( "modernity:" + id );
+        String rl;
+        if( id.contains( ":" ) ) {
+            rl = id;
+        } else {
+            rl = "modernity:" + id;
+        }
+        setRegistryName( rl );
     }
 
     @Override

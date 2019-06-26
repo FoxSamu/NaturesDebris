@@ -12,14 +12,13 @@ package modernity.common.block.base;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
+import net.minecraft.block.IBucketPickupHandler;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.init.Particles;
-import net.minecraft.init.SoundEvents;
+import net.minecraft.init.*;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
@@ -43,7 +42,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class BlockFluid extends BlockBase {
+public class BlockFluid extends BlockBase implements IBucketPickupHandler {
 
     // The fluid this block represents
     protected final ImprovedFluid fluid;
@@ -201,13 +200,13 @@ public class BlockFluid extends BlockBase {
                 IFluidState fstate = world.getFluidState( pos );
                 if( fstate.isSource() ) {
                     world.setBlockState( pos, Blocks.OBSIDIAN.getDefaultState() );
-                    this.triggerMixEffects( world, pos );
+                    triggerMixEffects( world, pos );
                     return false;
                 }
 
                 if( fstate.getHeight() >= 0.4444444F ) {
                     world.setBlockState( pos, Blocks.COBBLESTONE.getDefaultState() );
-                    this.triggerMixEffects( world, pos );
+                    triggerMixEffects( world, pos );
                     return false;
                 }
             }
@@ -223,14 +222,14 @@ public class BlockFluid extends BlockBase {
         world.playSound( null, pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + ( world.getRandom().nextFloat() - world.getRandom().nextFloat() ) * 0.8F );
 
         for( int i = 0; i < 8; ++ i ) {
-            world.addParticle( Particles.LARGE_SMOKE, x + Math.random(), y + 1.2D, z + Math.random(), 0.0D, 0.0D, 0.0D );
+            world.addParticle( Particles.LARGE_SMOKE, x + Math.random(), y + 1.2D, z + Math.random(), 0, 0, 0 );
         }
 
     }
 
     @Override
     @SuppressWarnings( "deprecation" )
-    public BlockFaceShape getBlockFaceShape( IBlockReader worldIn, IBlockState state, BlockPos pos, EnumFacing face ) {
+    public BlockFaceShape getBlockFaceShape( IBlockReader world, IBlockState state, BlockPos pos, EnumFacing face ) {
         return BlockFaceShape.UNDEFINED;
     }
 
@@ -239,12 +238,13 @@ public class BlockFluid extends BlockBase {
         return fluidStateContainer;
     }
 
-    //    public Fluid pickupFluid( IWorld worldIn, BlockPos pos, IBlockState state ) {
-//        if( state.get( LEVEL ) == 0 ) {
-//            worldIn.setBlockState( pos, Blocks.AIR.getDefaultState(), 11 );
-//            return this.fluid;
-//        } else {
-//            return Fluids.EMPTY;
-//        }
-//    }
+    @Override
+    public Fluid pickupFluid( IWorld world, BlockPos pos, IBlockState state ) {
+        if( state.get( level ) == 0 ) { // Only pick up source blocks
+            world.setBlockState( pos, Blocks.AIR.getDefaultState(), 11 );
+            return fluid;
+        } else {
+            return Fluids.EMPTY;
+        }
+    }
 }
