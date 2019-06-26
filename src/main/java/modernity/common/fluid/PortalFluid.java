@@ -144,16 +144,6 @@ public abstract class PortalFluid extends ImprovedFluid implements ICustomRender
         return 0xffffff;
     }
 
-    @Override
-    public float getMaxHeight( IFluidState state ) {
-        return 0.6F;
-    }
-
-    @Override
-    public int getSourceSlopeWeight() {
-        return 1;
-    }
-
     public static class Flowing extends PortalFluid {
         protected void fillStateContainer( StateContainer.Builder<Fluid, IFluidState> builder ) {
             super.fillStateContainer( builder );
