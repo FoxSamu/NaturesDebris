@@ -3,7 +3,7 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 6 - 15 - 2019
+ * Date: 6 - 26 - 2019
  */
 
 package net.rgsw;
@@ -22,6 +22,17 @@ public class MathUtil {
     }
 
     /**
+     * Interpolates value between 0 and 1 to value between a and b
+     * @param a
+     * @param b
+     * @param x Value between 0 and 1
+     * @see MathUtil#unlerp(float, float, float)
+     */
+    public static float lerp( float a, float b, float x ) {
+        return a + x * ( b - a );
+    }
+
+    /**
      * Interpolates value between a and b to value between 0 and 1
      * @param a
      * @param b
@@ -29,6 +40,17 @@ public class MathUtil {
      * @see MathUtil#lerp(double, double, double)
      */
     public static double unlerp( double a, double b, double x ) {
+        return ( x - a ) / ( b - a );
+    }
+
+    /**
+     * Interpolates value between a and b to value between 0 and 1
+     * @param a
+     * @param b
+     * @param x Value between a and b
+     * @see MathUtil#lerp(float, float, float)
+     */
+    public static float unlerp( float a, float b, float x ) {
         return ( x - a ) / ( b - a );
     }
 
@@ -42,6 +64,10 @@ public class MathUtil {
     }
 
     public static double clamp( double t, double min, double max ) {
+        return t < min ? min : t > max ? max : t;
+    }
+
+    public static float clamp( float t, float min, float max ) {
         return t < min ? min : t > max ? max : t;
     }
 

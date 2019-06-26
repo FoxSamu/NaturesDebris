@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 26 - 2019
  */
 
 package modernity.client.render.block;
@@ -435,30 +435,39 @@ public class MDFluidRenderer extends BlockFluidRenderer {
         return ( myLightU > upLightU ? myLightU : upLightU ) | ( myLightV > upLightV ? myLightV : upLightV ) << 16;
     }
 
-    private float getFluidHeight( IWorldReaderBase reader, BlockPos pos, Fluid fluid, int fall ) {
-        int i = 0;
-        float f = 0.0F;
+    private float getFluidHeight( IWorldReaderBase world, BlockPos pos, Fluid fluid, int fall ) {
+        int weight = 0;
+        float height = 0.0F;
 
-        for( int j = 0; j < 4; ++ j ) {
-            BlockPos offPos = pos.add( - ( j & 1 ), 0, - ( j >> 1 & 1 ) );
-            if( reader.getFluidState( offPos.up( fall ) ).getFluid().isEquivalentTo( fluid ) ) {
+        int w = 10;
+        if( fluid instanceof ICustomRenderFluid ) {
+            w = ( (ICustomRenderFluid) fluid ).getSourceSlopeWeight();
+        }
+
+        for( int side = 0; side < 4; ++ side ) {
+            BlockPos offPos = pos.add( - ( side & 1 ), 0, - ( side >> 1 & 1 ) );
+            if( world.getFluidState( offPos.up( fall ) ).getFluid().isEquivalentTo( fluid ) ) {
                 return 1.0F;
             }
 
-            IFluidState ifluidstate = reader.getFluidState( offPos );
-            if( ifluidstate.getFluid().isEquivalentTo( fluid ) ) {
-                if( ifluidstate.isSource() ) {
-                    f += ifluidstate.getHeight() * 10.0F;
-                    i += 10;
+            IFluidState state = world.getFluidState( offPos );
+            if( state.getFluid().isEquivalentTo( fluid ) ) {
+                if( state.isSource() ) {
+                    if( w < 0 ) {
+                        return state.getHeight();
+                    } else {
+                        height += state.getHeight() * w;
+                        weight += w;
+                    }
                 } else {
-                    f += ifluidstate.getHeight();
-                    ++ i;
+                    height += state.getHeight();
+                    ++ weight;
                 }
-            } else if( ! reader.getBlockState( offPos ).getMaterial().isSolid() ) {
-                ++ i;
+            } else if( ! world.getBlockState( offPos ).getMaterial().isSolid() ) {
+                ++ weight;
             }
         }
 
-        return f / (float) i;
+        return height / (float) weight;
     }
 }

@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 12 - 2019
+ * Date: 6 - 26 - 2019
  */
 
 package modernity.client.util;
@@ -13,8 +13,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.resources.IResourceManagerReloadListener;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
+import modernity.client.handler.TextureStitchHandler;
 import modernity.client.particle.MDParticleManager;
 import modernity.client.render.block.MDBlockRendererDispatcher;
 import modernity.common.block.MDBlocks;
@@ -57,7 +59,7 @@ public class ProxyClient extends ProxyCommon {
     @Override
     public void registerListeners() {
         super.registerListeners();
-//        MinecraftForge.EVENT_BUS.register( new FogEffectHandler() );
+        MinecraftForge.EVENT_BUS.register( new TextureStitchHandler() );
     }
 
     @SuppressWarnings( "deprecation" )

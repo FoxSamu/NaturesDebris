@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 26 - 2019
  */
 
 package modernity.api.block.fluid;
@@ -25,4 +25,8 @@ public interface ICustomRenderFluid {
     ResourceLocation getOverlay();
     @OnlyIn( Dist.CLIENT )
     int getColor( IFluidState state, BlockPos pos, IWorldReaderBase world );
+
+    default int getSourceSlopeWeight() {
+        return 10;
+    }
 }

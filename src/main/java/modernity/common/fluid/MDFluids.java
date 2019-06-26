@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 19 - 2019
+ * Date: 6 - 26 - 2019
  */
 
 package modernity.common.fluid;
@@ -21,10 +21,14 @@ import modernity.common.registry.MDRegistries;
 public class MDFluids {
     public static final ModernizedWaterFluid MODERNIZED_WATER = new ModernizedWaterFluid.Source();
     public static final ModernizedWaterFluid MODERNIZED_WATER_FLOWING = new ModernizedWaterFluid.Flowing();
+    public static final PortalFluid PORTAL = new PortalFluid.Source();
+    public static final PortalFluid PORTAL_FLOWING = new PortalFluid.Flowing();
 
     public static void register( IForgeRegistry<FluidEntry> registry ) {
         registry.register( new FluidEntry( new ResourceLocation( "modernity:modernized_water" ), MODERNIZED_WATER ) );
         registry.register( new FluidEntry( new ResourceLocation( "modernity:modernized_water_flowing" ), MODERNIZED_WATER_FLOWING ) );
+        registry.register( new FluidEntry( new ResourceLocation( "modernity:portal" ), PORTAL ) );
+        registry.register( new FluidEntry( new ResourceLocation( "modernity:portal_flowing" ), PORTAL_FLOWING ) );
     }
 
     public static void inject() {

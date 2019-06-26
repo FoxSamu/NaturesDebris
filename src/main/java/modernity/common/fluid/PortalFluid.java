@@ -17,8 +17,8 @@ import net.minecraft.init.Particles;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.particles.IParticleData;
+import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.BlockRenderLayer;
@@ -33,19 +33,25 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.api.block.fluid.ICustomRenderFluid;
-import modernity.client.util.BiomeValues;
 import modernity.common.block.MDBlocks;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public abstract class ModernizedWaterFluid extends ImprovedFluid implements ICustomRenderFluid {
+public abstract class PortalFluid extends ImprovedFluid implements ICustomRenderFluid {
+
+    private static final IntegerProperty LEVEL = IntegerProperty.create( "level", 1, 8 );
+
+    public PortalFluid() {
+        super( LEVEL, 8 );
+    }
+
     public Fluid getFlowingFluid() {
-        return MDFluids.MODERNIZED_WATER_FLOWING;
+        return MDFluids.PORTAL_FLOWING;
     }
 
     public Fluid getStillFluid() {
-        return MDFluids.MODERNIZED_WATER;
+        return MDFluids.PORTAL;
     }
 
     @OnlyIn( Dist.CLIENT )
@@ -58,13 +64,15 @@ public abstract class ModernizedWaterFluid extends ImprovedFluid implements ICus
     }
 
     @OnlyIn( Dist.CLIENT )
-    public void animateTick( World worldIn, BlockPos pos, IFluidState state, Random random ) {
+    public void animateTick( World world, BlockPos pos, IFluidState state, Random rand ) {
         if( ! state.isSource() && ! state.get( FALLING ) ) {
-            if( random.nextInt( 64 ) == 0 ) {
-                worldIn.playSound( (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false );
+            if( rand.nextInt( 64 ) == 0 ) {
+                world.playSound( pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, rand.nextFloat() * 0.25F + 0.75F, rand.nextFloat() + 0.5F, false );
             }
-        } else if( random.nextInt( 10 ) == 0 ) {
-            worldIn.addParticle( Particles.UNDERWATER, (double) ( (float) pos.getX() + random.nextFloat() ), (double) ( (float) pos.getY() + random.nextFloat() ), (double) ( (float) pos.getZ() + random.nextFloat() ), 0.0D, 0.0D, 0.0D );
+        } else if( rand.nextInt( 10 ) == 0 ) {
+            world.addParticle( Particles.UNDERWATER, pos.getX() + rand.nextFloat(), pos.getY() + rand.nextFloat(), pos.getZ() + rand.nextFloat(), 0, 0, 0 );
+        } else if( rand.nextInt( 5 ) == 0 ) {
+            world.addParticle( Particles.SMOKE, pos.getX() + rand.nextFloat(), pos.getY() + getHeight( state ), pos.getZ() + rand.nextFloat(), 0, 0, 0 );
         }
 
     }
@@ -79,20 +87,20 @@ public abstract class ModernizedWaterFluid extends ImprovedFluid implements ICus
         return true;
     }
 
-    protected void beforeReplacingBlock( IWorld worldIn, BlockPos pos, IBlockState state ) {
-        state.dropBlockAsItem( worldIn.getWorld(), pos, 0 );
+    protected void beforeReplacingBlock( IWorld world, BlockPos pos, IBlockState state ) {
+        state.dropBlockAsItem( world.getWorld(), pos, 0 );
     }
 
     public int getSlopeFindDistance( IWorldReaderBase world ) {
-        return 4;
+        return 2;
     }
 
     public IBlockState getBlockState( IFluidState state ) {
-        return MDBlocks.MODERNIZED_WATER.getDefaultState().with( blockLevel, getLevelFromState( state ) );
+        return MDBlocks.PORTAL_FLUID.getDefaultState().with( blockLevel, getLevelFromState( state ) );
     }
 
     public boolean isEquivalentTo( Fluid fluid ) {
-        return fluid == MDFluids.MODERNIZED_WATER || fluid == MDFluids.MODERNIZED_WATER_FLOWING;
+        return fluid == MDFluids.PORTAL || fluid == MDFluids.PORTAL_FLOWING;
     }
 
     public int getLevelDecreasePerBlock( IWorldReaderBase world ) {
@@ -118,32 +126,42 @@ public abstract class ModernizedWaterFluid extends ImprovedFluid implements ICus
 
     @Override
     public ResourceLocation getStill() {
-        return new ResourceLocation( "minecraft:block/water_still" );
+        return new ResourceLocation( "modernity:liquid/portal_liquid_still" );
     }
 
     @Override
     public ResourceLocation getFlowing() {
-        return new ResourceLocation( "minecraft:block/water_flow" );
+        return new ResourceLocation( "modernity:liquid/portal_liquid_flow" );
     }
 
     @Override
     public ResourceLocation getOverlay() {
-        return new ResourceLocation( "minecraft:block/water_overlay" );
+        return new ResourceLocation( "modernity:liquid/portal_liquid_still" );
     }
 
     @Override
     public int getColor( IFluidState state, BlockPos pos, IWorldReaderBase world ) {
-        return BiomeValues.get( world, pos, BiomeValues.WATER_COLOR );
+        return 0xffffff;
     }
 
-    public static class Flowing extends ModernizedWaterFluid {
+    @Override
+    public float getMaxHeight( IFluidState state ) {
+        return 0.6F;
+    }
+
+    @Override
+    public int getSourceSlopeWeight() {
+        return 1;
+    }
+
+    public static class Flowing extends PortalFluid {
         protected void fillStateContainer( StateContainer.Builder<Fluid, IFluidState> builder ) {
             super.fillStateContainer( builder );
-            builder.add( BlockStateProperties.LEVEL_1_8 );
+            builder.add( LEVEL );
         }
 
         public int getLevel( IFluidState state ) {
-            return state.get( BlockStateProperties.LEVEL_1_8 );
+            return state.get( LEVEL );
         }
 
         public boolean isSource( IFluidState state ) {
@@ -151,9 +169,9 @@ public abstract class ModernizedWaterFluid extends ImprovedFluid implements ICus
         }
     }
 
-    public static class Source extends ModernizedWaterFluid {
+    public static class Source extends PortalFluid {
         public int getLevel( IFluidState state ) {
-            return 8;
+            return maxLevel;
         }
 
         public boolean isSource( IFluidState state ) {

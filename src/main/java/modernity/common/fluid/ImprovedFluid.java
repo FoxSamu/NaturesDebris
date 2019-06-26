@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 17 - 2019
+ * Date: 6 - 26 - 2019
  */
 
 package modernity.common.fluid;
@@ -40,6 +40,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
+import net.rgsw.MathUtil;
 
 import modernity.api.block.fluid.IGaseousFluid;
 
@@ -47,7 +48,9 @@ import java.util.Map;
 
 public abstract class ImprovedFluid extends Fluid {
     public static final BooleanProperty FALLING = BlockStateProperties.FALLING;
-    public static final IntegerProperty LEVEL_1_TO_8 = BlockStateProperties.LEVEL_1_8;
+    public final IntegerProperty level;
+    public final IntegerProperty blockLevel;
+    public final int maxLevel;
 
     // Adjacent fluid cache
     private static final ThreadLocal<Object2ByteLinkedOpenHashMap<Block.RenderSideCacheKey>> ADJ_FLUID_CACHE = ThreadLocal.withInitial( () -> {
@@ -64,7 +67,7 @@ public abstract class ImprovedFluid extends Fluid {
     private final boolean isGas;
     private final int fallDirection;
 
-    public ImprovedFluid() {
+    public ImprovedFluid( IntegerProperty level, int max ) {
         isGas = this instanceof IGaseousFluid;
         if( isGas ) {
             down = EnumFacing.UP;
@@ -74,6 +77,14 @@ public abstract class ImprovedFluid extends Fluid {
             fallDirection = 1;
         }
         up = down.getOpposite();
+
+        this.level = level;
+        this.blockLevel = IntegerProperty.create( "level", 0, max );
+        this.maxLevel = max;
+    }
+
+    public ImprovedFluid() {
+        this( BlockStateProperties.LEVEL_1_8, 8 );
     }
 
     protected void fillStateContainer( StateContainer.Builder<Fluid, IFluidState> builder ) {
@@ -91,37 +102,37 @@ public abstract class ImprovedFluid extends Fluid {
                 mpos.setPos( pos ).move( facing );
 
                 IFluidState fluid = world.getFluidState( mpos );
-                if( this.canFlowTo( fluid ) ) {
+                if( canFlowTo( fluid ) ) {
                     float height = fluid.getHeight();
-                    float flowWeight = 0.0F;
+                    float flowWeight = 0;
 
-                    if( height == 0.0F ) {
+                    if( height == 0 ) {
                         if( ! world.getBlockState( mpos ).getMaterial().blocksMovement() ) {
                             IFluidState fluidBelow = world.getFluidState( mpos.down( fallDirection ) );
-                            if( this.canFlowTo( fluidBelow ) ) {
+                            if( canFlowTo( fluidBelow ) ) {
                                 height = fluidBelow.getHeight();
-                                if( height > 0.0F ) {
-                                    flowWeight = state.getHeight() - ( height - 0.8888889F );
+                                if( height > 0 ) {
+                                    flowWeight = state.getHeight() - ( height - getMaxHeight( fluidBelow ) );
                                 }
                             }
                         }
-                    } else if( height > 0.0F ) {
+                    } else if( height > 0 ) {
                         flowWeight = state.getHeight() - height;
                     }
 
-                    if( flowWeight != 0.0F ) {
+                    if( flowWeight != 0 ) {
                         xflow += facing.getXOffset() * flowWeight;
                         zflow += facing.getZOffset() * flowWeight;
                     }
                 }
             }
 
-            Vec3d flow = new Vec3d( xflow, 0.0D, zflow );
+            Vec3d flow = new Vec3d( xflow, 0, zflow );
             if( state.get( FALLING ) ) {
                 for( EnumFacing facing : EnumFacing.Plane.HORIZONTAL ) {
                     mpos.setPos( pos ).move( facing );
                     if( this.causesVerticalCurrent( world, mpos, facing ) || this.causesVerticalCurrent( world, mpos.up( fallDirection ), facing ) ) {
-                        flow = flow.normalize().add( 0.0D, - 6.0D * fallDirection, 0.0D );
+                        flow = flow.normalize().add( 0, - 6 * fallDirection, 0 );
                         break;
                     }
                 }
@@ -148,8 +159,8 @@ public abstract class ImprovedFluid extends Fluid {
         } else if( bstate.getMaterial() == Material.ICE ) {
             return false;
         } else {
-            boolean flag = Block.isExceptBlockForAttachWithPiston( block ) || block instanceof BlockStairs;
-            return ! flag && bstate.getBlockFaceShape( world, pos, facing ) == BlockFaceShape.SOLID;
+            boolean b = Block.isExceptBlockForAttachWithPiston( block ) || block instanceof BlockStairs;
+            return ! b && bstate.getBlockFaceShape( world, pos, facing ) == BlockFaceShape.SOLID;
         }
     }
 
@@ -160,18 +171,18 @@ public abstract class ImprovedFluid extends Fluid {
             BlockPos downPos = pos.down( fallDirection );
 
             IBlockState downBlock = world.getBlockState( downPos );
-            IFluidState downFluid = this.calculateCorrectFlowingState( world, downPos, downBlock );
+            IFluidState downFluid = calculateCorrectFlowingState( world, downPos, downBlock );
 
-            if( this.canFlow( world, pos, block, down, downPos, downBlock, world.getFluidState( downPos ), downFluid.getFluid() ) ) {
+            if( canFlow( world, pos, block, down, downPos, downBlock, world.getFluidState( downPos ), downFluid.getFluid() ) ) {
                 // Flow down
-                this.flowInto( world, downPos, downBlock, down, downFluid );
-                if( this.amountOfAdjacentEqualFluids( world, pos ) >= 3 ) {
+                flowInto( world, downPos, downBlock, down, downFluid );
+                if( amountOfAdjacentEqualFluids( world, pos ) >= 3 ) {
                     // Enclosed by source blocks (almost), try escaping them
-                    this.flowHorizontal( world, pos, fluid, block );
+                    flowHorizontal( world, pos, fluid, block );
                 }
-            } else if( fluid.isSource() || ! this.canFlowVerticalInto( world, downFluid.getFluid(), pos, block, downPos, downBlock ) ) {
+            } else if( fluid.isSource() || ! canFlowVerticalInto( world, downFluid.getFluid(), pos, block, downPos, downBlock ) ) {
                 // No way down or source, try horizontally
-                this.flowHorizontal( world, pos, fluid, block );
+                flowHorizontal( world, pos, fluid, block );
             }
 
         }
@@ -180,19 +191,19 @@ public abstract class ImprovedFluid extends Fluid {
     private void flowHorizontal( IWorld world, BlockPos pos, IFluidState fluid, IBlockState block ) {
         int nextLevel = fluid.getLevel() - this.getLevelDecreasePerBlock( world );
         if( fluid.get( FALLING ) ) {
-            nextLevel = 7;
+            nextLevel = maxLevel - 1;
         }
 
         if( nextLevel > 0 ) {
-            Map<EnumFacing, IFluidState> map = this.getFlowStates( world, pos, block );
+            Map<EnumFacing, IFluidState> map = getFlowStates( world, pos, block );
 
             for( Map.Entry<EnumFacing, IFluidState> entry : map.entrySet() ) {
                 EnumFacing facing = entry.getKey();
                 IFluidState state = entry.getValue();
                 BlockPos adjPos = pos.offset( facing );
                 IBlockState blockState = world.getBlockState( adjPos );
-                if( this.canFlow( world, pos, block, facing, adjPos, blockState, world.getFluidState( adjPos ), state.getFluid() ) ) {
-                    this.flowInto( world, adjPos, blockState, facing, state );
+                if( canFlow( world, pos, block, facing, adjPos, blockState, world.getFluidState( adjPos ), state.getFluid() ) ) {
+                    flowInto( world, adjPos, blockState, facing, state );
                 }
             }
 
@@ -208,7 +219,7 @@ public abstract class ImprovedFluid extends Fluid {
             BlockPos adjPos = pos.offset( facing );
             IBlockState adjBlock = world.getBlockState( adjPos );
             IFluidState adjFluid = adjBlock.getFluidState();
-            if( adjFluid.getFluid().isEquivalentTo( this ) && this.isAdjacentFluidSameAs( facing, world, pos, state, adjPos, adjBlock ) ) {
+            if( adjFluid.getFluid().isEquivalentTo( this ) && isAdjacentFluidSameAs( facing, world, pos, state, adjPos, adjBlock ) ) {
                 if( adjFluid.isSource() ) {
                     adjacentSourceBlocks++;
                 }
@@ -220,22 +231,22 @@ public abstract class ImprovedFluid extends Fluid {
         if( this.canSourcesMultiply() && adjacentSourceBlocks >= 2 ) {
             IBlockState block = world.getBlockState( pos.down( fallDirection ) );
             IFluidState fluid = block.getFluidState();
-            if( block.getMaterial().isSolid() || this.isSourceState( fluid ) ) {
-                return this.getStillFluidState( false );
+            if( block.getMaterial().isSolid() || isSourceState( fluid ) ) {
+                return getStillFluidState( false );
             }
         }
 
         BlockPos upPos = pos.up( fallDirection );
         IBlockState block = world.getBlockState( upPos );
         IFluidState fluid = block.getFluidState();
-        if( ! fluid.isEmpty() && fluid.getFluid().isEquivalentTo( this ) && this.isAdjacentFluidSameAs( up, world, pos, state, upPos, block ) ) {
-            return this.getFlowingFluidState( 8, true );
+        if( ! fluid.isEmpty() && fluid.getFluid().isEquivalentTo( this ) && isAdjacentFluidSameAs( up, world, pos, state, upPos, block ) ) {
+            return getFlowingFluidState( this.maxLevel, true );
         } else {
-            int resultingLevel = maxLevel - this.getLevelDecreasePerBlock( world );
+            int resultingLevel = maxLevel - getLevelDecreasePerBlock( world );
             if( resultingLevel <= 0 ) {
                 return Fluids.EMPTY.getDefaultState();
             } else {
-                return this.getFlowingFluidState( resultingLevel, false );
+                return getFlowingFluidState( resultingLevel, false );
             }
         }
     }
@@ -252,9 +263,9 @@ public abstract class ImprovedFluid extends Fluid {
         Block.RenderSideCacheKey key;
         if( adjacentFluidCache != null ) {
             key = new Block.RenderSideCacheKey( state, adjState, facing );
-            byte b0 = adjacentFluidCache.getAndMoveToFirst( key );
-            if( b0 != 127 ) {
-                return b0 != 0;
+            byte cacheByte = adjacentFluidCache.getAndMoveToFirst( key );
+            if( cacheByte != 127 ) {
+                return cacheByte != 0;
             }
         } else {
             key = null;
@@ -277,7 +288,7 @@ public abstract class ImprovedFluid extends Fluid {
     public abstract Fluid getFlowingFluid();
 
     public IFluidState getFlowingFluidState( int level, boolean falling ) {
-        return this.getFlowingFluid().getDefaultState().with( LEVEL_1_TO_8, level ).with( FALLING, falling );
+        return this.getFlowingFluid().getDefaultState().with( this.level, level ).with( FALLING, falling );
     }
 
     public abstract Fluid getStillFluid();
@@ -326,12 +337,12 @@ public abstract class ImprovedFluid extends Fluid {
                 IBlockState block = blockFluidPair.getFirst();
                 IFluidState fluid = blockFluidPair.getSecond();
 
-                if( this.canFlowHorizontalInto( world, this.getFlowingFluid(), pos, state, offset, otherPos, block, fluid ) ) {
+                if( canFlowHorizontalInto( world, getFlowingFluid(), pos, state, offset, otherPos, block, fluid ) ) {
                     // Compute slope and cache it
                     boolean hasSlope = slopeMap.computeIfAbsent( delta, integer -> {
                         BlockPos downPos = otherPos.down( fallDirection );
                         IBlockState downBlock = world.getBlockState( downPos );
-                        return this.canFlowVerticalInto( world, this.getFlowingFluid(), otherPos, block, downPos, downBlock );
+                        return canFlowVerticalInto( world, getFlowingFluid(), otherPos, block, downPos, downBlock );
                     } );
 
                     // Slope found, return recursion
@@ -339,7 +350,7 @@ public abstract class ImprovedFluid extends Fluid {
                         return recursion;
                     }
 
-                    if( recursion < this.getSlopeFindDistance( world ) ) {
+                    if( recursion < getSlopeFindDistance( world ) ) {
                         // Recurse to find slope
                         int recurseWeight = this.findSlope( world, otherPos, recursion + 1, offset.getOpposite(), block, adjPos, blockFluidMap, slopeMap );
                         if( recurseWeight < weight ) {
@@ -363,10 +374,10 @@ public abstract class ImprovedFluid extends Fluid {
      * @param adjState The block at the position to flow to
      */
     private boolean canFlowVerticalInto( IBlockReader world, Fluid fluid, BlockPos pos, IBlockState state, BlockPos adjpos, IBlockState adjState ) {
-        if( ! this.isAdjacentFluidSameAs( down, world, pos, state, adjpos, adjState ) ) {
+        if( ! isAdjacentFluidSameAs( down, world, pos, state, adjpos, adjState ) ) {
             return false;
         } else {
-            return adjState.getFluidState().getFluid().isEquivalentTo( this ) || this.canBreakThrough( world, adjpos, adjState, fluid );
+            return adjState.getFluidState().getFluid().isEquivalentTo( this ) || canBreakThrough( world, adjpos, adjState, fluid );
         }
     }
 
@@ -382,7 +393,7 @@ public abstract class ImprovedFluid extends Fluid {
      * @param adjFluidState The adjacent fluid state, which is the empty fluid when there is no adjacent fluid
      */
     private boolean canFlowHorizontalInto( IBlockReader world, Fluid fluid, BlockPos pos, IBlockState state, EnumFacing facing, BlockPos adjPos, IBlockState adjState, IFluidState adjFluidState ) {
-        return ! this.isSourceState( adjFluidState ) && this.isAdjacentFluidSameAs( facing, world, pos, state, adjPos, adjState ) && this.canBreakThrough( world, adjPos, adjState, fluid );
+        return ! isSourceState( adjFluidState ) && isAdjacentFluidSameAs( facing, world, pos, state, adjPos, adjState ) && canBreakThrough( world, adjPos, adjState, fluid );
     }
 
     private boolean isSourceState( IFluidState state ) {
@@ -397,7 +408,7 @@ public abstract class ImprovedFluid extends Fluid {
         for( EnumFacing facing : EnumFacing.Plane.HORIZONTAL ) {
             BlockPos offPos = pos.offset( facing );
             IFluidState state = world.getFluidState( offPos );
-            if( this.isSourceState( state ) ) {
+            if( isSourceState( state ) ) {
                 ++ amount;
             }
         }
@@ -424,18 +435,18 @@ public abstract class ImprovedFluid extends Fluid {
             IBlockState block = pair.getFirst();
             IFluidState fluid = pair.getSecond();
 
-            IFluidState correctState = this.calculateCorrectFlowingState( world, adjPos, block );
+            IFluidState correctState = calculateCorrectFlowingState( world, adjPos, block );
             if( this.canFlowHorizontalInto( world, correctState.getFluid(), pos, state, facing, adjPos, block, fluid ) ) {
                 BlockPos downPos = adjPos.down( fallDirection );
                 boolean canFlowDown = slopeMap.computeIfAbsent( delta, integer -> {
                     IBlockState adjState = world.getBlockState( downPos );
-                    return this.canFlowVerticalInto( world, this.getFlowingFluid(), adjPos, block, downPos, adjState );
+                    return this.canFlowVerticalInto( world, getFlowingFluid(), adjPos, block, downPos, adjState );
                 } );
                 int flowWeight;
                 if( canFlowDown ) {
                     flowWeight = 0;
                 } else {
-                    flowWeight = this.findSlope( world, adjPos, 1, facing.getOpposite(), block, pos, blockFluidMap, slopeMap );
+                    flowWeight = findSlope( world, adjPos, 1, facing.getOpposite(), block, pos, blockFluidMap, slopeMap );
                 }
 
                 if( flowWeight < weight ) {
@@ -469,18 +480,18 @@ public abstract class ImprovedFluid extends Fluid {
     }
 
     protected boolean canFlow( IBlockReader worldIn, BlockPos fromPos, IBlockState fromBlockState, EnumFacing direction, BlockPos toPos, IBlockState toBlockState, IFluidState toFluidState, Fluid fluidIn ) {
-        return toFluidState.canOtherFlowInto( fluidIn, direction ) && this.isAdjacentFluidSameAs( direction, worldIn, fromPos, fromBlockState, toPos, toBlockState ) && this.canBreakThrough( worldIn, toPos, toBlockState, fluidIn );
+        return toFluidState.canOtherFlowInto( fluidIn, direction ) && isAdjacentFluidSameAs( direction, worldIn, fromPos, fromBlockState, toPos, toBlockState ) && canBreakThrough( worldIn, toPos, toBlockState, fluidIn );
     }
 
     protected abstract int getLevelDecreasePerBlock( IWorldReaderBase worldIn );
 
     protected int getTickRate( World world, IFluidState currentState, IFluidState correctState ) {
-        return this.getTickRate( world );
+        return getTickRate( world );
     }
 
     public void tick( World world, BlockPos pos, IFluidState state ) {
         if( ! state.isSource() ) {
-            IFluidState correctState = this.calculateCorrectFlowingState( world, pos, world.getBlockState( pos ) );
+            IFluidState correctState = calculateCorrectFlowingState( world, pos, world.getBlockState( pos ) );
             int rate = this.getTickRate( world, state, correctState );
 
             if( correctState.isEmpty() ) {
@@ -499,16 +510,28 @@ public abstract class ImprovedFluid extends Fluid {
         this.flowAround( world, pos, state );
     }
 
-    protected static int getLevelFromState( IFluidState state ) {
-        return state.isSource() ? 0 : 8 - Math.min( state.getLevel(), 8 ) + ( state.get( FALLING ) ? 8 : 0 );
+    protected int getLevelFromState( IFluidState state ) {
+        return state.isSource() ? 0 : maxLevel - Math.min( state.getLevel(), maxLevel ) + ( state.get( FALLING ) ? maxLevel : 0 );
     }
 
     public float getHeight( IFluidState state ) {
-        return (float) state.getLevel() / 9.0F;
+        return interpolateHeight( state, state.getLevel() / (float) maxLevel );
     }
 
     public boolean isGas() {
         return isGas;
+    }
+
+    public float interpolateHeight( IFluidState state, float nLv ) {
+        return MathUtil.lerp( getMinHeight( state ), getMaxHeight( state ), nLv );
+    }
+
+    public float getMinHeight( IFluidState state ) {
+        return 0;
+    }
+
+    public float getMaxHeight( IFluidState state ) {
+        return 0.888888889F;
     }
 
     @Override

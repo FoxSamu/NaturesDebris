@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 26 - 2019
  */
 
 package modernity.common.block.base;
@@ -13,6 +13,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.init.Blocks;
@@ -22,7 +23,6 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -45,9 +45,6 @@ import java.util.Random;
 
 public class BlockFluid extends BlockBase {
 
-    // Level: Only 0-8 are used, where 0 is source, 1-7 are non-falling flowing blocks and 8 is a falling flowing block
-    public static final IntegerProperty LEVEL = BlockStateProperties.LEVEL_0_15;
-
     // The fluid this block represents
     protected final ImprovedFluid fluid;
 
@@ -57,20 +54,33 @@ public class BlockFluid extends BlockBase {
     // Cache to map states to their respective VoxelShape
     private final Map<IBlockState, VoxelShape> stateToShapeCache = Maps.newIdentityHashMap();
 
+    protected final StateContainer<Block, IBlockState> fluidStateContainer;
+
+    private final int maxLevel;
+    public final IntegerProperty level;
+
     public BlockFluid( String id, ImprovedFluid fluid, Block.Properties builder ) {
         super( id, builder );
         this.fluid = fluid;
 
+        maxLevel = fluid.maxLevel;
+        level = IntegerProperty.create( "level", 0, maxLevel );
+
+
+        StateContainer.Builder<Block, IBlockState> containerBuilder = new StateContainer.Builder<>( this );
+        containerBuilder.add( level );
+        fluidStateContainer = containerBuilder.create( BlockState::new );
+
         // Fill the list with fluid states
         fluidStates = Lists.newArrayList();
         fluidStates.add( fluid.getStillFluidState( false ) );
-        for( int i = 1; i < 8; ++ i ) {
-            fluidStates.add( fluid.getFlowingFluidState( 8 - i, false ) );
+        for( int i = 1; i < maxLevel; ++ i ) {
+            fluidStates.add( fluid.getFlowingFluidState( maxLevel - i, false ) );
         }
-        fluidStates.add( fluid.getFlowingFluidState( 8, true ) );
+        fluidStates.add( fluid.getFlowingFluidState( maxLevel, true ) );
 
         // Default is source state
-        setDefaultState( stateContainer.getBaseState().with( LEVEL, 0 ) );
+        setDefaultState( fluidStateContainer.getBaseState().with( level, 0 ) );
     }
 
     @Override
@@ -94,9 +104,9 @@ public class BlockFluid extends BlockBase {
     @Override
     @SuppressWarnings( "deprecation" )
     public IFluidState getFluidState( IBlockState state ) {
-        int i = state.get( LEVEL );
+        int i = state.get( level );
         // Return the fluid state in the list
-        return this.fluidStates.get( Math.min( i, 8 ) );
+        return this.fluidStates.get( Math.min( i, maxLevel ) );
     }
 
     @Override
@@ -219,17 +229,17 @@ public class BlockFluid extends BlockBase {
     }
 
     @Override
-    protected void fillStateContainer( StateContainer.Builder<Block, IBlockState> builder ) {
-        builder.add( LEVEL );
-    }
-
-    @Override
     @SuppressWarnings( "deprecation" )
     public BlockFaceShape getBlockFaceShape( IBlockReader worldIn, IBlockState state, BlockPos pos, EnumFacing face ) {
         return BlockFaceShape.UNDEFINED;
     }
 
-//    public Fluid pickupFluid( IWorld worldIn, BlockPos pos, IBlockState state ) {
+    @Override
+    public StateContainer<Block, IBlockState> getStateContainer() {
+        return fluidStateContainer;
+    }
+
+    //    public Fluid pickupFluid( IWorld worldIn, BlockPos pos, IBlockState state ) {
 //        if( state.get( LEVEL ) == 0 ) {
 //            worldIn.setBlockState( pos, Blocks.AIR.getDefaultState(), 11 );
 //            return this.fluid;
