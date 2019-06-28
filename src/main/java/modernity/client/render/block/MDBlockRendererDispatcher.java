@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 6 - 28 - 2019
  */
 
 package modernity.client.render.block;
@@ -105,6 +105,7 @@ public class MDBlockRendererDispatcher extends BlockRendererDispatcher {
     }
 
     public IBakedModel getModelForState( IBlockState state ) {
+        // TODO: Use custom baked models here
         return this.blockModelShapes.getModel( state );
     }
 
