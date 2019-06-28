@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 26 - 2019
+ * Date: 6 - 28 - 2019
  */
 
 package modernity.common.fluid;
@@ -39,7 +39,7 @@ import modernity.common.block.MDBlocks;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public abstract class ModernizedWaterFluid extends ImprovedFluid implements ICustomRenderFluid {
+public abstract class ModernizedWaterFluid extends RegularFluid implements ICustomRenderFluid {
     public Fluid getFlowingFluid() {
         return MDFluids.MODERNIZED_WATER_FLOWING;
     }

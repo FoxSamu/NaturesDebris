@@ -36,7 +36,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 import modernity.api.block.fluid.ICustomBucketSound;
 import modernity.api.block.fluid.ICustomVaporize;
-import modernity.common.fluid.ImprovedFluid;
+import modernity.common.fluid.RegularFluid;
 
 import javax.annotation.Nullable;
 
@@ -139,7 +139,7 @@ public class ItemBucketBase extends ItemBase {
 
     protected IFluidState getPlacedFluidState() {
         if( containing instanceof FlowingFluid ) return ( (FlowingFluid) containing ).getStillFluidState( false );
-        if( containing instanceof ImprovedFluid ) return ( (ImprovedFluid) containing ).getStillFluidState( false );
+        if( containing instanceof RegularFluid ) return ( (RegularFluid) containing ).getStillFluidState( false );
         return containing.getDefaultState();
     }
 

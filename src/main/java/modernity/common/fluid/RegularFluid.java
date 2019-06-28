@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 26 - 2019
+ * Date: 6 - 28 - 2019
  */
 
 package modernity.common.fluid;
@@ -46,7 +46,7 @@ import modernity.api.block.fluid.IGaseousFluid;
 
 import java.util.Map;
 
-public abstract class ImprovedFluid extends Fluid {
+public abstract class RegularFluid extends Fluid {
     public static final BooleanProperty FALLING = BlockStateProperties.FALLING;
     public final IntegerProperty level;
     public final IntegerProperty blockLevel;
@@ -67,7 +67,7 @@ public abstract class ImprovedFluid extends Fluid {
     private final boolean isGas;
     private final int fallDirection;
 
-    public ImprovedFluid( IntegerProperty level, int max ) {
+    public RegularFluid( IntegerProperty level, int max ) {
         isGas = this instanceof IGaseousFluid;
         if( isGas ) {
             down = EnumFacing.UP;
@@ -83,7 +83,7 @@ public abstract class ImprovedFluid extends Fluid {
         this.maxLevel = max;
     }
 
-    public ImprovedFluid() {
+    public RegularFluid() {
         this( BlockStateProperties.LEVEL_1_8, 8 );
     }
 

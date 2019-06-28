@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 17 - 2019
+ * Date: 6 - 28 - 2019
  */
 
 package modernity.common.world.gen.decorate.feature;
@@ -19,7 +19,7 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 
 import modernity.api.util.BlockUpdates;
 import modernity.api.util.EcoBlockPos;
-import modernity.common.fluid.ImprovedFluid;
+import modernity.common.fluid.RegularFluid;
 
 import java.util.Random;
 
@@ -62,9 +62,9 @@ public class FluidFallFeature extends Feature<FluidFallFeature.Config> {
 
     public static class Config implements IFeatureConfig {
         private final int typeFlags;
-        private final ImprovedFluid fluid;
+        private final RegularFluid fluid;
 
-        public Config( ImprovedFluid fluid, int typeFlags ) {
+        public Config( RegularFluid fluid, int typeFlags ) {
             this.typeFlags = typeFlags;
             this.fluid = fluid;
         }

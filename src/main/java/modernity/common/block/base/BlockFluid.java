@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 26 - 2019
+ * Date: 6 - 28 - 2019
  */
 
 package modernity.common.block.base;
@@ -36,7 +36,7 @@ import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 
 import modernity.api.block.fluid.IGaseousFluid;
-import modernity.common.fluid.ImprovedFluid;
+import modernity.common.fluid.RegularFluid;
 
 import java.util.List;
 import java.util.Map;
@@ -45,7 +45,7 @@ import java.util.Random;
 public class BlockFluid extends BlockBase implements IBucketPickupHandler {
 
     // The fluid this block represents
-    protected final ImprovedFluid fluid;
+    protected final RegularFluid fluid;
 
     // A list of possible fluid states for this fluid
     private final List<IFluidState> fluidStates;
@@ -58,7 +58,7 @@ public class BlockFluid extends BlockBase implements IBucketPickupHandler {
     private final int maxLevel;
     public final IntegerProperty level;
 
-    public BlockFluid( String id, ImprovedFluid fluid, Block.Properties builder ) {
+    public BlockFluid( String id, RegularFluid fluid, Block.Properties builder ) {
         super( id, builder );
         this.fluid = fluid;
 

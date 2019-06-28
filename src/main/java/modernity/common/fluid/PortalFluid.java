@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 26 - 2019
+ * Date: 6 - 28 - 2019
  */
 
 package modernity.common.fluid;
@@ -38,7 +38,7 @@ import modernity.common.item.MDItems;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public abstract class PortalFluid extends ImprovedFluid implements ICustomRenderFluid {
+public abstract class PortalFluid extends RegularFluid implements ICustomRenderFluid {
 
     private static final IntegerProperty LEVEL = IntegerProperty.create( "level", 1, 8 );
 
@@ -92,7 +92,7 @@ public abstract class PortalFluid extends ImprovedFluid implements ICustomRender
     }
 
     public int getSlopeFindDistance( IWorldReaderBase world ) {
-        return 2;
+        return 4;
     }
 
     public IBlockState getBlockState( IFluidState state ) {
