@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 26 - 2019
+ * Date: 6 - 28 - 2019
  */
 
 package modernity.common.item.base;
@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 
 public class ItemBucketBase extends ItemBase {
 
-    private final Fluid containing;
+    protected final Fluid containing;
 
     public ItemBucketBase( String id, Fluid fluid, Item.Properties properties ) {
         super( id, properties );
@@ -88,7 +88,7 @@ public class ItemBucketBase extends ItemBase {
 
                     IBlockState state = world.getBlockState( pos );
                     BlockPos placePos = getPlacementPosition( state, pos, rtr );
-                    if( tryPlaceContainedLiquid( player, world, placePos, rtr ) ) {
+                    if( tryPlaceContainedLiquid( player, world, placePos, rtr, hand ) ) {
                         onLiquidPlaced( world, held, placePos );
                         if( player instanceof EntityPlayerMP ) {
                             CriteriaTriggers.PLACED_BLOCK.trigger( (EntityPlayerMP) player, placePos, held );
@@ -108,7 +108,7 @@ public class ItemBucketBase extends ItemBase {
         }
     }
 
-    private BlockPos getPlacementPosition( IBlockState state, BlockPos pos, RayTraceResult rtr ) {
+    protected BlockPos getPlacementPosition( IBlockState state, BlockPos pos, RayTraceResult rtr ) {
         return state.getBlock() instanceof ILiquidContainer ? pos : rtr.getBlockPos().offset( rtr.sideHit );
     }
 
@@ -154,7 +154,7 @@ public class ItemBucketBase extends ItemBase {
         }
     }
 
-    public boolean tryPlaceContainedLiquid( @Nullable EntityPlayer player, World world, BlockPos pos, @Nullable RayTraceResult rtr ) {
+    public boolean tryPlaceContainedLiquid( @Nullable EntityPlayer player, World world, BlockPos pos, @Nullable RayTraceResult rtr, EnumHand hand ) {
         IBlockState state = world.getBlockState( pos );
         Material mat = state.getMaterial();
         boolean nonSolid = ! mat.isSolid();
@@ -186,7 +186,7 @@ public class ItemBucketBase extends ItemBase {
             return true;
         } else {
             // Try to place on side, if we weren't doing that already
-            return rtr != null && tryPlaceContainedLiquid( player, world, rtr.getBlockPos().offset( rtr.sideHit ), null );
+            return rtr != null && tryPlaceContainedLiquid( player, world, rtr.getBlockPos().offset( rtr.sideHit ), null, hand );
         }
     }
 
