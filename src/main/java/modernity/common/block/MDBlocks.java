@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 28 - 2019
+ * Date: 6 - 29 - 2019
  */
 
 package modernity.common.block;
@@ -98,7 +98,9 @@ public class MDBlocks {
     public static final BlockTranslucent SALT_BLOCK = blockItem( new BlockTranslucent.Salt( "salt_block", Block.Properties.create( Material.GLASS, MaterialColor.SNOW ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockBase ALUMINIUM_BLOCK = blockItem( new BlockBase( "aluminium_block", Block.Properties.create( Material.IRON, MaterialColor.IRON ).hardnessAndResistance( 5F, 6F ).sound( SoundType.METAL ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
+    // Utils
     public static final BlockPortalCauldron PORTAL_CAULDRON = blockOnly( new BlockPortalCauldron( "portal_cauldron", Block.Properties.create( Material.IRON, MaterialColor.STONE ).hardnessAndResistance( 2F ).lightValue( 8 ) ) );
+    public static final BlockNetherAltar NETHER_ALTAR = blockItem( new BlockNetherAltar( "nether_altar", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2F ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
 
     public static void register( IForgeRegistry<Block> registry ) {
