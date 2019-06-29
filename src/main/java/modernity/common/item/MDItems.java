@@ -18,6 +18,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 import modernity.api.item.IColoredItem;
 import modernity.common.item.base.ItemBase;
+import modernity.common.item.base.ItemCurseCrystal;
 import modernity.common.item.base.ItemPortalBucket;
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class MDItems {
     public static final ItemBase CURSE_CRYSTAL_SHARD_2 = item( new ItemBase( "curse_crystal/shard_2", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final ItemBase CURSE_CRYSTAL_SHARD_3 = item( new ItemBase( "curse_crystal/shard_3", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final ItemBase CURSE_CRYSTAL_SHARD_4 = item( new ItemBase( "curse_crystal/shard_4", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemCurseCrystal CURSE_CRYSTAL = item( new ItemCurseCrystal( "curse_crystal", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     public static void register( IForgeRegistry<Item> registry ) {
         for( Entry e : ENTRIES ) {
