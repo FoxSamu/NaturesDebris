@@ -17,10 +17,12 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 
+import modernity.api.block.IParticleShapeBlock;
 import modernity.api.util.MDVoxelShapes;
 
-public class BlockNetherAltar extends BlockNoDrop {
+public class BlockNetherAltar extends BlockNoDrop implements IParticleShapeBlock {
     private static final VoxelShape ALTAR_SHAPE;
+    private static final VoxelShape SIMPLE_SHAPE = MDVoxelShapes.create16( 0, 0, 0, 16, 12, 16 );
 
     static {
         VoxelShape obsidian = MDVoxelShapes.create16( 1, 1, 1, 15, 11, 15 );
@@ -75,7 +77,12 @@ public class BlockNetherAltar extends BlockNoDrop {
     }
 
     @Override
-    public VoxelShape getShape( IBlockState state, IBlockReader worldIn, BlockPos pos ) {
+    public VoxelShape getShape( IBlockState state, IBlockReader world, BlockPos pos ) {
         return ALTAR_SHAPE;
+    }
+
+    @Override
+    public VoxelShape getParticleShape( IBlockState state, IBlockReader world, BlockPos pos ) {
+        return SIMPLE_SHAPE;
     }
 }

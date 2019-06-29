@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 17 - 2019
+ * Date: 6 - 29 - 2019
  */
 
 package modernity.client.particle;
@@ -27,6 +27,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import modernity.api.block.IParticleShapeBlock;
+
 import java.util.Random;
 
 public class MDParticleManager extends ParticleManager {
@@ -42,7 +44,12 @@ public class MDParticleManager extends ParticleManager {
     @Override
     public void addBlockDestroyEffects( BlockPos pos, IBlockState state ) {
         if( ! state.isAir( this.world, pos ) ) {
-            VoxelShape shape = state.getShape( this.world, pos );
+            VoxelShape shape;
+            if( state.getBlock() instanceof IParticleShapeBlock ) {
+                shape = ( (IParticleShapeBlock) state.getBlock() ).getParticleShape( state, world, pos );
+            } else {
+                shape = state.getShape( world, pos );
+            }
             shape.forEachBox( ( minx, miny, minz, maxx, maxy, maxz ) -> {
                 double sx = Math.min( 1, maxx - minx );
                 double sy = Math.min( 1, maxy - miny );
