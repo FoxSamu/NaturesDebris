@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 15 - 2019
+ * Date: 6 - 29 - 2019
  */
 
 package modernity.common.net;
@@ -22,6 +22,7 @@ public class MDPackets {
 
     public static void register() {
         registerPlay( SERVERBOUND, SPacketStructure.class );
+        registerPlay( SERVERBOUND, SPacketOpenContainer.class );
     }
 
     private static final String SRG_EnumConnectionState_registerPacket = "func_179245_a";

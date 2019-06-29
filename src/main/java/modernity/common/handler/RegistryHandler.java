@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 16 - 2019
+ * Date: 6 - 29 - 2019
  */
 
 package modernity.common.handler;
@@ -12,6 +12,7 @@ package modernity.common.handler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
@@ -24,6 +25,7 @@ import modernity.common.fluid.FluidEntry;
 import modernity.common.fluid.MDFluids;
 import modernity.common.item.MDItems;
 import modernity.common.registry.MDRegistries;
+import modernity.common.tileentity.MDTileEntities;
 import modernity.common.world.dim.MDDimensions;
 
 public class RegistryHandler {
@@ -57,6 +59,11 @@ public class RegistryHandler {
     @SubscribeEvent
     public void registerEntities( RegistryEvent.Register<EntityType<?>> event ) {
         MDEntityTypes.register( event.getRegistry() );
+    }
+
+    @SubscribeEvent
+    public void registerTileEntities( RegistryEvent.Register<TileEntityType<?>> event ) {
+        MDTileEntities.register( event.getRegistry() );
     }
 
     @SubscribeEvent

@@ -10,15 +10,24 @@
 package modernity.common.block.base;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 
 import modernity.api.block.IParticleShapeBlock;
 import modernity.api.util.MDVoxelShapes;
+import modernity.common.tileentity.TileEntityNetherAltar;
+import modernity.common.util.ContainerManager;
+
+import javax.annotation.Nullable;
 
 public class BlockNetherAltar extends BlockNoDrop implements IParticleShapeBlock {
     private static final VoxelShape ALTAR_SHAPE;
@@ -84,5 +93,27 @@ public class BlockNetherAltar extends BlockNoDrop implements IParticleShapeBlock
     @Override
     public VoxelShape getParticleShape( IBlockState state, IBlockReader world, BlockPos pos ) {
         return SIMPLE_SHAPE;
+    }
+
+    @Override
+    public boolean onBlockActivated( IBlockState state, World world, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ ) {
+        if( ! world.isRemote ) {
+            TileEntity te = world.getTileEntity( pos );
+            if( te instanceof TileEntityNetherAltar ) {
+                ContainerManager.openContainer( player, (TileEntityNetherAltar) te );
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean hasTileEntity( IBlockState state ) {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity( IBlockState state, IBlockReader world ) {
+        return new TileEntityNetherAltar();
     }
 }

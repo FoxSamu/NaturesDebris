@@ -10,6 +10,9 @@
 package modernity.client.util;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.resources.IResourceManagerReloadListener;
@@ -23,6 +26,7 @@ import modernity.client.render.block.MDBlockRendererDispatcher;
 import modernity.common.block.MDBlocks;
 import modernity.common.entity.MDEntityTypes;
 import modernity.common.item.MDItems;
+import modernity.common.util.ContainerManager;
 import modernity.common.util.ProxyCommon;
 
 
@@ -70,5 +74,14 @@ public class ProxyClient extends ProxyCommon {
         if( manager instanceof IReloadableResourceManager ) {
             ( (IReloadableResourceManager) manager ).addReloadListener( listener );
         }
+    }
+
+    @Override
+    public void openContainer( EntityPlayer player, IInventory inventory ) {
+        if( player instanceof EntityPlayerSP ) {
+            ContainerManager.openContainerSP( (EntityPlayerSP) player, inventory );
+            return;
+        }
+        super.openContainer( player, inventory );
     }
 }

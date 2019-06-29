@@ -4,11 +4,14 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 15 - 2019
+ * Date: 6 - 29 - 2019
  */
 
 package modernity.common.util;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.IInventory;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -49,5 +52,11 @@ public class ProxyCommon {
     @SubscribeEvent
     public void onRegisterDimensions( RegisterDimensionsEvent event ) {
         MDDimensions.init( event.getMissingNames() );
+    }
+
+    public void openContainer( EntityPlayer player, IInventory inventory ) {
+        if( player instanceof EntityPlayerMP ) {
+            ContainerManager.openContainerMP( (EntityPlayerMP) player, inventory );
+        }
     }
 }
