@@ -24,11 +24,11 @@ public class NetherAltarContainer extends Container {
         this.altarInventory = altarInventory;
 
         // Altar slots
-        this.addSlot( new Slot( altarInventory, 0, 52, 17 ) );
-        this.addSlot( new Slot( altarInventory, 1, 52, 53 ) );
-        this.addSlot( new Slot( altarInventory, 2, 108, 17 ) );
-        this.addSlot( new Slot( altarInventory, 3, 108, 53 ) );
-        this.addSlot( new Slot( altarInventory, 4, 80, 35 ) );
+        this.addSlot( new InputSlot( altarInventory, 0, 52, 17 ) );
+        this.addSlot( new InputSlot( altarInventory, 1, 52, 53 ) );
+        this.addSlot( new InputSlot( altarInventory, 2, 108, 17 ) );
+        this.addSlot( new InputSlot( altarInventory, 3, 108, 53 ) );
+        this.addSlot( new ResultSlot( altarInventory, 4, 80, 35 ) );
 
         // Player Inventory
         for( int y = 0; y < 3; ++ y ) {
@@ -68,11 +68,11 @@ public class NetherAltarContainer extends Container {
                         return ItemStack.EMPTY;
                     }
                 } else if( slotStack.getItem() == MDItems.CURSE_CRYSTAL_SHARD_2 ) {
-                    if( ! this.mergeItemStack( slotStack, 1, 2, false ) ) {
+                    if( ! this.mergeItemStack( slotStack, 2, 3, false ) ) {
                         return ItemStack.EMPTY;
                     }
                 } else if( slotStack.getItem() == MDItems.CURSE_CRYSTAL_SHARD_3 ) {
-                    if( ! this.mergeItemStack( slotStack, 2, 3, false ) ) {
+                    if( ! this.mergeItemStack( slotStack, 1, 2, false ) ) {
                         return ItemStack.EMPTY;
                     }
                 } else if( slotStack.getItem() == MDItems.CURSE_CRYSTAL_SHARD_4 ) {
@@ -119,6 +119,17 @@ public class NetherAltarContainer extends Container {
         @Override
         public boolean isItemValid( ItemStack stack ) {
             return false;
+        }
+    }
+
+    public static class InputSlot extends Slot {
+        public InputSlot( IInventory inventory, int index, int x, int y ) {
+            super( inventory, index, x, y );
+        }
+
+        @Override
+        public int getSlotStackLimit() {
+            return 1;
         }
     }
 }
