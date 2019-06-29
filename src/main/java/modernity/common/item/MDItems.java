@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 28 - 2019
+ * Date: 6 - 29 - 2019
  */
 
 package modernity.common.item;
@@ -34,11 +34,16 @@ public class MDItems {
     // Buckets
     public static final ItemPortalBucket PORTAL_BUCKET = item( new ItemPortalBucket( "portal_bucket", new Item.Properties().maxStackSize( 1 ).group( MDItemGroups.BLOCKS ) ) );
 
+    // Curse crystal
+    public static final ItemBase CURSE_CRYSTAL_SHARD_1 = item( new ItemBase( "curse_crystal/shard_1", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemBase CURSE_CRYSTAL_SHARD_2 = item( new ItemBase( "curse_crystal/shard_2", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemBase CURSE_CRYSTAL_SHARD_3 = item( new ItemBase( "curse_crystal/shard_3", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemBase CURSE_CRYSTAL_SHARD_4 = item( new ItemBase( "curse_crystal/shard_4", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
     public static void register( IForgeRegistry<Item> registry ) {
         for( Entry e : ENTRIES ) {
             registry.register( e.getItem() );
         }
-//        registry.register( new ItemBucketBase( "minecraft:bucket", Fluids.EMPTY, new Item.Properties().maxStackSize( 16 ).group( ItemGroup.MISC ) ));
     }
 
     @OnlyIn( Dist.CLIENT )
