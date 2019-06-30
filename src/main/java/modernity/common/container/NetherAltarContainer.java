@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 29 - 2019
+ * Date: 6 - 30 - 2019
  */
 
 package modernity.common.container;
@@ -41,7 +41,6 @@ public class NetherAltarContainer extends Container {
         for( int i = 0; i < 9; ++ i ) {
             this.addSlot( new Slot( playerInventory, i, 8 + i * 18, 142 ) );
         }
-
     }
 
 
