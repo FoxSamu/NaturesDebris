@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 15 - 2019
+ * Date: 7 - 1 - 2019
  */
 
 package modernity.common.world.gen.structure;
@@ -18,9 +18,13 @@ import java.lang.reflect.Method;
 public class MDStructures {
 
     public static final CaveStructure CAVE_STRUCTURE = new CaveStructure();
+    public static final NetherAltarStructure NETHER_ALTAR_STRUCTURE = new NetherAltarStructure();
 
     public static void register() {
-        registerStructure( CaveStructure.Start.class, "MDCave" );
+        registerStructure( CaveStructure.Start.class, CaveStructure.NAME );
+        registerStructure( NetherAltarStructure.Start.class, NetherAltarStructure.NAME );
+
+        StructureIO.registerStructureComponent( NetherAltarStructure.Piece.class, NetherAltarStructure.NAME + "Piece" );
     }
 
     private static final String SRG_StructureIO_registerStructure = "func_143034_b";

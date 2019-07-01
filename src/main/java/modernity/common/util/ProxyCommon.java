@@ -4,14 +4,19 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 29 - 2019
+ * Date: 7 - 1 - 2019
  */
 
 package modernity.common.util;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Biomes;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -32,7 +37,8 @@ public class ProxyCommon {
     }
 
     public void loadComplete() {
-
+        Biomes.NETHER.addStructure( MDStructures.NETHER_ALTAR_STRUCTURE, IFeatureConfig.NO_FEATURE_CONFIG );
+        Biomes.NETHER.addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, Biome.createCompositeFeature( MDStructures.NETHER_ALTAR_STRUCTURE, IFeatureConfig.NO_FEATURE_CONFIG, Biome.PASSTHROUGH, IPlacementConfig.NO_PLACEMENT_CONFIG ) );
     }
 
     public void registerListeners() {
