@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 29 - 2019
+ * Date: 7 - 2 - 2019
  */
 
 package modernity.common.block;
@@ -101,6 +101,15 @@ public class MDBlocks {
     // Utils
     public static final BlockPortalCauldron PORTAL_CAULDRON = blockOnly( new BlockPortalCauldron( "portal_cauldron", Block.Properties.create( Material.IRON, MaterialColor.STONE ).hardnessAndResistance( 2F ).lightValue( 8 ) ) );
     public static final BlockNetherAltar NETHER_ALTAR = blockItem( new BlockNetherAltar( "nether_altar", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2F ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+    // Misc
+    public static final BlockHorizontalFacing GOLD_CARVED_NETHER_BRICKS_NATURE = blockItem( new BlockHorizontalFacing( "gold_carved_nether_bricks/nature", Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockHorizontalFacing GOLD_CARVED_NETHER_BRICKS_CURSE = blockItem( new BlockHorizontalFacing( "gold_carved_nether_bricks/curse", Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockHorizontalFacing GOLD_CARVED_NETHER_BRICKS_CYEN = blockItem( new BlockHorizontalFacing( "gold_carved_nether_bricks/cyen", Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockHorizontalFacing GOLD_CARVED_NETHER_BRICKS_FYREN = blockItem( new BlockHorizontalFacing( "gold_carved_nether_bricks/fyren", Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockHorizontalFacing GOLD_CARVED_NETHER_BRICKS_TIMEN = blockItem( new BlockHorizontalFacing( "gold_carved_nether_bricks/timen", Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockHorizontalFacing GOLD_CARVED_NETHER_BRICKS_PORTAL = blockItem( new BlockHorizontalFacing( "gold_carved_nether_bricks/portal", Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockHorizontalFacing GOLD_CARVED_NETHER_BRICKS_RGSW = blockItem( new BlockHorizontalFacing( "gold_carved_nether_bricks/rgsw", Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
 
     public static void register( IForgeRegistry<Block> registry ) {
