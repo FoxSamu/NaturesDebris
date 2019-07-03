@@ -4,14 +4,16 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 1 - 2019
+ * Date: 7 - 3 - 2019
  */
 
 package modernity.common.world.gen.structure;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -28,6 +30,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.minecraftforge.common.extensions.IForgeBlockState;
 
 import modernity.common.block.MDBlocks;
+import modernity.common.block.base.BlockHorizontalFacing;
 import modernity.common.world.gen.util.WorldGenUtil;
 
 import java.util.Random;
@@ -94,6 +97,17 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
 
     public static class Piece extends StructurePiece {
 
+        private static final BlockHorizontalFacing[] GOLD_BRICKS = {
+                null, // Index starts from 1
+                MDBlocks.GOLD_CARVED_NETHER_BRICKS_RGSW,
+                MDBlocks.GOLD_CARVED_NETHER_BRICKS_FYREN,
+                MDBlocks.GOLD_CARVED_NETHER_BRICKS_CYEN,
+                MDBlocks.GOLD_CARVED_NETHER_BRICKS_CURSE,
+                MDBlocks.GOLD_CARVED_NETHER_BRICKS_NATURE,
+                MDBlocks.GOLD_CARVED_NETHER_BRICKS_PORTAL,
+                MDBlocks.GOLD_CARVED_NETHER_BRICKS_TIMEN
+        };
+
         private int height = - 1;
         private int x;
         private int z;
@@ -110,7 +124,7 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
 
             boundingBox = new MutableBoundingBox( - 5 + x, - 1, - 5 + z, 5 + x, 12, 5 + z );
 
-            setCoordBaseMode( EnumFacing.NORTH );
+            setCoordBaseMode( EnumFacing.SOUTH );
         }
 
         @Override
@@ -135,7 +149,7 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
                 if( pos.getY() < 0 ) {
                     height = rand.nextInt( 89 ) + 31;
                 } else {
-                    height = pos.getY();
+                    height = pos.getY() + 1;
                     boundingBox.offset( 0, height, 0 );
                 }
             }
@@ -152,6 +166,8 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
             } else {
                 doorx = three;
             }
+            int[] goldOrder = createGoldOrder( rand );
+            int edgeIndex = 0;
             for( int x = - 3; x <= 3; x++ ) {
                 for( int z = - 3; z <= 3; z++ ) {
 
@@ -168,10 +184,31 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
 
 
                     boolean edge = ax == 3 && az < 2 || az == 3 || ax == 2 && az == 2;
+                    boolean cornerEdge = ax == 2 && az == 2;
                     if( edge ) {
+                        EnumFacing edgeFace = cornerEdge ? EnumFacing.UP : az == 3 ?
+                                z < 0 ? EnumFacing.SOUTH : EnumFacing.NORTH :
+                                x < 0 ? EnumFacing.EAST : EnumFacing.WEST;
+
                         int h = rand.nextInt( 4 ) + 6;
                         boolean slab = rand.nextBoolean();
                         boolean door = x == doorx && z == doorz;
+
+                        // Compute height of two (potential) gold bricks blocks
+                        int goldHeight1 = rand.nextInt( 4 );
+                        int goldHeight2 = rand.nextInt( 4 );
+                        if( goldHeight1 == goldHeight2 ) {
+                            if( goldHeight1 == 3 ) {
+                                goldHeight2--;
+                            } else {
+                                goldHeight2++;
+                            }
+                        }
+
+                        // Flip specified gold order?
+                        boolean flip = rand.nextBoolean();
+                        int gold1 = goldOrder[ edgeIndex + ( flip ? 11 : 0 ) ];
+                        int gold2 = goldOrder[ edgeIndex + ( flip ? 0 : 11 ) ];
 
                         // Walls
                         for( int y = 0; y < h; y++ ) {
@@ -180,12 +217,29 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
                                     slab = false; // Make sure we don't generate extra slab in blocks
                                     break;
                                 }
-                                setBlockState( world, Blocks.NETHER_BRICKS.getDefaultState(), lx, y, lz, box );
+
+                                // Compute wall state
+                                IBlockState state = Blocks.NETHER_BRICKS.getDefaultState();
+                                if( y < 4 && ! cornerEdge && ! door ) {
+                                    if( y == goldHeight1 && gold1 > 0 ) {
+                                        state = GOLD_BRICKS[ gold1 ].getDefaultState();
+                                        state = state.with( BlockStateProperties.HORIZONTAL_FACING, edgeFace );
+                                    }
+                                    if( y == goldHeight2 && gold2 > 0 ) {
+                                        state = GOLD_BRICKS[ gold2 ].getDefaultState();
+                                        state = state.with( BlockStateProperties.HORIZONTAL_FACING, edgeFace );
+                                    }
+                                }
+
+                                setBlockState( world, state, lx, y, lz, box );
                             } else {
 
                                 // Door: only generate when not blocked
-                                if( ! getBlockStateFromPos( world, lx, y, lz, box ).isSolid() ) {
+                                IBlockState state = getBlockStateFromPos( world, lx, y, lz, box );
+                                if( ! state.getMaterial().isSolid() && ! state.getMaterial().isLiquid() ) {
                                     setBlockState( world, Blocks.AIR.getDefaultState(), lx, y, lz, box );
+                                } else {
+                                    setBlockState( world, Blocks.NETHER_BRICKS.getDefaultState(), lx, y, lz, box );
                                 }
                             }
                         }
@@ -193,6 +247,11 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
                         // Extra slab for height randominess
                         if( slab ) {
                             setBlockState( world, Blocks.NETHER_BRICK_SLAB.getDefaultState(), lx, h, lz, box );
+                        }
+
+                        // Count indices to walk goldOrder array
+                        if( ! cornerEdge && ! door ) {
+                            edgeIndex++;
                         }
                     } else {
                         for( int y = 0; y < 5; y++ ) {
@@ -210,6 +269,23 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
                 }
             }
             return true;
+        }
+
+        // Gives an array with random gold brick indices (0 is no gold brick)
+        // This array contains at least one of all types (1-7)
+        private static int[] createGoldOrder( Random rand ) {
+            int[] order = new int[ 22 ];
+            for( int i = 0; i < 22; i++ ) {
+                order[ i ] = i < 7 ? i + 1 : rand.nextInt( 3 ) == 0 ? rand.nextInt( 8 ) : 0;
+            }
+            for( int i = 0; i < 22; i++ ) {
+                int index = rand.nextInt( 22 );
+                if( index == i ) continue;
+                int tmp = order[ index ];
+                order[ index ] = order[ i ];
+                order[ i ] = tmp;
+            }
+            return order;
         }
     }
 }
