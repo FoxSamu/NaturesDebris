@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 7 - 3 - 2019
  */
 
 package modernity.common.command;
@@ -69,7 +69,6 @@ public class TPDimCommand {
     private static int teleport( CommandSource source, int dim ) {
         DimensionType type = DimensionType.getById( dim );
         if( type == null ) {
-            System.out.println( dim );
             source.sendErrorMessage( new TextComponentTranslation( TK_ERROR_INVALID, dim ) );
             return 0;
         }

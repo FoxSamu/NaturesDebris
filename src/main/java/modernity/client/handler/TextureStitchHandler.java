@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 26 - 2019
+ * Date: 7 - 3 - 2019
  */
 
 package modernity.client.handler;
@@ -35,18 +35,14 @@ public class TextureStitchHandler {
         fluids.addAll( MDRegistries.fluids().getValues().stream().map( FluidEntry::getFluid ).collect( Collectors.toList() ) );
 
         for( Fluid f : fluids ) {
-            System.out.println( "Injecting fluid textures into texture map for fluid " + IRegistry.FLUID.getKey( f ) + "..." );
             if( f instanceof ICustomRenderFluid ) {
                 ICustomRenderFluid crf = (ICustomRenderFluid) f;
 
                 map.registerSprite( manager, crf.getStill() );
-                System.out.println( "Registered fluid texture: " + crf.getStill() );
                 map.registerSprite( manager, crf.getFlowing() );
-                System.out.println( "Registered fluid texture: " + crf.getFlowing() );
 
                 if( crf.getOverlay() != null ) {
                     map.registerSprite( manager, crf.getOverlay() );
-                    System.out.println( "Registered fluid texture: " + crf.getOverlay() );
                 }
             }
         }

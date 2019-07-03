@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 28 - 2019
+ * Date: 7 - 3 - 2019
  */
 
 package modernity.common.item.base;
@@ -50,9 +50,7 @@ public class ItemPortalBucket extends ItemBucketBase {
         boolean cauldron = state.getBlock() == Blocks.CAULDRON && state.get( BlockCauldron.LEVEL ) == 0;
 
         if( world.isAirBlock( pos ) || nonSolid || replaceable || cauldron || state.getBlock() instanceof ILiquidContainer && ( (ILiquidContainer) state.getBlock() ).canContainFluid( world, pos, state, containing ) ) {
-            if( rtr != null ) System.out.println( "Placing..." );
             if( player != null && cauldron ) {
-                if( rtr != null ) System.out.println( "Placing in cauldron..." );
                 if( ! player.abilities.isCreativeMode ) {
                     player.setHeldItem( hand, new ItemStack( Items.BUCKET ) );
                 }
