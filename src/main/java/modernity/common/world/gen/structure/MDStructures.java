@@ -4,16 +4,19 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 1 - 2019
+ * Date: 7 - 3 - 2019
  */
 
 package modernity.common.world.gen.structure;
 
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureIO;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import java.lang.reflect.Method;
+import java.util.Locale;
 
 public class MDStructures {
 
@@ -25,6 +28,8 @@ public class MDStructures {
         registerStructure( NetherAltarStructure.Start.class, NetherAltarStructure.NAME );
 
         StructureIO.registerStructureComponent( NetherAltarStructure.Piece.class, NetherAltarStructure.NAME + "Piece" );
+
+        registerLocatable( "Nether_Altar", NETHER_ALTAR_STRUCTURE );
     }
 
     private static final String SRG_StructureIO_registerStructure = "func_143034_b";
@@ -43,5 +48,13 @@ public class MDStructures {
         } catch( Throwable problem ) {
             throw new RuntimeException( "Failed to register structure", problem );
         }
+    }
+
+    public static void registerLocatable( String name, Structure<?> structure ) {
+        name = name.toLowerCase( Locale.ROOT );
+        if( Feature.STRUCTURES.containsKey( name ) ) {
+            throw new IllegalStateException( "Locatable already exists: " + name );
+        }
+        Feature.STRUCTURES.put( name, structure );
     }
 }

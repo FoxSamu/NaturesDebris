@@ -1,0 +1,4 @@
+{
+  "prerendershaders": "core/prerendershaders.js",
+  "injectstructures": "core/injectstructures.js"
+}

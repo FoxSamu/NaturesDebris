@@ -62,7 +62,7 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
 
     @Override
     protected boolean isEnabledIn( IWorld world ) {
-        return true;
+        return world.getWorldInfo().isMapFeaturesEnabled();
     }
 
     @Override
