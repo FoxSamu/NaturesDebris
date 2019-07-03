@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 29 - 2019
+ * Date: 7 - 3 - 2019
  */
 
 package modernity.common.tileentity;
@@ -46,14 +46,18 @@ public abstract class TileEntityContainer extends TileEntityLockable {
 
     @Override
     public ItemStack decrStackSize( int index, int count ) {
+        ItemStack stack = ItemStackHelper.getAndSplit( stacks, index, count );
+        onSlotChanged( index );
         markDirty();
-        return ItemStackHelper.getAndSplit( stacks, index, count );
+        return stack;
     }
 
     @Override
     public ItemStack removeStackFromSlot( int index ) {
+        ItemStack stack = ItemStackHelper.getAndRemove( stacks, index );
+        onSlotChanged( index );
         markDirty();
-        return ItemStackHelper.getAndRemove( stacks, index );
+        return stack;
     }
 
     @Override
@@ -62,6 +66,7 @@ public abstract class TileEntityContainer extends TileEntityLockable {
         if( ! stack.isEmpty() && stack.getCount() > getInventoryStackLimit() ) {
             stack.setCount( getInventoryStackLimit() );
         }
+        onSlotChanged( index );
         markDirty();
     }
 
@@ -108,6 +113,9 @@ public abstract class TileEntityContainer extends TileEntityLockable {
     @Override
     public void clear() {
         stacks.clear();
+        for( int i = 0; i < getSizeInventory(); i++ ) {
+            onSlotChanged( i );
+        }
         markDirty();
     }
 
@@ -140,5 +148,9 @@ public abstract class TileEntityContainer extends TileEntityLockable {
         for( int i = 0; i < list.size(); i++ ) {
             stacks.set( i, ItemStack.read( list.getCompound( i ) ) );
         }
+    }
+
+    public void onSlotChanged( int index ) {
+
     }
 }

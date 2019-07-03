@@ -4,12 +4,13 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 30 - 2019
+ * Date: 7 - 3 - 2019
  */
 
 package modernity.common.container;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -20,7 +21,7 @@ import modernity.common.item.MDItems;
 public class NetherAltarContainer extends Container {
     private final IInventory altarInventory;
 
-    public NetherAltarContainer( IInventory playerInventory, IInventory altarInventory ) {
+    public NetherAltarContainer( InventoryPlayer playerInventory, IInventory altarInventory ) {
         this.altarInventory = altarInventory;
 
         // Altar slots
@@ -43,7 +44,6 @@ public class NetherAltarContainer extends Container {
         }
     }
 
-
     @Override
     public boolean canInteractWith( EntityPlayer player ) {
         return true;
@@ -55,13 +55,7 @@ public class NetherAltarContainer extends Container {
         if( slot != null && slot.getHasStack() ) {
             ItemStack slotStack = slot.getStack();
             resultStack = slotStack.copy();
-            if( index == 2 ) {
-                if( ! this.mergeItemStack( slotStack, 5, 41, true ) ) {
-                    return ItemStack.EMPTY;
-                }
-
-                slot.onSlotChange( slotStack, resultStack );
-            } else if( index > 4 ) {
+            if( index > 4 ) {
                 if( slotStack.getItem() == MDItems.CURSE_CRYSTAL_SHARD_1 ) {
                     if( ! this.mergeItemStack( slotStack, 3, 4, false ) ) {
                         return ItemStack.EMPTY;
