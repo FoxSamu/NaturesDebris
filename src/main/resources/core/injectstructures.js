@@ -1,6 +1,7 @@
 
 var MethodInsnNode = org.objectweb.asm.tree.MethodInsnNode;
 var VarInsnNode = org.objectweb.asm.tree.VarInsnNode;
+var InsnNode = org.objectweb.asm.tree.InsnNode;
 var Opcodes = org.objectweb.asm.Opcodes;
 
 function initializeCoreMod() {
@@ -23,6 +24,7 @@ function transform( node ) {
             var insn = method.instructions.get( 0 );
             method.instructions.insertBefore( insn, new VarInsnNode( Opcodes.ALOAD, 0 ) );
             method.instructions.insertBefore( insn, new MethodInsnNode( Opcodes.INVOKESTATIC, "modernity/common/util/Hooks", "registerCustomBiomeStructures", "(Lnet/minecraft/world/biome/Biome;)V", false ) );
+            method.instructions.insertBefore( insn, new InsnNode( Opcodes.RETURN ) );
         }
     }
     return node;
