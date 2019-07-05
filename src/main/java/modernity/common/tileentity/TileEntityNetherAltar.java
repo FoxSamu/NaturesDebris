@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 3 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package modernity.common.tileentity;
@@ -121,7 +121,7 @@ public class TileEntityNetherAltar extends TileEntityContainer implements ITicka
     }
 
     private boolean checkStructure() {
-        return MDStructures.NETHER_ALTAR_STRUCTURE.isPositionInStructure( world, pos );
+        return MDStructures.NETHER_ALTAR.isPositionInStructure( world, pos );
     }
 
     private boolean checkWallCarves() {

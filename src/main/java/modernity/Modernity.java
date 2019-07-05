@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 16 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package modernity;
@@ -68,8 +68,8 @@ public class Modernity {
 
     private void initProxy( Dist dist ) {
         Modernity.dist = dist;
-        proxy.init();
         proxy.registerListeners();
+        proxy.init();
         MinecraftForge.EVENT_BUS.register( proxy );
         LOGGER.info( "Modernity proxy initialized for dist {}: {}", dist, proxy );
         MinecraftForge.EVENT_BUS.post( new ModernityProxyReadyEvent( dist, proxy ) );

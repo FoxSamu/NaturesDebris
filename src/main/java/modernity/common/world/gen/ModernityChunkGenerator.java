@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 19 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package modernity.common.world.gen;
@@ -94,7 +94,7 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityGenSett
 
         IntArrays.add( hm, - 8 );
 
-        MDStructures.CAVE_STRUCTURE.addCaves( chunk, cx, cz, hm );
+        MDStructures.CAVE.addCaves( chunk, cx, cz, hm );
 
         darkrockGen.generate( chunk );
 

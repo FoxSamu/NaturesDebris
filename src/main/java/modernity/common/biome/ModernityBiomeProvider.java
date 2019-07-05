@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 15 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package modernity.common.biome;
@@ -100,7 +100,7 @@ public class ModernityBiomeProvider extends BiomeProvider {
     }
 
     public boolean hasStructure( Structure<?> structure ) {
-        if( structure == MDStructures.CAVE_STRUCTURE ) return true;
+        if( structure == MDStructures.CAVE ) return true;
         return this.hasStructureCache.computeIfAbsent( structure, struct -> {
             for( Biome biome : this.biomes ) {
                 if( biome.hasStructure( struct ) ) {

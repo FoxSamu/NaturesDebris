@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 3 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package modernity.common.world.gen.structure;
@@ -20,16 +20,20 @@ import java.util.Locale;
 
 public class MDStructures {
 
-    public static final CaveStructure CAVE_STRUCTURE = new CaveStructure();
-    public static final NetherAltarStructure NETHER_ALTAR_STRUCTURE = new NetherAltarStructure();
+    public static final CaveStructure CAVE = new CaveStructure();
+    public static final NetherAltarStructure NETHER_ALTAR = new NetherAltarStructure();
+    public static final CurseRuinStructure CURSE_RUIN = new CurseRuinStructure();
 
     public static void register() {
         registerStructure( CaveStructure.Start.class, CaveStructure.NAME );
         registerStructure( NetherAltarStructure.Start.class, NetherAltarStructure.NAME );
+        registerStructure( CurseRuinStructure.Start.class, CurseRuinStructure.NAME );
 
         StructureIO.registerStructureComponent( NetherAltarStructure.Piece.class, NetherAltarStructure.NAME + "Piece" );
+        StructureIO.registerStructureComponent( CurseRuinStructure.Piece.class, CurseRuinStructure.NAME + "Piece" );
 
-        registerLocatable( "Nether_Altar", NETHER_ALTAR_STRUCTURE );
+        registerLocatable( "Nether_Altar", NETHER_ALTAR );
+        registerLocatable( "Curse_Ruin", CURSE_RUIN );
     }
 
     private static final String SRG_StructureIO_registerStructure = "func_143034_b";

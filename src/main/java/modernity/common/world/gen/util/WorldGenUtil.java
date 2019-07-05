@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 1 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package modernity.common.world.gen.util;
@@ -25,10 +25,12 @@ public class WorldGenUtil {
 
         while( air.test( world.getBlockState( mpos ), world, mpos ) ) {
             mpos.move( EnumFacing.DOWN );
+            if( mpos.getY() < miny ) break;
         }
 
         while( ! air.test( world.getBlockState( mpos ), world, mpos ) ) {
             mpos.move( EnumFacing.UP );
+            if( mpos.getY() > maxy ) break;
         }
 
         if( mpos.getY() < miny || mpos.getY() >= maxy ) return BlockPos.ORIGIN.down();

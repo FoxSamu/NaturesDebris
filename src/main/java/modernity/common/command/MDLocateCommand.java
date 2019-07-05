@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 3 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package modernity.common.command;
@@ -30,6 +30,7 @@ public class MDLocateCommand {
     public static void register( CommandDispatcher<CommandSource> dispatcher ) {
         LiteralArgumentBuilder<CommandSource> builder = Commands.literal( "locate" ).requires( src -> src.hasPermissionLevel( 2 ) );
         builder.then( Commands.literal( "Nether_Altar" ).executes( cmd -> locateStructure( cmd.getSource(), "Nether_Altar" ) ) );
+        builder.then( Commands.literal( "Curse_Ruin" ).executes( cmd -> locateStructure( cmd.getSource(), "Curse_Ruin" ) ) );
         dispatcher.register( builder );
     }
 

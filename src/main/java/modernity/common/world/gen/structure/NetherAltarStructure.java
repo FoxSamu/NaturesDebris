@@ -4,16 +4,19 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 3 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package modernity.common.world.gen.structure;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityType;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -46,9 +49,9 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
         rand.nextInt();
         if( rand.nextInt( 3 ) != 0 ) {
             return false;
-        } else if( chunkPosX != ( x << 3 ) + 2 + rand.nextInt( 4 ) ) {
+        } else if( chunkPosX != ( x << 3 ) + rand.nextInt( 8 ) ) {
             return false;
-        } else if( chunkPosZ != ( z << 3 ) + 2 + rand.nextInt( 4 ) ) {
+        } else if( chunkPosZ != ( z << 3 ) + rand.nextInt( 8 ) ) {
             return false;
         } else {
             Biome biome = chunkGen.getBiomeProvider().getBiome( new BlockPos( ( chunkPosX << 4 ) + 9, 0, ( chunkPosZ << 4 ) + 9 ), Biomes.DEFAULT );
@@ -112,6 +115,8 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
         private int x;
         private int z;
 
+        private boolean hasSpawner;
+
         public Piece() {
             super( 0 );
         }
@@ -132,6 +137,7 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
             nbt.putInt( "h", height );
             nbt.putInt( "x", x );
             nbt.putInt( "z", z );
+            nbt.putBoolean( "s", hasSpawner );
         }
 
         @Override
@@ -139,6 +145,7 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
             height = nbt.getInt( "h" );
             x = nbt.getInt( "x" );
             z = nbt.getInt( "z" );
+            hasSpawner = nbt.getBoolean( "s" );
         }
 
         @Override
@@ -265,10 +272,36 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
 
                     if( x == 0 && z == 0 ) {
                         setBlockState( world, MDBlocks.NETHER_ALTAR.getDefaultState(), lx, 0, lz, box );
+                        if( ! this.hasSpawner ) {
+                            BlockPos pos = new BlockPos( this.getXWithOffset( lx, lz ), this.getYWithOffset( - 1 ), this.getZWithOffset( lx, lz ) );
+                            if( box.isVecInside( pos ) ) {
+                                this.hasSpawner = true;
+                                world.setBlockState( pos, Blocks.SPAWNER.getDefaultState(), 2 );
+                                TileEntity tileentity = world.getTileEntity( pos );
+                                if( tileentity instanceof TileEntityMobSpawner ) {
+                                    ( (TileEntityMobSpawner) tileentity ).getSpawnerBaseLogic().setEntityType( randomSpawnerEntity( rand ) );
+                                }
+                            }
+                        }
                     }
                 }
             }
             return true;
+        }
+
+        private static EntityType randomSpawnerEntity( Random rand ) {
+            double r = rand.nextDouble();
+            r -= 0.3;
+            if( r < 0 ) return EntityType.ZOMBIE_PIGMAN;
+            r -= 0.3;
+            if( r < 0 ) return EntityType.SKELETON;
+            r -= 0.2;
+            if( r < 0 ) return EntityType.MAGMA_CUBE;
+            r -= 0.05;
+            if( r < 0 ) return EntityType.WITHER_SKELETON;
+            r -= 0.03;
+            if( r < 0 ) return EntityType.ENDERMAN;
+            return EntityType.ZOMBIE_PIGMAN;
         }
 
         // Gives an array with random gold brick indices (0 is no gold brick)
