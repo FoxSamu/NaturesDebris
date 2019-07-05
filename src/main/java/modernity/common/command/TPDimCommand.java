@@ -4,12 +4,11 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 3 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package modernity.common.command;
 
-import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.command.CommandSource;
@@ -22,6 +21,8 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.dimension.DimensionType;
+
+import modernity.common.command.argument.DimensionArgumentType;
 
 import java.util.ArrayList;
 
@@ -42,8 +43,8 @@ public class TPDimCommand {
                             return src.hasPermissionLevel( 2 );
                         } )
                         .then(
-                                Commands.argument( "dimension", IntegerArgumentType.integer() )
-                                        .executes( TPDimCommand::teleport )
+                                Commands.argument( "dimension", new DimensionArgumentType() )
+                                        .executes( TPDimCommand::teleportTyped )
                         )
         );
     }
@@ -52,6 +53,14 @@ public class TPDimCommand {
         CommandSource src = ctx.getSource();
 
         int dimen = ctx.getArgument( "dimension", Integer.class );
+
+        return teleport( src, dimen );
+    }
+
+    private static int teleportTyped( CommandContext<CommandSource> ctx ) {
+        CommandSource src = ctx.getSource();
+
+        DimensionType dimen = ctx.getArgument( "dimension", DimensionType.class );
 
         return teleport( src, dimen );
     }

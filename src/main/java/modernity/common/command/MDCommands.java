@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package modernity.common.command;
@@ -47,6 +47,9 @@ public class MDCommands {
         register( "mddebug", dispatcher, debugCommandList );
         register( "mdd", dispatcher, debugCommandList );
         register( "mdebug", dispatcher, debugCommandList );
+
+        // Extend locate command with our structures
+        MDLocateCommand.register( dispatcher );
     }
 
     public static void register( String alias, CommandDispatcher<CommandSource> dispatcher, ArrayList<LiteralArgumentBuilder<CommandSource>> commandList ) {
