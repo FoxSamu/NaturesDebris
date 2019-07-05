@@ -3,17 +3,13 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 6 - 11 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package net.rgsw.noise;
 
-import net.rgsw.MathUtil;
-
 /**
- * 2D open simplex noise.
- *
- * Based on an implementation by Kurt Spencer: https://gist.github.com/KdotJPG/b1270127455a94ac5d19
+ * 2D OpenSimplex noise generator based on an implementation by Kurt Spencer: https://gist.github.com/KdotJPG/b1270127455a94ac5d19
  */
 public class OpenSimplex2D extends Noise2D {
     private static final double STRETCH_CONSTANT_2D = - 0.211324865405187;    //(1/Math.sqrt(2+1)-1)/2;
@@ -28,21 +24,36 @@ public class OpenSimplex2D extends Noise2D {
             - 5, - 2, - 2, - 5,
     };
 
+    /**
+     * Constructs an OpenSimplex noise generator
+     * @param seed The seed, may be any {@link int}
+     */
     public OpenSimplex2D( int seed ) {
         super( seed );
     }
 
+    /**
+     * Constructs an OpenSimplex noise generator
+     * @param seed  The seed, may be any {@link int}
+     * @param scale The coordinate scaling along all axes
+     */
     public OpenSimplex2D( int seed, double scale ) {
         super( seed, scale );
     }
 
+    /**
+     * Constructs an OpenSimplex noise generator
+     * @param seed  The seed, may be any {@link int}
+     * @param scaleX The coordinate scaling along X axis
+     * @param scaleY The coordinate scaling along Y axis
+     */
     public OpenSimplex2D( int seed, double scaleX, double scaleY ) {
         super( seed, scaleX, scaleY );
     }
 
 
     private double extrapolate( int xsb, int ysb, double dx, double dy ) {
-        int index = Hash.hash2Dint( this.seed, xsb, ysb ) & 0x0E;
+        int index = Hash.hash2I( this.seed, xsb, ysb ) & 0x0E;
         return GRAD[ index ] * dx + GRAD[ index + 1 ] * dy;
     }
 
@@ -168,6 +179,6 @@ public class OpenSimplex2D extends Noise2D {
             value += attn_ext * attn_ext * this.extrapolate( xsv_ext, ysv_ext, dx_ext, dy_ext );
         }
 
-        return MathUtil.clamp( value / NORM_CONSTANT_2D, - 1, 1 );
+        return NoiseMath.clamp( - 1, 1, value / NORM_CONSTANT_2D );
     }
 }

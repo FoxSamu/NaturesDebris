@@ -3,13 +3,14 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 6 - 15 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package net.rgsw.noise;
 
-import net.rgsw.MathUtil;
-
+/**
+ * 3D OpenSimplex noise generator based on an implementation by Kurt Spencer: https://gist.github.com/KdotJPG/b1270127455a94ac5d19
+ */
 public class OpenSimplex3D extends Noise3D {
 
     private static final double STRETCH_CONSTANT_3D = - 1D / 6;              //(1/Math.sqrt(3+1)-1)/3;
@@ -27,21 +28,37 @@ public class OpenSimplex3D extends Noise3D {
             11, - 4, - 4, 4, - 11, - 4, 4, - 4, - 11,
     };
 
+    /**
+     * Constructs an OpenSimplex noise generator
+     * @param seed The seed, may be any {@link int}
+     */
     public OpenSimplex3D( int seed ) {
         super( seed );
     }
 
+    /**
+     * Constructs an OpenSimplex noise generator
+     * @param seed  The seed, may be any {@link int}
+     * @param scale The coordinate scaling along all axes
+     */
     public OpenSimplex3D( int seed, double scale ) {
         super( seed, scale );
     }
 
+    /**
+     * Constructs an OpenSimplex noise generator
+     * @param seed   The seed, may be any {@link int}
+     * @param scaleX The coordinate scaling along X axis
+     * @param scaleY The coordinate scaling along Y axis
+     * @param scaleZ The coordinate scaling along Z axis
+     */
     public OpenSimplex3D( int seed, double scaleX, double scaleY, double scaleZ ) {
         super( seed, scaleX, scaleY, scaleZ );
     }
 
 
     private double extrapolate( int xsb, int ysb, int zsb, double dx, double dy, double dz ) {
-        int index = Hash.hash3Dint( this.seed, xsb, ysb, zsb ) % 24 * 3;
+        int index = Hash.hash3I( this.seed, xsb, ysb, zsb ) % 24 * 3;
         return GRAD[ index ] * dx + GRAD[ index + 1 ] * dy + GRAD[ index + 2 ] * dz;
     }
 
@@ -602,6 +619,6 @@ public class OpenSimplex3D extends Noise3D {
             value += attn_ext1 * attn_ext1 * this.extrapolate( xsv_ext1, ysv_ext1, zsv_ext1, dx_ext1, dy_ext1, dz_ext1 );
         }
 
-        return MathUtil.clamp( value / NORM_CONSTANT_3D, - 1, 1 );
+        return NoiseMath.clamp( - 1, 1, value / NORM_CONSTANT_3D );
     }
 }

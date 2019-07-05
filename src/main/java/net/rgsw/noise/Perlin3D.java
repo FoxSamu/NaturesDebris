@@ -3,22 +3,40 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 6 - 11 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package net.rgsw.noise;
 
-
+/**
+ * 3D Perlin noise generator.
+ */
 public class Perlin3D extends Noise3D {
 
+    /**
+     * Constructs a Perlin noise generator
+     * @param seed The seed, may be any {@link int}
+     */
     public Perlin3D( int seed ) {
         super( seed );
     }
 
+    /**
+     * Constructs a Perlin noise generator
+     * @param seed  The seed, may be any {@link int}
+     * @param scale The coordinate scaling along all axes
+     */
     public Perlin3D( int seed, double scale ) {
         super( seed, scale );
     }
 
+    /**
+     * Constructs a Perlin noise generator
+     * @param seed   The seed, may be any {@link int}
+     * @param scaleX The coordinate scaling along X axis
+     * @param scaleY The coordinate scaling along Y axis
+     * @param scaleZ The coordinate scaling along Z axis
+     */
     public Perlin3D( int seed, double scaleX, double scaleY, double scaleZ ) {
         super( seed, scaleX, scaleY, scaleZ );
     }
@@ -35,7 +53,7 @@ public class Perlin3D extends Noise3D {
     };
 
     private int gradIndex( int x, int y, int z ) {
-        int hash = Hash.hash3Dint( this.seed, x, y, z );
+        int hash = Hash.hash3I( this.seed, x, y, z );
         return hash & 31;
     }
 

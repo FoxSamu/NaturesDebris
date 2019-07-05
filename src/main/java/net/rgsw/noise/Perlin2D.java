@@ -3,23 +3,39 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 6 - 11 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package net.rgsw.noise;
 
-
-
+/**
+ * 2D Perlin noise generator.
+ */
 public class Perlin2D extends Noise2D {
 
+    /**
+     * Constructs a Perlin noise generator
+     * @param seed The seed, may be any {@link int}
+     */
     public Perlin2D( int seed ) {
         super( seed );
     }
 
+    /**
+     * Constructs a Perlin noise generator
+     * @param seed  The seed, may be any {@link int}
+     * @param scale The coordinate scaling along all axes
+     */
     public Perlin2D( int seed, double scale ) {
         super( seed, scale );
     }
 
+    /**
+     * Constructs a Perlin noise generator
+     * @param seed   The seed, may be any {@link int}
+     * @param scaleX The coordinate scaling along X axis
+     * @param scaleY The coordinate scaling along Y axis
+     */
     public Perlin2D( int seed, double scaleX, double scaleY ) {
         super( seed, scaleX, scaleY );
     }
@@ -32,7 +48,7 @@ public class Perlin2D extends Noise2D {
     };
 
     private int gradIndex( int x, int y ) {
-        return Hash.hash2Dint( this.seed, x, y ) & 15;
+        return Hash.hash2I( this.seed, x, y ) & 15;
     }
 
     private double lerp( double a, double b, double x ) {

@@ -3,17 +3,24 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 6 - 15 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package net.rgsw.noise;
 
-import net.rgsw.MathUtil;
-
+/**
+ * Fractal-OpenSimplex noise generator for 3D space. This generator uses a specified amount of {@link
+ * OpenSimplex3D}-instances as octaves.
+ */
 public class FractalOpenSimplex3D extends Noise3D {
 
     private final OpenSimplex3D[] noiseOctaves;
 
+    /**
+     * Constructs a Fractal-OpenSimplex noise generator.
+     * @param seed    The seed, may be any {@code int}.
+     * @param octaves The amount of octaves.
+     */
     public FractalOpenSimplex3D( int seed, int octaves ) {
         super( seed );
 
@@ -28,6 +35,12 @@ public class FractalOpenSimplex3D extends Noise3D {
         }
     }
 
+    /**
+     * Constructs a Fractal-OpenSimplex noise generator.
+     * @param seed    The seed, may be any {@code int}.
+     * @param scale   The coordinate scaling along every axis.
+     * @param octaves The amount of octaves.
+     */
     public FractalOpenSimplex3D( int seed, double scale, int octaves ) {
         super( seed, scale );
 
@@ -42,6 +55,14 @@ public class FractalOpenSimplex3D extends Noise3D {
         }
     }
 
+    /**
+     * Constructs a Fractal-OpenSimplex noise generator.
+     * @param seed    The seed, may be any {@code int}.
+     * @param scaleX  The coordinate scaling along X axis.
+     * @param scaleY  The coordinate scaling along Y axis.
+     * @param scaleZ  The coordinate scaling along Z axis.
+     * @param octaves The amount of octaves.
+     */
     public FractalOpenSimplex3D( int seed, double scaleX, double scaleY, double scaleZ, int octaves ) {
         super( seed, scaleX, scaleY, scaleZ );
 
@@ -69,7 +90,7 @@ public class FractalOpenSimplex3D extends Noise3D {
             n += noise.generate( x * d, y * d, z * d ) / d;
             d *= 2;
         }
-        return MathUtil.clamp( n, - 1, 1 );
+        return NoiseMath.clamp( - 1, 1, n );
     }
 
     public void setSeed( int seed ) {

@@ -4,12 +4,12 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package test;
 
-import net.rgsw.noise.InverseFractalPerlin3D;
+import modernity.common.world.gen.noise.InverseFractalPerlin3D;
 
 public class Darken {
     public static void main( String[] args ) {

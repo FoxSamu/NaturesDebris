@@ -3,19 +3,24 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 6 - 16 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package net.rgsw.noise;
 
-import net.rgsw.MathUtil;
-
+/**
+ * Generic class for 3D noise generator implementations ({@link INoise3D} generators).
+ */
 public abstract class Noise3D implements INoise3D {
     protected int seed;
     protected final double scaleX;
     protected final double scaleY;
     protected final double scaleZ;
 
+    /**
+     * Generic constructor for a 3D noise generator
+     * @param seed The seed, may be any {@link int}
+     */
     public Noise3D( int seed ) {
         this.seed = seed;
         this.scaleX = 1;
@@ -23,6 +28,11 @@ public abstract class Noise3D implements INoise3D {
         this.scaleZ = 1;
     }
 
+    /**
+     * Generic constructor for a 3D noise generator
+     * @param seed  The seed, may be any {@link int}
+     * @param scale The scaling of the noise field along all axes
+     */
     public Noise3D( int seed, double scale ) {
         this.seed = seed;
         this.scaleX = scale;
@@ -30,6 +40,13 @@ public abstract class Noise3D implements INoise3D {
         this.scaleZ = scale;
     }
 
+    /**
+     * Generic constructor for a 3D noise generator
+     * @param seed   The seed, may be any {@link int}
+     * @param scaleX The scaling of the noise field along X axis
+     * @param scaleY The scaling of the noise field along Y axis
+     * @param scaleZ The scaling of the noise field along Z axis
+     */
     public Noise3D( int seed, double scaleX, double scaleY, double scaleZ ) {
         this.seed = seed;
         this.scaleX = scaleX;
@@ -37,25 +54,45 @@ public abstract class Noise3D implements INoise3D {
         this.scaleZ = scaleZ;
     }
 
+    /**
+     * Returns the seed of this generator
+     */
     public int getSeed() {
         return this.seed;
     }
 
+    /**
+     * Sets the seed of this generator
+     * @param seed The new seed
+     */
     public void setSeed( int seed ) {
         this.seed = seed;
     }
 
     public abstract double generate( double x, double y, double z );
 
+    /**
+     * Generates a noise and multiplies it by a specific amount.
+     * @param x    The x coordinate
+     * @param y    The y coordinate
+     * @param z    The z coordinate
+     * @param mult The multiplier
+     * @return The generated noise value
+     */
     public double generateMultiplied( double x, double y, double z, double mult ) {
         return generate( x, y, z ) * mult;
     }
 
+    /**
+     * Generates a noise value in a specific range.
+     * @param x   The x coordinate
+     * @param y   The y coordinate
+     * @param z   The z coordinate
+     * @param min The minimum limit of the range
+     * @param max The maximum limit of the range
+     * @return The generated noise value
+     */
     public double generateInRange( double x, double y, double z, double min, double max ) {
-        return MathUtil.lerp( min, max, ( generate( x, y, z ) + 1 ) / 2 );
-    }
-
-    public double generate( int x, int y, int z ) {
-        return this.generate( (double) x, (double) y, (double) z );
+        return NoiseMath.lerp( min, max, ( generate( x, y, z ) + 1 ) / 2 );
     }
 }

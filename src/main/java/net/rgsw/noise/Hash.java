@@ -3,11 +3,14 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 6 - 11 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package net.rgsw.noise;
 
+/**
+ * Helper class that generates random values based on a seed and coordinates, using hash functions.
+ */
 public class Hash {
 
     private final static int X_PRIME = 1619;
@@ -15,6 +18,12 @@ public class Hash {
     private final static int Z_PRIME = 6971;
     private final static int W_PRIME = 1013;
 
+    /**
+     * Generates a random double value between -1 and 1 for 1D coordinates.
+     * @param seed The seed, can be any {@code int}
+     * @param x    The x coordinate
+     * @return The random double value
+     */
     public static double hash1D( int seed, int x ) {
         int hash = seed;
         if( x < 0 ) x = Integer.MAX_VALUE + x;
@@ -26,6 +35,13 @@ public class Hash {
         return (double) hash / Integer.MAX_VALUE;
     }
 
+    /**
+     * Generates a random double value between -1 and 1 for 2D coordinates.
+     * @param seed The seed, can be any {@code int}
+     * @param x    The x coordinate
+     * @param y    The y coordinate
+     * @return The random double value
+     */
     public static double hash2D( int seed, int x, int y ) {
         int hash = seed;
         if( x < 0 ) x = Integer.MAX_VALUE + x;
@@ -39,6 +55,14 @@ public class Hash {
         return (double) hash / Integer.MAX_VALUE;
     }
 
+    /**
+     * Generates a random double value between -1 and 1 for 3D coordinates.
+     * @param seed The seed, can be any {@code int}
+     * @param x    The x coordinate
+     * @param y    The y coordinate
+     * @param z    The z coordinate
+     * @return The random double value
+     */
     public static double hash3D( int seed, int x, int y, int z ) {
         int hash = seed;
         if( x < 0 ) x = Integer.MAX_VALUE + x;
@@ -54,6 +78,15 @@ public class Hash {
         return (double) hash / Integer.MAX_VALUE;
     }
 
+    /**
+     * Generates a random double value between -1 and 1 for 4D coordinates.
+     * @param seed The seed, can be any {@code int}
+     * @param x    The x coordinate
+     * @param y    The y coordinate
+     * @param z    The z coordinate
+     * @param w    The w coordinate
+     * @return The random double value
+     */
     public static double hash4D( int seed, int x, int y, int z, int w ) {
         int hash = seed;
         if( x < 0 ) x = Integer.MAX_VALUE + x;
@@ -71,7 +104,13 @@ public class Hash {
         return (double) hash / Integer.MAX_VALUE;
     }
 
-    public static int hash1Dint( int seed, int x ) {
+    /**
+     * Generates a random int value between integer limits for 1D coordinates.
+     * @param seed The seed, can be any {@code int}
+     * @param x    The x coordinate
+     * @return The random integer value
+     */
+    public static int hash1I( int seed, int x ) {
         int hash = seed;
         if( x < 0 ) x = Integer.MAX_VALUE + x;
         hash ^= X_PRIME * x;
@@ -82,7 +121,14 @@ public class Hash {
         return hash;
     }
 
-    public static int hash2Dint( int seed, int x, int y ) {
+    /**
+     * Generates a random int value between integer limits for 2D coordinates.
+     * @param seed The seed, can be any {@code int}
+     * @param x    The x coordinate
+     * @param y    The y coordinate
+     * @return The random integer value
+     */
+    public static int hash2I( int seed, int x, int y ) {
         int hash = seed;
         if( x < 0 ) x = Integer.MAX_VALUE + x;
         if( y < 0 ) y = Integer.MAX_VALUE + y;
@@ -95,7 +141,15 @@ public class Hash {
         return hash;
     }
 
-    public static int hash3Dint( int seed, int x, int y, int z ) {
+    /**
+     * Generates a random int value between integer limits for 3D coordinates.
+     * @param seed The seed, can be any {@code int}
+     * @param x    The x coordinate
+     * @param y    The y coordinate
+     * @param z    The z coordinate
+     * @return The random integer value
+     */
+    public static int hash3I( int seed, int x, int y, int z ) {
         int hash = seed;
         if( x < 0 ) x = Integer.MAX_VALUE + x;
         if( y < 0 ) y = Integer.MAX_VALUE + y;
@@ -110,7 +164,16 @@ public class Hash {
         return hash;
     }
 
-    public static int hash4Dint( int seed, int x, int y, int z, int w ) {
+    /**
+     * Generates a random int value between integer limits for 4D coordinates.
+     * @param seed The seed, can be any {@code int}
+     * @param x    The x coordinate
+     * @param y    The y coordinate
+     * @param z    The z coordinate
+     * @param w    The w coordinate
+     * @return The random integer value
+     */
+    public static int hash4I( int seed, int x, int y, int z, int w ) {
         int hash = seed;
         if( x < 0 ) x = Integer.MAX_VALUE + x;
         if( y < 0 ) y = Integer.MAX_VALUE + y;

@@ -3,15 +3,24 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 6 - 11 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package net.rgsw.noise;
 
+/**
+ * Fractal-OpenSimplex noise generator for 2D space. This generator uses a specified amount of {@link
+ * OpenSimplex2D}-instances as octaves.
+ */
 public class FractalOpenSimplex2D extends Noise2D {
 
     private final OpenSimplex2D[] noiseOctaves;
 
+    /**
+     * Constructs a Fractal-OpenSimplex noise generator.
+     * @param seed    The seed, may be any {@code int}.
+     * @param octaves The amount of octaves.
+     */
     public FractalOpenSimplex2D( int seed, int octaves ) {
         super( seed );
 
@@ -26,6 +35,12 @@ public class FractalOpenSimplex2D extends Noise2D {
         }
     }
 
+    /**
+     * Constructs a Fractal-OpenSimplex noise generator.
+     * @param seed    The seed, may be any {@code int}.
+     * @param scale   The coordinate scaling along every axis.
+     * @param octaves The amount of octaves.
+     */
     public FractalOpenSimplex2D( int seed, double scale, int octaves ) {
         super( seed, scale );
 
@@ -40,6 +55,13 @@ public class FractalOpenSimplex2D extends Noise2D {
         }
     }
 
+    /**
+     * Constructs a Fractal-OpenSimplex noise generator.
+     * @param seed    The seed, may be any {@code int}.
+     * @param scaleX  The coordinate scaling along X axis.
+     * @param scaleY  The coordinate scaling along Y axis.
+     * @param octaves The amount of octaves.
+     */
     public FractalOpenSimplex2D( int seed, double scaleX, double scaleY, int octaves ) {
         super( seed, scaleX, scaleY );
 
@@ -69,5 +91,12 @@ public class FractalOpenSimplex2D extends Noise2D {
             d *= 2;
         }
         return n / t;
+    }
+
+    public void setSeed( int seed ) {
+        this.seed = seed;
+        for( OpenSimplex2D noise : this.noiseOctaves ) {
+            noise.setSeed( this.seed );
+        }
     }
 }

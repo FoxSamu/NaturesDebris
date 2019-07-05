@@ -1,12 +1,16 @@
 /*
- * Copyright (c) 2019 RGSW.
- * This file belongs to a separate library, made for the Modernity.
- * Licensed under the Apache Licence v2.0. Do not redistribute.
+ * Copyright (c) 2019 RedGalaxy & co.
+ * Licensed under the Apache Licence v2.0.
+ * Do not redistribute.
  *
- * Date: 6 - 11 - 2019
+ * By  : RGSW
+ * Date: 7 - 5 - 2019
  */
 
-package net.rgsw.noise;
+package modernity.common.world.gen.noise;
+
+import net.rgsw.noise.Noise2D;
+import net.rgsw.noise.Perlin2D;
 
 public class InverseFractalPerlin2D extends Noise2D {
 

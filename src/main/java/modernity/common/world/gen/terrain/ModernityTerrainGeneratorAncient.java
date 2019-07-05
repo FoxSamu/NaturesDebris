@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 15 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 package modernity.common.world.gen.terrain;
@@ -18,12 +18,12 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.IChunk;
 import net.rgsw.MathUtil;
-import net.rgsw.noise.InverseFractalPerlin2D;
-import net.rgsw.noise.InverseFractalPerlin3D;
 
 import modernity.api.util.EcoBlockPos;
 import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.ModernityGenSettings;
+import modernity.common.world.gen.noise.InverseFractalPerlin2D;
+import modernity.common.world.gen.noise.InverseFractalPerlin3D;
 
 import java.util.Random;
 

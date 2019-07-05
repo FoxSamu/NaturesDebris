@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 7 - 5 - 2019
  */
 
 // Setup for build script itself
@@ -58,6 +58,9 @@ project.ext.modid = 'modernity'
 
 repositories {
     mavenLocal()
+//    maven {
+//        url "file://$project.rootDir/libs"
+//    }
 }
 
 minecraft {
@@ -99,7 +102,8 @@ minecraft {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.13.2-25.0.208'
     compile 'net.rgsw:tasklib:1.0'
-    
+//    compile ":$project.rootDir/libs/noise-1.0.jar"
+
     // provided 'dep' // May not exist at runtime
     // deobf 'dep' // Remaps a dependency
 }
