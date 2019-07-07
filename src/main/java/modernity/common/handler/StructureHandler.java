@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 5 - 2019
+ * Date: 7 - 7 - 2019
  */
 
 package modernity.common.handler;
@@ -26,6 +26,6 @@ public class StructureHandler {
 
     @SubscribeEvent
     public void onAddOverworldStructures( AddOverworldStructureEvent event ) {
-        event.registerStructure( GenerationStage.Decoration.SURFACE_STRUCTURES, MDStructures.CURSE_RUIN, CurseRuinStructure.Type.DEFAULT );
+        event.registerStructure( GenerationStage.Decoration.SURFACE_STRUCTURES, MDStructures.CURSE_RUIN, CurseRuinStructure.Type.PLAINS );
     }
 }

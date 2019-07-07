@@ -1,0 +1,264 @@
+{
+  "pools": [
+    {
+      "name": "basic",
+      "rolls": 3,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:coal",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 10
+              }
+            }
+          ],
+          "weight": 2
+        },
+        {
+          "type": "item",
+          "name": "minecraft:charcoal",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 10
+              }
+            }
+          ],
+          "weight": 2
+        },
+        {
+          "type": "item",
+          "name": "minecraft:stick",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 10
+              }
+            }
+          ],
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "conditions": [
+        {
+          "condition": "random_chance_with_looting",
+          "chance": 0.25,
+          "looting_multiplier": 0.1
+        }
+      ],
+      "name": "advanced",
+      "rolls": 3,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:diamond",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "minecraft:iron_ingot",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 10
+        },
+        {
+          "type": "item",
+          "name": "minecraft:gold_ingot",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ],
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "conditions": [
+        {
+          "condition": "random_chance_with_looting",
+          "chance": 0.05,
+          "looting_multiplier": 0.01
+        }
+      ],
+      "name": "advanced",
+      "rolls": 2,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:emerald",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "conditions": [
+        {
+          "condition": "random_chance_with_looting",
+          "chance": 0.05,
+          "looting_multiplier": 0.01
+        }
+      ],
+      "name": "emerald",
+      "rolls": 2,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:emerald",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "conditions": [
+        {
+          "condition": "random_chance_with_looting",
+          "chance": 0.05,
+          "looting_multiplier": 0.01
+        }
+      ],
+      "name": "weird",
+      "rolls": 5,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:bone",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 4,
+                "max": 6
+              }
+            }
+          ],
+          "weight": 25
+        },
+        {
+          "type": "item",
+          "name": "minecraft:spider_eye",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 25
+        },
+        {
+          "type": "item",
+          "name": "minecraft:rotten_flesh",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 3,
+                "max": 7
+              }
+            }
+          ],
+          "weight": 25
+        },
+        {
+          "type": "item",
+          "name": "minecraft:saddle",
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "conditions": [
+        {
+          "condition": "random_chance_with_looting",
+          "chance": 0.05,
+          "looting_multiplier": 0.01
+        }
+      ],
+      "name": "weird",
+      "rolls": 5,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:bone",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 4,
+                "max": 6
+              }
+            }
+          ],
+          "weight": 25
+        },
+        {
+          "type": "item",
+          "name": "minecraft:spider_eye",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 25
+        },
+        {
+          "type": "item",
+          "name": "minecraft:rotten_flesh",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 3,
+                "max": 7
+              }
+            }
+          ],
+          "weight": 25
+        },
+        {
+          "type": "item",
+          "name": "minecraft:saddle",
+          "weight": 20
+        },
+        {
+          "type": "item",
+          "name": "minecraft:book",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "enchant_randomly"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
