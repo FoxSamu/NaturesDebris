@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 5 - 2019
+ * Date: 7 - 8 - 2019
  */
 
 package modernity.common.command.argument;
@@ -28,23 +28,15 @@ public class DimensionArgumentType implements ArgumentType<DimensionType> {
     @Override
     public DimensionType parse( StringReader reader ) throws CommandSyntaxException {
         int cursor = reader.getCursor();
-        String string = reader.getString();
 
+        ResourceLocation read = ResourceLocation.read( reader );
         for( DimensionType type : DimensionType.getAll() ) {
             ResourceLocation loc = DimensionType.getKey( type );
-            String str = loc + "";
-            int next = cursor + str.length();
-
-            if( next > string.length() ) {
-                continue;
-            }
-
-            String match = string.substring( cursor, next );
-            if( match.equals( str ) ) {
-                reader.setCursor( next );
+            if( read.equals( loc ) ) {
                 return type;
             }
         }
+        reader.setCursor( cursor );
         throw new SimpleCommandExceptionType( new LiteralMessage( "No such dimension" ) ).createWithContext( reader );
     }
 
