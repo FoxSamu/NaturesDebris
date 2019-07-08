@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 28 - 2019
+ * Date: 7 - 8 - 2019
  */
 
 package modernity.common.block.base;
@@ -32,9 +32,13 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraft.world.dimension.DimensionType;
 
 import modernity.common.block.MDBlocks;
 import modernity.common.item.MDItems;
+import modernity.common.world.dim.MDDimensions;
+import modernity.common.world.teleporter.ModernityTeleporter;
 
 @SuppressWarnings( "deprecation" )
 public class BlockPortalCauldron extends Block implements MDBlocks.Entry {
@@ -75,14 +79,18 @@ public class BlockPortalCauldron extends Block implements MDBlocks.Entry {
         double fluidHeight = pos.getY() + 0.9375;
         if( ! world.isRemote && entity.isBurning() && entity.getBoundingBox().minY <= fluidHeight ) {
             entity.extinguish();
-            // TODO: Teleport to modernity, or back
+        }
+        if( ! world.isRemote && world instanceof WorldServer && entity.getBoundingBox().minY <= fluidHeight ) {
+            DimensionType dimen = MDDimensions.MODERNITY.getType();
+            if( world.getDimension().getType() == dimen ) {
+                dimen = DimensionType.OVERWORLD;
+            }
+            WorldServer otherWorld = ( (WorldServer) world ).getServer().getWorld( dimen );
+            entity.changeDimension( dimen, ModernityTeleporter.getTeleporter( otherWorld ) );
         }
     }
 
     public boolean onBlockActivated( IBlockState state, World world, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ ) {
-        // TODO
-        // - Create from item
-
         ItemStack heldStack = player.getHeldItem( hand );
         if( heldStack.isEmpty() ) {
             return true;
