@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 16 - 2019
+ * Date: 7 - 9 - 2019
  */
 
 package modernity.common.world.gen;
@@ -14,7 +14,14 @@ import net.minecraft.world.gen.ChunkGenSettings;
 import modernity.common.block.MDBlocks;
 
 public class ModernityGenSettings extends ChunkGenSettings implements IModernityGenSettings {
+    private int seaLevel = 72;
     public ModernityGenSettings() {
+        defaultBlock = MDBlocks.ROCK.getDefaultState();
+        defaultFluid = MDBlocks.MODERNIZED_WATER.getDefaultState();
+    }
+
+    public ModernityGenSettings( int seaLevel ) {
+        this.seaLevel = seaLevel;
         defaultBlock = MDBlocks.ROCK.getDefaultState();
         defaultFluid = MDBlocks.MODERNIZED_WATER.getDefaultState();
     }
@@ -117,7 +124,7 @@ public class ModernityGenSettings extends ChunkGenSettings implements IModernity
 
     @Override
     public int getWaterLevel() {
-        return 72;
+        return seaLevel;
     }
 
     @Override

@@ -4,12 +4,14 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 7 - 9 - 2019
  */
 
 package modernity.common.world.gen;
 
-public interface IModernityGenSettings {
+import net.minecraft.world.gen.IChunkGenSettings;
+
+public interface IModernityGenSettings extends IChunkGenSettings {
     int getBiomeBlendRadius();         // 3
 
     double getMainNoiseSizeX();        // 684.412

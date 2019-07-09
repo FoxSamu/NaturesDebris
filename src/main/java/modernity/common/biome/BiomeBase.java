@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 7 - 9 - 2019
  */
 
 package modernity.common.biome;
@@ -16,9 +16,14 @@ import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.surfacebuilders.CompositeSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+import net.rgsw.noise.FractalOpenSimplex3D;
 import net.rgsw.noise.FractalPerlin3D;
 
 import modernity.api.util.ColorUtil;
+import modernity.api.util.EcoBlockPos;
+import modernity.api.util.MovingBlockPos;
+import modernity.common.block.MDBlocks;
+import modernity.common.world.gen.ModernityGenSettings;
 import modernity.common.world.gen.surface.ISurfaceGenerator;
 
 import java.util.Random;
@@ -125,7 +130,11 @@ public class BiomeBase extends Biome {
 
         @SuppressWarnings( "ConstantConditions" )
         public Builder() {
-            surfaceBuilder( new CompositeSurfaceBuilder<>( new NoSurfaceBuilder(), null ) );
+            surfaceBuilder( new CompositeSurfaceBuilder<>( new ModernitySurfaceBuilder(), new SurfaceBuilderConfig(
+                    MDBlocks.DARK_GRASS.getDefaultState(),
+                    MDBlocks.DARK_DIRT.getDefaultState(),
+                    MDBlocks.DARK_DIRT.getDefaultState()
+            ) ) );
             precipitation( RainType.NONE );
             category( Category.NONE );
             depth( 0 );
@@ -224,8 +233,22 @@ public class BiomeBase extends Biome {
         }
     }
 
-    static class NoSurfaceBuilder implements ISurfaceBuilder<SurfaceBuilderConfig> {
+    static class ModernitySurfaceBuilder implements ISurfaceBuilder<SurfaceBuilderConfig> {
         @Override
-        public void buildSurface( Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, IBlockState defaultBlock, IBlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config ) {}
+        public void buildSurface( Random random, IChunk chunk, Biome biome, int x, int z, int startHeight, double noise, IBlockState defaultBlock, IBlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config ) {
+            MovingBlockPos mpos = new MovingBlockPos();
+            for( int y = 0; y < 256; y++ ) {
+                mpos.setPos( x, y, z );
+                if( chunk.getBlockState( mpos ).isSolid() ) {
+                    chunk.setBlockState( mpos, MDBlocks.ROCK.getDefaultState(), false );
+                }
+            }
+
+            if( biome instanceof BiomeBase ) {
+                EcoBlockPos rpos = EcoBlockPos.retain();
+                ( (BiomeBase) biome ).getSurfaceGen().generateSurface( chunk, chunk.getPos().x, chunk.getPos().z, x, z, random, (BiomeBase) biome, new FractalOpenSimplex3D( (int) seed, 2.512, 4 ), rpos, new ModernityGenSettings( seaLevel ) );
+                rpos.release();
+            }
+        }
     }
 }
