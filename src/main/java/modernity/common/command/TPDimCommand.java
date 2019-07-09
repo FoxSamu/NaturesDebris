@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 5 - 2019
+ * Date: 7 - 9 - 2019
  */
 
 package modernity.common.command;
@@ -23,11 +23,15 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.dimension.DimensionType;
 
 import modernity.common.command.argument.DimensionArgumentType;
+import modernity.common.world.dim.MDDimensions;
 
 import java.util.ArrayList;
 
 public class TPDimCommand {
     private static final String TK_ERROR_INVALID = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:access.invalid" ) );
+    private static final String TK_ERROR_NO_ENTITY = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:access.no_entity" ) );
+    private static final String TK_ALREADY_HERE = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:access.already_here" ) );
+    private static final String TK_CHANGED_DIMEN = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:access.changed_dimen" ) );
 
     public static void createCommand( ArrayList<LiteralArgumentBuilder<CommandSource>> list ) {
         createCommand( "access", list );
@@ -42,6 +46,7 @@ public class TPDimCommand {
                             if( src.getEntity() == null ) return false;
                             return src.hasPermissionLevel( 2 );
                         } )
+                        .executes( TPDimCommand::teleportDefault )
                         .then(
                                 Commands.argument( "dimension", new DimensionArgumentType() )
                                         .executes( TPDimCommand::teleportTyped )
@@ -65,6 +70,19 @@ public class TPDimCommand {
         return teleport( src, dimen );
     }
 
+    private static int teleportDefault( CommandContext<CommandSource> ctx ) {
+        CommandSource src = ctx.getSource();
+
+        DimensionType dimen = ctx.getSource().getWorld().dimension.getType();
+
+        DimensionType goTo = DimensionType.OVERWORLD;
+        if( goTo == dimen ) {
+            goTo = MDDimensions.MODERNITY.getType();
+        }
+
+        return teleport( src, goTo );
+    }
+
 //    private static DimensionType getTypeFromID( int id ) {
 //        DimensionType type = DimensionType.getById( id );
 //        if( type == null ) {
@@ -86,8 +104,16 @@ public class TPDimCommand {
 
     private static int teleport( CommandSource source, DimensionType dim ) {
         Entity e = source.getEntity();
-        if( e == null ) return 0;
+        if( e == null ) {
+            source.sendErrorMessage( new TextComponentTranslation( TK_ERROR_NO_ENTITY ) );
+            return 0;
+        }
+        if( e.dimension == dim ) {
+            source.sendFeedback( new TextComponentTranslation( TK_ALREADY_HERE ), true );
+            return 1;
+        }
         e.changeDimension( dim, new TP( source.getWorld(), e.posX, e.posY, e.posZ ) );
+        source.sendFeedback( new TextComponentTranslation( TK_CHANGED_DIMEN ), true );
         return 1;
     }
 

@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 8 - 2019
+ * Date: 7 - 9 - 2019
  */
 
 package modernity.common.command.argument;
@@ -42,9 +42,21 @@ public class DimensionArgumentType implements ArgumentType<DimensionType> {
 
     @Override
     public <S> CompletableFuture<Suggestions> listSuggestions( CommandContext<S> context, SuggestionsBuilder builder ) {
-        for( DimensionType type : DimensionType.getAll() ) {
-            builder.suggest( DimensionType.getKey( type ) + "" );
+        StringReader reader = new StringReader( builder.getInput() );
+        reader.setCursor( builder.getStart() );
+
+        String read = reader.readUnquotedString();
+        if( reader.canRead() && reader.peek() == ':' ) {
+            read += ":" + reader.readUnquotedString();
         }
+        String read2 = new ResourceLocation( read ).toString();
+        for( DimensionType type : DimensionType.getAll() ) {
+            String loc = DimensionType.getKey( type ) + "";
+            if( loc.startsWith( read ) || loc.startsWith( read2 ) ) {
+                builder.suggest( loc );
+            }
+        }
+
         return builder.buildFuture();
     }
 }
