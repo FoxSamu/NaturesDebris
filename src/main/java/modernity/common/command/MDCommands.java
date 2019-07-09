@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 5 - 2019
+ * Date: 7 - 9 - 2019
  */
 
 package modernity.common.command;
@@ -66,7 +66,7 @@ public class MDCommands {
     private static int invokeMain( CommandContext<CommandSource> ctx ) {
         CommandSource src = ctx.getSource();
         src.sendFeedback( new TextComponentTranslation( TK_MAIN_RESULT_TITLE ), true );
-        src.sendFeedback( new TextComponentTranslation( TK_MAIN_RESULT_VERSION, MDInfo.VERSION ), true );
+        src.sendFeedback( new TextComponentTranslation( TK_MAIN_RESULT_VERSION, MDInfo.VERSION, MDInfo.VERSION_NAME ), true );
         return 1;
     }
 }
