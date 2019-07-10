@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 5 - 2019
+ * Date: 7 - 10 - 2019
  */
 
 // Setup for build script itself
@@ -24,7 +24,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-version = 'indev-0.0.1'
+version = 'INDEV-0.0.0'
 group = 'net.rgsw'
 archivesBaseName = 'modernity'
 

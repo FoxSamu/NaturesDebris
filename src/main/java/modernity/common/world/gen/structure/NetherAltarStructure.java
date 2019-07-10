@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 5 - 2019
+ * Date: 7 - 10 - 2019
  */
 
 package modernity.common.world.gen.structure;
@@ -155,6 +155,7 @@ public class NetherAltarStructure extends Structure<NoFeatureConfig> {
 
                 if( pos.getY() < 0 ) {
                     height = rand.nextInt( 89 ) + 31;
+                    boundingBox.offset( 0, height, 0 );
                 } else {
                     height = pos.getY() + 1;
                     boundingBox.offset( 0, height, 0 );

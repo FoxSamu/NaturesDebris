@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 16 - 2019
+ * Date: 7 - 10 - 2019
  */
 
 package modernity.common.block.base;
@@ -26,10 +26,10 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IShearable;
 
-import modernity.Modernity;
 import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
 import modernity.client.util.BiomeValues;
+import modernity.common.util.ProxyCommon;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -118,7 +118,7 @@ public class BlockLeaves extends BlockBase implements IShearable {
 
     @Override
     public BlockRenderLayer getRenderLayer() {
-        return Modernity.proxy.fancyGraphics() ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
+        return ProxyCommon.get().fancyGraphics() ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
     }
 
     @Override

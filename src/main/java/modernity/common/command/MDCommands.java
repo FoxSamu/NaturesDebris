@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 9 - 2019
+ * Date: 7 - 10 - 2019
  */
 
 package modernity.common.command;
@@ -14,6 +14,8 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.command.arguments.ArgumentSerializer;
+import net.minecraft.command.arguments.ArgumentTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -22,6 +24,7 @@ import net.minecraftforge.common.MinecraftForge;
 import modernity.MDInfo;
 import modernity.api.event.ModernityCommandSetupEvent;
 import modernity.api.event.ModernityDebugCommandSetupEvent;
+import modernity.common.command.argument.DimensionArgumentType;
 
 import java.util.ArrayList;
 
@@ -68,5 +71,9 @@ public class MDCommands {
         src.sendFeedback( new TextComponentTranslation( TK_MAIN_RESULT_TITLE ), true );
         src.sendFeedback( new TextComponentTranslation( TK_MAIN_RESULT_VERSION, MDInfo.VERSION, MDInfo.VERSION_NAME ), true );
         return 1;
+    }
+
+    static {
+        ArgumentTypes.register( new ResourceLocation( "modernity:dimension_type" ), DimensionArgumentType.class, new ArgumentSerializer<>( DimensionArgumentType::new ) );
     }
 }

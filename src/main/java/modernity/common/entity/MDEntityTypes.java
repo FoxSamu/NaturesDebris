@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 12 - 2019
+ * Date: 7 - 10 - 2019
  */
 
 package modernity.common.entity;
@@ -39,6 +39,6 @@ public class MDEntityTypes {
 
     @OnlyIn( Dist.CLIENT )
     public static void registerClient() {
-        RenderingRegistry.registerEntityRenderingHandler( EntityFallBlock.class, RenderFallBlock::new );
+        RenderingRegistry.registerEntityRenderingHandler( EntityFallBlock.class, new RenderFallBlock.Factory() );
     }
 }

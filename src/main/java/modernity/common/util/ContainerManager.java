@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 29 - 2019
+ * Date: 7 - 10 - 2019
  */
 
 package modernity.common.util;
@@ -28,12 +28,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 
-import modernity.Modernity;
-import modernity.common.net.SPacketOpenContainer;
+import modernity.common.net.pkt.SPacketOpenContainer;
 
 public class ContainerManager {
     public static void openContainer( EntityPlayer player, IInventory inventory ) {
-        Modernity.proxy.openContainer( player, inventory );
+        ProxyCommon.get().openContainer( player, inventory );
     }
 
     @SuppressWarnings( "ConstantConditions" )
@@ -56,7 +55,7 @@ public class ContainerManager {
 
             player.getNextWindowId();
             if( inventory instanceof IInteractionObject ) {
-                player.connection.sendPacket( new SPacketOpenContainer( player.currentWindowId, ( (IInteractionObject) inventory ).getGuiID(), inventory.getDisplayName(), inventory.getSizeInventory() ) );
+                ProxyCommon.network().sendToPlayer( new SPacketOpenContainer( player.currentWindowId, ( (IInteractionObject) inventory ).getGuiID(), inventory.getDisplayName(), inventory.getSizeInventory() ), player );
                 player.openContainer = ( (IInteractionObject) inventory ).createContainer( player.inventory, player );
 
                 player.openContainer.windowId = player.currentWindowId;

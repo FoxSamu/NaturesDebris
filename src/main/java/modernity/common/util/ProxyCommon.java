@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 7 - 2019
+ * Date: 7 - 10 - 2019
  */
 
 package modernity.common.util;
@@ -13,6 +13,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Biomes;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.IThreadListener;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -21,34 +24,49 @@ import net.minecraft.world.storage.loot.LootTableManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 
 import modernity.common.command.MDCommands;
 import modernity.common.handler.CapabilityHandler;
 import modernity.common.handler.StructureHandler;
-import modernity.common.net.MDPackets;
+import modernity.common.net.pkt.MDPackets;
 import modernity.common.world.dim.MDDimensions;
 import modernity.common.world.gen.structure.CurseRuinStructure;
 import modernity.common.world.gen.structure.MDStructures;
+import modernity.net.PacketChannel;
 
 public class ProxyCommon {
+    private static ProxyCommon instance;
 
+    private MinecraftServer server;
     private LootTableManager lootManager;
+
+    private final PacketChannel networkChannel = new PacketChannel( new ResourceLocation( "modernity:connection" ), 0 );
+
+    public ProxyCommon() {
+        if( instance != null ) {
+            throw new IllegalStateException( "Proxy is already initialized" );
+        }
+        instance = this;
+    }
 
     /**
      * Called on init phase. This is when FML fires the {@link FMLCommonSetupEvent}.
      */
     public void init() {
         Hooks.setupBiomeStructures();
+        MDPackets.register( networkChannel );
         MDStructures.register();
-        MDPackets.register();
         MDLootTables.load();
     }
 
     /**
-     * Called when loading completed. This is when FML fires the {@link FMLLoadCompleteEvent}.
+     * Called when loading is completed. This is when FML fires the {@link FMLLoadCompleteEvent}.
      */
     public void loadComplete() {
         Biomes.NETHER.addStructure( MDStructures.NETHER_ALTAR, IFeatureConfig.NO_FEATURE_CONFIG );
@@ -118,16 +136,6 @@ public class ProxyCommon {
         return false;
     }
 
-    @SubscribeEvent
-    public void serverStart( FMLServerStartingEvent event ) {
-        MDCommands.register( event.getCommandDispatcher() );
-        lootManager = event.getServer().getLootTableManager();
-    }
-
-    @SubscribeEvent
-    public void onRegisterDimensions( RegisterDimensionsEvent event ) {
-        MDDimensions.init( event.getMissingNames() );
-    }
 
     public void openContainer( EntityPlayer player, IInventory inventory ) {
         if( player instanceof EntityPlayerMP ) {
@@ -135,7 +143,65 @@ public class ProxyCommon {
         }
     }
 
+    @SubscribeEvent
+    public void serverStart( FMLServerStartingEvent event ) {
+        MDCommands.register( event.getCommandDispatcher() );
+    }
+
+    @SubscribeEvent
+    public void serverAboutToStart( FMLServerAboutToStartEvent event ) {
+        server = event.getServer();
+        lootManager = server.getLootTableManager();
+    }
+
+    @SubscribeEvent
+    public void serverStop( FMLServerStoppedEvent event ) {
+        server = null;
+        lootManager = null;
+    }
+
+    @SubscribeEvent
+    public void onRegisterDimensions( RegisterDimensionsEvent event ) {
+        MDDimensions.init( event.getMissingNames() );
+    }
+
     public LootTableManager getLootTableManager() {
         return lootManager;
+    }
+
+    public MinecraftServer getServer() {
+        return server;
+    }
+
+    public IThreadListener getThreadListener() {
+        return server;
+    }
+
+    public IThreadListener getThreadListener( LogicalSide side ) {
+        return side == LogicalSide.SERVER ? server : getThreadListener();
+    }
+
+    public LogicalSide getSide() {
+        return LogicalSide.SERVER;
+    }
+
+    public boolean isServer() {
+        return getSide() == LogicalSide.SERVER;
+    }
+
+    public boolean isClient() {
+        return ! isServer();
+    }
+
+    public PacketChannel getNetworkChannel() {
+        return networkChannel;
+    }
+
+    public static ProxyCommon get() {
+        return instance;
+    }
+
+    public static PacketChannel network() {
+        return get().getNetworkChannel();
     }
 }

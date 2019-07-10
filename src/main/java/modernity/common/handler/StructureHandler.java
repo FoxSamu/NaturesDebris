@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 7 - 2019
+ * Date: 7 - 10 - 2019
  */
 
 package modernity.common.handler;
@@ -14,14 +14,15 @@ import net.minecraftforge.event.world.ChunkWatchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import modernity.api.event.AddOverworldStructureEvent;
-import modernity.common.net.SPacketStructure;
+import modernity.common.net.pkt.SPacketStructure;
+import modernity.common.util.ProxyCommon;
 import modernity.common.world.gen.structure.CurseRuinStructure;
 import modernity.common.world.gen.structure.MDStructures;
 
 public class StructureHandler {
     @SubscribeEvent
     public void onChunkWatch( ChunkWatchEvent.Watch event ) {
-        event.getPlayer().connection.sendPacket( new SPacketStructure( "MDCave", event.getChunk() ) );
+        ProxyCommon.network().sendToPlayer( new SPacketStructure( "MDCave", event.getChunk() ), event.getPlayer() );
     }
 
     @SubscribeEvent

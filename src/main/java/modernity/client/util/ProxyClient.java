@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 29 - 2019
+ * Date: 7 - 10 - 2019
  */
 
 package modernity.client.util;
@@ -16,7 +16,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.resources.IResourceManagerReloadListener;
+import net.minecraft.util.IThreadListener;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import modernity.client.handler.TextureStitchHandler;
@@ -83,5 +85,23 @@ public class ProxyClient extends ProxyCommon {
             return;
         }
         super.openContainer( player, inventory );
+    }
+
+    public Minecraft getMinecraft() {
+        return mc;
+    }
+
+    @Override
+    public IThreadListener getThreadListener() {
+        return mc;
+    }
+
+    @Override
+    public LogicalSide getSide() {
+        return LogicalSide.CLIENT;
+    }
+
+    public static ProxyClient get() {
+        return (ProxyClient) ProxyCommon.get();
     }
 }

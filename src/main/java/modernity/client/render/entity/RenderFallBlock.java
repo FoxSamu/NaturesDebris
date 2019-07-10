@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 12 - 2019
+ * Date: 7 - 10 - 2019
  */
 
 package modernity.client.render.entity;
@@ -25,6 +25,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.data.EmptyModelData;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import modernity.common.entity.EntityFallBlock;
 
@@ -86,5 +87,12 @@ public class RenderFallBlock extends Render<EntityFallBlock> {
 
     protected ResourceLocation getEntityTexture( EntityFallBlock entity ) {
         return TextureMap.LOCATION_BLOCKS_TEXTURE;
+    }
+
+    public static class Factory implements IRenderFactory<EntityFallBlock> {
+        @Override
+        public Render<? super EntityFallBlock> createRenderFor( RenderManager manager ) {
+            return new RenderFallBlock( manager );
+        }
     }
 }
