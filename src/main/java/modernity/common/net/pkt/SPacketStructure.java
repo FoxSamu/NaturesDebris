@@ -84,7 +84,7 @@ public class SPacketStructure implements IPacket {
     @OnlyIn( Dist.CLIENT )
     @Override
     public void process( ProcessContext ctx ) {
-        ctx.scheduleOnMainThread();
+        ctx.ensureMainThread();
 
         IWorld world = Minecraft.getInstance().world;
         start = null;

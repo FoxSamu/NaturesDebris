@@ -57,7 +57,7 @@ public class SPacketOpenContainer implements IPacket {
     @OnlyIn( Dist.CLIENT )
     @Override
     public void process( ProcessContext ctx ) {
-        ctx.scheduleOnMainThread();
+        ctx.ensureMainThread();
         ClientContainerManager.receivePacket0( this );
     }
 
