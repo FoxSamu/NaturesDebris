@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 10 - 2019
+ * Date: 7 - 11 - 2019
  */
 
 package modernity.common.util;
@@ -61,6 +61,7 @@ public class ProxyCommon {
     public void init() {
         Hooks.setupBiomeStructures();
         MDPackets.register( networkChannel );
+        networkChannel.lock();
         MDStructures.register();
         MDLootTables.load();
     }
