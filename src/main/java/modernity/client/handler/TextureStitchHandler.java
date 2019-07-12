@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 3 - 2019
+ * Date: 7 - 12 - 2019
  */
 
 package modernity.client.handler;
@@ -14,6 +14,8 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.registry.IRegistry;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -25,6 +27,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@OnlyIn( Dist.CLIENT )
 public class TextureStitchHandler {
     @SubscribeEvent
     public void onTextureStitch( TextureStitchEvent.Pre event ) {

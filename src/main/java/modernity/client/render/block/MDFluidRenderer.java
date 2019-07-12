@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 26 - 2019
+ * Date: 7 - 12 - 2019
  */
 
 package modernity.client.render.block;
@@ -43,6 +43,7 @@ import modernity.api.block.fluid.IGaseousFluid;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
+@OnlyIn( Dist.CLIENT )
 public class MDFluidRenderer extends BlockFluidRenderer {
     private static final Logger LOGGER = LogManager.getLogger( "FluidRenderer" );
     public static final ResourceLocation LOCATION_LAVA_STILL = new ResourceLocation( "block/lava_still" );

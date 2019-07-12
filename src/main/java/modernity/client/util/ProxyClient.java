@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 10 - 2019
+ * Date: 7 - 12 - 2019
  */
 
 package modernity.client.util;
@@ -17,6 +17,8 @@ import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.resources.IResourceManagerReloadListener;
 import net.minecraft.util.IThreadListener;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
@@ -32,6 +34,7 @@ import modernity.common.util.ContainerManager;
 import modernity.common.util.ProxyCommon;
 
 
+@OnlyIn( Dist.CLIENT )
 public class ProxyClient extends ProxyCommon {
     public final Minecraft mc = Minecraft.getInstance();
 

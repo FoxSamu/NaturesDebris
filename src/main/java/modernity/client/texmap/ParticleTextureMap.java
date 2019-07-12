@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 17 - 2019
+ * Date: 7 - 12 - 2019
  */
 
 package modernity.client.texmap;
@@ -13,10 +13,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@OnlyIn( Dist.CLIENT )
 public class ParticleTextureMap {
     public static final TextureMap TEXTURE_MAP = new TextureMap( "textures/particle" );
     public static final ResourceLocation TEX_MAP_LOCATION = new ResourceLocation( "modernity:particles" );

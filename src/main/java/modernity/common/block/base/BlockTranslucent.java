@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 19 - 2019
+ * Date: 7 - 12 - 2019
  */
 
 package modernity.common.block.base;
@@ -18,6 +18,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.client.particle.SaltParticle;
 import modernity.common.block.MDBlocks;
@@ -56,6 +58,7 @@ public class BlockTranslucent extends BlockBase {
         }
 
         @Override
+        @OnlyIn( Dist.CLIENT )
         public void animateTick( IBlockState state, World world, BlockPos pos, Random rand ) {
             if( rand.nextInt( 5 ) == 0 ) {
                 if( world.getBlockState( pos.down() ).getMaterial().blocksMovement() ) return;

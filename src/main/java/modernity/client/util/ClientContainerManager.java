@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 10 - 2019
+ * Date: 7 - 12 - 2019
  */
 
 package modernity.client.util;
@@ -14,12 +14,15 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.client.gui.GuiNetherAltar;
 import modernity.common.net.SPacketOpenContainer;
 
 import java.util.HashMap;
 
+@OnlyIn( Dist.CLIENT )
 public class ClientContainerManager {
     private static final HashMap<String, IGUIHandler> HANDLERS = new HashMap<>();
 

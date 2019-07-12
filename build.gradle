@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 10 - 2019
+ * Date: 7 - 12 - 2019
  */
 
 // Setup for build script itself
@@ -24,19 +24,12 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-version = 'INDEV-0.0.0'
-group = 'net.rgsw'
-archivesBaseName = 'modernity'
-
-// Use Java 1.8
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
-
 
 project.ext.canJarBeSigned = {
     return getVariable('mdKeyStore') != null && (!isDeploymentEnv || isDeploymentRelease)
 }
 
-//Returns the public fingerprint, may be empty ("")
+// Returns the public fingerprint, may be empty ("")
 project.ext.getProjectFingerprint = {
     if (canJarBeSigned()) {
         return getVariable('mdSignSHA1').replaceAll(':', '').toLowerCase()
@@ -44,7 +37,7 @@ project.ext.getProjectFingerprint = {
     return ''
 }
 
-//Attempts to get a project variable and if none is found it tries to read from a system environment variable
+// Attempts to get a project variable and if none is found it tries to read from a system environment variable
 project.ext.getVariable = { key ->
     return project.hasProperty(key) ? project.property(key) : ENV[key]
 }
@@ -56,11 +49,11 @@ project.ext.buildnumber = project.isDeploymentEnv ? ENV['DEPLOY_BUILD_NUMBER'] :
 
 project.ext.modid = 'modernity'
 
+project.ext.server = false
+
+
 repositories {
     mavenLocal()
-//    maven {
-//        url "file://$project.rootDir/libs"
-//    }
 }
 
 minecraft {
@@ -99,10 +92,9 @@ minecraft {
     }
 }
 
+
 dependencies {
     minecraft 'net.minecraftforge:forge:1.13.2-25.0.208'
-    compile 'net.rgsw:tasklib:1.0'
-//    compile ":$project.rootDir/libs/noise-1.0.jar"
 
     // provided 'dep' // May not exist at runtime
     // deobf 'dep' // Remaps a dependency
@@ -120,12 +112,24 @@ jar {
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
+
+    if (server) {
+        exclude("modernity/client/**")
+    }
 }
+
+version = 'INDEV-0.0.0'
+group = 'net.rgsw'
+archivesBaseName = 'modernity'
+
+// Use Java 1.8
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+group = 'redgalaxy'
 
 task signJar(dependsOn: 'reobfJar') {
     doLast {
         if (canJarBeSigned()) {
-            println ":$project.name:${name}"
             ant.signjar(
                     destDir: "${jar.archivePath.parentFile}",
                     jar: "${jar.archivePath}",
@@ -147,6 +151,7 @@ task signJar(dependsOn: 'reobfJar') {
 build {
     dependsOn signJar
 }
+
 
 def reobfFile = file("$buildDir/reobfJar/output.jar")
 def reobfArtifact = artifacts.add('default', reobfFile) {

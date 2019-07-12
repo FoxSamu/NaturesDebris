@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 28 - 2019
+ * Date: 7 - 12 - 2019
  */
 
 package modernity.client.render.block;
@@ -22,6 +22,8 @@ import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.data.EmptyModelData;
 import net.minecraftforge.client.model.data.IModelData;
@@ -31,6 +33,7 @@ import net.minecraftforge.resource.VanillaResourceType;
 
 import java.util.Random;
 
+@OnlyIn( Dist.CLIENT )
 public class MDBlockRendererDispatcher extends BlockRendererDispatcher {
     private final BlockModelShapes blockModelShapes;
     private final BlockModelCache blockModelCache;

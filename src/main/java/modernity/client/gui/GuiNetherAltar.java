@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 29 - 2019
+ * Date: 7 - 12 - 2019
  */
 
 package modernity.client.gui;
@@ -14,9 +14,12 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.common.container.NetherAltarContainer;
 
+@OnlyIn( Dist.CLIENT )
 public class GuiNetherAltar extends GuiContainer {
     private static final ResourceLocation TEXTURE = new ResourceLocation( "modernity:textures/gui/container/nether_altar.png" );
     /** The player inventory bound to this GUI. */
