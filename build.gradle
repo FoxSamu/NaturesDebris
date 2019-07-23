@@ -159,10 +159,22 @@ task generateSources(type: Copy) {
 }
 
 processResources {
-    filter { line ->
-        line.replaceAll('\\$\\{version\\}', "$project.version")
-                .replaceAll('\\$\\{verName\\}', "$project.versionName")
+    // Import png and ogg apart from other files as we don't want lines to be
+    // replaced in such files...
+    from( 'src/main/resources' ) {
+        exclude '**/*.png'
+        exclude '**/*.ogg'
+        filter { line ->
+            line.replaceAll('\\$\\{version\\}', "$project.version")
+                    .replaceAll('\\$\\{verName\\}', "$project.versionName")
+        }
     }
+    from('src/main/resources') {
+        include '**/*.png'
+        include '**/*.ogg'
+    }
+    
+    exclude '**/unused/**'
 }
 
 compileJava {
