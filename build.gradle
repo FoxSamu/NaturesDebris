@@ -118,7 +118,7 @@ jar {
     }
 }
 
-version = 'INDEV-0.0.1'
+version = 'INDEV-0.0.2'
 group = 'net.rgsw'
 archivesBaseName = 'modernity'
 
