@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 12 - 2019
+ * Date: 7 - 23 - 2019
  */
 
 package modernity.client.util;
@@ -16,20 +16,64 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import modernity.api.biome.IColoringBiome;
 import modernity.api.util.ColorUtil;
-import modernity.common.biome.BiomeBase;
 
 @OnlyIn( Dist.CLIENT )
 public class BiomeValues {
     private static final int CACHE_SIZE = 32;
 
-    public static final ColorResolver WATER_COLOR = BiomeBase::getMDWaterColor;
-    public static final ColorResolver FOG_COLOR = BiomeBase::getFogColor;
-    public static final ColorResolver GRASS_COLOR = BiomeBase::getGrassColor;
-    public static final ColorResolver FOLIAGE_COLOR = BiomeBase::getFoliageColor;
+    public static final ColorResolver WATER_COLOR = new ColorResolver() {
+        @Override
+        public int getColor( IColoringBiome iColoringBiome, BlockPos pos ) {
+            return iColoringBiome.getMDWaterColor( pos );
+        }
 
-    public static final ValueResolver FOG_DENSITY = BiomeBase::getFogDensity;
-    public static final ValueResolver WATER_FOG_DENSITY = BiomeBase::getWaterFogDensity;
+        @Override
+        public int getDefaultColor( Biome biome, BlockPos pos ) {
+            return ColorUtil.darken( biome.getWaterColor(), 0.6 );
+        }
+    };
+
+    public static final ColorResolver FOG_COLOR = IColoringBiome::getFogColor;
+
+    public static final ColorResolver GRASS_COLOR = new ColorResolver() {
+        @Override
+        public int getColor( IColoringBiome iColoringBiome, BlockPos pos ) {
+            return iColoringBiome.getGrassColor( pos );
+        }
+
+        @Override
+        public int getDefaultColor( Biome biome, BlockPos pos ) {
+            return ColorUtil.darken( biome.getGrassColor( pos ), 0.6 );
+        }
+    };
+
+    public static final ColorResolver FOLIAGE_COLOR = new ColorResolver() {
+        @Override
+        public int getColor( IColoringBiome iColoringBiome, BlockPos pos ) {
+            return iColoringBiome.getFoliageColor( pos );
+        }
+
+        @Override
+        public int getDefaultColor( Biome biome, BlockPos pos ) {
+            return ColorUtil.darken( biome.getFoliageColor( pos ), 0.6 );
+        }
+    };
+
+    public static final ValueResolver FOG_DENSITY = IColoringBiome::getFogDensity;
+
+    public static final ValueResolver WATER_FOG_DENSITY = new ValueResolver() {
+        @Override
+        public float getValue( IColoringBiome iColoringBiome ) {
+            return iColoringBiome.getWaterFogDensity();
+        }
+
+        @Override
+        public float getDefaultValue( Biome biome ) {
+            return 0.01F;
+        }
+    };
 
     private static int getColor( IWorldReaderBase world, BlockPos pos, ColorResolver resolver, int radius ) {
         BlockPos.MutableBlockPos rpos = new BlockPos.MutableBlockPos();
@@ -45,15 +89,18 @@ public class BiomeValues {
 
                 Biome biome = world.getBiome( rpos );
 
-                if( biome instanceof BiomeBase ) {
-                    int col = resolver.getColor( (BiomeBase) biome, rpos );
-
-                    r += col >>> 16 & 0xff;
-                    g += col >>> 8 & 0xff;
-                    b += col & 0xff;
-
-                    tot++;
+                int col;
+                if( biome instanceof IColoringBiome ) {
+                    col = resolver.getColor( (IColoringBiome) biome, rpos );
+                } else {
+                    col = resolver.getDefaultColor( biome, pos );
                 }
+
+                r += col >>> 16 & 0xff;
+                g += col >>> 8 & 0xff;
+                b += col & 0xff;
+
+                tot++;
             }
         }
 
@@ -81,13 +128,16 @@ public class BiomeValues {
 
                 Biome biome = world.getBiome( rpos );
 
-                if( biome instanceof BiomeBase ) {
-                    float val = resolver.getValue( (BiomeBase) biome );
-
-                    value += val;
-
-                    tot++;
+                float val;
+                if( biome instanceof IColoringBiome ) {
+                    val = resolver.getValue( (IColoringBiome) biome );
+                } else {
+                    val = resolver.getDefaultValue( biome );
                 }
+
+                value += val;
+
+                tot++;
             }
         }
 
@@ -103,11 +153,17 @@ public class BiomeValues {
 
     @OnlyIn( Dist.CLIENT )
     private interface ColorResolver {
-        int getColor( BiomeBase biome, BlockPos pos );
+        int getColor( IColoringBiome biome, BlockPos pos );
+        default int getDefaultColor( Biome biome, BlockPos pos ) {
+            return 0x000000;
+        }
     }
 
     @OnlyIn( Dist.CLIENT )
     private interface ValueResolver {
-        float getValue( BiomeBase biome );
+        float getValue( IColoringBiome biome );
+        default float getDefaultValue( Biome biome ) {
+            return 0;
+        }
     }
 }

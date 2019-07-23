@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 9 - 2019
+ * Date: 7 - 23 - 2019
  */
 
 package modernity.common.biome;
@@ -19,6 +19,7 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.rgsw.noise.FractalOpenSimplex3D;
 import net.rgsw.noise.FractalPerlin3D;
 
+import modernity.api.biome.IColoringBiome;
 import modernity.api.util.ColorUtil;
 import modernity.api.util.EcoBlockPos;
 import modernity.api.util.MovingBlockPos;
@@ -28,7 +29,7 @@ import modernity.common.world.gen.surface.ISurfaceGenerator;
 
 import java.util.Random;
 
-public class BiomeBase extends Biome {
+public class BiomeBase extends Biome implements IColoringBiome {
     protected static final FractalPerlin3D GRASS_COLOR_VARIATION = new FractalPerlin3D( 58291250, 9.16292137, 9.16292137, 9.16292137, 2 );
     protected static final FractalPerlin3D FOLIAGE_COLOR_VARIATION = new FractalPerlin3D( 81725122, 9.16292137, 9.16292137, 9.16292137, 2 );
     protected static final FractalPerlin3D WATER_COLOR_VARIATION = new FractalPerlin3D( 21516663, 9.16292137, 9.16292137, 9.16292137, 2 );
