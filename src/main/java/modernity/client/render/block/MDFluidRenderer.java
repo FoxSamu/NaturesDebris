@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 12 - 2019
+ * Date: 7 - 23 - 2019
  */
 
 package modernity.client.render.block;
@@ -20,6 +20,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
+import net.minecraft.fluid.LavaFluid;
 import net.minecraft.init.Blocks;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.EnumFacing;
@@ -123,6 +124,9 @@ public class MDFluidRenderer extends BlockFluidRenderer {
 
     public boolean render( IWorldReader world, BlockPos pos, BufferBuilder buffer, IFluidState state ) {
         boolean isLava = state.isTagged( FluidTags.LAVA );
+        if( Minecraft.getInstance().world == null ) {
+            isLava = state.getFluid() instanceof LavaFluid;
+        }
         boolean custom = false; // MAYBE: Is this still needed?
 
         boolean gas = state.getFluid() instanceof IGaseousFluid;
@@ -187,10 +191,10 @@ public class MDFluidRenderer extends BlockFluidRenderer {
             boolean somethingRendered = false;
 
             // Determine the height of each corner
-            float nwHeight = this.getFluidHeight( world, pos, state.getFluid(), fall );
-            float swHeight = this.getFluidHeight( world, pos.south(), state.getFluid(), fall );
-            float seHeight = this.getFluidHeight( world, pos.east().south(), state.getFluid(), fall );
-            float neHeight = this.getFluidHeight( world, pos.east(), state.getFluid(), fall );
+            float nwHeight = this.getFluidHeight( world, pos, state.getFluid(), state, fall );
+            float swHeight = this.getFluidHeight( world, pos.south(), state.getFluid(), state, fall );
+            float seHeight = this.getFluidHeight( world, pos.east().south(), state.getFluid(), state, fall );
+            float neHeight = this.getFluidHeight( world, pos.east(), state.getFluid(), state, fall );
 
             double dx = pos.getX();
             double dy = pos.getY();
@@ -438,7 +442,10 @@ public class MDFluidRenderer extends BlockFluidRenderer {
         return ( myLightU > upLightU ? myLightU : upLightU ) | ( myLightV > upLightV ? myLightV : upLightV ) << 16;
     }
 
-    private float getFluidHeight( IWorldReaderBase world, BlockPos pos, Fluid fluid, int fall ) {
+    private float getFluidHeight( IWorldReaderBase world, BlockPos pos, Fluid fluid, IFluidState fluidState, int fall ) {
+        if( Minecraft.getInstance().world == null ) {
+            return fluidState.getHeight();
+        }
         int weight = 0;
         float height = 0.0F;
 
