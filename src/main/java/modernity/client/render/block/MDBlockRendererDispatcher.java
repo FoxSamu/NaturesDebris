@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 12 - 2019
+ * Date: 7 - 23 - 2019
  */
 
 package modernity.client.render.block;
@@ -33,13 +33,14 @@ import net.minecraftforge.resource.VanillaResourceType;
 
 import java.util.Random;
 
+@Deprecated
 @OnlyIn( Dist.CLIENT )
 public class MDBlockRendererDispatcher extends BlockRendererDispatcher {
     private final BlockModelShapes blockModelShapes;
     private final BlockModelCache blockModelCache;
     private final BlockModelRenderer blockModelRenderer;
     private final ChestRenderer chestRenderer = new ChestRenderer();
-    private final MDFluidRenderer fluidRenderer;
+    private final WrappingFluidRenderer fluidRenderer;
     private final Random random = new Random();
 
     public MDBlockRendererDispatcher( BlockModelShapes bms, BlockColors colors ) {
@@ -47,7 +48,7 @@ public class MDBlockRendererDispatcher extends BlockRendererDispatcher {
         blockModelShapes = bms;
         blockModelCache = new BlockModelCache( bms );
         blockModelRenderer = new ForgeBlockModelRenderer( colors );
-        fluidRenderer = new MDFluidRenderer();
+        fluidRenderer = new WrappingFluidRenderer();
     }
 
     public BlockModelShapes getBlockModelShapes() {

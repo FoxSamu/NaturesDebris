@@ -21,13 +21,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import modernity.client.handler.OptionsButtonHandler;
 import modernity.client.handler.TextureStitchHandler;
 import modernity.client.handler.WorldListenerInjectionHandler;
 import modernity.client.particle.MDParticleManager;
-import modernity.client.render.block.MDBlockRendererDispatcher;
+import modernity.client.render.block.CustomFluidRenderer;
 import modernity.common.block.MDBlocks;
 import modernity.common.entity.MDEntityTypes;
 import modernity.common.item.MDItems;
@@ -38,6 +37,7 @@ import modernity.common.util.ProxyCommon;
 @OnlyIn( Dist.CLIENT )
 public class ProxyClient extends ProxyCommon {
     public final Minecraft mc = Minecraft.getInstance();
+    private CustomFluidRenderer fluidRenderer;
 
     @Override
     public void init() {
@@ -50,11 +50,14 @@ public class ProxyClient extends ProxyCommon {
     public void loadComplete() {
         super.loadComplete();
 
-        MDBlockRendererDispatcher dispatcher = new MDBlockRendererDispatcher( mc.getModelManager().getBlockModelShapes(), mc.getBlockColors() );
-        ObfuscationReflectionHelper.setPrivateValue( Minecraft.class, mc, dispatcher, "field_175618_aM" );
+//        MDBlockRendererDispatcher dispatcher = new MDBlockRendererDispatcher( mc.getModelManager().getBlockModelShapes(), mc.getBlockColors() );
+//        ObfuscationReflectionHelper.setPrivateValue( Minecraft.class, mc, dispatcher, "field_175618_aM" );
 
-        addResourceManagerReloadListener( dispatcher );
+//        addResourceManagerReloadListener( dispatcher );
 
+        fluidRenderer = new CustomFluidRenderer();
+
+        addResourceManagerReloadListener( fluidRenderer );
 
         mc.particles = new MDParticleManager( mc.world, mc.textureManager );
 
@@ -94,6 +97,10 @@ public class ProxyClient extends ProxyCommon {
 
     public Minecraft getMinecraft() {
         return mc;
+    }
+
+    public CustomFluidRenderer getFluidRenderer() {
+        return fluidRenderer;
     }
 
     @Override

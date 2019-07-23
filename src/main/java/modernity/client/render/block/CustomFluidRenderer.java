@@ -13,7 +13,6 @@ import com.google.common.collect.Maps;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BlockFluidRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.model.ModelBakery;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -22,6 +21,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.fluid.LavaFluid;
 import net.minecraft.init.Blocks;
+import net.minecraft.resources.IResourceManager;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -37,18 +37,19 @@ import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import net.minecraftforge.resource.IResourceType;
+import net.minecraftforge.resource.ISelectiveResourceReloadListener;
+import net.minecraftforge.resource.VanillaResourceType;
 
 import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.api.block.fluid.IGaseousFluid;
 
 import java.util.HashMap;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @OnlyIn( Dist.CLIENT )
-public class MDFluidRenderer extends BlockFluidRenderer {
-    private static final Logger LOGGER = LogManager.getLogger( "FluidRenderer" );
+public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
     public static final ResourceLocation LOCATION_LAVA_STILL = new ResourceLocation( "block/lava_still" );
     public static final ResourceLocation LOCATION_WATER_STILL = new ResourceLocation( "block/water_still" );
     private HashMap<Fluid, TextureAtlasSprite[]> customSprites = Maps.newHashMap();
@@ -56,7 +57,7 @@ public class MDFluidRenderer extends BlockFluidRenderer {
     private TextureAtlasSprite[] waterSprites = new TextureAtlasSprite[ 2 ];
     private TextureAtlasSprite overlaySprite;
 
-    public MDFluidRenderer() {
+    public CustomFluidRenderer() {
         this.initAtlasSprites();
     }
 
@@ -94,6 +95,13 @@ public class MDFluidRenderer extends BlockFluidRenderer {
                         still, flow, overlay
                 } );
             }
+        }
+    }
+
+    @Override
+    public void onResourceManagerReload( IResourceManager resourceManager, Predicate<IResourceType> resourcePredicate ) {
+        if( resourcePredicate.test( VanillaResourceType.TEXTURES ) ) {
+            initAtlasSprites();
         }
     }
 

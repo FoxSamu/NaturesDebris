@@ -1,4 +1,5 @@
 {
   "prerendershaders": "core/prerendershaders.js",
-  "injectstructures": "core/injectstructures.js"
+  "injectstructures": "core/injectstructures.js",
+  "renderblock": "core/renderblock.js"
 }
