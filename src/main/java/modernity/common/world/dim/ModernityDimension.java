@@ -112,4 +112,8 @@ public class ModernityDimension extends Dimension {
         return false;
     }
 
+    @Override
+    public int getMoonPhase( long worldTime ) {
+        return 0;
+    }
 }
