@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 16 - 2019
+ * Date: 7 - 23 - 2019
  */
 
 package modernity.common.block.base;
@@ -41,7 +41,7 @@ public class BlockDirt extends BlockBase {
     public static final Type TYPE_DIRT = new Type( "dark_dirt", false, false, BlockRenderLayer.SOLID );
     public static final Type TYPE_GRASS = new Type( "dark_grass", true, true, BlockRenderLayer.CUTOUT_MIPPED );
     public static final Type TYPE_COARSE_DIRT = new Type( "coarse_dark_dirt", false, false, BlockRenderLayer.SOLID );
-    public static final Type TYPE_HUMUS = new Type( "humus", false, false, BlockRenderLayer.SOLID );
+    public static final Type TYPE_HUMUS = new Type( "humus", false, true, false, BlockRenderLayer.SOLID );
 
     public static final BooleanProperty SNOWY = BooleanProperty.create( "snowy" );
 
@@ -95,27 +95,25 @@ public class BlockDirt extends BlockBase {
 
     @SuppressWarnings( "deprecation" )
     public void tick( IBlockState state, World world, BlockPos pos, Random random ) {
-        if( type.canSpread ) {
-            if( ! world.isRemote ) {
-                if( ! world.isAreaLoaded( pos, 3 ) )
-                    return;
-                if( ! canRemainAt( world, pos ) ) {
-                    world.setBlockState( pos, MDBlocks.DARK_DIRT.getDefaultState() );
-                } else {
-                    if( world.getLight( pos.up() ) >= 9 ) {
-                        for( int i = 0; i < 4; ++ i ) {
-                            BlockPos growPos = pos.add( random.nextInt( 3 ) - 1, random.nextInt( 5 ) - 3, random.nextInt( 3 ) - 1 );
-                            if( ! world.isBlockPresent( growPos ) ) {
-                                return;
-                            }
+        if( ! world.isRemote ) {
+            if( ! world.isAreaLoaded( pos, 3 ) )
+                return;
+            if( ! canRemainAt( world, pos ) && type.canDecay ) {
+                world.setBlockState( pos, MDBlocks.DARK_DIRT.getDefaultState() );
+            } else if( type.canSpread ) {
+                if( world.getLight( pos.up() ) >= 9 ) {
+                    for( int i = 0; i < 4; ++ i ) {
+                        BlockPos growPos = pos.add( random.nextInt( 3 ) - 1, random.nextInt( 5 ) - 3, random.nextInt( 3 ) - 1 );
+                        if( ! world.isBlockPresent( growPos ) ) {
+                            return;
+                        }
 
-                            if( world.getBlockState( growPos ).getBlock() == MDBlocks.DARK_DIRT && canGrowAt( world, growPos ) ) {
-                                world.setBlockState( growPos, this.getDefaultState() );
-                            }
+                        if( world.getBlockState( growPos ).getBlock() == MDBlocks.DARK_DIRT && canGrowAt( world, growPos ) ) {
+                            world.setBlockState( growPos, this.getDefaultState() );
                         }
                     }
-
                 }
+
             }
         }
     }
@@ -139,12 +137,18 @@ public class BlockDirt extends BlockBase {
     public static final class Type {
         public final String id;
         public final boolean canSpread;
+        public final boolean canDecay;
         public final boolean canBeSnowy;
         public final BlockRenderLayer renderLayer;
 
         public Type( String id, boolean canSpread, boolean canBeSnowy, BlockRenderLayer renderLayer ) {
+            this( id, canSpread, canSpread, canBeSnowy, renderLayer );
+        }
+
+        public Type( String id, boolean canSpread, boolean canDecay, boolean canBeSnowy, BlockRenderLayer renderLayer ) {
             this.id = id;
             this.canSpread = canSpread;
+            this.canDecay = canDecay;
             this.canBeSnowy = canBeSnowy;
             this.renderLayer = renderLayer;
         }
