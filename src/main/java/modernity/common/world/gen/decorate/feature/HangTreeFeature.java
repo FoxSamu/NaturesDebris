@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 12 - 2019
+ * Date: 7 - 23 - 2019
  */
 
 package modernity.common.world.gen.decorate.feature;
@@ -19,6 +19,7 @@ import net.rgsw.noise.FractalPerlin3D;
 
 import modernity.api.util.BlockUpdates;
 import modernity.api.util.EcoBlockPos;
+import modernity.common.block.MDBlocks;
 import modernity.common.block.base.BlockBranch;
 import modernity.common.block.base.BlockDirt;
 import modernity.common.block.base.BlockHangLeaves;
@@ -204,7 +205,7 @@ public class HangTreeFeature extends TreeFeature {
                             rpos.addPos( x, y, z );
                             if( ! world.getBlockState( rpos ).getMaterial().blocksMovement() && rand.nextInt( 8 ) != 0 ) {
                                 world.setBlockState( rpos, leaves, 2 | 16 );
-                                if( y == 0 && rand.nextInt( 3 ) == 0 ) {
+                                if( y == 0 && hangingBlockRandom( rand ) ) {
                                     IBlockState hanger = hangingBlock( rand );
                                     int len = hangingLength( rand, hanger );
                                     for( int i = 0; i < len; i++ ) {
@@ -239,11 +240,19 @@ public class HangTreeFeature extends TreeFeature {
         return 10;
     }
 
+    public boolean hangingBlockRandom( Random rand ) {
+        return rand.nextInt( 3 ) == 0;
+    }
+
     public IBlockState hangingBlock( Random rand ) {
+        if( rand.nextBoolean() ) return MDBlocks.MURINA.getDefaultState();
         return leaves.with( BlockHangLeaves.DISTANCE, - 1 );
     }
 
     public int hangingLength( Random rand, IBlockState hanger ) {
+        if( hanger.getBlock() == MDBlocks.MURINA ) {
+            return rand.nextInt( 8 ) + 1;
+        }
         return rand.nextInt( 5 ) + 1;
     }
 }
