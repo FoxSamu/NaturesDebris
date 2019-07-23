@@ -10,6 +10,6 @@
 package modernity;
 
 public class MDInfo {
-    public static final String VERSION = "INDEV-0.0.2";
-    public static final String VERSION_NAME = "Wiki Update";
+    public static final String VERSION = "${version}";
+    public static final String VERSION_NAME = "${verName}";
 }

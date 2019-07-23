@@ -62,6 +62,7 @@ minecraft {
 
     // TODO: Access transformer
     // accessTransformer = file('build/resources/main/META-INF/accesstransformer.cfg')
+    
 
     runs {
         client {
@@ -92,7 +93,6 @@ minecraft {
     }
 }
 
-
 dependencies {
     minecraft 'net.minecraftforge:forge:1.13.2-25.0.208'
 
@@ -119,6 +119,7 @@ jar {
 }
 
 version = 'INDEV-0.0.2'
+project.ext.versionName = "Wiki Update"
 group = 'net.rgsw'
 archivesBaseName = 'modernity'
 
@@ -146,6 +147,27 @@ task signJar(dependsOn: 'reobfJar') {
             println "No keystore property found, jar will not be signed"
         }
     }
+}
+
+task generateSources(type: Copy) {
+    from 'src/main/java'
+    into "$buildDir/generated-src"
+    filter { line -> 
+        line.replaceAll('\\$\\{version\\}', "$project.version")
+                .replaceAll('\\$\\{verName\\}', "$project.versionName") 
+    }
+}
+
+processResources {
+    filter { line ->
+        line.replaceAll('\\$\\{version\\}', "$project.version")
+                .replaceAll('\\$\\{verName\\}', "$project.versionName")
+    }
+}
+
+compileJava {
+    setSource("$buildDir/generated-src")
+    dependsOn generateSources
 }
 
 build {
