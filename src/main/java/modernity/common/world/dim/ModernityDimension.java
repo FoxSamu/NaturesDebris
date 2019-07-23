@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 7 - 23 - 2019
  */
 
 package modernity.common.world.dim;
@@ -49,7 +49,7 @@ public class ModernityDimension extends Dimension {
 
     @Override
     public float calculateCelestialAngle( long worldTime, float partialTicks ) {
-        return 0;
+        return 0.5F; // 0.5 shows the moon right above us
     }
 
     @Override
@@ -111,4 +111,5 @@ public class ModernityDimension extends Dimension {
     public boolean canDoRainSnowIce( Chunk chunk ) {
         return false;
     }
+
 }
