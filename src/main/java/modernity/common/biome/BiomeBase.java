@@ -11,6 +11,7 @@ package modernity.common.biome;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.surfacebuilders.CompositeSurfaceBuilder;
@@ -116,6 +117,16 @@ public class BiomeBase extends Biome implements IColoringBiome {
         return fogDensity;
     }
 
+    @Override
+    public boolean doesSnowGenerate( IWorldReaderBase worldIn, BlockPos pos ) {
+        return false;
+    }
+
+    @Override
+    public RainType getPrecipitation() {
+        return RainType.NONE;
+    }
+
     public static class Builder extends BiomeBuilder {
         private Float heightBase;
         private Float heightVar;
@@ -140,7 +151,7 @@ public class BiomeBase extends Biome implements IColoringBiome {
             category( Category.NONE );
             depth( 0 );
             scale( 0 );
-            temperature( 0 );
+            temperature( 0.8f );
             downfall( 0 );
             super.waterColor( 0x3F76E4 );
             waterFogColor( 0x050533 );

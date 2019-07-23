@@ -21,8 +21,6 @@ import modernity.api.util.ColorUtil;
 
 @OnlyIn( Dist.CLIENT )
 public class BiomeValues {
-    private static final int CACHE_SIZE = 32;
-
     public static final ColorResolver WATER_COLOR = new ColorResolver() {
         @Override
         public int getColor( IColoringBiome iColoringBiome, BlockPos pos ) {
