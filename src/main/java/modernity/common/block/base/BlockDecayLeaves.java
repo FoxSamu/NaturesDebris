@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 16 - 2019
+ * Date: 7 - 25 - 2019
  */
 
 package modernity.common.block.base;
@@ -53,12 +53,13 @@ public class BlockDecayLeaves extends BlockLeaves {
     @Override
     @SuppressWarnings( "deprecation" )
     public boolean ticksRandomly( IBlockState state ) {
-        return state.get( DISTANCE ) == MAX_DIST;
+        return state.get( DISTANCE ) == MAX_DIST || super.ticksRandomly( state );
     }
 
     @Override
     @SuppressWarnings( "deprecation" )
     public void randomTick( IBlockState state, World world, BlockPos pos, Random random ) {
+        super.randomTick( state, world, pos, random );
         if( state.get( DISTANCE ) == MAX_DIST ) {
             state.dropBlockAsItem( world, pos, 0 );
             world.removeBlock( pos );

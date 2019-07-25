@@ -29,8 +29,10 @@ import net.minecraftforge.common.IShearable;
 
 import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
+import modernity.api.util.MovingBlockPos;
 import modernity.client.particle.LeafParticle;
 import modernity.client.util.BiomeValues;
+import modernity.common.block.MDBlocks;
 import modernity.common.util.ProxyCommon;
 
 import javax.annotation.Nonnull;
@@ -68,7 +70,7 @@ public class BlockLeaves extends BlockBase implements IShearable {
             double z = pos.getZ() + rand.nextFloat();
             world.addParticle( Particles.DRIPPING_WATER, x, y, z, 0, 0, 0 );
         }
-        if( hasFallingLeaves( state, world, pos, rand ) && ! world.getBlockState( pos.down() ).isTopSolid() ) {
+        if( hasFallingLeaf( state, world, pos, rand ) && ! world.getBlockState( pos.down() ).isTopSolid() ) {
             double x = pos.getX() + rand.nextFloat();
             double y = pos.getY() - 0.05D;
             double z = pos.getZ() + rand.nextFloat();
@@ -91,8 +93,42 @@ public class BlockLeaves extends BlockBase implements IShearable {
         return ColorUtil.darken( color, rand.nextDouble() * 0.5 - 0.25 );
     }
 
-    protected boolean hasFallingLeaves( IBlockState state, World world, BlockPos pos, Random rand ) {
+    protected boolean hasFallingLeaf( IBlockState state, World world, BlockPos pos, Random rand ) {
         return rand.nextInt( 32 ) == 1;
+    }
+
+    protected boolean generatesHumus( IBlockState state ) {
+        return true;
+    }
+
+    protected void generateHumus( IBlockState state, World world, BlockPos pos ) {
+        MovingBlockPos mpos = new MovingBlockPos( pos.down() );
+        for( int i = 0; i < 17; i++ ) {
+            IBlockState belowState = world.getBlockState( mpos );
+
+            if( ! belowState.isTopSolid( world, pos ) ) {
+                mpos.moveDown();
+                continue;
+            }
+
+            // TODO: Tag
+            if( belowState.getBlock() == MDBlocks.DARK_DIRT ) {
+                world.setBlockState( mpos, MDBlocks.HUMUS.getDefaultState() );
+            }
+            break;
+        }
+    }
+
+    @Override
+    public boolean ticksRandomly( IBlockState state ) {
+        return generatesHumus( state );
+    }
+
+    @Override
+    public void randomTick( IBlockState state, World world, BlockPos pos, Random rand ) {
+        if( generatesHumus( state ) ) {
+            generateHumus( state, world, pos );
+        }
     }
 
     @Override
