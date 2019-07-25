@@ -9,6 +9,7 @@
 
 package modernity.common.registry;
 
+import net.minecraft.util.ObjectIntIdentityMap;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -24,6 +25,8 @@ public class MDRegistries {
     private static ForgeRegistry<FluidEntry> fluids;
     private static ForgeRegistry<ParticleEntry> particles;
 
+    public static final ResourceLocation FLUID_STATE_LIST = new ResourceLocation( "modernity:fluid_state_list" );
+
     public static ForgeRegistry<FluidEntry> fluids() {
         return fluids;
     }
@@ -36,9 +39,10 @@ public class MDRegistries {
         RegistryBuilder<FluidEntry> fluids = new RegistryBuilder<>();
         fluids.setName( new ResourceLocation( "modernity:fluids" ) );
         fluids.setType( FluidEntry.class );
-        fluids.setIDRange( 5, Integer.MAX_VALUE );
-        // TODO: Use AddCallback here: Bake is not used on synchronization, causing problems with multiple mods over LAN servers...
-        fluids.add( (IForgeRegistry.BakeCallback<FluidEntry>) ( owner, stage ) -> MDFluids.inject() );
+        fluids.setIDRange( 0, Integer.MAX_VALUE );
+        fluids.add( (IForgeRegistry.AddCallback<FluidEntry>) ( owner, stage, id, obj, oldObj ) -> MDFluids.inject( id, obj ) );
+        fluids.add( (IForgeRegistry.CreateCallback<FluidEntry>) ( owner, stage ) -> owner.setSlaveMap( FLUID_STATE_LIST, new ClearableObjectIntIdentityMap<>() ) );
+        fluids.add( (IForgeRegistry.BakeCallback<FluidEntry>) ( owner, stage ) -> MDFluids.calculateStateRegistry( owner.getSlaveMap( FLUID_STATE_LIST, ClearableObjectIntIdentityMap.class ), owner ) );
         MDRegistries.fluids = (ForgeRegistry<FluidEntry>) fluids.create();
 
         RegistryBuilder<ParticleEntry> particles = new RegistryBuilder<>();
@@ -47,5 +51,20 @@ public class MDRegistries {
         particles.setIDRange( 0, Integer.MAX_VALUE );
         particles.add( (IForgeRegistry.AddCallback<ParticleEntry>) ( owner, stage, id, obj, oldObj ) -> MDParticles.inject( id, obj ) );
         MDRegistries.particles = (ForgeRegistry<ParticleEntry>) particles.create();
+    }
+
+    public static class ClearableObjectIntIdentityMap <I> extends ObjectIntIdentityMap<I> {
+        void clear() {
+            this.identityMap.clear();
+            this.objectList.clear();
+            this.nextId = 0;
+        }
+
+        void remove( I key ) {
+            Integer prev = this.identityMap.remove( key );
+            if( prev != null ) {
+                this.objectList.set( prev, null );
+            }
+        }
     }
 }
