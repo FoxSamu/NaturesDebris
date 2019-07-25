@@ -38,12 +38,15 @@ import modernity.client.handler.OptionsButtonHandler;
 import modernity.client.handler.TextureStitchHandler;
 import modernity.client.handler.WorldListenerInjectionHandler;
 import modernity.client.particle.DepthParticleList;
+import modernity.client.particle.DripParticle;
 import modernity.client.particle.NoDepthParticleList;
+import modernity.client.particle.SaltParticle;
 import modernity.client.render.block.CustomFluidRenderer;
 import modernity.client.texture.ParticleSprite;
 import modernity.common.block.MDBlocks;
 import modernity.common.entity.MDEntityTypes;
 import modernity.common.item.MDItems;
+import modernity.common.particle.MDParticles;
 import modernity.common.util.ContainerManager;
 import modernity.common.util.ProxyCommon;
 
@@ -88,6 +91,10 @@ public class ProxyClient extends ProxyCommon implements ISelectiveResourceReload
         MDItems.registerClient( mc.getItemColors() );
 
         mc.addScheduledTask( this::finishOnMainThread );
+
+        mc.particles.registerFactory( MDParticles.SALT, new SaltParticle.Factory() );
+        mc.particles.registerFactory( MDParticles.MODERNIZED_WATER_DRIP, new DripParticle.ModernizedWaterFactory() );
+        mc.particles.registerFactory( MDParticles.PORTAL_DRIP, new DripParticle.PortalFactory() );
     }
 
     @Override

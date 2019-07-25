@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 28 - 2019
+ * Date: 7 - 25 - 2019
  */
 
 package modernity.common.fluid;
@@ -35,6 +35,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.client.util.BiomeValues;
 import modernity.common.block.MDBlocks;
+import modernity.common.particle.MDParticles;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -72,7 +73,7 @@ public abstract class ModernizedWaterFluid extends RegularFluid implements ICust
     @Nullable
     @OnlyIn( Dist.CLIENT )
     public IParticleData getDripParticleData() {
-        return Particles.DRIPPING_WATER;
+        return MDParticles.MODERNIZED_WATER_DRIP;
     }
 
     protected boolean canSourcesMultiply() {

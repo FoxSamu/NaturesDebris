@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 29 - 2019
+ * Date: 7 - 25 - 2019
  */
 
 package modernity.common.handler;
@@ -24,6 +24,8 @@ import modernity.common.entity.MDEntityTypes;
 import modernity.common.fluid.FluidEntry;
 import modernity.common.fluid.MDFluids;
 import modernity.common.item.MDItems;
+import modernity.common.particle.MDParticles;
+import modernity.common.particle.ParticleEntry;
 import modernity.common.registry.MDRegistries;
 import modernity.common.tileentity.MDTileEntities;
 import modernity.common.world.dim.MDDimensions;
@@ -64,6 +66,11 @@ public class RegistryHandler {
     @SubscribeEvent
     public void registerTileEntities( RegistryEvent.Register<TileEntityType<?>> event ) {
         MDTileEntities.register( event.getRegistry() );
+    }
+
+    @SubscribeEvent
+    public void registerParticles( RegistryEvent.Register<ParticleEntry> event ) {
+        MDParticles.register( event.getRegistry() );
     }
 
     @SubscribeEvent

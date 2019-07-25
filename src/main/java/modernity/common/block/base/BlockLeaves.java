@@ -94,7 +94,7 @@ public class BlockLeaves extends BlockBase implements IShearable {
     }
 
     protected boolean hasFallingLeaf( IBlockState state, World world, BlockPos pos, Random rand ) {
-        return rand.nextInt( 32 ) == 1;
+        return rand.nextInt( 64 ) == 1;
     }
 
     protected boolean generatesHumus( IBlockState state ) {
@@ -106,7 +106,7 @@ public class BlockLeaves extends BlockBase implements IShearable {
         for( int i = 0; i < 17; i++ ) {
             IBlockState belowState = world.getBlockState( mpos );
 
-            if( ! belowState.isTopSolid( world, pos ) ) {
+            if( ! belowState.isTopSolid( world, pos ) && ! belowState.getMaterial().isLiquid() && belowState.getBlock() != this ) {
                 mpos.moveDown();
                 continue;
             }

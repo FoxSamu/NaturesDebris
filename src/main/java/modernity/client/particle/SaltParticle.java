@@ -9,8 +9,11 @@
 
 package modernity.client.particle;
 
+import net.minecraft.client.particle.IParticleFactory;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.Entity;
+import net.minecraft.particles.BasicParticleType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,6 +21,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.api.particle.ICustomParticle;
 import modernity.client.texture.ParticleSprite;
+
+import javax.annotation.Nullable;
 
 @OnlyIn( Dist.CLIENT )
 public class SaltParticle extends PhysicsParticle implements ICustomParticle {
@@ -51,5 +56,14 @@ public class SaltParticle extends PhysicsParticle implements ICustomParticle {
         int lu = packed >> 16 & '\uffff';
         int lv = packed & '\uffff';
         ParticleRenderer.renderParticle( buffer, x, y, z, radius, SPRITE, lu, lv );
+    }
+
+    public static class Factory implements IParticleFactory<BasicParticleType> {
+
+        @Nullable
+        @Override
+        public Particle makeParticle( BasicParticleType type, World world, double x, double y, double z, double xv, double yv, double zv ) {
+            return new SaltParticle( world, x, y, z, xv, yv, zv );
+        }
     }
 }

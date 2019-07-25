@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 17 - 2019
+ * Date: 7 - 25 - 2019
  */
 
 package modernity.common.registry;
@@ -37,14 +37,15 @@ public class MDRegistries {
         fluids.setName( new ResourceLocation( "modernity:fluids" ) );
         fluids.setType( FluidEntry.class );
         fluids.setIDRange( 5, Integer.MAX_VALUE );
+        // TODO: Use AddCallback here: Bake is not used on synchronization, causing problems with multiple mods over LAN servers...
         fluids.add( (IForgeRegistry.BakeCallback<FluidEntry>) ( owner, stage ) -> MDFluids.inject() );
         MDRegistries.fluids = (ForgeRegistry<FluidEntry>) fluids.create();
 
         RegistryBuilder<ParticleEntry> particles = new RegistryBuilder<>();
         particles.setName( new ResourceLocation( "modernity:particles" ) );
         particles.setType( ParticleEntry.class );
-        particles.setIDRange( 5, Integer.MAX_VALUE );
-        particles.add( (IForgeRegistry.BakeCallback<ParticleEntry>) ( owner, stage ) -> MDParticles.inject() );
+        particles.setIDRange( 0, Integer.MAX_VALUE );
+        particles.add( (IForgeRegistry.AddCallback<ParticleEntry>) ( owner, stage, id, obj, oldObj ) -> MDParticles.inject( id, obj ) );
         MDRegistries.particles = (ForgeRegistry<ParticleEntry>) particles.create();
     }
 }
