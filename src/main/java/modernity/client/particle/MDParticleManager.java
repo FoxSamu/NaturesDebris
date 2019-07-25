@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 12 - 2019
+ * Date: 7 - 25 - 2019
  */
 
 package modernity.client.particle;
@@ -31,6 +31,7 @@ import modernity.api.block.IParticleShapeBlock;
 
 import java.util.Random;
 
+@Deprecated
 @OnlyIn( Dist.CLIENT )
 public class MDParticleManager extends ParticleManager {
     private final Random rand = new Random();

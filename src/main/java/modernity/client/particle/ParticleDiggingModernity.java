@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 12 - 2019
+ * Date: 7 - 25 - 2019
  */
 
 package modernity.client.particle;
@@ -33,7 +33,7 @@ public class ParticleDiggingModernity extends Particle {
     private final IBlockState sourceState;
     private BlockPos sourcePos;
 
-    protected ParticleDiggingModernity( World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, IBlockState state ) {
+    public ParticleDiggingModernity( World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, IBlockState state ) {
         super( worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn );
         this.sourceState = state;
         this.setParticleTexture( Minecraft.getInstance().getBlockRendererDispatcher().getBlockModelShapes().getTexture( state ) );

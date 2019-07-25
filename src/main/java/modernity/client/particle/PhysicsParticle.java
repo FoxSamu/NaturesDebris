@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 12 - 2019
+ * Date: 7 - 25 - 2019
  */
 
 package modernity.client.particle;
@@ -28,6 +28,7 @@ import java.util.stream.Stream;
 public class PhysicsParticle extends Particle {
     protected double bounciness;
     protected double weight;
+    protected double airFriction = 0.02;
 
     protected PhysicsParticle( World world, double x, double y, double z ) {
         super( world, x, y, z );
@@ -59,7 +60,7 @@ public class PhysicsParticle extends Particle {
         if( state.getMaterial().isLiquid() ) {
             double height = state.getFluidState().getHeight();
             if( world.getBlockState( pos.up() ).getBlock() == state.getBlock() ) height = 1;
-            if( posY % 1 < state.getFluidState().getHeight() ) {
+            if( posY % 1 < height ) {
                 gravMult -= weight;
                 floating = true;
             }
@@ -67,9 +68,10 @@ public class PhysicsParticle extends Particle {
 
         motionY -= 0.04 * particleGravity * gravMult;
         move( motionX, motionY, motionZ );
-        motionX *= 0.98;
-        motionY *= 0.98;
-        motionZ *= 0.98;
+        double fr = 1 - airFriction;
+        motionX *= fr;
+        motionY *= fr;
+        motionZ *= fr;
         if( floating ) {
             Vec3d flow = state.getFluidState().getFlow( world, pos ).normalize();
             motionX += flow.x * 0.04;

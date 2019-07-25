@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 23 - 2019
+ * Date: 7 - 25 - 2019
  */
 
 // Setup for build script itself
@@ -60,9 +60,8 @@ minecraft {
     // Snapshot mappings: May 26, 2019
     mappings channel: 'snapshot', version: '20190526-1.13.2'
 
-    // TODO: Access transformer
-    // accessTransformer = file('build/resources/main/META-INF/accesstransformer.cfg')
-    
+    // Access transformer
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
         client {

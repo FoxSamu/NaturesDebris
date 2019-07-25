@@ -4,14 +4,16 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 23 - 2019
+ * Date: 7 - 25 - 2019
  */
 
 package modernity.common.block.base;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
@@ -31,7 +33,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
+import modernity.client.particle.LeafParticle;
 import modernity.client.util.BiomeValues;
+import modernity.client.util.ProxyClient;
 import modernity.common.block.MDBlocks;
 
 import javax.annotation.Nullable;
@@ -119,7 +123,78 @@ public class BlockDirt extends BlockBase {
     }
 
     @Override
-    public IItemProvider getItemDropped( IBlockState state, World worldIn, BlockPos pos, int fortune ) {
+    public void onFallenUpon( World world, BlockPos pos, Entity entity, float fallDistance ) {
+        super.onFallenUpon( world, pos, entity, fallDistance );
+        if( type != TYPE_HUMUS ) return;
+        int p = Minecraft.getInstance().gameSettings.particleSetting;
+        if( p == 2 ) return;
+
+        // Humus falling particles
+        if( fallDistance > 0.1 ) {
+            int amount = Math.min( (int) ( fallDistance * 10 ), 30 );
+            if( amount > 0 ) {
+                Random rand = world.rand;
+                for( int i = 0; i < amount; i++ ) {
+                    double mx = entity.motionX * 0.2 + ( rand.nextDouble() * 0.3 - 0.15 );
+                    double mz = entity.motionZ * 0.2 + ( rand.nextDouble() * 0.3 - 0.15 );
+                    double my = rand.nextDouble() * 0.2;
+                    double x = rand.nextDouble() * 0.6 - 0.3 + entity.posX;
+                    double y = pos.getY() + 1.05;
+                    double z = rand.nextDouble() * 0.6 - 0.3 + entity.posZ;
+
+                    if( p == 0 || rand.nextBoolean() ) {
+                        Minecraft.getInstance().particles.addEffect( new LeafParticle(
+                                world,
+                                x, y, z,
+                                mx, my, mz,
+                                ProxyClient.get().getHumusColorMap().random( rand ),
+                                40, 40
+                        ) );
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    @OnlyIn( Dist.CLIENT )
+    public void onEntityWalk( World world, BlockPos pos, Entity entity ) {
+        if( type != TYPE_HUMUS ) return;
+        int p = Minecraft.getInstance().gameSettings.particleSetting;
+        if( p == 2 ) return;
+
+        // Humus walking particles
+        if( ! entity.isInWater() ) {
+            double d = entity.nextStepDistance - entity.distanceWalkedOnStepModified;
+            double s = entity.motionX * entity.motionX + entity.motionZ * entity.motionZ;
+
+            if( d < 0.15 && s > 0.01 * 0.01 ) {
+                Random rand = world.rand;
+                for( int i = 0; i < 18; i++ ) {
+                    double x = rand.nextDouble() * 0.6 - 0.3 + entity.posX;
+                    double y = pos.getY() + 1.05;
+                    double z = rand.nextDouble() * 0.6 - 0.3 + entity.posZ;
+                    double mx = entity.motionX * 1.05 + ( rand.nextDouble() * 0.15 - 0.075 );
+                    double mz = entity.motionZ * 1.05 + ( rand.nextDouble() * 0.15 - 0.075 );
+                    double my = rand.nextDouble() * 0.1;
+
+
+                    if( p == 0 || rand.nextBoolean() ) {
+                        Minecraft.getInstance().particles.addEffect( new LeafParticle(
+                                world,
+                                x, y, z,
+                                mx, my, mz,
+                                ProxyClient.get().getHumusColorMap().random( rand ),
+                                40, 40
+                        ) );
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public IItemProvider getItemDropped( IBlockState state, World world, BlockPos pos, int fortune ) {
         return MDBlocks.DARK_DIRT;
     }
 

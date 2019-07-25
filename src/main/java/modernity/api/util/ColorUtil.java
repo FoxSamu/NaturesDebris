@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 7 - 25 - 2019
  */
 
 package modernity.api.util;
@@ -78,6 +78,38 @@ public class ColorUtil {
         b = (int) ( b * ( 1 - amount ) );
 
         return rgb( 255 - r, 255 - g, 255 - b );
+    }
+
+    public static double red( int col ) {
+        return ( col >>> 16 & 0xFF ) / 255D;
+    }
+
+    public static double green( int col ) {
+        return ( col >>> 8 & 0xFF ) / 255D;
+    }
+
+    public static double blue( int col ) {
+        return ( col & 0xFF ) / 255D;
+    }
+
+    public static double alpha( int col ) {
+        return ( col >>> 24 & 0xFF ) / 255D;
+    }
+
+    public static double grayscale( int col ) {
+        return ( red( col ) + green( col ) + blue( col ) ) / 3;
+    }
+
+    public static int fromGrayscale( double grayscale ) {
+        return rgb( grayscale, grayscale, grayscale );
+    }
+
+    public static int temperature( double temp ) {
+        if( temp < 0 ) {
+            return rgb( 1 - temp, 1 - temp / 2, 1 );
+        } else {
+            return rgb( 1, 1 - temp / 2, 1 - temp );
+        }
     }
 
     public static int inverse( int col ) {

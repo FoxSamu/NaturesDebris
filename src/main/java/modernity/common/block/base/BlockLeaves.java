@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 10 - 2019
+ * Date: 7 - 25 - 2019
  */
 
 package modernity.common.block.base;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Particles;
 import net.minecraft.item.Item;
@@ -28,6 +29,7 @@ import net.minecraftforge.common.IShearable;
 
 import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
+import modernity.client.particle.LeafParticle;
 import modernity.client.util.BiomeValues;
 import modernity.common.util.ProxyCommon;
 
@@ -66,7 +68,31 @@ public class BlockLeaves extends BlockBase implements IShearable {
             double z = pos.getZ() + rand.nextFloat();
             world.addParticle( Particles.DRIPPING_WATER, x, y, z, 0, 0, 0 );
         }
+        if( hasFallingLeaves( state, world, pos, rand ) && ! world.getBlockState( pos.down() ).isTopSolid() ) {
+            double x = pos.getX() + rand.nextFloat();
+            double y = pos.getY() - 0.05D;
+            double z = pos.getZ() + rand.nextFloat();
+            int color = getFallingLeafColor( state, world, pos, rand );
+            double r = ( color >>> 16 & 0xff ) / 255D;
+            double g = ( color >>> 8 & 0xff ) / 255D;
+            double b = ( color & 0xff ) / 255D;
+            int p = Minecraft.getInstance().gameSettings.particleSetting;
+            if( p == 0 || p == 1 && rand.nextBoolean() ) {
+                Minecraft.getInstance().particles.addEffect( new LeafParticle( world, x, y, z, 0, 0, 0, r, g, b ) );
+            }
+        }
 
+    }
+
+    @OnlyIn( Dist.CLIENT )
+    protected int getFallingLeafColor( IBlockState state, World world, BlockPos pos, Random rand ) {
+        int color = Minecraft.getInstance().getBlockColors().getColor( state, world, pos, 0 );
+        if( color == - 1 ) color = 0xffffff;
+        return ColorUtil.darken( color, rand.nextDouble() * 0.5 - 0.25 );
+    }
+
+    protected boolean hasFallingLeaves( IBlockState state, World world, BlockPos pos, Random rand ) {
+        return rand.nextInt( 32 ) == 1;
     }
 
     @Override

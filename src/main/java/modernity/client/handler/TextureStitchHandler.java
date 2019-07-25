@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 12 - 2019
+ * Date: 7 - 25 - 2019
  */
 
 package modernity.client.handler;
@@ -32,6 +32,10 @@ public class TextureStitchHandler {
     @SubscribeEvent
     public void onTextureStitch( TextureStitchEvent.Pre event ) {
         TextureMap map = event.getMap();
+
+        // Only stitch fluid textures on default texture map
+        if( map != Minecraft.getInstance().getTextureMap() ) return;
+
         IResourceManager manager = Minecraft.getInstance().getResourceManager();
 
         Set<Fluid> fluids = new HashSet<>( IRegistry.FLUID.stream().collect( Collectors.toList() ) );
