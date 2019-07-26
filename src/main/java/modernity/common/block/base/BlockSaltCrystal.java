@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 12 - 2019
+ * Date: 7 - 26 - 2019
  */
 
 package modernity.common.block.base;
@@ -364,9 +364,9 @@ public class BlockSaltCrystal extends BlockSinglePlant implements ILiquidContain
         if( rand.nextInt( 10 ) == 0 ) {
             AxisAlignedBB aabb = STATE_BOXES[ state.get( AGE ) ];
 
-            double x = rand.nextDouble() * ( aabb.maxX - aabb.minX ) + aabb.minX;
-            double y = rand.nextDouble() * ( aabb.maxY - aabb.minY ) + aabb.minY;
-            double z = rand.nextDouble() * ( aabb.maxZ - aabb.minZ ) + aabb.minZ;
+            double x = rand.nextDouble() * ( aabb.maxX - aabb.minX ) + aabb.minX + pos.getX();
+            double y = rand.nextDouble() * ( aabb.maxY - aabb.minY ) + aabb.minY + pos.getY();
+            double z = rand.nextDouble() * ( aabb.maxZ - aabb.minZ ) + aabb.minZ + pos.getZ();
 
             Minecraft.getInstance().particles.addEffect( new SaltParticle( world, x, y, z, rand.nextDouble() * 0.04 - 0.02, rand.nextDouble() * 0.04 - 0.02, rand.nextDouble() * 0.04 - 0.02 ) );
         }
