@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 10 - 2019
+ * Date: 7 - 26 - 2019
  */
 
 package modernity;
@@ -49,7 +49,12 @@ public class Modernity {
     }
 
     private void serverSetup( FMLDedicatedServerSetupEvent event ) {
-        proxy = new ProxyCommon();
+        try {
+            Class cls = Class.forName( "modernity.server.ProxyServer" );
+            proxy = (ProxyCommon) cls.newInstance();
+        } catch( ClassNotFoundException | IllegalAccessException | InstantiationException e ) {
+            throw new IllegalStateException( "Unable to instantiate ProxyServer", e );
+        }
         initProxy( LogicalSide.SERVER );
     }
 

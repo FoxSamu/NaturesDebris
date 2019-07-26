@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 25 - 2019
+ * Date: 7 - 26 - 2019
  */
 
 package modernity.common.block.base;
@@ -123,9 +123,11 @@ public class BlockDirt extends BlockBase {
     }
 
     @Override
+    @OnlyIn( Dist.CLIENT )
     public void onFallenUpon( World world, BlockPos pos, Entity entity, float fallDistance ) {
         super.onFallenUpon( world, pos, entity, fallDistance );
         if( type != TYPE_HUMUS ) return;
+        if( ! ProxyClient.clientSettings().walkingParticles.get() ) return;
         int p = Minecraft.getInstance().gameSettings.particleSetting;
         if( p == 2 ) return;
 
@@ -148,7 +150,7 @@ public class BlockDirt extends BlockBase {
                                 x, y, z,
                                 mx, my, mz,
                                 ProxyClient.get().getHumusColorMap().random( rand ),
-                                40, 40
+                                30, 20
                         ) );
                     }
                 }
@@ -160,6 +162,7 @@ public class BlockDirt extends BlockBase {
     @OnlyIn( Dist.CLIENT )
     public void onEntityWalk( World world, BlockPos pos, Entity entity ) {
         if( type != TYPE_HUMUS ) return;
+        if( ! ProxyClient.clientSettings().walkingParticles.get() ) return;
         int p = Minecraft.getInstance().gameSettings.particleSetting;
         if( p == 2 ) return;
 
@@ -170,7 +173,7 @@ public class BlockDirt extends BlockBase {
 
             if( d < 0.15 && s > 0.01 * 0.01 ) {
                 Random rand = world.rand;
-                for( int i = 0; i < 18; i++ ) {
+                for( int i = 0; i < 12; i++ ) {
                     double x = rand.nextDouble() * 0.6 - 0.3 + entity.posX;
                     double y = pos.getY() + 1.05;
                     double z = rand.nextDouble() * 0.6 - 0.3 + entity.posZ;
@@ -185,7 +188,7 @@ public class BlockDirt extends BlockBase {
                                 x, y, z,
                                 mx, my, mz,
                                 ProxyClient.get().getHumusColorMap().random( rand ),
-                                40, 40
+                                30, 20
                         ) );
                     }
                 }

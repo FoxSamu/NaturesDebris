@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 11 - 2019
+ * Date: 7 - 26 - 2019
  */
 
 package modernity.common.util;
@@ -33,14 +33,16 @@ import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 
 import modernity.common.command.MDCommands;
 import modernity.common.handler.CapabilityHandler;
+import modernity.common.handler.SettingsShareHandler;
 import modernity.common.handler.StructureHandler;
 import modernity.common.net.pkt.MDPackets;
+import modernity.common.settings.ServerSettings;
 import modernity.common.world.dim.MDDimensions;
 import modernity.common.world.gen.structure.CurseRuinStructure;
 import modernity.common.world.gen.structure.MDStructures;
 import modernity.net.PacketChannel;
 
-public class ProxyCommon {
+public abstract class ProxyCommon {
     private static ProxyCommon instance;
 
     private MinecraftServer server;
@@ -131,6 +133,7 @@ public class ProxyCommon {
     public void registerListeners() {
         MinecraftForge.EVENT_BUS.register( new CapabilityHandler() );
         MinecraftForge.EVENT_BUS.register( new StructureHandler() );
+        MinecraftForge.EVENT_BUS.register( new SettingsShareHandler() );
     }
 
     public boolean fancyGraphics() {
@@ -178,6 +181,8 @@ public class ProxyCommon {
         return server;
     }
 
+    public abstract ServerSettings getServerSettings();
+
     public IThreadListener getThreadListener( LogicalSide side ) {
         return side == LogicalSide.SERVER ? server : getThreadListener();
     }
@@ -204,5 +209,9 @@ public class ProxyCommon {
 
     public static PacketChannel network() {
         return get().getNetworkChannel();
+    }
+
+    public static ServerSettings serverSettings() {
+        return get().getServerSettings();
     }
 }

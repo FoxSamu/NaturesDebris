@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 25 - 2019
+ * Date: 7 - 26 - 2019
  */
 
 package modernity.common.particle;
@@ -24,9 +24,10 @@ import java.util.stream.Collectors;
 
 public class MDParticles {
     private static final ArrayList<Pair<ResourceLocation, ParticleType<?>>> ENTRIES = new ArrayList<>();
-    private static final List<ParticleEntry> VANILLA_ENTRIES = IRegistry.PARTICLE_TYPE.stream()
-                                                                                      .map( ParticleEntry::new )
-                                                                                      .collect( Collectors.toList() );
+    private static final List<ParticleEntry> VANILLA_ENTRIES = IRegistry.PARTICLE_TYPE
+            .stream()
+            .map( ParticleEntry::new )
+            .collect( Collectors.toList() );
 
     public static final SimpleParticleType SALT = register( "salt", false );
     public static final SimpleParticleType MODERNIZED_WATER_DRIP = register( "modernized_water_drip", false );
@@ -54,7 +55,6 @@ public class MDParticles {
     }
 
     public static void inject( int id, ParticleEntry obj ) {
-        System.out.println( "Injecting particle data for ID " + id + ": " + obj.getRegistryName() );
         IRegistry.PARTICLE_TYPE.register( id, Objects.requireNonNull( obj.getRegistryName() ), obj.type );
     }
 }

@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 23 - 2019
+ * Date: 7 - 26 - 2019
  */
 
 package modernity.common.world.dim;
@@ -19,6 +19,7 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.IChunkGenerator;
 
 import modernity.common.biome.ModernityBiomeProvider;
+import modernity.common.util.ProxyCommon;
 import modernity.common.world.gen.ModernityChunkGenerator;
 import modernity.common.world.gen.ModernityGenSettings;
 
@@ -114,6 +115,6 @@ public class ModernityDimension extends Dimension {
 
     @Override
     public int getMoonPhase( long worldTime ) {
-        return 0;
+        return ProxyCommon.serverSettings().moonPhase.get();
     }
 }

@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 25 - 2019
+ * Date: 7 - 26 - 2019
  */
 
 package modernity.common.fluid;
@@ -27,9 +27,10 @@ public class MDFluids {
     public static final PortalFluid PORTAL = new PortalFluid.Source();
     public static final PortalFluid PORTAL_FLOWING = new PortalFluid.Flowing();
 
-    private static final List<FluidEntry> VANILLA_ENTRIES = IRegistry.FLUID.stream()
-                                                                           .map( FluidEntry::new )
-                                                                           .collect( Collectors.toList() );
+    private static final List<FluidEntry> VANILLA_ENTRIES = IRegistry.FLUID
+            .stream()
+            .map( obj -> new FluidEntry( obj ).setRegistryName( IRegistry.FLUID.getKey( obj ) ) )
+            .collect( Collectors.toList() );
 
     public static void register( IForgeRegistry<FluidEntry> registry ) {
         for( FluidEntry entry : VANILLA_ENTRIES ) {

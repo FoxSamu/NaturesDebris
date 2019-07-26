@@ -1,4 +1,12 @@
 {
+  "_comment1": "ENGLISH - UNITED STATES",
+
+  "_comment2": "US English translation by RGSW",
+
+  "_comment3": "Copyright (c) 2019 Red Galaxy & contributors",
+  "_comment4": "Licensed under the Apache Licence v2.0.",
+  "_comment5": "Do not redistribute.",
+
   "block.modernity.rock": "Rock",
   "block.modernity.darkrock": "Darkrock",
   "block.modernity.lightrock": "Lightrock",
@@ -71,6 +79,11 @@
   "command.modernity.access.no_entity": "Only entities can invoke this command",
   "command.modernity.access.already_here": "You are already in that dimension",
   "command.modernity.access.changed_dimen": "Moved you to that dimension",
+  "command.modernity.settings.get": "Setting '%1$s' is '%2$s'",
+  "command.modernity.settings.set": "Setting '%1$s' is set to '%2$s'",
+  "command.modernity.settings.reset": "Setting '%1$s' is reset to '%2$s'",
+  "command.modernity.settings.flushed": "Settings flushed",
+  "command.modernity.settings.saved": "Settings saved",
 
   "entity.modernity.fall_block": "Falling Block (Modernity)",
 
@@ -123,6 +136,33 @@
   "gui.modernity.wiki.rot_mode.left": "Left",
   "gui.modernity.wiki.fluids_enabled.false": "Fluids Off",
   "gui.modernity.wiki.fluids_enabled.true": "Fluids On",
+
+  "gui.modernity.settings.reset": "R",
+  "gui.modernity.settings.reset.desc": "[Reset] Reset to default",
+  "gui.modernity.settings.revert": "U",
+  "gui.modernity.settings.revert.desc": "[Undo] Revert to last value",
+  "gui.modernity.settings.revertdef": "D",
+  "gui.modernity.settings.revertdef.desc": "[Default] Revert to default world setting",
+  "gui.modernity.settings.revertdefault": "Reset default settings",
+  "gui.modernity.settings.revertdefault.desc": "Resets this world's settings to the default world settings",
+
+  "settings.modernity.true": "ON",
+  "settings.modernity.false": "OFF",
+
+  "settings.modernity.type.client": "Client Settings...",
+  "settings.modernity.type.server_default": "Default World Settings...",
+  "settings.modernity.type.server_local": "Settings For Current World...",
+  "settings.modernity.type.wiki": "Wiki Exporting Utilities...",
+
+  "settings.modernity.category.rendering": "Rendering Settings...",
+
+  "settings.modernity.moonPhase": "Moon Phase: %s",
+  "settings.modernity.moonPhase.desc": "Sets which moon phase is visible at the Modernity sky",
+  "settings.modernity.settingsCmdPermission": "Perm. /settings: %s",
+  "settings.modernity.settingsCmdPermission.desc": "Sets the minimum permission required for changing settings via '/settings'. Note that '/settings get' can always be used.",
+
+  "settings.modernity.walkingParticles": "Walking Particles: %s",
+  "settings.modernity.walkingParticles.desc": "Enables particles appearing when walking through or over specific blocks (e.g. whether humus blocks show leaves).\n- ON: Walking particles will appear: this can make the game look significantly slower on slow computers\n- OFF: Walking particles will not appear\nNote that the particles have to be enabled in the video settings.",
 
   "": ""
 }

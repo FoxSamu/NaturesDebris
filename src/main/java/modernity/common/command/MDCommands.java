@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 10 - 2019
+ * Date: 7 - 26 - 2019
  */
 
 package modernity.common.command;
@@ -25,6 +25,7 @@ import modernity.MDInfo;
 import modernity.api.event.ModernityCommandSetupEvent;
 import modernity.api.event.ModernityDebugCommandSetupEvent;
 import modernity.common.command.argument.DimensionArgumentType;
+import modernity.common.command.argument.SettingArgumentType;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,7 @@ public class MDCommands {
         ArrayList<LiteralArgumentBuilder<CommandSource>> commandList = new ArrayList<>();
 
         TPDimCommand.createCommand( commandList );
+        SettingsCommand.createCommand( commandList );
         MinecraftForge.EVENT_BUS.post( new ModernityCommandSetupEvent( commandList ) );
         register( "modernity", dispatcher, commandList );
         register( "md", dispatcher, commandList );
@@ -75,5 +77,6 @@ public class MDCommands {
 
     static {
         ArgumentTypes.register( new ResourceLocation( "modernity:dimension_type" ), DimensionArgumentType.class, new ArgumentSerializer<>( DimensionArgumentType::new ) );
+        ArgumentTypes.register( new ResourceLocation( "modernity:setting" ), SettingArgumentType.class, new SettingArgumentType.Serializer() );
     }
 }

@@ -1,4 +1,13 @@
 {
+  "_comment1": "DUTCH - THE NETHERLANDS",
+
+  "_comment2": "Dutch translation by RGSW",
+  "_comment3": "Nederlandse vertaling door RGSW",
+
+  "_comment4": "Copyright (c) 2019 Red Galaxy & contributors",
+  "_comment5": "Licensed under the Apache Licence v2.0.",
+  "_comment6": "Do not redistribute.",
+
   "block.modernity.rock": "Rotsblok",
   "block.modernity.darkrock": "Donker Rotsblok",
   "block.modernity.lightrock": "Verlicht Rotsblok",
@@ -71,6 +80,11 @@
   "command.modernity.access.no_entity": "Alleen entiteiten kunnen dit commando uitvoeren",
   "command.modernity.access.already_here": "Je bent al in die dimensie",
   "command.modernity.access.changed_dimen": "Je bent naar deze dimensie verplaatst",
+  "command.modernity.settings.get": "Instelling '%1$s' is '%2$s'",
+  "command.modernity.settings.set": "Instelling '%1$s' is verzet naar '%2$s'",
+  "command.modernity.settings.reset": "Instelling '%1$s' is hersteld naar '%2$s'",
+  "command.modernity.settings.flushed": "Instellingen doorgevoerd",
+  "command.modernity.settings.saved": "Instellingen opgeslagen",
 
   "entity.modernity.fall_block": "Vallend Blok (Modernity)",
 
@@ -122,5 +136,32 @@
   "gui.modernity.wiki.rot_mode.back": "Achter",
   "gui.modernity.wiki.rot_mode.left": "Links",
   "gui.modernity.wiki.fluids_enabled.false": "Vloeistof Uit",
-  "gui.modernity.wiki.fluids_enabled.true": "Vloeistof Aan"
+  "gui.modernity.wiki.fluids_enabled.true": "Vloeistof Aan",
+
+  "gui.modernity.settings.reset": "R",
+  "gui.modernity.settings.reset.desc": "[Reset] Herstel naar standaardwaarde",
+  "gui.modernity.settings.revert": "U",
+  "gui.modernity.settings.revert.desc": "[Undo] Herstel naar laatst ingesteld",
+  "gui.modernity.settings.revertdef": "D",
+  "gui.modernity.settings.revertdef.desc": "[Default] Herstel naar standaard wereldinstelling",
+  "gui.modernity.settings.revertdefault": "Herstel staandaard...",
+  "gui.modernity.settings.revertdefault.desc": "Herstel deze instellingen naar standaard instellingen...",
+
+  "settings.modernity.true": "AAN",
+  "settings.modernity.false": "UIT",
+
+  "settings.modernity.type.client": "Client-instellingen...",
+  "settings.modernity.type.server_default": "Standaard Wereldinstellingen...",
+  "settings.modernity.type.server_local": "Instellingen Voor Huidige Wereld...",
+  "settings.modernity.type.wiki": "Wiki Exporthulpmiddelen...",
+
+  "settings.modernity.category.rendering": "Renderinstellingen...",
+
+  "settings.modernity.moonPhase": "Maanfase: %s",
+  "settings.modernity.moonPhase.desc": "Stelt de maanfase in die aan de Modernity hemel zichtbaar is",
+  "settings.modernity.settingsCmdPermission": "Perm. /settings: %s",
+  "settings.modernity.settingsCmdPermission.desc": "Stelt het minimum permissieniveau in voor het verzetten van instellingen via '/settings'. Merk op dat '/settings get' altijd gebruikt mag worden...",
+
+  "settings.modernity.walkingParticles": "Loopdeeltjes: %s",
+  "settings.modernity.walkingParticles.desc": "Laat deeltjes verschijnen bij het lopen over of door bepaalde blokken (bijv. of humus blaadjes laat opspringen).\n- ON: Loopdeeltjes zijn zichtbaar: het spel kan hierdoor duidelijk trager worden op trage computers\n- OFF: Loopdeeltjes zijn niet zichtbaar\nBedenk wel dat deeltjes aan moeten staan in de grafische instellingen."
 }

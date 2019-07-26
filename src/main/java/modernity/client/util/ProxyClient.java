@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 25 - 2019
+ * Date: 7 - 26 - 2019
  */
 
 package modernity.client.util;
@@ -18,6 +18,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.resources.IResourceManagerReloadListener;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -27,6 +28,9 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 import net.minecraftforge.resource.IResourceType;
 import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.resource.VanillaResourceType;
@@ -47,9 +51,11 @@ import modernity.common.block.MDBlocks;
 import modernity.common.entity.MDEntityTypes;
 import modernity.common.item.MDItems;
 import modernity.common.particle.MDParticles;
+import modernity.common.settings.*;
 import modernity.common.util.ContainerManager;
 import modernity.common.util.ProxyCommon;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -70,12 +76,24 @@ public class ProxyClient extends ProxyCommon implements ISelectiveResourceReload
     private final DepthParticleList depthParticleList = new DepthParticleList( PARTICLE_MAP_LOCATION );
     private final NoDepthParticleList noDepthParticleList = new NoDepthParticleList( PARTICLE_MAP_LOCATION );
 
+    private final ClientSettings clientSettings = new ClientSettings( ClientSettings.DEFAULT_LOCATION );
+    private final DefaultServerSettings defaultServerSettings = new DefaultServerSettings( DefaultServerSettings.DEFAULT_LOCATION );
+    private LocalServerSettings localServerSettings;
+    private RemoteServerSettings remoteServerSettings;
+
     @Override
     public void init() {
         super.init();
         addResourceManagerReloadListener( this );
 
         MDEntityTypes.registerClient();
+
+        clientSettings.load( false );
+        defaultServerSettings.load( false );
+        Runtime.getRuntime().addShutdownHook( new Thread( () -> {
+            clientSettings.save( false );
+            defaultServerSettings.save( false );
+        } ) );
     }
 
     @Override
@@ -189,6 +207,52 @@ public class ProxyClient extends ProxyCommon implements ISelectiveResourceReload
         return noDepthParticleList;
     }
 
+    public DefaultServerSettings getDefaultServerSettings() {
+        return defaultServerSettings;
+    }
+
+    public ClientSettings getClientSettings() {
+        return clientSettings;
+    }
+
+    @Override
+    public ServerSettings getServerSettings() {
+        return localServerSettings == null ? remoteServerSettings : localServerSettings;
+    }
+
+    @Override
+    public void serverStart( FMLServerStartingEvent event ) {
+        super.serverStart( event );
+    }
+
+    @Override
+    public void serverAboutToStart( FMLServerAboutToStartEvent event ) {
+        super.serverAboutToStart( event );
+        MinecraftServer server = getServer();
+        File settingsFile = server.getActiveAnvilConverter().getFile( server.getFolderName(), "modernity/server.properties" );
+        localServerSettings = new LocalServerSettings( "Local Server Settings (" + server.getWorldName() + ")", settingsFile, getDefaultServerSettings() );
+        localServerSettings.load( false );
+    }
+
+    @Override
+    public void serverStop( FMLServerStoppedEvent event ) {
+        super.serverStop( event );
+        if( localServerSettings != null ) {
+            localServerSettings.save( false );
+        }
+        localServerSettings = null;
+    }
+
+    public RemoteServerSettings getRemoteServerSettings() {
+        return remoteServerSettings;
+    }
+
+    public RemoteServerSettings startRemoteServerSettings() {
+        LOGGER.info( "Using remote server settings" );
+        if( remoteServerSettings != null ) return remoteServerSettings;
+        return remoteServerSettings = new RemoteServerSettings();
+    }
+
     @SubscribeEvent
     public void clientTick( TickEvent.ClientTickEvent event ) {
         if( mc.world != null ) {
@@ -212,6 +276,13 @@ public class ProxyClient extends ProxyCommon implements ISelectiveResourceReload
         }
     }
 
+    public void onWorldUnload( WorldEvent.Unload event ) {
+        if( event.getWorld().isRemote() ) {
+            LOGGER.info( "Discarding remote server settings" );
+            remoteServerSettings = null;
+        }
+    }
+
     @Override
     public IThreadListener getThreadListener() {
         return mc;
@@ -224,5 +295,9 @@ public class ProxyClient extends ProxyCommon implements ISelectiveResourceReload
 
     public static ProxyClient get() {
         return (ProxyClient) ProxyCommon.get();
+    }
+
+    public static ClientSettings clientSettings() {
+        return get().clientSettings;
     }
 }
