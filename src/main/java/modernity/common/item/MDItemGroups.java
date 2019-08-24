@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 8 - 24 - 2019
  */
 
 package modernity.common.item;
@@ -18,7 +18,7 @@ public class MDItemGroups {
     public static final ItemGroup BLOCKS = new ItemGroup( "modernity" ) {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack( MDBlocks.ROCK.getBlockItem() );
+            return new ItemStack( MDBlocks.ROCK_SLAB.getBlockItem() );
         }
     };
 }

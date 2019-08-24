@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 8 - 2019
+ * Date: 8 - 24 - 2019
  */
 
 package modernity.common.block;
@@ -39,6 +39,12 @@ public class MDBlocks {
     public static final BlockBase LIGHTROCK = blockItem( new BlockBase( "lightrock", Block.Properties.create( Material.ROCK, MaterialColor.SNOW ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ).lightValue( 15 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockBase REDROCK = blockItem( new BlockBase( "redrock", Block.Properties.create( Material.ROCK, MaterialColor.TNT ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockNoDrop MODERN_BEDROCK = blockItem( new BlockNoDrop( "modern_bedrock", Block.Properties.create( Material.ROCK, MaterialColor.BLACK ).hardnessAndResistance( - 1F, 3600000F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+    public static final BlockSlab ROCK_SLAB = blockItem( new BlockSlab( "rock_slab", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockStairs ROCK_STAIRS = blockItem( new BlockStairs( "rock_stairs", false, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockStairs ROCK_STEP = blockItem( new BlockStairs( "rock_step", true, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockCorner ROCK_CORNER = blockItem( new BlockCorner( "rock_corner", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockWall ROCK_WALL = blockItem( new BlockWall( "rock_wall", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     public static final BlockBase ASPHALT = blockItem( new BlockBase( "asphalt_block", Block.Properties.create( MDMaterial.ASPHALT, MaterialColor.BLACK ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 

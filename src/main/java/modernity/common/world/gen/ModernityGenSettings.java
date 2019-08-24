@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 9 - 2019
+ * Date: 8 - 24 - 2019
  */
 
 package modernity.common.world.gen;
@@ -16,13 +16,13 @@ import modernity.common.block.MDBlocks;
 public class ModernityGenSettings extends ChunkGenSettings implements IModernityGenSettings {
     private int seaLevel = 72;
     public ModernityGenSettings() {
-        defaultBlock = MDBlocks.ROCK.getDefaultState();
+        defaultBlock = MDBlocks.ROCK_SLAB.getDefaultState();
         defaultFluid = MDBlocks.MODERNIZED_WATER.getDefaultState();
     }
 
     public ModernityGenSettings( int seaLevel ) {
         this.seaLevel = seaLevel;
-        defaultBlock = MDBlocks.ROCK.getDefaultState();
+        defaultBlock = MDBlocks.ROCK_SLAB.getDefaultState();
         defaultFluid = MDBlocks.MODERNIZED_WATER.getDefaultState();
     }
 

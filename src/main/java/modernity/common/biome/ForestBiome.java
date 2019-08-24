@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 17 - 2019
+ * Date: 8 - 24 - 2019
  */
 
 package modernity.common.biome;
@@ -47,7 +47,7 @@ public class ForestBiome extends BiomeBase {
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature( MDFeatures.BUSH, new BushFeature.Config( 81, 7, new IBlockProvider.ChooseRandom( MDBlocks.BLUE_MELION, MDBlocks.ORANGE_MELION, MDBlocks.INDIGO_MELION, MDBlocks.YELLOW_MELION, MDBlocks.MAGENTA_MELION, MDBlocks.RED_MELION, MDBlocks.WHITE_MELION ) ), AT_SURFACE, new FrequencyConfig( 1 ) ) );
 
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature( MDFeatures.BLACKWOOD_TREE, IFeatureConfig.NO_FEATURE_CONFIG, AT_SURFACE, new FrequencyConfig( 6 ) ) );
-        addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.ROCK.getDefaultState() ), AT_SURFACE_WITH_CHANCE, new ChanceConfig( 8 ) ) );
+        addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.ROCK_SLAB.getDefaultState() ), AT_SURFACE_WITH_CHANCE, new ChanceConfig( 8 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.DARKROCK.getDefaultState() ), AT_SURFACE_WITH_CHANCE, new ChanceConfig( 16 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.LIGHTROCK.getDefaultState() ), AT_SURFACE_WITH_CHANCE, new ChanceConfig( 128 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.REDROCK.getDefaultState() ), AT_SURFACE_WITH_CHANCE, new ChanceConfig( 48 ) ) );
