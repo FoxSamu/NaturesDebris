@@ -46,7 +46,7 @@ public class MDBlocks {
     public static final BlockCorner ROCK_CORNER = blockItem( new BlockCorner( "rock_corner", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockWall ROCK_WALL = blockItem( new BlockWall( "rock_wall", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
-    public static final BlockBase ASPHALT = blockItem( new BlockBase( "asphalt_block", Block.Properties.create( MDMaterial.ASPHALT, MaterialColor.BLACK ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockBase ASPHALT_CONCRETE = blockItem( new BlockBase( "asphalt_concrete", Block.Properties.create( MDMaterial.ASPHALT, MaterialColor.BLACK ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Dusts
     public static final BlockFall ASH_BLOCK = blockItem( new BlockFall( "ash_block", 0x333333, Block.Properties.create( MDMaterial.ASH, MaterialColor.GRAY ).hardnessAndResistance( 0.4F ).sound( SoundType.SAND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
