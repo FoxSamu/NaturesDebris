@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "modernity:block/stripped_inver_log"
+    },
+    "axis=z": {
+      "model": "modernity:block/stripped_inver_log", "x": 90
+    },
+    "axis=x": {
+      "model": "modernity:block/stripped_inver_log", "x": 90, "y": 90
+    }
+  }
+}

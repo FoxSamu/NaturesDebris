@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 24 - 2019
+ * Date: 8 - 25 - 2019
  */
 
 package modernity.common.block;
@@ -76,6 +76,7 @@ public class MDBlocks {
     // Fluids
     public static final BlockFluid MODERNIZED_WATER = blockOnly( new BlockFluid( "modernized_water", MDFluids.MODERNIZED_WATER, Block.Properties.create( Material.WATER, MaterialColor.WATER ).doesNotBlockMovement().hardnessAndResistance( 100F ) ) );
     public static final BlockFluid PORTAL_FLUID = blockOnly( new BlockPortalFluid( "portal_fluid", MDFluids.PORTAL, Block.Properties.create( Material.WATER, MaterialColor.WATER ).doesNotBlockMovement().hardnessAndResistance( 100F ).lightValue( 9 ) ) );
+    public static final BlockFluid HEATROCK_FLUID = blockOnly( new BlockFluid( "heatrock_fluid", MDFluids.HEATROCK_FLUID, Block.Properties.create( Material.LAVA, MaterialColor.TNT ).doesNotBlockMovement().hardnessAndResistance( 100F ).lightValue( 15 ) ) );
 
     // Plants
     public static final BlockTallPlant DARK_TALLGRASS = blockItem( new BlockTallPlant.ColoredGrass( "dark_tall_grass", Block.Properties.create( Material.VINE, MaterialColor.GRASS ).doesNotBlockMovement().hardnessAndResistance( 0 ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
@@ -108,6 +109,11 @@ public class MDBlocks {
     public static final BlockBase BLACKWOOD_BARK = blockItem( new BlockStripable( "blackwood_bark", STRIPPED_BLACKWOOD_BARK, Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockSapling BLACKWOOD_SAPLING = blockItem( new BlockSapling( "blackwood_sapling", () -> MDFeatures.BLACKWOOD_TREE, Block.Properties.create( Material.VINE, MaterialColor.GRASS ).hardnessAndResistance( 0 ).tickRandomly().sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockHangLeaves BLACKWOOD_LEAVES = blockItem( new BlockHangLeaves.ColoredFoliage( "blackwood_leaves", MDBlockTags.BLACKWOOD_LOG, BLACKWOOD_SAPLING, Block.Properties.create( Material.LEAVES ).hardnessAndResistance( 0.2F ).tickRandomly().sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+    // Inver tree
+
+    public static final BlockLog STRIPPED_INVER_LOG = blockItem( new BlockLog( "stripped_inver_log", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockLog INVER_LOG = blockItem( new BlockStripableLog( "inver_log", STRIPPED_INVER_LOG, Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Ores
     public static final BlockOre SALT_ORE = blockItem( new BlockOre.Salt( "salt_ore", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );

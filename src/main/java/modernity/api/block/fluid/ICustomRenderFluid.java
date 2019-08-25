@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 26 - 2019
+ * Date: 8 - 25 - 2019
  */
 
 package modernity.api.block.fluid;
@@ -24,7 +24,9 @@ public interface ICustomRenderFluid {
     @OnlyIn( Dist.CLIENT )
     ResourceLocation getOverlay();
     @OnlyIn( Dist.CLIENT )
-    int getColor( IFluidState state, BlockPos pos, IWorldReaderBase world );
+    default int getColor( IFluidState state, BlockPos pos, IWorldReaderBase world ) {
+        return 0xffffff;
+    }
 
     default int getSourceSlopeWeight() {
         return 10;

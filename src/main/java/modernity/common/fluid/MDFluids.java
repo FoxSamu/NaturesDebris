@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 26 - 2019
+ * Date: 8 - 25 - 2019
  */
 
 package modernity.common.fluid;
@@ -26,6 +26,8 @@ public class MDFluids {
     public static final ModernizedWaterFluid MODERNIZED_WATER_FLOWING = new ModernizedWaterFluid.Flowing();
     public static final PortalFluid PORTAL = new PortalFluid.Source();
     public static final PortalFluid PORTAL_FLOWING = new PortalFluid.Flowing();
+    public static final HeatrockFluid HEATROCK_FLUID = new HeatrockFluid.Source();
+    public static final HeatrockFluid HEATROCK_FLUID_FLOWING = new HeatrockFluid.Flowing();
 
     private static final List<FluidEntry> VANILLA_ENTRIES = IRegistry.FLUID
             .stream()
@@ -41,6 +43,8 @@ public class MDFluids {
         registry.register( new FluidEntry( new ResourceLocation( "modernity:modernized_water_flowing" ), MODERNIZED_WATER_FLOWING ) );
         registry.register( new FluidEntry( new ResourceLocation( "modernity:portal" ), PORTAL ) );
         registry.register( new FluidEntry( new ResourceLocation( "modernity:portal_flowing" ), PORTAL_FLOWING ) );
+        registry.register( new FluidEntry( new ResourceLocation( "modernity:heatrock" ), HEATROCK_FLUID ) );
+        registry.register( new FluidEntry( new ResourceLocation( "modernity:heatrock_flowing" ), HEATROCK_FLUID_FLOWING ) );
     }
 
     public static void inject( int id, FluidEntry entry ) {
