@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 24 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package modernity.common.item;
@@ -18,7 +18,7 @@ public class MDItemGroups {
     public static final ItemGroup BLOCKS = new ItemGroup( "modernity" ) {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack( MDBlocks.ROCK_SLAB.getBlockItem() );
+            return new ItemStack( MDBlocks.ROCK.getBlockItem() );
         }
     };
 }

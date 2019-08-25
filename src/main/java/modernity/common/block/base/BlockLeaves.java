@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 25 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package modernity.common.block.base;
@@ -31,7 +31,7 @@ import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
 import modernity.api.util.MovingBlockPos;
 import modernity.client.particle.LeafParticle;
-import modernity.client.util.BiomeValues;
+import modernity.client.util.ProxyClient;
 import modernity.common.block.MDBlocks;
 import modernity.common.util.ProxyCommon;
 
@@ -195,21 +195,21 @@ public class BlockLeaves extends BlockBase implements IShearable {
         return Collections.singletonList( new ItemStack( this ) );
     }
 
-    public static class ColoredFoliage extends BlockLeaves implements IColoredBlock {
+    public static class ColoredBlackwood extends BlockLeaves implements IColoredBlock {
 
         private static final int DEFAULT_COLOR = ColorUtil.rgb( 32, 86, 49 );
 
-        public ColoredFoliage( String id, IItemProvider sapling, Properties properties, Item.Properties itemProps ) {
+        public ColoredBlackwood( String id, IItemProvider sapling, Properties properties, Item.Properties itemProps ) {
             super( id, sapling, properties, itemProps );
         }
 
-        public ColoredFoliage( String id, IItemProvider sapling, Properties properties ) {
+        public ColoredBlackwood( String id, IItemProvider sapling, Properties properties ) {
             super( id, sapling, properties );
         }
 
         @Override
         public int colorMultiplier( IBlockState state, @Nullable IWorldReaderBase reader, @Nullable BlockPos pos, int tintIndex ) {
-            return BiomeValues.get( reader, pos, BiomeValues.FOLIAGE_COLOR );
+            return ProxyClient.get().getBlackwoodColors().getColor( reader, pos );
         }
 
         @Override

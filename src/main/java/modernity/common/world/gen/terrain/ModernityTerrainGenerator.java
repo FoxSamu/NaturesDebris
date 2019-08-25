@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 24 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package modernity.common.world.gen.terrain;
@@ -125,7 +125,7 @@ public class ModernityTerrainGenerator {
                                 }
 
                                 if( noise > 0 ) {
-                                    state = MDBlocks.ROCK_SLAB.getDefaultState();
+                                    state = MDBlocks.ROCK.getDefaultState();
                                 }
 
                                 rpos.setPos( posx, posy, posz );

@@ -4,12 +4,13 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 25 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package modernity.api.util;
 
 import net.minecraft.util.math.MathHelper;
+import net.rgsw.MathUtil;
 
 public class ColorUtil {
     public static int rgb( int r, int g, int b ) {
@@ -112,7 +113,51 @@ public class ColorUtil {
         }
     }
 
+    public static int interpolate( int colorA, int colorB, double v ) {
+        int rA = colorA >>> 16 & 0xff;
+        int gA = colorA >>> 8 & 0xff;
+        int bA = colorA & 0xff;
+
+        int rB = colorB >>> 16 & 0xff;
+        int gB = colorB >>> 8 & 0xff;
+        int bB = colorB & 0xff;
+
+        int rC = (int) MathUtil.lerp( rA, rB, v );
+        int gC = (int) MathUtil.lerp( gA, gB, v );
+        int bC = (int) MathUtil.lerp( bA, bB, v );
+
+        return rgb( rC, gC, bC );
+    }
+
     public static int inverse( int col ) {
         return 0xffffff - col;
+    }
+
+    public static Integer parseHexString( String string ) {
+        if( string.charAt( 0 ) != '#' ) {
+            return null;
+        }
+        if( string.length() != 7 && string.length() != 4 ) {
+            return null;
+        }
+        String hex = string.substring( 1 );
+
+        if( hex.length() == 6 ) {
+            try {
+                return Integer.parseInt( hex, 16 );
+            } catch( NumberFormatException exc ) {
+                return null;
+            }
+        } else {
+            try {
+                int r = Integer.parseInt( hex.charAt( 0 ) + "", 16 );
+                int g = Integer.parseInt( hex.charAt( 1 ) + "", 16 );
+                int b = Integer.parseInt( hex.charAt( 2 ) + "", 16 );
+
+                return r << 20 | r << 16 | g << 12 | g << 8 | b << 4 | b;
+            } catch( NumberFormatException exc ) {
+                return null;
+            }
+        }
     }
 }

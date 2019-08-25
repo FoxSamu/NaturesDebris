@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 24 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package modernity.common.biome;
@@ -252,7 +252,7 @@ public class BiomeBase extends Biome implements IColoringBiome {
             for( int y = 0; y < 256; y++ ) {
                 mpos.setPos( x, y, z );
                 if( chunk.getBlockState( mpos ).isSolid() ) {
-                    chunk.setBlockState( mpos, MDBlocks.ROCK_SLAB.getDefaultState(), false );
+                    chunk.setBlockState( mpos, MDBlocks.ROCK.getDefaultState(), false );
                 }
             }
 

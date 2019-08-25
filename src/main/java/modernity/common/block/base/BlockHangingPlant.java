@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 19 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package modernity.common.block.base;
@@ -33,7 +33,7 @@ import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
 import modernity.api.util.EcoBlockPos;
 import modernity.api.util.MDVoxelShapes;
-import modernity.client.util.BiomeValues;
+import modernity.client.util.ProxyClient;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
 
 import javax.annotation.Nullable;
@@ -232,7 +232,7 @@ public class BlockHangingPlant extends BlockNoDrop implements IBlockProvider {
         @OnlyIn( Dist.CLIENT )
         @Override
         public int colorMultiplier( IBlockState state, @Nullable IWorldReaderBase reader, @Nullable BlockPos pos, int tintIndex ) {
-            return BiomeValues.get( reader, pos, BiomeValues.GRASS_COLOR );
+            return ProxyClient.get().getGrassColors().getColor( reader, pos );
         }
 
         @OnlyIn( Dist.CLIENT )

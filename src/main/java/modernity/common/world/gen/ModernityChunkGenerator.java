@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 24 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package modernity.common.world.gen;
@@ -75,7 +75,7 @@ public class ModernityChunkGenerator implements IChunkGenerator<ModernityGenSett
 
         darkrockGen = new NoiseBlockGenerator(
                 new FractalOpenSimplex3D( rand.nextInt(), 43.51234, 4 ).subtract( 0.3 ),
-                BlockMatcher.forBlock( MDBlocks.ROCK_SLAB ),
+                BlockMatcher.forBlock( MDBlocks.ROCK ),
                 MDBlocks.DARKROCK.getDefaultState()
         );
     }

@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 26 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package modernity.client.util;
@@ -37,6 +37,7 @@ import net.minecraftforge.resource.VanillaResourceType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import modernity.api.biome.BiomeColoringProfile;
 import modernity.client.colormap.ColorMap;
 import modernity.client.handler.OptionsButtonHandler;
 import modernity.client.handler.TextureStitchHandler;
@@ -56,6 +57,7 @@ import modernity.common.util.ContainerManager;
 import modernity.common.util.ProxyCommon;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -80,6 +82,11 @@ public class ProxyClient extends ProxyCommon implements ISelectiveResourceReload
     private final DefaultServerSettings defaultServerSettings = new DefaultServerSettings( DefaultServerSettings.DEFAULT_LOCATION );
     private LocalServerSettings localServerSettings;
     private RemoteServerSettings remoteServerSettings;
+
+    private BiomeColoringProfile grassColors;
+    private BiomeColoringProfile blackwoodColors;
+    private BiomeColoringProfile inverColors;
+    private BiomeColoringProfile waterColors;
 
     @Override
     public void init() {
@@ -121,6 +128,20 @@ public class ProxyClient extends ProxyCommon implements ISelectiveResourceReload
             if( particleTextureMap != null ) {
                 reloadTextureMap();
             }
+            grassColors = loadColorProfile( resourceManager, new ResourceLocation( "modernity:grass" ) );
+            blackwoodColors = loadColorProfile( resourceManager, new ResourceLocation( "modernity:blackwood" ) );
+            inverColors = loadColorProfile( resourceManager, new ResourceLocation( "modernity:inver" ) );
+            waterColors = loadColorProfile( resourceManager, new ResourceLocation( "modernity:water" ) );
+        }
+    }
+
+    private BiomeColoringProfile loadColorProfile( IResourceManager resManager, ResourceLocation type ) {
+        ResourceLocation loc = new ResourceLocation( type.getNamespace(), "data/biomecolors/" + type.getPath() + ".json" );
+
+        try {
+            return BiomeColoringProfile.create( resManager, loc, type.toString() );
+        } catch( IOException e ) {
+            return new BiomeColoringProfile();
         }
     }
 
@@ -213,6 +234,22 @@ public class ProxyClient extends ProxyCommon implements ISelectiveResourceReload
 
     public ClientSettings getClientSettings() {
         return clientSettings;
+    }
+
+    public BiomeColoringProfile getGrassColors() {
+        return grassColors;
+    }
+
+    public BiomeColoringProfile getBlackwoodColors() {
+        return blackwoodColors;
+    }
+
+    public BiomeColoringProfile getInverColors() {
+        return inverColors;
+    }
+
+    public BiomeColoringProfile getWaterColors() {
+        return waterColors;
     }
 
     @Override

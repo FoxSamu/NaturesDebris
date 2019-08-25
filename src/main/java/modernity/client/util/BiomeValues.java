@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 23 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package modernity.client.util;
@@ -23,38 +23,38 @@ import modernity.api.util.ColorUtil;
 public class BiomeValues {
     public static final ColorResolver WATER_COLOR = new ColorResolver() {
         @Override
-        public int getColor( IColoringBiome iColoringBiome, BlockPos pos ) {
+        public int getColor( IColoringBiome iColoringBiome, BlockPos pos, long seed ) {
             return iColoringBiome.getMDWaterColor( pos );
         }
 
         @Override
-        public int getDefaultColor( Biome biome, BlockPos pos ) {
+        public int getDefaultColor( Biome biome, BlockPos pos, long seed ) {
             return ColorUtil.darken( biome.getWaterColor(), 0.6 );
         }
     };
 
-    public static final ColorResolver FOG_COLOR = IColoringBiome::getFogColor;
+    public static final ColorResolver FOG_COLOR = ( biome, pos, seed ) -> biome.getFogColor( pos );
 
     public static final ColorResolver GRASS_COLOR = new ColorResolver() {
         @Override
-        public int getColor( IColoringBiome iColoringBiome, BlockPos pos ) {
+        public int getColor( IColoringBiome iColoringBiome, BlockPos pos, long seed ) {
             return iColoringBiome.getGrassColor( pos );
         }
 
         @Override
-        public int getDefaultColor( Biome biome, BlockPos pos ) {
+        public int getDefaultColor( Biome biome, BlockPos pos, long seed ) {
             return ColorUtil.darken( biome.getGrassColor( pos ), 0.6 );
         }
     };
 
     public static final ColorResolver FOLIAGE_COLOR = new ColorResolver() {
         @Override
-        public int getColor( IColoringBiome iColoringBiome, BlockPos pos ) {
+        public int getColor( IColoringBiome iColoringBiome, BlockPos pos, long seed ) {
             return iColoringBiome.getFoliageColor( pos );
         }
 
         @Override
-        public int getDefaultColor( Biome biome, BlockPos pos ) {
+        public int getDefaultColor( Biome biome, BlockPos pos, long seed ) {
             return ColorUtil.darken( biome.getFoliageColor( pos ), 0.6 );
         }
     };
@@ -81,6 +81,11 @@ public class BiomeValues {
         int g = 0;
         int b = 0;
 
+        long seed = 0;
+        if( Minecraft.getInstance().world != null ) {
+            seed = Minecraft.getInstance().world.getSeed();
+        }
+
         for( int x = - radius; x <= radius; x++ ) {
             for( int z = - radius; z <= radius; z++ ) {
                 rpos.setPos( pos.getX() + x, pos.getY(), pos.getZ() + z );
@@ -89,9 +94,9 @@ public class BiomeValues {
 
                 int col;
                 if( biome instanceof IColoringBiome ) {
-                    col = resolver.getColor( (IColoringBiome) biome, rpos );
+                    col = resolver.getColor( (IColoringBiome) biome, pos, seed );
                 } else {
-                    col = resolver.getDefaultColor( biome, pos );
+                    col = resolver.getDefaultColor( biome, pos, seed );
                 }
 
                 r += col >>> 16 & 0xff;
@@ -151,8 +156,8 @@ public class BiomeValues {
 
     @OnlyIn( Dist.CLIENT )
     private interface ColorResolver {
-        int getColor( IColoringBiome biome, BlockPos pos );
-        default int getDefaultColor( Biome biome, BlockPos pos ) {
+        int getColor( IColoringBiome biome, BlockPos pos, long seed );
+        default int getDefaultColor( Biome biome, BlockPos pos, long seed ) {
             return 0x000000;
         }
     }

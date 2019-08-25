@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 10 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package modernity.common.block.base;
@@ -37,7 +37,7 @@ import net.minecraftforge.common.IShearable;
 import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
 import modernity.api.util.EcoBlockPos;
-import modernity.client.util.BiomeValues;
+import modernity.client.util.ProxyClient;
 import modernity.common.util.ProxyCommon;
 
 import javax.annotation.Nonnull;
@@ -229,21 +229,21 @@ public class BlockDecayableLeaves extends BlockBase implements IShearable {
         return Collections.singletonList( new ItemStack( this ) );
     }
 
-    public static class ColoredFoliage extends BlockDecayableLeaves implements IColoredBlock {
+    public static class ColoredBlackwood extends BlockDecayableLeaves implements IColoredBlock {
 
         private static final int DEFAULT_COLOR = ColorUtil.rgb( 32, 86, 49 );
 
-        public ColoredFoliage( String id, Tag<Block> logTag, Properties properties, Item.Properties itemProps ) {
+        public ColoredBlackwood( String id, Tag<Block> logTag, Properties properties, Item.Properties itemProps ) {
             super( id, logTag, properties, itemProps );
         }
 
-        public ColoredFoliage( String id, Tag<Block> logTag, Properties properties ) {
+        public ColoredBlackwood( String id, Tag<Block> logTag, Properties properties ) {
             super( id, logTag, properties );
         }
 
         @Override
         public int colorMultiplier( IBlockState state, @Nullable IWorldReaderBase reader, @Nullable BlockPos pos, int tintIndex ) {
-            return BiomeValues.get( reader, pos, BiomeValues.FOLIAGE_COLOR );
+            return ProxyClient.get().getBlackwoodColors().getColor( reader, pos );
         }
 
         @Override

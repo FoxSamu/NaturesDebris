@@ -3,7 +3,7 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 7 - 5 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package net.rgsw.noise;
@@ -220,5 +220,14 @@ public interface INoise2D {
             }
             return n;
         };
+    }
+
+    /**
+     * Creates a cell noise generator with a specific seed.
+     * @param seed The seed
+     * @return The created noise generator
+     */
+    static INoise2D random( int seed ) {
+        return ( x, y ) -> Hash.hash2D( seed, (int) x, (int) y );
     }
 }
