@@ -28,6 +28,7 @@ import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
 import modernity.api.util.EcoBlockPos;
 import modernity.client.util.ProxyClient;
+import modernity.common.util.MDEvents;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -63,6 +64,7 @@ public class BlockDecayLeaves extends BlockLeaves {
         if( state.get( DISTANCE ) == MAX_DIST ) {
             state.dropBlockAsItem( world, pos, 0 );
             world.removeBlock( pos );
+            world.playEvent( MDEvents.LEAVES_DECAY, pos, Block.BLOCK_STATE_IDS.get( state ) );
         }
     }
 
@@ -120,6 +122,14 @@ public class BlockDecayLeaves extends BlockLeaves {
     @Override
     public IBlockState getStateForPlacement( BlockItemUseContext context ) {
         return getDefaultState().with( DISTANCE, 0 );
+    }
+
+    @Override
+    protected boolean hasFallingLeaf( IBlockState state, World world, BlockPos pos, Random rand ) {
+        if( state.get( DISTANCE ) == MAX_DIST ) {
+            return rand.nextInt( 48 ) == 1;
+        }
+        return super.hasFallingLeaf( state, world, pos, rand );
     }
 
     public static class ColoredBlackwood extends BlockDecayLeaves implements IColoredBlock {

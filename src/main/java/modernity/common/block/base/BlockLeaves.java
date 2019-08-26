@@ -93,8 +93,25 @@ public class BlockLeaves extends BlockBase implements IShearable {
         return ColorUtil.darken( color, rand.nextDouble() * 0.5 - 0.25 );
     }
 
+    @OnlyIn( Dist.CLIENT )
+    public void spawnDecayLeaves( BlockPos pos, Random rand, World world, IBlockState state ) {
+        for( int i = 0; i < 10; i ++ ) {
+            double x = pos.getX() + rand.nextFloat();
+            double y = pos.getY() + rand.nextFloat();
+            double z = pos.getZ() + rand.nextFloat();
+            int color = getFallingLeafColor( state, world, pos, rand );
+            double r = ( color >>> 16 & 0xff ) / 255D;
+            double g = ( color >>> 8 & 0xff ) / 255D;
+            double b = ( color & 0xff ) / 255D;
+            int p = Minecraft.getInstance().gameSettings.particleSetting;
+            if( p == 0 || p == 1 && rand.nextBoolean() ) {
+                Minecraft.getInstance().particles.addEffect( new LeafParticle( world, x, y, z, 0, 0, 0, r, g, b ) );
+            }
+        }
+    }
+
     protected boolean hasFallingLeaf( IBlockState state, World world, BlockPos pos, Random rand ) {
-        return rand.nextInt( 64 ) == 1;
+        return rand.nextInt( 256 ) == 1;
     }
 
     protected boolean generatesHumus( IBlockState state ) {
