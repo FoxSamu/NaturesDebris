@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package modernity.common.world.gen.decorate.feature;
@@ -36,12 +36,12 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
 
     protected final IBlockState leaves;
     protected final IBlockState log;
-    protected final IBlockState branch;
+    protected final IBlockState bark;
 
-    public TreeFeature( IBlockState leaves, IBlockState log, IBlockState branch ) {
+    public TreeFeature( IBlockState leaves, IBlockState log, IBlockState bark ) {
         this.leaves = leaves;
         this.log = log;
-        this.branch = branch;
+        this.bark = bark;
     }
 
     public boolean generate( IWorld world, Random rand, BlockPos pos ) {
@@ -261,27 +261,27 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
     }
 
     public IBlockState branch( EnumFacing root, boolean n, boolean e, boolean s, boolean w, boolean u, boolean d ) {
-        return branch.with( BlockBranch.ROOT, root )
-                     .with( BlockBranch.NORTH, n )
-                     .with( BlockBranch.EAST, e )
-                     .with( BlockBranch.SOUTH, s )
-                     .with( BlockBranch.WEST, w )
-                     .with( BlockBranch.UP, u )
-                     .with( BlockBranch.DOWN, d );
+        return bark.with( BlockBranch.ROOT, root )
+                   .with( BlockBranch.NORTH, n )
+                   .with( BlockBranch.EAST, e )
+                   .with( BlockBranch.SOUTH, s )
+                   .with( BlockBranch.WEST, w )
+                   .with( BlockBranch.UP, u )
+                   .with( BlockBranch.DOWN, d );
     }
 
     public IBlockState branch( EnumFacing root, int flags ) {
-        return branch.with( BlockBranch.ROOT, root )
-                     .with( BlockBranch.NORTH, ( flags & 1 ) > 0 )
-                     .with( BlockBranch.EAST, ( flags & 2 ) > 0 )
-                     .with( BlockBranch.SOUTH, ( flags & 4 ) > 0 )
-                     .with( BlockBranch.WEST, ( flags & 8 ) > 0 )
-                     .with( BlockBranch.UP, ( flags & 16 ) > 0 )
-                     .with( BlockBranch.DOWN, ( flags & 32 ) > 0 );
+        return bark.with( BlockBranch.ROOT, root )
+                   .with( BlockBranch.NORTH, ( flags & 1 ) > 0 )
+                   .with( BlockBranch.EAST, ( flags & 2 ) > 0 )
+                   .with( BlockBranch.SOUTH, ( flags & 4 ) > 0 )
+                   .with( BlockBranch.WEST, ( flags & 8 ) > 0 )
+                   .with( BlockBranch.UP, ( flags & 16 ) > 0 )
+                   .with( BlockBranch.DOWN, ( flags & 32 ) > 0 );
     }
 
     public IBlockState branch( EnumFacing root, Set<EnumFacing> facings ) {
-        IBlockState state = branch.with( BlockBranch.ROOT, root );
+        IBlockState state = bark.with( BlockBranch.ROOT, root );
         state = state.with( BlockBranch.facingProperty( root.getOpposite() ), true );
         for( EnumFacing facing : facings ) {
             state = state.with( BlockBranch.facingProperty( facing ), true );
