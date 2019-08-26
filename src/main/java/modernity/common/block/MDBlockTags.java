@@ -30,6 +30,7 @@ public class MDBlockTags {
 
 
     public static final Tag<Block> SALT_SOURCE = tag( "salt_source" );
+    public static final Tag<Block> REEDS_GROWABLE = tag( "reeds_growable" );
 
     private static Tag<Block> tag( String id ) {
         return new BlockTags.Wrapper( new ResourceLocation( "modernity", id ) );

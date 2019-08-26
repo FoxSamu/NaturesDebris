@@ -12,14 +12,18 @@ package modernity.common.block.base;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.fluid.IFluidState;
+import net.minecraft.init.Items;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -34,7 +38,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import modernity.api.block.IColoredBlock;
 import modernity.api.util.EcoBlockPos;
 import modernity.api.util.MDVoxelShapes;
+import modernity.api.util.MovingBlockPos;
 import modernity.client.util.ProxyClient;
+import modernity.common.block.MDBlockTags;
+import modernity.common.block.MDBlocks;
 import modernity.common.fluid.MDFluids;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
 
@@ -42,21 +49,22 @@ import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.function.Function;
 
-public class BlockTallPlant extends BlockNoDrop implements IBlockProvider {
+public class BlockTallWaterloggingPlant extends BlockWaterlogged2 implements IBlockProvider {
     public static final BooleanProperty BOTTOM = BooleanProperty.create( "bottom" );
     public static final BooleanProperty TOP = BooleanProperty.create( "top" );
     private int maxHeight;
 
-    public BlockTallPlant( String id, Properties properties, Item.Properties itemProps ) {
+    public BlockTallWaterloggingPlant( String id, Properties properties, Item.Properties itemProps ) {
         super( id, properties, itemProps );
     }
 
-    public BlockTallPlant( String id, Properties properties ) {
+    public BlockTallWaterloggingPlant( String id, Properties properties ) {
         super( id, properties );
     }
 
     @Override
     protected void fillStateContainer( StateContainer.Builder<Block, IBlockState> builder ) {
+        super.fillStateContainer( builder );
         builder.add( BOTTOM, TOP );
     }
 
@@ -90,6 +98,7 @@ public class BlockTallPlant extends BlockNoDrop implements IBlockProvider {
 
     @Override
     public IBlockState updatePostPlacement( IBlockState state, EnumFacing facing, IBlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos ) {
+        super.updatePostPlacement( state, facing, facingState, world, pos, facingPos );
         if( facing == EnumFacing.DOWN ) {
             state = state.with( BOTTOM, isBottom( world, pos, state ) );
         }
@@ -106,6 +115,7 @@ public class BlockTallPlant extends BlockNoDrop implements IBlockProvider {
     public boolean isTop( IBlockReader world, BlockPos pos, IBlockState state ) {
         return ! isSelfState( world.getBlockState( pos.up() ) );
     }
+
 
     public boolean canRemainAt( IBlockReader world, BlockPos pos, IBlockState state ) {
         IBlockState down = world.getBlockState( pos.down() );
@@ -145,8 +155,8 @@ public class BlockTallPlant extends BlockNoDrop implements IBlockProvider {
     }
 
     public void destroy( World world, BlockPos pos, IBlockState state ) {
-        world.setBlockState( pos, Blocks.AIR.getDefaultState(), 3 );
-        dropBlockAsItemWithChance( state, world, pos, 1, 0 );
+        world.removeBlock( pos );
+        state.dropBlockAsItem( world, pos, 0 );
     }
 
     @Override
@@ -224,7 +234,19 @@ public class BlockTallPlant extends BlockNoDrop implements IBlockProvider {
         return false;
     }
 
-    public static class ColoredGrass extends BlockTallPlant implements IColoredBlock {
+
+    @Override
+    public IItemProvider getItemDropped( IBlockState state, World worldIn, BlockPos pos, int fortune ) {
+        return Items.AIR;
+    }
+
+    @Override
+    @SuppressWarnings( "deprecation" )
+    public int quantityDropped( IBlockState state, Random random ) {
+        return 0;
+    }
+
+    public static class ColoredGrass extends BlockTallWaterloggingPlant implements IColoredBlock {
         public static final VoxelShape GRASS_END_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 10, 14 );
         public static final VoxelShape GRASS_MIDDLE_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 16, 14 );
 
@@ -267,21 +289,28 @@ public class BlockTallPlant extends BlockNoDrop implements IBlockProvider {
         }
     }
 
-    public static class Reeds extends BlockTallPlant {
+    public static class Reeds extends BlockTallWaterloggingPlant {
         public static final VoxelShape REEDS_END_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 14, 14 );
         public static final VoxelShape REEDS_MIDDLE_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 16, 14 );
+        public static final IntegerProperty AGE = BlockStateProperties.AGE_0_15;
 
         public Reeds( String id, Properties properties, Item.Properties itemProps ) {
-            super( id, properties, itemProps );
+            super( id, properties.tickRandomly(), itemProps );
         }
 
         public Reeds( String id, Properties properties ) {
-            super( id, properties );
+            super( id, properties.tickRandomly() );
+        }
+
+        @Override
+        protected void fillStateContainer( StateContainer.Builder<Block, IBlockState> builder ) {
+            super.fillStateContainer( builder );
+            builder.add( AGE );
         }
 
         @Override
         public boolean canBlockSustain( IBlockReader reader, BlockPos pos, IBlockState state ) {
-            if( state.getBlock() instanceof BlockDirt ) {
+            if( state.isIn( MDBlockTags.REEDS_GROWABLE ) ) {
                 if( reader.getFluidState( pos.up() ).getFluid() == MDFluids.MODERNIZED_WATER ) {
                     return true;
                 }
@@ -303,6 +332,100 @@ public class BlockTallPlant extends BlockNoDrop implements IBlockProvider {
 
         @Override
         public boolean isReplaceable( IBlockState state, BlockItemUseContext useContext ) {
+            return false;
+        }
+
+        @Override
+        public void tick( IBlockState state, World world, BlockPos pos, Random random ) {
+            if( state.get( AGE ) < 15 ) {
+                world.setBlockState( pos, state.with( AGE, state.get( AGE ) + 1 ) );
+            } else if( canGrow( world, pos, state ) ) {
+                // Set age to 0 before growing so that the new state receives the grow update...
+                world.setBlockState( pos, state.with( AGE, 0 ) );
+                world.setBlockState( pos.up(), getDefaultState().with( WATERLOGGED, world.getFluidState( pos.up() ).getFluid() == MDFluids.MODERNIZED_WATER ) );
+            }
+        }
+
+        private boolean canGrow( World world, BlockPos pos, IBlockState state ) {
+            BlockPos upPos = pos.up();
+            IBlockState upState = world.getBlockState( upPos );
+            if( ! upState.isAir( world, upPos ) && upState.getBlock() != MDBlocks.MODERNIZED_WATER ) {
+                return false;
+            }
+            int owHeight = 0, totHeight = 0;
+            MovingBlockPos mpos = new MovingBlockPos( pos );
+            boolean uw = false;
+            while( mpos.getY() >= 0 && state.getBlock() == this && totHeight < 10 ) {
+                if( state.get( WATERLOGGED ) ) {
+                    uw = true;
+                }
+                if( ! uw ) {
+                    owHeight++;
+                }
+                totHeight++;
+                mpos.moveDown();
+                state = world.getBlockState( mpos );
+            }
+            return totHeight < 10 && owHeight < 3;
+        }
+
+        private boolean blocked( IBlockState state ) {
+            return state.getMaterial().blocksMovement() || state.getMaterial().isLiquid() && state.getFluidState().getFluid() != MDFluids.MODERNIZED_WATER || isSelfState( state );
+        }
+
+        public boolean provide( IWorld world, BlockPos pos, Random rand ) {
+            if( canGenerateAt( world, pos, world.getBlockState( pos ) ) && ! blocked( world.getBlockState( pos ) ) ) {
+                int uwHeight = rand.nextInt( 10 );
+                int owHeight = rand.nextInt( 3 );
+                if( rand.nextInt( 4 ) == 0 ) owHeight++;
+
+                int m = 0;
+                EcoBlockPos rpos = EcoBlockPos.retain( pos );
+
+                int height = 0;
+                for( int i = 0; i < uwHeight; i++ ) {
+                    IFluidState state = world.getFluidState( rpos );
+                    if( state.getFluid() == MDFluids.MODERNIZED_WATER ) {
+                        height++;
+                    } else {
+                        break;
+                    }
+                    rpos.moveUp();
+                }
+
+                for( int i = 0; i < owHeight; i++ ) {
+                    IFluidState state = world.getFluidState( rpos );
+                    if( state.getFluid() != MDFluids.MODERNIZED_WATER ) {
+                        height++;
+                    } else {
+                        break;
+                    }
+                    rpos.moveUp();
+                }
+
+                if( height > 10 ) height = 10;
+
+                rpos.setPos( pos );
+
+                for( int i = 0; i < height; i++ ) {
+                    rpos.moveUp();
+                    boolean end = i == height - 1;
+                    if( blocked( world.getBlockState( rpos ) ) ) {
+                        end = true;
+                    }
+                    rpos.moveDown();
+                    boolean start = i == 0;
+                    if( ! blocked( world.getBlockState( rpos ) ) ) {
+                        world.setBlockState( rpos, getDefaultState().with( BOTTOM, start ).with( TOP, end ), 2 | 16 );
+                        m++;
+                    } else {
+                        break;
+                    }
+                    rpos.moveUp();
+                }
+                rpos.release();
+                return m > 0;
+            }
             return false;
         }
     }
