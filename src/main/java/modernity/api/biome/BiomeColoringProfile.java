@@ -44,15 +44,25 @@ public class BiomeColoringProfile {
     private final ThreadLocal<Integer> cachedColor = new ThreadLocal<>();
 
     private final HashMap<Biome, IColorProvider> biomeColors = new HashMap<>();
+    private IColorProvider itemColor;
+    private IColorProvider defaultColor;
 
     public IColorProvider getColorProviderFor( Biome biome ) {
-        return biomeColors.computeIfAbsent( biome, b -> createErrorProvider() );
+        return biomeColors.computeIfAbsent( biome, b -> getDefaultColor() );
     }
 
     public int getColor( IWorldReaderBase world, BlockPos pos ) {
         long seed = 0;
         if( Minecraft.getInstance().world != null ) {
             seed = Minecraft.getInstance().world.getSeed();
+        }
+
+        if( pos == null && world == null ) {
+            return getDefaultColor().getColor( BlockPos.ORIGIN, seed );
+        } else if( pos == null ) {
+            return getColor( world, BlockPos.ORIGIN );
+        } else if( world == null ) {
+            return getDefaultColor().getColor( pos, seed );
         }
 
         if( cachedSeed.get() != null && seed == cachedSeed.get() && pos.equals( cachedPos.get() ) ) {
@@ -65,6 +75,15 @@ public class BiomeColoringProfile {
         cachedSeed.set( seed );
 
         return color;
+    }
+
+    public int getItemColor() {
+        long seed = 0;
+        if( Minecraft.getInstance().world != null ) {
+            seed = Minecraft.getInstance().world.getSeed();
+        }
+
+        return getItemColorProvider().getColor( BlockPos.ORIGIN, seed );
     }
 
     private int getColor( IWorldReaderBase world, BlockPos pos, long seed ) {
@@ -100,12 +119,33 @@ public class BiomeColoringProfile {
         return ColorUtil.rgb( r, g, b );
     }
 
+    private IColorProvider getDefaultColor() {
+        if( defaultColor == null ) defaultColor = createErrorProvider();
+        return defaultColor;
+    }
+
+    private IColorProvider getItemColorProvider() {
+        if( itemColor == null ) itemColor = getDefaultColor();
+        return itemColor;
+    }
+
     public int getColorFor( Biome biome, BlockPos pos, long seed ) {
         return getColorProviderFor( biome ).getColor( pos, seed );
     }
 
-    protected void applyLayer( Map<Biome, IColorProvider> layer ) {
-        biomeColors.putAll( layer );
+    private void applyLayer( Map<String, IColorProvider> layer ) {
+        layer.forEach( this::applyLayerItem );
+    }
+
+    private void applyLayerItem( String key, IColorProvider color ) {
+        Biome biome = getBiomeForName( key );
+        if( biome != null ) {
+            biomeColors.put( biome, color );
+        } else if( key.equals( "item" ) ) {
+            itemColor = color;
+        } else if( key.equals( "default" ) ) {
+            defaultColor = color;
+        }
     }
 
     public static BiomeColoringProfile create( IResourceManager resManager, ResourceLocation loc, String profileName ) throws IOException {
@@ -120,7 +160,7 @@ public class BiomeColoringProfile {
                     LOGGER.warn( "Biome color profile must have an object as root" );
                     continue;
                 }
-                Map<Biome, IColorProvider> layer = parseProfileLayer( element.getAsJsonObject(), profileName, packName );
+                Map<String, IColorProvider> layer = parseProfileLayer( element.getAsJsonObject(), profileName, packName );
                 profile.applyLayer( layer );
             } catch( JsonParseException exc ) {
                 LOGGER.warn( "Biome color profile of pack '{}' has invalid syntax: {}", res.getPackName(), exc.getMessage() );
@@ -129,15 +169,11 @@ public class BiomeColoringProfile {
         return profile;
     }
 
-    public static Map<Biome, IColorProvider> parseProfileLayer( JsonObject object, String profileName, String packName ) {
-        HashMap<Biome, IColorProvider> biomeColors = new HashMap<>();
+    public static Map<String, IColorProvider> parseProfileLayer( JsonObject object, String profileName, String packName ) {
+        HashMap<String, IColorProvider> biomeColors = new HashMap<>();
         ArrayList<ColorFormatException> errors = new ArrayList<>();
         for( Map.Entry<String, JsonElement> entry : object.entrySet() ) {
-            Biome biome = getBiomeForName( entry.getKey() );
-            if( biome == null ) {
-                errors.add( new ColorFormatException( "No such biome with id '" + entry.getKey() + "'" ).addParent( entry.getKey() ) );
-                continue;
-            }
+            String biome = entry.getKey();
             IColorProvider provider;
             try {
                 provider = parseColorProvider( entry.getValue(), entry.getKey() );
@@ -1080,7 +1116,8 @@ public class BiomeColoringProfile {
         public int getColor( BlockPos pos ) {
             int colorA = a.getColor( pos, getSeed() );
             int colorB = b.getColor( pos, getSeed() );
-            double noise = this.noise.generate( pos.getX(), pos.getY(), pos.getZ() );
+            double noise = this.noise.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.5 + 0.5;
+//            System.out.println( noise );
             return ColorUtil.interpolate( colorA, colorB, noise );
         }
 

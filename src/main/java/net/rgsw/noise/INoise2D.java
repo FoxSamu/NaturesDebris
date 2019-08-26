@@ -228,6 +228,6 @@ public interface INoise2D {
      * @return The created noise generator
      */
     static INoise2D random( int seed ) {
-        return ( x, y ) -> Hash.hash2D( seed, (int) x, (int) y );
+        return ( x, y ) -> Hash.hash2D( seed, (int) x, (int) y ) * 2 - 1;
     }
 }

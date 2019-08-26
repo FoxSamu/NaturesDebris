@@ -3,6 +3,14 @@
   "modernity:lush_meadow": [ 0, 109, 38 ],
   "modernity:meadow": [ 0, 109, 38 ],
   "modernity:river": [ 4, 122, 59 ],
-  "modernity:swamp": [ 12, 57, 18 ],
-  "modernity:waterlands": [ 12, 109, 0 ]
+  "modernity:swamp": {
+    "perlin2d": {
+      "a": [ 36, 97, 24 ],
+      "b": [ 12, 57, 18 ],
+      "size": 8.57124
+    }
+  },
+  "modernity:waterlands": [ 12, 109, 0 ],
+  "item": [ 0, 109, 38 ],
+  "default": [ 0, 109, 38 ]
 }

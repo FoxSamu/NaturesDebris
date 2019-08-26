@@ -24,7 +24,6 @@ import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 
 import modernity.api.block.IColoredBlock;
-import modernity.api.util.ColorUtil;
 import modernity.api.util.EcoBlockPos;
 import modernity.client.util.ProxyClient;
 import modernity.common.block.prop.SignedIntegerProperty;
@@ -137,8 +136,6 @@ public class BlockHangLeaves extends BlockLeaves {
 
     public static class ColoredBlackwood extends BlockHangLeaves implements IColoredBlock {
 
-        private static final int DEFAULT_COLOR = ColorUtil.rgb( 32, 86, 49 );
-
         public ColoredBlackwood( String id, Tag<Block> logTag, IItemProvider sapling, Properties properties, Item.Properties itemProps ) {
             super( id, logTag, sapling, properties, itemProps );
         }
@@ -154,7 +151,7 @@ public class BlockHangLeaves extends BlockLeaves {
 
         @Override
         public int colorMultiplier( ItemStack stack, int tintIndex ) {
-            return DEFAULT_COLOR;
+            return ProxyClient.get().getBlackwoodColors().getItemColor();
         }
     }
 }

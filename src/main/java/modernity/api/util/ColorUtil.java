@@ -114,17 +114,17 @@ public class ColorUtil {
     }
 
     public static int interpolate( int colorA, int colorB, double v ) {
-        int rA = colorA >>> 16 & 0xff;
-        int gA = colorA >>> 8 & 0xff;
-        int bA = colorA & 0xff;
+        double rA = ( colorA >>> 16 & 0xff ) / 255D;
+        double gA = ( colorA >>> 8 & 0xff ) / 255D;
+        double bA = ( colorA & 0xff ) / 255D;
 
-        int rB = colorB >>> 16 & 0xff;
-        int gB = colorB >>> 8 & 0xff;
-        int bB = colorB & 0xff;
+        double rB = ( colorB >>> 16 & 0xff ) / 255D;
+        double gB = ( colorB >>> 8 & 0xff ) / 255D;
+        double bB = ( colorB & 0xff ) / 255D;
 
-        int rC = (int) MathUtil.lerp( rA, rB, v );
-        int gC = (int) MathUtil.lerp( gA, gB, v );
-        int bC = (int) MathUtil.lerp( bA, bB, v );
+        double rC = MathUtil.lerp( rA, rB, v );
+        double gC = MathUtil.lerp( gA, gB, v );
+        double bC = MathUtil.lerp( bA, bB, v );
 
         return rgb( rC, gC, bC );
     }

@@ -35,7 +35,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IShearable;
 
 import modernity.api.block.IColoredBlock;
-import modernity.api.util.ColorUtil;
 import modernity.api.util.EcoBlockPos;
 import modernity.client.util.ProxyClient;
 import modernity.common.util.ProxyCommon;
@@ -231,8 +230,6 @@ public class BlockDecayableLeaves extends BlockBase implements IShearable {
 
     public static class ColoredBlackwood extends BlockDecayableLeaves implements IColoredBlock {
 
-        private static final int DEFAULT_COLOR = ColorUtil.rgb( 32, 86, 49 );
-
         public ColoredBlackwood( String id, Tag<Block> logTag, Properties properties, Item.Properties itemProps ) {
             super( id, logTag, properties, itemProps );
         }
@@ -248,7 +245,7 @@ public class BlockDecayableLeaves extends BlockBase implements IShearable {
 
         @Override
         public int colorMultiplier( ItemStack stack, int tintIndex ) {
-            return DEFAULT_COLOR;
+            return ProxyClient.get().getBlackwoodColors().getItemColor();
         }
     }
 }

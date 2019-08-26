@@ -141,7 +141,28 @@ public class BlockDecayLeaves extends BlockLeaves {
 
         @Override
         public int colorMultiplier( ItemStack stack, int tintIndex ) {
-            return DEFAULT_COLOR;
+            return ProxyClient.get().getBlackwoodColors().getItemColor();
+        }
+    }
+
+    public static class ColoredInver extends BlockDecayLeaves implements IColoredBlock {
+
+        public ColoredInver( String id, Tag<Block> logTag, IItemProvider sapling, Properties properties, Item.Properties itemProps ) {
+            super( id, logTag, sapling, properties, itemProps );
+        }
+
+        public ColoredInver( String id, Tag<Block> logTag, IItemProvider sapling, Properties properties ) {
+            super( id, logTag, sapling, properties );
+        }
+
+        @Override
+        public int colorMultiplier( IBlockState state, @Nullable IWorldReaderBase reader, @Nullable BlockPos pos, int tintIndex ) {
+            return ProxyClient.get().getInverColors().getColor( reader, pos );
+        }
+
+        @Override
+        public int colorMultiplier( ItemStack stack, int tintIndex ) {
+            return ProxyClient.get().getInverColors().getItemColor();
         }
     }
 }

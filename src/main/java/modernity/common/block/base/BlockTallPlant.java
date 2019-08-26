@@ -32,7 +32,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.api.block.IColoredBlock;
-import modernity.api.util.ColorUtil;
 import modernity.api.util.EcoBlockPos;
 import modernity.api.util.MDVoxelShapes;
 import modernity.client.util.ProxyClient;
@@ -224,8 +223,6 @@ public class BlockTallPlant extends BlockNoDrop implements IBlockProvider {
         public static final VoxelShape GRASS_END_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 10, 14 );
         public static final VoxelShape GRASS_MIDDLE_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 16, 14 );
 
-        protected static final int GRASS_ITEM_COLOR = ColorUtil.rgb( 0, 109, 38 );
-
         public ColoredGrass( String id, Properties properties, Item.Properties itemProps ) {
             super( id, properties, itemProps );
             setMaxHeight( 4 );
@@ -245,7 +242,7 @@ public class BlockTallPlant extends BlockNoDrop implements IBlockProvider {
         @OnlyIn( Dist.CLIENT )
         @Override
         public int colorMultiplier( ItemStack stack, int tintIndex ) {
-            return GRASS_ITEM_COLOR;
+            return ProxyClient.get().getGrassColors().getItemColor();
         }
 
         @Override

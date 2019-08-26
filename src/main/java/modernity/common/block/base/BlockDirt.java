@@ -252,7 +252,7 @@ public class BlockDirt extends BlockBase {
         @OnlyIn( Dist.CLIENT )
         @Override
         public int colorMultiplier( ItemStack stack, int tintIndex ) {
-            return GRASS_ITEM_COLOR;
+            return ProxyClient.get().getGrassColors().getItemColor();
         }
 
         @Override

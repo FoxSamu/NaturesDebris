@@ -30,7 +30,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.api.block.IColoredBlock;
-import modernity.api.util.ColorUtil;
 import modernity.api.util.EcoBlockPos;
 import modernity.api.util.MDVoxelShapes;
 import modernity.client.util.ProxyClient;
@@ -219,8 +218,6 @@ public class BlockHangingPlant extends BlockNoDrop implements IBlockProvider {
     public static class ColoredMurina extends BlockHangingPlant implements IColoredBlock {
         public static final VoxelShape MURINA_SHAPE = MDVoxelShapes.create16( 5, 0, 5, 11, 16, 11 );
 
-        protected static final int GRASS_ITEM_COLOR = ColorUtil.rgb( 0, 109, 38 );
-
         public ColoredMurina( String id, Properties properties, Item.Properties itemProps ) {
             super( id, properties, itemProps );
         }
@@ -238,7 +235,7 @@ public class BlockHangingPlant extends BlockNoDrop implements IBlockProvider {
         @OnlyIn( Dist.CLIENT )
         @Override
         public int colorMultiplier( ItemStack stack, int tintIndex ) {
-            return GRASS_ITEM_COLOR;
+            return ProxyClient.get().getGrassColors().getItemColor();
         }
 
         @Override

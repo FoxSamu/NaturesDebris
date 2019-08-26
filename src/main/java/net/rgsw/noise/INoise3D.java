@@ -248,6 +248,6 @@ public interface INoise3D {
      * @return The created noise generator
      */
     static INoise3D random( int seed ) {
-        return ( x, y, z ) -> Hash.hash3D( seed, (int) x, (int) y, (int) z );
+        return ( x, y, z ) -> Hash.hash3D( seed, (int) x, (int) y, (int) z ) * 2 - 1;
     }
 }

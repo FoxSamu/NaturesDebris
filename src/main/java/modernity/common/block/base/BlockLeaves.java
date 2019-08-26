@@ -197,8 +197,6 @@ public class BlockLeaves extends BlockBase implements IShearable {
 
     public static class ColoredBlackwood extends BlockLeaves implements IColoredBlock {
 
-        private static final int DEFAULT_COLOR = ColorUtil.rgb( 32, 86, 49 );
-
         public ColoredBlackwood( String id, IItemProvider sapling, Properties properties, Item.Properties itemProps ) {
             super( id, sapling, properties, itemProps );
         }
@@ -214,7 +212,7 @@ public class BlockLeaves extends BlockBase implements IShearable {
 
         @Override
         public int colorMultiplier( ItemStack stack, int tintIndex ) {
-            return DEFAULT_COLOR;
+            return ProxyClient.get().getBlackwoodColors().getItemColor();
         }
     }
 }
