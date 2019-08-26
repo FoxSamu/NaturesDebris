@@ -88,6 +88,8 @@ public class ProxyClient extends ProxyCommon implements ISelectiveResourceReload
     private BiomeColoringProfile inverColors;
     private BiomeColoringProfile waterColors;
 
+    private long lastWorldSeed;
+
     @Override
     public void init() {
         super.init();
@@ -250,6 +252,14 @@ public class ProxyClient extends ProxyCommon implements ISelectiveResourceReload
 
     public BiomeColoringProfile getWaterColors() {
         return waterColors;
+    }
+
+    public long getLastWorldSeed() {
+        return lastWorldSeed;
+    }
+
+    public void setLastWorldSeed( long lastWorldSeed ) {
+        this.lastWorldSeed = lastWorldSeed;
     }
 
     @Override

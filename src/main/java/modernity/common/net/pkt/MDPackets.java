@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 26 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package modernity.common.net.pkt;
@@ -18,5 +18,6 @@ public class MDPackets {
         channel.register( ESide.SERVER, SPacketStructure.class );
         channel.register( ESide.SERVER, SPacketSettingsInit.class );
         channel.register( ESide.SERVER, SPacketSettingChange.class );
+        channel.register( ESide.SERVER, SPacketSeed.class );
     }
 }

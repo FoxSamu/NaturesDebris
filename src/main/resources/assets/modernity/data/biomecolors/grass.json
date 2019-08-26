@@ -5,9 +5,9 @@
   "modernity:river": [ 4, 122, 59 ],
   "modernity:swamp": {
     "perlin2d": {
-      "a": [ 36, 97, 24 ],
+      "a": [ 38, 51, 28 ],
       "b": [ 12, 57, 18 ],
-      "size": 8.57124
+      "size": 10.26618249
     }
   },
   "modernity:waterlands": [ 12, 109, 0 ],

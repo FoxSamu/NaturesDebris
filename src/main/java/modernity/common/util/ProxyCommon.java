@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 26 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package modernity.common.util;
@@ -33,7 +33,7 @@ import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 
 import modernity.common.command.MDCommands;
 import modernity.common.handler.CapabilityHandler;
-import modernity.common.handler.SettingsShareHandler;
+import modernity.common.handler.PlayerJoinHandler;
 import modernity.common.handler.StructureHandler;
 import modernity.common.net.pkt.MDPackets;
 import modernity.common.settings.ServerSettings;
@@ -133,7 +133,7 @@ public abstract class ProxyCommon {
     public void registerListeners() {
         MinecraftForge.EVENT_BUS.register( new CapabilityHandler() );
         MinecraftForge.EVENT_BUS.register( new StructureHandler() );
-        MinecraftForge.EVENT_BUS.register( new SettingsShareHandler() );
+        MinecraftForge.EVENT_BUS.register( new PlayerJoinHandler() );
     }
 
     public boolean fancyGraphics() {

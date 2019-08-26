@@ -25,6 +25,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import modernity.api.util.ColorUtil;
+import modernity.client.util.ProxyClient;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,27 +53,28 @@ public class BiomeColoringProfile {
     }
 
     public int getColor( IWorldReaderBase world, BlockPos pos ) {
-        long seed = 0;
-        if( Minecraft.getInstance().world != null ) {
-            seed = Minecraft.getInstance().world.getSeed();
-        }
+        long seed = ProxyClient.get().getLastWorldSeed();
 
+        int color;
         if( pos == null && world == null ) {
-            return getDefaultColor().getColor( BlockPos.ORIGIN, seed );
+            color = getDefaultColor().getColor( BlockPos.ORIGIN, seed );
         } else if( pos == null ) {
-            return getColor( world, BlockPos.ORIGIN );
+            color = getColor( world, BlockPos.ORIGIN );
         } else if( world == null ) {
-            return getDefaultColor().getColor( pos, seed );
+            color = getDefaultColor().getColor( pos, seed );
+        } else {
+            if( cachedSeed.get() != null && seed == cachedSeed.get() && pos.equals( cachedPos.get() ) ) {
+                return cachedColor.get();
+            } else {
+                color = getColor( world, pos, seed );
+            }
         }
 
-        if( cachedSeed.get() != null && seed == cachedSeed.get() && pos.equals( cachedPos.get() ) ) {
-            return cachedColor.get();
+        if( pos != null ) {
+            cachedColor.set( color );
+            cachedPos.set( pos.toImmutable() );
+            cachedSeed.set( seed );
         }
-
-        int color = getColor( world, pos, seed );
-        cachedColor.set( color );
-        cachedPos.set( pos.toImmutable() );
-        cachedSeed.set( seed );
 
         return color;
     }
@@ -1039,7 +1041,10 @@ public class BiomeColoringProfile {
             if( hasCustomSeed ) {
                 this.seed = seed;
             }
-            initForSeed( this.seed );
+        }
+
+        public void init() {
+            initForSeed( seed );
         }
 
         @Override
@@ -1117,7 +1122,6 @@ public class BiomeColoringProfile {
             int colorA = a.getColor( pos, getSeed() );
             int colorB = b.getColor( pos, getSeed() );
             double noise = this.noise.generate( pos.getX(), pos.getY(), pos.getZ() ) * 0.5 + 0.5;
-//            System.out.println( noise );
             return ColorUtil.interpolate( colorA, colorB, noise );
         }
 
@@ -1141,6 +1145,7 @@ public class BiomeColoringProfile {
             this.scaleX = scaleX;
             this.scaleY = scaleY;
             this.scaleZ = scaleZ;
+            init();
         }
 
         @Override
@@ -1159,6 +1164,7 @@ public class BiomeColoringProfile {
             this.scaleX = scaleX;
             this.scaleY = scaleY;
             this.scaleZ = scaleZ;
+            init();
         }
 
         @Override
@@ -1179,6 +1185,7 @@ public class BiomeColoringProfile {
             this.scaleX = scaleX;
             this.scaleY = scaleY;
             this.scaleZ = scaleZ;
+            init();
         }
 
         @Override
@@ -1197,6 +1204,7 @@ public class BiomeColoringProfile {
             this.scaleX = scaleX;
             this.scaleY = scaleY;
             this.scaleZ = scaleZ;
+            init();
         }
 
         @Override
@@ -1215,6 +1223,7 @@ public class BiomeColoringProfile {
             this.octaves = octaves;
             this.scaleX = scaleX;
             this.scaleZ = scaleZ;
+            init();
         }
 
         @Override
@@ -1231,6 +1240,7 @@ public class BiomeColoringProfile {
             super( a, b, customSeed, seed );
             this.scaleX = scaleX;
             this.scaleZ = scaleZ;
+            init();
         }
 
         @Override
@@ -1249,6 +1259,7 @@ public class BiomeColoringProfile {
             this.octaves = octaves;
             this.scaleX = scaleX;
             this.scaleZ = scaleZ;
+            init();
         }
 
         @Override
@@ -1265,6 +1276,7 @@ public class BiomeColoringProfile {
             super( a, b, customSeed, seed );
             this.scaleX = scaleX;
             this.scaleZ = scaleZ;
+            init();
         }
 
         @Override
@@ -1281,11 +1293,12 @@ public class BiomeColoringProfile {
             super( a, b, customSeed, seed );
             this.scaleX = scaleX;
             this.scaleZ = scaleZ;
+            init();
         }
 
         @Override
         protected INoise3D createNoise( long seed ) {
-            return INoise3D.from2DY( INoise2D.random( (int) seed ).scale( scaleX, scaleZ ) );
+            return INoise3D.from2DY( INoise2D.random( (int) seed ).scale( 1 / scaleX, 1 / scaleZ ) );
         }
     }
 
@@ -1299,11 +1312,12 @@ public class BiomeColoringProfile {
             this.scaleX = scaleX;
             this.scaleY = scaleY;
             this.scaleZ = scaleZ;
+            init();
         }
 
         @Override
         protected INoise3D createNoise( long seed ) {
-            return INoise3D.random( (int) seed ).scale( scaleX, scaleY, scaleZ );
+            return INoise3D.random( (int) seed ).scale( 1 / scaleX, 1 / scaleY, 1 / scaleZ );
         }
     }
 
@@ -1318,6 +1332,7 @@ public class BiomeColoringProfile {
             this.colors = colors;
             this.scaleX = scaleX;
             this.scaleZ = scaleZ;
+            init();
         }
 
         @Override

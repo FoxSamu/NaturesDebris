@@ -3,7 +3,7 @@
  * This file belongs to a separate library, made for the Modernity.
  * Licensed under the Apache Licence v2.0. Do not redistribute.
  *
- * Date: 7 - 5 - 2019
+ * Date: 8 - 26 - 2019
  */
 
 package net.rgsw.noise;
@@ -32,7 +32,7 @@ public class Hash {
         hash = hash * hash * hash * 60493;
         hash = hash >> 13 ^ hash;
 
-        return (double) hash / Integer.MAX_VALUE;
+        return (double) ( hash & Integer.MAX_VALUE ) / Integer.MAX_VALUE;
     }
 
     /**
@@ -52,7 +52,7 @@ public class Hash {
         hash = hash * hash * hash * 60493;
         hash = hash >> 13 ^ hash;
 
-        return (double) hash / Integer.MAX_VALUE;
+        return (double) ( hash & Integer.MAX_VALUE ) / Integer.MAX_VALUE;
     }
 
     /**
@@ -75,7 +75,7 @@ public class Hash {
         hash = hash * hash * hash * 60493;
         hash = hash >> 13 ^ hash;
 
-        return (double) hash / Integer.MAX_VALUE;
+        return (double) ( hash & Integer.MAX_VALUE ) / Integer.MAX_VALUE;
     }
 
     /**
@@ -101,7 +101,7 @@ public class Hash {
         hash = hash * hash * hash * 60493;
         hash = hash >> 13 ^ hash;
 
-        return (double) hash / Integer.MAX_VALUE;
+        return (double) ( hash & Integer.MAX_VALUE ) / Integer.MAX_VALUE;
     }
 
     /**
