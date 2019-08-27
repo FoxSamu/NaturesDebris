@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 11 - 2019
+ * Date: 8 - 27 - 2019
  */
 
 package modernity.common.world.gen.decorate.feature;
@@ -21,7 +21,7 @@ import modernity.common.world.gen.decorate.util.IBlockProvider;
 
 import java.util.Random;
 
-public class BushFeature extends Feature<BushFeature.Config> {
+public class ClusterBushFeature extends Feature<ClusterBushFeature.Config> {
 
     @Override
     public boolean place( IWorld world, IChunkGenerator<? extends IChunkGenSettings> chunkGen, Random rand, BlockPos pos, Config config ) {

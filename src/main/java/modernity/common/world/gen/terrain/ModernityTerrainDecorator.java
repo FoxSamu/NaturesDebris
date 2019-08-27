@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 26 - 2019
+ * Date: 8 - 27 - 2019
  */
 
 package modernity.common.world.gen.terrain;
@@ -31,7 +31,7 @@ import net.minecraft.world.gen.placement.*;
 import modernity.common.block.MDBlocks;
 import modernity.common.fluid.MDFluids;
 import modernity.common.world.gen.ModernityGenSettings;
-import modernity.common.world.gen.decorate.feature.BushFeature;
+import modernity.common.world.gen.decorate.feature.ClusterBushFeature;
 import modernity.common.world.gen.decorate.feature.DepositFeature;
 import modernity.common.world.gen.decorate.feature.FluidFallFeature;
 import modernity.common.world.gen.decorate.feature.MDFeatures;
@@ -75,9 +75,9 @@ public class ModernityTerrainDecorator {
         addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature( MDFeatures.FLUID_FALL, new FluidFallFeature.Config( MDFluids.MODERNIZED_WATER, FluidFallFeature.STILL | FluidFallFeature.FLOWING ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 10 ) ) );
         addFeature( GenerationStage.Decoration.RAW_GENERATION, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, IBlockState::isFullCube, MDBlocks.DARK_SAND.getDefaultState() ), MDPlacements.AT_SURFACE_BELOW_HEIGHT, new AtSurfaceBelowHeight.FrequencyConfig( settings.getWaterLevel() - 1, 24 ) ) );
         addFeature( GenerationStage.Decoration.RAW_GENERATION, createCompositeFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, IBlockState::isFullCube, MDBlocks.DARK_CLAY.getDefaultState() ), MDPlacements.AT_SURFACE_BELOW_HEIGHT, new AtSurfaceBelowHeight.ChanceConfig( settings.getWaterLevel() - 1, 4 ) ) );
-        addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature( MDFeatures.BUSH, new BushFeature.Config( 50, 5, MDBlocks.SALT_CRYSTAL ), MDPlacements.AT_SURFACE_BELOW_HEIGHT, new AtSurfaceBelowHeight.ChanceConfig( settings.getWaterLevel() - 1, 35 ) ) );
-        addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature( MDFeatures.BUSH, new BushFeature.Config( 50, 5, MDBlocks.SALT_CRYSTAL ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 4 ) ) );
-        addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature( MDFeatures.BUSH, new BushFeature.Config( 80, 8, MDBlocks.MURINA ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 7 ) ) );
+        addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 50, 5, MDBlocks.SALT_CRYSTAL ), MDPlacements.AT_SURFACE_BELOW_HEIGHT, new AtSurfaceBelowHeight.ChanceConfig( settings.getWaterLevel() - 1, 35 ) ) );
+        addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 50, 5, MDBlocks.SALT_CRYSTAL ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 4 ) ) );
+        addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 80, 8, MDBlocks.MURINA ), MDPlacements.IN_CAVE_WITH_FREQUENCY, new FrequencyConfig( 7 ) ) );
     }
 
     public void decorate( WorldGenRegion region ) {
