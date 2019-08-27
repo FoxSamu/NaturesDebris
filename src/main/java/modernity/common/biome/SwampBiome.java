@@ -13,13 +13,11 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.FrequencyConfig;
-import net.minecraft.world.gen.placement.LakeChanceConfig;
 
 import modernity.api.util.ColorUtil;
 import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.decorate.feature.ClusterBushFeature;
 import modernity.common.world.gen.decorate.feature.GroupedBushFeature;
-import modernity.common.world.gen.decorate.feature.LakeFeature;
 import modernity.common.world.gen.decorate.feature.MDFeatures;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
 import modernity.common.world.gen.surface.SwampSurfaceGenerator;
@@ -39,9 +37,7 @@ public class SwampBiome extends BiomeBase {
                         .surfaceGenerator( new SwampSurfaceGenerator() )
         );
 
-        addFeature( GenerationStage.Decoration.LOCAL_MODIFICATIONS, createCompositeFeature( MDFeatures.LAKE, new LakeFeature.Config( MDBlocks.MODERNIZED_WATER, null, null, MDBlocks.DARK_GRASS ), LAKE_WATER, new LakeChanceConfig( 5 ) ) );
-
-        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature( MDFeatures.GROUPED_BUSH, new GroupedBushFeature.Config( 4, 8, MDBlocks.REEDS ), AT_SURFACE, new FrequencyConfig( 10 ) ) );
+        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature( MDFeatures.GROUPED_BUSH, new GroupedBushFeature.Config( 3, 5, 4, MDBlocks.REEDS ), TOP_SOLID, new FrequencyConfig( 3 ) ) );
 
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 100, 6, MDBlocks.DARK_TALLGRASS ), AT_SURFACE, new FrequencyConfig( 5 ) ) );
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createCompositeFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 81, 7, new IBlockProvider.ChooseRandom( MDBlocks.BLUE_MILLIUM, MDBlocks.CYAN_MILLIUM, MDBlocks.GREEN_MILLIUM, MDBlocks.YELLOW_MILLIUM, MDBlocks.MAGENTA_MILLIUM, MDBlocks.RED_MILLIUM, MDBlocks.WHITE_MILLIUM ) ), AT_SURFACE_WITH_CHANCE, new ChanceConfig( 6 ) ) );

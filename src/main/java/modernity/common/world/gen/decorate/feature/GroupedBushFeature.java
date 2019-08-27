@@ -29,7 +29,7 @@ public class GroupedBushFeature extends Feature<GroupedBushFeature.Config> {
 
         try( EcoBlockPos rpos = EcoBlockPos.retain() ) {
             for( int i = 0; i < config.iterations; i++ ) {
-                int radius = rand.nextInt( config.radius - 3 ) + 2;
+                int radius = rand.nextInt( Math.min( 4, config.radius ) ) + 2;
                 int sr = config.radius - radius;
                 int r2 = sr * 2 + 1;
                 int rx = rand.nextInt( r2 ) + pos.getX();
@@ -45,7 +45,7 @@ public class GroupedBushFeature extends Feature<GroupedBushFeature.Config> {
                             if( x * x + y * y + z * z <= radius * radius ) {
                                 rpos.setPos( posx, posy, posz );
 
-                                if( config.provider.provide( world, rpos, rand ) ) {
+                                if( rand.nextInt( config.chance ) == 0 && config.provider.provide( world, rpos, rand ) ) {
                                     placed++;
                                 }
                             }
@@ -61,11 +61,13 @@ public class GroupedBushFeature extends Feature<GroupedBushFeature.Config> {
     public static class Config implements IFeatureConfig {
         public final int iterations;
         public final int radius;
+        public final int chance;
         public final IBlockProvider provider;
 
-        public Config( int iterations, int radius, IBlockProvider provider ) {
+        public Config( int iterations, int radius, int chance, IBlockProvider provider ) {
             this.iterations = iterations;
-            this.radius = Math.max( radius, 4 );
+            this.radius = radius;
+            this.chance = chance;
             this.provider = provider;
         }
     }

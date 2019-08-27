@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 26 - 2019
+ * Date: 8 - 27 - 2019
  */
 
 package modernity.common.block.base;
@@ -34,10 +34,12 @@ public class BlockWaterlogged2 extends BlockBase implements ILiquidContainer, IB
 
     public BlockWaterlogged2( String id, Properties properties, Item.Properties itemProps ) {
         super( id, properties, itemProps );
+        setDefaultState( stateContainer.getBaseState().with( WATERLOGGED, false ) );
     }
 
     public BlockWaterlogged2( String id, Properties properties ) {
         super( id, properties );
+        setDefaultState( stateContainer.getBaseState().with( WATERLOGGED, false ) );
     }
 
     @Override

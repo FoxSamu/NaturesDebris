@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 26 - 2019
+ * Date: 8 - 27 - 2019
  */
 
 package modernity.common.block.base;
@@ -416,7 +416,8 @@ public class BlockTallWaterloggingPlant extends BlockWaterlogged2 implements IBl
                     rpos.moveDown();
                     boolean start = i == 0;
                     if( ! blocked( world.getBlockState( rpos ) ) ) {
-                        world.setBlockState( rpos, getDefaultState().with( BOTTOM, start ).with( TOP, end ), 2 | 16 );
+                        boolean water = world.getFluidState( rpos ).getFluid() == MDFluids.MODERNIZED_WATER;
+                        world.setBlockState( rpos, getDefaultState().with( WATERLOGGED, water ).with( BOTTOM, start ).with( TOP, end ), 2 | 16 );
                         m++;
                     } else {
                         break;

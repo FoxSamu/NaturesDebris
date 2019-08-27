@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 17 - 2019
+ * Date: 8 - 27 - 2019
  */
 
 package modernity.common.world.gen.decorate.placement;
@@ -14,4 +14,5 @@ public class MDPlacements {
     public static final InCave.WithChance IN_CAVE_WITH_CHANCE = new InCave.WithChance();
     public static final InCave.WithFrequency IN_CAVE_WITH_FREQUENCY = new InCave.WithFrequency();
     public static final AtSurfaceBelowHeight AT_SURFACE_BELOW_HEIGHT = new AtSurfaceBelowHeight();
+    public static final TopSolidWithChance TOP_SOLID_WITH_CHANCE = new TopSolidWithChance();
 }
