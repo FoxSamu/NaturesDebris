@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 29 - 2019
+ * Date: 8 - 28 - 2019
  */
 
 package modernity.common.item;
@@ -31,6 +31,12 @@ public class MDItems {
     public static final ItemBase SALT_NUGGET = item( new ItemBase( "salt_nugget", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final ItemBase ALUMINIUM_INGOT = item( new ItemBase( "aluminium_ingot", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final ItemBase ALUMINIUM_NUGGET = item( new ItemBase( "aluminium_nugget", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemBase ANTHRACITE = item( new ItemBase( "anthracite", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+    // Utils
+    public static final ItemBase ASH = item( new ItemBase( "ash", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemBase BLACKWOOD_STICK = item( new ItemBase( "blackwood_stick", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemBase INVER_STICK = item( new ItemBase( "inver_stick", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Buckets
     public static final ItemPortalBucket PORTAL_BUCKET = item( new ItemPortalBucket( "portal_bucket", new Item.Properties().maxStackSize( 1 ).group( MDItemGroups.BLOCKS ) ) );
