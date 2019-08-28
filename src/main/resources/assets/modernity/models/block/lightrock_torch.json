@@ -1,0 +1,6 @@
+{
+  "parent": "block/template_torch",
+  "textures": {
+    "torch": "modernity:block/lightrock_torch"
+  }
+}

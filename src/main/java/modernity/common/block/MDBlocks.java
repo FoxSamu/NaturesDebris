@@ -128,10 +128,13 @@ public class MDBlocks {
     public static final BlockBase ALUMINIUM_BLOCK = blockItem( new BlockBase( "aluminium_block", Block.Properties.create( Material.IRON, MaterialColor.IRON ).hardnessAndResistance( 5F, 6F ).sound( SoundType.METAL ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Utils
-    public static final BlockPortalCauldron PORTAL_CAULDRON = blockOnly( new BlockPortalCauldron( "portal_cauldron", Block.Properties.create( Material.IRON, MaterialColor.STONE ).hardnessAndResistance( 2F ).lightValue( 8 ) ) );
-    public static final BlockNetherAltar NETHER_ALTAR = blockItem( new BlockNetherAltar( "nether_altar", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2F ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockTorch EXTINGUISHED_ANTHRACITE_TORCH = blockItem( new BlockTorch( "extinghuished_anthracite_torch", false, Block.Properties.create( Material.WOOD, MaterialColor.SNOW ).hardnessAndResistance( 0 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockExtinguishableTorch ANTHRACITE_TORCH = blockItem( new BlockExtinguishableTorch( "anthracite_torch", true, EXTINGUISHED_ANTHRACITE_TORCH, Block.Properties.create( Material.WOOD, MaterialColor.SNOW ).hardnessAndResistance( 0 ).lightValue( 15 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockTorch LIGHTROCK_TORCH = blockItem( new BlockTorch( "lightrock_torch", false, Block.Properties.create( Material.WOOD, MaterialColor.SNOW ).hardnessAndResistance( 0 ).lightValue( 15 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Misc
+    public static final BlockPortalCauldron PORTAL_CAULDRON = blockOnly( new BlockPortalCauldron( "portal_cauldron", Block.Properties.create( Material.IRON, MaterialColor.STONE ).hardnessAndResistance( 2F ).lightValue( 8 ) ) );
+    public static final BlockNetherAltar NETHER_ALTAR = blockItem( new BlockNetherAltar( "nether_altar", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2F ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockHorizontalFacing GOLD_CARVED_NETHER_BRICKS_NATURE = blockItem( new BlockHorizontalFacing( "gold_carved_nether_bricks/nature", Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockHorizontalFacing GOLD_CARVED_NETHER_BRICKS_CURSE = blockItem( new BlockHorizontalFacing( "gold_carved_nether_bricks/curse", Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockHorizontalFacing GOLD_CARVED_NETHER_BRICKS_CYEN = blockItem( new BlockHorizontalFacing( "gold_carved_nether_bricks/cyen", Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
