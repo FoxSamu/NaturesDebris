@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 26 - 2019
+ * Date: 8 - 30 - 2019
  */
 
 package modernity.common.fluid;
@@ -105,7 +105,7 @@ public abstract class ModernizedWaterFluid extends RegularFluid implements ICust
     }
 
     public boolean canOtherFlowInto( IFluidState state, Fluid fluid, EnumFacing direction ) {
-        return direction == EnumFacing.UP && ! fluid.isIn( FluidTags.WATER );
+        return direction == EnumFacing.DOWN && ! fluid.isIn( FluidTags.WATER );
     }
 
     @Override

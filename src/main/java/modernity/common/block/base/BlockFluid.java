@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 28 - 2019
+ * Date: 8 - 30 - 2019
  */
 
 package modernity.common.block.base;
@@ -18,7 +18,9 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
-import net.minecraft.init.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Fluids;
+import net.minecraft.init.Items;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
@@ -26,7 +28,6 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -186,45 +187,7 @@ public class BlockFluid extends BlockBase implements IBucketPickupHandler {
     }
 
     public boolean reactWithNeighbors( World world, BlockPos pos, IBlockState state ) {
-        if( this.fluid.isIn( FluidTags.LAVA ) ) {
-            boolean shouldReact = false;
-
-            for( EnumFacing facing : EnumFacing.values() ) {
-                if( facing != EnumFacing.DOWN && world.getFluidState( pos.offset( facing ) ).isTagged( FluidTags.WATER ) ) {
-                    shouldReact = true;
-                    break;
-                }
-            }
-
-            if( shouldReact ) {
-                IFluidState fstate = world.getFluidState( pos );
-                if( fstate.isSource() ) {
-                    world.setBlockState( pos, Blocks.OBSIDIAN.getDefaultState() );
-                    triggerMixEffects( world, pos );
-                    return false;
-                }
-
-                if( fstate.getHeight() >= 0.4444444F ) {
-                    world.setBlockState( pos, Blocks.COBBLESTONE.getDefaultState() );
-                    triggerMixEffects( world, pos );
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    protected void triggerMixEffects( IWorld world, BlockPos pos ) {
-        double x = pos.getX();
-        double y = pos.getY();
-        double z = pos.getZ();
-        world.playSound( null, pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + ( world.getRandom().nextFloat() - world.getRandom().nextFloat() ) * 0.8F );
-
-        for( int i = 0; i < 8; ++ i ) {
-            world.addParticle( Particles.LARGE_SMOKE, x + Math.random(), y + 1.2D, z + Math.random(), 0, 0, 0 );
-        }
-
+        return this.fluid.reactWithNeighbors( world, pos, state );
     }
 
     @Override

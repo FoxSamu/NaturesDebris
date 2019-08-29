@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 28 - 2019
+ * Date: 8 - 30 - 2019
  */
 
 package modernity.common.fluid;
@@ -27,11 +27,14 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Fluids;
+import net.minecraft.init.Particles;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -536,4 +539,20 @@ public abstract class RegularFluid extends Fluid {
 
     @Override
     public abstract IBlockState getBlockState( IFluidState state );
+
+    public boolean reactWithNeighbors( World world, BlockPos pos, IBlockState state ) {
+        return true;
+    }
+
+    protected void triggerMixEffects( IWorld world, BlockPos pos ) {
+        double x = pos.getX();
+        double y = pos.getY();
+        double z = pos.getZ();
+        world.playSound( null, pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + ( world.getRandom().nextFloat() - world.getRandom().nextFloat() ) * 0.8F );
+
+        for( int i = 0; i < 8; ++ i ) {
+            world.addParticle( Particles.LARGE_SMOKE, x + Math.random(), y + 1.2D, z + Math.random(), 0, 0, 0 );
+        }
+
+    }
 }

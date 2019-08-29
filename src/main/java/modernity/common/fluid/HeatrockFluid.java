@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 25 - 2019
+ * Date: 8 - 30 - 2019
  */
 
 package modernity.common.fluid;
@@ -35,6 +35,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.common.block.MDBlocks;
+import modernity.common.block.base.BlockFluid;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -192,6 +193,62 @@ public abstract class HeatrockFluid extends RegularFluid implements ICustomRende
     @Override
     public int getColor( IFluidState state, BlockPos pos, IWorldReaderBase world ) {
         return 0xffffff;
+    }
+
+
+    protected void triggerEffects( IWorld world, BlockPos pos ) {
+        double x = pos.getX();
+        double y = pos.getY();
+        double z = pos.getZ();
+        world.playSound( null, pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + ( world.getRandom().nextFloat() - world.getRandom().nextFloat() ) * 0.8F );
+
+        for( int i = 0; i < 8; ++ i ) {
+            world.addParticle( Particles.LARGE_SMOKE, x + Math.random(), y + 1.2, z + Math.random(), 0, 0, 0 );
+        }
+    }
+
+    protected void flowInto( IWorld world, BlockPos pos, IBlockState bstate, EnumFacing direction, IFluidState fstate ) {
+        if( direction == EnumFacing.DOWN ) {
+            IFluidState downState = world.getFluidState( pos );
+            if( isIn( FluidTags.LAVA ) && downState.isTagged( FluidTags.WATER ) ) {
+                if( bstate.getBlock() instanceof BlockFluid ) {
+                    world.setBlockState( pos, MDBlocks.ROCK.getDefaultState(), 3 );
+                }
+
+                triggerEffects( world, pos );
+                return;
+            }
+        }
+
+        super.flowInto( world, pos, bstate, direction, fstate );
+    }
+
+    public boolean reactWithNeighbors( World world, BlockPos pos, IBlockState state ) {
+        boolean shouldReact = false;
+
+        for( EnumFacing facing : EnumFacing.values() ) {
+            if( facing != EnumFacing.DOWN && world.getFluidState( pos.offset( facing ) ).isTagged( FluidTags.WATER ) ) {
+                shouldReact = true;
+                break;
+            }
+        }
+
+        if( shouldReact ) {
+            IFluidState fstate = world.getFluidState( pos );
+            if( fstate.isSource() ) {
+                world.setBlockState( pos, MDBlocks.BASALT.getDefaultState() );
+                triggerMixEffects( world, pos );
+                return false;
+            }
+
+            if( fstate.getHeight() >= 0.4444444F ) {
+                world.setBlockState( pos, MDBlocks.DARKROCK.getDefaultState() );
+                triggerMixEffects( world, pos );
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static class Flowing extends HeatrockFluid {
