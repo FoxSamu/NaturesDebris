@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 28 - 2019
+ * Date: 8 - 29 - 2019
  */
 
 package modernity.common.block;
@@ -59,6 +59,9 @@ public class MDBlocks {
     public static final BlockWall ROCK_BRICKS_WALL = blockItem( new BlockWall( "rock_bricks_wall", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     public static final BlockBase ASPHALT_CONCRETE = blockItem( new BlockBase( "asphalt_concrete", Block.Properties.create( MDMaterial.ASPHALT, MaterialColor.BLACK ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+    public static final BlockBase BLACKWOOD_PLANKS = blockItem( new BlockBase( "blackwood_planks", Block.Properties.create( Material.WOOD, MaterialColor.BLACK_TERRACOTTA ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockBase INVER_PLANKS = blockItem( new BlockBase( "inver_planks", Block.Properties.create( Material.WOOD, MaterialColor.BLACK_TERRACOTTA ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Dusts
     public static final BlockFall ASH_BLOCK = blockItem( new BlockFall( "ash_block", 0x333333, Block.Properties.create( MDMaterial.ASH, MaterialColor.GRAY ).hardnessAndResistance( 0.4F ).sound( SoundType.SAND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
