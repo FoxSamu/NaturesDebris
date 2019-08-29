@@ -38,10 +38,9 @@ public class BlockFence extends BlockWaterlogged {
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
     public static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
     public static final BooleanProperty WEST = BlockStateProperties.WEST;
-    public static final BooleanProperty UP = BlockStateProperties.UP;
 
-    private static final VoxelShape[] HITBOX_SHAPES = new VoxelShape[ 32 ];
-    private static final VoxelShape[] COLLISION_SHAPES = new VoxelShape[ 32 ];
+    private static final VoxelShape[] HITBOX_SHAPES = new VoxelShape[ 16 ];
+    private static final VoxelShape[] COLLISION_SHAPES = new VoxelShape[ 16 ];
 
     static {
         VoxelShape pole = makeCuboidShape( 6, 0, 6, 10, 16, 10 );
@@ -56,20 +55,20 @@ public class BlockFence extends BlockWaterlogged {
         VoxelShape cwest = makeCuboidShape( 0, 0, 6, 8, 24, 10 );
         VoxelShape ceast = makeCuboidShape( 8, 0, 6, 16, 24, 10 );
 
-        for( int i = 0; i < 32; i++ ) {
+        for( int i = 0; i < 16; i++ ) {
             VoxelShape hitbox = VoxelShapes.empty();
             if( ( i & 1 ) != 0 ) hitbox = VoxelShapes.or( hitbox, north );
             if( ( i & 2 ) != 0 ) hitbox = VoxelShapes.or( hitbox, south );
             if( ( i & 4 ) != 0 ) hitbox = VoxelShapes.or( hitbox, west );
             if( ( i & 8 ) != 0 ) hitbox = VoxelShapes.or( hitbox, east );
-            if( ( i & 16 ) != 0 ) hitbox = VoxelShapes.or( hitbox, pole );
+            hitbox = VoxelShapes.or( hitbox, pole );
             HITBOX_SHAPES[ i ] = hitbox;
             VoxelShape collision = VoxelShapes.empty();
             if( ( i & 1 ) != 0 ) collision = VoxelShapes.or( collision, cnorth );
             if( ( i & 2 ) != 0 ) collision = VoxelShapes.or( collision, csouth );
             if( ( i & 4 ) != 0 ) collision = VoxelShapes.or( collision, cwest );
             if( ( i & 8 ) != 0 ) collision = VoxelShapes.or( collision, ceast );
-            if( ( i & 16 ) != 0 ) collision = VoxelShapes.or( collision, cpole );
+            collision = VoxelShapes.or( collision, cpole );
             COLLISION_SHAPES[ i ] = collision;
         }
     }
@@ -82,7 +81,6 @@ public class BlockFence extends BlockWaterlogged {
                                        .with( EAST, false )
                                        .with( SOUTH, false )
                                        .with( WEST, false )
-                                       .with( UP, true )
         );
     }
 
@@ -94,7 +92,6 @@ public class BlockFence extends BlockWaterlogged {
                                        .with( EAST, false )
                                        .with( SOUTH, false )
                                        .with( WEST, false )
-                                       .with( UP, true )
         );
     }
 
@@ -107,8 +104,7 @@ public class BlockFence extends BlockWaterlogged {
             boolean east = facing == EnumFacing.EAST ? attachesTo( facingState, facingState.getBlockFaceShape( world, facingPos, facing.getOpposite() ) ) : state.get( EAST );
             boolean south = facing == EnumFacing.SOUTH ? attachesTo( facingState, facingState.getBlockFaceShape( world, facingPos, facing.getOpposite() ) ) : state.get( SOUTH );
             boolean west = facing == EnumFacing.WEST ? attachesTo( facingState, facingState.getBlockFaceShape( world, facingPos, facing.getOpposite() ) ) : state.get( WEST );
-            boolean up = ( ! north || east || ! south || west ) && ( north || ! east || south || ! west );
-            return state.with( UP, up || doesBlockCausePole( world, pos.up(), world.getBlockState( pos.up() ) ) ).with( NORTH, north ).with( EAST, east ).with( SOUTH, south ).with( WEST, west );
+            return state.with( NORTH, north ).with( EAST, east ).with( SOUTH, south ).with( WEST, west );
         }
         return state;
     }
@@ -123,8 +119,7 @@ public class BlockFence extends BlockWaterlogged {
         boolean east = canWallConnectTo( world, pos, EnumFacing.EAST );
         boolean south = canWallConnectTo( world, pos, EnumFacing.SOUTH );
         boolean west = canWallConnectTo( world, pos, EnumFacing.WEST );
-        boolean up = ( ! north || east || ! south || west ) && ( north || ! east || south || ! west );
-        return getDefaultState().with( UP, up || doesBlockCausePole( world, pos.up(), world.getBlockState( pos.up() ) ) ).with( NORTH, north ).with( EAST, east ).with( SOUTH, south ).with( WEST, west ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
+        return getDefaultState().with( NORTH, north ).with( EAST, east ).with( SOUTH, south ).with( WEST, west ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
     }
 
     public boolean doesBlockCausePole( IWorld world, BlockPos pos, IBlockState state ) {
@@ -146,7 +141,7 @@ public class BlockFence extends BlockWaterlogged {
     @Override
     protected void fillStateContainer( StateContainer.Builder<Block, IBlockState> builder ) {
         super.fillStateContainer( builder );
-        builder.add( NORTH, EAST, SOUTH, WEST, UP );
+        builder.add( NORTH, EAST, SOUTH, WEST );
     }
 
     public static boolean isExcepBlockForAttachWithPiston( Block block ) {
@@ -160,7 +155,6 @@ public class BlockFence extends BlockWaterlogged {
         if( state.get( SOUTH ) ) i |= 2;
         if( state.get( WEST ) ) i |= 4;
         if( state.get( EAST ) ) i |= 8;
-        if( state.get( UP ) ) i |= 16;
         return HITBOX_SHAPES[ i ];
     }
 
@@ -171,7 +165,6 @@ public class BlockFence extends BlockWaterlogged {
         if( state.get( SOUTH ) ) i |= 2;
         if( state.get( WEST ) ) i |= 4;
         if( state.get( EAST ) ) i |= 8;
-        if( state.get( UP ) ) i |= 16;
         return COLLISION_SHAPES[ i ];
     }
 

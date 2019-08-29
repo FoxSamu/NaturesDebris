@@ -1,7 +1,6 @@
 {
   "multipart": [
     {
-      "when": { "up": "true" },
       "apply": { "model": "modernity:block/blackwood_fence_post" }
     },
     {
