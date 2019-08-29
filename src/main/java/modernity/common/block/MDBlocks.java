@@ -87,6 +87,7 @@ public class MDBlocks {
 
 
     public static final BlockGlass DARK_GLASS = blockItem( new BlockGlass( "dark_glass", Block.Properties.create( Material.GLASS, MaterialColor.GRAY ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockGlassPane DARK_GLASS_PANE = blockItem( new BlockGlassPane( "dark_glass_pane", Block.Properties.create( Material.GLASS, MaterialColor.GRAY ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
 
     // Dusts
