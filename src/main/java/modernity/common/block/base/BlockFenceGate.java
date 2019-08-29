@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 29 - 2019
+ * Date: 8 - 30 - 2019
  */
 
 package modernity.common.block.base;
@@ -31,6 +31,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
+import modernity.api.util.EWaterlogType;
 import modernity.common.util.Events;
 
 import static net.minecraft.util.EnumFacing.*;
@@ -124,7 +125,8 @@ public class BlockFenceGate extends BlockWaterlogged {
         Axis axis = placementFacing.getAxis();
         boolean wall = axis == Axis.Z && ( isWall( world.getBlockState( pos.west() ) ) || isWall( world.getBlockState( pos.east() ) ) ) ||
                 axis == Axis.X && ( isWall( world.getBlockState( pos.north() ) ) || isWall( world.getBlockState( pos.south() ) ) );
-        return getDefaultState().with( FACING, placementFacing ).with( OPEN, power ).with( POWERED, power ).with( IN_WALL, wall );
+        return getDefaultState().with( FACING, placementFacing ).with( OPEN, power ).with( POWERED, power ).with( IN_WALL, wall )
+                                .with( WATERLOGGED, EWaterlogType.getType( world.getFluidState( pos ) ) );
     }
 
     private boolean isWall( IBlockState state ) {
