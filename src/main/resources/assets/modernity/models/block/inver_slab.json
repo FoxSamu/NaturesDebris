@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "side": "modernity:block/inver_planks",
+    "top": "modernity:block/inver_planks",
+    "bottom": "modernity:block/inver_planks"
+  }
+}

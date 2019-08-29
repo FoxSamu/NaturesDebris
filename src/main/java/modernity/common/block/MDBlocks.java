@@ -61,7 +61,20 @@ public class MDBlocks {
     public static final BlockBase ASPHALT_CONCRETE = blockItem( new BlockBase( "asphalt_concrete", Block.Properties.create( MDMaterial.ASPHALT, MaterialColor.BLACK ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     public static final BlockBase BLACKWOOD_PLANKS = blockItem( new BlockBase( "blackwood_planks", Block.Properties.create( Material.WOOD, MaterialColor.BLACK_TERRACOTTA ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
-    public static final BlockBase INVER_PLANKS = blockItem( new BlockBase( "inver_planks", Block.Properties.create( Material.WOOD, MaterialColor.BLACK_TERRACOTTA ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockBase INVER_PLANKS = blockItem( new BlockBase( "inver_planks", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+
+    public static final BlockSlab BLACKWOOD_SLAB = blockItem( new BlockSlab( "blackwood_slab", Block.Properties.create( Material.WOOD, MaterialColor.BLACK_TERRACOTTA ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockSlab INVER_SLAB = blockItem( new BlockSlab( "inver_slab", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+    public static final BlockStairs BLACKWOOD_STAIRS = blockItem( new BlockStairs( "blackwood_stairs", false, Block.Properties.create( Material.WOOD, MaterialColor.BLACK_TERRACOTTA ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockStairs INVER_STAIRS = blockItem( new BlockStairs( "inver_stairs", false, Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+    public static final BlockStairs BLACKWOOD_STEP = blockItem( new BlockStairs( "blackwood_step", true, Block.Properties.create( Material.WOOD, MaterialColor.BLACK_TERRACOTTA ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockStairs INVER_STEP = blockItem( new BlockStairs( "inver_step", true, Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+    public static final BlockCorner BLACKWOOD_CORNER = blockItem( new BlockCorner( "blackwood_corner", Block.Properties.create( Material.WOOD, MaterialColor.BLACK_TERRACOTTA ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockCorner INVER_CORNER = blockItem( new BlockCorner( "inver_corner", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Dusts
     public static final BlockFall ASH_BLOCK = blockItem( new BlockFall( "ash_block", 0x333333, Block.Properties.create( MDMaterial.ASH, MaterialColor.GRAY ).hardnessAndResistance( 0.4F ).sound( SoundType.SAND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
