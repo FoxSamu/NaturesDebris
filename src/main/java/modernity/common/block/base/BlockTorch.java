@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 28 - 2019
+ * Date: 8 - 29 - 2019
  */
 
 package modernity.common.block.base;
@@ -119,16 +119,19 @@ public class BlockTorch extends BlockWaterlogged {
     }
 
     @Override
+    public void tick( IBlockState state, World world, BlockPos pos, Random random ) {
+        state.dropBlockAsItem( world, pos, 0 );
+        world.removeBlock( pos );
+    }
+
+    @Override
     public IBlockState updatePostPlacement( IBlockState state, EnumFacing facing, IBlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos ) {
         super.updatePostPlacement( state, facing, facingState, world, currentPos, facingPos );
         if( facing == UP ) return state;
         if( facing == state.get( FACING ) ) {
             if( ! canRemainForFacing( world, currentPos, facing ) ) {
-                if( world instanceof World ) { // Only drop item in live world
-                    state.dropBlockAsItem( (World) world, currentPos, 0 );
-                }
-                // Return contained fluid to update this block...
-                return state.getFluidState().getBlockState();
+                world.getPendingBlockTicks().scheduleTick( currentPos, this, 0 );
+                return state;
             }
         }
         return state;

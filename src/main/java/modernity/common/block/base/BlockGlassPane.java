@@ -51,8 +51,8 @@ public class BlockGlassPane extends BlockWaterlogged {
 
     static {
         VoxelShape pole = makeCuboidShape( 7, 0, 7, 9, 16, 9 );
-        VoxelShape north = makeCuboidShape( 7, 0, 0, 9, 16, 8 );
-        VoxelShape south = makeCuboidShape( 6, 0, 8, 9, 16, 16 );
+        VoxelShape north = makeCuboidShape( 7, 0, 0, 9, 16, 9 );
+        VoxelShape south = makeCuboidShape( 7, 0, 8, 9, 16, 16 );
         VoxelShape west = makeCuboidShape( 0, 0, 7, 8, 16, 9 );
         VoxelShape east = makeCuboidShape( 8, 0, 7, 16, 16, 9 );
 
@@ -180,6 +180,11 @@ public class BlockGlassPane extends BlockWaterlogged {
     @Override
     public boolean canSilkHarvest( IBlockState state, IWorldReader world, BlockPos pos, EntityPlayer player ) {
         return true;
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape( IBlockReader world, IBlockState state, BlockPos pos, EnumFacing face ) {
+        return face.getAxis().isVertical() ? BlockFaceShape.CENTER_SMALL : BlockFaceShape.MIDDLE_POLE_THIN;
     }
 
     @Override
