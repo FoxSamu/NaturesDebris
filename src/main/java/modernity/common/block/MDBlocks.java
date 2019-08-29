@@ -33,12 +33,14 @@ public class MDBlocks {
     private static final ArrayList<Entry> ENTRIES = Lists.newArrayList();
     private static final ArrayList<Entry> ENTRIES_ITEM = Lists.newArrayList();
 
+
     // Rocks
     public static final BlockBase ROCK = blockItem( new BlockBase( "rock", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockBase DARKROCK = blockItem( new BlockBase( "darkrock", Block.Properties.create( Material.ROCK, MaterialColor.BLACK ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockBase LIGHTROCK = blockItem( new BlockBase( "lightrock", Block.Properties.create( Material.ROCK, MaterialColor.SNOW ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ).lightValue( 15 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockBase REDROCK = blockItem( new BlockBase( "redrock", Block.Properties.create( Material.ROCK, MaterialColor.TNT ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockNoDrop MODERN_BEDROCK = blockItem( new BlockNoDrop( "modern_bedrock", Block.Properties.create( Material.ROCK, MaterialColor.BLACK ).hardnessAndResistance( - 1F, 3600000F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
 
     // Building blocks
     public static final BlockBase ROCK_BRICKS = blockItem( new BlockBase( "rock_bricks", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
@@ -65,7 +67,6 @@ public class MDBlocks {
     public static final BlockWall ASPHALT_CONCRETE_WALL = blockItem( new BlockWall( "asphalt_concrete_wall", Block.Properties.create( MDMaterial.ASPHALT, MaterialColor.BLACK ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
 
-
     public static final BlockBase BLACKWOOD_PLANKS = blockItem( new BlockBase( "blackwood_planks", Block.Properties.create( Material.WOOD, MaterialColor.BLACK_TERRACOTTA ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockBase INVER_PLANKS = blockItem( new BlockBase( "inver_planks", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
@@ -84,9 +85,14 @@ public class MDBlocks {
     public static final BlockFence BLACKWOOD_FENCE = blockItem( new BlockFence( "blackwood_fence", Block.Properties.create( Material.WOOD, MaterialColor.BLACK_TERRACOTTA ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockFence INVER_FENCE = blockItem( new BlockFence( "inver_fence", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
+
+    public static final BlockGlass DARK_GLASS = blockItem( new BlockGlass( "dark_glass", Block.Properties.create( Material.GLASS, MaterialColor.GRAY ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+
     // Dusts
     public static final BlockFall ASH_BLOCK = blockItem( new BlockFall( "ash_block", 0x333333, Block.Properties.create( MDMaterial.ASH, MaterialColor.GRAY ).hardnessAndResistance( 0.4F ).sound( SoundType.SAND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockFall SALT_DUST_BLOCK = blockItem( new BlockFall( "salt_dust_block", 0xffffff, Block.Properties.create( Material.SAND, MaterialColor.SNOW ).hardnessAndResistance( 0.4F ).sound( SoundType.SAND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
 
     // Soils
     public static final BlockDirt DARK_DIRT = blockItem( new BlockDirt( BlockDirt.TYPE_DIRT, Block.Properties.create( Material.GROUND, MaterialColor.DIRT ).hardnessAndResistance( 0.5F ).sound( SoundType.GROUND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
@@ -97,10 +103,12 @@ public class MDBlocks {
     public static final BlockDirt HUMUS = blockItem( new BlockDirt( BlockDirt.TYPE_HUMUS, Block.Properties.create( Material.GROUND, MaterialColor.ORANGE_TERRACOTTA ).hardnessAndResistance( 0.6F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockDirt DARK_PODZOL = blockItem( new BlockDirt( BlockDirt.TYPE_PODZOL, Block.Properties.create( Material.GROUND, MaterialColor.ORANGE_TERRACOTTA ).hardnessAndResistance( 0.6F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
+
     // Fluids
     public static final BlockFluid MODERNIZED_WATER = blockOnly( new BlockFluid( "modernized_water", MDFluids.MODERNIZED_WATER, Block.Properties.create( Material.WATER, MaterialColor.WATER ).doesNotBlockMovement().hardnessAndResistance( 100F ) ) );
     public static final BlockFluid PORTAL_FLUID = blockOnly( new BlockPortalFluid( "portal_fluid", MDFluids.PORTAL, Block.Properties.create( Material.WATER, MaterialColor.WATER ).doesNotBlockMovement().hardnessAndResistance( 100F ).lightValue( 9 ) ) );
     public static final BlockFluid HEATROCK_FLUID = blockOnly( new BlockFluid( "heatrock_fluid", MDFluids.HEATROCK_FLUID, Block.Properties.create( Material.LAVA, MaterialColor.TNT ).doesNotBlockMovement().hardnessAndResistance( 100F ).lightValue( 15 ) ) );
+
 
     // Plants
     public static final BlockTallPlant DARK_TALLGRASS = blockItem( new BlockTallPlant.ColoredGrass( "dark_tall_grass", Block.Properties.create( Material.VINE, MaterialColor.GRASS ).doesNotBlockMovement().hardnessAndResistance( 0 ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
@@ -127,6 +135,7 @@ public class MDBlocks {
     public static final BlockSaltCrystal SALT_CRYSTAL = blockItem( new BlockSaltCrystal( "salt_crystal", Block.Properties.create( MDMaterial.CRYSTAL ).doesNotBlockMovement().hardnessAndResistance( 0.2F ).sound( SoundType.GLASS ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockHangingPlant MURINA = blockItem( new BlockHangingPlant.ColoredMurina( "murina", Block.Properties.create( Material.VINE, MaterialColor.GRASS ).doesNotBlockMovement().hardnessAndResistance( 0 ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
+
     // Blackwood tree
     public static final BlockLog STRIPPED_BLACKWOOD_LOG = blockItem( new BlockLog( "stripped_blackwood_log", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockLog BLACKWOOD_LOG = blockItem( new BlockStripableLog( "blackwood_log", STRIPPED_BLACKWOOD_LOG, Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
@@ -134,6 +143,7 @@ public class MDBlocks {
     public static final BlockBase BLACKWOOD_BARK = blockItem( new BlockStripable( "blackwood_bark", STRIPPED_BLACKWOOD_BARK, Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockSapling BLACKWOOD_SAPLING = blockItem( new BlockSapling( "blackwood_sapling", () -> MDFeatures.BLACKWOOD_TREE, Block.Properties.create( Material.VINE, MaterialColor.GRASS ).hardnessAndResistance( 0 ).tickRandomly().sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockHangLeaves BLACKWOOD_LEAVES = blockItem( new BlockHangLeaves.ColoredBlackwood( "blackwood_leaves", MDBlockTags.BLACKWOOD_LOG, BLACKWOOD_SAPLING, Block.Properties.create( Material.LEAVES ).hardnessAndResistance( 0.2F ).tickRandomly().sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
 
     // Inver tree
     public static final BlockLog STRIPPED_INVER_LOG = blockItem( new BlockLog( "stripped_inver_log", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
@@ -143,18 +153,22 @@ public class MDBlocks {
     public static final BlockSapling INVER_SAPLING = blockItem( new BlockSapling( "inver_sapling", () -> MDFeatures.INVER_TREE, Block.Properties.create( Material.VINE, MaterialColor.GRASS ).hardnessAndResistance( 0 ).tickRandomly().sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockDecayLeaves INVER_LEAVES = blockItem( new BlockDecayLeaves.ColoredInver( "inver_leaves", MDBlockTags.INVER_LOG, INVER_SAPLING, Block.Properties.create( Material.LEAVES ).hardnessAndResistance( 0.2F ).tickRandomly().sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
+
     // Ores
     public static final BlockOre SALT_ORE = blockItem( new BlockOre.Salt( "salt_ore", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockOre ALUMINIUM_ORE = blockItem( new BlockOre( "aluminium_ore", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
 
     // Minerals
     public static final BlockTranslucent SALT_BLOCK = blockItem( new BlockTranslucent.Salt( "salt_block", Block.Properties.create( Material.GLASS, MaterialColor.SNOW ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockBase ALUMINIUM_BLOCK = blockItem( new BlockBase( "aluminium_block", Block.Properties.create( Material.IRON, MaterialColor.IRON ).hardnessAndResistance( 5F, 6F ).sound( SoundType.METAL ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
+
     // Utils
     public static final BlockTorch EXTINGUISHED_ANTHRACITE_TORCH = blockItem( new BlockTorch( "extinghuished_anthracite_torch", false, Block.Properties.create( Material.WOOD, MaterialColor.SNOW ).hardnessAndResistance( 0 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockExtinguishableTorch ANTHRACITE_TORCH = blockItem( new BlockExtinguishableTorch( "anthracite_torch", true, EXTINGUISHED_ANTHRACITE_TORCH, Block.Properties.create( Material.WOOD, MaterialColor.SNOW ).hardnessAndResistance( 0 ).lightValue( 15 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockTorch LIGHTROCK_TORCH = blockItem( new BlockTorch( "lightrock_torch", false, Block.Properties.create( Material.WOOD, MaterialColor.SNOW ).hardnessAndResistance( 0 ).lightValue( 15 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
 
     // Misc
     public static final BlockPortalCauldron PORTAL_CAULDRON = blockOnly( new BlockPortalCauldron( "portal_cauldron", Block.Properties.create( Material.IRON, MaterialColor.STONE ).hardnessAndResistance( 2F ).lightValue( 8 ) ) );
@@ -166,6 +180,9 @@ public class MDBlocks {
     public static final BlockHorizontalFacing GOLD_CARVED_NETHER_BRICKS_TIMEN = blockItem( new BlockHorizontalFacing( "gold_carved_nether_bricks/timen", Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockHorizontalFacing GOLD_CARVED_NETHER_BRICKS_PORTAL = blockItem( new BlockHorizontalFacing( "gold_carved_nether_bricks/portal", Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockHorizontalFacing GOLD_CARVED_NETHER_BRICKS_RGSW = blockItem( new BlockHorizontalFacing( "gold_carved_nether_bricks/rgsw", Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+
+
 
 
     public static void register( IForgeRegistry<Block> registry ) {
