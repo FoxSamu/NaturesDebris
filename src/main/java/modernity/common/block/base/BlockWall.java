@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 24 - 2019
+ * Date: 8 - 29 - 2019
  */
 
 package modernity.common.block.base;
@@ -133,7 +133,7 @@ public class BlockWall extends BlockWaterlogged {
 
     private boolean attachesTo( IBlockState state, BlockFaceShape shape ) {
         Block block = state.getBlock();
-        boolean isWallPole = shape == BlockFaceShape.MIDDLE_POLE_THICK || shape == BlockFaceShape.MIDDLE_POLE && block instanceof BlockFenceGate;
+        boolean isWallPole = shape == BlockFaceShape.MIDDLE_POLE_THICK || shape == BlockFaceShape.MIDDLE_POLE && isFenceGate( block );
         return ! isExcepBlockForAttachWithPiston( block ) && shape == BlockFaceShape.SOLID || isWallPole;
     }
 
@@ -151,6 +151,10 @@ public class BlockWall extends BlockWaterlogged {
 
     public static boolean isExcepBlockForAttachWithPiston( Block block ) {
         return Block.isExceptBlockForAttachWithPiston( block ) || block == Blocks.BARRIER || block == Blocks.MELON || block == Blocks.PUMPKIN || block == Blocks.CARVED_PUMPKIN || block == Blocks.JACK_O_LANTERN || block == Blocks.FROSTED_ICE || block == Blocks.TNT;
+    }
+
+    private boolean isFenceGate( Block block ) {
+        return block instanceof modernity.common.block.base.BlockFenceGate || block instanceof BlockFenceGate;
     }
 
     @Override

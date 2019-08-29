@@ -41,6 +41,7 @@ public class BlockFence extends BlockWaterlogged {
 
     private static final VoxelShape[] HITBOX_SHAPES = new VoxelShape[ 16 ];
     private static final VoxelShape[] COLLISION_SHAPES = new VoxelShape[ 16 ];
+    private static final VoxelShape[] RENDER_SHAPES = new VoxelShape[ 16 ];
 
     static {
         VoxelShape pole = makeCuboidShape( 6, 0, 6, 10, 16, 10 );
@@ -54,6 +55,12 @@ public class BlockFence extends BlockWaterlogged {
         VoxelShape csouth = makeCuboidShape( 6, 0, 8, 10, 24, 16 );
         VoxelShape cwest = makeCuboidShape( 0, 0, 6, 8, 24, 10 );
         VoxelShape ceast = makeCuboidShape( 8, 0, 6, 16, 24, 10 );
+
+        VoxelShape rpole = makeCuboidShape( 7, 0, 7, 9, 16, 9 );
+        VoxelShape rnorth = makeCuboidShape( 7, 6, 0, 9, 15, 8 );
+        VoxelShape rsouth = makeCuboidShape( 7, 6, 8, 9, 15, 16 );
+        VoxelShape rwest = makeCuboidShape( 0, 6, 7, 8, 15, 9 );
+        VoxelShape reast = makeCuboidShape( 8, 6, 7, 16, 15, 9 );
 
         for( int i = 0; i < 16; i++ ) {
             VoxelShape hitbox = VoxelShapes.empty();
@@ -70,6 +77,13 @@ public class BlockFence extends BlockWaterlogged {
             if( ( i & 8 ) != 0 ) collision = VoxelShapes.or( collision, ceast );
             collision = VoxelShapes.or( collision, cpole );
             COLLISION_SHAPES[ i ] = collision;
+            VoxelShape render = VoxelShapes.empty();
+            if( ( i & 1 ) != 0 ) render = VoxelShapes.or( render, rnorth );
+            if( ( i & 2 ) != 0 ) render = VoxelShapes.or( render, rsouth );
+            if( ( i & 4 ) != 0 ) render = VoxelShapes.or( render, rwest );
+            if( ( i & 8 ) != 0 ) render = VoxelShapes.or( render, reast );
+            render = VoxelShapes.or( render, rpole );
+            COLLISION_SHAPES[ i ] = render;
         }
     }
 
@@ -124,7 +138,7 @@ public class BlockFence extends BlockWaterlogged {
 
     private boolean attachesTo( IBlockState state, BlockFaceShape shape ) {
         Block block = state.getBlock();
-        boolean isFencePole = shape == BlockFaceShape.MIDDLE_POLE && ( state.getMaterial() == material || block instanceof BlockFenceGate );
+        boolean isFencePole = shape == BlockFaceShape.MIDDLE_POLE && ( state.getMaterial() == material || isFenceGate( block ) );
         return ! isExcepBlockForAttachWithPiston( block ) && shape == BlockFaceShape.SOLID || isFencePole;
     }
 
@@ -144,6 +158,10 @@ public class BlockFence extends BlockWaterlogged {
         return Block.isExceptBlockForAttachWithPiston( block ) || block == Blocks.BARRIER || block == Blocks.MELON || block == Blocks.PUMPKIN || block == Blocks.CARVED_PUMPKIN || block == Blocks.JACK_O_LANTERN || block == Blocks.FROSTED_ICE || block == Blocks.TNT;
     }
 
+    private boolean isFenceGate( Block block ) {
+        return block instanceof modernity.common.block.base.BlockFenceGate || block instanceof BlockFenceGate;
+    }
+
     @Override
     public VoxelShape getShape( IBlockState state, IBlockReader worldIn, BlockPos pos ) {
         int i = 0;
@@ -156,6 +174,16 @@ public class BlockFence extends BlockWaterlogged {
 
     @Override
     public VoxelShape getCollisionShape( IBlockState state, IBlockReader worldIn, BlockPos pos ) {
+        int i = 0;
+        if( state.get( NORTH ) ) i |= 1;
+        if( state.get( SOUTH ) ) i |= 2;
+        if( state.get( WEST ) ) i |= 4;
+        if( state.get( EAST ) ) i |= 8;
+        return COLLISION_SHAPES[ i ];
+    }
+
+    @Override
+    public VoxelShape getRenderShape( IBlockState state, IBlockReader worldIn, BlockPos pos ) {
         int i = 0;
         if( state.get( NORTH ) ) i |= 1;
         if( state.get( SOUTH ) ) i |= 2;

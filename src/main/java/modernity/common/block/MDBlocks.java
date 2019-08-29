@@ -88,6 +88,9 @@ public class MDBlocks {
     public static final BlockDoor BLACKWOOD_DOOR = blockItem( new BlockDoor( "blackwood_door", Block.Properties.create( Material.WOOD, MaterialColor.BLACK_TERRACOTTA ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockDoor INVER_DOOR = blockItem( new BlockDoor( "inver_door", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
+    public static final BlockFenceGate BLACKWOOD_FENCE_GATE = blockItem( new BlockFenceGate( "blackwood_fence_gate", Block.Properties.create( Material.WOOD, MaterialColor.BLACK_TERRACOTTA ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockFenceGate INVER_FENCE_GATE = blockItem( new BlockFenceGate( "inver_fence_gate", Block.Properties.create( Material.WOOD, MaterialColor.WOOD ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
 
     public static final BlockGlass DARK_GLASS = blockItem( new BlockGlass( "dark_glass", Block.Properties.create( Material.GLASS, MaterialColor.GRAY ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockGlassPane DARK_GLASS_PANE = blockItem( new BlockGlassPane( "dark_glass_pane", Block.Properties.create( Material.GLASS, MaterialColor.GRAY ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
