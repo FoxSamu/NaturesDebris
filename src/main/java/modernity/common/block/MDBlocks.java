@@ -44,7 +44,8 @@ public class MDBlocks {
 
 
     // Building blocks
-    public static final BlockBase ROCK_BRICKS = blockItem( new BlockBase( "rock_bricks", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockBase ROCK_BRICKS = blockItem( new BlockBase( "rock_bricks", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockBase DARKROCK_BRICKS = blockItem( new BlockBase( "darkrock_bricks", Block.Properties.create( Material.ROCK, MaterialColor.BLACK ).hardnessAndResistance( 2F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockBase ASPHALT_CONCRETE = blockItem( new BlockBase( "asphalt_concrete", Block.Properties.create( MDMaterial.ASPHALT, MaterialColor.BLACK ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     public static final BlockSlab ROCK_SLAB = blockItem( new BlockSlab( "rock_slab", Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 6F ).sound( SoundType.STONE ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
