@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 29 - 2019
+ * Date: 8 - 30 - 2019
  */
 
 package modernity.common.block.base;
@@ -83,7 +83,7 @@ public class BlockFence extends BlockWaterlogged {
             if( ( i & 4 ) != 0 ) render = VoxelShapes.or( render, rwest );
             if( ( i & 8 ) != 0 ) render = VoxelShapes.or( render, reast );
             render = VoxelShapes.or( render, rpole );
-            COLLISION_SHAPES[ i ] = render;
+            RENDER_SHAPES[ i ] = render;
         }
     }
 
@@ -189,7 +189,7 @@ public class BlockFence extends BlockWaterlogged {
         if( state.get( SOUTH ) ) i |= 2;
         if( state.get( WEST ) ) i |= 4;
         if( state.get( EAST ) ) i |= 8;
-        return COLLISION_SHAPES[ i ];
+        return RENDER_SHAPES[ i ];
     }
 
     public BlockFaceShape getBlockFaceShape( IBlockReader world, IBlockState state, BlockPos pos, EnumFacing face ) {
