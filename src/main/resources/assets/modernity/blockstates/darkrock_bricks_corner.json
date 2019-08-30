@@ -1,0 +1,12 @@
+{
+  "multipart": [
+    { "when": { "c000": "true" }, "apply": { "model": "modernity:block/darkrock_bricks_corner", "uvlock": true } },
+    { "when": { "c001": "true" }, "apply": { "model": "modernity:block/darkrock_bricks_corner", "uvlock": true, "y": 270 } },
+    { "when": { "c100": "true" }, "apply": { "model": "modernity:block/darkrock_bricks_corner", "uvlock": true, "y": 90 } },
+    { "when": { "c101": "true" }, "apply": { "model": "modernity:block/darkrock_bricks_corner", "uvlock": true, "y": 180 } },
+    { "when": { "c010": "true" }, "apply": { "model": "modernity:block/darkrock_bricks_corner", "uvlock": true, "x": 270 } },
+    { "when": { "c011": "true" }, "apply": { "model": "modernity:block/darkrock_bricks_corner", "uvlock": true, "x": 270, "y": 270 } },
+    { "when": { "c110": "true" }, "apply": { "model": "modernity:block/darkrock_bricks_corner", "uvlock": true, "x": 270, "y": 90 } },
+    { "when": { "c111": "true" }, "apply": { "model": "modernity:block/darkrock_bricks_corner", "uvlock": true, "x": 270, "y": 180 } }
+  ]
+}
