@@ -44,6 +44,7 @@ public class MDItems {
     public static final ItemBucketBase ALUMINIUM_WATER_BUCKET = item( new ItemAluminiumBucket( "aluminium_water_bucket", MDFluids.MODERNIZED_WATER, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final ItemBucketBase ALUMINIUM_HEATROCK_BUCKET = item( new ItemAluminiumBucket( "aluminium_heatrock_bucket", MDFluids.HEATROCK_FLUID, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final ItemBucketBase ALUMINIUM_OIL_BUCKET = item( new ItemAluminiumBucket( "aluminium_oil_bucket", MDFluids.OIL, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemBucketBase ALUMINIUM_PORTAL_BUCKET = item( new ItemPortalBucket( "aluminium_portal_bucket", ALUMINIUM_BUCKET, f -> null, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Curse crystal
     public static final ItemBase CURSE_CRYSTAL_SHARD_1 = item( new ItemBase( "curse_crystal/shard_1", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
