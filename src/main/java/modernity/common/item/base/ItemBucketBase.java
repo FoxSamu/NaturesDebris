@@ -71,7 +71,7 @@ public class ItemBucketBase extends ItemBase {
             BlockPos pos = rtr.getBlockPos();
             if( world.isBlockModifiable( player, pos ) && player.canPlayerEdit( pos, rtr.sideHit, held ) ) {
                 if( containing == Fluids.EMPTY ) {
-                    // Bucket is empty: try to pick fluid
+                    // Bucket is empty: try to pick up fluid
 
                     IBlockState state = world.getBlockState( pos );
 
