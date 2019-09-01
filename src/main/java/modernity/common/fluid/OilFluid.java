@@ -36,13 +36,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rgsw.MathUtil;
 
+import modernity.api.block.fluid.IAluminiumBucketTakeable;
 import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.common.block.MDBlocks;
+import modernity.common.item.MDItems;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public abstract class OilFluid extends RegularFluid implements ICustomRenderFluid {
+public abstract class OilFluid extends RegularFluid implements ICustomRenderFluid, IAluminiumBucketTakeable {
     public static final BooleanProperty BURNING = BooleanProperty.create( "burning" );
     public static final IntegerProperty LEVEL = IntegerProperty.create( "level", 1, 16 );
 
@@ -63,8 +65,14 @@ public abstract class OilFluid extends RegularFluid implements ICustomRenderFlui
         return Items.LAVA_BUCKET;
     }
 
+    @Override
+    public Item getFilledAluminiumBucket() {
+        return MDItems.ALUMINIUM_OIL_BUCKET;
+    }
+
     public OilFluid() {
         super( LEVEL, 16 );
+        setDefaultState( stateContainer.getBaseState().with( BURNING, false ) );
     }
 
     @Override

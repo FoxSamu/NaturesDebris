@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 3 - 2019
+ * Date: 9 - 1 - 2019
  */
 
 package modernity.common.item.base;
@@ -14,9 +14,11 @@ import net.minecraft.block.ILiquidContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumHand;
@@ -29,12 +31,16 @@ import modernity.common.block.MDBlocks;
 import modernity.common.fluid.MDFluids;
 
 import javax.annotation.Nullable;
+import java.util.function.Function;
 
 public class ItemPortalBucket extends ItemBucketBase {
     public ItemPortalBucket( String id, Properties properties ) {
         super( id, MDFluids.PORTAL, properties );
     }
 
+    public ItemPortalBucket( String id, Item empty, Function<Fluid, Item> fluidToItem, Properties properties ) {
+        super( id, MDFluids.PORTAL, empty, fluidToItem, properties );
+    }
 
     protected BlockPos getPlacementPosition( IBlockState state, BlockPos pos, RayTraceResult rtr ) {
         return state.getBlock() instanceof ILiquidContainer || state.getBlock() == Blocks.CAULDRON && state.get( BlockCauldron.LEVEL ) == 0 ? pos : rtr.getBlockPos().offset( rtr.sideHit );

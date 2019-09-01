@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 30 - 2019
+ * Date: 9 - 1 - 2019
  */
 
 package modernity.common.fluid;
@@ -32,15 +32,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import modernity.api.block.fluid.IAluminiumBucketTakeable;
 import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.client.util.ProxyClient;
 import modernity.common.block.MDBlocks;
+import modernity.common.item.MDItems;
 import modernity.common.particle.MDParticles;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public abstract class ModernizedWaterFluid extends RegularFluid implements ICustomRenderFluid {
+public abstract class ModernizedWaterFluid extends RegularFluid implements ICustomRenderFluid, IAluminiumBucketTakeable {
     public Fluid getFlowingFluid() {
         return MDFluids.MODERNIZED_WATER_FLOWING;
     }
@@ -56,6 +58,11 @@ public abstract class ModernizedWaterFluid extends RegularFluid implements ICust
 
     public Item getFilledBucket() {
         return Items.WATER_BUCKET;
+    }
+
+    @Override
+    public Item getFilledAluminiumBucket() {
+        return MDItems.ALUMINIUM_WATER_BUCKET;
     }
 
     @OnlyIn( Dist.CLIENT )

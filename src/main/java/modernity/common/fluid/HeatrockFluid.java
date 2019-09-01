@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 30 - 2019
+ * Date: 9 - 1 - 2019
  */
 
 package modernity.common.fluid;
@@ -33,14 +33,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import modernity.api.block.fluid.IAluminiumBucketTakeable;
 import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.base.BlockFluid;
+import modernity.common.item.MDItems;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public abstract class HeatrockFluid extends RegularFluid implements ICustomRenderFluid {
+public abstract class HeatrockFluid extends RegularFluid implements ICustomRenderFluid, IAluminiumBucketTakeable {
     public Fluid getFlowingFluid() {
         return MDFluids.HEATROCK_FLUID_FLOWING;
     }
@@ -56,6 +58,11 @@ public abstract class HeatrockFluid extends RegularFluid implements ICustomRende
 
     public Item getFilledBucket() {
         return Items.LAVA_BUCKET;
+    }
+
+    @Override
+    public Item getFilledAluminiumBucket() {
+        return MDItems.ALUMINIUM_HEATROCK_BUCKET;
     }
 
     @Override

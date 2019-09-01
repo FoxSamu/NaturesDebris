@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 28 - 2019
+ * Date: 9 - 1 - 2019
  */
 
 package modernity.common.item.base;
@@ -39,14 +39,23 @@ import modernity.api.block.fluid.ICustomVaporize;
 import modernity.common.fluid.RegularFluid;
 
 import javax.annotation.Nullable;
+import java.util.function.Function;
 
 public class ItemBucketBase extends ItemBase {
 
     protected final Fluid containing;
+    protected final Item empty;
+    protected final Function<Fluid, Item> fluidToItem;
 
-    public ItemBucketBase( String id, Fluid fluid, Item.Properties properties ) {
+    public ItemBucketBase( String id, Fluid fluid, Properties properties ) {
+        this( id, fluid, Items.BUCKET, Fluid::getFilledBucket, properties );
+    }
+
+    public ItemBucketBase( String id, Fluid fluid, Item empty, Function<Fluid, Item> fluidToItem, Properties properties ) {
         super( id, properties );
         this.containing = fluid;
+        this.empty = empty;
+        this.fluidToItem = fluidToItem;
     }
 
     public ActionResult<ItemStack> onItemRightClick( World world, EntityPlayer player, EnumHand hand ) {
@@ -71,14 +80,19 @@ public class ItemBucketBase extends ItemBase {
 
                         if( fluid != Fluids.EMPTY ) {
                             player.addStat( StatList.ITEM_USED.get( this ) );
-                            playFillSound( player, world, pos, fluid );
 
-                            ItemStack filled = fillBucket( held, player, fluid.getFilledBucket() );
-                            if( ! world.isRemote ) {
-                                CriteriaTriggers.FILLED_BUCKET.trigger( (EntityPlayerMP) player, new ItemStack( fluid.getFilledBucket() ) );
+                            Item filledItem = fluidToItem.apply( fluid );
+                            if( filledItem != null ) {
+                                ItemStack filled = fillBucket( held, player, filledItem );
+                                if( ! world.isRemote ) {
+                                    CriteriaTriggers.FILLED_BUCKET.trigger( (EntityPlayerMP) player, new ItemStack( filledItem ) );
+                                }
+                                playFillSound( player, world, pos, fluid );
+
+                                return new ActionResult<>( EnumActionResult.SUCCESS, filled );
+                            } else {
+                                world.setBlockState( pos, state );
                             }
-
-                            return new ActionResult<>( EnumActionResult.SUCCESS, filled );
                         }
                     }
 
@@ -113,7 +127,7 @@ public class ItemBucketBase extends ItemBase {
     }
 
     protected ItemStack emptyBucket( ItemStack bucket, EntityPlayer player ) {
-        return ! player.abilities.isCreativeMode ? new ItemStack( Items.BUCKET ) : bucket;
+        return ! player.abilities.isCreativeMode ? new ItemStack( empty ) : bucket;
     }
 
     public void onLiquidPlaced( World world, ItemStack bucket, BlockPos pos ) {

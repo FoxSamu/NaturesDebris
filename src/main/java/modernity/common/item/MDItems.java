@@ -4,22 +4,22 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 28 - 2019
+ * Date: 9 - 1 - 2019
  */
 
 package modernity.common.item;
 
 import com.google.common.collect.Lists;
 import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.init.Fluids;
 import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import modernity.api.item.IColoredItem;
-import modernity.common.item.base.ItemBase;
-import modernity.common.item.base.ItemCurseCrystal;
-import modernity.common.item.base.ItemPortalBucket;
+import modernity.common.fluid.MDFluids;
+import modernity.common.item.base.*;
 
 import java.util.ArrayList;
 
@@ -40,6 +40,10 @@ public class MDItems {
 
     // Buckets
     public static final ItemPortalBucket PORTAL_BUCKET = item( new ItemPortalBucket( "portal_bucket", new Item.Properties().maxStackSize( 1 ).group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemBucketBase ALUMINIUM_BUCKET = item( new ItemAluminiumBucket( "aluminium_bucket", Fluids.EMPTY, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemBucketBase ALUMINIUM_WATER_BUCKET = item( new ItemAluminiumBucket( "aluminium_water_bucket", MDFluids.MODERNIZED_WATER, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemBucketBase ALUMINIUM_HEATROCK_BUCKET = item( new ItemAluminiumBucket( "aluminium_heatrock_bucket", MDFluids.HEATROCK_FLUID, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemBucketBase ALUMINIUM_OIL_BUCKET = item( new ItemAluminiumBucket( "aluminium_oil_bucket", MDFluids.OIL, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Curse crystal
     public static final ItemBase CURSE_CRYSTAL_SHARD_1 = item( new ItemBase( "curse_crystal/shard_1", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
