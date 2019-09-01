@@ -2,5 +2,6 @@
   "prerendershaders": "core/prerendershaders.js",
   "injectstructures": "core/injectstructures.js",
   "renderblock": "core/renderblock.js",
-  "renderparticles": "core/renderparticles.js"
+  "renderparticles": "core/renderparticles.js",
+  "checkinwater": "core/checkinwater.js"
 }

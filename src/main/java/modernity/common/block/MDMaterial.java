@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 18 - 2019
+ * Date: 9 - 1 - 2019
  */
 
 package modernity.common.block;
@@ -17,6 +17,7 @@ public class MDMaterial {
     public static final Material ASH = new Builder( MaterialColor.BLACK_TERRACOTTA ).build();
     public static final Material ASPHALT = new Builder( MaterialColor.BLACK ).requiresTool().build();
     public static final Material CRYSTAL = new Builder( MaterialColor.SNOW ).notOpaque().doesNotBlockMovement().build();
+    public static final Material OIL = new Builder( MaterialColor.BLACK ).doesNotBlockMovement().notOpaque().notSolid().pushDestroys().replaceable().liquid().build();
 
 
     public static class Builder {

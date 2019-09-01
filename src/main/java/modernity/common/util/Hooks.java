@@ -1,14 +1,15 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 5 - 2019
+ * Date: 9 - 1 - 2019
  */
 
 package modernity.common.util;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
@@ -17,6 +18,7 @@ import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraftforge.common.MinecraftForge;
 
 import modernity.api.event.AddOverworldStructureEvent;
+import modernity.api.event.CheckEntityInWaterEvent;
 import modernity.api.event.OverworldStructureEvent;
 
 import java.util.HashSet;
@@ -73,5 +75,11 @@ public class Hooks {
 
     private static boolean canGenerate( OverworldStructureEvent.Type type ) {
         return ! MinecraftForge.EVENT_BUS.post( new OverworldStructureEvent( type ) );
+    }
+
+    public static boolean checkInWater( Entity e, boolean inWater ) {
+        CheckEntityInWaterEvent ev = new CheckEntityInWaterEvent( inWater, e );
+        MinecraftForge.EVENT_BUS.post( ev );
+        return ev.isInWater();
     }
 }

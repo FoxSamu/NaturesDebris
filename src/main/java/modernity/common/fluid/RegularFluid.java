@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 30 - 2019
+ * Date: 9 - 1 - 2019
  */
 
 package modernity.common.fluid;
@@ -174,7 +174,7 @@ public abstract class RegularFluid extends Fluid {
             BlockPos downPos = pos.down( fallDirection );
 
             IBlockState downBlock = world.getBlockState( downPos );
-            IFluidState downFluid = calculateCorrectFlowingState( world, downPos, downBlock );
+            IFluidState downFluid = calculateCorrectFlowingState( world, downPos, downBlock, fluid );
 
             if( canFlow( world, pos, block, down, downPos, downBlock, world.getFluidState( downPos ), downFluid.getFluid() ) ) {
                 // Flow down
@@ -191,6 +191,10 @@ public abstract class RegularFluid extends Fluid {
         }
     }
 
+    protected IFluidState applyAdditionalState( IFluidState source, IFluidState flow ) {
+        return flow;
+    }
+
     private void flowHorizontal( IWorld world, BlockPos pos, IFluidState fluid, IBlockState block ) {
         int nextLevel = fluid.getLevel() - this.getLevelDecreasePerBlock( world );
         if( fluid.get( FALLING ) ) {
@@ -198,7 +202,7 @@ public abstract class RegularFluid extends Fluid {
         }
 
         if( nextLevel > 0 ) {
-            Map<EnumFacing, IFluidState> map = getFlowStates( world, pos, block );
+            Map<EnumFacing, IFluidState> map = getFlowStates( world, pos, block, fluid );
 
             for( Map.Entry<EnumFacing, IFluidState> entry : map.entrySet() ) {
                 EnumFacing facing = entry.getKey();
@@ -214,7 +218,7 @@ public abstract class RegularFluid extends Fluid {
     }
 
     // Calculate the correct state to be at the specified position
-    protected IFluidState calculateCorrectFlowingState( IWorldReaderBase world, BlockPos pos, IBlockState state ) {
+    protected IFluidState calculateCorrectFlowingState( IWorldReaderBase world, BlockPos pos, IBlockState state, IFluidState origin ) {
         int maxLevel = 0;
         int adjacentSourceBlocks = 0;
 
@@ -235,7 +239,7 @@ public abstract class RegularFluid extends Fluid {
             IBlockState block = world.getBlockState( pos.down( fallDirection ) );
             IFluidState fluid = block.getFluidState();
             if( block.getMaterial().isSolid() || isSourceState( fluid ) ) {
-                return getStillFluidState( false );
+                return applyAdditionalState( origin, getStillFluidState( false ) );
             }
         }
 
@@ -243,13 +247,13 @@ public abstract class RegularFluid extends Fluid {
         IBlockState block = world.getBlockState( upPos );
         IFluidState fluid = block.getFluidState();
         if( ! fluid.isEmpty() && fluid.getFluid().isEquivalentTo( this ) && isAdjacentFluidSameAs( up, world, pos, state, upPos, block ) ) {
-            return getFlowingFluidState( this.maxLevel, true );
+            return applyAdditionalState( origin, getFlowingFluidState( this.maxLevel, true ) );
         } else {
             int resultingLevel = maxLevel - getLevelDecreasePerBlock( world );
             if( resultingLevel <= 0 ) {
                 return Fluids.EMPTY.getDefaultState();
             } else {
-                return getFlowingFluidState( resultingLevel, false );
+                return applyAdditionalState( origin, getFlowingFluidState( resultingLevel, false ) );
             }
         }
     }
@@ -376,7 +380,7 @@ public abstract class RegularFluid extends Fluid {
      * @param adjpos   The position to flow into
      * @param adjState The block at the position to flow to
      */
-    private boolean canFlowVerticalInto( IBlockReader world, Fluid fluid, BlockPos pos, IBlockState state, BlockPos adjpos, IBlockState adjState ) {
+    protected boolean canFlowVerticalInto( IBlockReader world, Fluid fluid, BlockPos pos, IBlockState state, BlockPos adjpos, IBlockState adjState ) {
         if( ! isAdjacentFluidSameAs( down, world, pos, state, adjpos, adjState ) ) {
             return false;
         } else {
@@ -419,7 +423,7 @@ public abstract class RegularFluid extends Fluid {
         return amount;
     }
 
-    protected Map<EnumFacing, IFluidState> getFlowStates( IWorldReaderBase world, BlockPos pos, IBlockState state ) {
+    protected Map<EnumFacing, IFluidState> getFlowStates( IWorldReaderBase world, BlockPos pos, IBlockState state, IFluidState origin ) {
         int weight = 1000;
 
         Map<EnumFacing, IFluidState> map = Maps.newEnumMap( EnumFacing.class );
@@ -438,7 +442,7 @@ public abstract class RegularFluid extends Fluid {
             IBlockState block = pair.getFirst();
             IFluidState fluid = pair.getSecond();
 
-            IFluidState correctState = calculateCorrectFlowingState( world, adjPos, block );
+            IFluidState correctState = calculateCorrectFlowingState( world, adjPos, block, origin );
             if( this.canFlowHorizontalInto( world, correctState.getFluid(), pos, state, facing, adjPos, block, fluid ) ) {
                 BlockPos downPos = adjPos.down( fallDirection );
                 boolean canFlowDown = slopeMap.computeIfAbsent( delta, integer -> {
@@ -466,7 +470,7 @@ public abstract class RegularFluid extends Fluid {
         return map;
     }
 
-    private boolean canBreakThrough( IBlockReader world, BlockPos pos, IBlockState state, Fluid fluid ) {
+    protected boolean canBreakThrough( IBlockReader world, BlockPos pos, IBlockState state, Fluid fluid ) {
         Block block = state.getBlock();
         if( block instanceof ILiquidContainer ) {
             return ( (ILiquidContainer) block ).canContainFluid( world, pos, state, fluid );
@@ -494,8 +498,8 @@ public abstract class RegularFluid extends Fluid {
 
     public void tick( World world, BlockPos pos, IFluidState state ) {
         if( ! state.isSource() ) {
-            IFluidState correctState = calculateCorrectFlowingState( world, pos, world.getBlockState( pos ) );
-            int rate = this.getTickRate( world, state, correctState );
+            IFluidState correctState = calculateCorrectFlowingState( world, pos, world.getBlockState( pos ), state );
+            int rate = getTickRate( world, state, correctState );
 
             if( correctState.isEmpty() ) {
                 state = correctState;

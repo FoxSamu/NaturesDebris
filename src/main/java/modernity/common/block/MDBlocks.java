@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 30 - 2019
+ * Date: 9 - 1 - 2019
  */
 
 package modernity.common.block;
@@ -134,6 +134,7 @@ public class MDBlocks {
     public static final BlockFluid MODERNIZED_WATER = blockOnly( new BlockFluid( "modernized_water", MDFluids.MODERNIZED_WATER, Block.Properties.create( Material.WATER, MaterialColor.WATER ).doesNotBlockMovement().hardnessAndResistance( 100F ) ) );
     public static final BlockFluid PORTAL_FLUID = blockOnly( new BlockPortalFluid( "portal_fluid", MDFluids.PORTAL, Block.Properties.create( Material.WATER, MaterialColor.WATER ).doesNotBlockMovement().hardnessAndResistance( 100F ).lightValue( 9 ) ) );
     public static final BlockFluid HEATROCK_FLUID = blockOnly( new BlockFluid( "heatrock_fluid", MDFluids.HEATROCK_FLUID, Block.Properties.create( Material.LAVA, MaterialColor.TNT ).doesNotBlockMovement().hardnessAndResistance( 100F ).lightValue( 15 ) ) );
+    public static final BlockFluid OIL = blockOnly( new BlockOilFluid( "oil", MDFluids.OIL, Block.Properties.create( MDMaterial.OIL, MaterialColor.BLACK ).doesNotBlockMovement().hardnessAndResistance( 100F ) ) );
 
 
     // Plants

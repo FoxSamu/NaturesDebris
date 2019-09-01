@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 30 - 2019
+ * Date: 9 - 1 - 2019
  */
 
 package modernity.common.block.base;
@@ -68,7 +68,7 @@ public class BlockFluid extends BlockBase implements IBucketPickupHandler {
 
 
         StateContainer.Builder<Block, IBlockState> containerBuilder = new StateContainer.Builder<>( this );
-        containerBuilder.add( level );
+        fillFluidStateContainer( containerBuilder );
         fluidStateContainer = containerBuilder.create( BlockState::new );
 
         // Fill the list with fluid states
@@ -81,6 +81,10 @@ public class BlockFluid extends BlockBase implements IBucketPickupHandler {
 
         // Default is source state
         setDefaultState( fluidStateContainer.getBaseState().with( level, 0 ) );
+    }
+
+    protected void fillFluidStateContainer( StateContainer.Builder<Block, IBlockState> container ) {
+        container.add( level );
     }
 
     @Override
