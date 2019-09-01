@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 9 - 1 - 2019
+ * Date: 9 - 2 - 2019
  */
 
 package modernity.common.block;
@@ -128,6 +128,8 @@ public class MDBlocks {
     public static final BlockDirt COARSE_DARK_DIRT = blockItem( new BlockDirt( BlockDirt.TYPE_COARSE_DIRT, Block.Properties.create( Material.GROUND, MaterialColor.DIRT ).hardnessAndResistance( 0.6F ).sound( SoundType.GROUND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockDirt HUMUS = blockItem( new BlockDirt( BlockDirt.TYPE_HUMUS, Block.Properties.create( Material.GROUND, MaterialColor.ORANGE_TERRACOTTA ).hardnessAndResistance( 0.6F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockDirt DARK_PODZOL = blockItem( new BlockDirt( BlockDirt.TYPE_PODZOL, Block.Properties.create( Material.GROUND, MaterialColor.ORANGE_TERRACOTTA ).hardnessAndResistance( 0.6F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockSticky MUD = blockItem( new BlockSticky( "mud", Block.Properties.create( Material.GROUND, MaterialColor.ORANGE_TERRACOTTA ).hardnessAndResistance( 0.6F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockFall ROCK_GRAVEL = blockItem( new BlockFall( "rock_gravel", 0x584c39, Block.Properties.create( Material.SAND, MaterialColor.SAND ).hardnessAndResistance( 0.5F ).sound( SoundType.GROUND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
 
     // Fluids
