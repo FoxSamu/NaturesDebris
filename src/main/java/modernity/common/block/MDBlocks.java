@@ -116,20 +116,20 @@ public class MDBlocks {
 
 
     // Dusts
-    public static final BlockFall ASH_BLOCK = blockItem( new BlockFall( "ash_block", 0x333333, Block.Properties.create( MDMaterial.ASH, MaterialColor.GRAY ).hardnessAndResistance( 0.4F ).sound( SoundType.SAND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
-    public static final BlockFall SALT_DUST_BLOCK = blockItem( new BlockFall( "salt_dust_block", 0xffffff, Block.Properties.create( Material.SAND, MaterialColor.SNOW ).hardnessAndResistance( 0.4F ).sound( SoundType.SAND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockFall ASH_BLOCK = blockItem( new BlockFallDigable( "ash_block", 0x333333, Block.Properties.create( MDMaterial.ASH, MaterialColor.GRAY ).hardnessAndResistance( 0.4F ).sound( SoundType.SAND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockFall SALT_DUST_BLOCK = blockItem( new BlockFallDigable( "salt_dust_block", 0xffffff, Block.Properties.create( Material.SAND, MaterialColor.SNOW ).hardnessAndResistance( 0.4F ).sound( SoundType.SAND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
 
     // Soils
     public static final BlockDirt DARK_DIRT = blockItem( new BlockDirt( BlockDirt.TYPE_DIRT, Block.Properties.create( Material.GROUND, MaterialColor.DIRT ).hardnessAndResistance( 0.5F ).sound( SoundType.GROUND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockDirt DARK_GRASS = blockItem( new BlockDirt.ColoredGrass( BlockDirt.TYPE_GRASS, Block.Properties.create( Material.GROUND, MaterialColor.GRASS ).hardnessAndResistance( 0.6F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
-    public static final BlockFall DARK_SAND = blockItem( new BlockFall( "dark_sand", 0x584c39, Block.Properties.create( Material.SAND, MaterialColor.SAND ).hardnessAndResistance( 0.5F ).sound( SoundType.SAND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
-    public static final BlockBase DARK_CLAY = blockItem( new BlockBase( "dark_clay", Block.Properties.create( Material.CLAY, MaterialColor.GRAY_TERRACOTTA ).hardnessAndResistance( 0.5F ).sound( SoundType.GROUND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockFallDigable DARK_SAND = blockItem( new BlockFallDigable( "dark_sand", 0x584c39, Block.Properties.create( Material.SAND, MaterialColor.SAND ).hardnessAndResistance( 0.5F ).sound( SoundType.SAND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockDigable DARK_CLAY = blockItem( new BlockDigable( "dark_clay", Block.Properties.create( Material.CLAY, MaterialColor.GRAY_TERRACOTTA ).hardnessAndResistance( 0.5F ).sound( SoundType.GROUND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockDirt COARSE_DARK_DIRT = blockItem( new BlockDirt( BlockDirt.TYPE_COARSE_DIRT, Block.Properties.create( Material.GROUND, MaterialColor.DIRT ).hardnessAndResistance( 0.6F ).sound( SoundType.GROUND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockDirt HUMUS = blockItem( new BlockDirt( BlockDirt.TYPE_HUMUS, Block.Properties.create( Material.GROUND, MaterialColor.ORANGE_TERRACOTTA ).hardnessAndResistance( 0.6F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final BlockDirt DARK_PODZOL = blockItem( new BlockDirt( BlockDirt.TYPE_PODZOL, Block.Properties.create( Material.GROUND, MaterialColor.ORANGE_TERRACOTTA ).hardnessAndResistance( 0.6F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
-    public static final BlockSticky MUD = blockItem( new BlockSticky( "mud", Block.Properties.create( Material.GROUND, MaterialColor.ORANGE_TERRACOTTA ).hardnessAndResistance( 0.6F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
-    public static final BlockFall ROCK_GRAVEL = blockItem( new BlockFall( "rock_gravel", 0x584c39, Block.Properties.create( Material.SAND, MaterialColor.SAND ).hardnessAndResistance( 0.5F ).sound( SoundType.GROUND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockSticky MUD = blockItem( new BlockSticky.Digable( "mud", Block.Properties.create( Material.GROUND, MaterialColor.ORANGE_TERRACOTTA ).hardnessAndResistance( 0.6F ).sound( SoundType.PLANT ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final BlockFallDigable ROCK_GRAVEL = blockItem( new BlockFallDigable( "rock_gravel", 0x584c39, Block.Properties.create( Material.SAND, MaterialColor.SAND ).hardnessAndResistance( 0.5F ).sound( SoundType.GROUND ), new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
 
     // Fluids

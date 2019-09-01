@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 9 - 1 - 2019
+ * Date: 9 - 2 - 2019
  */
 
 package modernity.common.item;
@@ -13,6 +13,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.init.Fluids;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemTier;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -45,6 +46,17 @@ public class MDItems {
     public static final ItemBucketBase ALUMINIUM_HEATROCK_BUCKET = item( new ItemAluminiumBucket( "aluminium_heatrock_bucket", MDFluids.HEATROCK_FLUID, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final ItemBucketBase ALUMINIUM_OIL_BUCKET = item( new ItemAluminiumBucket( "aluminium_oil_bucket", MDFluids.OIL, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final ItemBucketBase ALUMINIUM_PORTAL_BUCKET = item( new ItemPortalBucket( "aluminium_portal_bucket", ALUMINIUM_BUCKET, f -> null, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+    // Tools
+    public static final ItemMDPickaxe BLACKWOOD_PICKAXE = item( new ItemMDPickaxe( "blackwood_pickaxe", ItemTier.WOOD, 1, - 2.8F, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemMDAxe BLACKWOOD_AXE = item( new ItemMDAxe( "blackwood_axe", ItemTier.WOOD, 6, - 3.2F, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemMDShovel BLACKWOOD_SHOVEL = item( new ItemMDShovel( "blackwood_shovel", ItemTier.WOOD, 1.5F, - 3.0F, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemMDSword BLACKWOOD_SWORD = item( new ItemMDSword( "blackwood_sword", ItemTier.WOOD, 3, - 2.4F, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+    public static final ItemMDPickaxe ALUMINIUM_PICKAXE = item( new ItemMDPickaxe( "aluminium_pickaxe", ItemTier.IRON, 1, - 2.8F, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemMDAxe ALUMINIUM_AXE = item( new ItemMDAxe( "aluminium_axe", ItemTier.IRON, 6, - 3.2F, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemMDShovel ALUMINIUM_SHOVEL = item( new ItemMDShovel( "aluminium_shovel", ItemTier.IRON, 1.5F, - 3.0F, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemMDSword ALUMINIUM_SWORD = item( new ItemMDSword( "aluminium_sword", ItemTier.IRON, 3, - 2.4F, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Curse crystal
     public static final ItemBase CURSE_CRYSTAL_SHARD_1 = item( new ItemBase( "curse_crystal/shard_1", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );

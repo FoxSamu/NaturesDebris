@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 
 public class BlockSticky extends BlockBase {
     public static final VoxelShape COLLISION_SHAPE = makeCuboidShape( 0, 0, 0, 16, 15, 16 );
@@ -46,5 +47,21 @@ public class BlockSticky extends BlockBase {
     @Override
     public boolean causesSuffocation( IBlockState state ) {
         return true;
+    }
+
+    public static class Digable extends BlockSticky {
+
+        public Digable( String id, Properties properties, Item.Properties itemProps ) {
+            super( id, properties, itemProps );
+        }
+
+        public Digable( String id, Properties properties ) {
+            super( id, properties );
+        }
+
+        @Override
+        public boolean isToolEffective( IBlockState state, ToolType tool ) {
+            return tool == ToolType.SHOVEL;
+        }
     }
 }
