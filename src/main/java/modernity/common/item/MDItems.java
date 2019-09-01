@@ -12,6 +12,7 @@ package modernity.common.item;
 import com.google.common.collect.Lists;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.init.Fluids;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
 import net.minecraftforge.api.distmarker.Dist;
@@ -57,6 +58,12 @@ public class MDItems {
     public static final ItemMDAxe ALUMINIUM_AXE = item( new ItemMDAxe( "aluminium_axe", ItemTier.IRON, 6, - 3.2F, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final ItemMDShovel ALUMINIUM_SHOVEL = item( new ItemMDShovel( "aluminium_shovel", ItemTier.IRON, 1.5F, - 3.0F, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
     public static final ItemMDSword ALUMINIUM_SWORD = item( new ItemMDSword( "aluminium_sword", ItemTier.IRON, 3, - 2.4F, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+
+    // Armor
+    public static final ItemMDArmor ALUMINIUM_HELMET = item( new ItemMDArmor( "aluminium_helmet", MDArmorMaterial.ALUMINIUM, EntityEquipmentSlot.HEAD, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemMDArmor ALUMINIUM_CHESTPLATE = item( new ItemMDArmor( "aluminium_chestplate", MDArmorMaterial.ALUMINIUM, EntityEquipmentSlot.CHEST, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemMDArmor ALUMINIUM_LEGGINGS = item( new ItemMDArmor( "aluminium_leggings", MDArmorMaterial.ALUMINIUM, EntityEquipmentSlot.LEGS, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemMDArmor ALUMINIUM_BOOTS = item( new ItemMDArmor( "aluminium_boots", MDArmorMaterial.ALUMINIUM, EntityEquipmentSlot.FEET, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Curse crystal
     public static final ItemBase CURSE_CRYSTAL_SHARD_1 = item( new ItemBase( "curse_crystal/shard_1", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
