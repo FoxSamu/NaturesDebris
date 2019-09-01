@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 18 - 2019
+ * Date: 9 - 1 - 2019
  */
 
 package modernity.common.block.base;
@@ -16,6 +16,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import modernity.common.block.MDBlocks;
 import modernity.common.item.MDItems;
 
 public class BlockOre extends BlockBase {
@@ -49,8 +50,23 @@ public class BlockOre extends BlockBase {
                 drops.add( new ItemStack( MDItems.SALT_DUST, dustAmount ) );
             }
             if( crystalAmount > 0 ) {
-                drops.add( new ItemStack( this, crystalAmount ) );
+                drops.add( new ItemStack( MDBlocks.SALT_CRYSTAL, crystalAmount ) );
             }
+        }
+    }
+
+    public static class Anthracite extends BlockOre {
+        public Anthracite( String id, Properties properties, Item.Properties itemProps ) {
+            super( id, properties, itemProps );
+        }
+
+        public Anthracite( String id, Properties properties ) {
+            super( id, properties );
+        }
+
+        @Override
+        public void getDrops( IBlockState state, NonNullList<ItemStack> drops, World world, BlockPos pos, int fortune ) {
+            drops.add( new ItemStack( MDItems.ANTHRACITE, world.rand.nextInt( fortune + 1 ) ) );
         }
     }
 }
