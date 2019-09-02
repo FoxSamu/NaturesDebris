@@ -1,4 +1,5 @@
-# The Modernity <small>_A mod by Red Galaxy_</small>
+# The Modernity
+### _A mod by Red Galaxy_
 The Modernity is a mod for Minecraft 1.13.2, developed by Red Galaxy. This new but expansive mod adds a completely new
 dimension to Minecraft (and even more dimensions in the future) with a lot of new exiting content.
 
