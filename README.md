@@ -5,7 +5,7 @@ dimension to Minecraft (and even more dimensions in the future) with a lot of ne
 
 The Modernity dimension is a dark and mysterious world where the ancient forces of nature fused into a modern network of
 natural intelligence... In this world live the remnants of ancient civilization that suffered from an angry curse that
-diffused all over the network, now having the control of the complete world...
+diffused all over the network, which now has the control of the complete world...
 
 Features will include (some are not yet implemented):
 - A complete new survival experience
