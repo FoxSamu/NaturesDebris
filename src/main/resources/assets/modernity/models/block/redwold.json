@@ -1,5 +1,5 @@
 {
-  "parent": "modernity:block/redwold",
+  "parent": "modernity:block/flat",
   "textures": {
     "texture": "modernity:block/redwold"
   }

@@ -31,7 +31,9 @@ public class BlockSticky extends BlockBase {
 
     @Override
     public void onEntityCollision( IBlockState state, World world, BlockPos pos, Entity entity ) {
-        entity.setInWeb();
+        if( ! entity.isInWater() ) {
+            entity.setInWeb();
+        }
     }
 
     @Override
