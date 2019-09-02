@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
+ * Copyright (c) 2019 RedGalaxy & contributors
  * Licensed under the Apache Licence v2.0.
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 6 - 19 - 2019
+ * Date: 9 - 2 - 2019
  */
 
 package modernity.common.block.base;
@@ -196,6 +196,34 @@ public class BlockSinglePlant extends BlockNoDrop implements IBlockProvider {
         public VoxelShape getShape( IBlockState state, IBlockReader world, BlockPos pos ) {
             Vec3d off = state.getOffset( world, pos );
             return MINT_SHAPE.withOffset( off.x, off.y, off.z );
+        }
+    }
+
+    public static class Redwold extends BlockSinglePlant {
+        public static final VoxelShape REDWOLD_SHAPE = MDVoxelShapes.create16( 0, 0, 0, 16, 1, 16 );
+
+        public Redwold( String id, Properties properties, Item.Properties itemProps ) {
+            super( id, properties, itemProps );
+        }
+
+        public Redwold( String id, Properties properties ) {
+            super( id, properties );
+        }
+
+        @Override
+        public boolean canBlockSustain( IBlockState state ) {
+            return state.isTopSolid();
+        }
+
+        @Override
+        public EnumOffsetType getOffsetType() {
+            return EnumOffsetType.NONE;
+        }
+
+        @Override
+        public VoxelShape getShape( IBlockState state, IBlockReader world, BlockPos pos ) {
+            Vec3d off = state.getOffset( world, pos );
+            return REDWOLD_SHAPE.withOffset( off.x, off.y, off.z );
         }
     }
 }
