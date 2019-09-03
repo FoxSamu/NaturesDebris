@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#modernity:logs/blackwood_logs",
+    "#modernity:logs/inver_logs"
+  ]
+}

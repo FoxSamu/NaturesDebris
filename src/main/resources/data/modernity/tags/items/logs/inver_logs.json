@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "modernity:inver_log",
+    "modernity:inver_bark",
+    "modernity:stripped_inver_log",
+    "modernity:stripped_inver_bark"
+  ]
+}

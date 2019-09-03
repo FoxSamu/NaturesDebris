@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 9 - 2 - 2019
+ * Date: 9 - 3 - 2019
  */
 
 package modernity.common.item;
@@ -12,6 +12,7 @@ package modernity.common.item;
 import com.google.common.collect.Lists;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.init.Fluids;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
@@ -41,12 +42,12 @@ public class MDItems {
     public static final ItemBase INVER_STICK = item( new ItemBase( "inver_stick", new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
 
     // Buckets
-    public static final ItemPortalBucket PORTAL_BUCKET = item( new ItemPortalBucket( "portal_bucket", new Item.Properties().maxStackSize( 1 ).group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemPortalBucket PORTAL_BUCKET = item( new ItemPortalBucket( "portal_bucket", new Item.Properties().maxStackSize( 1 ).group( MDItemGroups.BLOCKS ).containerItem( Items.BUCKET ) ) );
     public static final ItemBucketBase ALUMINIUM_BUCKET = item( new ItemAluminiumBucket( "aluminium_bucket", Fluids.EMPTY, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
-    public static final ItemBucketBase ALUMINIUM_WATER_BUCKET = item( new ItemAluminiumBucket( "aluminium_water_bucket", MDFluids.MODERNIZED_WATER, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
-    public static final ItemBucketBase ALUMINIUM_HEATROCK_BUCKET = item( new ItemAluminiumBucket( "aluminium_heatrock_bucket", MDFluids.HEATROCK_FLUID, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
-    public static final ItemBucketBase ALUMINIUM_OIL_BUCKET = item( new ItemAluminiumBucket( "aluminium_oil_bucket", MDFluids.OIL, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
-    public static final ItemBucketBase ALUMINIUM_PORTAL_BUCKET = item( new ItemPortalBucket( "aluminium_portal_bucket", ALUMINIUM_BUCKET, f -> null, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
+    public static final ItemBucketBase ALUMINIUM_WATER_BUCKET = item( new ItemAluminiumBucket( "aluminium_water_bucket", MDFluids.MODERNIZED_WATER, new Item.Properties().group( MDItemGroups.BLOCKS ).containerItem( ALUMINIUM_BUCKET ) ) );
+    public static final ItemBucketBase ALUMINIUM_HEATROCK_BUCKET = item( new ItemAluminiumBucket( "aluminium_heatrock_bucket", MDFluids.HEATROCK_FLUID, new Item.Properties().group( MDItemGroups.BLOCKS ).containerItem( ALUMINIUM_BUCKET ) ) );
+    public static final ItemBucketBase ALUMINIUM_OIL_BUCKET = item( new ItemAluminiumBucket( "aluminium_oil_bucket", MDFluids.OIL, new Item.Properties().group( MDItemGroups.BLOCKS ).containerItem( ALUMINIUM_BUCKET ) ) );
+    public static final ItemBucketBase ALUMINIUM_PORTAL_BUCKET = item( new ItemPortalBucket( "aluminium_portal_bucket", ALUMINIUM_BUCKET, f -> null, new Item.Properties().group( MDItemGroups.BLOCKS ).containerItem( ALUMINIUM_BUCKET ) ) );
 
     // Tools
     public static final ItemMDPickaxe BLACKWOOD_PICKAXE = item( new ItemMDPickaxe( "blackwood_pickaxe", ItemTier.WOOD, 1, - 2.8F, new Item.Properties().group( MDItemGroups.BLOCKS ) ) );
