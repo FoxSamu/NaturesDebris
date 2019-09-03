@@ -1,0 +1,21 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:inver_bark"
+    },
+    {
+      "item": "modernity:inver_log"
+    },
+    {
+      "item": "modernity:stripped_inver_bark"
+    },
+    {
+      "item": "modernity:stripped_inver_log"
+    }
+  ],
+  "result": {
+    "item": "modernity:inver_planks",
+    "count": 4
+  }
+}

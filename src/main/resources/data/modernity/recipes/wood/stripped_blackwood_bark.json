@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:stripped_blackwood_log"
+    }
+  },
+  "result": {
+    "item": "modernity:stripped_blackwood_bark",
+    "count": 3
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "# #",
+    "   ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:rock_bricks"
+    }
+  },
+  "result": {
+    "item": "modernity:rock_bricks_corner",
+    "count": 32
+  }
+}

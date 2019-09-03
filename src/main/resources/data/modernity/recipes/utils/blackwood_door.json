@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:blackwood_planks"
+    }
+  },
+  "result": {
+    "item": "modernity:blackwood_door",
+    "count": 9
+  }
+}
