@@ -9,7 +9,7 @@
   "_comment6": "Do not redistribute.",
 
 
-  "--- BLOCKS ---": "",
+  "--- BLOKKEN ---": "",
   "block.modernity.rock": "Rotsblok",
   "block.modernity.darkrock": "Donker Rotsblok",
   "block.modernity.lightrock": "Verlicht Rotsblok",
@@ -111,36 +111,6 @@
   "block.modernity.extinghuished_anthracite_torch": "Uitgedoofde Antracietfakkel",
   "block.modernity.lightrock_torch": "Lichtsteenfakkel",
 
-
-
-  "--- ITEMS ---": "",
-  "item.modernity.anthracite": "Antraciet",
-
-  "item.modernity.ash": "As",
-  "item.modernity.blackwood_stick": "Zwarthoutstok",
-  "item.modernity.inver_stick": "Inverstok",
-
-  "item.modernity.aluminium_bucket": "Aluminium Emmer",
-  "item.modernity.aluminium_water_bucket": "Aluminium Emmer met Modern Water",
-  "item.modernity.aluminium_heatrock_bucket": "Aluminium Emmer met Vloeisteen",
-  "item.modernity.aluminium_oil_bucket": "Aluminium Emmer met Olie",
-  "item.modernity.aluminium_portal_bucket": "Aluminium Emmer met Portaalvloeistof",
-
-  "item.modernity.blackwood_pickaxe": "Zwarthouten Houweel",
-  "item.modernity.blackwood_axe": "Zwarthouten Bijl",
-  "item.modernity.blackwood_shovel": "Zwarthouten Schep",
-  "item.modernity.blackwood_sword": "Zwarthouten Zwaard",
-
-  "item.modernity.aluminium_pickaxe": "Aluminium Houweel",
-  "item.modernity.aluminium_axe": "Aluminium Bijl",
-  "item.modernity.aluminium_shovel": "Aluminium Schep",
-  "item.modernity.aluminium_sword": "Aluminium Zwaard",
-
-  "item.modernity.aluminium_helmet": "Aluminium Helm",
-  "item.modernity.aluminium_chestplate": "Aluminium Borstplaat",
-  "item.modernity.aluminium_leggings": "Aluminium Broek",
-  "item.modernity.aluminium_boots": "Aluminium Laarzen",
-
   "block.modernity.asphalt_concrete": "Asfaltbeton",
   "block.modernity.ash_block": "Asblok",
   "block.modernity.salt_dust_block": "Zoutpoederblok",
@@ -189,6 +159,37 @@
   "block.modernity.gold_carved_nether_bricks.timen": "Goudgebeitelde Netherbakstenen (Timen)",
   "block.modernity.gold_carved_nether_bricks.portal": "Goudgebeitelde Netherbakstenen (Portaal)",
   "block.modernity.gold_carved_nether_bricks.rgsw": "Goudgebeitelde Netherbakstenen (RGSW)",
+
+
+
+
+  "--- VOORWERPEN ---": "",
+  "item.modernity.anthracite": "Antraciet",
+
+  "item.modernity.ash": "As",
+  "item.modernity.blackwood_stick": "Zwarthoutstok",
+  "item.modernity.inver_stick": "Inverstok",
+
+  "item.modernity.aluminium_bucket": "Aluminium Emmer",
+  "item.modernity.aluminium_water_bucket": "Aluminium Emmer met Modern Water",
+  "item.modernity.aluminium_heatrock_bucket": "Aluminium Emmer met Vloeisteen",
+  "item.modernity.aluminium_oil_bucket": "Aluminium Emmer met Olie",
+  "item.modernity.aluminium_portal_bucket": "Aluminium Emmer met Portaalvloeistof",
+
+  "item.modernity.blackwood_pickaxe": "Zwarthouten Houweel",
+  "item.modernity.blackwood_axe": "Zwarthouten Bijl",
+  "item.modernity.blackwood_shovel": "Zwarthouten Schep",
+  "item.modernity.blackwood_sword": "Zwarthouten Zwaard",
+
+  "item.modernity.aluminium_pickaxe": "Aluminium Houweel",
+  "item.modernity.aluminium_axe": "Aluminium Bijl",
+  "item.modernity.aluminium_shovel": "Aluminium Schep",
+  "item.modernity.aluminium_sword": "Aluminium Zwaard",
+
+  "item.modernity.aluminium_helmet": "Aluminium Helm",
+  "item.modernity.aluminium_chestplate": "Aluminium Borstplaat",
+  "item.modernity.aluminium_leggings": "Aluminium Broek",
+  "item.modernity.aluminium_boots": "Aluminium Laarzen",
 
   "item.modernity.salt_dust": "Zout",
   "item.modernity.salt_nugget": "Zoutklompje",
