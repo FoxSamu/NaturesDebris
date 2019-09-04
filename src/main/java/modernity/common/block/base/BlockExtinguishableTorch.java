@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 8 - 28 - 2019
+ * Date: 9 - 4 - 2019
  */
 
 package modernity.common.block.base;
@@ -42,9 +42,14 @@ public class BlockExtinguishableTorch extends BlockTorch {
     @Override
     public void onBlockAdded( IBlockState state, World world, BlockPos pos, IBlockState oldState ) {
         if( state.get( WATERLOGGED ) != NONE ) {
-            world.playEvent( MDEvents.TORCH_EXTINGHUISH, pos, state.get( FACING ).ordinal() );
-            world.setBlockState( pos, extinguished.getDefaultState().with( WATERLOGGED, state.get( WATERLOGGED ) ).with( FACING, state.get( FACING ) ) );
+            world.getPendingBlockTicks().scheduleTick( pos, this, 0 );
         }
+    }
+
+    @Override
+    public void tick( IBlockState state, World world, BlockPos pos, Random random ) {
+        world.playEvent( MDEvents.TORCH_EXTINGHUISH, pos, state.get( FACING ).ordinal() );
+        world.setBlockState( pos, extinguished.getDefaultState().with( WATERLOGGED, state.get( WATERLOGGED ) ).with( FACING, state.get( FACING ) ) );
     }
 
     public static void doExtinguishEffect( Vec3d pos, IWorld world ) {

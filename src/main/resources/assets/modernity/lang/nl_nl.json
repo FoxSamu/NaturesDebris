@@ -8,12 +8,140 @@
   "_comment5": "Licensed under the Apache Licence v2.0.",
   "_comment6": "Do not redistribute.",
 
+
+  "--- BLOCKS ---": "",
   "block.modernity.rock": "Rotsblok",
   "block.modernity.darkrock": "Donker Rotsblok",
   "block.modernity.lightrock": "Verlicht Rotsblok",
   "block.modernity.redrock": "Rood Rotsblok",
   "block.modernity.modern_bedrock": "Modern Bodemsteen",
-  "block.modernity.asphalt_concrete": "Asfalt Beton",
+  "block.modernity.basalt": "Basalt",
+  "block.modernity.limestone": "Kalksteen",
+
+  "block.modernity.rock_bricks": "Rock Bricks",
+  "block.modernity.darkrock_bricks": "Donkere Rotsbakstenen",
+
+  "block.modernity.rock_slab": "Rotsplaat",
+  "block.modernity.darkrock_slab": "Donkere Rotsplaat",
+  "block.modernity.limestone_slab": "Kalksteenplaat",
+  "block.modernity.rock_bricks_slab": "Rotsbakstenen Plaat",
+  "block.modernity.darkrock_bricks_slab": "Donkere Rotsbakstenen Plaat",
+  "block.modernity.asphalt_concrete_slab": "Asfaltbetonnen Plaat",
+
+  "block.modernity.rock_stairs": "Rotstreden",
+  "block.modernity.darkrock_stairs": "Donkere Rotstreden",
+  "block.modernity.limestone_stairs": "Kalksteentreden",
+  "block.modernity.rock_bricks_stairs": "Rotsbakstenen Treden",
+  "block.modernity.darkrock_bricks_stairs": "Donkere Rotsbakstenen Treden",
+  "block.modernity.asphalt_concrete_stairs": "Asfaltbetonnen Treden",
+
+  "block.modernity.rock_corner": "Rotsstukje",
+  "block.modernity.darkrock_corner": "Donkere Rotsstukje",
+  "block.modernity.limestone_corner": "Kalksteenstukje",
+  "block.modernity.rock_bricks_corner": "Rotsbakstenen Stukje",
+  "block.modernity.darkrock_bricks_corner": "Donkere Rotsbakstenen Stukje",
+  "block.modernity.asphalt_concrete_corner": "Asfaltbetonnen Stukje",
+
+  "block.modernity.rock_step": "Rotsdrempel",
+  "block.modernity.darkrock_step": "Donkere Rotsdrempel",
+  "block.modernity.limestone_step": "Kalksteendrempel",
+  "block.modernity.rock_bricks_step": "Rotsbakstenen Drempel",
+  "block.modernity.darkrock_bricks_step": "Donkere Rotsbakstenen Drempel",
+  "block.modernity.asphalt_concrete_step": "Asfaltbetonnen Drempel",
+
+  "block.modernity.rock_wall": "Rotsmuur",
+  "block.modernity.darkrock_wall": "Donkere Rotsmuur",
+  "block.modernity.limestone_wall": "Kalkstenen Muur",
+  "block.modernity.rock_bricks_wall": "Rotsbakstenen Muur",
+  "block.modernity.darkrock_bricks_wall": "Donkere Rotsbakstenen Muur",
+  "block.modernity.asphalt_concrete_wall": "Asfaltbetonnen Muur",
+
+  "block.modernity.blackwood_planks": "Zwarthoutplanken",
+  "block.modernity.inver_planks": "Inverplanken",
+
+  "block.modernity.blackwood_slab": "Zwarthouten Plaat",
+  "block.modernity.inver_slab": "Inverhouten Plaat",
+
+  "block.modernity.blackwood_stairs": "Blackhouten Treden",
+  "block.modernity.inver_stairs": "Inverhouten Treden",
+
+  "block.modernity.blackwood_step": "Zwarthouten Drempel",
+  "block.modernity.inver_step": "Inverhouten Drempel",
+
+  "block.modernity.blackwood_corner": "Zwarthouten Stukje",
+  "block.modernity.inver_corner": "Inverhouten Stukje",
+
+  "block.modernity.blackwood_fence": "Zwarthouten Hek",
+  "block.modernity.inver_fence": "Inverhouten Hek",
+
+  "block.modernity.blackwood_fence_gate": "Zwarthouten Poortje",
+  "block.modernity.inver_fence_gate": "Inverhouten Poortje",
+
+  "block.modernity.blackwood_door": "Zwarthouten Deur",
+  "block.modernity.inver_door": "Inverhouten Deur",
+  "block.modernity.aluminium_door": "Aluminiumdeur",
+
+  "block.modernity.dark_glass": "Donker Glas",
+  "block.modernity.dark_glass_pane": "Donkere Glasplaat",
+
+  "block.modernity.dark_podzol": "Donker Podzol",
+  "block.modernity.mud": "Modder",
+  "block.modernity.rock_gravel": "Rotsig Grind",
+
+  "block.modernity.heatrock_fluid": "Vloeisteen",
+  "block.modernity.oil": "Olie",
+
+  "block.modernity.reeds": "Riet",
+
+  "block.modernity.redwold": "Roodkruid",
+  "block.modernity.nettles": "Brandnetels",
+
+  "block.modernity.stripped_inver_log": "Geschaafde Inverstam",
+  "block.modernity.inver_log": "Inverstam",
+  "block.modernity.stripped_inver_bark": "Geschaafd Inverhout",
+  "block.modernity.inver_bark": "Inverhout",
+  "block.modernity.inver_sapling": "Inverkiemplant",
+  "block.modernity.inver_leaves": "Inverblaadjes",
+
+  "block.modernity.anthracite_ore": "Antracieterts",
+
+  "block.modernity.anthracite_block": "Antracieterts",
+
+  "block.modernity.anthracite_torch": "Antracietfakkel",
+  "block.modernity.extinghuished_anthracite_torch": "Uitgedoofde Antracietfakkel",
+  "block.modernity.lightrock_torch": "Lichtsteenfakkel",
+
+
+
+  "--- ITEMS ---": "",
+  "item.modernity.anthracite": "Antraciet",
+
+  "item.modernity.ash": "As",
+  "item.modernity.blackwood_stick": "Zwarthoutstok",
+  "item.modernity.inver_stick": "Inverstok",
+
+  "item.modernity.aluminium_bucket": "Aluminium Emmer",
+  "item.modernity.aluminium_water_bucket": "Aluminium Emmer met Modern Water",
+  "item.modernity.aluminium_heatrock_bucket": "Aluminium Emmer met Vloeisteen",
+  "item.modernity.aluminium_oil_bucket": "Aluminium Emmer met Olie",
+  "item.modernity.aluminium_portal_bucket": "Aluminium Emmer met Portaalvloeistof",
+
+  "item.modernity.blackwood_pickaxe": "Zwarthouten Houweel",
+  "item.modernity.blackwood_axe": "Zwarthouten Bijl",
+  "item.modernity.blackwood_shovel": "Zwarthouten Schep",
+  "item.modernity.blackwood_sword": "Zwarthouten Zwaard",
+
+  "item.modernity.aluminium_pickaxe": "Aluminium Houweel",
+  "item.modernity.aluminium_axe": "Aluminium Bijl",
+  "item.modernity.aluminium_shovel": "Aluminium Schep",
+  "item.modernity.aluminium_sword": "Aluminium Zwaard",
+
+  "item.modernity.aluminium_helmet": "Aluminium Helm",
+  "item.modernity.aluminium_chestplate": "Aluminium Borstplaat",
+  "item.modernity.aluminium_leggings": "Aluminium Broek",
+  "item.modernity.aluminium_boots": "Aluminium Laarzen",
+
+  "block.modernity.asphalt_concrete": "Asfaltbeton",
   "block.modernity.ash_block": "Asblok",
   "block.modernity.salt_dust_block": "Zoutpoederblok",
   "block.modernity.dark_dirt": "Donkere Aarde",
@@ -163,5 +291,10 @@
   "settings.modernity.settingsCmdPermission.desc": "Stelt het minimum permissieniveau in voor het verzetten van instellingen via '/settings'. Merk op dat '/settings get' altijd gebruikt mag worden...",
 
   "settings.modernity.walkingParticles": "Loopdeeltjes: %s",
-  "settings.modernity.walkingParticles.desc": "Laat deeltjes verschijnen bij het lopen over of door bepaalde blokken (bijv. of humus blaadjes laat opspringen).\n- ON: Loopdeeltjes zijn zichtbaar: het spel kan hierdoor duidelijk trager worden op trage computers\n- OFF: Loopdeeltjes zijn niet zichtbaar\nBedenk wel dat deeltjes aan moeten staan in de grafische instellingen."
+  "settings.modernity.walkingParticles.desc": "Laat deeltjes verschijnen bij het lopen over of door bepaalde blokken (bijv. of humus blaadjes laat opspringen).\n- ON: Loopdeeltjes zijn zichtbaar: het spel kan hierdoor duidelijk trager worden op trage computers\n- OFF: Loopdeeltjes zijn niet zichtbaar\nBedenk wel dat deeltjes aan moeten staan in de grafische instellingen.",
+
+  "modernity.advancements.extinguish_torch": "Steek de regen in de fik!",
+  "modernity.advancements.extinguish_torch.desc": "Laat een antracietfakkel uitdoven.",
+
+  "": ""
 }
