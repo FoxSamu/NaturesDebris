@@ -4,7 +4,7 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 7 - 25 - 2019
+ * Date: 9 - 4 - 2019
  */
 
 // Setup for build script itself
@@ -117,8 +117,8 @@ jar {
     }
 }
 
-version = 'INDEV-0.0.2'
-project.ext.versionName = "Wiki Update"
+version = 'INDEV-0.1.0'
+project.ext.versionName = "Building Update"
 group = 'net.rgsw'
 archivesBaseName = 'modernity'
 
