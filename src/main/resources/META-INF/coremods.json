@@ -3,5 +3,6 @@
   "injectstructures": "core/injectstructures.js",
   "renderblock": "core/renderblock.js",
   "renderparticles": "core/renderparticles.js",
-  "checkinwater": "core/checkinwater.js"
+  "checkinwater": "core/checkinwater.js",
+  "fixnbt": "core/fixnbt.js"
 }

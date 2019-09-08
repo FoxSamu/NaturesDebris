@@ -4,12 +4,15 @@
  * Do not redistribute.
  *
  * By  : RGSW
- * Date: 9 - 1 - 2019
+ * Date: 9 - 8 - 2019
  */
 
 package modernity.common.util;
 
+import com.mojang.datafixers.DSL;
+import com.mojang.datafixers.DataFixer;
 import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
@@ -19,6 +22,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import modernity.api.event.AddOverworldStructureEvent;
 import modernity.api.event.CheckEntityInWaterEvent;
+import modernity.api.event.FixNBTEvent;
 import modernity.api.event.OverworldStructureEvent;
 
 import java.util.HashSet;
@@ -81,5 +85,11 @@ public class Hooks {
         CheckEntityInWaterEvent ev = new CheckEntityInWaterEvent( inWater, e );
         MinecraftForge.EVENT_BUS.post( ev );
         return ev.isInWater();
+    }
+
+    public static NBTTagCompound onFixNBT( DataFixer dataFixer, DSL.TypeReference type, NBTTagCompound nbt, int version, int newVersion ) {
+        FixNBTEvent event = new FixNBTEvent( dataFixer, type, nbt, version, newVersion );
+        MinecraftForge.EVENT_BUS.post( event );
+        return event.getNBT();
     }
 }
