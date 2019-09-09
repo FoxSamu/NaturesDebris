@@ -16,6 +16,7 @@ import it.unimi.dsi.fastutil.shorts.Short2BooleanMap;
 import it.unimi.dsi.fastutil.shorts.Short2BooleanOpenHashMap;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectMap;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
+import modernity.api.block.fluid.IGaseousFluid;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockStairs;
@@ -44,8 +45,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 import net.rgsw.MathUtil;
-
-import modernity.api.block.fluid.IGaseousFluid;
 
 import java.util.Map;
 

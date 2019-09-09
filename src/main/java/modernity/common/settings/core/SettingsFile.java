@@ -10,7 +10,6 @@
 package modernity.common.settings.core;
 
 import com.google.common.io.Files;
-
 import modernity.api.util.Pair;
 
 import java.io.*;

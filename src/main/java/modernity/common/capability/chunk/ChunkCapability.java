@@ -9,10 +9,9 @@
 
 package modernity.common.capability.chunk;
 
+import modernity.api.capability.IChunkCapability;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.chunk.Chunk;
-
-import modernity.api.capability.IChunkCapability;
 
 public class ChunkCapability implements IChunkCapability {
     private final Chunk chunk;

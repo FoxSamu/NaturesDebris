@@ -9,6 +9,9 @@
 
 package modernity.client.handler;
 
+import modernity.api.block.fluid.ICustomRenderFluid;
+import modernity.common.fluid.FluidEntry;
+import modernity.common.registry.MDRegistries;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.fluid.Fluid;
@@ -18,10 +21,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import modernity.api.block.fluid.ICustomRenderFluid;
-import modernity.common.fluid.FluidEntry;
-import modernity.common.registry.MDRegistries;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -11,13 +11,12 @@ package modernity.common.command;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
+import modernity.api.util.EcoBlockPos;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.TextComponentTranslation;
-
-import modernity.api.util.EcoBlockPos;
 
 import java.util.ArrayList;
 

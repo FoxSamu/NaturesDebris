@@ -9,6 +9,7 @@
 
 package modernity.client.render.entity;
 
+import modernity.common.entity.EntityFallBlock;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
@@ -28,8 +29,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.data.EmptyModelData;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
-
-import modernity.common.entity.EntityFallBlock;
 
 import java.util.Random;
 

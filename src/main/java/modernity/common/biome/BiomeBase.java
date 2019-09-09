@@ -9,6 +9,13 @@
 
 package modernity.common.biome;
 
+import modernity.api.biome.IColoringBiome;
+import modernity.api.util.ColorUtil;
+import modernity.api.util.EcoBlockPos;
+import modernity.api.util.MovingBlockPos;
+import modernity.common.block.MDBlocks;
+import modernity.common.world.gen.ModernityGenSettings;
+import modernity.common.world.gen.surface.ISurfaceGenerator;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReaderBase;
@@ -19,14 +26,6 @@ import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.rgsw.noise.FractalOpenSimplex3D;
 import net.rgsw.noise.FractalPerlin3D;
-
-import modernity.api.biome.IColoringBiome;
-import modernity.api.util.ColorUtil;
-import modernity.api.util.EcoBlockPos;
-import modernity.api.util.MovingBlockPos;
-import modernity.common.block.MDBlocks;
-import modernity.common.world.gen.ModernityGenSettings;
-import modernity.common.world.gen.surface.ISurfaceGenerator;
 
 import java.util.Random;
 

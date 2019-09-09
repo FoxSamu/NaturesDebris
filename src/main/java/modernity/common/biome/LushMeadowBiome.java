@@ -9,12 +9,6 @@
 
 package modernity.common.biome;
 
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.FrequencyConfig;
-import net.minecraft.world.gen.placement.LakeChanceConfig;
-
 import modernity.api.util.ColorUtil;
 import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.decorate.feature.ClusterBushFeature;
@@ -23,6 +17,11 @@ import modernity.common.world.gen.decorate.feature.LakeFeature;
 import modernity.common.world.gen.decorate.feature.MDFeatures;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
 import modernity.common.world.gen.surface.GrassSurfaceGenerator;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.placement.ChanceConfig;
+import net.minecraft.world.gen.placement.FrequencyConfig;
+import net.minecraft.world.gen.placement.LakeChanceConfig;
 
 import java.util.Random;
 import java.util.function.Function;

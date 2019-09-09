@@ -9,9 +9,8 @@
 
 package modernity.common.world.gen.util;
 
-import net.minecraft.block.state.IBlockState;
-
 import modernity.common.block.MDBlocks;
+import net.minecraft.block.state.IBlockState;
 
 import java.util.function.Predicate;
 

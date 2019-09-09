@@ -10,15 +10,14 @@
 package modernity.client.gui.settings.controls;
 
 import com.google.common.collect.Lists;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiEventHandler;
-import net.minecraft.client.gui.IGuiEventListener;
-import net.minecraft.client.resources.I18n;
-
 import modernity.common.settings.LocalServerSettings;
 import modernity.common.settings.RemoteServerSettings;
 import modernity.common.settings.core.AbstractSetting;
 import modernity.common.settings.core.Settings;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiEventHandler;
+import net.minecraft.client.gui.IGuiEventListener;
+import net.minecraft.client.resources.I18n;
 
 import java.util.List;
 

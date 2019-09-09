@@ -11,6 +11,10 @@ package modernity.common.world.gen.decorate.feature;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import modernity.api.util.BlockUpdates;
+import modernity.api.util.EcoBlockPos;
+import modernity.common.block.MDBlockTags;
+import modernity.common.block.base.BlockBranch;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.state.AbstractProperty;
@@ -22,11 +26,6 @@ import net.minecraft.world.gen.IChunkGenSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-
-import modernity.api.util.BlockUpdates;
-import modernity.api.util.EcoBlockPos;
-import modernity.common.block.MDBlockTags;
-import modernity.common.block.base.BlockBranch;
 
 import java.util.List;
 import java.util.Random;

@@ -10,6 +10,9 @@
 package modernity.common.block.base;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import modernity.api.util.EWaterlogType;
+import modernity.common.fluid.MDFluids;
+import modernity.common.item.block.ItemBranch;
 import net.minecraft.block.Block;
 import net.minecraft.block.IBucketPickupHandler;
 import net.minecraft.block.ILiquidContainer;
@@ -31,10 +34,6 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-
-import modernity.api.util.EWaterlogType;
-import modernity.common.fluid.MDFluids;
-import modernity.common.item.block.ItemBranch;
 
 public class BlockBranch extends BlockBase implements IBucketPickupHandler, ILiquidContainer {
     public static final BooleanProperty NORTH = BooleanProperty.create( "north" );

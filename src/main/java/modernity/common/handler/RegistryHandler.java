@@ -9,15 +9,6 @@
 
 package modernity.common.handler;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.ModDimension;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-
 import modernity.common.biome.MDBiomes;
 import modernity.common.block.MDBlocks;
 import modernity.common.entity.MDEntityTypes;
@@ -29,6 +20,14 @@ import modernity.common.particle.ParticleEntry;
 import modernity.common.registry.MDRegistries;
 import modernity.common.tileentity.MDTileEntities;
 import modernity.common.world.dim.MDDimensions;
+import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
+import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.ModDimension;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class RegistryHandler {
 

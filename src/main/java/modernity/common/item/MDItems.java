@@ -10,6 +10,9 @@
 package modernity.common.item;
 
 import com.google.common.collect.Lists;
+import modernity.api.item.IColoredItem;
+import modernity.common.fluid.MDFluids;
+import modernity.common.item.base.*;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.init.Fluids;
 import net.minecraft.init.Items;
@@ -19,10 +22,6 @@ import net.minecraft.item.ItemTier;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.IForgeRegistry;
-
-import modernity.api.item.IColoredItem;
-import modernity.common.fluid.MDFluids;
-import modernity.common.item.base.*;
 
 import java.util.ArrayList;
 

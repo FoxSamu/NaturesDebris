@@ -9,6 +9,10 @@
 
 package modernity.common.world.dim;
 
+import modernity.common.biome.ModernityBiomeProvider;
+import modernity.common.util.ProxyCommon;
+import modernity.common.world.gen.ModernityChunkGenerator;
+import modernity.common.world.gen.ModernityGenSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -17,11 +21,6 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.IChunkGenerator;
-
-import modernity.common.biome.ModernityBiomeProvider;
-import modernity.common.util.ProxyCommon;
-import modernity.common.world.gen.ModernityChunkGenerator;
-import modernity.common.world.gen.ModernityGenSettings;
 
 import javax.annotation.Nullable;
 

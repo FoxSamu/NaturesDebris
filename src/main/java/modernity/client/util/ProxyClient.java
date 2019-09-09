@@ -9,6 +9,24 @@
 
 package modernity.client.util;
 
+import modernity.api.biome.BiomeColoringProfile;
+import modernity.client.colormap.ColorMap;
+import modernity.client.handler.OptionsButtonHandler;
+import modernity.client.handler.TextureStitchHandler;
+import modernity.client.handler.WorldListenerInjectionHandler;
+import modernity.client.particle.DepthParticleList;
+import modernity.client.particle.DripParticle;
+import modernity.client.particle.NoDepthParticleList;
+import modernity.client.particle.SaltParticle;
+import modernity.client.render.block.CustomFluidRenderer;
+import modernity.client.texture.ParticleSprite;
+import modernity.common.block.MDBlocks;
+import modernity.common.entity.MDEntityTypes;
+import modernity.common.item.MDItems;
+import modernity.common.particle.MDParticles;
+import modernity.common.settings.*;
+import modernity.common.util.ContainerManager;
+import modernity.common.util.ProxyCommon;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -36,25 +54,6 @@ import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.resource.VanillaResourceType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import modernity.api.biome.BiomeColoringProfile;
-import modernity.client.colormap.ColorMap;
-import modernity.client.handler.OptionsButtonHandler;
-import modernity.client.handler.TextureStitchHandler;
-import modernity.client.handler.WorldListenerInjectionHandler;
-import modernity.client.particle.DepthParticleList;
-import modernity.client.particle.DripParticle;
-import modernity.client.particle.NoDepthParticleList;
-import modernity.client.particle.SaltParticle;
-import modernity.client.render.block.CustomFluidRenderer;
-import modernity.client.texture.ParticleSprite;
-import modernity.common.block.MDBlocks;
-import modernity.common.entity.MDEntityTypes;
-import modernity.common.item.MDItems;
-import modernity.common.particle.MDParticles;
-import modernity.common.settings.*;
-import modernity.common.util.ContainerManager;
-import modernity.common.util.ProxyCommon;
 
 import java.io.File;
 import java.io.IOException;

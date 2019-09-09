@@ -9,6 +9,10 @@
 
 package modernity.common.world.gen.terrain;
 
+import modernity.api.util.EcoBlockPos;
+import modernity.common.biome.BiomeBase;
+import modernity.common.block.MDBlocks;
+import modernity.common.world.gen.ModernityGenSettings;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.ChunkPos;
@@ -20,11 +24,6 @@ import net.minecraft.world.chunk.IChunk;
 import net.rgsw.MathUtil;
 import net.rgsw.noise.FractalPerlin2D;
 import net.rgsw.noise.FractalPerlin3D;
-
-import modernity.api.util.EcoBlockPos;
-import modernity.common.biome.BiomeBase;
-import modernity.common.block.MDBlocks;
-import modernity.common.world.gen.ModernityGenSettings;
 
 import java.util.Random;
 

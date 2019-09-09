@@ -9,6 +9,9 @@
 
 package modernity.common.world.gen.structure;
 
+import modernity.common.block.MDBlocks;
+import modernity.common.block.base.BlockHorizontalFacing;
+import modernity.common.world.gen.util.WorldGenUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.init.Biomes;
@@ -31,10 +34,6 @@ import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.minecraftforge.common.extensions.IForgeBlockState;
-
-import modernity.common.block.MDBlocks;
-import modernity.common.block.base.BlockHorizontalFacing;
-import modernity.common.world.gen.util.WorldGenUtil;
 
 import java.util.Random;
 

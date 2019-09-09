@@ -9,15 +9,14 @@
 
 package modernity.client.util;
 
+import modernity.api.biome.IColoringBiome;
+import modernity.api.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.api.biome.IColoringBiome;
-import modernity.api.util.ColorUtil;
 
 @OnlyIn( Dist.CLIENT )
 public class BiomeValues {

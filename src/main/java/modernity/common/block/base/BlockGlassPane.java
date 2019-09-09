@@ -9,6 +9,7 @@
 
 package modernity.common.block.base;
 
+import modernity.api.util.EWaterlogType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockShulkerBox;
@@ -35,8 +36,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.api.util.EWaterlogType;
 
 import javax.annotation.Nullable;
 import java.util.Random;

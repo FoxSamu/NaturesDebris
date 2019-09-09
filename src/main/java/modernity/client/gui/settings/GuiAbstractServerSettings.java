@@ -9,12 +9,11 @@
 
 package modernity.client.gui.settings;
 
+import modernity.common.settings.LocalServerSettings;
+import modernity.common.settings.ServerSettings;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
-
-import modernity.common.settings.LocalServerSettings;
-import modernity.common.settings.ServerSettings;
 
 public abstract class GuiAbstractServerSettings extends GuiSettings<ServerSettings> {
     protected final GuiButton revertDefaultButton = new GuiButton( 0, 0, 0, 150, 20, I18n.format( "gui.modernity.settings.revertdefault" ) ) {

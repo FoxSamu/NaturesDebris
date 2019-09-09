@@ -9,15 +9,14 @@
 
 package modernity.common.world.gen.decorate.feature;
 
+import modernity.api.util.EcoBlockPos;
+import modernity.common.world.gen.decorate.util.IBlockProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.IChunkGenSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-
-import modernity.api.util.EcoBlockPos;
-import modernity.common.world.gen.decorate.util.IBlockProvider;
 
 import java.util.Random;
 

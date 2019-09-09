@@ -9,11 +9,10 @@
 
 package modernity.common.item.block;
 
+import modernity.common.block.base.BlockBranch;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemBlock;
-
-import modernity.common.block.base.BlockBranch;
 
 public class ItemBranch extends ItemBlock {
     private final BlockBranch branch;

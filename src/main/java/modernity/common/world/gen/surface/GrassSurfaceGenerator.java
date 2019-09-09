@@ -9,14 +9,13 @@
 
 package modernity.common.world.gen.surface;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.world.chunk.IChunk;
-import net.rgsw.noise.FractalOpenSimplex3D;
-
 import modernity.api.util.EcoBlockPos;
 import modernity.common.biome.BiomeBase;
 import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.ModernityGenSettings;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.world.chunk.IChunk;
+import net.rgsw.noise.FractalOpenSimplex3D;
 
 import java.util.Random;
 

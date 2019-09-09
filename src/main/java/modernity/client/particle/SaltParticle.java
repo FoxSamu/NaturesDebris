@@ -9,6 +9,8 @@
 
 package modernity.client.particle;
 
+import modernity.api.particle.ICustomParticle;
+import modernity.client.texture.ParticleSprite;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -18,9 +20,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.api.particle.ICustomParticle;
-import modernity.client.texture.ParticleSprite;
 
 import javax.annotation.Nullable;
 

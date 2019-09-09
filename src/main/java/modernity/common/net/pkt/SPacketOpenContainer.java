@@ -9,14 +9,13 @@
 
 package modernity.common.net.pkt;
 
+import modernity.client.util.ClientContainerManager;
+import modernity.net.IPacket;
+import modernity.net.ProcessContext;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.client.util.ClientContainerManager;
-import modernity.net.IPacket;
-import modernity.net.ProcessContext;
 
 public class SPacketOpenContainer implements IPacket {
     private int windowId;

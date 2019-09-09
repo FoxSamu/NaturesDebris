@@ -10,6 +10,8 @@
 package modernity.common.entity;
 
 import com.google.common.collect.Lists;
+import modernity.common.block.base.BlockFall;
+import modernity.common.entity.data.MDDataSerializers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockConcretePowder;
@@ -40,9 +42,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
-
-import modernity.common.block.base.BlockFall;
-import modernity.common.entity.data.MDDataSerializers;
 
 import java.util.List;
 

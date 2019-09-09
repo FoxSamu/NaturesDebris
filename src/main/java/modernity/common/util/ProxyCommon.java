@@ -9,6 +9,14 @@
 
 package modernity.common.util;
 
+import modernity.common.command.MDCommands;
+import modernity.common.handler.*;
+import modernity.common.net.pkt.MDPackets;
+import modernity.common.settings.ServerSettings;
+import modernity.common.world.dim.MDDimensions;
+import modernity.common.world.gen.structure.CurseRuinStructure;
+import modernity.common.world.gen.structure.MDStructures;
+import modernity.net.PacketChannel;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Biomes;
@@ -30,15 +38,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
-
-import modernity.common.command.MDCommands;
-import modernity.common.handler.*;
-import modernity.common.net.pkt.MDPackets;
-import modernity.common.settings.ServerSettings;
-import modernity.common.world.dim.MDDimensions;
-import modernity.common.world.gen.structure.CurseRuinStructure;
-import modernity.common.world.gen.structure.MDStructures;
-import modernity.net.PacketChannel;
 
 public abstract class ProxyCommon {
     private static ProxyCommon instance;

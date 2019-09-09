@@ -9,15 +9,14 @@
 
 package modernity.common.block.base;
 
+import modernity.common.block.MDBlocks;
+import modernity.common.item.MDItems;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import modernity.common.block.MDBlocks;
-import modernity.common.item.MDItems;
 
 public class BlockOre extends BlockBase {
 

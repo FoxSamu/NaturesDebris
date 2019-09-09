@@ -9,14 +9,6 @@
 
 package modernity.common.world.gen.decorate.feature;
 
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.rgsw.noise.FractalPerlin3D;
-
 import modernity.api.util.BlockUpdates;
 import modernity.api.util.EcoBlockPos;
 import modernity.common.block.MDBlocks;
@@ -24,6 +16,13 @@ import modernity.common.block.base.BlockBranch;
 import modernity.common.block.base.BlockDirt;
 import modernity.common.block.base.BlockHangLeaves;
 import modernity.common.block.prop.SignedIntegerProperty;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
+import net.rgsw.noise.FractalPerlin3D;
 
 import java.util.Random;
 import java.util.Set;

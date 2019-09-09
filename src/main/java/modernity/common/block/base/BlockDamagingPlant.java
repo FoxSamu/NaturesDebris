@@ -9,6 +9,8 @@
 
 package modernity.common.block.base;
 
+import modernity.api.util.MDVoxelShapes;
+import modernity.common.util.MDDamageSource;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,9 +21,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-
-import modernity.api.util.MDVoxelShapes;
-import modernity.common.util.MDDamageSource;
 
 import java.util.function.Predicate;
 import java.util.function.Supplier;

@@ -9,16 +9,15 @@
 
 package modernity.common.block.base;
 
+import modernity.common.fluid.RegularFluid;
+import modernity.common.world.dim.MDDimensions;
+import modernity.common.world.teleporter.ModernityTeleporter;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.dimension.DimensionType;
-
-import modernity.common.fluid.RegularFluid;
-import modernity.common.world.dim.MDDimensions;
-import modernity.common.world.teleporter.ModernityTeleporter;
 
 public class BlockPortalFluid extends BlockFluid {
     public BlockPortalFluid( String id, RegularFluid fluid, Properties builder ) {

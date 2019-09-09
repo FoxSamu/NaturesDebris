@@ -9,10 +9,9 @@
 
 package modernity.common.item;
 
+import modernity.common.block.MDBlocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-
-import modernity.common.block.MDBlocks;
 
 public class MDItemGroups {
     public static final ItemGroup BLOCKS = new ItemGroup( "modernity" ) {

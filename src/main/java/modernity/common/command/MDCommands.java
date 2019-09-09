@@ -12,6 +12,11 @@ package modernity.common.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
+import modernity.MDInfo;
+import modernity.api.event.ModernityCommandSetupEvent;
+import modernity.api.event.ModernityDebugCommandSetupEvent;
+import modernity.common.command.argument.DimensionArgumentType;
+import modernity.common.command.argument.SettingArgumentType;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.ArgumentSerializer;
@@ -20,12 +25,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.common.MinecraftForge;
-
-import modernity.MDInfo;
-import modernity.api.event.ModernityCommandSetupEvent;
-import modernity.api.event.ModernityDebugCommandSetupEvent;
-import modernity.common.command.argument.DimensionArgumentType;
-import modernity.common.command.argument.SettingArgumentType;
 
 import java.util.ArrayList;
 

@@ -9,11 +9,10 @@
 
 package modernity.client.gui.settings;
 
+import modernity.common.settings.ClientSettings;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
-
-import modernity.common.settings.ClientSettings;
 
 public class GuiClientSettings extends GuiSettings<ClientSettings> {
     private final GuiButton renderingButton = new GuiButton( 0, 0, 0, I18n.format( "settings.modernity.category.rendering" ) ) {

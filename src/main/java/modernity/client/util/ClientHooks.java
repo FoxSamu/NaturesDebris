@@ -9,6 +9,9 @@
 
 package modernity.client.util;
 
+import modernity.api.block.fluid.ICustomRenderFluid;
+import modernity.api.particle.ICustomParticle;
+import modernity.client.particle.ParticleDiggingModernity;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleDigging;
@@ -24,10 +27,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.data.IModelData;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-
-import modernity.api.block.fluid.ICustomRenderFluid;
-import modernity.api.particle.ICustomParticle;
-import modernity.client.particle.ParticleDiggingModernity;
 
 import java.util.Random;
 

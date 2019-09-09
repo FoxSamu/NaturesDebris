@@ -9,6 +9,7 @@
 
 package modernity.common.block.base;
 
+import modernity.common.util.MDEvents;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Particles;
 import net.minecraft.init.SoundEvents;
@@ -19,11 +20,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-import modernity.common.util.MDEvents;
-
 import java.util.Random;
 
-import static modernity.api.util.EWaterlogType.*;
+import static modernity.api.util.EWaterlogType.NONE;
 
 public class BlockExtinguishableTorch extends BlockTorch {
 

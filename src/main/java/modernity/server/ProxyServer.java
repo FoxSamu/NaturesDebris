@@ -9,14 +9,13 @@
 
 package modernity.server;
 
+import modernity.common.settings.DedicatedServerSettings;
+import modernity.common.util.ProxyCommon;
 import net.minecraft.server.dedicated.DedicatedServer;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import modernity.common.settings.DedicatedServerSettings;
-import modernity.common.util.ProxyCommon;
 
 // Currently, the only thing we use a server proxy for are the dedicated server settings, as they are only needed on the
 // dedicated server... When doing this on the common proxy, the dedicated server settings will load on the client and we

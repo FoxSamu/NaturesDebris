@@ -9,11 +9,10 @@
 
 package modernity.common.settings;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import modernity.common.settings.core.AbstractSetting;
 import modernity.common.settings.core.SettingsFile;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 

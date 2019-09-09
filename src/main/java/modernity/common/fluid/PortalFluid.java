@@ -9,6 +9,10 @@
 
 package modernity.common.fluid;
 
+import modernity.api.block.fluid.ICustomRenderFluid;
+import modernity.common.block.MDBlocks;
+import modernity.common.item.MDItems;
+import modernity.common.particle.MDParticles;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
@@ -30,11 +34,6 @@ import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.api.block.fluid.ICustomRenderFluid;
-import modernity.common.block.MDBlocks;
-import modernity.common.item.MDItems;
-import modernity.common.particle.MDParticles;
 
 import javax.annotation.Nullable;
 import java.util.Random;

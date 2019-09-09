@@ -9,11 +9,10 @@
 
 package modernity.common.item.base;
 
+import modernity.common.item.MDItems;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSpade;
-
-import modernity.common.item.MDItems;
 
 public class ItemMDShovel extends ItemSpade implements MDItems.Entry {
     public ItemMDShovel( String id, IItemTier tier, float attackDamage, float attackSpeed, Properties builder ) {

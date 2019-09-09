@@ -10,6 +10,8 @@
 package modernity.common.net.pkt;
 
 import it.unimi.dsi.fastutil.longs.LongSet;
+import modernity.net.IPacket;
+import modernity.net.ProcessContext;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
@@ -19,9 +21,6 @@ import net.minecraft.world.gen.feature.structure.StructureIO;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.net.IPacket;
-import modernity.net.ProcessContext;
 
 public class SPacketStructure implements IPacket {
     private String structure;

@@ -9,11 +9,10 @@
 
 package modernity.common.world.gen.layer;
 
+import modernity.common.biome.MDBiomes;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.gen.IContext;
 import net.minecraft.world.gen.layer.traits.ICastleTransformer;
-
-import modernity.common.biome.MDBiomes;
 
 public enum GenLayerRiver implements ICastleTransformer {
     INSTANCE;

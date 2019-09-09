@@ -9,6 +9,8 @@
 
 package modernity.common.block.base;
 
+import modernity.common.fluid.OilFluid;
+import modernity.common.fluid.RegularFluid;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -17,9 +19,6 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import modernity.common.fluid.OilFluid;
-import modernity.common.fluid.RegularFluid;
 
 public class BlockOilFluid extends BlockFluid {
     private static final String SRG_EntityLivingBase_inWater = "field_70171_ac";

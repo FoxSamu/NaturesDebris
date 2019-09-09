@@ -9,18 +9,17 @@
 
 package modernity.common.biome;
 
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.FrequencyConfig;
-import net.minecraft.world.gen.placement.LakeChanceConfig;
-
 import modernity.api.util.ColorUtil;
 import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.decorate.feature.*;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
 import modernity.common.world.gen.surface.HumusSurfaceGenerator;
 import modernity.common.world.gen.util.BlockPredicates;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.placement.ChanceConfig;
+import net.minecraft.world.gen.placement.FrequencyConfig;
+import net.minecraft.world.gen.placement.LakeChanceConfig;
 
 public class ForestBiome extends BiomeBase {
     public ForestBiome() {

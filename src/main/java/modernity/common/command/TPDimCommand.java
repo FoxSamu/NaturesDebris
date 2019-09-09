@@ -11,6 +11,8 @@ package modernity.common.command;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
+import modernity.common.command.argument.DimensionArgumentType;
+import modernity.common.world.dim.MDDimensions;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.Entity;
@@ -21,9 +23,6 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.dimension.DimensionType;
-
-import modernity.common.command.argument.DimensionArgumentType;
-import modernity.common.world.dim.MDDimensions;
 
 import java.util.ArrayList;
 

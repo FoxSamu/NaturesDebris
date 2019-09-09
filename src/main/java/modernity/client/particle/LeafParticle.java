@@ -9,15 +9,14 @@
 
 package modernity.client.particle;
 
+import modernity.api.particle.ICustomParticle;
+import modernity.api.util.ColorUtil;
+import modernity.client.texture.ParticleSprite;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.api.particle.ICustomParticle;
-import modernity.api.util.ColorUtil;
-import modernity.client.texture.ParticleSprite;
 
 @OnlyIn( Dist.CLIENT )
 public class LeafParticle extends PhysicsParticle implements ICustomParticle {

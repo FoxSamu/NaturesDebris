@@ -9,14 +9,13 @@
 
 package modernity.common.handler;
 
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-
 import modernity.common.net.pkt.SPacketSeed;
 import modernity.common.settings.ServerSettings;
 import modernity.common.settings.SynchronizingServerSettings;
 import modernity.common.util.ProxyCommon;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 public class PlayerJoinHandler {
     @SubscribeEvent

@@ -9,6 +9,11 @@
 
 package modernity.common.block.base;
 
+import modernity.api.block.IColoredBlock;
+import modernity.api.util.ColorUtil;
+import modernity.api.util.EcoBlockPos;
+import modernity.client.util.ProxyClient;
+import modernity.common.util.MDEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.BlockItemUseContext;
@@ -23,12 +28,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
-
-import modernity.api.block.IColoredBlock;
-import modernity.api.util.ColorUtil;
-import modernity.api.util.EcoBlockPos;
-import modernity.client.util.ProxyClient;
-import modernity.common.util.MDEvents;
 
 import javax.annotation.Nullable;
 import java.util.Random;

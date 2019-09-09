@@ -9,6 +9,11 @@
 
 package modernity.common.block.base;
 
+import modernity.api.util.EWaterlogType;
+import modernity.client.particle.SaltParticle;
+import modernity.common.block.MDBlockTags;
+import modernity.common.fluid.MDFluids;
+import modernity.common.item.MDItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.IBucketPickupHandler;
 import net.minecraft.block.ILiquidContainer;
@@ -35,12 +40,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.api.util.EWaterlogType;
-import modernity.client.particle.SaltParticle;
-import modernity.common.block.MDBlockTags;
-import modernity.common.fluid.MDFluids;
-import modernity.common.item.MDItems;
 
 import javax.annotation.Nullable;
 import java.util.Random;

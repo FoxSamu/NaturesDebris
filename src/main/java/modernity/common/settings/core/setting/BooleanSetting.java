@@ -9,11 +9,10 @@
 
 package modernity.common.settings.core.setting;
 
+import modernity.common.settings.core.CycleableSetting;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.common.settings.core.CycleableSetting;
 
 import java.util.function.Consumer;
 

@@ -9,12 +9,11 @@
 
 package modernity.common.handler;
 
+import modernity.common.capability.chunk.ChunkCapabilityProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import modernity.common.capability.chunk.ChunkCapabilityProvider;
 
 public class CapabilityHandler {
     @SubscribeEvent

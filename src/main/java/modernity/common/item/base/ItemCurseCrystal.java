@@ -9,6 +9,11 @@
 
 package modernity.common.item.base;
 
+import modernity.common.block.MDBlocks;
+import modernity.common.block.base.BlockFluid;
+import modernity.common.fluid.MDFluidTags;
+import modernity.common.fluid.MDFluids;
+import modernity.common.util.MDEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.BlockFlowingFluid;
@@ -23,12 +28,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-
-import modernity.common.block.MDBlocks;
-import modernity.common.block.base.BlockFluid;
-import modernity.common.fluid.MDFluidTags;
-import modernity.common.fluid.MDFluids;
-import modernity.common.util.MDEvents;
 
 public class ItemCurseCrystal extends ItemBase {
     public ItemCurseCrystal( String id, Properties properties ) {

@@ -9,6 +9,7 @@
 
 package modernity.client.render.block;
 
+import modernity.client.util.ProxyClient;
 import net.minecraft.client.renderer.BlockFluidRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.fluid.IFluidState;
@@ -16,8 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.client.util.ProxyClient;
 
 @Deprecated
 @OnlyIn( Dist.CLIENT )

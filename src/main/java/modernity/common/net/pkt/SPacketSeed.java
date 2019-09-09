@@ -9,13 +9,12 @@
 
 package modernity.common.net.pkt;
 
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
 import modernity.client.util.ProxyClient;
 import modernity.net.IPacket;
 import modernity.net.ProcessContext;
+import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class SPacketSeed implements IPacket {
     private long seed;

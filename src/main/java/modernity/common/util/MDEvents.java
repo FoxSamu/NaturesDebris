@@ -9,6 +9,9 @@
 
 package modernity.common.util;
 
+import modernity.common.block.base.BlockExtinguishableTorch;
+import modernity.common.block.base.BlockLeaves;
+import modernity.common.block.base.BlockTorch;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,10 +23,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.common.block.base.BlockExtinguishableTorch;
-import modernity.common.block.base.BlockLeaves;
-import modernity.common.block.base.BlockTorch;
 
 public class MDEvents {
     public static final int SUMMON_PORTAL = 4000;

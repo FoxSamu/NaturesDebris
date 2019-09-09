@@ -9,6 +9,7 @@
 
 package modernity.common.block.base;
 
+import modernity.common.entity.EntityFallBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
@@ -26,8 +27,6 @@ import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.common.entity.EntityFallBlock;
 
 import java.util.Random;
 

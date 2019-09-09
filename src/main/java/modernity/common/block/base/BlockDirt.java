@@ -9,6 +9,11 @@
 
 package modernity.common.block.base;
 
+import modernity.api.block.IColoredBlock;
+import modernity.api.util.ColorUtil;
+import modernity.client.particle.LeafParticle;
+import modernity.client.util.ProxyClient;
+import modernity.common.block.MDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -30,12 +35,6 @@ import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.api.block.IColoredBlock;
-import modernity.api.util.ColorUtil;
-import modernity.client.particle.LeafParticle;
-import modernity.client.util.ProxyClient;
-import modernity.common.block.MDBlocks;
 
 import javax.annotation.Nullable;
 import java.util.Random;

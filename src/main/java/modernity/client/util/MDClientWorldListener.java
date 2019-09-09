@@ -9,6 +9,7 @@
 
 package modernity.client.util;
 
+import modernity.common.util.MDEvents;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,8 +22,6 @@ import net.minecraft.world.IWorldEventListener;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.common.util.MDEvents;
 
 import javax.annotation.Nullable;
 

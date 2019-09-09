@@ -9,6 +9,9 @@
 
 package modernity.common.item.base;
 
+import modernity.api.block.fluid.ICustomBucketSound;
+import modernity.api.block.fluid.ICustomVaporize;
+import modernity.common.fluid.RegularFluid;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.IBucketPickupHandler;
 import net.minecraft.block.ILiquidContainer;
@@ -33,10 +36,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
-
-import modernity.api.block.fluid.ICustomBucketSound;
-import modernity.api.block.fluid.ICustomVaporize;
-import modernity.common.fluid.RegularFluid;
 
 import javax.annotation.Nullable;
 import java.util.function.Function;

@@ -9,13 +9,12 @@
 
 package modernity.common.util;
 
+import modernity.api.err.NoCavesException;
+import modernity.common.world.gen.structure.CaveStructure;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.feature.structure.StructureStart;
-
-import modernity.api.err.NoCavesException;
-import modernity.common.world.gen.structure.CaveStructure;
 
 import java.util.Random;
 

@@ -9,6 +9,8 @@
 
 package modernity.client.gui.wiki;
 
+import modernity.client.gui.wiki.fakeworld.FakePlayer;
+import modernity.client.gui.wiki.fakeworld.FakeWorld;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.GuiScreen;
@@ -21,9 +23,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.NBTTagCompound;
 import org.lwjgl.opengl.GL11;
-
-import modernity.client.gui.wiki.fakeworld.FakePlayer;
-import modernity.client.gui.wiki.fakeworld.FakeWorld;
 
 import javax.vecmath.Matrix4f;
 import javax.vecmath.Vector3f;

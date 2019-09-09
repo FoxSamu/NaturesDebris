@@ -9,13 +9,12 @@
 
 package modernity.common.capability.chunk;
 
+import modernity.api.capability.MDCapabilities;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
-
-import modernity.api.capability.MDCapabilities;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

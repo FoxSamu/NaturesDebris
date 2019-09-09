@@ -9,14 +9,13 @@
 
 package modernity.common.world.gen.layer;
 
+import modernity.common.biome.MDBiomes;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.gen.IContext;
 import net.minecraft.world.gen.area.AreaDimension;
 import net.minecraft.world.gen.area.IArea;
 import net.minecraft.world.gen.layer.traits.IAreaTransformer2;
 import net.minecraft.world.gen.layer.traits.IDimOffset0Transformer;
-
-import modernity.common.biome.MDBiomes;
 
 public enum GenLayerRiverMix implements IAreaTransformer2, IDimOffset0Transformer {
     INSTANCE;

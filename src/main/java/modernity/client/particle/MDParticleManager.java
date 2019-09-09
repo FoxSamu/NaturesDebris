@@ -9,6 +9,7 @@
 
 package modernity.client.particle;
 
+import modernity.api.block.IParticleShapeBlock;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.Particle;
@@ -26,8 +27,6 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.api.block.IParticleShapeBlock;
 
 import java.util.Random;
 

@@ -9,14 +9,13 @@
 
 package modernity.common.container;
 
+import modernity.common.item.MDItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
-import modernity.common.item.MDItems;
 
 public class NetherAltarContainer extends Container {
     private final IInventory altarInventory;

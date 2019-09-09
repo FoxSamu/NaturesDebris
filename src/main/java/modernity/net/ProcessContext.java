@@ -9,13 +9,12 @@
 
 package modernity.net;
 
+import modernity.common.util.ProxyCommon;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.ThreadQuickExitException;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.IThreadListener;
-
-import modernity.common.util.ProxyCommon;
 
 /**
  * A process context is used during packet processing to provide extra information about the packet, usually used to

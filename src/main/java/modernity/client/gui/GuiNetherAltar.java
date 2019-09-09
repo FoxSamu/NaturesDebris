@@ -9,6 +9,7 @@
 
 package modernity.client.gui;
 
+import modernity.common.container.NetherAltarContainer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -16,8 +17,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.common.container.NetherAltarContainer;
 
 @OnlyIn( Dist.CLIENT )
 public class GuiNetherAltar extends GuiContainer {

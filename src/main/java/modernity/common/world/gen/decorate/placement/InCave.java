@@ -9,6 +9,7 @@
 
 package modernity.common.world.gen.decorate.placement;
 
+import modernity.common.util.CaveUtil;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.IChunkGenSettings;
@@ -19,8 +20,6 @@ import net.minecraft.world.gen.placement.BasePlacement;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.NoPlacementConfig;
-
-import modernity.common.util.CaveUtil;
 
 import java.util.Random;
 

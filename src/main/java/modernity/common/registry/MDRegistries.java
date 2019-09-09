@@ -9,16 +9,15 @@
 
 package modernity.common.registry;
 
+import modernity.common.fluid.FluidEntry;
+import modernity.common.fluid.MDFluids;
+import modernity.common.particle.MDParticles;
+import modernity.common.particle.ParticleEntry;
 import net.minecraft.util.ObjectIntIdentityMap;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryBuilder;
-
-import modernity.common.fluid.FluidEntry;
-import modernity.common.fluid.MDFluids;
-import modernity.common.particle.MDParticles;
-import modernity.common.particle.ParticleEntry;
 
 public class MDRegistries {
 

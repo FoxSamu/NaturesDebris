@@ -11,6 +11,9 @@ package modernity.common.world.teleporter;
 
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import modernity.api.util.MovingBlockPos;
+import modernity.common.block.MDBlockTags;
+import modernity.common.block.MDBlocks;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -25,10 +28,6 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.ITeleporter;
-
-import modernity.api.util.MovingBlockPos;
-import modernity.common.block.MDBlockTags;
-import modernity.common.block.MDBlocks;
 
 public class ModernityTeleporter extends Teleporter {
     protected final Long2ObjectMap<Teleporter.PortalPosition> cache = new Long2ObjectOpenHashMap<>( 4096 );

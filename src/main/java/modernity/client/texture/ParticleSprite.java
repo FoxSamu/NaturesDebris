@@ -9,11 +9,10 @@
 
 package modernity.client.texture;
 
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.util.ResourceLocation;
-
 import modernity.api.util.NoEditList;
 import modernity.client.util.ProxyClient;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 

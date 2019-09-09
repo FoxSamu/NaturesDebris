@@ -9,11 +9,10 @@
 
 package modernity.common.block.base;
 
+import modernity.common.block.MDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-
-import modernity.common.block.MDBlocks;
 
 
 public class BlockBase extends Block implements MDBlocks.Entry {

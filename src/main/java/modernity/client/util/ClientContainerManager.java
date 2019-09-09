@@ -9,6 +9,8 @@
 
 package modernity.client.util;
 
+import modernity.client.gui.GuiNetherAltar;
+import modernity.common.net.SPacketOpenContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -16,9 +18,6 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.client.gui.GuiNetherAltar;
-import modernity.common.net.SPacketOpenContainer;
 
 import java.util.HashMap;
 

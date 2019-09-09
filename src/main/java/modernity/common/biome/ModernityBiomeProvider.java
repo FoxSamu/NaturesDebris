@@ -10,6 +10,8 @@
 package modernity.common.biome;
 
 import com.google.common.collect.Sets;
+import modernity.common.world.gen.layer.MDLayerUtil;
+import modernity.common.world.gen.structure.MDStructures;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
@@ -19,9 +21,6 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.storage.WorldInfo;
-
-import modernity.common.world.gen.layer.MDLayerUtil;
-import modernity.common.world.gen.structure.MDStructures;
 
 import javax.annotation.Nullable;
 import java.util.Collections;

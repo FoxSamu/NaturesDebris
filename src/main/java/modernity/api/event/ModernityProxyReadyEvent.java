@@ -9,10 +9,9 @@
 
 package modernity.api.event;
 
+import modernity.common.util.ProxyCommon;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.LogicalSide;
-
-import modernity.common.util.ProxyCommon;
 
 public class ModernityProxyReadyEvent extends Event {
     public final LogicalSide side;

@@ -9,6 +9,8 @@
 
 package modernity.common.world.gen.decorate.feature;
 
+import modernity.api.util.EcoBlockPos;
+import modernity.common.block.MDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,9 +21,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-
-import modernity.api.util.EcoBlockPos;
-import modernity.common.block.MDBlocks;
 
 import java.util.Random;
 

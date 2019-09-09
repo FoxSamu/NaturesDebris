@@ -9,16 +9,15 @@
 
 package modernity.common.net.pkt;
 
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
 import modernity.client.util.ProxyClient;
 import modernity.common.settings.LocalServerSettings;
 import modernity.common.settings.ServerSettings;
 import modernity.common.settings.core.AbstractSetting;
 import modernity.net.IPacket;
 import modernity.net.ProcessContext;
+import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.HashMap;
 import java.util.Map;

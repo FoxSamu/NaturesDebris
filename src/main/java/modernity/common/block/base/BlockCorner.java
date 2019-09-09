@@ -9,6 +9,8 @@
 
 package modernity.common.block.base;
 
+import modernity.api.util.EWaterlogType;
+import modernity.api.util.MDVoxelShapes;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -31,9 +33,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.api.util.EWaterlogType;
-import modernity.api.util.MDVoxelShapes;
 
 import javax.annotation.Nullable;
 import java.util.Random;

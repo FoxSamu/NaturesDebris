@@ -9,13 +9,12 @@
 
 package modernity.common.world.gen.terrain;
 
+import modernity.api.util.EcoBlockPos;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.WorldGenRegion;
 import net.rgsw.noise.INoise3D;
-
-import modernity.api.util.EcoBlockPos;
 
 import java.util.function.Predicate;
 

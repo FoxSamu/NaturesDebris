@@ -9,6 +9,7 @@
 
 package modernity.client.particle;
 
+import modernity.common.fluid.MDFluids;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.fluid.Fluid;
@@ -21,8 +22,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.common.fluid.MDFluids;
 
 @OnlyIn( Dist.CLIENT )
 public class DripParticle extends Particle {

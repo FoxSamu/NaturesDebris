@@ -9,13 +9,12 @@
 
 package modernity.client.gui.settings;
 
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.resources.I18n;
-
 import modernity.client.gui.settings.controls.GuiSettingControl;
 import modernity.common.settings.LocalServerSettings;
 import modernity.common.settings.core.Settings;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
 
 import java.util.ArrayList;
 import java.util.Arrays;

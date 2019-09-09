@@ -9,6 +9,9 @@
 
 package modernity.common.world.gen.terrain;
 
+import modernity.api.noise.NoiseImprovedOctaves;
+import modernity.api.util.EcoBlockPos;
+import modernity.common.world.gen.ModernityGenSettings;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -16,10 +19,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.IChunk;
-
-import modernity.api.noise.NoiseImprovedOctaves;
-import modernity.api.util.EcoBlockPos;
-import modernity.common.world.gen.ModernityGenSettings;
 
 @Deprecated
 public class ModernityTerrainGeneratorVanilla {

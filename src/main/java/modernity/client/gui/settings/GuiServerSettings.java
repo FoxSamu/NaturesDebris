@@ -9,10 +9,9 @@
 
 package modernity.client.gui.settings;
 
-import net.minecraft.client.gui.GuiScreen;
-
 import modernity.client.gui.settings.controls.GuiIntCycleControl;
 import modernity.common.settings.ServerSettings;
+import net.minecraft.client.gui.GuiScreen;
 
 public class GuiServerSettings extends GuiAbstractServerSettings {
 

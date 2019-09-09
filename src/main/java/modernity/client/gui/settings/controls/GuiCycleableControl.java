@@ -9,12 +9,11 @@
 
 package modernity.client.gui.settings.controls;
 
+import modernity.common.settings.core.CycleableSetting;
+import modernity.common.settings.core.Settings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.resources.I18n;
-
-import modernity.common.settings.core.CycleableSetting;
-import modernity.common.settings.core.Settings;
 
 public class GuiCycleableControl <T, S extends CycleableSetting<T>, C extends Settings> extends GuiSettingControl<T, S, C> {
 

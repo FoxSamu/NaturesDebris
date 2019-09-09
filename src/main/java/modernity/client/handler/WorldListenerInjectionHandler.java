@@ -9,14 +9,13 @@
 
 package modernity.client.handler;
 
+import modernity.client.util.MDClientWorldListener;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import modernity.client.util.MDClientWorldListener;
 
 @OnlyIn( Dist.CLIENT )
 public class WorldListenerInjectionHandler {

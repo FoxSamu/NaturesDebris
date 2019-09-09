@@ -11,6 +11,10 @@ package modernity.common.util;
 
 import com.mojang.datafixers.DSL;
 import com.mojang.datafixers.DataFixer;
+import modernity.api.event.AddOverworldStructureEvent;
+import modernity.api.event.CheckEntityInWaterEvent;
+import modernity.api.event.FixNBTEvent;
+import modernity.api.event.OverworldStructureEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.biome.Biome;
@@ -19,11 +23,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.structure.*;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraftforge.common.MinecraftForge;
-
-import modernity.api.event.AddOverworldStructureEvent;
-import modernity.api.event.CheckEntityInWaterEvent;
-import modernity.api.event.FixNBTEvent;
-import modernity.api.event.OverworldStructureEvent;
 
 import java.util.HashSet;
 

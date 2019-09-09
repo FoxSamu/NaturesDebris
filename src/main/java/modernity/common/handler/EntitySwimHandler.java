@@ -9,6 +9,10 @@
 
 package modernity.common.handler;
 
+import modernity.api.event.CheckEntityInWaterEvent;
+import modernity.common.block.MDMaterial;
+import modernity.common.fluid.MDFluidTags;
+import modernity.common.fluid.OilFluid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,11 +21,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import modernity.api.event.CheckEntityInWaterEvent;
-import modernity.common.block.MDMaterial;
-import modernity.common.fluid.MDFluidTags;
-import modernity.common.fluid.OilFluid;
 
 public class EntitySwimHandler {
     @SubscribeEvent

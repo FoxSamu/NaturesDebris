@@ -9,6 +9,8 @@
 
 package modernity.common.block.base;
 
+import modernity.api.util.EWaterlogType;
+import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.IBucketPickupHandler;
 import net.minecraft.block.ILiquidContainer;
@@ -24,9 +26,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-
-import modernity.api.util.EWaterlogType;
-import modernity.common.fluid.MDFluids;
 
 import javax.annotation.Nullable;
 

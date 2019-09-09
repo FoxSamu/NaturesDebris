@@ -9,6 +9,9 @@
 
 package modernity.common.block.base;
 
+import modernity.client.particle.SaltParticle;
+import modernity.common.block.MDBlocks;
+import modernity.common.item.MDItems;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
@@ -20,10 +23,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.client.particle.SaltParticle;
-import modernity.common.block.MDBlocks;
-import modernity.common.item.MDItems;
 
 import java.util.Random;
 

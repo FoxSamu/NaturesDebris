@@ -9,12 +9,11 @@
 
 package modernity.common.world.gen.surface;
 
+import modernity.api.util.EcoBlockPos;
+import modernity.common.biome.BiomeBase;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.IChunkGenSettings;
 import net.rgsw.noise.FractalOpenSimplex3D;
-
-import modernity.api.util.EcoBlockPos;
-import modernity.common.biome.BiomeBase;
 
 import java.util.Random;
 

@@ -9,6 +9,8 @@
 
 package modernity.common.block.base;
 
+import modernity.api.util.MDVoxelShapes;
+import modernity.common.world.gen.decorate.util.IBlockProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -24,9 +26,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
-
-import modernity.api.util.MDVoxelShapes;
-import modernity.common.world.gen.decorate.util.IBlockProvider;
 
 import java.util.Random;
 

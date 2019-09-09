@@ -9,15 +9,14 @@
 
 package modernity.common.handler;
 
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraftforge.event.world.ChunkWatchEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-
 import modernity.api.event.AddOverworldStructureEvent;
 import modernity.common.net.pkt.SPacketStructure;
 import modernity.common.util.ProxyCommon;
 import modernity.common.world.gen.structure.CurseRuinStructure;
 import modernity.common.world.gen.structure.MDStructures;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraftforge.event.world.ChunkWatchEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class StructureHandler {
     @SubscribeEvent

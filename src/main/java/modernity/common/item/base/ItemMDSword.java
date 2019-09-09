@@ -9,11 +9,10 @@
 
 package modernity.common.item.base;
 
+import modernity.common.item.MDItems;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSword;
-
-import modernity.common.item.MDItems;
 
 public class ItemMDSword extends ItemSword implements MDItems.Entry {
     public ItemMDSword( String id, IItemTier tier, int attackDamage, float attackSpeed, Properties builder ) {

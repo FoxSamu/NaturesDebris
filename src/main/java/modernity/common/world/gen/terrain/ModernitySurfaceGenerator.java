@@ -9,18 +9,17 @@
 
 package modernity.common.world.gen.terrain;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.chunk.IChunk;
-import net.rgsw.noise.FractalOpenSimplex3D;
-
 import modernity.api.util.EMDDimension;
 import modernity.api.util.EcoBlockPos;
 import modernity.common.biome.BiomeBase;
 import modernity.common.biome.MDBiomes;
 import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.ModernityGenSettings;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.provider.BiomeProvider;
+import net.minecraft.world.chunk.IChunk;
+import net.rgsw.noise.FractalOpenSimplex3D;
 
 import java.util.List;
 import java.util.Random;

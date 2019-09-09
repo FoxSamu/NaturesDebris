@@ -9,14 +9,13 @@
 
 package modernity.client.gui.settings;
 
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.resources.I18n;
-
 import modernity.client.gui.wiki.GuiWikiUtil;
 import modernity.client.util.ProxyClient;
 import modernity.common.settings.ServerSettings;
 import modernity.common.settings.core.Settings;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
 
 public class GuiSettingsHome extends GuiSettings<Settings> {
     private final GuiButton clientButton = new GuiButton( 0, 0, 0, I18n.format( "settings.modernity.type.client" ) ) {

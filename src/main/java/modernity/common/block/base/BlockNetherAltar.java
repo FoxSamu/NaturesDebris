@@ -9,6 +9,10 @@
 
 package modernity.common.block.base;
 
+import modernity.api.block.IParticleShapeBlock;
+import modernity.api.util.MDVoxelShapes;
+import modernity.common.tileentity.TileEntityNetherAltar;
+import modernity.common.util.ContainerManager;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -21,11 +25,6 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-
-import modernity.api.block.IParticleShapeBlock;
-import modernity.api.util.MDVoxelShapes;
-import modernity.common.tileentity.TileEntityNetherAltar;
-import modernity.common.util.ContainerManager;
 
 import javax.annotation.Nullable;
 

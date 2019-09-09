@@ -10,6 +10,8 @@
 package modernity.api.biome;
 
 import com.google.gson.*;
+import modernity.api.util.ColorUtil;
+import modernity.client.util.ProxyClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IResource;
 import net.minecraft.resources.IResourceManager;
@@ -23,9 +25,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.rgsw.noise.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import modernity.api.util.ColorUtil;
-import modernity.client.util.ProxyClient;
 
 import java.io.IOException;
 import java.io.InputStream;

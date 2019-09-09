@@ -9,13 +9,12 @@
 
 package modernity.common.settings;
 
-import net.minecraft.entity.player.EntityPlayerMP;
-
 import modernity.common.net.pkt.SPacketSettingChange;
 import modernity.common.net.pkt.SPacketSettingsInit;
 import modernity.common.settings.core.AbstractSetting;
 import modernity.common.settings.core.SettingsFile;
 import modernity.common.util.ProxyCommon;
+import net.minecraft.entity.player.EntityPlayerMP;
 
 import java.io.File;
 import java.util.function.Consumer;

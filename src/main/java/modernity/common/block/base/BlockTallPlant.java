@@ -9,6 +9,12 @@
 
 package modernity.common.block.base;
 
+import modernity.api.block.IColoredBlock;
+import modernity.api.util.EcoBlockPos;
+import modernity.api.util.MDVoxelShapes;
+import modernity.client.util.ProxyClient;
+import modernity.common.fluid.MDFluids;
+import modernity.common.world.gen.decorate.util.IBlockProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -30,13 +36,6 @@ import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.api.block.IColoredBlock;
-import modernity.api.util.EcoBlockPos;
-import modernity.api.util.MDVoxelShapes;
-import modernity.client.util.ProxyClient;
-import modernity.common.fluid.MDFluids;
-import modernity.common.world.gen.decorate.util.IBlockProvider;
 
 import javax.annotation.Nullable;
 import java.util.Random;

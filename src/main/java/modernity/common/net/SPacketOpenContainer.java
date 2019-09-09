@@ -9,6 +9,7 @@
 
 package modernity.common.net;
 
+import modernity.client.util.ClientContainerManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
@@ -17,8 +18,6 @@ import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.client.util.ClientContainerManager;
 
 import java.io.IOException;
 

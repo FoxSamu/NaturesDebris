@@ -9,6 +9,7 @@
 
 package modernity.common.fluid;
 
+import modernity.api.block.fluid.ICustomRenderFluid;
 import net.minecraft.client.Minecraft;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
@@ -21,8 +22,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryInternal;
-
-import modernity.api.block.fluid.ICustomRenderFluid;
 
 import java.util.List;
 import java.util.Objects;

@@ -9,13 +9,12 @@
 
 package modernity.common.settings.core;
 
+import modernity.api.util.Pair;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.crash.ReportedException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import modernity.api.util.Pair;
 
 import java.io.File;
 import java.io.IOException;

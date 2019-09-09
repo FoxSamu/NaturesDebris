@@ -10,6 +10,11 @@
 package modernity.common.block;
 
 import com.google.common.collect.Lists;
+import modernity.api.block.IColoredBlock;
+import modernity.common.block.base.*;
+import modernity.common.fluid.MDFluids;
+import modernity.common.item.MDItemGroups;
+import modernity.common.world.gen.decorate.feature.MDFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -20,12 +25,6 @@ import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.IForgeRegistry;
-
-import modernity.api.block.IColoredBlock;
-import modernity.common.block.base.*;
-import modernity.common.fluid.MDFluids;
-import modernity.common.item.MDItemGroups;
-import modernity.common.world.gen.decorate.feature.MDFeatures;
 
 import java.util.ArrayList;
 

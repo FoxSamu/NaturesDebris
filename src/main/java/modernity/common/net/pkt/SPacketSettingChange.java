@@ -9,15 +9,14 @@
 
 package modernity.common.net.pkt;
 
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
 import modernity.client.util.ProxyClient;
 import modernity.common.settings.RemoteServerSettings;
 import modernity.common.settings.ServerSettings;
 import modernity.net.IPacket;
 import modernity.net.ProcessContext;
+import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 
 public class SPacketSettingChange implements IPacket {

@@ -9,12 +9,11 @@
 
 package modernity.common.item.base;
 
+import modernity.common.item.MDItems;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
-
-import modernity.common.item.MDItems;
 
 public class ItemMDArmor extends ItemArmor implements MDItems.Entry {
     public ItemMDArmor( String id, IArmorMaterial material, EntityEquipmentSlot slots, Properties builder ) {

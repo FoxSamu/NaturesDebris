@@ -9,6 +9,7 @@
 
 package modernity.net;
 
+import modernity.api.util.DimensionRegion;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.NetworkManager;
@@ -27,8 +28,6 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
-
-import modernity.api.util.DimensionRegion;
 
 import java.util.*;
 import java.util.function.Consumer;

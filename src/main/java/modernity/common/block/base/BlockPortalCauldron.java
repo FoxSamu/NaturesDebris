@@ -9,6 +9,10 @@
 
 package modernity.common.block.base;
 
+import modernity.common.block.MDBlocks;
+import modernity.common.item.MDItems;
+import modernity.common.world.dim.MDDimensions;
+import modernity.common.world.teleporter.ModernityTeleporter;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -34,11 +38,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.dimension.DimensionType;
-
-import modernity.common.block.MDBlocks;
-import modernity.common.item.MDItems;
-import modernity.common.world.dim.MDDimensions;
-import modernity.common.world.teleporter.ModernityTeleporter;
 
 @SuppressWarnings( "deprecation" )
 public class BlockPortalCauldron extends Block implements MDBlocks.Entry {

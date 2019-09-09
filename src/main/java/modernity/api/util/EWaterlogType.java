@@ -9,11 +9,10 @@
 
 package modernity.api.util;
 
+import modernity.common.fluid.MDFluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.init.Fluids;
 import net.minecraft.util.IStringSerializable;
-
-import modernity.common.fluid.MDFluids;
 
 import java.util.function.Supplier;
 

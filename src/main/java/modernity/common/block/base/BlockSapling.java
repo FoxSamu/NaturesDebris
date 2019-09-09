@@ -9,6 +9,10 @@
 
 package modernity.common.block.base;
 
+import modernity.api.util.BlockUpdates;
+import modernity.api.util.MDVoxelShapes;
+import modernity.common.item.MDItemTags;
+import modernity.common.world.gen.decorate.feature.TreeFeature;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,11 +29,6 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-
-import modernity.api.util.BlockUpdates;
-import modernity.api.util.MDVoxelShapes;
-import modernity.common.item.MDItemTags;
-import modernity.common.world.gen.decorate.feature.TreeFeature;
 
 import java.util.Random;
 import java.util.function.Supplier;

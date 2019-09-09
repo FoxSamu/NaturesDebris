@@ -9,10 +9,9 @@
 
 package modernity.client.gui.settings;
 
-import net.minecraft.client.gui.GuiScreen;
-
 import modernity.client.gui.settings.controls.GuiBooleanControl;
 import modernity.common.settings.ClientSettings;
+import net.minecraft.client.gui.GuiScreen;
 
 public class GuiRenderingSettings extends GuiSettings<ClientSettings> {
     private final GuiBooleanControl<ClientSettings> walkingParticlesControl = new GuiBooleanControl<>( getSettings().walkingParticles, getSettings() );

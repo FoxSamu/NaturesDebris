@@ -14,6 +14,10 @@ import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import it.unimi.dsi.fastutil.longs.LongSet;
+import modernity.api.util.IntArrays;
+import modernity.common.block.MDBlocks;
+import modernity.common.world.gen.structure.MDStructures;
+import modernity.common.world.gen.terrain.*;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ExpiringMap;
@@ -31,11 +35,6 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.rgsw.noise.FractalOpenSimplex3D;
-
-import modernity.api.util.IntArrays;
-import modernity.common.block.MDBlocks;
-import modernity.common.world.gen.structure.MDStructures;
-import modernity.common.world.gen.terrain.*;
 
 import javax.annotation.Nullable;
 import java.util.List;

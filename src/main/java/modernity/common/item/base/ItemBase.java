@@ -9,9 +9,8 @@
 
 package modernity.common.item.base;
 
-import net.minecraft.item.Item;
-
 import modernity.common.item.MDItems;
+import net.minecraft.item.Item;
 
 public class ItemBase extends Item implements MDItems.Entry {
     public ItemBase( String id, Properties properties ) {

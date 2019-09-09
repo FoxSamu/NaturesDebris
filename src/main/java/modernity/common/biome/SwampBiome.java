@@ -9,11 +9,6 @@
 
 package modernity.common.biome;
 
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.FrequencyConfig;
-
 import modernity.api.util.ColorUtil;
 import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.decorate.feature.ClusterBushFeature;
@@ -21,6 +16,10 @@ import modernity.common.world.gen.decorate.feature.GroupedBushFeature;
 import modernity.common.world.gen.decorate.feature.MDFeatures;
 import modernity.common.world.gen.decorate.util.IBlockProvider;
 import modernity.common.world.gen.surface.SwampSurfaceGenerator;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.placement.ChanceConfig;
+import net.minecraft.world.gen.placement.FrequencyConfig;
 
 public class SwampBiome extends BiomeBase {
     public SwampBiome() {

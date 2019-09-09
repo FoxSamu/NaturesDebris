@@ -9,6 +9,10 @@
 
 package modernity.common.fluid;
 
+import modernity.api.block.fluid.IAluminiumBucketTakeable;
+import modernity.api.block.fluid.ICustomRenderFluid;
+import modernity.common.block.MDBlocks;
+import modernity.common.item.MDItems;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
@@ -35,11 +39,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rgsw.MathUtil;
-
-import modernity.api.block.fluid.IAluminiumBucketTakeable;
-import modernity.api.block.fluid.ICustomRenderFluid;
-import modernity.common.block.MDBlocks;
-import modernity.common.item.MDItems;
 
 import javax.annotation.Nullable;
 import java.util.Random;

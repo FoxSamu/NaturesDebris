@@ -9,11 +9,10 @@
 
 package modernity.common.biome;
 
+import modernity.api.util.EMDDimension;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.registries.IForgeRegistry;
-
-import modernity.api.util.EMDDimension;
 
 import java.util.ArrayList;
 import java.util.EnumMap;

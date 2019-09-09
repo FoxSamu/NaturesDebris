@@ -9,6 +9,10 @@
 
 package modernity.common.world.gen.structure;
 
+import modernity.api.util.IPicker;
+import modernity.api.util.WeightedCollection;
+import modernity.common.item.MDItems;
+import modernity.common.util.MDLootTables;
 import net.minecraft.block.*;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -45,11 +49,6 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.rgsw.MathUtil;
 import net.rgsw.noise.FractalOpenSimplex3D;
 import org.apache.commons.lang3.Validate;
-
-import modernity.api.util.IPicker;
-import modernity.api.util.WeightedCollection;
-import modernity.common.item.MDItems;
-import modernity.common.util.MDLootTables;
 
 import java.util.Collections;
 import java.util.Random;

@@ -9,6 +9,7 @@
 
 package modernity.common.util;
 
+import modernity.common.net.pkt.SPacketOpenContainer;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -27,8 +28,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
-
-import modernity.common.net.pkt.SPacketOpenContainer;
 
 public class ContainerManager {
     public static void openContainer( EntityPlayer player, IInventory inventory ) {

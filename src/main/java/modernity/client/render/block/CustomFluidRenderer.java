@@ -10,6 +10,8 @@
 package modernity.client.render.block;
 
 import com.google.common.collect.Maps;
+import modernity.api.block.fluid.ICustomRenderFluid;
+import modernity.api.block.fluid.IGaseousFluid;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -40,9 +42,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.resource.IResourceType;
 import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.resource.VanillaResourceType;
-
-import modernity.api.block.fluid.ICustomRenderFluid;
-import modernity.api.block.fluid.IGaseousFluid;
 
 import java.util.HashMap;
 import java.util.function.Predicate;

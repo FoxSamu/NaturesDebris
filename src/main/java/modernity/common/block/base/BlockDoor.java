@@ -9,6 +9,7 @@
 
 package modernity.common.block.base;
 
+import modernity.common.util.Events;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.EnumPushReaction;
@@ -41,8 +42,6 @@ import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import modernity.common.util.Events;
 
 import javax.annotation.Nullable;
 

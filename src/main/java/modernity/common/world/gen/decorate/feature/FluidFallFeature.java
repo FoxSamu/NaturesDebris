@@ -9,6 +9,9 @@
 
 package modernity.common.world.gen.decorate.feature;
 
+import modernity.api.util.BlockUpdates;
+import modernity.api.util.EcoBlockPos;
+import modernity.common.fluid.RegularFluid;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -16,10 +19,6 @@ import net.minecraft.world.gen.IChunkGenSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-
-import modernity.api.util.BlockUpdates;
-import modernity.api.util.EcoBlockPos;
-import modernity.common.fluid.RegularFluid;
 
 import java.util.Random;
 

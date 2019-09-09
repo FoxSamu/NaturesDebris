@@ -9,6 +9,7 @@
 
 package modernity.common.entity;
 
+import modernity.client.render.entity.RenderFallBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -16,8 +17,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
-
-import modernity.client.render.entity.RenderFallBlock;
 
 import java.util.ArrayList;
 

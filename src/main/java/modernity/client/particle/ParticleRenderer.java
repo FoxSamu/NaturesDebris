@@ -9,12 +9,11 @@
 
 package modernity.client.particle;
 
+import modernity.client.texture.ParticleSprite;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.math.MathHelper;
-
-import modernity.client.texture.ParticleSprite;
 
 public class ParticleRenderer {
     public static void renderParticle( BufferBuilder buffer, double x, double y, double z, float width, float height, float rot, float u1, float v1, float u2, float v2, int lu, int lv, float r, float g, float b, float a ) {

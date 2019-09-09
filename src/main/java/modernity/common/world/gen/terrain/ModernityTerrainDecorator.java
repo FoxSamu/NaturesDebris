@@ -11,6 +11,16 @@ package modernity.common.world.gen.terrain;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import modernity.common.block.MDBlocks;
+import modernity.common.fluid.MDFluids;
+import modernity.common.world.gen.ModernityGenSettings;
+import modernity.common.world.gen.decorate.feature.ClusterBushFeature;
+import modernity.common.world.gen.decorate.feature.DepositFeature;
+import modernity.common.world.gen.decorate.feature.FluidFallFeature;
+import modernity.common.world.gen.decorate.feature.MDFeatures;
+import modernity.common.world.gen.decorate.placement.AtSurfaceBelowHeight;
+import modernity.common.world.gen.decorate.placement.MDPlacements;
+import modernity.common.world.gen.util.BlockPredicates;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
@@ -27,17 +37,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.MinableConfig;
 import net.minecraft.world.gen.placement.*;
-
-import modernity.common.block.MDBlocks;
-import modernity.common.fluid.MDFluids;
-import modernity.common.world.gen.ModernityGenSettings;
-import modernity.common.world.gen.decorate.feature.ClusterBushFeature;
-import modernity.common.world.gen.decorate.feature.DepositFeature;
-import modernity.common.world.gen.decorate.feature.FluidFallFeature;
-import modernity.common.world.gen.decorate.feature.MDFeatures;
-import modernity.common.world.gen.decorate.placement.AtSurfaceBelowHeight;
-import modernity.common.world.gen.decorate.placement.MDPlacements;
-import modernity.common.world.gen.util.BlockPredicates;
 
 import java.util.List;
 import java.util.Map;

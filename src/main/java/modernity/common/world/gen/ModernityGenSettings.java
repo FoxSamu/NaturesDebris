@@ -9,9 +9,8 @@
 
 package modernity.common.world.gen;
 
-import net.minecraft.world.gen.ChunkGenSettings;
-
 import modernity.common.block.MDBlocks;
+import net.minecraft.world.gen.ChunkGenSettings;
 
 public class ModernityGenSettings extends ChunkGenSettings implements IModernityGenSettings {
     private int seaLevel = 72;

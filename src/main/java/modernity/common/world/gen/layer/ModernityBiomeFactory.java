@@ -9,14 +9,13 @@
 
 package modernity.common.world.gen.layer;
 
+import modernity.api.util.EMDDimension;
+import modernity.common.biome.MDBiomes;
 import net.minecraft.world.gen.IContext;
 import net.minecraft.world.gen.IContextExtended;
 import net.minecraft.world.gen.area.AreaDimension;
 import net.minecraft.world.gen.area.IArea;
 import net.minecraft.world.gen.area.IAreaFactory;
-
-import modernity.api.util.EMDDimension;
-import modernity.common.biome.MDBiomes;
 
 public class ModernityBiomeFactory <T extends IArea> implements IAreaFactory<T> {
 

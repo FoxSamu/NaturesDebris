@@ -9,11 +9,10 @@
 
 package modernity.common.item.base;
 
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.Item;
-
 import modernity.api.block.fluid.IAluminiumBucketTakeable;
 import modernity.common.item.MDItems;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.item.Item;
 
 public class ItemAluminiumBucket extends ItemBucketBase {
     public ItemAluminiumBucket( String id, Fluid fluid, Properties properties ) {

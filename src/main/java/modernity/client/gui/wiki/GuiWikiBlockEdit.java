@@ -10,6 +10,7 @@
 package modernity.client.gui.wiki;
 
 import com.google.common.collect.ImmutableMap;
+import modernity.common.biome.MDBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
@@ -41,8 +42,6 @@ import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.client.model.data.EmptyModelData;
 import org.lwjgl.opengl.GL11;
-
-import modernity.common.biome.MDBiomes;
 
 import javax.annotation.Nullable;
 import javax.vecmath.Matrix4f;

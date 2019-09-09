@@ -9,6 +9,8 @@
 
 package modernity.common.block.base;
 
+import modernity.api.util.EWaterlogType;
+import modernity.common.util.Events;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockWall;
@@ -31,10 +33,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-import modernity.api.util.EWaterlogType;
-import modernity.common.util.Events;
-
-import static net.minecraft.util.EnumFacing.*;
+import static net.minecraft.util.EnumFacing.Axis;
 
 public class BlockFenceGate extends BlockWaterlogged {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;

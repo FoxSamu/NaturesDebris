@@ -9,14 +9,13 @@
 
 package modernity.client.handler;
 
+import modernity.client.gui.settings.GuiSettingsHome;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import modernity.client.gui.settings.GuiSettingsHome;
 
 public class OptionsButtonHandler {
     @SubscribeEvent

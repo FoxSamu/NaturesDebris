@@ -9,13 +9,12 @@
 
 package modernity.common.particle;
 
+import modernity.api.util.Pair;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
-
-import modernity.api.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;

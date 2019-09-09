@@ -11,6 +11,8 @@ package modernity.common.block.base;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import modernity.api.block.fluid.IGaseousFluid;
+import modernity.common.fluid.RegularFluid;
 import net.minecraft.block.Block;
 import net.minecraft.block.IBucketPickupHandler;
 import net.minecraft.block.state.BlockFaceShape;
@@ -35,9 +37,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
-
-import modernity.api.block.fluid.IGaseousFluid;
-import modernity.common.fluid.RegularFluid;
 
 import java.util.List;
 import java.util.Map;

@@ -9,6 +9,10 @@
 
 package modernity.common.tileentity;
 
+import modernity.common.block.MDBlocks;
+import modernity.common.container.NetherAltarContainer;
+import modernity.common.item.MDItems;
+import modernity.common.world.gen.structure.MDStructures;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -26,11 +30,6 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
-
-import modernity.common.block.MDBlocks;
-import modernity.common.container.NetherAltarContainer;
-import modernity.common.item.MDItems;
-import modernity.common.world.gen.structure.MDStructures;
 
 import javax.annotation.Nullable;
 

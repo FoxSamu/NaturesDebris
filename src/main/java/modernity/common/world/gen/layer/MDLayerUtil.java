@@ -10,6 +10,7 @@
 package modernity.common.world.gen.layer;
 
 import com.google.common.collect.ImmutableList;
+import modernity.api.util.EMDDimension;
 import net.minecraft.world.gen.IContextExtended;
 import net.minecraft.world.gen.LazyAreaLayerContext;
 import net.minecraft.world.gen.area.IArea;
@@ -20,8 +21,6 @@ import net.minecraft.world.gen.layer.GenLayerSmooth;
 import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
 import net.minecraft.world.gen.layer.GenLayerZoom;
 import net.minecraft.world.gen.layer.traits.IAreaTransformer1;
-
-import modernity.api.util.EMDDimension;
 
 import java.util.function.LongFunction;
 
