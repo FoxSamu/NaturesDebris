@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "modernity:rock_wall",
+    "modernity:darkrock_wall",
+    "modernity:limestone_wall",
+    "modernity:rock_bricks_wall",
+    "modernity:darkrock_bricks_wall",
+    "modernity:asphalt_concrete_wall"
+  ]
+}

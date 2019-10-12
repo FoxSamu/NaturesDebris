@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "modernity:extinguished_anthracite_torch"
+    },
+    "title": {
+      "translate": "modernity.advancements.extinguish_torch"
+    },
+    "description": {
+      "translate": "modernity.advancements.extinguish_torch.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "modernized_water": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "modernity:anthracite_torch",
+        "state": {
+          "waterlogged": "modernized_water"
+        }
+      }
+    },
+    "water": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "modernity:anthracite_torch",
+        "state": {
+          "waterlogged": "water"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [ "modernized_water", "water" ]
+  ]
+}

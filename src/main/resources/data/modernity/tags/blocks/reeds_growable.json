@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "modernity:dark_dirt",
+    "modernity:coarse_dark_dirt",
+    "modernity:humus",
+    "modernity:dark_grass_block",
+    "modernity:dark_sand",
+    "modernity:mud"
+  ]
+}

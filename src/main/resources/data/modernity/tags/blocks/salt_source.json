@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "modernity:salt_ore",
+    "modernity:salt_dust_block",
+    "modernity:salt_block"
+  ]
+}

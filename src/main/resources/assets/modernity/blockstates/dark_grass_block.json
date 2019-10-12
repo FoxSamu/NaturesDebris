@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "snowy=false": {
+      "model": "modernity:block/dark_grass"
+    },
+    "snowy=true": {
+      "model": "modernity:block/dark_grass_snowy"
+    }
+  }
+}

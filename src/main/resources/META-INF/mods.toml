@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+#issueTrackerURL="http://my.issue.tracker/"
+[[mods]]
+modId="modernity"
+version="${version}"
+displayName="The Modernity"
+#updateJSONURL="http://myurl.me/"
+#displayURL="http://example.com/"
+#logoFile="examplemod.png"
+credits="Copyright (c) 2019 Red Galaxy and contributors."
+authors="Red Galaxy"
+description='''
+A broken universe.
+'''
+
+[[dependencies.examplemod]]
+    modId="forge"
+    mandatory=true
+    versionRange="[28,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.examplemod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+    side="BOTH"

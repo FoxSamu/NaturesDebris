@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "modernity:block/stripped_inver_log_side",
+    "end": "modernity:block/stripped_inver_log_top"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "pools": [
+    {
+      "name": "basic",
+      "rolls": 0,
+      "entries": [ ]
+    }
+  ]
+}

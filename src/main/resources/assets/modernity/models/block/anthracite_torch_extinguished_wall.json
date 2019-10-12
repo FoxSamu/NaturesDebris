@@ -1,0 +1,6 @@
+{
+  "parent": "block/torch_wall",
+  "textures": {
+    "torch": "modernity:block/anthracite_torch_extinguished"
+  }
+}

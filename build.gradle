@@ -1,0 +1,234 @@
+/*
+ * Copyright (c) 2019 RedGalaxy & contributors
+ * Licensed under the Apache Licence v2.0.
+ * Do not redistribute.
+ *
+ * By  : RGSW
+ * Date: 9 - 4 - 2019
+ */
+
+// Setup for build script itself
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+
+project.ext.canJarBeSigned = {
+    return getVariable( 'mdKeyStore' ) != null && ( !isDeploymentEnv || isDeploymentRelease )
+}
+
+// Returns the public fingerprint, may be empty ("")
+project.ext.getProjectFingerprint = {
+    if( canJarBeSigned() ) {
+        return getVariable( 'mdSignSHA1' ).replaceAll( ':', '' ).toLowerCase()
+    }
+    return ''
+}
+
+// Attempts to get a project variable and if none is found it tries to read from a system environment variable
+project.ext.getVariable = { key ->
+    return project.hasProperty( key ) ? project.property( key ) : ENV[ key ]
+}
+
+project.ext.ENV = System.getenv()
+project.ext.isDeploymentEnv = ENV[ 'DEPLOY_ENV' ] != null && 'true'.equals( ENV[ 'DEPLOY_ENV' ] )
+project.ext.isDeploymentRelease = project.isDeploymentEnv && ENV[ 'DEPLOY_BUILD_TYPE' ] != null && 'release'.equals( ENV[ 'DEPLOY_BUILD_TYPE' ] )
+project.ext.buildnumber = project.isDeploymentEnv ? ENV[ 'DEPLOY_BUILD_NUMBER' ] : ''
+
+project.ext.modid = 'modernity'
+
+project.ext.server = false
+
+
+repositories {
+    mavenLocal()
+}
+
+minecraft {
+    // Snapshot mappings: May 26, 2019
+    mappings channel: 'snapshot', version: '20190719-1.14.3'
+
+    // Access transformer
+    accessTransformer = file( 'src/main/resources/META-INF/accesstransformer.cfg' )
+
+    runs {
+        client {
+            workingDirectory project.file( 'run' )
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'info'
+
+            mods {
+                modernity {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file( 'run' )
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'info'
+
+            mods {
+                modernity {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file( 'run' )
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'info'
+
+            args '--mod', 'modernity', '--all', '--output', file( 'src/generated/resources/' )
+
+            mods {
+                modernity {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.14.4-28.1.40'
+
+    // provided 'dep' // May not exist at runtime
+    // deobf 'dep' // Remaps a dependency
+}
+
+jar {
+    manifest {
+        attributes( [
+            "Specification-Title"     : "The Modernity",
+            "Specification-Vendor"    : "Red Galaxy",
+            "Specification-Version"   : "${ version }",
+            "Implementation-Title"    : project.name,
+            "Implementation-Version"  : "${ version }",
+            "Implementation-Vendor"   : "Red Galaxy",
+            "Implementation-Timestamp": new Date().format( "yyyy-MM-dd'T'HH:mm:ssZ" )
+        ]
+        )
+    }
+
+    if( server ) {
+        exclude( "modernity/client/**" )
+    }
+}
+
+version = 'INDEV-0.2.0'
+project.ext.versionName = "1.14 Update"
+project.ext.isIDE = true
+group = 'net.rgsw'
+archivesBaseName = 'modernity'
+
+// Use Java 1.8
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+group = 'redgalaxy'
+
+task signJar( dependsOn: 'reobfJar' ) {
+    doLast {
+        if( canJarBeSigned() ) {
+            ant.signjar(
+                destDir: "${ jar.archivePath.parentFile }",
+                jar: "${ jar.archivePath }",
+                alias: getVariable( 'mdKeyStoreAlias' ),
+                storetype: "jks",
+                keystore: getVariable( 'mdKeyStore' ),
+                storepass: getVariable( 'mdKeyStorePass' ),
+                keypass: getVariable( 'mdKeyStoreKeyPass' ),
+                verbose: true,
+                preservelastmodified: "true"
+            )
+            println "Jar signed: ${ jar.archivePath }"
+        }
+        else {
+            println "No keystore property found, jar will not be signed"
+        }
+    }
+}
+
+task generateSources( type: Copy ) {
+    outputs.upToDateWhen { false }
+    from 'src/main/java'
+    into "$buildDir/generated-src"
+    filter { line ->
+        line.replaceAll( 'DynamicConstants\\.IDE', "$project.isIDE" )
+            .replaceAll( 'DynamicConstants\\.SIGNED', "${ canJarBeSigned() && !project.isIDE }" )
+            .replaceAll( 'DynamicConstants\\.VERSION_NAME', "\"$project.versionName\"" )
+            .replaceAll( 'DynamicConstants\\.VERSION', "\"$project.version\"" )
+            .replaceAll( 'DynamicConstants\\.SHA1', "\"${ project.isIDE ? "" : getProjectFingerprint() }\"" )
+    }
+    doLast {
+        println "Generated sources, IDE: $project.ext.isIDE"
+    }
+}
+
+processResources {
+    // Import png and ogg apart from other files as we don't want lines to be
+    // replaced in such files...
+    from( 'src/main/resources' ) {
+        exclude '**/*.png'
+        exclude '**/*.ogg'
+        filter { line ->
+            line.replaceAll( '\\$\\{version\\}', "$project.version" )
+                .replaceAll( '\\$\\{verName\\}', "$project.versionName" )
+        }
+    }
+    from( 'src/main/resources' ) {
+        include '**/*.png'
+        include '**/*.ogg'
+    }
+
+    exclude '**/unused/**'
+}
+
+compileJava {
+    setSource( "$buildDir/generated-src" )
+    dependsOn generateSources
+}
+
+build {
+    project.ext.isIDE = false
+    dependsOn signJar
+    doLast {
+        project.ext.isIDE = true
+    }
+}
+
+
+def reobfFile = file( "$buildDir/reobfJar/output.jar" )
+def reobfArtifact = artifacts.add( 'default', reobfFile ) {
+    type 'jar'
+    builtBy 'signJar'
+}
+publishing {
+    publications {
+        mavenJava( MavenPublication ) {
+            artifact reobfArtifact
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${ project.projectDir }/mcmodsrepo"
+        }
+    }
+}

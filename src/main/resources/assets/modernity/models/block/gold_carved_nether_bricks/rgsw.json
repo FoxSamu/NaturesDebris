@@ -1,0 +1,7 @@
+{
+  "parent": "modernity:block/abstract_facing",
+  "textures": {
+    "side": "block/nether_bricks",
+    "front": "modernity:block/gold_carved_nether_bricks_rgsw"
+  }
+}

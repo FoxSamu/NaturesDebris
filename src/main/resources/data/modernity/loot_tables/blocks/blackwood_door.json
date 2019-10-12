@@ -1,0 +1,26 @@
+{
+  "pools": [
+    {
+      "name": "basic",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:survives_explosion"
+            },
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "modernity:blackwood_door",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
+          "name": "modernity:blackwood_door"
+        }
+      ]
+    }
+  ]
+}

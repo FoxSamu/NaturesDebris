@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "modernity:block/inver_log"
+    },
+    "axis=z": {
+      "model": "modernity:block/inver_log", "x": 90
+    },
+    "axis=x": {
+      "model": "modernity:block/inver_log", "x": 90, "y": 90
+    }
+  }
+}

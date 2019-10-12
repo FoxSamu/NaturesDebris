@@ -1,0 +1,19 @@
+{
+  "pools": [
+    {
+      "name": "basic",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:survives_explosion"
+            }
+          ],
+          "name": "modernity:ash_block"
+        }
+      ]
+    }
+  ]
+}

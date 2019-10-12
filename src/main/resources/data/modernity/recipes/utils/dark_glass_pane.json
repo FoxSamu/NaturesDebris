@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:dark_glass"
+    }
+  },
+  "result": {
+    "item": "modernity:dark_glass_pane",
+    "count": 16
+  }
+}

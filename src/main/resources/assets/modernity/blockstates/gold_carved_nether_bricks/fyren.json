@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "modernity:block/gold_carved_nether_bricks/fyren",
+      "y": 0
+    },
+    "facing=south": {
+      "model": "modernity:block/gold_carved_nether_bricks/fyren",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "modernity:block/gold_carved_nether_bricks/fyren",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "modernity:block/gold_carved_nether_bricks/fyren",
+      "y": 270
+    }
+  }
+}
