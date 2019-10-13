@@ -173,8 +173,8 @@ task generateSources( type: Copy ) {
     filter { line ->
         line.replaceAll( 'DynamicConstants\\.IDE', "$project.isIDE" )
             .replaceAll( 'DynamicConstants\\.SIGNED', "${ canJarBeSigned() && !project.isIDE }" )
-            .replaceAll( 'DynamicConstants\\.VERSION_NAME', "\"$project.versionName\"" )
-            .replaceAll( 'DynamicConstants\\.VERSION', "\"$project.version\"" )
+            .replaceAll( 'DynamicConstants\\.VERSION_NAME', "\"${ project.isIDE ? "The IDE version" : project.version }\"" )
+            .replaceAll( 'DynamicConstants\\.VERSION', "\"${ project.isIDE ? "IDE" : project.version }\"" )
             .replaceAll( 'DynamicConstants\\.SHA1', "\"${ project.isIDE ? "" : getProjectFingerprint() }\"" )
     }
     doLast {

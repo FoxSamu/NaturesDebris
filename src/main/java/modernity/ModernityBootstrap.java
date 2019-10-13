@@ -74,7 +74,7 @@ public class ModernityBootstrap {
         proxy.registerListeners();
         proxy.preInit();
         MinecraftForge.EVENT_BUS.register( proxy );
-        LOGGER.info( "Modernity initialized for side {}: {}", side, proxy );
+        LOGGER.info( "Modernity version {} initialized for side {}: {}", MDInfo.VERSION, side, proxy );
         MinecraftForge.EVENT_BUS.post( new ModernityProxyReadyEvent( side, proxy ) );
     }
 }
