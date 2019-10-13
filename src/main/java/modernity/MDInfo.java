@@ -11,11 +11,6 @@ package modernity;
 
 import net.rgsw.UselessOperationException;
 
-import java.io.FileInputStream;
-import java.security.PublicKey;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
-
 public final class MDInfo {
     public static final String MODID = "modernity";
     public static final String VERSION = DynamicConstants.VERSION;
@@ -26,18 +21,6 @@ public final class MDInfo {
 
     private MDInfo() {
         throw new UselessOperationException( "No MDInfo instances for you!" );
-    }
-
-    public static PublicKey getPublicKey( String filename ) throws Exception {
-
-//        URL url = MDInfo.class.getClassLoader().getResource( filename );
-//        byte[] keyBytes = Files.readAllBytes( Paths.get( Objects.requireNonNull( url ).toURI() ) );
-//
-//        X509EncodedKeySpec spec = new X509EncodedKeySpec( keyBytes );
-        FileInputStream fin = new FileInputStream( filename );
-        CertificateFactory f = CertificateFactory.getInstance( "X.509" );
-        X509Certificate cert = (X509Certificate) f.generateCertificate( fin );
-        return cert.getPublicKey();
     }
 
     // Bunch of constants gradle would replace the uses of
