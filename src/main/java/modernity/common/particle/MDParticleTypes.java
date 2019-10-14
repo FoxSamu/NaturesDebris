@@ -12,6 +12,9 @@ import net.minecraft.particles.ParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * Holder class for Modernity particle types.
+ */
 public final class MDParticleTypes {
     private static final RegistryHandler<ParticleType<?>> ENTRIES = new RegistryHandler<>( "modernity" );
 

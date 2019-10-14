@@ -10,6 +10,9 @@ import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
 import net.minecraftforge.registries.ForgeRegistries;
 
+/**
+ * Type of particle data that holds a color.
+ */
 public class RgbParticleData implements IParticleData {
     public static final IParticleData.IDeserializer<RgbParticleData> DESERIALIZER = new IDeserializer<RgbParticleData>() {
 
