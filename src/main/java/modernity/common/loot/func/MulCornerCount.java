@@ -15,6 +15,9 @@ import net.minecraft.world.storage.loot.conditions.ILootCondition;
 
 import java.util.Set;
 
+/**
+ * Loot function that multiplies count with the amount of corners in a corner block.
+ */
 public class MulCornerCount extends LootFunction {
     protected MulCornerCount( ILootCondition[] conditions ) {
         super( conditions );
