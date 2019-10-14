@@ -23,6 +23,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+/**
+ * Handles oil swimming behaviour
+ */
 public enum EntitySwimHandler {
     INSTANCE;
 
