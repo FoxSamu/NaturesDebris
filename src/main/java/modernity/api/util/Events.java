@@ -1,6 +1,12 @@
 package modernity.api.util;
 
-public class Events {
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
+
+/**
+ * Names all events for {@linkplain IWorld#playEvent(int, BlockPos, int) playEvent} calls
+ */
+public final class Events {
     public static final int DISPENSER_DISPENSE = 1000;
     public static final int DISPENSER_FAIL = 1001;
     public static final int DISPENSER_LAUNCH = 1002;
@@ -52,4 +58,7 @@ public class Events {
 
     public static final int SUMMON_END_GATEWAY = 3000;
     public static final int ENDER_DRAGON_GROWL = 3001;
+
+    private Events() {
+    }
 }

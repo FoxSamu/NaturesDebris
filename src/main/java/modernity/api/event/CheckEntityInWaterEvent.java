@@ -13,6 +13,11 @@ import net.minecraft.entity.Entity;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
 
+/**
+ * Fired by hook to manually decide whether an entity is in water or not...
+ *
+ * @author RGSW
+ */
 @Cancelable
 public class CheckEntityInWaterEvent extends EntityEvent {
 

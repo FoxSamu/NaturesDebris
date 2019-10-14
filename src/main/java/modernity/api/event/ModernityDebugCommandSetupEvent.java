@@ -15,6 +15,11 @@ import net.minecraftforge.eventbus.api.Event;
 
 import java.util.List;
 
+/**
+ * Fired when setting up modernity debug command ({@code /mddebug}) so that other mods can add commands...
+ *
+ * @author RGSW
+ */
 public class ModernityDebugCommandSetupEvent extends Event {
     private final List<LiteralArgumentBuilder<CommandSource>> commandList;
 

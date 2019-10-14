@@ -15,6 +15,11 @@ import net.minecraftforge.eventbus.api.Event;
 
 import java.util.List;
 
+/**
+ * Fired when setting up modernity command ({@code /modernity}) so that other mods can add commands...
+ *
+ * @author RGSW
+ */
 public class ModernityCommandSetupEvent extends Event {
     private final List<LiteralArgumentBuilder<CommandSource>> commandList;
 

@@ -18,6 +18,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
+/**
+ * Implementing blocks have a color multiplier.
+ *
+ * @author RGSW
+ */
+@FunctionalInterface
 public interface IColoredBlock {
     @OnlyIn( Dist.CLIENT )
     int colorMultiplier( BlockState state, @Nullable IEnviromentBlockReader reader, @Nullable BlockPos pos, int tintIndex );

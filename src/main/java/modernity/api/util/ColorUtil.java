@@ -12,15 +12,33 @@ package modernity.api.util;
 import net.minecraft.util.math.MathHelper;
 import net.rgsw.MathUtil;
 
-public class ColorUtil {
+/**
+ * Utility class for processing {@code int}-formatted colors.
+ */
+public final class ColorUtil {
+    private ColorUtil() {
+    }
+
+    /**
+     * Creates an {@code int}-color from RGB values (0-255)
+     */
     public static int rgb( int r, int g, int b ) {
         return r << 16 | g << 8 | b;
     }
 
+    /**
+     * Creates an {@code int}-color from RGB values (0-1)
+     */
     public static int rgb( double r, double g, double b ) {
         return rgb( (int) ( r * 255 ), (int) ( g * 255 ), (int) ( b * 255 ) );
     }
 
+    /**
+     * Creates an {@code int}-color from HSV values
+     * @param h Hue (0-360)
+     * @param s Saturation (0-1)
+     * @param v Value (0-1)
+     */
     public static int hsv( double h, double s, double v ) {
         h = h < 0 ? h % 360 + 360 : h % 360;
         double r, g, b;
@@ -69,19 +87,25 @@ public class ColorUtil {
         return rgb( r, g, b );
     }
 
+    /**
+     * Makes a color darker
+     */
     public static int darken( int col, double amount ) {
         if( amount < 0 ) return lighten( col, - amount );
         int r = col >>> 16 & 0xff;
         int g = col >>> 8 & 0xff;
         int b = col & 0xff;
 
-        r = (int) ( r * ( 1 - amount ) );
-        g = (int) ( g * ( 1 - amount ) );
-        b = (int) ( b * ( 1 - amount ) );
+        r *= 1 - amount;
+        g *= 1 - amount;
+        b *= 1 - amount;
 
         return rgb( r, g, b );
     }
 
+    /**
+     * Makes a color lighter
+     */
     public static int lighten( int col, double amount ) {
         if( amount < 0 ) return darken( col, - amount );
         int r = col >>> 16 & 0xff;
@@ -92,37 +116,58 @@ public class ColorUtil {
         g = 255 - g;
         b = 255 - b;
 
-        r = (int) ( r * ( 1 - amount ) );
-        g = (int) ( g * ( 1 - amount ) );
-        b = (int) ( b * ( 1 - amount ) );
+        r *= 1 - amount;
+        g *= 1 - amount;
+        b *= 1 - amount;
 
         return rgb( 255 - r, 255 - g, 255 - b );
     }
 
+    /**
+     * Returns the red component of a color
+     */
     public static double red( int col ) {
         return ( col >>> 16 & 0xFF ) / 255D;
     }
 
+    /**
+     * Returns the green component of a color
+     */
     public static double green( int col ) {
         return ( col >>> 8 & 0xFF ) / 255D;
     }
 
+    /**
+     * Returns the blue component of a color
+     */
     public static double blue( int col ) {
         return ( col & 0xFF ) / 255D;
     }
 
+    /**
+     * Returns the alpha component of a color
+     */
     public static double alpha( int col ) {
         return ( col >>> 24 & 0xFF ) / 255D;
     }
 
+    /**
+     * Returns the average (grayscale) of the three components of a color
+     */
     public static double grayscale( int col ) {
         return ( red( col ) + green( col ) + blue( col ) ) / 3;
     }
 
+    /**
+     * Creates a gray-tinge
+     */
     public static int fromGrayscale( double grayscale ) {
         return rgb( grayscale, grayscale, grayscale );
     }
 
+    /**
+     * Creates a color from temperature
+     */
     public static int temperature( double temp ) {
         if( temp < 0 ) {
             return rgb( 1 - temp, 1 - temp / 2, 1 );
@@ -131,6 +176,9 @@ public class ColorUtil {
         }
     }
 
+    /**
+     * Interpolates between two colors
+     */
     public static int interpolate( int colorA, int colorB, double v ) {
         double rA = ( colorA >>> 16 & 0xff ) / 255D;
         double gA = ( colorA >>> 8 & 0xff ) / 255D;
@@ -147,10 +195,16 @@ public class ColorUtil {
         return rgb( rC, gC, bC );
     }
 
+    /**
+     * Inverts a color
+     */
     public static int inverse( int col ) {
         return 0xffffff - col;
     }
 
+    /**
+     * Parses a color from a hex string ('#xxxxxx' or '#xxx'), returns null on parse errors
+     */
     public static Integer parseHexString( String string ) {
         if( string.charAt( 0 ) != '#' ) {
             return null;

@@ -9,7 +9,6 @@
 
 package modernity.common.block.base;
 
-import modernity.api.block.IParticleShapeBlock;
 import modernity.api.util.MDVoxelShapes;
 import modernity.common.tileentity.NetherAltarTileEntity;
 import net.minecraft.block.Block;
@@ -28,7 +27,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class NetherAltarBlock extends Block implements IParticleShapeBlock {
+public class NetherAltarBlock extends Block {
     private static final VoxelShape ALTAR_SHAPE;
     private static final VoxelShape SIMPLE_SHAPE = MDVoxelShapes.create16( 0, 0, 0, 16, 12, 16 );
 
@@ -82,11 +81,6 @@ public class NetherAltarBlock extends Block implements IParticleShapeBlock {
     @Override
     public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx ) {
         return ALTAR_SHAPE;
-    }
-
-    @Override
-    public VoxelShape getParticleShape( BlockState state, IBlockReader world, BlockPos pos ) {
-        return SIMPLE_SHAPE;
     }
 
     @Override

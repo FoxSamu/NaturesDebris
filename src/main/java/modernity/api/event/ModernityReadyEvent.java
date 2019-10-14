@@ -13,12 +13,17 @@ import modernity.common.Modernity;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.LogicalSide;
 
-public class ModernityProxyReadyEvent extends Event {
+/**
+ * Fired after {@link Modernity} is initialized
+ *
+ * @author RGSW
+ */
+public class ModernityReadyEvent extends Event {
     public final LogicalSide side;
-    public final Modernity proxy;
+    public final Modernity modernity;
 
-    public ModernityProxyReadyEvent( LogicalSide side, Modernity proxy ) {
+    public ModernityReadyEvent( LogicalSide side, Modernity modernity ) {
         this.side = side;
-        this.proxy = proxy;
+        this.modernity = modernity;
     }
 }

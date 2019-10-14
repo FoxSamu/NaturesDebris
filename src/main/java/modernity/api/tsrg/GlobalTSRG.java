@@ -3,7 +3,12 @@ package modernity.api.tsrg;
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class GlobalTSRG {
+/**
+ * Stores the SRG-MCP mappings available in the META-INF folder.
+ *
+ * @author RGSW
+ */
+public final class GlobalTSRG {
     private static final TSRGMapping MAPPING;
 
     static {
@@ -11,6 +16,9 @@ public class GlobalTSRG {
         if( stream == null ) throw new NullPointerException( "Null mappings! Where is the mapping resource?" );
         Scanner scanner = new Scanner( stream );
         MAPPING = TSRGMapping.create( scanner );
+    }
+
+    private GlobalTSRG() {
     }
 
     public static void load() {

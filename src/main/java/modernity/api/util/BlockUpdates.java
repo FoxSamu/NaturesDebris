@@ -9,6 +9,12 @@
 
 package modernity.api.util;
 
+import net.minecraft.world.IWorldWriter;
+import net.rgsw.UselessOperationException;
+
+/**
+ * Holder class for {@link IWorldWriter#setBlockState} flags
+ */
 public final class BlockUpdates {
     public static final int CAUSE_UPDATE = 1;
     public static final int NOTIFY_CLIENTS = 2;
@@ -19,6 +25,6 @@ public final class BlockUpdates {
     public static final int MOVING = 64;
 
     private BlockUpdates() {
-        throw new UnsupportedOperationException( "No BlockUpdates instances for you!" );
+        throw new UselessOperationException( "No BlockUpdates instances for you!" );
     }
 }

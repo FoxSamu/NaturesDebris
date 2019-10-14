@@ -4,6 +4,11 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Used to load TSRG mapping files.
+ *
+ * @author RGSW
+ */
 public class TSRGMapping {
     private static final Pattern FIELD_PATTERN = Pattern.compile( "^\\t(.*?) (.*?)$" );
     private static final Pattern METHOD_PATTERN = Pattern.compile( "^\\t(.*?) (.*?) (.*?)$" );

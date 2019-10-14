@@ -14,6 +14,9 @@ import net.minecraft.world.IWorld;
 
 import java.util.Random;
 
+/**
+ * Used to generate a block (usually a plant) in the world.
+ */
 @FunctionalInterface
 public interface IBlockProvider {
     boolean provide( IWorld world, BlockPos pos, Random rand );

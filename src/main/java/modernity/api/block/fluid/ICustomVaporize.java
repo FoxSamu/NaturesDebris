@@ -12,6 +12,12 @@ package modernity.api.block.fluid;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+/**
+ * Implementing fluids have a custom vaporizing behaviour.
+ *
+ * @author RGSW
+ */
+@FunctionalInterface
 public interface ICustomVaporize {
     boolean doesVaporize( World world, BlockPos pos );
 }

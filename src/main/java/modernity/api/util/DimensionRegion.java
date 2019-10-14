@@ -12,6 +12,9 @@ package modernity.api.util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.dimension.DimensionType;
 
+/**
+ * Represents a region in a specific dimension.
+ */
 public class DimensionRegion {
     private final AxisAlignedBB box;
     private final DimensionType dimen;

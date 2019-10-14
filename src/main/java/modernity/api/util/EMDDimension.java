@@ -9,10 +9,14 @@
 
 package modernity.api.util;
 
+/**
+ * An enum of all dimension planned in the Modernity, only one is implemented right now
+ */
 public enum EMDDimension {
     SURFACE,
     UNDERGROUND, // NYI
     HELL, // NYI
     SKY, // NYI
-    SATELLITE // NYI
+    SATELLITE, // NYI
+    NATURE // NYI
 }

@@ -38,6 +38,8 @@ import java.util.Map;
  * Java representation of a biome color profile. Biome color profiles are json files defined in the
  * <code>assets/.../data/biomecolors/</code> folder. They specify the color of foliage, water, and other things in
  * specific biomes.
+ *
+ * @author RGSW
  */
 // TODO:
 // Move all provider implementations to separate classes and add deserializers, so that new implementations can be

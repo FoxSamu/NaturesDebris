@@ -9,5 +9,10 @@
 
 package modernity.api.block.fluid;
 
+/**
+ * Implementing fluids are gaseous: they have inverted gravity.
+ *
+ * @author RGSW
+ */
 public interface IGaseousFluid {
 }
