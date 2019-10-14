@@ -5,6 +5,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+/**
+ * Listens to particle factory registry event and registers particle factories then.
+ */
 public enum ParticleRegistryHandler {
     INSTANCE;
 
