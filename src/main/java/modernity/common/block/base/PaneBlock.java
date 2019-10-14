@@ -34,6 +34,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
+/**
+ * Describes a pane block.
+ */
 public class PaneBlock extends WaterloggedBlock {
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
@@ -119,17 +122,23 @@ public class PaneBlock extends WaterloggedBlock {
         return attachesTo( other, other.func_224755_d( world, pos.offset( facing ), facing.getOpposite() ), facing );
     }
 
+    /**
+     * Can we connect to a specific direction?
+     */
     private boolean canPaneConnectTo( IBlockReader world, BlockPos pos, Direction facing ) {
         BlockPos offset = pos.offset( facing );
         BlockState other = world.getBlockState( offset );
         return other.canBeConnectedTo( world, offset, facing.getOpposite() ) || getDefaultState().canBeConnectedTo( world, pos, facing );
     }
 
-    public final boolean attachesTo( BlockState state, boolean solidSide, Direction facing ) {
+    private boolean attachesTo( BlockState state, boolean solidSide, Direction facing ) {
         Block block = state.getBlock();
         return ! shouldSkipAttachment( block ) && solidSide || state.getBlock() instanceof PaneBlock;
     }
 
+    /**
+     * Checks if attaching can be ignored for these blocks.
+     */
     public static boolean shouldSkipAttachment( Block block ) {
         return block instanceof ShulkerBoxBlock ||
                    block instanceof LeavesBlock ||

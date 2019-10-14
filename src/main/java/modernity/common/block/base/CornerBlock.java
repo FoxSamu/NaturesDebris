@@ -35,6 +35,9 @@ import javax.annotation.Nullable;
 
 import static net.minecraft.util.Direction.*;
 
+/**
+ * Describes the corner blocks: blocks that are subdivided in 8 smaller blocks.
+ */
 public class CornerBlock extends WaterloggedBlock {
     public static final BooleanProperty CORNER_000 = BooleanProperty.create( "c000" );
     public static final BooleanProperty CORNER_001 = BooleanProperty.create( "c001" );
@@ -150,6 +153,9 @@ public class CornerBlock extends WaterloggedBlock {
         builder.add( CORNER_111 );
     }
 
+    /**
+     * Checks if the side is solid for a specific facing
+     */
     public boolean isSolidSide( Direction facing, BlockState state ) {
         for( BooleanProperty corner : FACE_PROPERTIES[ facing.ordinal() ] ) {
             if( ! state.get( corner ) ) return false;
@@ -157,6 +163,9 @@ public class CornerBlock extends WaterloggedBlock {
         return true;
     }
 
+    /**
+     * Check if all corners are filled
+     */
     public boolean isFull( BlockState state ) {
         for( BooleanProperty corner : CORNERS ) {
             if( ! state.get( corner ) ) return false;
@@ -164,6 +173,9 @@ public class CornerBlock extends WaterloggedBlock {
         return true;
     }
 
+    /**
+     * Check if none of the corners is filled
+     */
     public boolean isEmpty( BlockState state ) {
         for( BooleanProperty corner : CORNERS ) {
             if( state.get( corner ) ) return false;
@@ -171,10 +183,16 @@ public class CornerBlock extends WaterloggedBlock {
         return true;
     }
 
+    /**
+     * Checks if a corner exists at the specified corner
+     */
     public boolean hasCorner( int corner, BlockState state ) {
         return state.get( CORNERS[ corner ] );
     }
 
+    /**
+     * Returns the index in the voxel shape array
+     */
     public int getIndex( BlockState state ) {
         int index = 0;
         if( state.get( CORNER_000 ) ) index |= 1;
@@ -188,6 +206,9 @@ public class CornerBlock extends WaterloggedBlock {
         return index;
     }
 
+    /**
+     * Returns the amount of corners in a state
+     */
     public int getQuantity( BlockState state ) {
         int quantity = 0;
         for( BooleanProperty corner : CORNERS ) {
@@ -300,10 +321,6 @@ public class CornerBlock extends WaterloggedBlock {
     @Override
     public boolean propagatesSkylightDown( BlockState state, IBlockReader reader, BlockPos pos ) {
         return false;
-    }
-
-    public boolean isFullCube( BlockState state ) {
-        return isFull( state );
     }
 
     @Override

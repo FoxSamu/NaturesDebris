@@ -22,6 +22,9 @@ import net.minecraft.world.World;
 
 import java.util.function.Supplier;
 
+/**
+ * Describes a block that can be stripped with an axe.
+ */
 public class StripableBlock extends Block {
     private final Supplier<Block> result;
 

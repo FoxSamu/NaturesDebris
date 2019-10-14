@@ -6,6 +6,7 @@ import modernity.common.fluid.MDFluids;
 import modernity.common.item.MDItemGroups;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
+import modernity.common.world.gen.feature.MDFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -18,8 +19,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ObjectHolder;
 
+import java.util.ArrayList;
+
+/**
+ * Object holder for modernity blocks.
+ */
 @ObjectHolder( "modernity" )
 public final class MDBlocks {
+    private static final ArrayList<Block> ITEM_BLOCKS = new ArrayList<>();
     private static final RegistryHandler<Block> BLOCKS = new RegistryHandler<>( "modernity" );
     private static final RegistryHandler<Item> ITEMS = new RegistryHandler<>( "modernity" );
 
@@ -141,18 +148,18 @@ public final class MDBlocks {
     public static final SaltCrystalBlock SALT_CRYSTAL = blockItem( "salt_crystal", new SaltCrystalBlock( crystal( MaterialColor.SNOW, 0.2 ) ), MDItemGroups.PLANTS );
     public static final HangingPlantBlock MURINA = blockItem( "murina", new HangingPlantBlock.ColoredMurina( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
 
-    public static final LogBlock STRIPPED_BLACKWOOD_LOG = blockItem( "stripped_blackwood_log", new LogBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.BLOCKS );
-    public static final LogBlock BLACKWOOD_LOG = blockItem( "blackwood_log", new StripableLogBlock( () -> STRIPPED_BLACKWOOD_LOG, wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.BLOCKS );
+    public static final AxisBlock STRIPPED_BLACKWOOD_LOG = blockItem( "stripped_blackwood_log", new AxisBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.BLOCKS );
+    public static final AxisBlock BLACKWOOD_LOG = blockItem( "blackwood_log", new StripableLogBlock( () -> STRIPPED_BLACKWOOD_LOG, wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.BLOCKS );
     public static final Block STRIPPED_BLACKWOOD = blockItem( "stripped_blackwood", new Block( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.BLOCKS );
     public static final Block BLACKWOOD = blockItem( "blackwood", new StripableBlock( () -> STRIPPED_BLACKWOOD, wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.BLOCKS );
-    public static final SaplingBlock BLACKWOOD_SAPLING = blockItem( "blackwood_sapling", new SaplingBlock( () -> ( w, r, p ) -> false, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
+    public static final SaplingBlock BLACKWOOD_SAPLING = blockItem( "blackwood_sapling", new SaplingBlock( () -> MDFeatures.BLACKWOOD_TREE::generate, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
     public static final HangLeavesBlock BLACKWOOD_LEAVES = blockItem( "blackwood_leaves", new HangLeavesBlock.ColoredBlackwood( MDBlockTags.BLACKWOOD_LOG, leaves( MaterialColor.FOLIAGE, 0.2 ) ), MDItemGroups.PLANTS );
 
-    public static final LogBlock STRIPPED_INVER_LOG = blockItem( "stripped_inver_log", new LogBlock( wood( MaterialColor.WOOD ) ), MDItemGroups.BLOCKS );
-    public static final LogBlock INVER_LOG = blockItem( "inver_log", new StripableLogBlock( () -> STRIPPED_INVER_LOG, wood( MaterialColor.WOOD ) ), MDItemGroups.BLOCKS );
+    public static final AxisBlock STRIPPED_INVER_LOG = blockItem( "stripped_inver_log", new AxisBlock( wood( MaterialColor.WOOD ) ), MDItemGroups.BLOCKS );
+    public static final AxisBlock INVER_LOG = blockItem( "inver_log", new StripableLogBlock( () -> STRIPPED_INVER_LOG, wood( MaterialColor.WOOD ) ), MDItemGroups.BLOCKS );
     public static final Block STRIPPED_INVER = blockItem( "stripped_inver_wood", new Block( wood( MaterialColor.WOOD ) ), MDItemGroups.BLOCKS );
     public static final Block INVER = blockItem( "inver_wood", new StripableBlock( () -> STRIPPED_INVER, wood( MaterialColor.WOOD ) ), MDItemGroups.BLOCKS );
-    public static final SaplingBlock INVER_SAPLING = blockItem( "inver_sapling", new SaplingBlock( () -> ( w, r, p ) -> false, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
+    public static final SaplingBlock INVER_SAPLING = blockItem( "inver_sapling", new SaplingBlock( () -> MDFeatures.INVER_TREE::generate, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
     public static final DecayLeavesBlock INVER_LEAVES = blockItem( "inver_leaves", new DecayLeavesBlock.ColoredInver( MDBlockTags.INVER_LOG, leaves( MaterialColor.FOLIAGE, 0.2 ) ), MDItemGroups.PLANTS );
 
     public static final Block SALT_ORE = blockItem( "salt_ore", new Block( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroups.BLOCKS );
@@ -184,31 +191,45 @@ public final class MDBlocks {
     private static <T extends Block> T blockItem( String name, T block, Item.Properties itemProps, String... aliases ) {
         BLOCKS.register( name, block, aliases );
         ITEMS.register( name, createBlockItem( block, itemProps ), aliases );
+        ITEM_BLOCKS.add( block );
         return block;
     }
 
     private static <T extends Block> T blockItem( String name, T block, ItemGroup group, String... aliases ) {
         BLOCKS.register( name, block, aliases );
         ITEMS.register( name, createBlockItem( block, new Item.Properties().group( group ) ), aliases );
+        ITEM_BLOCKS.add( block );
         return block;
     }
 
     private static <T extends Block> T blockItem( String name, T block, String... aliases ) {
         BLOCKS.register( name, block, aliases );
         ITEMS.register( name, createBlockItem( block, new Item.Properties() ), aliases );
+        ITEM_BLOCKS.add( block );
         return block;
     }
 
+    /**
+     * Registers the block and item registry handlers to the {@link RegistryEventHandler}. Should be called internally
+     * only by the {@link RegistryEventHandler}.
+     */
     public static void setup( RegistryEventHandler handler ) {
         handler.addHandler( Block.class, BLOCKS );
         handler.addHandler( Item.class, ITEMS );
     }
 
+    /**
+     * Registers all colored blocks (blocks that implement {@link IColoredBlock}).
+     */
     @OnlyIn( Dist.CLIENT )
     public static void initBlockColors() {
         for( Block block : BLOCKS ) {
             if( block instanceof IColoredBlock ) {
                 Minecraft.getInstance().getBlockColors().register( ( (IColoredBlock) block )::colorMultiplier, block );
+            }
+        }
+        for( Block block : ITEM_BLOCKS ) {
+            if( block instanceof IColoredBlock ) {
                 Minecraft.getInstance().getItemColors().register( ( (IColoredBlock) block )::colorMultiplier, block );
             }
         }

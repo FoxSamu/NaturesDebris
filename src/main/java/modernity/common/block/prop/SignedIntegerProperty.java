@@ -17,6 +17,9 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * A state property that allows signed integers (negative and positive values)
+ */
 public class SignedIntegerProperty extends Property<Integer> {
     private final ImmutableSet<Integer> allowedValues;
 
@@ -40,6 +43,7 @@ public class SignedIntegerProperty extends Property<Integer> {
         return this.allowedValues;
     }
 
+    @Override
     public boolean equals( Object o ) {
         if( this == o ) {
             return true;
@@ -56,6 +60,14 @@ public class SignedIntegerProperty extends Property<Integer> {
         return 31 * super.computeHashCode() + allowedValues.hashCode();
     }
 
+    /**
+     * Creates a signed integer property
+     * @param name The name
+     * @param min  The minimum value
+     * @param max  The maximum value
+     *
+     * @throws IllegalArgumentException When the minimum value is more than the maximum value
+     */
     public static SignedIntegerProperty create( String name, int min, int max ) {
         return new SignedIntegerProperty( name, min, max );
     }
@@ -72,9 +84,6 @@ public class SignedIntegerProperty extends Property<Integer> {
         }
     }
 
-    /**
-     * Get the name for the given value.
-     */
     @Override
     public String getName( Integer value ) {
         return value < 0 ? "n" + - value : "p" + value;

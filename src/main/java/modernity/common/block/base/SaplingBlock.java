@@ -32,6 +32,9 @@ import net.minecraft.world.World;
 import java.util.Random;
 import java.util.function.Supplier;
 
+/**
+ * Describes a sapling.
+ */
 public class SaplingBlock extends SinglePlantBlock {
     public static final VoxelShape SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 12, 14 );
 
@@ -39,14 +42,14 @@ public class SaplingBlock extends SinglePlantBlock {
 
     private final Supplier<TreeFeature> feature;
 
+    /**
+     * Creates a sapling block.
+     * @param feature The tree feature to generate when this sapling is full grown.
+     */
     public SaplingBlock( Supplier<TreeFeature> feature, Properties properties ) {
         super( properties );
-        initDefaultState();
-        this.feature = feature;
-    }
-
-    private void initDefaultState() {
         setDefaultState( stateContainer.getBaseState().with( AGE, 0 ) );
+        this.feature = feature;
     }
 
     @Override
@@ -60,6 +63,9 @@ public class SaplingBlock extends SinglePlantBlock {
         super.randomTick( state, world, pos, rand );
     }
 
+    /**
+     * Grows the sapling.
+     */
     public void growOlder( BlockState state, IWorld world, BlockPos pos, Random rand ) {
         if( state.get( AGE ) == 5 ) {
             world.removeBlock( pos, false );

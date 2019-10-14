@@ -26,6 +26,9 @@ import net.minecraft.world.World;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+/**
+ * Describes single-block plants that deal damage when entities stand inside this block.
+ */
 @SuppressWarnings( "deprecation" )
 public class DangerousPlantBlock extends SinglePlantBlock {
 
@@ -47,6 +50,9 @@ public class DangerousPlantBlock extends SinglePlantBlock {
         }
     }
 
+    /**
+     * The nettles block.
+     */
     public static class Nettles extends DangerousPlantBlock {
         public static final VoxelShape MINT_SHAPE = MDVoxelShapes.create16( 1, 0, 1, 15, 14, 15 );
 

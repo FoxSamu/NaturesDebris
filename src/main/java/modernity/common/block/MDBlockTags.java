@@ -5,6 +5,9 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 
+/**
+ * Holder class for Modernity block tags
+ */
 public final class MDBlockTags {
     public static final Tag<Block> BLACKWOOD_LOG = tag( "log/blackwood_log" );
     public static final Tag<Block> INVER_LOG = tag( "log/inver_log" );

@@ -29,6 +29,9 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+/**
+ * Describes leaf blocks that decay.
+ */
 public class DecayLeavesBlock extends LeavesBlock {
     public static final int MAX_DIST = 10;
     public static final IntegerProperty DISTANCE = IntegerProperty.create( "distance", 0, MAX_DIST );
@@ -73,6 +76,9 @@ public class DecayLeavesBlock extends LeavesBlock {
         return state;
     }
 
+    /**
+     * Updates the distance of a leaves block
+     */
     private BlockState updateDistance( BlockState state, IWorld world, BlockPos pos ) {
         // Persistent leaves
         if( state.get( DISTANCE ) == 0 ) return state;
@@ -91,6 +97,9 @@ public class DecayLeavesBlock extends LeavesBlock {
         return state.with( DISTANCE, dist );
     }
 
+    /**
+     * Returns the path distance through leaves to a log block
+     */
     private int getDistance( BlockState neighbor ) {
         if( logTag.contains( neighbor.getBlock() ) ) {
             return 0;
@@ -119,6 +128,9 @@ public class DecayLeavesBlock extends LeavesBlock {
         return super.hasFallingLeaf( state, world, pos, rand );
     }
 
+    /**
+     * Blackwood-color leaves
+     */
     public static class ColoredBlackwood extends DecayLeavesBlock implements IColoredBlock {
 
         public ColoredBlackwood( Tag<Block> logTag, Block.Properties properties ) {
@@ -136,6 +148,9 @@ public class DecayLeavesBlock extends LeavesBlock {
         }
     }
 
+    /**
+     * Inver-color leaves
+     */
     public static class ColoredInver extends DecayLeavesBlock implements IColoredBlock {
 
         public ColoredInver( Tag<Block> logTag, Block.Properties properties ) {

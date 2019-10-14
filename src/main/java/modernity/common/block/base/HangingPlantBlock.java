@@ -35,6 +35,9 @@ import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.function.Function;
 
+/**
+ * Describes a plant that hangs on a block.
+ */
 @SuppressWarnings( "deprecation" )
 public class HangingPlantBlock extends Block implements IBlockProvider {
     public static final BooleanProperty BOTTOM = BooleanProperty.create( "bottom" );
@@ -50,17 +53,18 @@ public class HangingPlantBlock extends Block implements IBlockProvider {
         builder.add( BOTTOM, TOP );
     }
 
+    /**
+     * Returns the maximum length this plant can be (longer is not allowed).
+     */
     protected int getMaxLength() {
         return maxLength;
     }
 
+    /**
+     * Sets the maximum length of this plant.
+     */
     public void setMaxLength( int len ) {
         this.maxLength = len;
-    }
-
-    @Override
-    public boolean isSolid( BlockState state ) {
-        return false;
     }
 
     @Override
@@ -70,7 +74,7 @@ public class HangingPlantBlock extends Block implements IBlockProvider {
 
     @Override
     public VoxelShape getCollisionShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx ) {
-        return VoxelShapes.empty();
+        return VoxelShapes.empty(); // No colliding!
     }
 
     @Override
@@ -84,14 +88,24 @@ public class HangingPlantBlock extends Block implements IBlockProvider {
         return state;
     }
 
+    /**
+     * Checks whether this block is the bottom state
+     */
     public boolean isBottom( IBlockReader world, BlockPos pos, BlockState state ) {
         return ! isSelfState( world.getBlockState( pos.down() ) );
     }
 
+    /**
+     * Checks whether this block is the top state
+     */
     public boolean isTop( IBlockReader world, BlockPos pos, BlockState state ) {
         return ! isSelfState( world.getBlockState( pos.up() ) );
     }
 
+    /**
+     * Checks whether this block can remain at a specific position. This checks the maximum length and block
+     * sustainability.
+     */
     public boolean canRemainAt( IBlockReader world, BlockPos pos, BlockState state ) {
         BlockState up = world.getBlockState( pos.up() );
         if( canBlockSustain( up ) ) return true;
@@ -111,18 +125,30 @@ public class HangingPlantBlock extends Block implements IBlockProvider {
         }
     }
 
+    /**
+     * Is the specified block state the same block as this block?
+     */
     public boolean isSelfState( BlockState state ) {
         return state.getBlock() == this;
     }
 
+    /**
+     * Is the specified block sustainable for this plant?
+     */
     public boolean canBlockSustain( BlockState state ) {
         return state.isSolid();
     }
 
+    /**
+     * Checks if we can generate this plant at the specified position.
+     */
     public boolean canGenerateAt( IBlockReader reader, BlockPos pos, BlockState state ) {
         return canBlockSustain( reader.getBlockState( pos.up() ) );
     }
 
+    /**
+     * Destroys this plant.
+     */
     public void destroy( World world, BlockPos pos, BlockState state ) {
         world.removeBlock( pos, false );
         spawnDrops( state, world, pos );
@@ -162,10 +188,22 @@ public class HangingPlantBlock extends Block implements IBlockProvider {
         return provide( world, pos, rand, rng -> rand.nextInt( 8 ) + 1 );
     }
 
+    /**
+     * Blocks this state the generation of this plant?
+     */
     private boolean blocked( BlockState state ) {
         return state.getMaterial().blocksMovement() || state.getMaterial().isLiquid() || isSelfState( state );
     }
 
+    /**
+     * Places this plant at the specified position
+     *
+     * @param world     The world to generate in
+     * @param pos       The position to generate at
+     * @param rand      A random number generator to use
+     * @param heightGen A function that generates a random length for this plant.
+     * @return True if something is generated.
+     */
     public boolean provide( IWorld world, BlockPos pos, Random rand, Function<Random, Integer> heightGen ) {
         if( canGenerateAt( world, pos, world.getBlockState( pos ) ) && ! blocked( world.getBlockState( pos ) ) ) {
             int len = heightGen.apply( rand );
@@ -195,6 +233,9 @@ public class HangingPlantBlock extends Block implements IBlockProvider {
         return false;
     }
 
+    /**
+     * The murina block.
+     */
     public static class ColoredMurina extends HangingPlantBlock implements IColoredBlock {
         public static final VoxelShape MURINA_SHAPE = MDVoxelShapes.create16( 5, 0, 5, 11, 16, 11 );
 

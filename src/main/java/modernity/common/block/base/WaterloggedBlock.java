@@ -24,6 +24,9 @@ import net.minecraft.world.IWorld;
 
 import javax.annotation.Nullable;
 
+/**
+ * A block that can be placed in both vanilla water as modernized water.
+ */
 public class WaterloggedBlock extends Block implements IWaterloggedBlock {
     public static final EnumProperty<EWaterlogType> WATERLOGGED = MDBlockStateProperties.WATERLOGGED;
 

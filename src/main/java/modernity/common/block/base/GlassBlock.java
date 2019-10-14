@@ -19,6 +19,10 @@ import net.minecraft.world.IBlockReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * Describes a glass block. This is a block that culls sides only when the adjacent block is the same block as this
+ * block, and with a {@link BlockRenderLayer#CUTOUT}.
+ */
 public class GlassBlock extends Block implements IFluidOverlayBlock {
     public GlassBlock( Properties properties ) {
         super( properties );

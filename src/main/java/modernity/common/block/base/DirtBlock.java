@@ -28,7 +28,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+/**
+ * Describes any variant of dirt blocks
+ */
 public class DirtBlock extends DigableBlock {
+    // Used to get nextStepDistance on entities to calculate when humus particles are pushed...
     private static final FieldAccessor<Entity, Float> nextStepDistanceField = new FieldAccessor<>( Entity.class, "field_70150_b" );
 
     public static final Type TYPE_DIRT = new Type( false, false, BlockRenderLayer.SOLID );
@@ -36,6 +40,7 @@ public class DirtBlock extends DigableBlock {
     public static final Type TYPE_HUMUS = new Type( false, true, false, BlockRenderLayer.SOLID );
     public static final Type TYPE_PODZOL = new Type( false, true, false, BlockRenderLayer.SOLID );
 
+    // TODO: only use this property on grass blocks, create a custom subclass
     public static final BooleanProperty SNOWY = BooleanProperty.create( "snowy" );
 
     public final Type type;
@@ -52,11 +57,17 @@ public class DirtBlock extends DigableBlock {
         builder.add( SNOWY );
     }
 
+    /**
+     * Checks if this block can remain at a specific position (whether it has enough light to stay)
+     */
     private static boolean canRemainAt( IEnviromentBlockReader world, BlockPos pos ) {
         BlockPos up = pos.up();
         return world.getLightValue( up ) >= 4 || world.getBlockState( up ).getOpacity( world, up ) < world.getMaxLightLevel();
     }
 
+    /**
+     * Checks if this block can spread to a specific position (whether it has enough light to stay)
+     */
     private static boolean canGrowAt( IEnviromentBlockReader world, BlockPos pos ) {
         BlockPos up = pos.up();
         return world.getLightValue( up ) >= 4 && world.getBlockState( up ).getOpacity( world, up ) < world.getMaxLightLevel() && ! world.getFluidState( up ).isTagged( FluidTags.WATER );
@@ -88,8 +99,10 @@ public class DirtBlock extends DigableBlock {
             if( ! world.isAreaLoaded( pos, 3 ) )
                 return;
             if( ! canRemainAt( world, pos ) && type.canDecay ) {
+                // Do decaying
                 world.setBlockState( pos, MDBlocks.DARK_DIRT.getDefaultState() );
             } else if( type.canSpread ) {
+                // Do spreading
                 if( world.getLight( pos.up() ) >= 9 ) {
                     for( int i = 0; i < 4; ++ i ) {
                         BlockPos growPos = pos.add( random.nextInt( 3 ) - 1, random.nextInt( 5 ) - 3, random.nextInt( 3 ) - 1 );
@@ -169,9 +182,12 @@ public class DirtBlock extends DigableBlock {
     @Override
     @SuppressWarnings( "deprecation" )
     public boolean isSolid( BlockState state ) {
-        return true; // Make sure we're solid to enable face culling on grass
+        return true; // Make sure we're solid to enable face culling on grass (which has no solid block layer)
     }
 
+    /**
+     * A type of dirt
+     */
     public static final class Type {
         public final boolean canSpread;
         public final boolean canDecay;
@@ -190,6 +206,10 @@ public class DirtBlock extends DigableBlock {
         }
     }
 
+    /**
+     * The grass-colored block
+     */
+    // TODO: Move snowy property to this class
     public static class ColoredGrass extends DirtBlock implements IColoredBlock {
         protected static final int GRASS_ITEM_COLOR = ColorUtil.rgb( 0, 109, 38 );
 

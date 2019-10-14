@@ -22,6 +22,9 @@ import net.minecraft.world.IWorld;
 
 import javax.annotation.Nullable;
 
+/**
+ * Describes a fence block.
+ */
 @SuppressWarnings( "deprecation" )
 public class FenceBlock extends WaterloggedBlock {
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
@@ -130,6 +133,9 @@ public class FenceBlock extends WaterloggedBlock {
         return ! cannotAttach( block ) && solidSide || fence || gate;
     }
 
+    /**
+     * Can we connect to the block at the specified position block?
+     */
     private boolean canFenceConnectTo( IBlockReader world, BlockPos pos, Direction facing ) {
         BlockPos off = pos.offset( facing );
         BlockState other = world.getBlockState( off );
@@ -142,10 +148,9 @@ public class FenceBlock extends WaterloggedBlock {
         builder.add( NORTH, EAST, SOUTH, WEST );
     }
 
-//    public static boolean isExcepBlockForAttachWithPiston( Block block ) {
-//        return Block.isExceptBlockForAttachWithPiston( block ) || block == Blocks.BARRIER || block == Blocks.MELON || block == Blocks.PUMPKIN || block == Blocks.CARVED_PUMPKIN || block == Blocks.JACK_O_LANTERN || block == Blocks.FROSTED_ICE || block == Blocks.TNT;
-//    }
-
+    /**
+     * Is the given block a fence gate?
+     */
     private boolean isFenceGate( Block block ) {
         return block instanceof modernity.common.block.base.FenceGateBlock || block instanceof FenceGateBlock;
     }

@@ -22,6 +22,10 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
+/**
+ * Describes a sticky block, which is a block that heavily limits the movement of entities and prevents them from
+ * jumping.
+ */
 public class StickyBlock extends Block {
     public static final VoxelShape COLLISION_SHAPE = makeCuboidShape( 0, 0, 0, 16, 15, 16 );
 
@@ -31,7 +35,7 @@ public class StickyBlock extends Block {
 
     @Override
     public void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity ) {
-        if( ! entity.isInWater() ) {
+        if( ! entity.isInWater() ) { // Motion multiplier already limits jumping.
             entity.setMotionMultiplier( state, new Vec3d( 0.25, 0.05, 0.25 ) );
         }
     }
@@ -57,6 +61,9 @@ public class StickyBlock extends Block {
         return true;
     }
 
+    /**
+     * A digable variant of {@link StickyBlock}.
+     */
     public static class Digable extends StickyBlock {
 
         public Digable( Properties properties ) {

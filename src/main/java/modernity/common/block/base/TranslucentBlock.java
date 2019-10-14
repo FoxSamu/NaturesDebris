@@ -21,6 +21,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
+/**
+ * Describes a translucent block. A translucent block only culls faces of equivalent blocks.
+ */
 public class TranslucentBlock extends Block {
 
     public TranslucentBlock( Block.Properties properties ) {
@@ -37,6 +40,9 @@ public class TranslucentBlock extends Block {
         return adjacentBlockState.getBlock() == this || super.isSideInvisible( state, adjacentBlockState, side );
     }
 
+    /**
+     * A translucent block that drops salt particles.
+     */
     public static class Salt extends TranslucentBlock {
 
         public Salt( Block.Properties properties ) {

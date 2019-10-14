@@ -28,15 +28,13 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+/**
+ * Describes a single plant block. This is a one-block plant that usually grows on the floor.
+ */
 @SuppressWarnings( "deprecation" )
 public class SinglePlantBlock extends Block implements IBlockProvider {
     public SinglePlantBlock( Properties properties ) {
         super( properties );
-    }
-
-    @Override
-    public boolean isSolid( BlockState state ) {
-        return false;
     }
 
     @Override
@@ -49,18 +47,30 @@ public class SinglePlantBlock extends Block implements IBlockProvider {
         return VoxelShapes.empty();
     }
 
+    /**
+     * Checks whether this plant can remain at the specified position in the specified world.
+     */
     public boolean canRemainAt( IBlockReader world, BlockPos pos, BlockState state ) {
         return canBlockSustain( world.getBlockState( pos.down() ) );
     }
 
+    /**
+     * Checks whether the specified block state can sustain this plant.
+     */
     public boolean canBlockSustain( BlockState state ) {
         return state.isSolid();
     }
 
+    /**
+     * Checks whether the specified block at specified location can sustain this plant.
+     */
     public boolean canBlockSustain( IBlockReader reader, BlockPos pos, BlockState state ) {
         return canBlockSustain( state );
     }
 
+    /**
+     * Destroys this plant.
+     */
     public void destroy( World world, BlockPos pos, BlockState state ) {
         world.removeBlock( pos, false );
         spawnDrops( state, world, pos );
@@ -113,6 +123,9 @@ public class SinglePlantBlock extends Block implements IBlockProvider {
         return false;
     }
 
+    /**
+     * Describes a melion block.
+     */
     public static class Melion extends SinglePlantBlock {
         public static final VoxelShape MELION_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 12, 14 );
 
@@ -137,6 +150,9 @@ public class SinglePlantBlock extends Block implements IBlockProvider {
         }
     }
 
+    /**
+     * Describes a millium block.
+     */
     public static class Millium extends SinglePlantBlock {
         public static final VoxelShape MILLIUM_SHAPE = MDVoxelShapes.create16( 1, 0, 1, 15, 8, 15 );
 
@@ -161,6 +177,9 @@ public class SinglePlantBlock extends Block implements IBlockProvider {
         }
     }
 
+    /**
+     * Describes a mint plant block.
+     */
     public static class Mint extends SinglePlantBlock {
         public static final VoxelShape MINT_SHAPE = MDVoxelShapes.create16( 1, 0, 1, 15, 9, 15 );
 
@@ -185,6 +204,9 @@ public class SinglePlantBlock extends Block implements IBlockProvider {
         }
     }
 
+    /**
+     * Describes a redwold block.
+     */
     public static class Redwold extends SinglePlantBlock {
         public static final VoxelShape REDWOLD_SHAPE = MDVoxelShapes.create16( 0, 0, 0, 16, 1, 16 );
 

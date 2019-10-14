@@ -38,6 +38,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+/**
+ * Describes the salt crystal block.
+ */
 @SuppressWarnings( "deprecation" )
 public class SaltCrystalBlock extends SinglePlantBlock implements IModernizedWaterloggedBlock {
     public static final IntegerProperty AGE = IntegerProperty.create( "age", 0, 11 );
@@ -76,6 +79,18 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IModernizedWat
     // o o o o o
     //   o o o
 
+    /**
+     * All relative positions a salt crystal can grow to.
+     * <p>
+     * Salt crystal grow area (s = source):
+     * <pre>
+     *   o o o
+     * o o o o o
+     * o o s o o
+     * o o o o o
+     *   o o o
+     * </pre>
+     */
     private static final BlockPos[] GROW_AREA = {
         new BlockPos( - 1, 0, 0 ),
         new BlockPos( - 1, 0, 1 ),
@@ -113,6 +128,9 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IModernizedWat
         builder.add( AGE, NATURAL, WATERLOGGED );
     }
 
+    /**
+     * Is the specified block state a salt source (is it in the 'modernity:salt_source' tab)
+     */
     public boolean isSaltSource( BlockState state ) {
         return state.isIn( MDBlockTags.SALT_SOURCE );
     }
@@ -207,6 +225,9 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IModernizedWat
         }
     }
 
+    /**
+     * Calculate the chance that a salt crystal grows (that it increases its age).
+     */
     public int calculateGrowWeight( World world, BlockPos pos, BlockPos.MutableBlockPos mpos ) {
         int chance = 0;
         // Use modernized water as salt source
@@ -297,6 +318,9 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IModernizedWat
         return getDefaultState().with( WATERLOGGED, EWaterlogType.getType( fluid ) ).with( NATURAL, false );
     }
 
+    /**
+     * Returns a random state for world generation.
+     */
     public BlockState getGenerationStage( Random rand, IFluidState state ) {
         int randAge = rand.nextInt( 6 );
         if( rand.nextBoolean() ) {

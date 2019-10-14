@@ -19,15 +19,14 @@ import net.minecraft.util.Direction;
 
 import javax.annotation.Nullable;
 
+/**
+ * Describes a block that can be oriented horizontally.
+ */
 public class HorizontalFacingBlock extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public HorizontalFacingBlock( Properties properties ) {
         super( properties );
-        init();
-    }
-
-    private void init() {
         setDefaultState( stateContainer.getBaseState().with( FACING, Direction.NORTH ) );
     }
 

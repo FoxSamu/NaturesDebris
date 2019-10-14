@@ -19,11 +19,14 @@ import net.minecraft.util.Direction;
 
 import javax.annotation.Nullable;
 
-public class LogBlock extends Block {
+/**
+ * Describes a block that can be oriented along x, y and z axes, but does not have a specific facing.
+ */
+public class AxisBlock extends Block {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
 
 
-    public LogBlock( Properties properties ) {
+    public AxisBlock( Properties properties ) {
         super( properties );
 
         setDefaultState( stateContainer.getBaseState().with( AXIS, Direction.Axis.Y ) );

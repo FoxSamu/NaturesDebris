@@ -33,6 +33,9 @@ import net.minecraft.world.IWorld;
 
 import javax.annotation.Nullable;
 
+/**
+ * A slab block that allows vertical placing (using shift).
+ */
 @SuppressWarnings( "deprecation" )
 public class VerticalSlabBlock extends WaterloggedBlock {
     public static final EnumProperty<Type> TYPE = EnumProperty.create( "type", Type.class );
@@ -119,10 +122,6 @@ public class VerticalSlabBlock extends WaterloggedBlock {
         return state.get( TYPE ).shape;
     }
 
-    public boolean isFullCube( BlockState state ) {
-        return state.get( TYPE ) == Type.DOUBLE;
-    }
-
     @Override
     public boolean isReplaceable( BlockState state, BlockItemUseContext ctx ) {
         ItemStack stack = ctx.getItem();
@@ -186,13 +185,16 @@ public class VerticalSlabBlock extends WaterloggedBlock {
         return state.with( TYPE, Type.forFacing( rotation.rotate( state.get( TYPE ).facing ) ) );
     }
 
-    // Don't ask me what this means, but vanilla slab block has this method overridden too...
-    // It seems to affect lighting...
+    // RGSW: Don't ask me what this means, but vanilla slab block has this method overridden too...
+    //       It seems to affect lighting...
     @Override
     public boolean func_220074_n( BlockState state ) {
         return state.get( TYPE ).ordinal() < 2;
     }
 
+    /**
+     * The possible states of a vertical-placable slab block.
+     */
     public enum Type implements IStringSerializable {
         DOWN( "down", MDVoxelShapes.create16( 0, 0, 0, 16, 8, 16 ), Direction.DOWN ),
         UP( "up", MDVoxelShapes.create16( 0, 8, 0, 16, 16, 16 ), Direction.UP ),
@@ -217,14 +219,23 @@ public class VerticalSlabBlock extends WaterloggedBlock {
             return name;
         }
 
+        /**
+         * Returns the shape of such slabs.
+         */
         public VoxelShape getShape() {
             return shape;
         }
 
+        /**
+         * Returns the facing of this slab, or null when {@link #DOUBLE}.
+         */
         public Direction getFacing() {
             return facing;
         }
 
+        /**
+         * Returns the type that belongs to the specified facing. Returns {@link #DOUBLE} when facing is null.
+         */
         public static Type forFacing( Direction facing ) {
             if( facing == null ) {
                 return DOUBLE;

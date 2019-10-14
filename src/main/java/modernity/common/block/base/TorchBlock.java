@@ -35,6 +35,9 @@ import java.util.Random;
 
 import static net.minecraft.util.Direction.*;
 
+/**
+ * Describes a torch block. Unlike vanilla, this torch block describes both standing and hanging torches.
+ */
 @SuppressWarnings( "deprecation" )
 public class TorchBlock extends WaterloggedBlock {
     private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap( ImmutableMap.of(
@@ -61,6 +64,12 @@ public class TorchBlock extends WaterloggedBlock {
         builder.add( FACING );
     }
 
+    /**
+     * Checks if a torch can hang on the specified facing in the specified context.
+     * @param world  The world where this torch hangs in
+     * @param pos    The position of the torch
+     * @param facing The facing of the torch
+     */
     protected boolean canRemainForFacing( IWorldReader world, BlockPos pos, Direction facing ) {
         if( facing == UP ) return false;
         BlockPos offPos = pos.offset( facing );
@@ -132,6 +141,14 @@ public class TorchBlock extends WaterloggedBlock {
         return VoxelShapes.empty();
     }
 
+    /**
+     * Returns the position of the particles (flames, smoke) for a specific torch facing.
+     * @param pos    The position of the torch
+     * @param facing The facing of the torch.
+     * @return The position of the torch's particles.
+     *
+     * @throws UnsupportedOperationException When facing is {@link Direction#UP}.
+     */
     public static Vec3d getParticlePos( BlockPos pos, Direction facing ) {
         double x = pos.getX() + .5;
         double y = pos.getY() + .7;

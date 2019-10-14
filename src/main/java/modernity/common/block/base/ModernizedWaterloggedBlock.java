@@ -25,6 +25,9 @@ import net.minecraft.world.IWorld;
 
 import javax.annotation.Nullable;
 
+/**
+ * Describes a block that can be placed inside modernized water.
+ */
 public class ModernizedWaterloggedBlock extends Block implements IModernizedWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 

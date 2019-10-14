@@ -23,6 +23,9 @@ import java.util.Random;
 
 import static modernity.api.util.EWaterlogType.*;
 
+/**
+ * Describes a torch that can be extinghuished by placing it in water...
+ */
 @SuppressWarnings( "deprecation" )
 public class ExtinguishableTorchBlock extends TorchBlock {
 

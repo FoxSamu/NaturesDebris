@@ -29,6 +29,10 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+/**
+ * Describes a leaves block that decays, allowing haning leaves below it (these have a special state which ignores
+ * distance).
+ */
 public class HangLeavesBlock extends LeavesBlock {
     public static final int MAX_DIST = 10;
     public static final SignedIntegerProperty DISTANCE = SignedIntegerProperty.create( "distance", - 1, MAX_DIST );
@@ -134,6 +138,9 @@ public class HangLeavesBlock extends LeavesBlock {
         return super.hasFallingLeaf( state, world, pos, rand );
     }
 
+    /**
+     * Describes blackwood-colored leaves.
+     */
     public static class ColoredBlackwood extends HangLeavesBlock implements IColoredBlock {
 
         public ColoredBlackwood( Tag<Block> logTag, Block.Properties properties ) {

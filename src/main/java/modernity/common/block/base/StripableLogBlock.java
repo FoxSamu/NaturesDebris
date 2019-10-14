@@ -22,10 +22,13 @@ import net.minecraft.world.World;
 
 import java.util.function.Supplier;
 
-public class StripableLogBlock extends LogBlock {
-    private final Supplier<LogBlock> result;
+/**
+ * Describes an orientable block that can be stripped with an axe.
+ */
+public class StripableLogBlock extends AxisBlock {
+    private final Supplier<AxisBlock> result;
 
-    public StripableLogBlock( Supplier<LogBlock> result, Block.Properties properties ) {
+    public StripableLogBlock( Supplier<AxisBlock> result, Block.Properties properties ) {
         super( properties );
         this.result = result;
     }

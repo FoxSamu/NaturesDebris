@@ -41,6 +41,9 @@ import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.function.Function;
 
+/**
+ * Describes a tall plant that can grow in and out water.
+ */
 @SuppressWarnings( "deprecation" )
 public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock implements IBlockProvider {
     public static final BooleanProperty BOTTOM = BooleanProperty.create( "bottom" );
@@ -57,10 +60,16 @@ public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock imple
         builder.add( BOTTOM, TOP );
     }
 
+    /**
+     * Returns the maximum height of this plant (it can't be higher)
+     */
     protected int getMaxHeight() {
         return maxHeight;
     }
 
+    /**
+     * Sets the maximum height of this plant
+     */
     public void setMaxHeight( int maxHeight ) {
         this.maxHeight = maxHeight;
     }
@@ -92,15 +101,24 @@ public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock imple
         return state;
     }
 
+    /**
+     * Checks if this is the lowest part of the plant
+     */
     public boolean isBottom( IBlockReader world, BlockPos pos, BlockState state ) {
         return ! isSelfState( world.getBlockState( pos.down() ) );
     }
 
+    /**
+     * Checks if this is the highest part of the plant.
+     */
     public boolean isTop( IBlockReader world, BlockPos pos, BlockState state ) {
         return ! isSelfState( world.getBlockState( pos.up() ) );
     }
 
 
+    /**
+     * Checks if the plant can remain in the specific context.
+     */
     public boolean canRemainAt( IBlockReader world, BlockPos pos, BlockState state ) {
         BlockState down = world.getBlockState( pos.down() );
         if( canBlockSustain( world, pos.down(), down ) ) return true;
@@ -120,22 +138,37 @@ public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock imple
         }
     }
 
+    /**
+     * Is the specified block state this block?
+     */
     public boolean isSelfState( BlockState state ) {
         return state.getBlock() == this;
     }
 
+    /**
+     * Checks if the specified block state can sustain this plant.
+     */
     public boolean canBlockSustain( BlockState state ) {
         return state.isSolid();
     }
 
+    /**
+     * Checks if the block state in the specified context can sustain this plant.
+     */
     public boolean canBlockSustain( IBlockReader world, BlockPos pos, BlockState state ) {
         return canBlockSustain( state );
     }
 
+    /**
+     * Checks if this plant can generate at the specified location.
+     */
     public boolean canGenerateAt( IBlockReader reader, BlockPos pos, BlockState state ) {
         return canBlockSustain( reader, pos.down(), reader.getBlockState( pos.down() ) );
     }
 
+    /**
+     * Destroys this plant, spawning its drops
+     */
     public void destroy( World world, BlockPos pos, BlockState state ) {
         world.removeBlock( pos, false );
         spawnDrops( state, world, pos );
@@ -182,6 +215,14 @@ public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock imple
         return state.getMaterial().blocksMovement() || state.getMaterial().isLiquid() && state.getFluidState().getFluid() != MDFluids.MODERNIZED_WATER || isSelfState( state );
     }
 
+    /**
+     * Generates this plant at the specified position
+     * @param world     The world to generate in
+     * @param pos       The position to generate at
+     * @param rand      A random number generator
+     * @param heightGen A function that generates a random height
+     * @return True if something was generated
+     */
     public boolean provide( IWorld world, BlockPos pos, Random rand, Function<Random, Integer> heightGen ) {
         if( canGenerateAt( world, pos, world.getBlockState( pos ) ) && ! blocked( world.getBlockState( pos ) ) ) {
             int height = heightGen.apply( rand );
@@ -210,6 +251,9 @@ public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock imple
         return false;
     }
 
+    /**
+     * Grass-colored tall waterlogged plant.
+     */
     public static class ColoredGrass extends TallWaterloggingPlantBlock implements IColoredBlock {
         public static final VoxelShape GRASS_END_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 10, 14 );
         public static final VoxelShape GRASS_MIDDLE_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 16, 14 );
@@ -248,6 +292,9 @@ public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock imple
         }
     }
 
+    /**
+     * Describes the reeds blocks.
+     */
     public static class Reeds extends TallWaterloggingPlantBlock {
         public static final VoxelShape REEDS_END_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 14, 14 );
         public static final VoxelShape REEDS_MIDDLE_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 16, 14 );

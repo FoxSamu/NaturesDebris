@@ -12,6 +12,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 
+/**
+ * Handles waterlogging in Modernized Water only
+ */
 public interface IModernizedWaterloggedBlock extends IBucketPickupHandler, ILiquidContainer {
     @Override
     default boolean canContainFluid( IBlockReader world, BlockPos pos, BlockState state, Fluid fluid ) {

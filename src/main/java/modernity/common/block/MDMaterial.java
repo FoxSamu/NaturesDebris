@@ -4,6 +4,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.material.PushReaction;
 
+/**
+ * Holder class for Modernity block materials
+ */
 public final class MDMaterial {
     public static final Material ASH = new Builder( MaterialColor.BLACK_TERRACOTTA ).build();
     public static final Material ASPHALT = new Builder( MaterialColor.BLACK ).requiresTool().build();

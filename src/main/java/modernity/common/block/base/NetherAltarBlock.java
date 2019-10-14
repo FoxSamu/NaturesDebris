@@ -27,6 +27,9 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
+/**
+ * Describes the Nether Altar block.
+ */
 public class NetherAltarBlock extends Block {
     private static final VoxelShape ALTAR_SHAPE;
     private static final VoxelShape SIMPLE_SHAPE = MDVoxelShapes.create16( 0, 0, 0, 16, 12, 16 );

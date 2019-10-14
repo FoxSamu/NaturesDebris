@@ -13,6 +13,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraftforge.common.ToolType;
 
+/**
+ * Describes a falling block that can be efficiently dug by a shovel
+ */
 public class DigableFallBlock extends FallBlock {
 
     public DigableFallBlock( int dustColor, Block.Properties properties ) {

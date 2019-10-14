@@ -34,6 +34,9 @@ import net.minecraftforge.common.IShearable;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+/**
+ * Describes a non-decayable leaves block
+ */
 @SuppressWarnings( "deprecation" )
 public class LeavesBlock extends Block implements IShearable {
     public LeavesBlock( Properties properties ) {
@@ -82,14 +85,24 @@ public class LeavesBlock extends Block implements IShearable {
         }
     }
 
+    /**
+     * Return true randomly when a leaf particle needs to be dropped. Decaying leaves override this to drop more leaves
+     * in the need-to-decay state.
+     */
     protected boolean hasFallingLeaf( BlockState state, World world, BlockPos pos, Random rand ) {
         return rand.nextInt( 256 ) == 1;
     }
 
+    /**
+     * Do these leaves generate humus.
+     */
     protected boolean generatesHumus( BlockState state ) {
         return true;
     }
 
+    /**
+     * Generates humus.
+     */
     protected void generateHumus( BlockState state, World world, BlockPos pos ) {
         MovingBlockPos mpos = new MovingBlockPos( pos.down() );
         for( int i = 0; i < 17; i++ ) {
@@ -130,6 +143,9 @@ public class LeavesBlock extends Block implements IShearable {
         return false;
     }
 
+    /**
+     * Blackwood-colored leaves.
+     */
     public static class ColoredBlackwood extends LeavesBlock implements IColoredBlock {
 
         public ColoredBlackwood( String id, Properties properties ) {

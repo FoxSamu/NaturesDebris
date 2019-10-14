@@ -34,6 +34,9 @@ import net.minecraft.world.World;
 
 import static net.minecraft.util.Direction.*;
 
+/**
+ * Describes a fence gate block.
+ */
 @SuppressWarnings( "deprecation" )
 public class FenceGateBlock extends WaterloggedBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -121,6 +124,9 @@ public class FenceGateBlock extends WaterloggedBlock {
                                 .with( WATERLOGGED, EWaterlogType.getType( world.getFluidState( pos ) ) );
     }
 
+    /**
+     * Is the specified block a wall block?
+     */
     private boolean isWall( BlockState state ) {
         return state.getBlock() instanceof WallBlock || state.getBlock() instanceof WallBlock;
     }

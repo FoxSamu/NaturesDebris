@@ -33,6 +33,9 @@ import net.minecraft.world.IWorld;
 import javax.annotation.Nullable;
 import java.util.stream.IntStream;
 
+/**
+ * Describes a stairs block. This is basically vanilla's default behaviour but with a twist.
+ */
 @SuppressWarnings( "deprecation" )
 public class StairsBlock extends WaterloggedBlock {
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
@@ -64,6 +67,9 @@ public class StairsBlock extends WaterloggedBlock {
 
     private final boolean isStep;
 
+    /**
+     * @param isStep Whether this is a step instead of full stairs
+     */
     public StairsBlock( boolean isStep, Properties properties ) {
         super( properties );
         this.isStep = isStep;
@@ -102,10 +108,6 @@ public class StairsBlock extends WaterloggedBlock {
         return false;
     }
 
-    public boolean isFullCube( BlockState state ) {
-        return false;
-    }
-
     @Override
     public BlockState updatePostPlacement( BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos ) {
         state = super.updatePostPlacement( state, facing, facingState, world, currentPos, facingPos );
@@ -114,10 +116,16 @@ public class StairsBlock extends WaterloggedBlock {
                : state;
     }
 
+    /**
+     * Checks whether the specified block state is a matching stairs block.
+     */
     public boolean isBlockStairs( BlockState state ) {
         return state.getBlock() instanceof StairsBlock && ( (StairsBlock) state.getBlock() ).isStep == isStep;
     }
 
+    /**
+     * Computes the stairs shape in the specified context.
+     */
     private StairsShape computeStairsShape( BlockState state, IBlockReader world, BlockPos pos ) {
         Direction facing = state.get( FACING );
         BlockState frontState = world.getBlockState( pos.offset( facing ) );
@@ -145,6 +153,9 @@ public class StairsBlock extends WaterloggedBlock {
         return StairsShape.STRAIGHT;
     }
 
+    /**
+     * Checks if this block can <b>not</b> connect to an adjacent block.
+     */
     private boolean isDifferentStairs( BlockState state, IBlockReader world, BlockPos pos, Direction face ) {
         BlockState offState = world.getBlockState( pos.offset( face ) );
         return ! isBlockStairs( offState ) || offState.get( FACING ) != state.get( FACING ) || offState.get( HALF ) != state.get( HALF );
@@ -221,6 +232,9 @@ public class StairsBlock extends WaterloggedBlock {
         return shape;
     }
 
+    /**
+     * Returns the index in the voxel shape array for a specific state.
+     */
     private static int getConnIndex( BlockState state ) {
         return state.get( SHAPE ).ordinal() * 4 + state.get( FACING ).getHorizontalIndex();
     }

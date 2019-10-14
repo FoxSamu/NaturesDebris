@@ -28,6 +28,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
+/**
+ * Describes a falling block. This is basically vanilla's falling block but with a few tweaks.
+ */
 @SuppressWarnings( "deprecation" )
 public class FallBlock extends Block {
     private final int dustColor;
@@ -55,6 +58,9 @@ public class FallBlock extends Block {
         }
     }
 
+    /**
+     * Check if we can fall.
+     */
     private void checkFallable( World world, BlockPos pos ) {
         if( world.isAirBlock( pos.down() ) || canFallThrough( world.getBlockState( pos.down() ) ) && pos.getY() >= 0 ) {
             if( ! world.isRemote ) {
@@ -82,12 +88,21 @@ public class FallBlock extends Block {
         return state.isAir() || block == Blocks.FIRE || material.isLiquid() || material.isReplaceable();
     }
 
-    protected void onStartFalling( EntityFallBlock fallingEntity ) {
+    /**
+     * Called when the block starts falling
+     */
+    public void onStartFalling( EntityFallBlock fallingEntity ) {
     }
 
+    /**
+     * Called when the block lands
+     */
     public void onEndFalling( World world, BlockPos pos, BlockState fallingState, BlockState hitState ) {
     }
 
+    /**
+     * Called when the block is broken by any other block (e.g. a torch)
+     */
     public void onBroken( World world, BlockPos pos ) {
     }
 
@@ -106,14 +121,23 @@ public class FallBlock extends Block {
 
     }
 
+    /**
+     * Returns the gravity scale of this falling block.
+     */
     public double gravityScale() {
         return 1;
     }
 
+    /**
+     * Returns a fluid tag this block floats in, or null if it falls through all fluids.
+     */
     public Tag<Fluid> floatIn() {
         return null;
     }
 
+    /**
+     * Returns the dust color of this falling block.
+     */
     @OnlyIn( Dist.CLIENT )
     public int getDustColor( BlockState state ) {
         return dustColor;

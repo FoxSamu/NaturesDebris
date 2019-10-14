@@ -32,6 +32,9 @@ import net.minecraft.world.IWorld;
 
 import javax.annotation.Nullable;
 
+/**
+ * A block that prevents entities from jumping over, looking like a small wall.
+ */
 public class WallBlock extends WaterloggedBlock {
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
@@ -127,6 +130,9 @@ public class WallBlock extends WaterloggedBlock {
         return getDefaultState().with( UP, up || doesBlockCausePole( world, pos.up(), world.getBlockState( pos.up() ) ) ).with( NORTH, north ).with( EAST, east ).with( SOUTH, south ).with( WEST, west ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
     }
 
+    /**
+     * Checks whether an block causes a pole on the wall below.
+     */
     public boolean doesBlockCausePole( IWorld world, BlockPos pos, BlockState state ) {
         return ! state.isAir( world, pos );
     }
@@ -137,6 +143,9 @@ public class WallBlock extends WaterloggedBlock {
         return ! cannotAttach( block ) && solidSide || wallOrFenceGate;
     }
 
+    /**
+     * Can this wall connec to the specified block?
+     */
     private boolean canWallConnectTo( IBlockReader world, BlockPos pos, Direction facing ) {
         BlockPos off = pos.offset( facing );
         BlockState other = world.getBlockState( off );
@@ -149,10 +158,9 @@ public class WallBlock extends WaterloggedBlock {
         builder.add( NORTH, EAST, SOUTH, WEST, UP );
     }
 
-    public static boolean isExcepBlockForAttachWithPiston( Block block ) {
-        return block instanceof LeavesBlock || block == Blocks.BARRIER || block == Blocks.CARVED_PUMPKIN || block == Blocks.JACK_O_LANTERN || block == Blocks.MELON || block == Blocks.PUMPKIN;
-    }
-
+    /**
+     * Special check for fence gate to match both modernity and vanilla fence gates.
+     */
     private boolean isFenceGate( Block block ) {
         return block instanceof FenceGateBlock || block instanceof net.minecraft.block.FenceGateBlock;
     }

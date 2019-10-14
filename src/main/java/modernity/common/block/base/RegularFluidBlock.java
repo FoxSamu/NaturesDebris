@@ -33,6 +33,9 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Describes a fluid wrapper block that allows the fluid being gaseous (inverse gravity) and custom flow quanta...
+ */
 @SuppressWarnings( "deprecation" )
 public class RegularFluidBlock extends Block implements IBucketPickupHandler {
 
@@ -71,6 +74,19 @@ public class RegularFluidBlock extends Block implements IBucketPickupHandler {
         setDefaultState( fluidStateContainer.getBaseState().with( level, 0 ) );
     }
 
+    /**
+     * @deprecated Don't use, use {@link #fillFluidStateContainer} instead. This will have no
+     *     effect as the complete state container will be overridden...
+     */
+    @Override
+    @Deprecated
+    protected void fillStateContainer( StateContainer.Builder<Block, BlockState> builder ) {
+        super.fillStateContainer( builder );
+    }
+
+    /**
+     * Override this to fill the state container, don't override {@link #fillStateContainer}.
+     */
     protected void fillFluidStateContainer( StateContainer.Builder<Block, BlockState> container ) {
         container.add( level );
     }
@@ -106,19 +122,6 @@ public class RegularFluidBlock extends Block implements IBucketPickupHandler {
     @Override
     public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx ) {
         return VoxelShapes.empty();
-//        // Get or compute state
-//        boolean gas = fluid.getFluid() instanceof IGaseousFluid;
-//        int fall = gas ? - 1 : 1;
-//        IFluidState fluidState = world.getFluidState( pos.up( fall ) );
-//        return fluidState.getFluid().isEquivalentTo( this.fluid ) ? VoxelShapes.fullCube() : this.stateToShapeCache.computeIfAbsent( state, s -> {
-//            // State not cached, compute...
-//            IFluidState fluid = s.getFluidState();
-//            if( gas ) {
-//                return VoxelShapes.create( 0, 1 - fluid.func_223408_f(), 0, 1, 1, 1 );
-//            } else {
-//                return VoxelShapes.create( 0, 0, 0, 1, (double) fluid.func_223408_f(), 1 );
-//            }
-//        } );
     }
 
     @Override
@@ -154,6 +157,9 @@ public class RegularFluidBlock extends Block implements IBucketPickupHandler {
         }
     }
 
+    /**
+     * Do reactions with neighbors. Usual implementations reference the wrapping fluid directly.
+     */
     public boolean reactWithNeighbors( World world, BlockPos pos, BlockState state ) {
         return this.fluid.reactWithNeighbors( world, pos, state );
     }

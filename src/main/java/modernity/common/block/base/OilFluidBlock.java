@@ -20,6 +20,9 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+/**
+ * Describes the oil fluid block wrapper, which adds the burning ability.
+ */
 public class OilFluidBlock extends RegularFluidBlock {
 
     public static final BooleanProperty BURNING = OilFluid.BURNING;

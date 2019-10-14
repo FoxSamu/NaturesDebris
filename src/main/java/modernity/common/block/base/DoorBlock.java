@@ -36,6 +36,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
+/**
+ * Describes a door block. This is vanilla's door implementation with a few tweaks.
+ */
 @SuppressWarnings( "deprecation" )
 public class DoorBlock extends Block {
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
@@ -131,10 +134,16 @@ public class DoorBlock extends Block {
         }
     }
 
+    /**
+     * Gets the close sound event
+     */
     private int getCloseSound() {
         return this.material == Material.IRON ? Events.IRON_DOOR_CLOSE : Events.WOODEN_DOOR_CLOSE;
     }
 
+    /**
+     * Gets the opening sound event
+     */
     private int getOpenSound() {
         return this.material == Material.IRON ? Events.IRON_DOOR_OPEN : Events.WOODEN_DOOR_OPEN;
     }
@@ -157,14 +166,14 @@ public class DoorBlock extends Block {
         }
     }
 
-    /**
-     * Called by ItemBlocks after a block is set in the world, to allow post-place logic
-     */
     @Override
     public void onBlockPlacedBy( World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack ) {
         world.setBlockState( pos.up(), state.with( HALF, DoubleBlockHalf.UPPER ), 3 );
     }
 
+    /**
+     * Computes the hinge side in a specific context
+     */
     private DoorHingeSide getHingeSide( BlockItemUseContext ctx ) {
         IBlockReader world = ctx.getWorld();
         BlockPos pos = ctx.getPos();
@@ -230,6 +239,9 @@ public class DoorBlock extends Block {
         }
     }
 
+    /**
+     * Toggles the door
+     */
     public void toggleDoor( World worldIn, BlockPos pos, boolean open ) {
         BlockState state = worldIn.getBlockState( pos );
         if( state.getBlock() == this && state.get( OPEN ) != open ) {
@@ -268,7 +280,10 @@ public class DoorBlock extends Block {
         }
     }
 
-    private void playSound( World world, BlockPos pos, boolean open ) {
+    /**
+     * Plays the door sound
+     */
+    protected void playSound( World world, BlockPos pos, boolean open ) {
         world.playEvent( null, open ? getOpenSound() : getCloseSound(), pos, 0 );
     }
 
