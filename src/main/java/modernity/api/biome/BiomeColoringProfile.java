@@ -34,6 +34,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Java representation of a biome color profile. Biome color profiles are json files defined in the
+ * <code>assets/.../data/biomecolors/</code> folder. They specify the color of foliage, water, and other things in
+ * specific biomes.
+ */
+// TODO:
+// Move all provider implementations to separate classes and add deserializers, so that new implementations can be
+// added easily
 @OnlyIn( Dist.CLIENT )
 public class BiomeColoringProfile {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -47,10 +55,19 @@ public class BiomeColoringProfile {
     private IColorProvider itemColor;
     private IColorProvider defaultColor;
 
+    /**
+     * Obtains the color provider for a specific biome.
+     */
     public IColorProvider getColorProviderFor( Biome biome ) {
         return biomeColors.computeIfAbsent( biome, b -> getDefaultColor() );
     }
 
+    /**
+     * Returns the color at a specific position in the specified world, blending colors at biome edges when necessary.
+     * The last seed, position and returned color are cached and loaded from cache when this method is called again.
+     *
+     * @return The 256-bits RGB color in an integer.
+     */
     public int getColor( IEnviromentBlockReader world, BlockPos pos ) {
         long seed = ModernityClient.get().getLastWorldSeed();
 
@@ -78,6 +95,11 @@ public class BiomeColoringProfile {
         return color;
     }
 
+    /**
+     * Returns the item color.
+     *
+     * @return The 256-bits RGB color in an integer.
+     */
     public int getItemColor() {
         long seed = 0;
         if( Minecraft.getInstance().world != null ) {
@@ -87,6 +109,12 @@ public class BiomeColoringProfile {
         return getItemColorProvider().getColor( BlockPos.ZERO, seed );
     }
 
+    /**
+     * Returns the color at a specific position in the specified world, blending colors at biome edges when necessary.
+     * This is an internal method used in {@link #getColor(IEnviromentBlockReader, BlockPos)}.
+     *
+     * @return The 256-bits RGB color in an integer.
+     */
     private int getColor( IEnviromentBlockReader world, BlockPos pos, long seed ) {
         BlockPos.MutableBlockPos rpos = new BlockPos.MutableBlockPos();
         int radius = Minecraft.getInstance().gameSettings.biomeBlendRadius;
@@ -120,24 +148,44 @@ public class BiomeColoringProfile {
         return ColorUtil.rgb( r, g, b );
     }
 
+    /**
+     * Returns the default color provider, which is used for biomes that were not defined in the JSON files.
+     */
     private IColorProvider getDefaultColor() {
         if( defaultColor == null ) defaultColor = createErrorProvider();
         return defaultColor;
     }
 
+    /**
+     * Returns the item color provider, or the {@linkplain #getDefaultColor() default color provider} when the item
+     * color provider was not defined in the JSON files.
+     */
     private IColorProvider getItemColorProvider() {
         if( itemColor == null ) itemColor = getDefaultColor();
         return itemColor;
     }
 
-    public int getColorFor( Biome biome, BlockPos pos, long seed ) {
+    /**
+     * Returns the color for a specific biome at a specific position, using the specific world seed. This method is used
+     * in {@link #getColor(IEnviromentBlockReader, BlockPos, long)}.
+     */
+    private int getColorFor( Biome biome, BlockPos pos, long seed ) {
         return getColorProviderFor( biome ).getColor( pos, seed );
     }
 
+    /**
+     * Applies a specific map of biome-color relations, which is loaded from the JSON file.
+     */
     private void applyLayer( Map<String, IColorProvider> layer ) {
         layer.forEach( this::applyLayerItem );
     }
 
+    /**
+     * Applies a specific layer item, or one entry in one JSON file.
+     *
+     * @param key   The entry key
+     * @param color The entry value
+     */
     private void applyLayerItem( String key, IColorProvider color ) {
         Biome biome = getBiomeForName( key );
         if( biome != null ) {
@@ -149,6 +197,17 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Loads a coloring profile from the JSON files in the resource packs. The JSON files are layered in the order of
+     * resource packs.
+     *
+     * @param resManager  The resource manager to load from.
+     * @param loc         The path to the JSON file
+     * @param profileName The profile name, only used for error reporting
+     * @return The loaded coloring profile
+     *
+     * @throws IOException When any IOException occurs during loading...
+     */
     public static BiomeColoringProfile create( IResourceManager resManager, ResourceLocation loc, String profileName ) throws IOException {
         List<IResource> list = resManager.getAllResources( loc );
         BiomeColoringProfile profile = new BiomeColoringProfile();
@@ -172,7 +231,15 @@ public class BiomeColoringProfile {
         return profile;
     }
 
-    public static Map<String, IColorProvider> parseProfileLayer( JsonObject object, String profileName, String packName ) {
+    /**
+     * Parses the JSON file from one resource pack, resulting in a map of biome-color relations.
+     *
+     * @param object      The JSON object loaded
+     * @param profileName The profile name, only used for error reporting
+     * @param packName    The pack name, only used for error reporting
+     * @return A map containing the entries defined in the JSON file
+     */
+    private static Map<String, IColorProvider> parseProfileLayer( JsonObject object, String profileName, String packName ) {
         HashMap<String, IColorProvider> biomeColors = new HashMap<>();
         ArrayList<ColorFormatException> errors = new ArrayList<>();
         for( Map.Entry<String, JsonElement> entry : object.entrySet() ) {
@@ -195,6 +262,9 @@ public class BiomeColoringProfile {
         return biomeColors;
     }
 
+    /**
+     * Loads a biome for the specific name, suppressing any errors thrown when parsing the {@link ResourceLocation}.
+     */
     private static Biome getBiomeForName( String name ) {
         try {
             ResourceLocation loc = new ResourceLocation( name );
@@ -204,10 +274,17 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Creates a magenta-black checkerboard pattern, indicating an error...
+     */
     public static IColorProvider createErrorProvider() {
         return new CheckerboardColor( new SolidColor( 0 ), new SolidColor( 0xff00ff ), 1 );
     }
 
+    /**
+     * Parses a color provider from a JSON element. If any error occurs, it is reported in the log and the error pattern
+     * is returned.
+     */
     public static IColorProvider parseColorProvider( JsonElement element ) {
         try {
             return parseColorProvider( element, "format" );
@@ -218,34 +295,58 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Internally parses a color provider, throwing an exception when not a valid format...
+     *
+     * @param element The JSON to parse
+     * @param name    The name of the provider we're parsing, used only for error reporting
+     * @return The parsed color provider.
+     *
+     * @throws ColorFormatException Thrown when not a valid format...
+     */
     private static IColorProvider parseColorProvider( JsonElement element, String name ) throws ColorFormatException {
         try {
+            // Null is not valid
             if( element.isJsonNull() ) {
                 throw new ColorFormatException( "Null is not a color" );
-            } else if( element.isJsonPrimitive() ) {
+            }
+            // Primitive values
+            else if( element.isJsonPrimitive() ) {
+                // String, loads '#xxxxxx' or '#xxx' as a color...
                 if( element.getAsJsonPrimitive().isString() ) {
                     Integer col = ColorUtil.parseHexString( element.getAsJsonPrimitive().getAsString() );
                     if( col == null ) {
                         throw new ColorFormatException( "Invalid hexadecimal string ('" + element.getAsJsonPrimitive().getAsString() + "')" );
                     }
                     return new SolidColor( col );
-                } else if( element.getAsJsonPrimitive().isNumber() ) {
+                }
+                // Number, loads grayscale value
+                else if( element.getAsJsonPrimitive().isNumber() ) {
                     int color = element.getAsJsonPrimitive().getAsInt();
                     return new SolidColor( color );
-                } else if( element.getAsJsonPrimitive().isBoolean() ) {
+                }
+                // Boolean, true=white, false=black
+                else if( element.getAsJsonPrimitive().isBoolean() ) {
                     if( element.getAsJsonPrimitive().getAsBoolean() ) {
                         return new SolidColor( 0xffffff );
                     } else {
                         return new SolidColor( 0 );
                     }
-                } else {
+                }
+                // Not valid!
+                else {
                     throw new ColorFormatException( "String, Number or Boolean expected as primitive color..." );
                 }
-            } else if( element.isJsonArray() ) {
+            }
+            // Array, loads rgb from first three elements
+            else if( element.isJsonArray() ) {
                 JsonArray array = element.getAsJsonArray();
                 return parseRGBArray( array );
-            } else {
+            }
+            // Object, loads any other pattern
+            else {
                 JsonObject object = element.getAsJsonObject();
+                // RGB
                 if( object.has( "rgb" ) ) {
                     JsonElement rgb = object.get( "rgb" );
                     if( ! rgb.isJsonArray() ) {
@@ -253,21 +354,27 @@ public class BiomeColoringProfile {
                     } else {
                         return parseRGBArray( rgb.getAsJsonArray() );
                     }
-                } else if( object.has( "greyscale" ) ) {
+                }
+                // Greyscale
+                else if( object.has( "greyscale" ) ) {
                     JsonElement grayscale = object.get( "greyscale" );
                     if( ! grayscale.isJsonPrimitive() || ! grayscale.getAsJsonPrimitive().isNumber() ) {
                         throw new ColorFormatException( "'greyscale' requires a number" );
                     } else {
                         return new SolidColor( ColorUtil.fromGrayscale( grayscale.getAsDouble() ) );
                     }
-                } else if( object.has( "grayscale" ) ) {
+                }
+                // Grayscale, alias to greyscale
+                else if( object.has( "grayscale" ) ) {
                     JsonElement grayscale = object.get( "grayscale" );
                     if( ! grayscale.isJsonPrimitive() || ! grayscale.getAsJsonPrimitive().isNumber() ) {
                         throw new ColorFormatException( "'grayscale' requires a number" );
                     } else {
                         return new SolidColor( ColorUtil.fromGrayscale( grayscale.getAsDouble() ) );
                     }
-                } else if( object.has( "r" ) && object.has( "g" ) && object.has( "b" ) ) {
+                }
+                // RGB values
+                else if( object.has( "r" ) && object.has( "g" ) && object.has( "b" ) ) {
                     JsonElement r = object.get( "r" );
                     JsonElement g = object.get( "g" );
                     JsonElement b = object.get( "b" );
@@ -280,91 +387,117 @@ public class BiomeColoringProfile {
                     } else {
                         return new SolidColor( ColorUtil.rgb( r.getAsDouble(), g.getAsDouble(), b.getAsDouble() ) );
                     }
-                } else if( object.has( "checkerboard" ) ) {
+                }
+                // Checkerboard
+                else if( object.has( "checkerboard" ) ) {
                     JsonElement checkerboard = object.get( "checkerboard" );
                     if( ! checkerboard.isJsonObject() ) {
                         throw new ColorFormatException( "'checkerboard' requires an object" );
                     } else {
                         return parseCheckerboard( checkerboard.getAsJsonObject() );
                     }
-                } else if( object.has( "pickrandom2d" ) ) {
+                }
+                // Pick random 2D
+                else if( object.has( "pickrandom2d" ) ) {
                     JsonElement pickrandom = object.get( "pickrandom2d" );
                     if( ! pickrandom.isJsonObject() ) {
                         throw new ColorFormatException( "'pickrandom2d' requires an object" );
                     } else {
                         return parsePickRandom2D( pickrandom.getAsJsonObject() );
                     }
-                } else if( object.has( "pickrandom3d" ) ) {
+                }
+                // Pick random 3D
+                else if( object.has( "pickrandom3d" ) ) {
                     JsonElement pickrandom = object.get( "pickrandom3d" );
                     if( ! pickrandom.isJsonObject() ) {
                         throw new ColorFormatException( "'pickrandom3d' requires an object" );
                     } else {
                         return parsePickRandom3D( pickrandom.getAsJsonObject() );
                     }
-                } else if( object.has( "random2d" ) ) {
+                }
+                // Interpolate random 2D
+                else if( object.has( "random2d" ) ) {
                     JsonElement random = object.get( "random2d" );
                     if( ! random.isJsonObject() ) {
                         throw new ColorFormatException( "'random2d' requires an object" );
                     } else {
                         return parseRandom2D( random.getAsJsonObject() );
                     }
-                } else if( object.has( "random3d" ) ) {
+                }
+                // Interpolate random 3D
+                else if( object.has( "random3d" ) ) {
                     JsonElement random = object.get( "random3d" );
                     if( ! random.isJsonObject() ) {
                         throw new ColorFormatException( "'random3d' requires an object" );
                     } else {
                         return parseRandom3D( random.getAsJsonObject() );
                     }
-                } else if( object.has( "perlin2d" ) ) {
+                }
+                // Interpolate perlin 2D
+                else if( object.has( "perlin2d" ) ) {
                     JsonElement random = object.get( "perlin2d" );
                     if( ! random.isJsonObject() ) {
                         throw new ColorFormatException( "'perlin2d' requires an object" );
                     } else {
                         return parsePerlin2D( random.getAsJsonObject() );
                     }
-                } else if( object.has( "perlin3d" ) ) {
+                }
+                // Interpolate perlin 3D
+                else if( object.has( "perlin3d" ) ) {
                     JsonElement random = object.get( "perlin3d" );
                     if( ! random.isJsonObject() ) {
                         throw new ColorFormatException( "'perlin3d' requires an object" );
                     } else {
                         return parsePerlin3D( random.getAsJsonObject() );
                     }
-                } else if( object.has( "opensimplex2d" ) ) {
+                }
+                // Interpolate open simplex 2D
+                else if( object.has( "opensimplex2d" ) ) {
                     JsonElement random = object.get( "opensimplex2d" );
                     if( ! random.isJsonObject() ) {
                         throw new ColorFormatException( "'opensimplex2d' requires an object" );
                     } else {
                         return parseOpenSimplex2D( random.getAsJsonObject() );
                     }
-                } else if( object.has( "opensimplex3d" ) ) {
+                }
+                // Interpolate open simplex 3D
+                else if( object.has( "opensimplex3d" ) ) {
                     JsonElement random = object.get( "opensimplex3d" );
                     if( ! random.isJsonObject() ) {
                         throw new ColorFormatException( "'opensimplex3d' requires an object" );
                     } else {
                         return parseOpenSimplex3D( random.getAsJsonObject() );
                     }
-                } else if( object.has( "fracperlin2d" ) ) {
+                }
+                // Interpolate fractal perlin 2D
+                else if( object.has( "fracperlin2d" ) ) {
                     JsonElement random = object.get( "fracperlin2d" );
                     if( ! random.isJsonObject() ) {
                         throw new ColorFormatException( "'fracperlin2d' requires an object" );
                     } else {
                         return parseFractalPerlin2D( random.getAsJsonObject() );
                     }
-                } else if( object.has( "fracperlin3d" ) ) {
+                }
+                // Interpolate fractal perlin 3D
+                else if( object.has( "fracperlin3d" ) ) {
                     JsonElement random = object.get( "fracperlin3d" );
                     if( ! random.isJsonObject() ) {
                         throw new ColorFormatException( "'fracperlin3d' requires an object" );
                     } else {
                         return parseFractalPerlin3D( random.getAsJsonObject() );
                     }
-                } else if( object.has( "fracopensimplex2d" ) ) {
+                }
+                // Interpolate fractal open simplex 2D
+                else if( object.has( "fracopensimplex2d" ) ) {
                     JsonElement random = object.get( "fracopensimplex2d" );
                     if( ! random.isJsonObject() ) {
                         throw new ColorFormatException( "'fracopensimplex2d' requires an object" );
                     } else {
                         return parseFractalOpenSimplex2D( random.getAsJsonObject() );
                     }
-                } else if( object.has( "fracopensimplex3d" ) ) {
+                }
+                // Interpolate fractal open simplex 3D
+                else if( object.has( "fracopensimplex3d" ) ) {
                     JsonElement random = object.get( "fracopensimplex3d" );
                     if( ! random.isJsonObject() ) {
                         throw new ColorFormatException( "'fracopensimplex3d' requires an object" );
@@ -384,6 +517,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses fractal open simplex 2D provider from JSON
+     */
     private static IColorProvider parseFractalOpenSimplex2D( JsonObject object ) throws ColorFormatException {
         try {
             if( ! object.has( "a" ) )
@@ -436,6 +572,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses fractal open simplex 3D provider from JSON
+     */
     private static IColorProvider parseFractalOpenSimplex3D( JsonObject object ) throws ColorFormatException {
         try {
             if( ! object.has( "a" ) )
@@ -492,6 +631,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses fractal perlin 2D provider from JSON
+     */
     private static IColorProvider parseFractalPerlin2D( JsonObject object ) throws ColorFormatException {
         try {
             if( ! object.has( "a" ) )
@@ -544,6 +686,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses fractal perlin 3D provider from JSON
+     */
     private static IColorProvider parseFractalPerlin3D( JsonObject object ) throws ColorFormatException {
         try {
             if( ! object.has( "a" ) )
@@ -600,6 +745,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses open simplex 2D provider from JSON
+     */
     private static IColorProvider parseOpenSimplex2D( JsonObject object ) throws ColorFormatException {
         try {
             if( ! object.has( "a" ) )
@@ -643,6 +791,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses open simplex 3D provider from JSON
+     */
     private static IColorProvider parseOpenSimplex3D( JsonObject object ) throws ColorFormatException {
         try {
             if( ! object.has( "a" ) )
@@ -690,6 +841,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses perlin 2D provider from JSON
+     */
     private static IColorProvider parsePerlin2D( JsonObject object ) throws ColorFormatException {
         try {
             if( ! object.has( "a" ) )
@@ -733,6 +887,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses perlin 3D provider from JSON
+     */
     private static IColorProvider parsePerlin3D( JsonObject object ) throws ColorFormatException {
         try {
             if( ! object.has( "a" ) )
@@ -780,6 +937,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses random 3D provider from JSON
+     */
     private static IColorProvider parseRandom3D( JsonObject object ) throws ColorFormatException {
         try {
             if( ! object.has( "a" ) )
@@ -827,6 +987,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses random 2D provider from JSON
+     */
     private static IColorProvider parseRandom2D( JsonObject object ) throws ColorFormatException {
         try {
             if( ! object.has( "a" ) )
@@ -870,6 +1033,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses pick random 3D provider from JSON
+     */
     private static IColorProvider parsePickRandom3D( JsonObject object ) throws ColorFormatException {
         try {
             if( ! object.has( "colors" ) )
@@ -928,6 +1094,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses pick random 2D provider from JSON
+     */
     private static IColorProvider parsePickRandom2D( JsonObject object ) throws ColorFormatException {
         try {
             if( ! object.has( "colors" ) )
@@ -982,6 +1151,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses checkerboard provider from JSON
+     */
     private static IColorProvider parseCheckerboard( JsonObject object ) throws ColorFormatException {
         try {
             if( ! object.has( "a" ) )
@@ -1003,6 +1175,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Parses a solid color from rgb array using the first three elements, ignoring any additional elements
+     */
     private static IColorProvider parseRGBArray( JsonArray array ) throws ColorFormatException {
         try {
             if( array.size() < 3 ) {
@@ -1028,6 +1203,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Main color provider interface...
+     */
     @FunctionalInterface
     public interface IColorProvider {
         default int getColor( BlockPos pos, long seed ) {
@@ -1036,6 +1214,9 @@ public class BiomeColoringProfile {
         int getColor( BlockPos pos );
     }
 
+    /**
+     * Color provider using seed
+     */
     public static abstract class SeededProvider implements IColorProvider {
         private long seed;
         private final boolean hasCustomSeed;
@@ -1047,6 +1228,9 @@ public class BiomeColoringProfile {
             }
         }
 
+        /**
+         * Has to be called after initialization in constructor
+         */
         public void init() {
             initForSeed( seed );
         }
@@ -1069,6 +1253,9 @@ public class BiomeColoringProfile {
         public abstract void initForSeed( long seed );
     }
 
+    /**
+     * Provides a solid color
+     */
     public static class SolidColor implements IColorProvider {
         private final int color;
 
@@ -1082,6 +1269,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Provides a checkerboard pattern between two color poviders
+     */
     public static class CheckerboardColor implements IColorProvider {
         private final IColorProvider a;
         private final IColorProvider b;
@@ -1110,6 +1300,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Interpolates between two colors using noise
+     */
     public static abstract class NoiseColor extends SeededProvider {
         private INoise3D noise;
         private final IColorProvider a;
@@ -1137,6 +1330,9 @@ public class BiomeColoringProfile {
         protected abstract INoise3D createNoise( long seed );
     }
 
+    /**
+     * Fractal perlin 3D color provider
+     */
     public static class FractalPerlin3DColor extends NoiseColor {
         private final int octaves;
         private final double scaleX;
@@ -1158,6 +1354,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Perlin 3D color provider
+     */
     public static class Perlin3DColor extends NoiseColor {
         private final double scaleX;
         private final double scaleY;
@@ -1177,6 +1376,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Fractal open simplex 3D color provider
+     */
     public static class FractalOpenSimplex3DColor extends NoiseColor {
         private final int octaves;
         private final double scaleX;
@@ -1198,6 +1400,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Open simplex 3D color provider
+     */
     public static class OpenSimplex3DColor extends NoiseColor {
         private final double scaleX;
         private final double scaleY;
@@ -1217,6 +1422,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Fractal perlin 2D color provider
+     */
     public static class FractalPerlin2DColor extends NoiseColor {
         private final int octaves;
         private final double scaleX;
@@ -1236,6 +1444,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Perlin 2D color provider
+     */
     public static class Perlin2DColor extends NoiseColor {
         private final double scaleX;
         private final double scaleZ;
@@ -1253,6 +1464,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Fractal open simplex 2D color provider
+     */
     public static class FractalOpenSimplex2DColor extends NoiseColor {
         private final int octaves;
         private final double scaleX;
@@ -1272,6 +1486,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Open simplex 2D color provider
+     */
     public static class OpenSimplex2DColor extends NoiseColor {
         private final double scaleX;
         private final double scaleZ;
@@ -1289,6 +1506,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Random 2D color provider
+     */
     public static class Random2DColor extends NoiseColor {
         private final double scaleX;
         private final double scaleZ;
@@ -1306,6 +1526,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Random 3D color provider
+     */
     public static class Random3DColor extends NoiseColor {
         private final double scaleX;
         private final double scaleY;
@@ -1325,6 +1548,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Pick a random color provider using 2D noise
+     */
     public static class Random2DColorPicker extends SeededProvider {
         private final IColorProvider[] colors;
         private final double scaleX;
@@ -1351,6 +1577,9 @@ public class BiomeColoringProfile {
         }
     }
 
+    /**
+     * Pick a random color provider using 3D noise
+     */
     public static class Random3DColorPicker extends SeededProvider {
         private final IColorProvider[] colors;
         private final double scaleX;
