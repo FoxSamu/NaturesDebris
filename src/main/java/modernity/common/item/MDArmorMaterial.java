@@ -20,25 +20,18 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.function.Supplier;
 
+/**
+ * Types of Modernity armor material
+ */
 public enum MDArmorMaterial implements IArmorMaterial {
     ALUMINIUM( "modernity:aluminium", 15, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> {
         return Ingredient.fromItems( MDItems.ALUMINIUM_INGOT );
     } );
 
-    /** Holds the 'base' maxDamage that each armorType have. */
     private static final int[] MAX_DAMAGE_ARRAY = { 13, 15, 16, 11 };
     private final String texName;
-    /**
-     * Holds the maximum damage factor (each piece multiply this by it's own value) of the material, this is the item
-     * damage (how much can absorb before breaks)
-     */
     private final int maxDamageFactor;
-    /**
-     * Holds the damage reduction (each 1 points is half a shield on gui) of each piece of armor (helmet, plate, legs
-     * and boots)
-     */
     private final int[] damageReductionAmountArray;
-    /** Return the enchantability factor of the material */
     private final int enchantability;
     private final SoundEvent soundEvent;
     private final float toughness;

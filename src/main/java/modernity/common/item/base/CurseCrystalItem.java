@@ -11,6 +11,9 @@ package modernity.common.item.base;
 
 import net.minecraft.item.Item;
 
+/**
+ * Represents the curse crystal item.
+ */
 public class CurseCrystalItem extends Item {
     public CurseCrystalItem( Properties properties ) {
         super( properties );

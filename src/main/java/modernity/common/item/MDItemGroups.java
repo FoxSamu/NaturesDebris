@@ -13,6 +13,9 @@ import modernity.common.block.MDBlocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
+/**
+ * Holder class for Modernity creative tabs.
+ */
 public final class MDItemGroups {
     public static final ItemGroup BLOCKS = new ItemGroup( "blocks" ) {
         @Override

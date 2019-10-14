@@ -14,6 +14,9 @@ import modernity.common.item.MDItems;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 
+/**
+ * Represents an aluminium bucket.
+ */
 public class AluminiumBucketItem extends BaseBucketItem {
     public AluminiumBucketItem( Fluid fluid, Item.Properties properties ) {
         super( fluid, MDItems.ALUMINIUM_BUCKET, AluminiumBucketItem::createItem, properties );

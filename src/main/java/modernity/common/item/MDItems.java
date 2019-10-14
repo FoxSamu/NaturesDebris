@@ -11,6 +11,9 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.registries.ObjectHolder;
 
+/**
+ * Holder class for Modernity items.
+ */
 @ObjectHolder( "modernity" )
 public final class MDItems {
     private static final RegistryHandler<Item> ENTRIES = new RegistryHandler<>( "modernity" );
@@ -57,6 +60,11 @@ public final class MDItems {
         return item;
     }
 
+    // TODO: Init item colors here
+
+    /**
+     * Adds the registry handler to the {@link RegistryEventHandler}. Must be called internally only.
+     */
     public static void setup( RegistryEventHandler handler ) {
         handler.addHandler( Item.class, ENTRIES );
     }

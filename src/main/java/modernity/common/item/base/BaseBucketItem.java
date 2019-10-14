@@ -41,6 +41,9 @@ import net.minecraftforge.event.ForgeEventFactory;
 import javax.annotation.Nullable;
 import java.util.function.Function;
 
+/**
+ * Represents a bucket item.
+ */
 public class BaseBucketItem extends Item {
 
     protected final Fluid containing;
@@ -128,14 +131,23 @@ public class BaseBucketItem extends Item {
         }
     }
 
+    /**
+     * Computes placement position in specific context.
+     */
     protected BlockPos getPlacementPosition( BlockState state, BlockPos pos, BlockRayTraceResult rtr ) {
         return state.getBlock() instanceof ILiquidContainer ? pos : rtr.getPos().offset( rtr.getFace() );
     }
 
+    /**
+     * Empties the bucket item (does not place block).
+     */
     protected ItemStack emptyBucket( ItemStack bucket, PlayerEntity player ) {
         return ! player.abilities.isCreativeMode ? new ItemStack( empty ) : bucket;
     }
 
+    /**
+     * Called when liquid is placed in the world.
+     */
     public void onLiquidPlaced( World world, ItemStack bucket, BlockPos pos ) {
     }
 
@@ -163,6 +175,9 @@ public class BaseBucketItem extends Item {
         return containing.getDefaultState();
     }
 
+    /**
+     * Do vaporize effects at specific position
+     */
     protected void vaporize( @Nullable PlayerEntity player, BlockPos pos, World world ) {
         int posX = pos.getX();
         int posY = pos.getY();
@@ -174,6 +189,15 @@ public class BaseBucketItem extends Item {
         }
     }
 
+    /**
+     * Tries to place the contained fluid in the specified world.
+     * @param player The player that places the fluid
+     * @param world The world to place in
+     * @param pos The pos to place at
+     * @param rtr The raytrace result
+     * @param hand The hand the player used
+     * @return True when fluid is placed.
+     */
     public boolean tryPlaceContainedLiquid( @Nullable PlayerEntity player, World world, BlockPos pos, @Nullable BlockRayTraceResult rtr, Hand hand ) {
         BlockState state = world.getBlockState( pos );
         Material mat = state.getMaterial();
@@ -210,6 +234,9 @@ public class BaseBucketItem extends Item {
         }
     }
 
+    /**
+     * Plays the empty sound
+     */
     protected void playEmptySound( @Nullable PlayerEntity player, IWorld world, BlockPos pos ) {
         SoundEvent evt;
         if( containing instanceof ICustomBucketSound ) {
@@ -222,6 +249,9 @@ public class BaseBucketItem extends Item {
         world.playSound( player, pos, evt, SoundCategory.BLOCKS, 1, 1 );
     }
 
+    /**
+     * Plays the fill sound
+     */
     protected void playFillSound( @Nullable PlayerEntity player, IWorld world, BlockPos pos, Fluid fluid ) {
         SoundEvent evt;
         if( fluid instanceof ICustomBucketSound ) {
