@@ -58,7 +58,6 @@ public class ModernityClient extends Modernity {
         super.init();
         MDEntityTypes.initEntityRenderers();
         MDContainerTypes.registerScreens();
-        MDParticleTypes.setupFactories( Minecraft.getInstance().particles );
     }
 
     @Override
