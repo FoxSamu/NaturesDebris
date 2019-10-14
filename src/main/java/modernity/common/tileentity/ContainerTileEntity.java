@@ -21,6 +21,9 @@ import net.minecraft.util.text.ITextComponent;
 
 import javax.annotation.Nullable;
 
+/**
+ * A tile entity with a container.
+ */
 public abstract class ContainerTileEntity extends LockableTileEntity {
     private final NonNullList<ItemStack> stacks = NonNullList.withSize( getSizeInventory(), ItemStack.EMPTY );
 
@@ -150,6 +153,9 @@ public abstract class ContainerTileEntity extends LockableTileEntity {
         }
     }
 
+    /**
+     * Called when a slot changes.
+     */
     public void onSlotChanged( int index ) {
 
     }

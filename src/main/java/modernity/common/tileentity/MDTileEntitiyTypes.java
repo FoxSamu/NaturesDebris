@@ -21,6 +21,9 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.function.Supplier;
 
+/**
+ * Holder class for Modernity tile entity types.
+ */
 @ObjectHolder( "modernity" )
 @SuppressWarnings( { "unchecked", "ConstantConditions" } )
 public final class MDTileEntitiyTypes {

@@ -25,6 +25,9 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import javax.annotation.Nullable;
 
+/**
+ * Represents the Nether altar tile entity.
+ */
 public class NetherAltarTileEntity extends ContainerTileEntity implements ITickableTileEntity {
     private static final ITextComponent NAME = new TranslationTextComponent( Util.makeTranslationKey( "gui", new ResourceLocation( "modernity:nether_altar" ) ) );
 
@@ -71,6 +74,9 @@ public class NetherAltarTileEntity extends ContainerTileEntity implements ITicka
         combinePossible = ! world.isRemote && checkSlots();
     }
 
+    /**
+     * Combines the items into one, putting the result in the result slot
+     */
     private void combine() {
         setInventorySlotContents( 0, ItemStack.EMPTY );
         setInventorySlotContents( 1, ItemStack.EMPTY );
@@ -81,6 +87,9 @@ public class NetherAltarTileEntity extends ContainerTileEntity implements ITicka
         combinePossible = false;
     }
 
+    /**
+     * Checks the environment for being able to combine the items.
+     */
     private boolean checkEnvironment() {
         return true;
 //        // Check biome instead of dimension to support buffet/flat world types with nether theme...
@@ -89,6 +98,9 @@ public class NetherAltarTileEntity extends ContainerTileEntity implements ITicka
 //        return checkWallCarves();
     }
 
+    /**
+     * Checks the contents for being able to combine anything.
+     */
     private boolean checkSlots() {
         // Uwww, bad programming here: 0123 = 4321...
         if( getStackInSlot( 0 ).isEmpty() || getStackInSlot( 0 ).getItem() != MDItems.CURSE_CRYSTAL_SHARD_4 )
