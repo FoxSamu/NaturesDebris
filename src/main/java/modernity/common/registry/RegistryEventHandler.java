@@ -28,6 +28,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * Handles the actual registry events.
+ */
 @SuppressWarnings( "unchecked" )
 public enum RegistryEventHandler {
     INSTANCE;

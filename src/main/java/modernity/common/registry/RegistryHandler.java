@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Class that handles the registry event. Object holder can pre register to this class.
+ */
 public class RegistryHandler<E extends IForgeRegistryEntry<E>> implements Iterable<E> {
     protected final ArrayList<Entry<E>> registryItems = new ArrayList<>();
     protected final HashMap<ResourceLocation, Entry<E>> remappings = new HashMap<>();
@@ -20,12 +23,18 @@ public class RegistryHandler<E extends IForgeRegistryEntry<E>> implements Iterab
         this.modid = modid;
     }
 
+    /**
+     * Fills the forge registry with this registry.
+     */
     public void fillRegistry( IForgeRegistry<E> registry ) {
         for( Entry<E> e : registryItems ) {
             registry.register( e.entry );
         }
     }
 
+    /**
+     * Remaps any missing mappings from aliases to real names.
+     */
     public void remap( List<RegistryEvent.MissingMappings.Mapping<E>> mappings ) {
         for( RegistryEvent.MissingMappings.Mapping<E> mapping : mappings ) {
             if( remappings.containsKey( mapping.key ) ) {
@@ -34,6 +43,13 @@ public class RegistryHandler<E extends IForgeRegistryEntry<E>> implements Iterab
         }
     }
 
+    /**
+     * Registers an object
+     * @param name The ID of this object
+     * @param e The object
+     * @param aliases Any alias IDs
+     * @return The object passed as second argument
+     */
     public <T extends E> T register( String name, T e, String... aliases ) {
         ResourceLocation id = computeID( name );
         Entry<E> entry = new Entry<>( id, e, aliases );
