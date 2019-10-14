@@ -18,6 +18,9 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * The Nether Altar GUI
+ */
 @OnlyIn( Dist.CLIENT )
 public class GuiNetherAltar extends ContainerScreen<NetherAltarContainer> {
     private static final ResourceLocation TEXTURE = new ResourceLocation( "modernity:textures/gui/container/nether_altar.png" );
@@ -26,9 +29,6 @@ public class GuiNetherAltar extends ContainerScreen<NetherAltarContainer> {
         super( container, playerInv, name );
     }
 
-    /**
-     * Draws the screen and all the components in it.
-     */
     @Override
     public void render( int mouseX, int mouseY, float partialTicks ) {
         this.renderBackground();
@@ -36,9 +36,6 @@ public class GuiNetherAltar extends ContainerScreen<NetherAltarContainer> {
         this.renderHoveredToolTip( mouseX, mouseY );
     }
 
-    /**
-     * Draw the foreground layer for the GuiContainer (everything in front of the items)
-     */
     @Override
     protected void drawGuiContainerForegroundLayer( int mouseX, int mouseY ) {
         String s = title.getFormattedText();
@@ -46,9 +43,6 @@ public class GuiNetherAltar extends ContainerScreen<NetherAltarContainer> {
         this.font.drawString( this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) ( this.ySize - 96 + 2 ), 4210752 );
     }
 
-    /**
-     * Draws the background layer of this container (behind the items).
-     */
     @Override
     protected void drawGuiContainerBackgroundLayer( float partialTicks, int mouseX, int mouseY ) {
         GlStateManager.color4f( 1.0F, 1.0F, 1.0F, 1.0F );

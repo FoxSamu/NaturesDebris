@@ -22,6 +22,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Handles texture stitching, and forces the texture map to stitch the textures of all {@link ICustomRenderFluid}s.
+ */
 @OnlyIn( Dist.CLIENT )
 public enum TextureStitchHandler {
     INSTANCE;

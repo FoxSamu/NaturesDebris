@@ -25,6 +25,9 @@ import java.io.InputStream;
 import java.util.Random;
 import java.util.function.Predicate;
 
+/**
+ * Used to load and read color maps from resource packs
+ */
 public class ColorMap implements ISelectiveResourceReloadListener {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -35,41 +38,71 @@ public class ColorMap implements ISelectiveResourceReloadListener {
     private int height;
     private int[] values;
 
+    /**
+     * Creates a color map
+     * @param location The location to load from
+     * @param fallbackColor The color to use when unable to load
+     */
     public ColorMap( ResourceLocation location, int fallbackColor ) {
         this.location = location;
         this.fallbackColor = fallbackColor;
     }
 
+    /**
+     * Creates a color map, using magenta as error color
+     * @param location The location to load from
+     */
     public ColorMap( ResourceLocation location ) {
         this( location, 0xffff00ff );
     }
 
+    /**
+     * Returns the width of the map
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     * Returns the height of the map
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * Get the color at the specific pixel
+     */
     public int get( int x, int y ) {
         if( ! loaded || outOfBounds( x, y ) ) return fallbackColor;
         return values[ y * width + x ];
     }
 
+    /**
+     * Get the color at the specific UV coords
+     */
     public int get( double x, double y ) {
         return get( (int) ( x * ( width - 1 ) ), (int) ( y * ( width - 1 ) ) );
     }
 
+    /**
+     * Get the color at the specific UV coords
+     */
     public int get( float x, float y ) {
         return get( (int) ( x * ( width - 1 ) ), (int) ( y * ( width - 1 ) ) );
     }
 
+    /**
+     * Gets a random color according to the specified {@link Random}
+     */
     public int random( Random rand ) {
         if( ! loaded ) return fallbackColor;
         return values[ rand.nextInt( values.length ) ];
     }
 
+    /**
+     * Checks whether the specified coords are out of bounds
+     */
     private boolean outOfBounds( int x, int y ) {
         return x >= width || x < 0 || y >= height || y < 0;
     }
@@ -81,6 +114,9 @@ public class ColorMap implements ISelectiveResourceReloadListener {
         }
     }
 
+    /**
+     * Reloads the color map from the specified resource manager
+     */
     public void reload( IResourceManager manager ) {
         try {
             IResource resource = manager.getResource( location );

@@ -48,14 +48,20 @@ import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * Renders fluids that implement {@link ICustomRenderFluid}. This renders gaseous fluids upside down and handles custom
+ * overlay-causing blocks (see {@link IFluidOverlayBlock}).
+ */
 @OnlyIn( Dist.CLIENT )
 public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
     private boolean updateAtlasSprites = true;
+
     public static final ResourceLocation LOCATION_LAVA_STILL = new ResourceLocation( "block/lava_still" );
     public static final ResourceLocation LOCATION_WATER_STILL = new ResourceLocation( "block/water_still" );
     public static final ResourceLocation LOCATION_LAVA_FLOW = new ResourceLocation( "block/lava_flow" );
     public static final ResourceLocation LOCATION_WATER_FLOW = new ResourceLocation( "block/water_flow" );
     public static final ResourceLocation LOCATION_WATER_OVERLAY = new ResourceLocation( "block/water_overlay" );
+
     private HashMap<Fluid, TextureAtlasSprite[]> customSprites = Maps.newHashMap();
     private TextureAtlasSprite[] lavaSprites = new TextureAtlasSprite[ 2 ];
     private TextureAtlasSprite[] waterSprites = new TextureAtlasSprite[ 2 ];
@@ -129,11 +135,10 @@ public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
         }
     }
 
-    private static double ty( double y, boolean gas ) {
-        if( gas ) y = 1 - y;
-        return y;
-    }
-
+    /**
+     * Checks if fluids are equivalent, taking the ModernizedWater-Water combination as an exceptional case: these are
+     * always equivalent (they're both water, not?).
+     */
     private static boolean areEquivalent( Fluid fluidA, Fluid fluidB ) {
         if( fluidA instanceof WaterFluid && fluidB instanceof ModernizedWaterFluid ) {
             return true;
@@ -144,6 +149,9 @@ public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
         }
     }
 
+    /**
+     * Renders the specified fluid in the buffer builder
+     */
     public boolean render( IEnviromentBlockReader world, BlockPos pos, BufferBuilder buffer, IFluidState state ) {
         if( updateAtlasSprites ) {
             updateSprites();
@@ -467,6 +475,9 @@ public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
         return ( myLightU > upLightU ? myLightU : upLightU ) | ( myLightV > upLightV ? myLightV : upLightV ) << 16;
     }
 
+    /**
+     * Gets the fluid height at the west-north corner of the specified block pos.
+     */
     private float getFluidHeight( IEnviromentBlockReader world, BlockPos pos, Fluid fluid, IFluidState fluidState, int fall ) {
         if( Minecraft.getInstance().world == null ) {
             return fluidState.func_223408_f();

@@ -16,14 +16,14 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class SPacketSeed implements Packet {
+public class SSeedPacket implements Packet {
     private long seed;
 
-    public SPacketSeed( long seed ) {
+    public SSeedPacket( long seed ) {
         this.seed = seed;
     }
 
-    public SPacketSeed() {
+    public SSeedPacket() {
 
     }
 

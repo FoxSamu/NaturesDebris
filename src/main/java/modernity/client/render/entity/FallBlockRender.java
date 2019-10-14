@@ -32,9 +32,12 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import java.util.Random;
 
+/**
+ * Renders a falling block entity (the modernity one)
+ */
 @OnlyIn( Dist.CLIENT )
-public class RenderFallBlock extends EntityRenderer<EntityFallBlock> {
-    public RenderFallBlock( EntityRendererManager manager ) {
+public class FallBlockRender extends EntityRenderer<EntityFallBlock> {
+    public FallBlockRender( EntityRendererManager manager ) {
         super( manager );
         this.shadowSize = 0.5F;
     }
@@ -96,7 +99,7 @@ public class RenderFallBlock extends EntityRenderer<EntityFallBlock> {
     public static class Factory implements IRenderFactory<EntityFallBlock> {
         @Override
         public EntityRenderer<? super EntityFallBlock> createRenderFor( EntityRendererManager manager ) {
-            return new RenderFallBlock( manager );
+            return new FallBlockRender( manager );
         }
     }
 }

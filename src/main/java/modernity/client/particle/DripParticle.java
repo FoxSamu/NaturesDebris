@@ -14,6 +14,9 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+/**
+ * Dripping particle used for Modernity fluids.
+ */
 public class DripParticle extends SpriteTexturedParticle {
     protected final Type type;
 

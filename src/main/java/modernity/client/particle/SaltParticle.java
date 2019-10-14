@@ -19,12 +19,15 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
+/**
+ * Salt particle, which drops from salt blocks and salt crystals
+ */
 @OnlyIn( Dist.CLIENT )
 public class SaltParticle extends PhysicsParticle {
     public SaltParticle( World world, double x, double y, double z, double xv, double yv, double zv, IAnimatedSprite sprite ) {
         super( world, x, y, z, xv, yv, zv, sprite );
         particleScale = 0.08F;
-        bounciness = 0.7;
+        bounciness = 0.7; // Jumps and dances: "Yaay, I'm salt!"
         motionX = xv;
         motionY = yv;
         motionZ = zv;

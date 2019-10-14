@@ -29,6 +29,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.stream.Stream;
 
+/**
+ * A particle with extended physics, such as bouncing, floating, air friction, etc.
+ */
 @OnlyIn( Dist.CLIENT )
 public abstract class PhysicsParticle extends SpriteTexturedParticle {
     protected double bounciness;
@@ -69,6 +72,7 @@ public abstract class PhysicsParticle extends SpriteTexturedParticle {
             double height = fstate.func_215679_a( world, pos );
             if( world.getBlockState( pos.up() ).getBlock() == state.getBlock() ) height = 1;
             if( posY % 1 < height ) {
+                // Float in fluid
                 gravMult -= weight;
                 floating = true;
             }
@@ -81,7 +85,8 @@ public abstract class PhysicsParticle extends SpriteTexturedParticle {
         motionY *= fr;
         motionZ *= fr;
         if( floating ) {
-            Vec3d flow = state.getFluidState().getFlow( world, pos ).normalize();
+            // Flow in fluid
+            Vec3d flow = fstate.getFlow( world, pos ).normalize();
             motionX += flow.x * 0.04;
             motionY += flow.y * 0.04;
             motionZ += flow.z * 0.04;
@@ -91,6 +96,8 @@ public abstract class PhysicsParticle extends SpriteTexturedParticle {
             motionY *= 0.5;
             motionZ *= 0.5;
         }
+
+        // Ground friction
         if( onGround ) {
             motionX *= 0.7;
             motionZ *= 0.7;
@@ -119,6 +126,7 @@ public abstract class PhysicsParticle extends SpriteTexturedParticle {
             resetPositionToBB();
         }
 
+        // Do bouncing here
         if( origX != x ) {
             motionX = origX * - bounciness;
         }

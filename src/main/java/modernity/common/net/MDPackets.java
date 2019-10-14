@@ -10,7 +10,7 @@ public final class MDPackets {
     public static void register( PacketChannel channel ) {
         channel.register( ESide.SERVER, SSpawnEntityPacket.class );
         channel.register( ESide.SERVER, SEventPacket.class );
-        channel.register( ESide.SERVER, SPacketSeed.class );
+        channel.register( ESide.SERVER, SSeedPacket.class );
         channel.register( ESide.SERVER, SCaveHeightsPacket.class );
     }
 }

@@ -22,6 +22,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
+/**
+ * Leaf particle spawned by humus and leaves.
+ */
 @OnlyIn( Dist.CLIENT )
 public class LeafParticle extends PhysicsParticle {
     private double angleIncr;
@@ -57,6 +60,7 @@ public class LeafParticle extends PhysicsParticle {
     public void tick() {
         prevParticleAngle = particleAngle;
         double speed = Math.sqrt( motionX * motionX + motionY * motionY + motionZ * motionZ );
+        // Rotate the particle during falling
         particleAngle += angleIncr * speed * 35;
         super.tick();
     }

@@ -10,7 +10,7 @@
 package modernity.common.entity;
 
 import com.google.common.reflect.TypeToken;
-import modernity.client.render.entity.RenderFallBlock;
+import modernity.client.render.entity.FallBlockRender;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.entity.Entity;
@@ -46,6 +46,6 @@ public final class MDEntityTypes {
 
     @OnlyIn( Dist.CLIENT )
     public static void initEntityRenderers() {
-        RenderingRegistry.registerEntityRenderingHandler( EntityFallBlock.class, new RenderFallBlock.Factory() );
+        RenderingRegistry.registerEntityRenderingHandler( EntityFallBlock.class, new FallBlockRender.Factory() );
     }
 }

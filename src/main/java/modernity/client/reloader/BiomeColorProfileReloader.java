@@ -1,6 +1,7 @@
 package modernity.client.reloader;
 
 import modernity.api.biome.BiomeColoringProfile;
+import modernity.common.Modernity;
 import net.minecraft.client.resources.ReloadListener;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
@@ -11,6 +12,9 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.util.function.Consumer;
 
+/**
+ * Reloads {@link BiomeColoringProfile}s off-thread.
+ */
 public class BiomeColorProfileReloader extends ReloadListener<BiomeColoringProfile> {
     private static final Logger LOGGER = LogManager.getLogger();
     private final ResourceLocation type;
@@ -22,7 +26,7 @@ public class BiomeColorProfileReloader extends ReloadListener<BiomeColoringProfi
     }
 
     public BiomeColorProfileReloader( String type, Consumer<BiomeColoringProfile> out ) {
-        this( new ResourceLocation( type ), out );
+        this( Modernity.res( type ), out );
     }
 
     @Override
