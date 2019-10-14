@@ -13,6 +13,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ObjectHolder;
 
+/**
+ * Holder class for Modernity fluids.
+ */
 @ObjectHolder( "modernity" )
 public final class MDFluids {
     private static final RegistryHandler<Fluid> ENTRIES = new RegistryHandler<>( "modernity" );
@@ -36,6 +39,9 @@ public final class MDFluids {
         handler.addHandler( Fluid.class, ENTRIES );
     }
 
+    /**
+     * Checks if two fluids are equivalent.
+     */
     public static boolean areEquivalent( Fluid fluidA, Fluid fluidB ) {
         if( fluidA instanceof WaterFluid && fluidB instanceof ModernizedWaterFluid ) {
             return true;

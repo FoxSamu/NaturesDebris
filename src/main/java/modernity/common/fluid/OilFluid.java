@@ -38,6 +38,9 @@ import net.rgsw.MathUtil;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+/**
+ * A black, viscous fluid that can burn.
+ */
 public abstract class OilFluid extends RegularFluid implements ICustomRenderFluid, IAluminiumBucketTakeable {
     public static final BooleanProperty BURNING = BooleanProperty.create( "burning" );
     public static final IntegerProperty LEVEL = IntegerProperty.create( "level", 1, 16 );

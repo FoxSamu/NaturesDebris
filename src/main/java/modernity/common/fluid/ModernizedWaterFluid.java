@@ -36,6 +36,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+/**
+ * The Modernity variant on water. Modernized water generates almost everywhere in the Modernity.
+ */
 public abstract class ModernizedWaterFluid extends RegularFluid implements ICustomRenderFluid, IAluminiumBucketTakeable {
     @Override
     public Fluid getFlowingFluid() {

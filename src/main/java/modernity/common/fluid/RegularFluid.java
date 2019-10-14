@@ -20,6 +20,7 @@ import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.api.block.fluid.IGaseousFluid;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
@@ -45,6 +46,10 @@ import net.rgsw.MathUtil;
 
 import java.util.Map;
 
+/**
+ * Root of all fluid classes. This fluid is basically vanilla's {@link FlowingFluid} but with support for inverse
+ * gravity and custom flow quanta.
+ */
 public abstract class RegularFluid extends Fluid {
     public static final BooleanProperty FALLING = BlockStateProperties.FALLING;
     public final IntegerProperty level;
@@ -100,6 +105,9 @@ public abstract class RegularFluid extends Fluid {
         return getFlow( world, pos, state );
     }
 
+    /**
+     * Returns the flow vector for the specified context.
+     */
     public Vec3d getFlow( IBlockReader world, BlockPos pos, IFluidState state ) {
         double xflow = 0.0D;
         double zflow = 0.0D;
@@ -153,10 +161,16 @@ public abstract class RegularFluid extends Fluid {
         return normalizedFlow;
     }
 
+    /**
+     * Checks if this fluid can flow into the specified fluid.
+     */
     private boolean canFlowTo( IFluidState state ) {
         return state.isEmpty() || state.getFluid().isEquivalentTo( this );
     }
 
+    /**
+     * Does downward current exist in the specified context?
+     */
     protected boolean causesVerticalCurrent( IBlockReader world, BlockPos pos, Direction facing ) {
         BlockState blockstate = world.getBlockState( pos );
         IFluidState ifluidstate = world.getFluidState( pos );
@@ -169,6 +183,13 @@ public abstract class RegularFluid extends Fluid {
         }
     }
 
+    /**
+     * Makes this fluid flow in the specified context.
+     *
+     * @param world The world to flow in
+     * @param pos   The pos to flow at
+     * @param fluid The current fluid state
+     */
     protected void flowAround( IWorld world, BlockPos pos, IFluidState fluid ) {
         if( ! fluid.isEmpty() ) {
             BlockState block = world.getBlockState( pos );
@@ -193,10 +214,24 @@ public abstract class RegularFluid extends Fluid {
         }
     }
 
+    /**
+     * Copy additional state properties from the origin to the new flowing block.
+     *
+     * @param source The origin fluid
+     * @param flow   The new fluid
+     * @return The new fluid with additional states
+     */
     protected IFluidState applyAdditionalState( IFluidState source, IFluidState flow ) {
         return flow;
     }
 
+    /**
+     * Makes the fluid spread horizontally
+     * @param world The world to spread in
+     * @param pos   The position to spread at
+     * @param fluid The current fluid state
+     * @param block The current block state
+     */
     private void flowHorizontal( IWorld world, BlockPos pos, IFluidState fluid, BlockState block ) {
         int nextLevel = fluid.getLevel() - getLevelDecreasePerBlock( world );
         if( fluid.get( FALLING ) ) {
@@ -300,20 +335,43 @@ public abstract class RegularFluid extends Fluid {
         return fillFullSquare;
     }
 
+    /**
+     * Returns the flowing variant of this fluid.
+     */
     public abstract Fluid getFlowingFluid();
 
+    /**
+     * Returns a flowing fluid state of this fluid.
+     */
     public IFluidState getFlowingFluidState( int level, boolean falling ) {
         return getFlowingFluid().getDefaultState().with( this.level, level ).with( FALLING, falling );
     }
 
+    /**
+     * Returns the still variant of this fluid.
+     */
     public abstract Fluid getStillFluid();
 
+    /**
+     * Returns a still fluid state of this fluid.
+     */
     public IFluidState getStillFluidState( boolean falling ) {
         return getStillFluid().getDefaultState().with( FALLING, falling );
     }
 
+    /**
+     * Returns true when this fluid can generate new sources.
+     */
     protected abstract boolean canSourcesMultiply();
 
+    /**
+     * Called when a fluid block needs to be placed.
+     * @param world     The world to place in
+     * @param pos       The position to flow to
+     * @param state     The block state that is being replaced
+     * @param direction The direction we're flowing to
+     * @param fluid     The correct flow state
+     */
     protected void flowInto( IWorld world, BlockPos pos, BlockState state, Direction direction, IFluidState fluid ) {
         // Check for a waterlogged block if it can contain this fluid before we place the fluid so that we can have
         // non-waterlogged behaviour when the block cannot contain this fluid
@@ -329,6 +387,9 @@ public abstract class RegularFluid extends Fluid {
 
     }
 
+    /**
+     * Called before a block is being replaced by this fluid, unless that block is a fluid container or air.
+     */
     protected abstract void beforeReplacingBlock( IWorld worldIn, BlockPos pos, BlockState state );
 
     private static short shortDelta( BlockPos pos, BlockPos adjPos ) {
@@ -421,6 +482,9 @@ public abstract class RegularFluid extends Fluid {
         return state.getFluid().isEquivalentTo( this ) && state.isSource();
     }
 
+    /**
+     * Returns the maximum distance this fluid checks to find a slope (a near place to flow down).
+     */
     protected abstract int getSlopeFindDistance( IEnviromentBlockReader world );
 
     private int amountOfAdjacentEqualFluids( IEnviromentBlockReader world, BlockPos pos ) {
@@ -437,6 +501,13 @@ public abstract class RegularFluid extends Fluid {
         return amount;
     }
 
+    /**
+     * Returns a map of flow states for each horizontal direction.
+     * @param world  The world to flow in
+     * @param pos    The pos to flow at
+     * @param state  The origin block
+     * @param origin The origin fluid
+     */
     protected Map<Direction, IFluidState> getFlowStates( IEnviromentBlockReader world, BlockPos pos, BlockState state, IFluidState origin ) {
         int weight = 1000;
 
@@ -484,6 +555,13 @@ public abstract class RegularFluid extends Fluid {
         return map;
     }
 
+    /**
+     * Checks if this fluid can replace a specific block
+     * @param world The world to flow in
+     * @param pos   The pos to flow to
+     * @param state The state that is being replaced
+     * @param fluid The fluid that replaces this block
+     */
     protected boolean canBreakThrough( IBlockReader world, BlockPos pos, BlockState state, Fluid fluid ) {
         Block block = state.getBlock();
         // Check waterlogging all in if statement so that when a fluid can not be placed inside a block, the
@@ -502,12 +580,29 @@ public abstract class RegularFluid extends Fluid {
         }
     }
 
+    /**
+     * Checks if this fluid can flow from one place to another
+     * @param world The world to flow in
+     * @param fromPos The origin pos
+     * @param fromBlockState The origin state
+     * @param direction The direction to flow to
+     * @param toPos The flow pos
+     * @param toBlockState The block state to replace
+     * @param toFluidState The fluid state to replace
+     * @param fluid The current fluid
+     */
     protected boolean canFlow( IBlockReader world, BlockPos fromPos, BlockState fromBlockState, Direction direction, BlockPos toPos, BlockState toBlockState, IFluidState toFluidState, Fluid fluid ) {
         return toFluidState.func_215677_a( world, toPos, fluid, direction ) && doBlockShapesAllowFlowing( direction, world, fromPos, fromBlockState, toPos, toBlockState ) && canBreakThrough( world, toPos, toBlockState, fluid );
     }
 
+    /**
+     * Returns the decrease in level per block.
+     */
     protected abstract int getLevelDecreasePerBlock( IEnviromentBlockReader worldIn );
 
+    /**
+     * Returns the tick rate for a specific context.
+     */
     protected int getTickRate( World world, IFluidState currentState, IFluidState correctState ) {
         return getTickRate( world );
     }
@@ -534,39 +629,60 @@ public abstract class RegularFluid extends Fluid {
         flowAround( world, pos, state );
     }
 
+    /**
+     * Returns the level from a specific fluid state.
+     */
     protected int getLevelFromState( IFluidState state ) {
         return state.isSource()
                ? 0
                : maxLevel - Math.min( state.getLevel(), maxLevel ) + ( state.get( FALLING ) ? maxLevel : 0 );
     }
 
+    /**
+     * Returns the height of a fluid state.
+     */
     public float getHeight( IFluidState state ) {
         return interpolateHeight( state, state.getLevel() / (float) maxLevel );
     }
 
+    /**
+     * Checks if this fluid is a gas.
+     */
     public boolean isGas() {
         return isGas;
     }
 
+    /**
+     * Interpolates between min and max height.
+     */
     public float interpolateHeight( IFluidState state, float nLv ) {
         return MathUtil.lerp( getMinHeight( state ), getMaxHeight( state ), nLv );
     }
 
+    /**
+     * Returns the minimum height of the fluid.
+     */
     public float getMinHeight( IFluidState state ) {
         return 0;
     }
 
+    /**
+     * Returns the maximum height of the fluid.
+     */
     public float getMaxHeight( IFluidState state ) {
         return 0.888888889F;
     }
 
-    @Override
-    public abstract BlockState getBlockState( IFluidState state );
-
+    /**
+     * Do reactions with neighbors, such as heatrock turning into rock or basalt.
+     */
     public boolean reactWithNeighbors( World world, BlockPos pos, BlockState state ) {
         return true;
     }
 
+    /**
+     * Play mixing sounds, such as extinguish sound and smoke on heatrock.
+     */
     protected void triggerMixEffects( IWorld world, BlockPos pos ) {
         double x = pos.getX();
         double y = pos.getY();
@@ -589,6 +705,9 @@ public abstract class RegularFluid extends Fluid {
         return getRenderedHeight( state, world, pos );
     }
 
+    /**
+     * Returns the rendered height for a fluid state, which is 1 when a similar fluid is above this fluid
+     */
     public float getRenderedHeight( IFluidState state, IBlockReader world, BlockPos pos ) {
         return isSimilarFluidUp( state, world, pos )
                ? 1
@@ -601,6 +720,9 @@ public abstract class RegularFluid extends Fluid {
         return getHeight( state );
     }
 
+    /**
+     * Returns the shape of this fluid.
+     */
     public VoxelShape getShape( IFluidState state, IBlockReader world, BlockPos pos ) {
         return state.getLevel() == 9 && isSimilarFluidUp( state, world, pos )
                ? VoxelShapes.fullCube()
@@ -628,6 +750,9 @@ public abstract class RegularFluid extends Fluid {
         return canFlowInto( state, world, pos, fluid, facing );
     }
 
+    /**
+     * Add additional fluid attributes here.
+     */
     protected void addAdditionalAttributes( FluidAttributes.Builder builder ) {
     }
 

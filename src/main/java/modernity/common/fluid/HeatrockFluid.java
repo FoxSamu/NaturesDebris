@@ -34,6 +34,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+/**
+ * The lava-like fluid of the Modernity.
+ */
 public abstract class HeatrockFluid extends RegularFluid implements ICustomRenderFluid, IAluminiumBucketTakeable {
     @Override
     public Fluid getFlowingFluid() {
@@ -174,10 +177,6 @@ public abstract class HeatrockFluid extends RegularFluid implements ICustomRende
         return 30; // TODO: 10 in hell
     }
 
-    public boolean canOtherFlowInto( IFluidState state, Fluid fluid, Direction direction ) {
-        return direction == Direction.UP && ! fluid.isIn( FluidTags.WATER );
-    }
-
     @Override
     public boolean isIn( Tag<Fluid> tag ) {
         return tag == FluidTags.LAVA || tag.contains( this );
@@ -209,6 +208,9 @@ public abstract class HeatrockFluid extends RegularFluid implements ICustomRende
     }
 
 
+    /**
+     * Plays mix effects.
+     */
     protected void triggerEffects( IWorld world, BlockPos pos ) {
         double x = pos.getX();
         double y = pos.getY();
