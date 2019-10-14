@@ -24,6 +24,9 @@ import net.minecraft.world.gen.ChunkGenerator;
 
 import javax.annotation.Nullable;
 
+/**
+ * The surface dimension of the Modernity.
+ */
 public class MDSurfaceDimension extends Dimension {
 
     public MDSurfaceDimension( World world, DimensionType type ) {

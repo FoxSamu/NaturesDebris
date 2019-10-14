@@ -29,6 +29,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.BiFunction;
 
+/**
+ * Holder class for Modernity dimensions.
+ */
 @ObjectHolder( "modernity" )
 public final class MDDimensions {
     private static boolean isSurfaceRegistered;
@@ -72,6 +75,9 @@ public final class MDDimensions {
         }
     }
 
+    /**
+     * Registers the dimensions to the {@link DimensionManager}.
+     */
     public static void init() {
         register( new ResourceLocation( "modernity:modernity" ), MODERNITY, true );
     }
