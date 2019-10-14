@@ -17,6 +17,9 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 
+/**
+ * Represents a Nether Altar container.
+ */
 public class NetherAltarContainer extends Container {
     private final IInventory altarInventory;
 
@@ -100,6 +103,9 @@ public class NetherAltarContainer extends Container {
         return resultStack;
     }
 
+    /**
+     * The result (center) slot of the Nether altar.
+     */
     public static class ResultSlot extends Slot {
         public ResultSlot( IInventory inventory, int index, int x, int y ) {
             super( inventory, index, x, y );
@@ -116,6 +122,9 @@ public class NetherAltarContainer extends Container {
         }
     }
 
+    /**
+     * The input (surrounding) slots of the Nether altar.
+     */
     public static class InputSlot extends Slot {
         public InputSlot( IInventory inventory, int index, int x, int y ) {
             super( inventory, index, x, y );

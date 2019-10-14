@@ -12,6 +12,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ObjectHolder;
 
+/**
+ * Holder class for Modernity container types
+ */
 @ObjectHolder( "modernity" )
 public final class MDContainerTypes {
     private static final RegistryHandler<ContainerType<?>> ENTRIES = new RegistryHandler<>( "modernity" );
@@ -30,6 +33,10 @@ public final class MDContainerTypes {
         return (ContainerType<T>) type;
     }
 
+    /**
+     * Registers the registry handler to the {@link RegistryEventHandler}. Should be called only from {@link
+     * RegistryEventHandler}.
+     */
     @SuppressWarnings( "unchecked" )
     public static void setup( RegistryEventHandler handler ) {
         TypeToken<ContainerType<?>> token = new TypeToken<ContainerType<?>>( ContainerType.class ) {
@@ -37,6 +44,9 @@ public final class MDContainerTypes {
         handler.addHandler( (Class<ContainerType<?>>) token.getRawType(), ENTRIES );
     }
 
+    /**
+     * Registers the screen factories to the {@link ScreenManager}.
+     */
     @OnlyIn( Dist.CLIENT )
     public static void registerScreens() {
         ScreenManager.registerFactory( NETHER_ALTAR, GuiNetherAltar::new );
