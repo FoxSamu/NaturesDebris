@@ -11,6 +11,9 @@ import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.Placement;
 
+/**
+ * The 'River' or 'modernity:river' biome.
+ */
 public class RiverBiome extends ModernityBiome {
     protected RiverBiome() {
         super(

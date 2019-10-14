@@ -12,6 +12,9 @@ import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.Placement;
 
+/**
+ * The 'Waterlands' or 'modernity:waterlands' biome.
+ */
 public class WaterlandsBiome extends ModernityBiome {
     protected WaterlandsBiome() {
         super(

@@ -17,6 +17,9 @@ import net.minecraft.world.gen.placement.Placement;
 import java.util.Random;
 import java.util.function.Function;
 
+/**
+ * The 'Lush Meadow' or 'modernity:lush_meadow' biome.
+ */
 public class LushMeadowBiome extends ModernityBiome {
     private static final Function<Random, Integer> GRASS_HEIGHT_PROVIDER = rng -> Math.min( 4, rng.nextInt( 4 ) + rng.nextInt( 2 ) + 1 );
 

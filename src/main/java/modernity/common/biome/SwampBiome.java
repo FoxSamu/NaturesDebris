@@ -12,6 +12,9 @@ import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.Placement;
 
+/**
+ * The 'Swamp' or 'modernity:swamp' biome.
+ */
 public class SwampBiome extends ModernityBiome {
     protected SwampBiome() {
         super(

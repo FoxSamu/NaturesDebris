@@ -7,6 +7,9 @@ import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
+/**
+ * Base of all Modernity biomes. It holds additional values for generating the the Modernity.
+ */
 public abstract class ModernityBiome extends Biome {
     private final float baseHeight;
     private final float heightVariation;
@@ -23,27 +26,45 @@ public abstract class ModernityBiome extends Biome {
         surfaceGen = builder.surfaceGen;
     }
 
+    /**
+     * Returns the base height, which is the upwards offset from water level.
+     */
     public float getBaseHeight() {
         return baseHeight;
     }
 
+    /**
+     * Returns the noise interpolation range at base height to generate any hills.
+     */
     public float getHeightVariation() {
         return heightVariation;
     }
 
+    /**
+     * Returns the range of any additional height differences.
+     */
     public float getHeightDifference() {
         return heightDifference;
     }
 
+    /**
+     * Returns the weight for blending this biome with others.
+     */
     public float getBlendWeight() {
         return blendWeight;
     }
 
+    /**
+     * Returns the surface generator of this biome
+     */
     @SuppressWarnings( "unchecked" )
     public <T extends GenerationSettings> ISurfaceGenerator<T> getSurfaceGen() {
         return (ISurfaceGenerator<T>) surfaceGen;
     }
 
+    /**
+     * Builder for Modernity biomes, used instead of vanilla biome builder.
+     */
     public static class Builder {
         private final Biome.Builder vanillaBuilder = new Biome.Builder();
 

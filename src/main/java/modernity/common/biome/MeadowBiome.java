@@ -14,6 +14,9 @@ import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.LakeChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
 
+/**
+ * The 'Meadow' or 'modernity:meadow' biome.
+ */
 public class MeadowBiome extends ModernityBiome {
     protected MeadowBiome() {
         super(

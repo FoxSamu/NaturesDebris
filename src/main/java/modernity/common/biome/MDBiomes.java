@@ -12,6 +12,9 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Object holder for Modernity biomes. This class handles all registries according to biomes.
+ */
 @ObjectHolder( "modernity" )
 public final class MDBiomes {
     private static final RegistryHandler<Biome> ENTRIES = new RegistryHandler<>( "modernity" );
@@ -31,14 +34,23 @@ public final class MDBiomes {
         return ENTRIES.register( id, biome, aliases );
     }
 
+    /**
+     * Called by {@link RegistryEventHandler} to register all {@link RegistryHandler}s.
+     */
     public static void setup( RegistryEventHandler handler ) {
         handler.addHandler( Biome.class, ENTRIES );
     }
 
+    /**
+     * Returns a list of biomes for the specified modernity dimension.
+     */
     public static List<ModernityBiome> getBiomesFor( EMDDimension dimen ) {
         return BIOME_LISTS.get( dimen ).stream().map( elem -> elem.biome ).collect( Collectors.toList() );
     }
 
+    /**
+     * Creates a generation profile for the speicified modernity dimension. Used in biome layer system.
+     */
     public static GenProfile createGenProfile( EMDDimension dimen ) {
         ArrayList<Entry> entries = BIOME_LISTS.computeIfAbsent( dimen, dim -> new ArrayList<>() );
         int[] ids = new int[ entries.size() ];

@@ -12,6 +12,9 @@ import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.LakeChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
 
+/**
+ * The 'Forest' or 'modernity:forest' biome.
+ */
 public class ForestBiome extends ModernityBiome {
     protected ForestBiome() {
         super(
