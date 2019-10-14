@@ -8,7 +8,16 @@ import net.minecraft.world.gen.feature.structure.StructureStart;
 
 import java.util.Random;
 
-public class CaveUtil {
+public final class CaveUtil {
+    private CaveUtil() {
+    }
+
+    /**
+     * Get a random pos inside a cave at specified coords
+     * @param pos   The position, y doesn't matter
+     * @param world The world
+     * @param rand  A random number generator
+     */
     public static BlockPos randomPosInCave( BlockPos pos, IWorld world, Random rand ) {
         int cx = pos.getX() >> 4, cz = pos.getZ() >> 4;
         IChunk chunk = world.getChunk( cx, cz );
@@ -19,6 +28,12 @@ public class CaveUtil {
         return ( (CaveStructure.Start) start ).randomPosInCave( rand, cx * 16, cz * 16 );
     }
 
+    /**
+     * Get a random pos outside of a cave at specified coords
+     * @param pos   The position, y doesn't matter
+     * @param world The world
+     * @param rand  A random number generator
+     */
     public static BlockPos randomPosNotInCave( BlockPos pos, IWorld world, Random rand ) {
         int cx = pos.getX() >> 4, cz = pos.getZ() >> 4;
         IChunk chunk = world.getChunk( cx, cz );

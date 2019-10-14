@@ -16,8 +16,14 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.util.HashSet;
 
-public class Hooks {
+/**
+ * Handles all common coremod hooks.
+ */
+public final class Hooks {
     private static final HashSet<Biome> STRUCTURE_BIOMES = new HashSet<>();
+
+    private Hooks() {
+    }
 
 
     public static boolean checkInWater( Entity e, boolean inWater ) {

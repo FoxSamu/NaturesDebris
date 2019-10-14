@@ -14,6 +14,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
+/**
+ * Holder class for Modernity damage sources.
+ */
 public class MDDamageSource extends DamageSource {
     public static final MDDamageSource NETTLES = new MDDamageSource( "nettles" );
 
