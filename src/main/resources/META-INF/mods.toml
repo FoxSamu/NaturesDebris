@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[28,)"
+loaderVersion="[28.1.40,)"
 #issueTrackerURL="http://my.issue.tracker/"
 [[mods]]
 modId="modernity"
@@ -17,7 +17,7 @@ A broken universe.
 [[dependencies.examplemod]]
     modId="forge"
     mandatory=true
-    versionRange="[28,)"
+    versionRange="[28.1.40,)"
     ordering="NONE"
     side="BOTH"
 
