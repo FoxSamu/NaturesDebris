@@ -44,7 +44,10 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.List;
 
-public class EntityFallBlock extends Entity {
+/**
+ * Represents a falling block entity.
+ */
+public class FallBlockEntity extends Entity {
     public int fallTime;
     public boolean shouldDropItem = true;
     private boolean dontSetBlock;
@@ -56,13 +59,13 @@ public class EntityFallBlock extends Entity {
     private float fallHurtAmount = 2.0F;
     public CompoundNBT tileEntityData;
     private BlockState fallingBlock;
-    protected static final DataParameter<BlockPos> ORIGIN = EntityDataManager.createKey( EntityFallBlock.class, DataSerializers.BLOCK_POS );
+    protected static final DataParameter<BlockPos> ORIGIN = EntityDataManager.createKey( FallBlockEntity.class, DataSerializers.BLOCK_POS );
 
-    public EntityFallBlock( EntityType type, World world ) {
+    public FallBlockEntity( EntityType type, World world ) {
         super( type, world );
     }
 
-    public EntityFallBlock( World world, double x, double y, double z, BlockState fallingBlockState ) {
+    public FallBlockEntity( World world, double x, double y, double z, BlockState fallingBlockState ) {
         this( MDEntityTypes.FALL_BLOCK, world );
 
         fallingBlock = fallingBlockState;
@@ -78,18 +81,30 @@ public class EntityFallBlock extends Entity {
         setOrigin( new BlockPos( this ) );
     }
 
+    /**
+     * Sets the tag this falling block should float in. When null, this block does not float.
+     */
     public void setFloatIn( Tag<Fluid> floatIn ) {
         this.floatIn = floatIn;
     }
 
+    /**
+     * Returns the tag this falling block should float in. Returns null when this block doesn't float.
+     */
     public Tag<Fluid> getFloatIn() {
         return floatIn;
     }
 
+    /**
+     * Sets the gravity scale of the block. When negative, it falls upwards.
+     */
     public void setGravityScale( float gravityScale ) {
         this.gravityScale = gravityScale;
     }
 
+    /**
+     * Returns the gravity scale of the block.
+     */
     public float getGravityScale() {
         return gravityScale;
     }
@@ -99,11 +114,16 @@ public class EntityFallBlock extends Entity {
         return false;
     }
 
+    /**
+     * Sets the origin pos of this falling block.
+     */
     public void setOrigin( BlockPos origin ) {
         dataManager.set( ORIGIN, origin );
     }
 
-    @OnlyIn( Dist.CLIENT )
+    /**
+     * Returns the origin pos of this falling block.
+     */
     public BlockPos getOrigin() {
         return dataManager.get( ORIGIN );
     }
@@ -339,6 +359,9 @@ public class EntityFallBlock extends Entity {
         return world;
     }
 
+    /**
+     * Sets whether this block hurts entities or not.
+     */
     public void setHurtEntities( boolean hurt ) {
         hurtEntities = hurt;
     }
@@ -355,10 +378,16 @@ public class EntityFallBlock extends Entity {
         category.addDetail( "Immitating BlockState", getFallingBlock().toString() );
     }
 
+    /**
+     * Returns the actual block state that is falling
+     */
     public BlockState getFallingBlock() {
         return fallingBlock;
     }
 
+    /**
+     * Sets the block state that is falling
+     */
     protected void setFallingBlock( BlockState state ) {
         fallingBlock = state;
     }

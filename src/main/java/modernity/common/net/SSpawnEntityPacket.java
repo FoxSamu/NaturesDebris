@@ -1,6 +1,6 @@
 package modernity.common.net;
 
-import modernity.common.entity.EntityFallBlock;
+import modernity.common.entity.FallBlockEntity;
 import modernity.common.entity.MDEntityTypes;
 import modernity.network.Packet;
 import modernity.network.ProcessContext;
@@ -107,7 +107,7 @@ public class SSpawnEntityPacket implements Packet {
 
         Entity entity;
         if( type == MDEntityTypes.FALL_BLOCK ) {
-            entity = new EntityFallBlock( mc.world, x, y, z, Block.getStateById( data ) );
+            entity = new FallBlockEntity( mc.world, x, y, z, Block.getStateById( data ) );
         } else {
             entity = null;
         }

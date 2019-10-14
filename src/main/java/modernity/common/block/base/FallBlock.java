@@ -9,7 +9,7 @@
 
 package modernity.common.block.base;
 
-import modernity.common.entity.EntityFallBlock;
+import modernity.common.entity.FallBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -64,7 +64,7 @@ public class FallBlock extends Block {
     private void checkFallable( World world, BlockPos pos ) {
         if( world.isAirBlock( pos.down() ) || canFallThrough( world.getBlockState( pos.down() ) ) && pos.getY() >= 0 ) {
             if( ! world.isRemote ) {
-                EntityFallBlock entity = new EntityFallBlock( world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getBlockState( pos ) );
+                FallBlockEntity entity = new FallBlockEntity( world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getBlockState( pos ) );
                 entity.setFloatIn( floatIn() );
                 entity.setGravityScale( (float) gravityScale() );
                 onStartFalling( entity );
@@ -91,7 +91,7 @@ public class FallBlock extends Block {
     /**
      * Called when the block starts falling
      */
-    public void onStartFalling( EntityFallBlock fallingEntity ) {
+    public void onStartFalling( FallBlockEntity fallingEntity ) {
     }
 
     /**

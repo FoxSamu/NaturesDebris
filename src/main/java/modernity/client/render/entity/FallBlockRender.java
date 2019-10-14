@@ -10,7 +10,7 @@
 package modernity.client.render.entity;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import modernity.common.entity.EntityFallBlock;
+import modernity.common.entity.FallBlockEntity;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -36,14 +36,14 @@ import java.util.Random;
  * Renders a falling block entity (the modernity one)
  */
 @OnlyIn( Dist.CLIENT )
-public class FallBlockRender extends EntityRenderer<EntityFallBlock> {
+public class FallBlockRender extends EntityRenderer<FallBlockEntity> {
     public FallBlockRender( EntityRendererManager manager ) {
         super( manager );
         this.shadowSize = 0.5F;
     }
 
     @Override
-    public void doRender( EntityFallBlock entity, double x, double y, double z, float entityYaw, float partialTicks ) {
+    public void doRender( FallBlockEntity entity, double x, double y, double z, float entityYaw, float partialTicks ) {
         BlockState state = entity.getFallingBlock();
         if( state.getRenderType() == BlockRenderType.MODEL ) {
 
@@ -92,13 +92,13 @@ public class FallBlockRender extends EntityRenderer<EntityFallBlock> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture( EntityFallBlock entity ) {
+    protected ResourceLocation getEntityTexture( FallBlockEntity entity ) {
         return AtlasTexture.LOCATION_BLOCKS_TEXTURE;
     }
 
-    public static class Factory implements IRenderFactory<EntityFallBlock> {
+    public static class Factory implements IRenderFactory<FallBlockEntity> {
         @Override
-        public EntityRenderer<? super EntityFallBlock> createRenderFor( EntityRendererManager manager ) {
+        public EntityRenderer<? super FallBlockEntity> createRenderFor( EntityRendererManager manager ) {
             return new FallBlockRender( manager );
         }
     }
