@@ -22,6 +22,9 @@ import net.minecraft.world.dimension.DimensionType;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Argument type that accepts and suggests a dimension.
+ */
 public class DimensionArgumentType implements ArgumentType<DimensionType> {
 
 

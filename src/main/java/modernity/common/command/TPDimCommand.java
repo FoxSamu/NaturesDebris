@@ -24,11 +24,17 @@ import net.minecraft.world.dimension.DimensionType;
 
 import java.util.ArrayList;
 
-public class TPDimCommand {
+/**
+ * Manages the {@code /modernity tpdim} or {@code /modernity access} command.
+ */
+public final class TPDimCommand {
     private static final String TK_ERROR_INVALID = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:access.invalid" ) );
     private static final String TK_ERROR_NO_ENTITY = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:access.no_entity" ) );
     private static final String TK_ALREADY_HERE = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:access.already_here" ) );
     private static final String TK_CHANGED_DIMEN = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:access.changed_dimen" ) );
+
+    private TPDimCommand() {
+    }
 
     public static void createCommand( ArrayList<LiteralArgumentBuilder<CommandSource>> list ) {
         createCommand( "access", list );

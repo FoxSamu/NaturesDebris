@@ -27,6 +27,9 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
 
+/**
+ * Manages the Modernity commands ({@code /modernity} and {@code /mddebug}).
+ */
 public final class MDCommands {
     private static final String TK_MAIN_RESULT_TITLE = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:main.title" ) );
     private static final String TK_MAIN_RESULT_VERSION = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:main.version" ) );
@@ -34,6 +37,9 @@ public final class MDCommands {
     private MDCommands() {
     }
 
+    /**
+     * Registers the commands to the {@link CommandDispatcher}.
+     */
     public static void register( CommandDispatcher<CommandSource> dispatcher ) {
 
         ArrayList<LiteralArgumentBuilder<CommandSource>> commandList = new ArrayList<>();
@@ -53,7 +59,10 @@ public final class MDCommands {
         register( "mdebug", dispatcher, debugCommandList );
     }
 
-    public static void register( String alias, CommandDispatcher<CommandSource> dispatcher, ArrayList<LiteralArgumentBuilder<CommandSource>> commandList ) {
+    /**
+     * Registers an alias to the command dispatcher.
+     */
+    private static void register( String alias, CommandDispatcher<CommandSource> dispatcher, ArrayList<LiteralArgumentBuilder<CommandSource>> commandList ) {
         LiteralArgumentBuilder<CommandSource> root = Commands.literal( alias );
         root.executes( MDCommands::invokeMain );
 
@@ -64,6 +73,9 @@ public final class MDCommands {
         dispatcher.register( root );
     }
 
+    /**
+     * Called when any of the commands is executed without arguments.
+     */
     private static int invokeMain( CommandContext<CommandSource> ctx ) {
         CommandSource src = ctx.getSource();
         src.sendFeedback( new TranslationTextComponent( TK_MAIN_RESULT_TITLE ), true );
