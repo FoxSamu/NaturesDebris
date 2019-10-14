@@ -9,6 +9,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * Event cast when leaves decay. This spawns a bunch of leaf particles.
+ */
 public class LeavesDecayBlockEvent extends StateBlockEvent {
     @Override
     @OnlyIn( Dist.CLIENT )

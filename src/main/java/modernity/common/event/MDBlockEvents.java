@@ -6,6 +6,9 @@ import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraftforge.registries.ObjectHolder;
 
+/**
+ * Holder class for Modernity block events.
+ */
 @ObjectHolder( "modernity" )
 public final class MDBlockEvents {
     private static final RegistryHandler<BlockEvent<?>> ENTRIES = new RegistryHandler<>( "modernity" );
@@ -16,6 +19,9 @@ public final class MDBlockEvents {
         return ENTRIES.register( id, event );
     }
 
+    /**
+     * Adds the registry handler to the {@link RegistryEventHandler}. Must be called internally only.
+     */
     @SuppressWarnings( "unchecked" )
     public static void setup( RegistryEventHandler handler ) {
         TypeToken<BlockEvent<?>> token = new TypeToken<BlockEvent<?>>() {

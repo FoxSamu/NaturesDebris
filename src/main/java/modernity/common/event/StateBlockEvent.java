@@ -6,6 +6,9 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * A block event that uses a block state as data
+ */
 public abstract class StateBlockEvent extends BlockEvent<BlockState> {
 
     protected StateBlockEvent( int range ) {
@@ -17,13 +20,13 @@ public abstract class StateBlockEvent extends BlockEvent<BlockState> {
     }
 
     @Override
-    public void writeData( BlockState data, PacketBuffer buffer ) {
+    public final void writeData( BlockState data, PacketBuffer buffer ) {
         buffer.writeInt( Block.BLOCK_STATE_IDS.get( data ) );
     }
 
     @Override
     @OnlyIn( Dist.CLIENT )
-    public BlockState readData( PacketBuffer buffer ) {
+    public final BlockState readData( PacketBuffer buffer ) {
         return Block.BLOCK_STATE_IDS.getByValue( buffer.readInt() );
     }
 }

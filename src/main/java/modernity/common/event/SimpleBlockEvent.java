@@ -4,6 +4,9 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * A block event that does not use any data.
+ */
 public abstract class SimpleBlockEvent extends BlockEvent<Void> {
 
     protected SimpleBlockEvent( int range ) {
@@ -16,12 +19,12 @@ public abstract class SimpleBlockEvent extends BlockEvent<Void> {
 
     @Override
     @OnlyIn( Dist.CLIENT )
-    public Void readData( PacketBuffer buffer ) {
+    public final Void readData( PacketBuffer buffer ) {
         return null;
     }
 
     @Override
-    public void writeData( Void data, PacketBuffer buffer ) {
+    public final void writeData( Void data, PacketBuffer buffer ) {
 
     }
 }

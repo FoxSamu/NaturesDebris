@@ -6,6 +6,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * A block event that takes an integer as data.
+ */
 public abstract class IntBlockEvent extends BlockEvent<Integer> {
 
     protected IntBlockEvent( int range ) {
@@ -26,13 +29,13 @@ public abstract class IntBlockEvent extends BlockEvent<Integer> {
     }
 
     @Override
-    public void writeData( Integer data, PacketBuffer buffer ) {
+    public final void writeData( Integer data, PacketBuffer buffer ) {
         buffer.writeInt( data );
     }
 
     @Override
     @OnlyIn( Dist.CLIENT )
-    public Integer readData( PacketBuffer buffer ) {
+    public final Integer readData( PacketBuffer buffer ) {
         return buffer.readInt();
     }
 }
