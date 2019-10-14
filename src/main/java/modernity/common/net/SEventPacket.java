@@ -10,6 +10,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * Packet that sends a block event.
+ */
 @SuppressWarnings( "unchecked" )
 public class SEventPacket implements Packet {
     private BlockPos pos;

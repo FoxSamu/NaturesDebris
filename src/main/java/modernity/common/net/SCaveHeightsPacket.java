@@ -23,6 +23,9 @@ import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * Packet that sends cave heights to the client.
+ */
 public class SCaveHeightsPacket implements Packet {
     private int x;
     private int z;

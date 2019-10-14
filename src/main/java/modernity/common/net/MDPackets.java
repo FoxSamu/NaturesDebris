@@ -3,6 +3,9 @@ package modernity.common.net;
 import modernity.network.ESide;
 import modernity.network.PacketChannel;
 
+/**
+ * Class that handles registry of Modernity packets.
+ */
 public final class MDPackets {
     private MDPackets() {
     }

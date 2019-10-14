@@ -16,6 +16,9 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * Packet that sends the world seed to clients.
+ */
 public class SSeedPacket implements Packet {
     private long seed;
 
