@@ -12,6 +12,9 @@ package modernity.common.world.gen.layer;
 import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.layer.traits.IAreaTransformer0;
 
+/**
+ * Biome layer that initializes the river field.
+ */
 public enum MDRiverInitLayer implements IAreaTransformer0 {
     INSTANCE;
 

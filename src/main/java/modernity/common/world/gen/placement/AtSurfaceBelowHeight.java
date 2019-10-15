@@ -22,6 +22,9 @@ import net.minecraft.world.gen.placement.Placement;
 import java.util.Random;
 import java.util.stream.Stream;
 
+/**
+ * Generates features at surface, but only below a specific height.
+ */
 public class AtSurfaceBelowHeight extends Placement<AtSurfaceBelowHeight.Config> {
 
     public AtSurfaceBelowHeight() {
@@ -45,6 +48,9 @@ public class AtSurfaceBelowHeight extends Placement<AtSurfaceBelowHeight.Config>
         return builder.build();
     }
 
+    /**
+     * Main config for the {@link AtSurfaceBelowHeight} placement.
+     */
     public static abstract class Config implements IPlacementConfig {
         public final int maxHeight;
 
@@ -60,6 +66,9 @@ public class AtSurfaceBelowHeight extends Placement<AtSurfaceBelowHeight.Config>
         }
     }
 
+    /**
+     * Config for generating the feature multiple times.
+     */
     public static class FrequencyConfig extends Config {
         public final int frequency;
 
@@ -74,6 +83,9 @@ public class AtSurfaceBelowHeight extends Placement<AtSurfaceBelowHeight.Config>
         }
     }
 
+    /**
+     * Config for generating once by chance.
+     */
     public static class ChanceConfig extends Config {
         public final int chance;
 
@@ -88,6 +100,9 @@ public class AtSurfaceBelowHeight extends Placement<AtSurfaceBelowHeight.Config>
         }
     }
 
+    /**
+     * Config for generating multiple times by chance.
+     */
     public static class MultiChanceConfig extends Config {
         public final int chance;
         public final int max;

@@ -7,6 +7,9 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraftforge.registries.ObjectHolder;
 
+/**
+ * Holder class for Modernity structures.
+ */
 @ObjectHolder( "modernity" )
 public final class MDStructures {
     private static final RegistryHandler<Feature<?>> STRUCTURES = new RegistryHandler<>( "modernity" );

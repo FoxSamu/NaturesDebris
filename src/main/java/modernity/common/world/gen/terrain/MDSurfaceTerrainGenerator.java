@@ -29,6 +29,9 @@ import net.rgsw.noise.InverseFractalPerlin3D;
 
 import java.util.Random;
 
+/**
+ * Generates the main terrain shapes of the Modernity's surface dimension using only rock.
+ */
 public class MDSurfaceTerrainGenerator {
     private static final int BUFF_SIZE_X = 5;
     private static final int BUFF_SIZE_Y = 33;
@@ -79,6 +82,9 @@ public class MDSurfaceTerrainGenerator {
         }
     }
 
+    /**
+     * Generates the terrain in the specified chunk.
+     */
     public void generateTerrain( IChunk chunk ) {
         ChunkPos pos = chunk.getPos();
         int cx = pos.x;
@@ -152,6 +158,9 @@ public class MDSurfaceTerrainGenerator {
         }
     }
 
+    /**
+     * Get a list of biomes in the specified region.
+     */
     private Biome[] getBiomes( int x, int z, int width, int length ) {
         Biome[] biomes = new Biome[ width * length ];
         for( int xi = 0; xi < width; xi++ ) {
@@ -164,6 +173,9 @@ public class MDSurfaceTerrainGenerator {
         return biomes;
     }
 
+    /**
+     * Fills the noise buffer for a specific chunk, reusing the buffer stored in a thread-local field.
+     */
     private void fillNoiseBuffer( int cx, int cz ) {
         double[] buff = noiseBuffer.get();
         if( buff == null ) {

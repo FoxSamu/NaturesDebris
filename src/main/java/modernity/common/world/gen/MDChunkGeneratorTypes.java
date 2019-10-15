@@ -6,6 +6,9 @@ import modernity.common.registry.RegistryHandler;
 import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraftforge.registries.ObjectHolder;
 
+/**
+ * Holder class for Modernity chunk generators.
+ */
 @ObjectHolder( "modernity" )
 public final class MDChunkGeneratorTypes {
     private static final RegistryHandler<ChunkGeneratorType<?, ?>> ENTRIES = new RegistryHandler<>( "modernity" );

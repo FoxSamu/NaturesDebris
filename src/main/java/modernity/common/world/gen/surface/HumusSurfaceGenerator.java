@@ -19,6 +19,9 @@ import net.rgsw.noise.INoise3D;
 
 import java.util.Random;
 
+/**
+ * Surface generator that generates a basic humus surface, with mud underwater.
+ */
 public class HumusSurfaceGenerator implements ISurfaceGenerator<MDSurfaceGenSettings> {
 
     private static final BlockState HUMUS = MDBlocks.HUMUS.getDefaultState();

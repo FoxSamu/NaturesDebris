@@ -15,6 +15,9 @@ import modernity.common.registry.RegistryHandler;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.registries.ObjectHolder;
 
+/**
+ * Holder class for Modernity feature placements.
+ */
 @ObjectHolder( "modernity" )
 public final class MDPlacements {
     private static final RegistryHandler<Placement<?>> ENTRIES = new RegistryHandler<>( "modernity" );

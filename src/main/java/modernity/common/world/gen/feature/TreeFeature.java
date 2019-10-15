@@ -14,8 +14,10 @@ import com.google.common.collect.Sets;
 import modernity.api.util.BlockUpdates;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlockTags;
+import modernity.common.block.prop.SignedIntegerProperty;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.Property;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
@@ -31,6 +33,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+/**
+ * A feature that generates a tree. Subclasses can generate the tree, and this feature computes the leaf distances...
+ */
 public abstract class TreeFeature extends Feature<NoFeatureConfig> {
 
     protected final BlockState leaves;
@@ -44,6 +49,15 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
         this.bark = bark;
     }
 
+    /**
+     * Generates the tree and gives leaves the correct distance value. This method is called by saplings directly
+     * instead of {@link #place}.
+     *
+     * @param world The world to generate the tree in.
+     * @param rand  A random number generator.
+     * @param pos   The position to generate the tree at.
+     * @return True if the tree successfully generated.
+     */
     public boolean generate( IWorld world, Random rand, BlockPos pos ) {
         Set<BlockPos> changedBlocks = Sets.newHashSet();
 
@@ -107,18 +121,37 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
         return generated;
     }
 
+    /**
+     * Returns an integer property, either {@linkplain SignedIntegerProperty signed} or {@link IntegerProperty
+     * unsigned}, which is the distance property of the used leaves.
+     */
     protected Property<Integer> getLeafDistanceProperty() {
         return BlockStateProperties.DISTANCE_1_7;
     }
 
+    /**
+     * Returns the maximum distance of the used leaves.
+     */
     protected int getLeafDistanceMax() {
         return 6;
     }
 
+    /**
+     * Returns true when the passed block state is a decayable leaves block.
+     */
     protected boolean isDecayableLeaf( BlockState state ) {
         return state.has( getLeafDistanceProperty() );
     }
 
+    /**
+     * Sets a block state in the world, using the flags {@link BlockUpdates#NOTIFY_CLIENTS <code>NOTIFY_CLIENTS</code>},
+     * {@link BlockUpdates#NO_NEIGHBOR_REACTIONS <code>NO_NEIGHBOR_REACTIONS</code>} and {@link BlockUpdates#NO_RENDER
+     * <code>NO_RENDER</code>},
+     *
+     * @param world The world to set the block in.
+     * @param pos   The position to set the block at.
+     * @param state The block state to set.
+     */
     protected void setBlockState( IWorld world, BlockPos pos, BlockState state ) {
         world.setBlockState( pos, state, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS | BlockUpdates.NO_RENDER );
     }
@@ -128,9 +161,19 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
         return generate( world, rand, pos );
     }
 
+    /**
+     * Generates the actual tree.
+     * @param changedBlocks A list of block positions that changed into log blocks, used to update leaf distances.
+     * @param world         The world to generate in.
+     * @param pos           The position to generate the tree at.
+     * @param rand          A random number generator.
+     */
+    protected abstract boolean generateTree( Set<BlockPos> changedBlocks, IWorld world, BlockPos pos, Random rand );
 
-    public abstract boolean generateTree( Set<BlockPos> changedBlocks, IWorld world, BlockPos pos, Random rand );
-
+    /**
+     * @deprecated Not used, and should possibly be removed.
+     */
+    @Deprecated
     public void generateLeaves( IWorld world, BlockPos pos, Random rand, int size, int height, int cornerCutoff, int hangingLeavesLength, int skipChance ) {
         MovingBlockPos rpos = new MovingBlockPos();
         {
@@ -148,6 +191,10 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
         }
     }
 
+    /**
+     * @deprecated Not used, and should possibly be removed.
+     */
+    @Deprecated
     public void generateLeavesLayer( IWorld world, BlockPos pos, Random rand, int yoffset, int size, int cornerCutoff, int skipChance, int hangingLeavesLength, MovingBlockPos rpos ) {
         int cutoffLimit = size * 2 - 1 - cornerCutoff;
         for( int x = - size; x <= size; x++ ) {
@@ -171,6 +218,10 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
         }
     }
 
+    /**
+     * @deprecated Not used, and should possibly be removed.
+     */
+    @Deprecated
     public void generateLog( Set<BlockPos> changed, IWorld world, BlockPos pos, Direction facing, int len, MovingBlockPos rpos ) {
         for( int i = 0; i < len; i++ ) {
             rpos.setPos( pos );
@@ -184,6 +235,10 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
         }
     }
 
+    /**
+     * @deprecated Not used, and should possibly be removed.
+     */
+    @Deprecated
     private void generateHangingLeaves( IWorld world, MovingBlockPos pos, Random rand, int maxLen ) {
         int len = rand.nextInt( maxLen + 1 );
         for( int i = 0; i < len; i++ ) {
@@ -199,6 +254,10 @@ public abstract class TreeFeature extends Feature<NoFeatureConfig> {
         }
     }
 
+    /**
+     * @deprecated Not used, and should possibly be removed.
+     */
+    @Deprecated
     public int facingFlag( Direction facing ) {
         switch( facing ) {
             default:

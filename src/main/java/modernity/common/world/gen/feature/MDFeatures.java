@@ -7,6 +7,9 @@ import modernity.common.registry.RegistryHandler;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.registries.ObjectHolder;
 
+/**
+ * Holder class for all Modernity features.
+ */
 @ObjectHolder( "modernity" )
 public final class MDFeatures {
     private static final RegistryHandler<Feature<?>> ENTRIES = new RegistryHandler<>( "modernity" );

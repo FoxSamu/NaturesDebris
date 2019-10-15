@@ -4,6 +4,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
+/**
+ * Configuration for {@link WrapperSurfaceBuilder}.
+ */
 public class WrapperSurfaceBuilderConfig extends SurfaceBuilderConfig {
     private final ISurfaceGenerator<?> surfaceGen;
     private final GenerationSettings chunkgenSettings;

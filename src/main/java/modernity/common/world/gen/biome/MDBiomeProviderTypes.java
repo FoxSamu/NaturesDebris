@@ -6,6 +6,9 @@ import modernity.common.registry.RegistryHandler;
 import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraftforge.registries.ObjectHolder;
 
+/**
+ * Holder class for Modernity biome provider types.
+ */
 @ObjectHolder( "modernity" )
 public final class MDBiomeProviderTypes {
     private static final RegistryHandler<BiomeProviderType<?, ?>> ENTRIES = new RegistryHandler<>( "modernity" );

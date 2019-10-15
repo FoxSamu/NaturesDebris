@@ -26,6 +26,9 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 
 import java.util.Random;
 
+/**
+ * Feature that generates a small pool of a specific fluid, generating any additional blocks around it.
+ */
 public class LakeFeature extends Feature<LakeFeature.Config> {
     private static final BlockState CAVE_AIR = Blocks.CAVE_AIR.getDefaultState();
 
@@ -149,9 +152,7 @@ public class LakeFeature extends Feature<LakeFeature.Config> {
                         for( int z = 0; z < 16; ++ z ) {
                             rpos.setPos( pos );
                             rpos.addPos( x, 4, z );
-                            if( world.getBiome( rpos ).doesWaterFreeze( world, rpos, false ) ) {
-                                world.setBlockState( rpos, config.cover.getDefaultState(), 2 );
-                            }
+                            world.setBlockState( rpos, config.cover.getDefaultState(), 2 );
                         }
                     }
                 }
@@ -161,12 +162,22 @@ public class LakeFeature extends Feature<LakeFeature.Config> {
         }
     }
 
+    /**
+     * Configuration for the {@link LakeFeature}.
+     */
     public static class Config implements IFeatureConfig {
         public final Block fluid;
         public final Block sides;
         public final Block cover;
         public final Block replaceGrass;
 
+        /**
+         * Creates a lake configuration.
+         * @param fluid        The fluid block to generate in the lake.
+         * @param sides        The block to generate at edges. When null, the default block is kept.
+         * @param cover        A block to cover the top layer with. When null, no top layer is generated.
+         * @param replaceGrass A block to replace top dirt with. When null, dirt is kept dirt.
+         */
         public Config( Block fluid, Block sides, Block cover, Block replaceGrass ) {
             this.fluid = fluid;
             this.sides = sides;

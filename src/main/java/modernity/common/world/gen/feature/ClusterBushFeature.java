@@ -22,6 +22,18 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 
 import java.util.Random;
 
+/**
+ * A feature that generates a cluster bush.
+ * <pre>
+ *         *       *
+ *           *   *
+ *       *           *
+ *     *     *
+ *             *
+ *         *       *
+ * </pre>
+ * @see GroupedBushFeature
+ */
 public class ClusterBushFeature extends Feature<ClusterBushFeature.Config> {
 
     public ClusterBushFeature() {
@@ -36,9 +48,9 @@ public class ClusterBushFeature extends Feature<ClusterBushFeature.Config> {
         {
             for( int i = 0; i < config.iterations; i++ ) {
                 int r2 = config.radius * 2 + 1;
-                int rx = rand.nextInt( r2 ) + pos.getX();
-                int ry = rand.nextInt( r2 ) + pos.getY();
-                int rz = rand.nextInt( r2 ) + pos.getZ();
+                int rx = rand.nextInt( r2 ) + pos.getX() - config.radius;
+                int ry = rand.nextInt( r2 ) + pos.getY() - config.radius;
+                int rz = rand.nextInt( r2 ) + pos.getZ() - config.radius;
 
                 rpos.setPos( rx, ry, rz );
 
@@ -51,11 +63,20 @@ public class ClusterBushFeature extends Feature<ClusterBushFeature.Config> {
         return placed > 0;
     }
 
+    /**
+     * Configuration for the cluster bush feature.
+     */
     public static class Config implements IFeatureConfig {
-        public final int iterations;
-        public final int radius;
-        public final IBlockProvider provider;
+        final int iterations;
+        final int radius;
+        final IBlockProvider provider;
 
+        /**
+         * Creates a cluster bush configuration.
+         * @param iterations The amount of iterations (attempts to place a plant at a random position)
+         * @param radius     The radius of the square to generate in.
+         * @param provider   The {@linkplain IBlockProvider block provider} to place.
+         */
         public Config( int iterations, int radius, IBlockProvider provider ) {
             this.iterations = iterations;
             this.radius = radius;

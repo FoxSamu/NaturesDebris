@@ -6,6 +6,9 @@ import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Holder class for Modernity structure pieces.
+ */
 public final class MDStructurePieceTypes {
     private static final HashMap<String, IStructurePieceType> PIECES = new HashMap<>();
 

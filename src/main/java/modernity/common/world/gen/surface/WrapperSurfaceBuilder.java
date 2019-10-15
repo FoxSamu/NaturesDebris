@@ -10,6 +10,9 @@ import net.rgsw.noise.FractalPerlin3D;
 
 import java.util.Random;
 
+/**
+ * Surface builder that wraps {@link ISurfaceGenerator}s.
+ */
 public class WrapperSurfaceBuilder extends SurfaceBuilder<WrapperSurfaceBuilderConfig> {
     public WrapperSurfaceBuilder() {
         super( dynamic -> new WrapperSurfaceBuilderConfig( null, null ) );

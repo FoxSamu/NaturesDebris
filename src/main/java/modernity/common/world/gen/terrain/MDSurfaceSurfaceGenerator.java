@@ -19,6 +19,9 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Random;
 
+/**
+ * Generates the surface of the Modernity's surface dimension.
+ */
 @SuppressWarnings( "unchecked" )
 public class MDSurfaceSurfaceGenerator {
 
@@ -57,6 +60,10 @@ public class MDSurfaceSurfaceGenerator {
         }
     }
 
+    /**
+     * Builds the surface in the specified chunk.
+     * @return A map of the lowest heights of the terrain. This height map limits the generation of caves.
+     */
     public int[] buildSurface( IChunk chunk ) {
         MovingBlockPos mpos = new MovingBlockPos();
         int cx = chunk.getPos().x;

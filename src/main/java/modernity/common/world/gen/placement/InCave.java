@@ -19,6 +19,9 @@ import net.minecraft.world.gen.placement.*;
 import java.util.Random;
 import java.util.stream.Stream;
 
+/**
+ * Placement that generates features once at a random position in a cave.
+ */
 public class InCave extends Placement<NoPlacementConfig> {
     public InCave() {
         super( dynamic -> IPlacementConfig.NO_PLACEMENT_CONFIG );
@@ -29,6 +32,9 @@ public class InCave extends Placement<NoPlacementConfig> {
         return Stream.of( CaveUtil.randomPosInCave( pos, world, random ) );
     }
 
+    /**
+     * Placement that generates features multiple times at random positions in a cave.
+     */
     public static class WithFrequency extends Placement<FrequencyConfig> {
 
         public WithFrequency() {
@@ -46,6 +52,9 @@ public class InCave extends Placement<NoPlacementConfig> {
         }
     }
 
+    /**
+     * Placement that generates features once by chance at a random position in a cave.
+     */
     public static class WithChance extends Placement<ChanceConfig> {
         public WithChance() {
             super( ChanceConfig::deserialize );

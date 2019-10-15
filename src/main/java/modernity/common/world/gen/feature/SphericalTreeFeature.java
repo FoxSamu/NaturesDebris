@@ -24,6 +24,21 @@ import java.util.Set;
 
 import static modernity.api.util.BlockUpdates.*;
 
+/**
+ * A tree feature that generates a spherical tree.
+ * <pre>
+ *          * * *
+ *    * * * * * * *
+ *  * * * * * # * *
+ *  * * # * # * * * *
+ *  * * * ####### * *
+ *    * * * # * * * *
+ *          # * * *
+ *          #
+ *          #
+ *        #####
+ * </pre>
+ */
 public class SphericalTreeFeature extends TreeFeature {
 
     protected final int minheight;
@@ -221,9 +236,5 @@ public class SphericalTreeFeature extends TreeFeature {
     @Override
     protected int getLeafDistanceMax() {
         return 10;
-    }
-
-    public boolean hangingBlockRandom( Random rand ) {
-        return rand.nextInt( 3 ) == 0;
     }
 }

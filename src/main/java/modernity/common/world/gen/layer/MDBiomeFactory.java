@@ -16,6 +16,10 @@ import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.area.IArea;
 import net.minecraft.world.gen.area.IAreaFactory;
 
+/**
+ * Area factory that generates the main Modernity biome layer. It randomly selects biomes based on weights defined in a
+ * {@link MDBiomes.GenProfile}.
+ */
 public class MDBiomeFactory<T extends IArea> implements IAreaFactory<T> {
 
     private final MDBiomes.GenProfile profile;
@@ -26,6 +30,9 @@ public class MDBiomeFactory<T extends IArea> implements IAreaFactory<T> {
         this.context = context;
     }
 
+    /**
+     * Generates a biome at the specific position (such a position is usually a wide area that spans a full biome).
+     */
     public int apply( INoiseRandom context, int x, int z ) {
         int rand = context.random( profile.totalWeight );
         int wg = 0;

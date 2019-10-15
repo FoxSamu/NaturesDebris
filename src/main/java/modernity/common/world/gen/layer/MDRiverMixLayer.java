@@ -16,6 +16,9 @@ import net.minecraft.world.gen.area.IArea;
 import net.minecraft.world.gen.layer.traits.IAreaTransformer2;
 import net.minecraft.world.gen.layer.traits.IDimOffset0Transformer;
 
+/**
+ * Biome layer that mixes the {@linkplain MDRiverLayer river shapes} into the biome layers.
+ */
 public enum MDRiverMixLayer implements IAreaTransformer2, IDimOffset0Transformer {
     INSTANCE;
 

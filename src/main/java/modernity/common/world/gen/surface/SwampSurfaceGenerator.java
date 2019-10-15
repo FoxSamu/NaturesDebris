@@ -20,6 +20,9 @@ import net.rgsw.noise.INoise3D;
 
 import java.util.Random;
 
+/**
+ * Surface generator that generates the swamp surface, with mud underwater and marshes in shallow water.
+ */
 public class SwampSurfaceGenerator implements ISurfaceGenerator<MDSurfaceGenSettings> {
 
     private static final BlockState GRASS = MDBlocks.DARK_GRASS_BLOCK.getDefaultState();

@@ -19,14 +19,19 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+/**
+ * Biome provider that generates the biome layer of the Modernity surface dimension. See {@link
+ * MDLayerUtil#buildSurfaceProcedure(long)} for the actual layer building of the surface biome generator.
+ */
 public class MDSurfaceBiomeProvider extends BiomeProvider {
     private final Layer genBiomeLayer;
     private final Layer fullBiomeLayer;
     private final Biome[] biomes = MDBiomes.getBiomesFor( EMDDimension.SURFACE ).toArray( new Biome[ 0 ] );
 
+    // MAYBE: Remove settings, just pass WorldInfo?
     public MDSurfaceBiomeProvider( MDSurfaceBiomeProviderSettings settings ) {
         WorldInfo info = settings.getWorldInfo();
-        Layer[] layers = MDLayerUtil.buildModernityProcedure( info.getSeed() );
+        Layer[] layers = MDLayerUtil.buildSurfaceProcedure( info.getSeed() );
         genBiomeLayer = layers[ 0 ];
         fullBiomeLayer = layers[ 1 ];
     }

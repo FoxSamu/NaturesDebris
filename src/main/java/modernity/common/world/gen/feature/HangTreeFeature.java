@@ -26,6 +26,19 @@ import net.rgsw.noise.FractalPerlin3D;
 import java.util.Random;
 import java.util.Set;
 
+/**
+ * A feature that generates a droopy hang tree.
+ * <pre>
+ *          * * *
+ *      * * * * * * *
+ *    * * * ##### * * *
+ *    *   *   #   * * *
+ *    *       #   * *
+ *            #     *
+ *            #
+ *          #####
+ * </pre>
+ */
 public class HangTreeFeature extends TreeFeature {
 
     protected final int minheight;
@@ -178,15 +191,24 @@ public class HangTreeFeature extends TreeFeature {
         return 10;
     }
 
+    /**
+     * Randomly chooses whether a hanging block may generate.
+     */
     public boolean hangingBlockRandom( Random rand ) {
         return rand.nextInt( 3 ) == 0;
     }
 
+    /**
+     * Selects a random hanging block.
+     */
     public BlockState hangingBlock( Random rand ) {
         if( rand.nextBoolean() ) return MDBlocks.MURINA.getDefaultState();
         return leaves.with( HangLeavesBlock.DISTANCE, - 1 );
     }
 
+    /**
+     * Picks a hanging lenght for the specified hanger block.
+     */
     public int hangingLength( Random rand, BlockState hanger ) {
         if( hanger.getBlock() == MDBlocks.MURINA ) {
             return rand.nextInt( 8 ) + 1;

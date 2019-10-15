@@ -736,6 +736,9 @@ public abstract class RegularFluid extends Fluid {
                );
     }
 
+    @Override // Made public for access in FluidFallFeature
+    public abstract BlockState getBlockState( IFluidState state );
+
     // Missing mapping for getShape
     @Override
     public VoxelShape func_215664_b( IFluidState state, IBlockReader world, BlockPos pos ) {

@@ -19,6 +19,9 @@ import net.rgsw.noise.INoise3D;
 
 import java.util.Random;
 
+/**
+ * Surface generator that generates a basic grass surface, with mud underwater.
+ */
 public class GrassSurfaceGenerator implements ISurfaceGenerator<MDSurfaceGenSettings> {
 
     private static final BlockState GRASS = MDBlocks.DARK_GRASS_BLOCK.getDefaultState();

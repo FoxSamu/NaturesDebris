@@ -36,7 +36,7 @@ public final class MDLayerUtil {
         return factory;
     }
 
-    public static <T extends IArea, C extends IExtendedNoiseRandom<T>> ImmutableList<IAreaFactory<T>> buildModernityProcedure( LongFunction<C> contextFactory ) {
+    public static <T extends IArea, C extends IExtendedNoiseRandom<T>> ImmutableList<IAreaFactory<T>> buildSurfaceProcedure( LongFunction<C> contextFactory ) {
         IAreaFactory<T> factory = new MDBiomeFactory<>( EMDDimension.SURFACE, contextFactory.apply( 5291L ) );
         factory = ZoomLayer.NORMAL.apply( contextFactory.apply( 3977L ), factory );
         factory = ZoomLayer.NORMAL.apply( contextFactory.apply( 3978L ), factory );
@@ -56,8 +56,8 @@ public final class MDLayerUtil {
         return ImmutableList.of( factory, factory1, factory );
     }
 
-    public static Layer[] buildModernityProcedure( long seed ) {
-        ImmutableList<IAreaFactory<LazyArea>> factoryList = buildModernityProcedure(
+    public static Layer[] buildSurfaceProcedure( long seed ) {
+        ImmutableList<IAreaFactory<LazyArea>> factoryList = buildSurfaceProcedure(
             localSeed -> new LazyAreaLayerContext( 1, seed, localSeed )
         );
 

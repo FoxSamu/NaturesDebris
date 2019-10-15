@@ -67,6 +67,15 @@ public class CaveStructure extends Structure<NoFeatureConfig> {
         return s != null && s.contains( pos.getX(), pos.getY(), pos.getZ() );
     }
 
+    /**
+     * Adds cave data to a specific chunk.
+     * @param cg    The chunk generator that generates the world.
+     * @param chunk The chunk to add caves to.
+     * @param x     The chunk x.
+     * @param z     The chunk z.
+     * @param hm    The cave heightmap, determined by the surface generator.
+     * @param seed  The world seed.
+     */
     public void addCaves( ChunkGenerator<?> cg, IChunk chunk, int x, int z, int[] hm, long seed ) {
         Start start = new Start( this, x, z, chunk.getBiomes()[ 0 ], new MutableBoundingBox( 0, 0, 15, 15 ), 0, seed );
         start.init( cg, null, x, z, chunk.getBiomes()[ 0 ] );
@@ -76,6 +85,9 @@ public class CaveStructure extends Structure<NoFeatureConfig> {
         chunk.addStructureReference( getStructureName(), ChunkPos.asLong( x, z ) );
     }
 
+    /**
+     * A cave structure start.
+     */
     public static class Start extends StructureStart {
         public Start( Structure<?> structure, int x, int z, Biome biome, MutableBoundingBox box, int ref, long seed ) {
             super( structure, x, z, biome, box, ref, seed );
@@ -93,20 +105,32 @@ public class CaveStructure extends Structure<NoFeatureConfig> {
             components.add( new Piece( 0 ) );
         }
 
+        /**
+         * Applies the specific limit map.
+         */
         public void applyLimitMap( int[] hm ) {
             Piece p = (Piece) components.get( 0 );
             p.applyLimitMap( hm );
         }
 
+        /**
+         * Returns the cave limit at a specified xz pos (block coords)
+         */
         public int getLimit( int x, int z ) {
             Piece p = (Piece) components.get( 0 );
             return p.getLimit( x, z );
         }
 
+        /**
+         * Checks if the specified position is in a cave.
+         */
         public boolean contains( int x, int y, int z ) {
             return y < getLimit( x, z );
         }
 
+        /**
+         * Returns a random position inside a cave.
+         */
         public BlockPos randomPosInCave( Random rand, int xoff, int zoff ) {
             int x = rand.nextInt( 16 );
             int z = rand.nextInt( 16 );
@@ -114,6 +138,9 @@ public class CaveStructure extends Structure<NoFeatureConfig> {
             return new BlockPos( x + xoff, y, z + zoff );
         }
 
+        /**
+         * Returns a random position outside a cave.
+         */
         public BlockPos randomPosNotInCave( Random rand, int xoff, int zoff ) {
             int x = rand.nextInt( 16 );
             int z = rand.nextInt( 16 );
@@ -122,6 +149,9 @@ public class CaveStructure extends Structure<NoFeatureConfig> {
         }
     }
 
+    /**
+     * A cave structure piece.
+     */
     public static class Piece extends StructurePiece {
         private final BitArray limitMap = new BitArray( 9, 256 );
 
@@ -161,27 +191,42 @@ public class CaveStructure extends Structure<NoFeatureConfig> {
             return new BlockPos( x + xoff, y, z + zoff );
         }
 
+        /**
+         * Applies the specific limit map.
+         */
         public void applyLimitMap( int[] hm ) {
             for( int i = 0; i < hm.length; i++ ) {
                 limitMap.setAt( i, Math.max( hm[ i ], 0 ) );
             }
         }
 
+        /**
+         * Returns the cave limit at a specified xz pos (block coords)
+         */
         public int getLimit( int x, int z ) {
             x &= 15;
             z &= 15;
             return limitMap.getAt( x + z * 16 );
         }
 
+        /**
+         * Returns the limits as a long map to store in NBT.
+         */
         public long[] getLimitsAsLongMap() {
             return limitMap.getBackingLongArray();
         }
 
+        /**
+         * Sets the limits from a long map stored in NBT.
+         */
         public void setLimitsFromLongMap( long[] map ) {
             long[] into = limitMap.getBackingLongArray();
             System.arraycopy( map, 0, into, 0, map.length );
         }
 
+        /**
+         * Checks if the specified position is in a cave.
+         */
         public boolean contains( int x, int y, int z ) {
             return y < getLimit( x, z );
         }

@@ -6,6 +6,9 @@ import modernity.common.registry.RegistryHandler;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraftforge.registries.ObjectHolder;
 
+/**
+ * Holder class for Modernity surface bulders. This is only one that wraps {@link ISurfaceGenerator}s.
+ */
 @ObjectHolder( "modernity" )
 public final class MDSurfaceBuilders {
     private static final RegistryHandler<SurfaceBuilder<?>> ENTRIES = new RegistryHandler<>( "modernity" );

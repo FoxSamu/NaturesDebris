@@ -10,6 +10,10 @@ import net.minecraft.world.gen.WorldGenRegion;
 import net.rgsw.noise.FractalOpenSimplex3D;
 import net.rgsw.noise.INoise3D;
 
+/**
+ * Feature that replaces rock with darkrock based on a noise field.
+ */
+// TODO: Make block-independent feature (e.g. NoiseBlockGenerator)
 public class DarkrockGenerator extends MapGenerator {
     private final ThreadLocal<double[]> noiseBufferLocal = ThreadLocal.withInitial( () -> new double[ 9 * 9 * 129 ] );
 
@@ -20,6 +24,9 @@ public class DarkrockGenerator extends MapGenerator {
         noise = new FractalOpenSimplex3D( rand.nextInt(), 43.51234, 4 ).subtract( 0.3 );
     }
 
+    /**
+     * Generates a noise buffer and interpolates between it. The resulting value is used to generate the darkrock.
+     */
     @Override
     public void generate( WorldGenRegion region ) {
         int cx = region.getMainChunkX();
@@ -105,6 +112,12 @@ public class DarkrockGenerator extends MapGenerator {
         }
     }
 
+    /**
+     * Creates the actual noise buffer (caching the noise array in a thread local field for reusing)
+     * @param cx The chunk x (chunk coords)
+     * @param cz The chunk z (chunk coords)
+     * @return The generated noise buffer.
+     */
     private double[] fillNoiseBuffer( int cx, int cz ) {
         double[] buffer = noiseBufferLocal.get();
         for( int x = 0; x < 9; x++ ) {
@@ -120,11 +133,20 @@ public class DarkrockGenerator extends MapGenerator {
         return buffer;
     }
 
+    /**
+     * Generates noise for a specific position.
+     */
     protected double generateNoise( int x, int y, int z ) {
         return noise.generate( x, y, z );
     }
 
-    protected boolean canPlace( WorldGenRegion chunk, BlockPos pos, double noise ) {
-        return noise > 0 && chunk.getBlockState( pos ).isIn( MDBlockTags.ROCK );
+    /**
+     * Checks if we may replace rock with with darkrock.
+     * @param region The world region we're generating in
+     * @param pos    The block position we're replacing.
+     * @param noise  The noise value at the specified position.
+     */
+    protected boolean canPlace( WorldGenRegion region, BlockPos pos, double noise ) {
+        return noise > 0 && region.getBlockState( pos ).isIn( MDBlockTags.ROCK );
     }
 }

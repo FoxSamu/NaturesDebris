@@ -24,8 +24,18 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 
 import java.util.Random;
 
+/**
+ * A feature that generates a fluid fall.
+ */
 public class FluidFallFeature extends Feature<FluidFallFeature.Config> {
+    /**
+     * Allows the fluid to generate in a still state: it should have no way to flow.
+     */
     public static final int STILL = 1;
+
+    /**
+     * Allows the fluid to generate in a flowing state: it should have a way to flow.
+     */
     public static final int FLOWING = 2;
 
     public FluidFallFeature() {
@@ -66,10 +76,20 @@ public class FluidFallFeature extends Feature<FluidFallFeature.Config> {
         }
     }
 
+    /**
+     * Configuration of the {@link FluidFallFeature}.
+     */
     public static class Config implements IFeatureConfig {
         private final int typeFlags;
         private final RegularFluid fluid;
 
+        /**
+         * Creates a fluid fall config.
+         *
+         * @param fluid     The fluid to place.
+         * @param typeFlags Which types of generation are allowed? Possible flags are {@link #STILL} and {@link
+         *                  #FLOWING}. Flags can be OR-ed ({@code A|B}).
+         */
         public Config( RegularFluid fluid, int typeFlags ) {
             this.typeFlags = typeFlags;
             this.fluid = fluid;

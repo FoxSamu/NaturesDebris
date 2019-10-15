@@ -14,6 +14,9 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.layer.traits.ICastleTransformer;
 
+/**
+ * Biome layer that actually generates the river shapes from the {@linkplain MDRiverInitLayer river fields}.
+ */
 public enum MDRiverLayer implements ICastleTransformer {
     INSTANCE;
 

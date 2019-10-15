@@ -13,7 +13,16 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldInfo;
 
-public class DimensionTraveling {
+/**
+ * Unused utility class for having entities travelling between dimensions using custom teleporters. It must temporarily
+ * replace the {@code ITeleporter} api that forge has removed.
+ * @deprecated This class is not stable and should be finished before use.
+ */
+@Deprecated
+public final class DimensionTraveling {
+    private DimensionTraveling() {
+    }
+
     public static Entity changeDimension( ServerPlayerEntity e, DimensionType destination, Teleporter tp ) {
         if( ! net.minecraftforge.common.ForgeHooks.onTravelToDimension( e, destination ) ) return null;
         DimensionType dimensiontype = e.dimension;

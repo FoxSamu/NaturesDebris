@@ -25,6 +25,9 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 import java.util.Random;
 import java.util.function.Predicate;
 
+/**
+ * A feature that generates a deposit.
+ */
 public class DepositFeature extends Feature<DepositFeature.Config> {
 
     public DepositFeature() {
@@ -72,11 +75,20 @@ public class DepositFeature extends Feature<DepositFeature.Config> {
         }
     }
 
+    /**
+     * Configuration for the {@link DepositFeature}.
+     */
     public static class Config implements IFeatureConfig {
         public final int size;
         public final Predicate<BlockState> replace;
         public final BlockState state;
 
+        /**
+         * Creates a deposit config.
+         * @param size    The size of the deposit.
+         * @param replace A predicate that matches blocks that it may replace
+         * @param state   The block state to place in the deposit.
+         */
         public Config( int size, Predicate<BlockState> replace, BlockState state ) {
             this.size = size;
             this.replace = replace;

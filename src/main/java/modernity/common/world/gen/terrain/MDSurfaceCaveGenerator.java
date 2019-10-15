@@ -14,6 +14,9 @@ import net.rgsw.noise.OpenSimplex3D;
 
 import java.util.Random;
 
+/**
+ * Generates the caves in the Modernity's surface dimension.
+ */
 public class MDSurfaceCaveGenerator {
     private static final double XZ_CAVE_SCALE = 0.08;
     private static final double Y_CAVE_SCALE = 0.15;
@@ -47,6 +50,9 @@ public class MDSurfaceCaveGenerator {
         form = new FractalOpenSimplex3D( rand.nextInt(), 10, 4 );
     }
 
+    /**
+     * Generates caves in a chunk, limiting to the specified height map.
+     */
     public void generateCaves( IChunk region, int[] caveHeightmap ) {
         int cx = region.getPos().x; //region.getMainChunkX();
         int cz = region.getPos().z; //region.getMainChunkZ();

@@ -13,6 +13,9 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.*;
 
+/**
+ * Chunk generator that combines all chunk generation of the Modernity's surface dimension.
+ */
 public class MDSurfaceChunkGenerator extends ChunkGenerator<MDSurfaceGenSettings> {
     private final MDSurfaceTerrainGenerator terrain;
     private final MDSurfaceSurfaceGenerator surface;

@@ -28,6 +28,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * Decorates the Modernity's surface dimension.
+ */
 public class MDSurfaceDecorator {
 
     private final IWorld world;
@@ -66,6 +69,9 @@ public class MDSurfaceDecorator {
     }
 
 
+    /**
+     * Decorates the specified world region.
+     */
     public void decorate( WorldGenRegion region ) {
         int cx = region.getMainChunkX();
         int cz = region.getMainChunkZ();
@@ -87,10 +93,17 @@ public class MDSurfaceDecorator {
     }
 
 
+    /**
+     * Adds a biome-independent feature to the world generator.
+     */
     public void addFeature( GenerationStage.Decoration decorationStage, ConfiguredFeature<?> feature ) {
         this.features.get( decorationStage ).add( feature );
     }
 
+    /**
+     * Creates a {@link ConfiguredFeature}.
+     * @see Biome#createDecoratedFeature(Feature, IFeatureConfig, Placement, IPlacementConfig)
+     */
     protected static <F extends IFeatureConfig, D extends IPlacementConfig> ConfiguredFeature<?> createDecoratedFeature( Feature<F> feature, F featureConfig, Placement<D> placement, D placementConfig ) {
         return Biome.createDecoratedFeature( feature, featureConfig, placement, placementConfig );
     }
