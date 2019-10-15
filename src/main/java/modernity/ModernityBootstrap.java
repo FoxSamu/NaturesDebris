@@ -10,8 +10,10 @@
 package modernity;
 
 import modernity.api.event.ModernityReadyEvent;
+import modernity.client.ModernityClient;
 import modernity.common.Modernity;
 import modernity.common.registry.RegistryEventHandler;
+import modernity.server.ModernityServer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.LogicalSide;
@@ -23,6 +25,10 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Bootstrap class of the Modernity, which handles setup events and creates the {@link Modernity} instance for the side
+ * we're running on ({@link ModernityClient} for the client and {@link ModernityServer} for the dedicated server).
+ */
 @Mod( "modernity" )
 @SuppressWarnings( "unused" )
 public class ModernityBootstrap {
@@ -41,10 +47,17 @@ public class ModernityBootstrap {
         }
     }
 
+    /**
+     * Calls {@link Modernity#init()} on our proxy.
+     */
     private void setup( FMLCommonSetupEvent event ) {
         proxy.init();
     }
 
+    /**
+     * Creates {@link ModernityClient}. Uses reflection because it may not be available while Java still checks the use
+     * of it.
+     */
     private void clientSetup() {
         try {
             Class cls = Class.forName( "modernity.client.ModernityClient" );
@@ -55,6 +68,10 @@ public class ModernityBootstrap {
         initProxy( LogicalSide.CLIENT );
     }
 
+    /**
+     * Creates {@link ModernityServer}. Uses reflection because it may not be available while Java still checks the use
+     * of it.
+     */
     private void serverSetup() {
         try {
             Class cls = Class.forName( "modernity.server.ModernityServer" );
@@ -65,15 +82,22 @@ public class ModernityBootstrap {
         initProxy( LogicalSide.SERVER );
     }
 
+    /**
+     * Calls {@link Modernity#postInit()}.
+     */
     private void loadComplete( FMLLoadCompleteEvent event ) {
         proxy.postInit();
     }
 
 
+    /**
+     * Initializes the proxy for the specified side. This calls {@link Modernity#registerListeners()}, then {@link
+     * Modernity#preInit()} and casts an event on the forge event bus indicating that the Modernity is initialized.
+     */
     private void initProxy( LogicalSide side ) {
+        MinecraftForge.EVENT_BUS.register( proxy );
         proxy.registerListeners();
         proxy.preInit();
-        MinecraftForge.EVENT_BUS.register( proxy );
         LOGGER.info( "Modernity version {} initialized for side {}: {}", MDInfo.VERSION, side, proxy );
         MinecraftForge.EVENT_BUS.post( new ModernityReadyEvent( side, proxy ) );
     }
