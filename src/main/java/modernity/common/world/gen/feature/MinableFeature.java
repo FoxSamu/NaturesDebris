@@ -183,7 +183,7 @@ public class MinableFeature extends Feature<MinableFeature.Config> {
                                             placedBlocks.set( idx );
                                             mpos.setPos( lx, ly, lz );
                                             if( config.target.test( world.getBlockState( mpos ) ) ) {
-                                                world.setBlockState( mpos, config.state, BlockUpdates.NOTIFY_CLIENTS );
+                                                setBlockState( world, mpos, config.state, BlockUpdates.NOTIFY_CLIENTS );
                                                 amountPlaced++;
                                             }
                                         }
@@ -197,6 +197,14 @@ public class MinableFeature extends Feature<MinableFeature.Config> {
         }
 
         return amountPlaced > 0;
+    }
+
+    private void setBlockState( IWorld world, BlockPos pos, BlockState state, int flags ) {
+        int cx = pos.getX() >>> 4;
+        int cz = pos.getZ() >>> 4;
+        if( world.chunkExists( cx, cz ) ) { // Prevent out of bounds crash
+            world.setBlockState( pos, state, flags );
+        }
     }
 
     /**

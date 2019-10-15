@@ -133,8 +133,8 @@ jar {
     }
 }
 
-version = 'INDEV-0.2.0'
-project.ext.versionName = "1.14 Update"
+version = 'INDEV-0.2.1'
+project.ext.versionName = "A Bugfix Update"
 project.ext.isIDE = true
 group = 'net.rgsw'
 archivesBaseName = 'modernity'
