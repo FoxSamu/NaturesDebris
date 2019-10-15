@@ -2,6 +2,7 @@ package modernity.client;
 
 import modernity.api.biome.BiomeColoringProfile;
 import modernity.client.colormap.ColorMap;
+import modernity.client.handler.ParticleRegistryHandler;
 import modernity.client.handler.TextureStitchHandler;
 import modernity.client.reloader.BiomeColorProfileReloader;
 import modernity.client.render.block.CustomFluidRenderer;
@@ -17,6 +18,7 @@ import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.concurrent.ThreadTaskExecutor;
+import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.fml.LogicalSide;
 
 /**
@@ -44,10 +46,10 @@ public class ModernityClient extends Modernity {
     @Override
     public void preInit() {
         super.preInit();
-        addFutureReloadListener( new BiomeColorProfileReloader( "modernity:grass", e -> grassColors = e ) );
-        addFutureReloadListener( new BiomeColorProfileReloader( "modernity:blackwood", e -> blackwoodColors = e ) );
-        addFutureReloadListener( new BiomeColorProfileReloader( "modernity:inver", e -> inverColors = e ) );
-        addFutureReloadListener( new BiomeColorProfileReloader( "modernity:water", e -> waterColors = e ) );
+        addFutureReloadListener( new BiomeColorProfileReloader( "grass", e -> grassColors = e ) );
+        addFutureReloadListener( new BiomeColorProfileReloader( "blackwood", e -> blackwoodColors = e ) );
+        addFutureReloadListener( new BiomeColorProfileReloader( "inver", e -> inverColors = e ) );
+        addFutureReloadListener( new BiomeColorProfileReloader( "water", e -> waterColors = e ) );
 
         addFutureReloadListener( fluidRenderer );
         addFutureReloadListener( humusColors );
@@ -70,6 +72,7 @@ public class ModernityClient extends Modernity {
     public void registerListeners() {
         super.registerListeners();
         MOD_EVENT_BUS.register( TextureStitchHandler.INSTANCE );
+        MOD_EVENT_BUS.register( ParticleRegistryHandler.INSTANCE );
     }
 
     /**
