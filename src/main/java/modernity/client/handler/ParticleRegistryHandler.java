@@ -13,6 +13,7 @@ public enum ParticleRegistryHandler {
 
     @SubscribeEvent
     public void registerParticleFactories( ParticleFactoryRegisterEvent event ) {
+        System.out.println( "Registering particle factories" );
         MDParticleTypes.setupFactories( Minecraft.getInstance().particles );
     }
 }
