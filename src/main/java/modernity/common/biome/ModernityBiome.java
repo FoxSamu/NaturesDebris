@@ -15,6 +15,7 @@ public abstract class ModernityBiome extends Biome {
     private final float heightVariation;
     private final float heightDifference;
     private final float blendWeight;
+    private final float waterFogDensity;
     private final ISurfaceGenerator<?> surfaceGen;
 
     protected ModernityBiome( Builder builder ) {
@@ -23,6 +24,7 @@ public abstract class ModernityBiome extends Biome {
         heightVariation = builder.heightVariation;
         heightDifference = builder.heightDifference;
         blendWeight = builder.blendWeight;
+        waterFogDensity = builder.waterFogDensity;
         surfaceGen = builder.surfaceGen;
     }
 
@@ -55,6 +57,13 @@ public abstract class ModernityBiome extends Biome {
     }
 
     /**
+     * Returns the additional fog density for water.
+     */
+    public float getWaterFogDensity() {
+        return waterFogDensity;
+    }
+
+    /**
      * Returns the surface generator of this biome
      */
     @SuppressWarnings( "unchecked" )
@@ -72,6 +81,7 @@ public abstract class ModernityBiome extends Biome {
         private float heightVariation;
         private float heightDifference;
         private float blendWeight = 1;
+        private float waterFogDensity;
 
         private ISurfaceGenerator<?> surfaceGen;
 
@@ -101,6 +111,11 @@ public abstract class ModernityBiome extends Biome {
 
         public Builder blendWeight( float value ) {
             this.blendWeight = value;
+            return this;
+        }
+
+        public Builder waterFogDensity( float value ) {
+            this.waterFogDensity = value;
             return this;
         }
 

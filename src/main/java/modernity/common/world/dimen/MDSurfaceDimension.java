@@ -9,6 +9,9 @@
 
 package modernity.common.world.dimen;
 
+import modernity.api.dimension.IEnvironmentDimension;
+import modernity.client.environment.Fog;
+import modernity.client.environment.Sky;
 import modernity.common.world.gen.MDSurfaceChunkGenerator;
 import modernity.common.world.gen.MDSurfaceGenSettings;
 import modernity.common.world.gen.biome.MDSurfaceBiomeProvider;
@@ -21,13 +24,15 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
 /**
  * The surface dimension of the Modernity.
  */
-public class MDSurfaceDimension extends Dimension {
+public class MDSurfaceDimension extends Dimension implements IEnvironmentDimension {
 
     public MDSurfaceDimension( World world, DimensionType type ) {
         super( world, type );
@@ -60,7 +65,7 @@ public class MDSurfaceDimension extends Dimension {
 
     @Override
     public boolean isSurfaceWorld() {
-        return true;
+        return false;
     }
 
     @Override
@@ -118,8 +123,39 @@ public class MDSurfaceDimension extends Dimension {
         return 0;
     }
 
-    //    @Override
+//    @Override
 //    public int getMoonPhase( long worldTime ) {
 //        return Modernity.serverSettings().moonPhase.get();
 //    }
+
+    @Override
+    @OnlyIn( Dist.CLIENT )
+    public void updateFog( Fog fog ) {
+        fog.setColor( 0, 0, 0 );
+        fog.type = Fog.Type.EXP2;
+        fog.density = 0.01F;
+    }
+
+    @Override
+    @OnlyIn( Dist.CLIENT )
+    public void updateSky( Sky sky ) {
+        sky.setBacklightColor( 12 / 255F, 13 / 255F, 23 / 255F );
+        sky.setTwilightColor( 15 / 255F, 15 / 255F, 15 / 255F );
+        sky.setSkylightColor( 0, 0, 0 );
+        sky.setStarColor( 1, 1, 1 );
+        sky.setCloudColor( 1, 1, 1 );
+        sky.setMoonColor( 1, 1, 1 );
+        sky.cloudAmount = 0.05F;
+        sky.meteoriteAmount = 0.001F;
+        sky.starBrightness = 1;
+        sky.cloudBrightness = 1;
+        sky.skylightBrightness = 1;
+        sky.backlightBrightness = 1;
+        sky.twilightBrightness = 1;
+        sky.twilightHeight = 10;
+        sky.twilightHeightRandom = 6;
+        sky.moonBrightness = 1;
+        sky.moonPhase = 0;
+        sky.moonRotation = 0.5F;
+    }
 }

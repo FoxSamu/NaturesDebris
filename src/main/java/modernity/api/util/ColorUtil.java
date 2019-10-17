@@ -131,10 +131,25 @@ public final class ColorUtil {
     }
 
     /**
+     * Returns the red component of a color as float
+     */
+    public static float redf( int col ) {
+        return ( col >>> 16 & 0xFF ) / 255F;
+    }
+
+    /**
      * Returns the green component of a color
      */
     public static double green( int col ) {
         return ( col >>> 8 & 0xFF ) / 255D;
+    }
+
+
+    /**
+     * Returns the green component of a color as float
+     */
+    public static float greenf( int col ) {
+        return ( col >>> 8 & 0xFF ) / 255F;
     }
 
     /**
@@ -145,10 +160,24 @@ public final class ColorUtil {
     }
 
     /**
+     * Returns the blue component of a color as float
+     */
+    public static float bluef( int col ) {
+        return ( col & 0xFF ) / 255F;
+    }
+
+    /**
      * Returns the alpha component of a color
      */
     public static double alpha( int col ) {
         return ( col >>> 24 & 0xFF ) / 255D;
+    }
+
+    /**
+     * Returns the alpha component of a color as float
+     */
+    public static float alphaf( int col ) {
+        return ( col >>> 24 & 0xFF ) / 255F;
     }
 
     /**

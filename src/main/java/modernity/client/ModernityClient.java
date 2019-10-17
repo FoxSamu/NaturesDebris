@@ -2,23 +2,30 @@ package modernity.client;
 
 import modernity.api.biome.BiomeColoringProfile;
 import modernity.client.colormap.ColorMap;
+import modernity.client.handler.FogHandler;
 import modernity.client.handler.ParticleRegistryHandler;
 import modernity.client.handler.TextureStitchHandler;
 import modernity.client.reloader.BiomeColorProfileReloader;
 import modernity.client.render.block.CustomFluidRenderer;
+import modernity.client.render.environment.SurfaceCloudRenderer;
+import modernity.client.render.environment.SurfaceSkyRenderer;
 import modernity.common.Modernity;
 import modernity.common.block.MDBlocks;
 import modernity.common.container.MDContainerTypes;
 import modernity.common.entity.MDEntityTypes;
 import modernity.common.net.SSeedPacket;
 import modernity.common.particle.MDParticleTypes;
+import modernity.common.world.dimen.MDSurfaceDimension;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IFutureReloadListener;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.concurrent.ThreadTaskExecutor;
+import net.minecraft.world.dimension.Dimension;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 
 /**
@@ -73,6 +80,7 @@ public class ModernityClient extends Modernity {
         super.registerListeners();
         MOD_EVENT_BUS.register( TextureStitchHandler.INSTANCE );
         MOD_EVENT_BUS.register( ParticleRegistryHandler.INSTANCE );
+        FORGE_EVENT_BUS.register( FogHandler.INSTANCE );
     }
 
     /**
@@ -93,6 +101,17 @@ public class ModernityClient extends Modernity {
     @Override
     public LogicalSide side() {
         return LogicalSide.CLIENT;
+    }
+
+    @SubscribeEvent
+    public void onWorldLoad( WorldEvent.Load event ) {
+        if( event.getWorld().isRemote() ) {
+            Dimension d = event.getWorld().getDimension();
+            if( d instanceof MDSurfaceDimension ) {
+                d.setSkyRenderer( new SurfaceSkyRenderer( lastWorldSeed ) );
+                d.setCloudRenderer( new SurfaceCloudRenderer() );
+            }
+        }
     }
 
     /**

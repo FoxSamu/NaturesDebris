@@ -23,6 +23,8 @@ public final class MDFluidTags {
 
 
     public static final Tag<Fluid> OIL = new FluidTags.Wrapper( new ResourceLocation( "modernity:oil" ) );
+    public static final Tag<Fluid> MODERNIZED_WATER = new FluidTags.Wrapper( new ResourceLocation( "modernity:modernized_water" ) );
+    public static final Tag<Fluid> HEATROCK = new FluidTags.Wrapper( new ResourceLocation( "modernity:heatrock" ) );
 
     private MDFluidTags() {
     }
