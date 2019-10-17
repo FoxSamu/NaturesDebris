@@ -3,7 +3,7 @@ package modernity.client.render.environment;
 import com.mojang.blaze3d.platform.GlStateManager;
 import modernity.api.dimension.IEnvironmentDimension;
 import modernity.api.reflect.FieldAccessor;
-import modernity.client.environment.DimensionEnvironmentManager;
+import modernity.client.environment.EnvironmentRenderingManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -186,7 +186,7 @@ public class SurfaceSkyRenderer implements IRenderHandler {
     }
 
     private void tickClouds() {
-        if( RANDOM.nextDouble() < DimensionEnvironmentManager.SKY.cloudAmount ) {
+        if( RANDOM.nextDouble() < EnvironmentRenderingManager.SKY.cloudAmount ) {
             int amount = RANDOM.nextInt( 4 ) + 2;
 
             double x = ( RANDOM.nextBoolean() ? - 1 : 1 ) * RANDOM.nextFloat() * 0.8 + 0.2;
@@ -289,7 +289,7 @@ public class SurfaceSkyRenderer implements IRenderHandler {
     }
 
     private void tickMeteorites() {
-        double meteoriteChance = DimensionEnvironmentManager.SKY.meteoriteAmount;
+        double meteoriteChance = EnvironmentRenderingManager.SKY.meteoriteAmount;
 
         if( RANDOM.nextDouble() < meteoriteChance ) {
             float pitch = RANDOM.nextFloat() * 360;
@@ -363,8 +363,8 @@ public class SurfaceSkyRenderer implements IRenderHandler {
             float sin = MathHelper.sin( i * d ) * 3.188572838F;
             float cos = MathHelper.cos( i * d ) * 3.188572838F;
 
-            double rand = DimensionEnvironmentManager.SKY.twilightHeightRandom;
-            double hgt = DimensionEnvironmentManager.SKY.twilightHeight;
+            double rand = EnvironmentRenderingManager.SKY.twilightHeightRandom;
+            double hgt = EnvironmentRenderingManager.SKY.twilightHeight;
 
             double height = twilightNoise.generate( sin, ticks / 800F, cos ) * rand + hgt;
             double off = twilightNoise.generate( sin + 10, ticks / 800F, cos ) * d / 1.3;
@@ -392,7 +392,7 @@ public class SurfaceSkyRenderer implements IRenderHandler {
     private void preRender() {
 
         if( world.dimension instanceof IEnvironmentDimension ) {
-            ( (IEnvironmentDimension) world.dimension ).updateSky( DimensionEnvironmentManager.SKY );
+            ( (IEnvironmentDimension) world.dimension ).updateSky( EnvironmentRenderingManager.SKY );
         }
 
         fogRenderer.get().setupFog( mc.gameRenderer.getActiveRenderInfo(), 0, partialTicks );
@@ -416,7 +416,7 @@ public class SurfaceSkyRenderer implements IRenderHandler {
 
     private void renderStars() {
 
-        float brightness = DimensionEnvironmentManager.SKY.starBrightness;
+        float brightness = EnvironmentRenderingManager.SKY.starBrightness;
 
         GlStateManager.enableBlend();
         GlStateManager.blendFunc( GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE );
@@ -437,9 +437,9 @@ public class SurfaceSkyRenderer implements IRenderHandler {
 
     private void renderBackground() {
 
-        float r = DimensionEnvironmentManager.FOG.color[ 0 ];
-        float g = DimensionEnvironmentManager.FOG.color[ 1 ];
-        float b = DimensionEnvironmentManager.FOG.color[ 2 ];
+        float r = EnvironmentRenderingManager.FOG.color[ 0 ];
+        float g = EnvironmentRenderingManager.FOG.color[ 1 ];
+        float b = EnvironmentRenderingManager.FOG.color[ 2 ];
 
         Tessellator tess = Tessellator.getInstance();
         BufferBuilder buff = tess.getBuffer();
@@ -479,7 +479,7 @@ public class SurfaceSkyRenderer implements IRenderHandler {
     }
 
     private void renderTwilight() {
-        float brightness = DimensionEnvironmentManager.SKY.twilightBrightness;
+        float brightness = EnvironmentRenderingManager.SKY.twilightBrightness;
         if( brightness <= 0 ) return;
 
         GlStateManager.enableBlend();
@@ -490,9 +490,9 @@ public class SurfaceSkyRenderer implements IRenderHandler {
         BufferBuilder buff = tess.getBuffer();
         GlStateManager.disableTexture();
 
-        float r = DimensionEnvironmentManager.SKY.twilightColor[ 0 ];
-        float g = DimensionEnvironmentManager.SKY.twilightColor[ 1 ];
-        float b = DimensionEnvironmentManager.SKY.twilightColor[ 2 ];
+        float r = EnvironmentRenderingManager.SKY.twilightColor[ 0 ];
+        float g = EnvironmentRenderingManager.SKY.twilightColor[ 1 ];
+        float b = EnvironmentRenderingManager.SKY.twilightColor[ 2 ];
 
         buff.begin( GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR );
         for( int i = 0; i < TWILIGHT_SEGMENTS; i++ ) {
@@ -544,7 +544,7 @@ public class SurfaceSkyRenderer implements IRenderHandler {
     }
 
     private void renderBacklight() {
-        float brightness = DimensionEnvironmentManager.SKY.backlightBrightness;
+        float brightness = EnvironmentRenderingManager.SKY.backlightBrightness;
         if( brightness > 0 ) {
             GlStateManager.disableTexture();
             GlStateManager.enableFog();
@@ -553,9 +553,9 @@ public class SurfaceSkyRenderer implements IRenderHandler {
             BufferBuilder buffer = tessellator.getBuffer();
 
             float far = mc.gameRenderer.getFarPlaneDistance() * 2;
-            float skyR = DimensionEnvironmentManager.SKY.backlightColor[ 0 ];
-            float skyG = DimensionEnvironmentManager.SKY.backlightColor[ 1 ];
-            float skyB = DimensionEnvironmentManager.SKY.backlightColor[ 2 ];
+            float skyR = EnvironmentRenderingManager.SKY.backlightColor[ 0 ];
+            float skyG = EnvironmentRenderingManager.SKY.backlightColor[ 1 ];
+            float skyB = EnvironmentRenderingManager.SKY.backlightColor[ 2 ];
 
             buffer.begin( 7, DefaultVertexFormats.POSITION_COLOR );
             buffer.pos( - far, 30, far ).color( skyR, skyG, skyB, brightness ).endVertex();
@@ -571,7 +571,7 @@ public class SurfaceSkyRenderer implements IRenderHandler {
 
     private void renderMeteorites() {
         if( meteorites.isEmpty() ) return;
-        float brightness = DimensionEnvironmentManager.SKY.starBrightness;
+        float brightness = EnvironmentRenderingManager.SKY.starBrightness;
         if( brightness <= 0 ) return;
 
         GlStateManager.color4f( 1, 1, 1, brightness );
@@ -603,10 +603,10 @@ public class SurfaceSkyRenderer implements IRenderHandler {
             Vec3d pos2 = pos1.add( mdir );
 
 
-            float starRed = DimensionEnvironmentManager.SKY.starColor[ 0 ];
-            float starGreen = DimensionEnvironmentManager.SKY.starColor[ 1 ];
-            float starBlue = DimensionEnvironmentManager.SKY.starColor[ 2 ];
-            float starBrightness = DimensionEnvironmentManager.SKY.starBrightness;
+            float starRed = EnvironmentRenderingManager.SKY.starColor[ 0 ];
+            float starGreen = EnvironmentRenderingManager.SKY.starColor[ 1 ];
+            float starBlue = EnvironmentRenderingManager.SKY.starColor[ 2 ];
+            float starBrightness = EnvironmentRenderingManager.SKY.starBrightness;
 
 
             Vec3d p1 = pos1.subtract( vert );
@@ -681,7 +681,7 @@ public class SurfaceSkyRenderer implements IRenderHandler {
         );
 
         if( clouds.isEmpty() ) return;
-        float brightness = DimensionEnvironmentManager.SKY.cloudBrightness;
+        float brightness = EnvironmentRenderingManager.SKY.cloudBrightness;
         if( brightness <= 0 ) return;
 
         Tessellator tess = Tessellator.getInstance();
@@ -727,9 +727,9 @@ public class SurfaceSkyRenderer implements IRenderHandler {
 
                 double dirXmultiplier = Math.cos( theta );
 
-                float cloudRed = DimensionEnvironmentManager.SKY.cloudColor[ 0 ];
-                float cloudGreen = DimensionEnvironmentManager.SKY.cloudColor[ 1 ];
-                float cloudBlue = DimensionEnvironmentManager.SKY.cloudColor[ 2 ];
+                float cloudRed = EnvironmentRenderingManager.SKY.cloudColor[ 0 ];
+                float cloudGreen = EnvironmentRenderingManager.SKY.cloudColor[ 1 ];
+                float cloudBlue = EnvironmentRenderingManager.SKY.cloudColor[ 2 ];
 
                 buff.begin( GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR );
                 for( int vtx = 0; vtx < 4; ++ vtx ) {
@@ -764,7 +764,7 @@ public class SurfaceSkyRenderer implements IRenderHandler {
 
     private void renderSkylight() {
         if( lights.isEmpty() ) return;
-        float brightness = DimensionEnvironmentManager.SKY.skylightBrightness;
+        float brightness = EnvironmentRenderingManager.SKY.skylightBrightness;
         if( brightness <= 0 ) return;
 
         Tessellator tess = Tessellator.getInstance();
@@ -776,9 +776,9 @@ public class SurfaceSkyRenderer implements IRenderHandler {
             double y = lgt.y;
             double z = lgt.z;
             double size = lgt.scale;
-            double colorRed = DimensionEnvironmentManager.SKY.skylightColor[ 0 ];
-            double colorGreen = DimensionEnvironmentManager.SKY.skylightColor[ 1 ];
-            double colorBlue = DimensionEnvironmentManager.SKY.skylightColor[ 2 ];
+            double colorRed = EnvironmentRenderingManager.SKY.skylightColor[ 0 ];
+            double colorGreen = EnvironmentRenderingManager.SKY.skylightColor[ 1 ];
+            double colorBlue = EnvironmentRenderingManager.SKY.skylightColor[ 2 ];
 
             double a = y > 0 ? y * 0.3 : 0;
             double distance = x * x + y * y + z * z;
@@ -851,19 +851,19 @@ public class SurfaceSkyRenderer implements IRenderHandler {
         Tessellator tess = Tessellator.getInstance();
         BufferBuilder buff = tess.getBuffer();
 
-        if( DimensionEnvironmentManager.SKY.moonBrightness > 0 ) {
-            int moonPhase = DimensionEnvironmentManager.SKY.moonPhase;
-            float moonRot = DimensionEnvironmentManager.SKY.moonRotation;
+        if( EnvironmentRenderingManager.SKY.moonBrightness > 0 ) {
+            int moonPhase = EnvironmentRenderingManager.SKY.moonPhase;
+            float moonRot = EnvironmentRenderingManager.SKY.moonRotation;
 
             Minecraft.getInstance().getTextureManager().bindTexture( MOONS[ moonPhase ] );
 
             GlStateManager.pushMatrix();
             GlStateManager.rotatef( moonRot * 360, 1, 0, 0 );
 
-            float mr = DimensionEnvironmentManager.SKY.moonColor[ 0 ];
-            float mg = DimensionEnvironmentManager.SKY.moonColor[ 1 ];
-            float mb = DimensionEnvironmentManager.SKY.moonColor[ 2 ];
-            float ma = DimensionEnvironmentManager.SKY.moonBrightness;
+            float mr = EnvironmentRenderingManager.SKY.moonColor[ 0 ];
+            float mg = EnvironmentRenderingManager.SKY.moonColor[ 1 ];
+            float mb = EnvironmentRenderingManager.SKY.moonColor[ 2 ];
+            float ma = EnvironmentRenderingManager.SKY.moonBrightness;
 
             buff.begin( GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR );
 

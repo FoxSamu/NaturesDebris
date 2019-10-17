@@ -10,8 +10,10 @@
 package modernity.common.world.dimen;
 
 import modernity.api.dimension.IEnvironmentDimension;
+import modernity.api.dimension.ISatelliteDimension;
 import modernity.client.environment.Fog;
 import modernity.client.environment.Sky;
+import modernity.common.environment.satellite.SatelliteData;
 import modernity.common.world.gen.MDSurfaceChunkGenerator;
 import modernity.common.world.gen.MDSurfaceGenSettings;
 import modernity.common.world.gen.biome.MDSurfaceBiomeProvider;
@@ -24,6 +26,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -32,10 +35,18 @@ import javax.annotation.Nullable;
 /**
  * The surface dimension of the Modernity.
  */
-public class MDSurfaceDimension extends Dimension implements IEnvironmentDimension {
+public class MDSurfaceDimension extends Dimension implements IEnvironmentDimension, ISatelliteDimension {
+
+    private final SatelliteData satelliteData;
 
     public MDSurfaceDimension( World world, DimensionType type ) {
         super( world, type );
+        if( world instanceof ServerWorld ) {
+            ServerWorld sw = (ServerWorld) world;
+            satelliteData = sw.getSavedData().getOrCreate( () -> new SatelliteData( 5, world ), SatelliteData.NAME );
+        } else {
+            satelliteData = new SatelliteData( - 1, world );
+        }
     }
 
     @Override
@@ -123,10 +134,15 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
         return 0;
     }
 
-//    @Override
-//    public int getMoonPhase( long worldTime ) {
-//        return Modernity.serverSettings().moonPhase.get();
-//    }
+    @Override
+    public void tick() {
+        satelliteData.tick();
+    }
+
+    @Override
+    public SatelliteData getSatelliteData() {
+        return satelliteData;
+    }
 
     @Override
     @OnlyIn( Dist.CLIENT )
@@ -155,7 +171,7 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
         sky.twilightHeight = 10;
         sky.twilightHeightRandom = 6;
         sky.moonBrightness = 1;
-        sky.moonPhase = 0;
-        sky.moonRotation = 0.5F;
+        sky.moonPhase = satelliteData.getPhase();
+        sky.moonRotation = satelliteData.getTick() / 24000F;
     }
 }

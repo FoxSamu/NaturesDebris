@@ -5,7 +5,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import modernity.api.dimension.IEnvironmentDimension;
 import modernity.api.util.ColorUtil;
 import modernity.client.ModernityClient;
-import modernity.client.environment.DimensionEnvironmentManager;
+import modernity.client.environment.EnvironmentRenderingManager;
 import modernity.client.environment.Fog;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.fluid.MDFluidTags;
@@ -110,8 +110,8 @@ public enum FogHandler {
             event.setDensity( 2 );
         } else if( mc.world.dimension instanceof IEnvironmentDimension ) {
             IEnvironmentDimension d = (IEnvironmentDimension) mc.world.dimension;
-            d.updateFog( DimensionEnvironmentManager.FOG );
-            Fog fog = DimensionEnvironmentManager.FOG;
+            d.updateFog( EnvironmentRenderingManager.FOG );
+            Fog fog = EnvironmentRenderingManager.FOG;
 
             if( fog.type == Fog.Type.VANILLA ) {
                 event.setCanceled( false );
