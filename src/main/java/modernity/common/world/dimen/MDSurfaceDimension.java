@@ -9,10 +9,12 @@
 
 package modernity.common.world.dimen;
 
-import modernity.api.dimension.IEnvironmentDimension;
-import modernity.api.dimension.ISatelliteDimension;
+import modernity.api.dimension.*;
 import modernity.client.environment.Fog;
 import modernity.client.environment.Sky;
+import modernity.common.environment.event.EnvironmentEventManager;
+import modernity.common.environment.event.MDEnvEvents;
+import modernity.common.environment.event.impl.RandomEnvironmentEvent;
 import modernity.common.environment.satellite.SatelliteData;
 import modernity.common.world.gen.MDSurfaceChunkGenerator;
 import modernity.common.world.gen.MDSurfaceGenSettings;
@@ -35,17 +37,24 @@ import javax.annotation.Nullable;
 /**
  * The surface dimension of the Modernity.
  */
-public class MDSurfaceDimension extends Dimension implements IEnvironmentDimension, ISatelliteDimension {
+public class MDSurfaceDimension extends Dimension implements IEnvironmentDimension, ISatelliteDimension, IEnvEventsDimension, IClientTickingDimension, IInitializeDimension {
 
-    private final SatelliteData satelliteData;
+    private SatelliteData satelliteData;
+    private EnvironmentEventManager envEventManager;
 
     public MDSurfaceDimension( World world, DimensionType type ) {
         super( world, type );
+    }
+
+    @Override
+    public void init() {
         if( world instanceof ServerWorld ) {
             ServerWorld sw = (ServerWorld) world;
             satelliteData = sw.getSavedData().getOrCreate( () -> new SatelliteData( 5, world ), SatelliteData.NAME );
+            envEventManager = sw.getSavedData().getOrCreate( () -> createEnvEventManager( 5 ), EnvironmentEventManager.NAME );
         } else {
             satelliteData = new SatelliteData( - 1, world );
+            envEventManager = createEnvEventManager( - 1 );
         }
     }
 
@@ -136,12 +145,25 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
 
     @Override
     public void tick() {
-        satelliteData.tick();
+        getSatelliteData().tick();
+        getEnvEventManager().tick();
     }
 
     @Override
     public SatelliteData getSatelliteData() {
         return satelliteData;
+    }
+
+    @Override
+    public EnvironmentEventManager getEnvEventManager() {
+        return envEventManager;
+    }
+
+    private EnvironmentEventManager createEnvEventManager( int updateInterval ) {
+        return new EnvironmentEventManager(
+            updateInterval, world,
+            MDEnvEvents.RANDOM
+        );
     }
 
     @Override
@@ -171,7 +193,20 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
         sky.twilightHeight = 10;
         sky.twilightHeightRandom = 6;
         sky.moonBrightness = 1;
-        sky.moonPhase = satelliteData.getPhase();
-        sky.moonRotation = satelliteData.getTick() / 24000F;
+
+        SatelliteData data = getSatelliteData();
+        sky.moonPhase = data.getPhase();
+        sky.moonRotation = data.getTick() / 24000F;
+
+        EnvironmentEventManager envManager = getEnvEventManager();
+        RandomEnvironmentEvent event = envManager.getByType( MDEnvEvents.RANDOM );
+        if( event.isActive() ) {
+            sky.setTwilightColor( 55 / 255F, 55 / 255F, 55 / 255F );
+        }
+    }
+
+    @Override
+    public void tickClient() {
+        tick();
     }
 }

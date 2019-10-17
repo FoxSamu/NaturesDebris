@@ -6,6 +6,8 @@ import modernity.common.biome.MDBiomes;
 import modernity.common.block.MDBlocks;
 import modernity.common.container.MDContainerTypes;
 import modernity.common.entity.MDEntityTypes;
+import modernity.common.environment.event.EnvironmentEventType;
+import modernity.common.environment.event.MDEnvEvents;
 import modernity.common.event.BlockEvent;
 import modernity.common.event.MDBlockEvents;
 import modernity.common.fluid.MDFluids;
@@ -52,6 +54,7 @@ public enum RegistryEventHandler {
         MDFeatures.setup( this );
         MDPlacements.setup( this );
         MDBlockEvents.setup( this );
+        MDEnvEvents.setup( this );
         MDParticleTypes.setup( this );
     }
 
@@ -73,6 +76,9 @@ public enum RegistryEventHandler {
         }
     }
 
+    /**
+     * Adds a {@link RegistryHandler} for a specific registry type.
+     */
     public <T extends IForgeRegistryEntry<T>> void addHandler( Class<T> entryClass, RegistryHandler<? extends T> handler ) {
         registries.computeIfAbsent( entryClass, ec -> new HashSet<>() ).add( handler );
     }
@@ -94,9 +100,15 @@ public enum RegistryEventHandler {
             .disableSaving()
             .setName( Modernity.res( "block_events" ) )
             .create();
+
+        new RegistryBuilder<EnvironmentEventType>()
+            .setType( EnvironmentEventType.class )
+            .setMaxID( Integer.MAX_VALUE - 1 )
+            .setName( Modernity.res( "environment_events" ) )
+            .create();
     }
 
-
+    @SubscribeEvent
     public void remapMissing( RegistryEvent.MissingMappings event ) {
         remap( event.getRegistry().getRegistrySuperType(), event.getAllMappings() );
     }

@@ -1,6 +1,7 @@
 package modernity.client;
 
 import modernity.api.biome.BiomeColoringProfile;
+import modernity.api.dimension.IClientTickingDimension;
 import modernity.client.colormap.ColorMap;
 import modernity.client.handler.FogHandler;
 import modernity.client.handler.ParticleRegistryHandler;
@@ -24,6 +25,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.concurrent.ThreadTaskExecutor;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -110,6 +112,18 @@ public class ModernityClient extends Modernity {
             if( d instanceof MDSurfaceDimension ) {
                 d.setSkyRenderer( new SurfaceSkyRenderer( lastWorldSeed ) );
                 d.setCloudRenderer( new SurfaceCloudRenderer() );
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onTick( TickEvent.ClientTickEvent event ) {
+        if( event.phase == TickEvent.Phase.END ) {
+            if( mc.world != null && ! mc.isGamePaused() ) {
+                Dimension d = mc.world.dimension;
+                if( d instanceof IClientTickingDimension ) {
+                    ( (IClientTickingDimension) d ).tickClient();
+                }
             }
         }
     }

@@ -3,8 +3,15 @@ package modernity.common.environment.satellite;
 import modernity.common.Modernity;
 import modernity.common.net.SSatellitePacket;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompressedStreamTools;
+import net.minecraft.util.SharedConstants;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldSavedData;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 
 /**
  * Holds, updates and stores data about the satellite (moon).
@@ -89,8 +96,13 @@ public class SatelliteData extends WorldSavedData {
     public void tick() {
         updateTicks++;
 
-        setTick( tick + 1 );
-        setPhase( phase + 1 );
+        int nextTick = tick + 1;
+
+        setTick( nextTick );
+
+        if( nextTick >= 24000 ) {
+            setPhase( phase + 1 );
+        }
 
         if( updateInterval > 0 && updateTicks >= updateInterval ) {
             updateTicks = 0;
@@ -118,5 +130,13 @@ public class SatelliteData extends WorldSavedData {
     public CompoundNBT write( CompoundNBT nbt ) {
         nbt.putInt( "tick", tick << 3 | phase );
         return nbt;
+    }
+
+    @Override
+    public void save( File file ) {
+        if( ! file.exists() ) {
+            file.getParentFile().mkdirs();
+        }
+        super.save( file );
     }
 }

@@ -3,7 +3,7 @@ package modernity.api.dimension;
 import modernity.common.environment.satellite.SatelliteData;
 
 /**
- * Contract for a dimension to have {@link SatelliteData}.
+ * Dimension interface for dimensions with a satellite, and thus a {@link SatelliteData} instance.
  */
 @FunctionalInterface
 public interface ISatelliteDimension {

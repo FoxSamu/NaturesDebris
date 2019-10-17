@@ -2,6 +2,7 @@ package modernity.common;
 
 import modernity.MDInfo;
 import modernity.ModernityBootstrap;
+import modernity.api.dimension.IInitializeDimension;
 import modernity.common.command.MDCommands;
 import modernity.common.handler.CaveHandler;
 import modernity.common.handler.EntitySwimHandler;
@@ -15,8 +16,10 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.concurrent.ThreadTaskExecutor;
 import net.minecraft.util.concurrent.TickDelayedTask;
+import net.minecraft.world.dimension.Dimension;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -165,6 +168,14 @@ public abstract class Modernity {
     @SubscribeEvent
     public void serverStop( FMLServerStoppedEvent event ) {
         server = null;
+    }
+
+    @SubscribeEvent
+    public void worldLoad( WorldEvent .Load event ) {
+        Dimension dimen = event.getWorld().getDimension();
+        if( dimen instanceof IInitializeDimension ) {
+            ( (IInitializeDimension) dimen ).init();
+        }
     }
 
     /**
