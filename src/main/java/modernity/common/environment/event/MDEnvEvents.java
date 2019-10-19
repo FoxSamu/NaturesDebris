@@ -1,6 +1,6 @@
 package modernity.common.environment.event;
 
-import modernity.common.environment.event.impl.RandomEnvironmentEvent;
+import modernity.common.environment.event.impl.FogEnvEvent;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraftforge.registries.ObjectHolder;
@@ -14,7 +14,7 @@ import java.util.function.Function;
 public final class MDEnvEvents {
     private static final RegistryHandler<EnvironmentEventType> ENTRIES = new RegistryHandler<>( "modernity" );
 
-    public static final EnvironmentEventType RANDOM = register( "random", RandomEnvironmentEvent::new );
+    public static final EnvironmentEventType FOG = register( "fog", FogEnvEvent::new );
 
     private static EnvironmentEventType register( String id, Function<EnvironmentEventManager, EnvironmentEvent> factory ) {
         return ENTRIES.register( id, new EnvironmentEventType( factory ) );

@@ -217,6 +217,11 @@
   "command.modernity.settings.flushed": "Settings flushed",
   "command.modernity.settings.saved": "Settings saved",
 
+  "command.modernity.event.schedule.status.inactive": "Environment event %1$s is inactive for %2$s out of %3$s ticks.",
+  "command.modernity.event.schedule.status.waiting": "Environment event %1$s is waiting for something for %2$s out of %3$s ticks.",
+  "command.modernity.event.schedule.status.active": "Environment event %1$s is active for %2$s out of %3$s ticks.",
+  "command.modernity.event.schedule.status.cooldown": "Environment event %1$s is cooling down for %2$s out of %3$s ticks.",
+
   "entity.modernity.fall_block": "Falling Block (Modernity)",
 
   "biome.modernity.forest": "Modern Forest",

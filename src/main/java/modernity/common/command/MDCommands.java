@@ -45,6 +45,7 @@ public final class MDCommands {
         ArrayList<LiteralArgumentBuilder<CommandSource>> commandList = new ArrayList<>();
 
         TPDimCommand.createCommand( commandList );
+        EventsCommand.createCommand( commandList );
         MinecraftForge.EVENT_BUS.post( new ModernityCommandSetupEvent( commandList ) );
         register( "modernity", dispatcher, commandList );
         register( "md", dispatcher, commandList );

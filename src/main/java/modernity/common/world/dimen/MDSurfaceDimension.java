@@ -14,12 +14,13 @@ import modernity.client.environment.Fog;
 import modernity.client.environment.Sky;
 import modernity.common.environment.event.EnvironmentEventManager;
 import modernity.common.environment.event.MDEnvEvents;
-import modernity.common.environment.event.impl.RandomEnvironmentEvent;
+import modernity.common.environment.event.impl.FogEnvEvent;
 import modernity.common.environment.satellite.SatelliteData;
 import modernity.common.world.gen.MDSurfaceChunkGenerator;
 import modernity.common.world.gen.MDSurfaceGenSettings;
 import modernity.common.world.gen.biome.MDSurfaceBiomeProvider;
 import modernity.common.world.gen.biome.MDSurfaceBiomeProviderSettings;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
@@ -31,6 +32,7 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.rgsw.MathUtil;
 
 import javax.annotation.Nullable;
 
@@ -162,8 +164,13 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
     private EnvironmentEventManager createEnvEventManager( int updateInterval ) {
         return new EnvironmentEventManager(
             updateInterval, world,
-            MDEnvEvents.RANDOM
+            MDEnvEvents.FOG
         );
+    }
+
+    @Override
+    public DimensionType getRespawnDimension( ServerPlayerEntity player ) {
+        return getType();
     }
 
     @Override
@@ -172,6 +179,19 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
         fog.setColor( 0, 0, 0 );
         fog.type = Fog.Type.EXP2;
         fog.density = 0.01F;
+
+        EnvironmentEventManager envManager = getEnvEventManager();
+
+        FogEnvEvent fogEv = envManager.getByType( MDEnvEvents.FOG );
+        float fogFac = fogEv.getEffect();
+        float fogDens = fogEv.getDensity();
+        if( fogFac > 0 ) {
+            float density = MathUtil.lerp( fog.density, fogDens, fogFac );
+            if( density > fog.density ) fog.density = density;
+            fog.color[ 0 ] = MathUtil.lerp( fog.color[ 0 ], 0.3F, fogFac );
+            fog.color[ 1 ] = MathUtil.lerp( fog.color[ 1 ], 0.3F, fogFac );
+            fog.color[ 2 ] = MathUtil.lerp( fog.color[ 2 ], 0.3F, fogFac );
+        }
     }
 
     @Override
@@ -199,9 +219,19 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
         sky.moonRotation = data.getTick() / 24000F;
 
         EnvironmentEventManager envManager = getEnvEventManager();
-        RandomEnvironmentEvent event = envManager.getByType( MDEnvEvents.RANDOM );
-        if( event.isActive() ) {
-            sky.setTwilightColor( 55 / 255F, 55 / 255F, 55 / 255F );
+
+        FogEnvEvent fogEv = envManager.getByType( MDEnvEvents.FOG );
+        float fogFac = fogEv.getEffect();
+        if( fogFac > 0 ) {
+            sky.twilightBrightness = MathUtil.lerp( sky.twilightBrightness, 0.1F, fogFac );
+            sky.starBrightness = MathUtil.lerp( sky.starBrightness, 0.1F, fogFac );
+            sky.moonBrightness = MathUtil.lerp( sky.moonBrightness, 0.1F, fogFac );
+            sky.backlightBrightness = MathUtil.lerp( sky.backlightBrightness, 0.5F, fogFac );
+            sky.skylightBrightness = MathUtil.lerp( sky.skylightBrightness, 0.3F, fogFac );
+            sky.cloudAmount = MathUtil.lerp( sky.cloudAmount, 0.1F, fogFac );
+            sky.backlightColor[ 0 ] = MathUtil.lerp( sky.backlightColor[ 0 ], 0.15F, fogFac );
+            sky.backlightColor[ 1 ] = MathUtil.lerp( sky.backlightColor[ 1 ], 0.15F, fogFac );
+            sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], 0.15F, fogFac );
         }
     }
 

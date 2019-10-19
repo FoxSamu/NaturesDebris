@@ -213,6 +213,11 @@
   "command.modernity.settings.flushed": "Instellingen doorgevoerd",
   "command.modernity.settings.saved": "Instellingen opgeslagen",
 
+  "command.modernity.event.schedule.status.inactive": "Omgevingsgebeurtenis %1$s is inactief voor %2$s van de %3$s ticks.",
+  "command.modernity.event.schedule.status.waiting": "Omgevingsgebeurtenis %1$s wacht op iets voor %2$s van de %3$s ticks.",
+  "command.modernity.event.schedule.status.active": "Omgevingsgebeurtenis %1$s is actief voor %2$s van de %3$s ticks.",
+  "command.modernity.event.schedule.status.cooldown": "Omgevingsgebeurtenis %1$s is aan het afkoelen voor %2$s van de %3$s ticks.",
+
   "entity.modernity.fall_block": "Vallend Blok (Modernity)",
 
   "biome.modernity.forest": "Modern Bos",

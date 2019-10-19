@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 /**
  * Manages, stores and synchronizes environment events.
  */
+// MAYBE: Use JSON to allow datapacks to modify events?
 @SuppressWarnings( "unchecked" )
 public class EnvironmentEventManager extends WorldSavedData {
     public static final String NAME = "md/env_events";
@@ -27,6 +28,7 @@ public class EnvironmentEventManager extends WorldSavedData {
     private final World world;
 
     private int updateTicks;
+    private boolean firstTick;
 
     public EnvironmentEventManager( int updateInterval, World world, EnvironmentEventType... activeTypes ) {
         super( NAME );
@@ -39,6 +41,13 @@ public class EnvironmentEventManager extends WorldSavedData {
                              type -> type.createEvent( this )
                          ) );
         events = eventMap.values();
+    }
+
+    /**
+     * Returns the world this environment event manager is linked to.
+     */
+    public World getWorld() {
+        return world;
     }
 
     /**
@@ -82,7 +91,8 @@ public class EnvironmentEventManager extends WorldSavedData {
         if( updateInterval < 0 ) return;
 
         updateTicks++;
-        if( updateTicks >= updateInterval ) {
+        if( updateTicks >= updateInterval || firstTick ) {
+            firstTick = false;
             sync();
             updateTicks = 0;
         }
