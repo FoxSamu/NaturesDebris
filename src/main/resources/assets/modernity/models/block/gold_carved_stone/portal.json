@@ -1,0 +1,7 @@
+{
+  "parent": "modernity:block/abstract_facing",
+  "textures": {
+    "side": "block/stone",
+    "front": "modernity:block/gold_carved_stone_portal"
+  }
+}

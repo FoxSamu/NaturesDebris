@@ -183,6 +183,14 @@ public final class MDBlocks {
     public static final HorizontalFacingBlock GOLD_CARVED_NETHER_BRICKS_PORTAL = blockItem( "gold_carved_nether_bricks/portal", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
     public static final HorizontalFacingBlock GOLD_CARVED_NETHER_BRICKS_RGSW = blockItem( "gold_carved_nether_bricks/rgsw", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
 
+    public static final HorizontalFacingBlock GOLD_CARVED_STONE_NATURE = blockItem( "gold_carved_stone/nature", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
+    public static final HorizontalFacingBlock GOLD_CARVED_STONE_CURSE = blockItem( "gold_carved_stone/curse", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
+    public static final HorizontalFacingBlock GOLD_CARVED_STONE_CYEN = blockItem( "gold_carved_stone/cyen", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
+    public static final HorizontalFacingBlock GOLD_CARVED_STONE_FYREN = blockItem( "gold_carved_stone/fyren", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
+    public static final HorizontalFacingBlock GOLD_CARVED_STONE_TIMEN = blockItem( "gold_carved_stone/timen", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
+    public static final HorizontalFacingBlock GOLD_CARVED_STONE_PORTAL = blockItem( "gold_carved_stone/portal", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
+    public static final HorizontalFacingBlock GOLD_CARVED_STONE_RGSW = blockItem( "gold_carved_stone/rgsw", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
+
     private static <T extends Block> T blockOnly( String name, T block, String... aliases ) {
         BLOCKS.register( name, block, aliases );
         return block;

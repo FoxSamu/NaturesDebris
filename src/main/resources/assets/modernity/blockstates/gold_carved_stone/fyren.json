@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "modernity:block/gold_carved_stone/fyren",
+      "y": 0,
+      "uvlock": true
+    },
+    "facing=south": {
+      "model": "modernity:block/gold_carved_stone/fyren",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east": {
+      "model": "modernity:block/gold_carved_stone/fyren",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west": {
+      "model": "modernity:block/gold_carved_stone/fyren",
+      "y": 270,
+      "uvlock": true
+    }
+  }
+}

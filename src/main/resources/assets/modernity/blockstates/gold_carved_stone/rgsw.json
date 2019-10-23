@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "modernity:block/gold_carved_stone/rgsw",
+      "y": 0,
+      "uvlock": true
+    },
+    "facing=south": {
+      "model": "modernity:block/gold_carved_stone/rgsw",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east": {
+      "model": "modernity:block/gold_carved_stone/rgsw",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west": {
+      "model": "modernity:block/gold_carved_stone/rgsw",
+      "y": 270,
+      "uvlock": true
+    }
+  }
+}
