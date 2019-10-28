@@ -55,6 +55,9 @@ public final class MDItems {
     public static final ArmorItem ALUMINIUM_LEGGINGS = item( "aluminium_leggings", new ArmorItem( MDArmorMaterial.ALUMINIUM, EquipmentSlotType.LEGS, new Item.Properties().group( MDItemGroups.COMBAT ) ) );
     public static final ArmorItem ALUMINIUM_BOOTS = item( "aluminium_boots", new ArmorItem( MDArmorMaterial.ALUMINIUM, EquipmentSlotType.FEET, new Item.Properties().group( MDItemGroups.COMBAT ) ) );
 
+    // V I0.3.0
+    public static final Item EYE_OF_THE_CURSE = item( "eye_of_the_curse", new Item( new Item.Properties().group( MDItemGroups.MISC ) ) );
+
     private static <T extends Item> T item( String id, T item, String... aliases ) {
         ENTRIES.register( id, item, aliases );
         return item;
