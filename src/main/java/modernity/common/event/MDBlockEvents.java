@@ -1,7 +1,9 @@
 package modernity.common.event;
 
 import com.google.common.reflect.TypeToken;
+import modernity.common.event.impl.BreakEyeBlockEvent;
 import modernity.common.event.impl.LeavesDecayBlockEvent;
+import modernity.common.event.impl.PlaceEyeBlockEvent;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraftforge.registries.ObjectHolder;
@@ -14,6 +16,8 @@ public final class MDBlockEvents {
     private static final RegistryHandler<BlockEvent<?>> ENTRIES = new RegistryHandler<>( "modernity" );
 
     public static final LeavesDecayBlockEvent LEAVES_DECAY = register( "leaves_decay", new LeavesDecayBlockEvent() );
+    public static final PlaceEyeBlockEvent PLACE_EYE = register( "place_eye", new PlaceEyeBlockEvent() );
+    public static final BreakEyeBlockEvent BREAK_EYE = register( "break_eye", new BreakEyeBlockEvent() );
 
     private static <T extends BlockEvent<?>> T register( String id, T event ) {
         return ENTRIES.register( id, event );
