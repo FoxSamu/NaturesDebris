@@ -15,6 +15,7 @@ public final class MDStructures {
     private static final RegistryHandler<Feature<?>> STRUCTURES = new RegistryHandler<>( "modernity" );
 
     public static final CaveStructure CAVE = register( "cave", new CaveStructure() );
+    public static final ForestRunesStructure FOREST_RUNES = register( "forest_runes", new ForestRunesStructure() );
 
     private static <T extends Structure<?>> T register( String id, T structure, String... aliases ) {
         return STRUCTURES.register( id, structure, aliases );

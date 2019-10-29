@@ -13,6 +13,7 @@ public final class MDStructurePieceTypes {
     private static final HashMap<String, IStructurePieceType> PIECES = new HashMap<>();
 
     public static final IStructurePieceType CAVE_DATA = register( "cave_data", CaveStructure.Piece::new );
+    public static final IStructurePieceType FOREST_RUNES = register( "forest_runes", ForestRunesStructure.Piece::new );
 
     private static <T extends IStructurePieceType> T register( String id, T type ) {
         PIECES.put( "modernity:" + id, type );
