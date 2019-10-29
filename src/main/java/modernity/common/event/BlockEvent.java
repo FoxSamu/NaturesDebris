@@ -70,13 +70,15 @@ public abstract class BlockEvent<T> extends ForgeRegistryEntry<BlockEvent<?>> {
      * @param data   Additional data to send with the event.
      */
     public final void play( @Nullable ServerPlayerEntity player, World world, BlockPos pos, T data ) {
-        Modernity.network().sendToRange(
-            new SEventPacket( pos, this, data ),
-            new Vec3d( pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5 ),
-            range,
-            world.dimension.getType(),
-            player
-        );
+        if( ! world.isRemote ) {
+            Modernity.network().sendToRange(
+                new SEventPacket( pos, this, data ),
+                new Vec3d( pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5 ),
+                range,
+                world.dimension.getType(),
+                player
+            );
+        }
     }
 
     /**
