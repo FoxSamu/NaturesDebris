@@ -1,22 +1,22 @@
 {
   "variants": {
     "facing=north": {
-      "model": "modernity:block/gold_carved_stone/curse",
+      "model": "modernity:block/dark_stone_bricks/timen",
       "y": 0,
       "uvlock": true
     },
     "facing=south": {
-      "model": "modernity:block/gold_carved_stone/curse",
+      "model": "modernity:block/dark_stone_bricks/timen",
       "y": 180,
       "uvlock": true
     },
     "facing=east": {
-      "model": "modernity:block/gold_carved_stone/curse",
+      "model": "modernity:block/dark_stone_bricks/timen",
       "y": 90,
       "uvlock": true
     },
     "facing=west": {
-      "model": "modernity:block/gold_carved_stone/curse",
+      "model": "modernity:block/dark_stone_bricks/timen",
       "y": 270,
       "uvlock": true
     }
