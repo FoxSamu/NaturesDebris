@@ -30,8 +30,6 @@ public final class MDTileEntitiyTypes {
 
     private static final RegistryHandler<TileEntityType<?>> ENTRIES = new RegistryHandler<>( "modernity" );
 
-    public static final TileEntityType<NetherAltarTileEntity> NETHER_ALTAR = register( "nether_altar", create( NetherAltarTileEntity::new, MDBlocks.NETHER_ALTAR ) );
-
     public static void register( IForgeRegistry<TileEntityType<?>> registry ) {
         for( TileEntityType<?> type : ENTRIES ) {
             registry.register( type );

@@ -10,7 +10,6 @@
 package modernity.common.block.base;
 
 import modernity.api.util.MDVoxelShapes;
-import modernity.common.tileentity.NetherAltarTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
