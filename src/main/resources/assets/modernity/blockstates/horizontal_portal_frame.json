@@ -1,15 +1,15 @@
 {
   "variants": {
-    "direction=x,active=true": {
+    "axis=x,active=true": {
       "model": "modernity:block/horizontal_portal_x_active"
     },
-    "direction=x,active=false": {
+    "axis=x,active=false": {
       "model": "modernity:block/horizontal_portal_x_inactive"
     },
-    "direction=z,active=true": {
+    "axis=z,active=true": {
       "model": "modernity:block/horizontal_portal_z_active"
     },
-    "direction=z,active=false": {
+    "axis=z,active=false": {
       "model": "modernity:block/horizontal_portal_z_inactive"
     }
   }

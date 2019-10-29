@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
+import net.minecraft.state.StateContainer;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
@@ -30,6 +31,11 @@ public class PortalCornerBlock extends Block {
     public PortalCornerBlock( Properties props ) {
         super( props );
         setDefaultState( getDefaultState().with( STATE, State.INACTIVE ) );
+    }
+
+    @Override
+    protected void fillStateContainer( StateContainer.Builder<Block, BlockState> builder ) {
+        builder.add( STATE );
     }
 
     @Override
