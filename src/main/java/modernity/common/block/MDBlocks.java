@@ -297,27 +297,42 @@ public final class MDBlocks {
     }
 
     private static Block.Properties wood( MaterialColor color ) {
-        return Block.Properties.create( Material.WOOD, color ).hardnessAndResistance( 2, 3 ).sound( SoundType.WOOD );
+        return Block.Properties.create( Material.WOOD, color )
+                               .hardnessAndResistance( 2, 3 )
+                               .sound( SoundType.WOOD );
     }
 
     private static Block.Properties metal( MaterialColor color ) {
-        return Block.Properties.create( Material.IRON, color ).hardnessAndResistance( 5, 6 ).sound( SoundType.METAL );
+        return Block.Properties.create( Material.IRON, color )
+                               .hardnessAndResistance( 5, 6 )
+                               .sound( SoundType.METAL );
     }
 
     private static Block.Properties weakPlant( MaterialColor color, double hardness ) {
-        return Block.Properties.create( Material.TALL_PLANTS, color ).hardnessAndResistance( (float) hardness ).doesNotBlockMovement().sound( SoundType.PLANT );
+        return Block.Properties.create( Material.TALL_PLANTS, color )
+                               .hardnessAndResistance( (float) hardness )
+                               .doesNotBlockMovement()
+                               .sound( SoundType.PLANT );
     }
 
     private static Block.Properties strongPlant( MaterialColor color, double hardness ) {
-        return Block.Properties.create( Material.PLANTS, color ).hardnessAndResistance( (float) hardness ).doesNotBlockMovement().sound( SoundType.PLANT );
+        return Block.Properties.create( Material.PLANTS, color )
+                               .hardnessAndResistance( (float) hardness )
+                               .doesNotBlockMovement()
+                               .sound( SoundType.PLANT );
     }
 
     private static Block.Properties crystal( MaterialColor color, double hardness ) {
-        return Block.Properties.create( MDMaterial.CRYSTAL, color ).hardnessAndResistance( (float) hardness ).doesNotBlockMovement().sound( SoundType.GLASS );
+        return Block.Properties.create( MDMaterial.CRYSTAL, color )
+                               .hardnessAndResistance( (float) hardness )
+                               .doesNotBlockMovement()
+                               .sound( SoundType.GLASS );
     }
 
     private static Block.Properties leaves( MaterialColor color, double hardness ) {
-        return Block.Properties.create( Material.LEAVES, color ).hardnessAndResistance( (float) hardness ).sound( SoundType.PLANT );
+        return Block.Properties.create( Material.LEAVES, color )
+                               .hardnessAndResistance( (float) hardness )
+                               .sound( SoundType.PLANT );
     }
 
     private MDBlocks() {
