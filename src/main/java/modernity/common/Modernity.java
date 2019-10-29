@@ -121,7 +121,7 @@ public abstract class Modernity {
      */
     public void registerListeners() {
         FORGE_EVENT_BUS.register( EntitySwimHandler.INSTANCE );
-        FORGE_EVENT_BUS.register( new CaveHandler() );
+        FORGE_EVENT_BUS.register( CaveHandler.INSTANCE );
     }
 
     /**
@@ -195,7 +195,7 @@ public abstract class Modernity {
     }
 
     /**
-     * Shortcut for <code>{@linkplain #get() get}().{@linkplain #getNetworkChannel() getNetworkChannel}()</code>.
+     * Shortcut for <code>{@linkplain #get() get()}.{@linkplain #getNetworkChannel() getNetworkChannel()}</code>.
      *
      * @see #get()
      * @see #getNetworkChannel()

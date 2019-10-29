@@ -17,7 +17,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 /**
  * Sends cave data to players on watching a chunk.
  */
-public class CaveHandler {
+public enum CaveHandler {
+    INSTANCE;
     @SubscribeEvent
     public void onChunkWatch( ChunkWatchEvent.Watch event ) {
         // Share cave data with player
