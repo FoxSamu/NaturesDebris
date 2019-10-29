@@ -40,6 +40,7 @@ public class ModernityBootstrap {
         FMLJavaModLoadingContext.get().getModEventBus().addListener( this::setup );
         FMLJavaModLoadingContext.get().getModEventBus().addListener( this::loadComplete );
         FMLJavaModLoadingContext.get().getModEventBus().register( RegistryEventHandler.INSTANCE );
+        MinecraftForge.EVENT_BUS.register( RegistryEventHandler.INSTANCE );
         if( FMLEnvironment.dist == Dist.CLIENT ) {
             clientSetup();
         } else {
