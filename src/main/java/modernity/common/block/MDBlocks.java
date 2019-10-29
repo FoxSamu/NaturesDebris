@@ -176,7 +176,7 @@ public final class MDBlocks {
 
     // V I0.3.0
     public static final Block DARK_STONE_BRICKS = blockItem( "dark_stone_bricks", new Block( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
-    public static final Block DARK_STONE_BRICKS_INSCRIBED = blockItem( "inscribed_dark_stone_bricks", new Block( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES, "dark_stone_bricks_inscribed" );
+    public static final Block INSCRIBED_DARK_STONE_BRICKS = blockItem( "inscribed_dark_stone_bricks", new Block( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES, "dark_stone_bricks_inscribed" );
     public static final HorizontalFacingBlock DARK_STONE_BRICKS_NATURE = blockItem( "dark_stone_bricks_nature", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
     public static final HorizontalFacingBlock DARK_STONE_BRICKS_CURSE = blockItem( "dark_stone_bricks_curse", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
     public static final HorizontalFacingBlock DARK_STONE_BRICKS_CYEN = blockItem( "dark_stone_bricks_cyen", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
@@ -184,6 +184,10 @@ public final class MDBlocks {
     public static final HorizontalFacingBlock DARK_STONE_BRICKS_TIMEN = blockItem( "dark_stone_bricks_timen", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
     public static final HorizontalFacingBlock DARK_STONE_BRICKS_PORTAL = blockItem( "dark_stone_bricks_portal", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
     public static final HorizontalFacingBlock DARK_STONE_BRICKS_RGSW = blockItem( "dark_stone_bricks_rgsw", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
+
+    public static final HorizontalPortalFrameBlock HORIZONTAL_PORTAL_FRAME = blockItem( "horizontal_portal_frame", new HorizontalPortalFrameBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
+    public static final VerticalPortalFrameBlock VERTICAL_PORTAL_FRAME = blockItem( "vertical_portal_frame", new VerticalPortalFrameBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
+    public static final PortalCornerBlock PORTAL_CORNER = blockItem( "portal_corner", new PortalCornerBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
 
     private static <T extends Block> T blockOnly( String name, T block, String... aliases ) {
         BLOCKS.register( name, block, aliases );

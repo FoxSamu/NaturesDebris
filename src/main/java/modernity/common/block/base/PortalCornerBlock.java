@@ -63,6 +63,11 @@ public class PortalCornerBlock extends Block {
         return false;
     }
 
+    @Override
+    public boolean isSolid( BlockState state ) {
+        return false;
+    }
+
     public enum State implements IStringSerializable {
         INACTIVE( "inactive", SLAB_SHAPE, 0 ),
         EYE( "eye", COMBINED_SHAPE, 0 ),

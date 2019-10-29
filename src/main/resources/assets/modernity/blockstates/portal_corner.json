@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "state=inactive": {
+      "model": "modernity:block/dark_stone_portal"
+    },
+    "state=active": {
+      "model": "modernity:block/dark_stone_portal_active"
+    },
+    "state=eye": {
+      "model": "modernity:block/dark_stone_portal_eye"
+    },
+    "state=exhausted": {
+      "model": "modernity:block/dark_stone_portal_exhausted"
+    }
+  }
+}

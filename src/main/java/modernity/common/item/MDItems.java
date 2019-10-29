@@ -1,14 +1,20 @@
 package modernity.common.item;
 
+import modernity.api.block.IColoredBlock;
+import modernity.api.item.IColoredItem;
 import modernity.common.fluid.MDFluids;
 import modernity.common.item.base.AluminiumBucketItem;
 import modernity.common.item.base.BaseBucketItem;
 import modernity.common.item.base.CurseCrystalItem;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ObjectHolder;
 
 /**
@@ -56,8 +62,14 @@ public final class MDItems {
         ENTRIES.register( id, item, aliases );
         return item;
     }
-
-    // TODO: Init item colors here
+    @OnlyIn( Dist.CLIENT )
+    public static void initItemColors() {
+        for( Item block : ENTRIES ) {
+            if( block instanceof IColoredItem ) {
+                Minecraft.getInstance().getItemColors().register( ( (IColoredItem) block )::colorMultiplier, block );
+            }
+        }
+    }
 
     /**
      * Adds the registry handler to the {@link RegistryEventHandler}. Must be called internally only.

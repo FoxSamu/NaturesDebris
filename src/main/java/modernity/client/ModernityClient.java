@@ -14,6 +14,7 @@ import modernity.common.Modernity;
 import modernity.common.block.MDBlocks;
 import modernity.common.container.MDContainerTypes;
 import modernity.common.entity.MDEntityTypes;
+import modernity.common.item.MDItems;
 import modernity.common.net.SSeedPacket;
 import modernity.common.particle.MDParticleTypes;
 import modernity.common.world.dimen.MDSurfaceDimension;
@@ -75,6 +76,7 @@ public class ModernityClient extends Modernity {
     public void postInit() {
         super.postInit();
         MDBlocks.initBlockColors();
+        MDItems.initItemColors();
     }
 
     @Override
@@ -171,7 +173,7 @@ public class ModernityClient extends Modernity {
     }
 
     /**
-     * Return the seed of the last joined world, or 0 if no world has sent a seed yet.
+     * Returns the seed of the last joined world, or 0 if no world has sent a seed yet.
      */
     public long getLastWorldSeed() {
         return lastWorldSeed;

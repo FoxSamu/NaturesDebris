@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=true": {
+      "model": "modernity:block/vertical_portal_active"
+    },
+    "active=false": {
+      "model": "modernity:block/vertical_portal_inactive"
+    }
+  }
+}

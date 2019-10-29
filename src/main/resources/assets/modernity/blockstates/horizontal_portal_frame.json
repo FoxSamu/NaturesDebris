@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "direction=x,active=true": {
+      "model": "modernity:block/horizontal_portal_x_active"
+    },
+    "direction=x,active=false": {
+      "model": "modernity:block/horizontal_portal_x_inactive"
+    },
+    "direction=z,active=true": {
+      "model": "modernity:block/horizontal_portal_z_active"
+    },
+    "direction=z,active=false": {
+      "model": "modernity:block/horizontal_portal_z_inactive"
+    }
+  }
+}
