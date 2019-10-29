@@ -126,21 +126,21 @@ public final class MDBlocks {
     public static final TallPlantBlock DARK_TALLGRASS = blockItem( "dark_tall_grass", new TallPlantBlock.ColoredGrass( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
     public static final TallWaterloggingPlantBlock REEDS = blockItem( "reeds", new TallWaterloggingPlantBlock.Reeds( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
 
-    public static final SinglePlantBlock RED_MELION = blockItem( "melion/red", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
-    public static final SinglePlantBlock ORANGE_MELION = blockItem( "melion/orange", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
-    public static final SinglePlantBlock YELLOW_MELION = blockItem( "melion/yellow", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
-    public static final SinglePlantBlock WHITE_MELION = blockItem( "melion/white", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
-    public static final SinglePlantBlock BLUE_MELION = blockItem( "melion/blue", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
-    public static final SinglePlantBlock INDIGO_MELION = blockItem( "melion/indigo", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
-    public static final SinglePlantBlock MAGENTA_MELION = blockItem( "melion/magenta", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
+    public static final SinglePlantBlock RED_MELION = blockItem( "red_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "melion/red" );
+    public static final SinglePlantBlock ORANGE_MELION = blockItem( "orange_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "melion/orange" );
+    public static final SinglePlantBlock YELLOW_MELION = blockItem( "yellow_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "melion/yellow" );
+    public static final SinglePlantBlock WHITE_MELION = blockItem( "white_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "melion/white" );
+    public static final SinglePlantBlock BLUE_MELION = blockItem( "blue_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "melion/blue" );
+    public static final SinglePlantBlock INDIGO_MELION = blockItem( "indigo_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "melion/indigo" );
+    public static final SinglePlantBlock MAGENTA_MELION = blockItem( "magenta_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "melion/magenta" );
 
-    public static final SinglePlantBlock RED_MILLIUM = blockItem( "millium/red", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
-    public static final SinglePlantBlock YELLOW_MILLIUM = blockItem( "millium/yellow", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
-    public static final SinglePlantBlock WHITE_MILLIUM = blockItem( "millium/white", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
-    public static final SinglePlantBlock CYAN_MILLIUM = blockItem( "millium/cyan", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
-    public static final SinglePlantBlock GREEN_MILLIUM = blockItem( "millium/green", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
-    public static final SinglePlantBlock MAGENTA_MILLIUM = blockItem( "millium/magenta", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
-    public static final SinglePlantBlock BLUE_MILLIUM = blockItem( "millium/blue", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
+    public static final SinglePlantBlock RED_MILLIUM = blockItem( "red_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "millium/red" );
+    public static final SinglePlantBlock YELLOW_MILLIUM = blockItem( "yellow_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "millium/yellow" );
+    public static final SinglePlantBlock WHITE_MILLIUM = blockItem( "white_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "millium/white" );
+    public static final SinglePlantBlock CYAN_MILLIUM = blockItem( "cyan_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "millium/cyan" );
+    public static final SinglePlantBlock GREEN_MILLIUM = blockItem( "green_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "millium/green" );
+    public static final SinglePlantBlock MAGENTA_MILLIUM = blockItem( "magenta_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "millium/magenta" );
+    public static final SinglePlantBlock BLUE_MILLIUM = blockItem( "blue_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "millium/blue" );
 
     public static final SinglePlantBlock MINT_PLANT = blockItem( "mint_plant", new SinglePlantBlock.Mint( weakPlant( MaterialColor.GRASS, 0.2 ) ), MDItemGroups.PLANTS );
     public static final SinglePlantBlock REDWOLD = blockItem( "redwold", new SinglePlantBlock.Redwold( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
@@ -174,18 +174,9 @@ public final class MDBlocks {
     public static final ExtinguishableTorchBlock ANTHRACITE_TORCH = blockItem( "anthracite_torch", new ExtinguishableTorchBlock( true, EXTINGUISHED_ANTHRACITE_TORCH, Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ).doesNotBlockMovement().hardnessAndResistance( 0 ).lightValue( 15 ).sound( SoundType.WOOD ) ), MDItemGroups.DECORATIVES );
     public static final TorchBlock LIGHTROCK_TORCH = blockItem( "lightrock_torch", new TorchBlock( false, Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ).hardnessAndResistance( 0 ).doesNotBlockMovement().lightValue( 15 ).sound( SoundType.METAL ) ), MDItemGroups.DECORATIVES );
 
-    public static final NetherAltarBlock NETHER_ALTAR = blockItem( "nether_altar", new NetherAltarBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2F ) ), MDItemGroups.DECORATIVES );
-    public static final HorizontalFacingBlock GOLD_CARVED_NETHER_BRICKS_NATURE = blockItem( "gold_carved_nether_bricks/nature", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
-    public static final HorizontalFacingBlock GOLD_CARVED_NETHER_BRICKS_CURSE = blockItem( "gold_carved_nether_bricks/curse", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
-    public static final HorizontalFacingBlock GOLD_CARVED_NETHER_BRICKS_CYEN = blockItem( "gold_carved_nether_bricks/cyen", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
-    public static final HorizontalFacingBlock GOLD_CARVED_NETHER_BRICKS_FYREN = blockItem( "gold_carved_nether_bricks/fyren", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
-    public static final HorizontalFacingBlock GOLD_CARVED_NETHER_BRICKS_TIMEN = blockItem( "gold_carved_nether_bricks/timen", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
-    public static final HorizontalFacingBlock GOLD_CARVED_NETHER_BRICKS_PORTAL = blockItem( "gold_carved_nether_bricks/portal", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
-    public static final HorizontalFacingBlock GOLD_CARVED_NETHER_BRICKS_RGSW = blockItem( "gold_carved_nether_bricks/rgsw", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.NETHERRACK ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
-
     // V I0.3.0
     public static final Block DARK_STONE_BRICKS = blockItem( "dark_stone_bricks", new Block( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
-    public static final Block DARK_STONE_BRICKS_INSCRIBED = blockItem( "dark_stone_bricks_inscribed", new Block( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
+    public static final Block DARK_STONE_BRICKS_INSCRIBED = blockItem( "inscribed_dark_stone_bricks", new Block( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES, "dark_stone_bricks_inscribed" );
     public static final HorizontalFacingBlock DARK_STONE_BRICKS_NATURE = blockItem( "dark_stone_bricks_nature", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
     public static final HorizontalFacingBlock DARK_STONE_BRICKS_CURSE = blockItem( "dark_stone_bricks_curse", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );
     public static final HorizontalFacingBlock DARK_STONE_BRICKS_CYEN = blockItem( "dark_stone_bricks_cyen", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroups.DECORATIVES );

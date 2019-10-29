@@ -29,12 +29,6 @@ public final class MDItems {
     public static final Item BLACKWOOD_STICK = item( "blackwood_stick", new Item( new Item.Properties().group( MDItemGroups.MISC ) ) );
     public static final Item INVER_STICK = item( "inver_stick", new Item( new Item.Properties().group( MDItemGroups.MISC ) ) );
 
-    public static final Item CURSE_CRYSTAL_SHARD_1 = item( "curse_crystal/shard_1", new Item( new Item.Properties().group( MDItemGroups.MISC ) ) );
-    public static final Item CURSE_CRYSTAL_SHARD_2 = item( "curse_crystal/shard_2", new Item( new Item.Properties().group( MDItemGroups.MISC ) ) );
-    public static final Item CURSE_CRYSTAL_SHARD_3 = item( "curse_crystal/shard_3", new Item( new Item.Properties().group( MDItemGroups.MISC ) ) );
-    public static final Item CURSE_CRYSTAL_SHARD_4 = item( "curse_crystal/shard_4", new Item( new Item.Properties().group( MDItemGroups.MISC ) ) );
-    public static final CurseCrystalItem CURSE_CRYSTAL = item( "curse_crystal", new CurseCrystalItem( new Item.Properties().group( MDItemGroups.MISC ) ) );
-
     public static final BaseBucketItem ALUMINIUM_BUCKET = item( "aluminium_bucket", new AluminiumBucketItem( Fluids.EMPTY, new Item.Properties().group( MDItemGroups.MISC ) ) );
     public static final BaseBucketItem ALUMINIUM_WATER_BUCKET = item( "aluminium_water_bucket", new AluminiumBucketItem( MDFluids.MODERNIZED_WATER, new Item.Properties().group( MDItemGroups.MISC ).containerItem( ALUMINIUM_BUCKET ) ) );
     public static final BaseBucketItem ALUMINIUM_HEATROCK_BUCKET = item( "aluminium_heatrock_bucket", new AluminiumBucketItem( MDFluids.HEATROCK, new Item.Properties().group( MDItemGroups.MISC ).containerItem( ALUMINIUM_BUCKET ) ) );

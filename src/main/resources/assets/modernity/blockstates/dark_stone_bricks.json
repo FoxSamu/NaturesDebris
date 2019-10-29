@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "modernity:block/dark_stone_bricks/regular"
+      "model": "modernity:block/dark_stone_bricks"
     }
   }
 }

@@ -1,40 +1,40 @@
 {
   "variants": {
     "age=0": {
-      "model": "modernity:block/salt_crystal/stage_0"
+      "model": "modernity:block/salt_crystal_stage_0"
     },
     "age=1": {
-      "model": "modernity:block/salt_crystal/stage_0"
+      "model": "modernity:block/salt_crystal_stage_0"
     },
     "age=2": {
-      "model": "modernity:block/salt_crystal/stage_0"
+      "model": "modernity:block/salt_crystal_stage_0"
     },
     "age=3": {
-      "model": "modernity:block/salt_crystal/stage_1"
+      "model": "modernity:block/salt_crystal_stage_1"
     },
     "age=4": {
-      "model": "modernity:block/salt_crystal/stage_1"
+      "model": "modernity:block/salt_crystal_stage_1"
     },
     "age=5": {
-      "model": "modernity:block/salt_crystal/stage_2"
+      "model": "modernity:block/salt_crystal_stage_2"
     },
     "age=6": {
-      "model": "modernity:block/salt_crystal/stage_2"
+      "model": "modernity:block/salt_crystal_stage_2"
     },
     "age=7": {
-      "model": "modernity:block/salt_crystal/stage_3"
+      "model": "modernity:block/salt_crystal_stage_3"
     },
     "age=8": {
-      "model": "modernity:block/salt_crystal/stage_3"
+      "model": "modernity:block/salt_crystal_stage_3"
     },
     "age=9": {
-      "model": "modernity:block/salt_crystal/stage_4"
+      "model": "modernity:block/salt_crystal_stage_4"
     },
     "age=10": {
-      "model": "modernity:block/salt_crystal/stage_4"
+      "model": "modernity:block/salt_crystal_stage_4"
     },
     "age=11": {
-      "model": "modernity:block/salt_crystal/stage_5"
+      "model": "modernity:block/salt_crystal_stage_5"
     }
   }
 }
