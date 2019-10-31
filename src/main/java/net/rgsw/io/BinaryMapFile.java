@@ -1,4 +1,4 @@
-package modernity.api.util;
+package net.rgsw.io;
 
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;

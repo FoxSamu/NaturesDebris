@@ -1,6 +1,6 @@
 package runs;
 
-import modernity.api.util.BinaryMapFile;
+import net.rgsw.io.BinaryMapFile;
 
 import java.io.*;
 
