@@ -1,6 +1,6 @@
 package runs;
 
-import net.rgsw.io.BinaryMapFile;
+import net.rgsw.io.BMFFile;
 
 import java.io.*;
 
@@ -8,10 +8,10 @@ public final class DatabaseFileTest {
     private DatabaseFileTest() {
     }
 
-    private static BinaryMapFile file;
+    private static BMFFile file;
 
     public static void main( String[] args ) throws IOException {
-        file = BinaryMapFile.create( new File( "database.data" ), 16, BinaryMapFile.Compression.NONE );
+        file = BMFFile.create( new File( "database.data" ), 16, BMFFile.Compression.NONE );
 
         save();
 //        load();
