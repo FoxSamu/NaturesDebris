@@ -8,7 +8,11 @@
 
 package net.rgsw;
 
-public class MathUtil {
+public final class MathUtil {
+
+    private MathUtil() {
+        throw new InstanceOfUtilityClassException();
+    }
 
     /**
      * Interpolates value between 0 and 1 to value between a and b
