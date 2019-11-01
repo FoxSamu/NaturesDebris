@@ -110,7 +110,7 @@ public class ProcessContext {
     /**
      * Schedules the specified task on the main thread listener of the receiving side. That is the {@link
      * MinecraftServer} instance when on the {@linkplain ESide#SERVER server} side and the {@link Minecraft} instance
-     * when on the {@linkplain ESide#CLIENT client} side. When the curren thread is already the main thread of the
+     * when on the {@linkplain ESide#CLIENT client} side. When the current thread is already the main thread of the
      * receiving side, the specified task will be executed immediately.
      *
      * @param task The task to run on the main thread.
