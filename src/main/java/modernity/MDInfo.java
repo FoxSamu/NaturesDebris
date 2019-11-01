@@ -9,7 +9,7 @@
 
 package modernity;
 
-import net.rgsw.UselessOperationException;
+import net.rgsw.InstanceOfUtilityClassException;
 
 /**
  * Class that holds constants about the Modernity, which are usually replaced by Gradle. Most constants are used in
@@ -50,7 +50,7 @@ public final class MDInfo {
     public static final boolean SIGNED = DynamicConstants.SIGNED;
 
     private MDInfo() {
-        throw new UselessOperationException( "No MDInfo instances for you!" );
+        throw new InstanceOfUtilityClassException( "No MDInfo instances for you!" );
     }
 
     // Bunch of constants gradle would replace the uses of
