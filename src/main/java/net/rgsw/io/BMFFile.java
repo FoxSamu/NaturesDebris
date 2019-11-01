@@ -1,15 +1,7 @@
 package net.rgsw.io;
 
-import com.google.common.collect.Lists;
-import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
-import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
-import it.unimi.dsi.fastutil.ints.IntSet;
-import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.longs.LongSet;
-
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.zip.DeflaterOutputStream;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
@@ -66,7 +58,7 @@ import java.util.zip.InflaterInputStream;
  * The implementation uses a {@link RandomAccessFile} to read and write files.
  * <p/>
  * <h2>Usage</h2>
- * A {@code BinaryMapFile} can be instantiated with an overload {@link #create} or {@link #open}. When using {@link
+ * A {@code BMFFile} can be instantiated with an overload {@link #create} or {@link #open}. When using {@link
  * #open}, it automatically attempts to load the file.
  * <p/>
  * There are 4 methods for managing entries stored in the file:
@@ -84,10 +76,10 @@ import java.util.zip.InflaterInputStream;
  * will not be used for a while. Try to use {@link #flush} when you plan to write more to the file right after saving as
  * this keeps buffered sectors.
  * <p/>
- * A {@code BinaryMapFile} can be used in a try-with-resources statement.
+ * A {@code BMFFile} can be used in a try-with-resources statement.
  */
-public class BinaryMapFile implements Flushable, Closeable {
-    public final int sectorSize;
+public class BMFFile implements Flushable, Closeable {
+    private final int sectorSize;
     private final int sectorSizeMask;
     private final int sectorSizeExponent;
 
@@ -96,18 +88,18 @@ public class BinaryMapFile implements Flushable, Closeable {
     private final File file;
     private final RandomAccessFile io;
 
-    private final Long2ObjectOpenHashMap<Entry> entries = new Long2ObjectOpenHashMap<>();
+    private final HashMap<Long, Entry> entries = new HashMap<>();
     private Sector[] sectors;
 
     // All the sectors get an unique ID on load, which we use in loaded entries to reference this sector instead of
     // using their indices. So when we move a sector to another index, we don't need to find and update the entry that
     // uses that sector as the ID does not change.
-    private final Int2IntOpenHashMap idsToIndices = new Int2IntOpenHashMap();
+    private final HashMap<Integer, Integer> idsToIndices = new HashMap<>();
 
     private final Compression compressionType;
 
 
-    private BinaryMapFile( File file, int initCapacity, Compression compression, int sectorSize ) throws IOException {
+    private BMFFile( File file, int initCapacity, Compression compression, int sectorSize ) throws IOException {
         if( file == null ) throw new NullPointerException( "File must not be null" );
         if( compression == null ) throw new NullPointerException( "Compression type must not be null" );
         if( sectorSize < 16 || ( sectorSize & sectorSize - 1 ) != 0 ) {
@@ -175,7 +167,7 @@ public class BinaryMapFile implements Flushable, Closeable {
 
         // Only save entries that are not null
         int entryCount = 0;
-        LongSet keys = entries.keySet();
+        Set<Long> keys = entries.keySet();
         for( long key : keys ) {
             Entry e = entries.get( key );
             if( e != null ) {
@@ -636,7 +628,7 @@ public class BinaryMapFile implements Flushable, Closeable {
 
 
     private void optimize() throws IOException {
-        IntSet usedSectorIDs = new IntOpenHashSet();
+        Set<Integer> usedSectorIDs = new HashSet<>();
         for( Entry entry : entries.values() ) {
             for( int id : entry.sectors ) {
                 usedSectorIDs.add( id );
@@ -712,77 +704,77 @@ public class BinaryMapFile implements Flushable, Closeable {
 
 
 
-    public static BinaryMapFile create( File file, int initialCapacity, Compression compression, int sectorSize ) throws IOException {
-        return new BinaryMapFile( file, initialCapacity, compression, sectorSize );
+    public static BMFFile create( File file, int initialCapacity, Compression compression, int sectorSize ) throws IOException {
+        return new BMFFile( file, initialCapacity, compression, sectorSize );
     }
 
-    public static BinaryMapFile open( File file, int initialCapacity, Compression compression, int sectorSize ) throws IOException {
-        BinaryMapFile dmf = create( file, initialCapacity, compression, sectorSize );
+    public static BMFFile open( File file, int initialCapacity, Compression compression, int sectorSize ) throws IOException {
+        BMFFile dmf = create( file, initialCapacity, compression, sectorSize );
         dmf.open();
         return dmf;
     }
 
-    public static BinaryMapFile createUncompressed( File file ) throws IOException {
+    public static BMFFile createUncompressed( File file ) throws IOException {
         return create( file, 16, Compression.NONE, 1024 );
     }
 
-    public static BinaryMapFile openUncompressed( File file ) throws IOException {
+    public static BMFFile openUncompressed( File file ) throws IOException {
         return open( file, 16, Compression.NONE, 1024 );
     }
 
-    public static BinaryMapFile createUncompressed( File file, int sectorSize ) throws IOException {
+    public static BMFFile createUncompressed( File file, int sectorSize ) throws IOException {
         return create( file, 16, Compression.NONE, sectorSize );
     }
 
-    public static BinaryMapFile openUncompressed( File file, int sectorSize ) throws IOException {
+    public static BMFFile openUncompressed( File file, int sectorSize ) throws IOException {
         return open( file, 16, Compression.NONE, sectorSize );
     }
 
-    public static BinaryMapFile createGZipped( File file ) throws IOException {
+    public static BMFFile createGZipped( File file ) throws IOException {
         return create( file, 16, Compression.GZIP, 1024 );
     }
 
-    public static BinaryMapFile openGZipped( File file ) throws IOException {
+    public static BMFFile openGZipped( File file ) throws IOException {
         return open( file, 16, Compression.GZIP, 1024 );
     }
 
-    public static BinaryMapFile createGZipped( File file, int sectorSize ) throws IOException {
+    public static BMFFile createGZipped( File file, int sectorSize ) throws IOException {
         return create( file, 16, Compression.GZIP, sectorSize );
     }
 
-    public static BinaryMapFile openGZipped( File file, int sectorSize ) throws IOException {
+    public static BMFFile openGZipped( File file, int sectorSize ) throws IOException {
         return open( file, 16, Compression.GZIP, sectorSize );
     }
 
-    public static BinaryMapFile createDeflated( File file ) throws IOException {
+    public static BMFFile createDeflated( File file ) throws IOException {
         return create( file, 16, Compression.DEFLATE, 1024 );
     }
 
-    public static BinaryMapFile openDeflated( File file ) throws IOException {
+    public static BMFFile openDeflated( File file ) throws IOException {
         return open( file, 16, Compression.DEFLATE, 1024 );
     }
 
-    public static BinaryMapFile createDeflated( File file, int sectorSize ) throws IOException {
+    public static BMFFile createDeflated( File file, int sectorSize ) throws IOException {
         return create( file, 16, Compression.DEFLATE, sectorSize );
     }
 
-    public static BinaryMapFile openDeflated( File file, int sectorSize ) throws IOException {
+    public static BMFFile openDeflated( File file, int sectorSize ) throws IOException {
         return open( file, 16, Compression.DEFLATE, sectorSize );
     }
 
-    public static BinaryMapFile create( File file, Compression compression ) throws IOException {
+    public static BMFFile create( File file, Compression compression ) throws IOException {
         return create( file, 16, compression, 1024 );
     }
 
-    public static BinaryMapFile open( File file, Compression compression ) throws IOException {
+    public static BMFFile open( File file, Compression compression ) throws IOException {
         return open( file, 16, compression, 1024 );
     }
 
-    public static BinaryMapFile create( File file, int sectorSize, Compression compression ) throws IOException {
+    public static BMFFile create( File file, int sectorSize, Compression compression ) throws IOException {
         return create( file, 16, compression, sectorSize );
     }
 
-    public static BinaryMapFile open( File file, int sectorSize, Compression compression ) throws IOException {
+    public static BMFFile open( File file, int sectorSize, Compression compression ) throws IOException {
         return open( file, 16, compression, sectorSize );
     }
 
@@ -879,7 +871,7 @@ public class BinaryMapFile implements Flushable, Closeable {
         private boolean closed;
 
         private SectorOutputStream( Sector[] sectors, Entry entry ) {
-            this.sectors = Lists.newArrayList( sectors );
+            this.sectors = new ArrayList<>( Arrays.asList( sectors ) );
             this.entry = entry;
             entry.used = true;
         }
