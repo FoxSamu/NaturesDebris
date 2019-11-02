@@ -9,7 +9,7 @@
 
 package modernity;
 
-import net.rgsw.InstanceOfUtilityClassException;
+import net.rgsw.exc.InstanceOfUtilityClassException;
 
 /**
  * Class that holds constants about the Modernity, which are usually replaced by Gradle. Most constants are used in

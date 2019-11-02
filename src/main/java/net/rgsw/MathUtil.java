@@ -8,6 +8,8 @@
 
 package net.rgsw;
 
+import net.rgsw.exc.InstanceOfUtilityClassException;
+
 public final class MathUtil {
 
     private MathUtil() {

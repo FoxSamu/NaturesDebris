@@ -10,7 +10,7 @@
 package modernity.api.util;
 
 import net.minecraft.world.IWorldWriter;
-import net.rgsw.InstanceOfUtilityClassException;
+import net.rgsw.exc.InstanceOfUtilityClassException;
 
 /**
  * Holder class for {@link IWorldWriter#setBlockState} flags
