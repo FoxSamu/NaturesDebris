@@ -1,4 +1,4 @@
-package net.rgsw;
+package net.rgsw.exc;
 
 public class InstanceOfUtilityClassException extends RuntimeException {
     private final String msg;
