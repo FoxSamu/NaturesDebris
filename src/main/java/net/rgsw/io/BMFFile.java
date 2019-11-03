@@ -8,7 +8,7 @@ import java.util.zip.GZIPOutputStream;
 import java.util.zip.InflaterInputStream;
 
 /**
- * An implementation of the Binary Map Format explained below.
+ * An implementation of the Binary Map Format as explained below.
  * <p/>
  * <h2>BMF</h2>
  * A Binary Map Format (BMF) file stores zero or more binaries and maps them to long keys.
@@ -26,14 +26,12 @@ import java.util.zip.InflaterInputStream;
  * that amount of entries.<br/>
  *
  * Each entry starts with a 8 bytes storing the key of that entry. Those bytes are followed by the index list. An index
- * list consists of variable sized, signed integers. The size of each positive integer is determined by taking the least
- * amount of bytes needed to represent the amount of sectors (including it's sign), limited to a minimum of one byte and
- * a maximum of four bytes. The size of each negative integer is fixed to 1 byte, as only -1 and -2 are used.<br/>
+ * list consists of 32-bits signed integers.<br/>
  *
  * The first integer of the index list is the amount of sectors the corresponding entry uses. Then follows the list of
  * sector indices. The index -1 refers to an empty sector. The implementation does not use empty sectors for saving, but
  * it supports loading empty sectors. The index -2 indicates an amount of consecutive indices after the previous index.
- * Another integer indicates the amount. For example: <code>15 -2 5</code> references sector 15, followed by 5 other
+ * Another integer indicates the amount. For example: <code>15 -2 5</code> references sector 15 followed by 5 other
  * consecutive sectors, and is the same as <code>15 16 17 18 19 20</code>.
  * <p/>
  * <h2>Implementation</h2>
@@ -147,12 +145,11 @@ public class BMFFile implements Flushable, Closeable {
 
         entries.clear();
         int entryCount = io.readInt();
-        byte sizeByte = computeSizeByte( sectorCount );
         for( int i = 0; i < entryCount; i++ ) {
             long id = io.readLong();
             Entry entry = new Entry( id );
 
-            entry.sectors = readIndices( sizeByte );
+            entry.sectors = readIndices();
             entries.put( id, entry );
         }
     }
@@ -177,7 +174,6 @@ public class BMFFile implements Flushable, Closeable {
 
         // Write entry table
         io.writeInt( entryCount );
-        byte sizeByte = computeSizeByte( sectorCount );
 
         int n = 0;
         for( long key : keys ) {
@@ -188,26 +184,26 @@ public class BMFFile implements Flushable, Closeable {
                     throw new IOException( "Writing too many entries!" );
                 }
                 io.writeLong( entry.id );
-                writeIndices( sizeByte, entry.sectors );
+                writeIndices( entry.sectors );
             }
         }
     }
 
-    private int[] readIndices( byte sizeByte ) throws IOException {
-        int len = readInt( sizeByte );
+    private int[] readIndices() throws IOException {
+        int len = io.readInt();
         int[] ids = new int[ len ];
         int curr = 0;
         int last = - 1;
 
         while( curr < len ) {
-            int n = readInt( sizeByte );
+            int n = io.readInt();
             if( n < - 2 ) {
                 throw new IOException( "Invalid operator: " + n );
             } else if( n == - 2 ) {
                 if( last == - 1 ) {
                     throw new IOException( "Unexpected index range" );
                 }
-                int size = readInt( sizeByte );
+                int size = io.readInt();
                 if( size < 0 ) {
                     throw new IOException( "Negative range size" );
                 }
@@ -226,14 +222,14 @@ public class BMFFile implements Flushable, Closeable {
         return ids;
     }
 
-    private void writeIndices( byte sizeByte, int[] ids ) throws IOException {
+    private void writeIndices( int[] ids ) throws IOException {
         int len = ids.length;
-        writeInt( sizeByte, len );
+        io.writeInt( len );
 
         int curr = 0;
         while( curr < len ) {
             int n = getSectorIndex( ids[ curr ] );
-            writeInt( sizeByte, n );
+            io.writeInt( n );
             curr++;
 
             int streak = 0;
@@ -248,8 +244,8 @@ public class BMFFile implements Flushable, Closeable {
             }
 
             if( streak > 1 ) {
-                writeInt( sizeByte, - 2 );
-                writeInt( sizeByte, streak );
+                io.writeInt( - 2 );
+                io.writeInt( streak );
                 curr += streak;
             }
         }
@@ -570,58 +566,6 @@ public class BMFFile implements Flushable, Closeable {
             throw new IOException( "Sector @" + sector.id + "#" + sector.index + " does not match the sector in the array (@" + sectors[ sector.index ].id + ")" );
         }
         return sector;
-    }
-
-    private static byte computeSizeByte( int sectorCount ) {
-        byte sizeByte = 1;
-        if( ( sectorCount & ~ 0x7f ) > 0 ) {
-            sizeByte++;
-        }
-        if( ( sectorCount & ~ 0x7fff ) > 0 ) {
-            sizeByte++;
-        }
-        if( ( sectorCount & ~ 0x7fffff ) > 0 ) {
-            sizeByte++;
-        }
-        return sizeByte;
-    }
-
-    private int readInt( byte sizeByte ) throws IOException {
-        if( sizeByte < 1 || sizeByte > 4 ) {
-            throw new IOException( "Invalid size: " + sizeByte );
-        }
-        byte c1 = io.readByte();
-
-        if( c1 < 0 ) {
-            return c1;
-        }
-
-        int num = c1;
-        for( byte b = 1; b < sizeByte; b++ ) {
-            num <<= 16;
-            num &= io.readByte();
-        }
-        return num;
-    }
-
-    private void writeInt( byte sizeByte, int value ) throws IOException {
-        if( sizeByte < 1 || sizeByte > 4 ) {
-            throw new IOException( "Invalid size: " + sizeByte );
-        }
-        if( value < 0 ) {
-            io.writeByte( value & 0x7f | 0x80 );
-            return;
-        }
-
-        int off = ( sizeByte - 1 ) * 8;
-
-        io.writeByte( value >>> off & 0x7f );
-        off -= 8;
-
-        for( byte b = 1; b < sizeByte; b++ ) {
-            io.writeByte( value >>> off * 8 & 0xff );
-            off -= 8;
-        }
     }
 
 
