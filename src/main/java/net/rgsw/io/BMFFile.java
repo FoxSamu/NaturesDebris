@@ -192,11 +192,10 @@ public class BMFFile implements Flushable, Closeable {
     private int[] readIndices() throws IOException {
         int len = io.readInt();
         int[] ids = new int[ len ];
-        int curr = 0;
-        int last = - 1;
+        int curr = 0, last = - 1, n;
 
         while( curr < len ) {
-            int n = io.readInt();
+            n = io.readInt();
             if( n < - 2 ) {
                 throw new IOException( "Invalid operator: " + n );
             } else if( n == - 2 ) {
@@ -223,16 +222,15 @@ public class BMFFile implements Flushable, Closeable {
     }
 
     private void writeIndices( int[] ids ) throws IOException {
-        int len = ids.length;
+        int len = ids.length, curr = 0, n, streak;
         io.writeInt( len );
 
-        int curr = 0;
         while( curr < len ) {
-            int n = getSectorIndex( ids[ curr ] );
+            n = getSectorIndex( ids[ curr ] );
             io.writeInt( n );
             curr++;
 
-            int streak = 0;
+            streak = 0;
             for( int i = curr; i < ids.length; i++ ) {
                 int n2 = getSectorIndex( ids[ i ] );
                 if( n + 1 == n2 ) {
@@ -336,9 +334,7 @@ public class BMFFile implements Flushable, Closeable {
 
     private void saveAllSectors() throws IOException {
         optimize();
-        int sectorCount = getSectorCount();
-        for( int i = 0; i < sectorCount; i++ ) {
-            Sector sector = sectors[ i ];
+        for( Sector sector : sectors ) {
             if( sector != null ) {
                 saveSector( sector );
             }
@@ -347,9 +343,7 @@ public class BMFFile implements Flushable, Closeable {
 
     private void unloadAllSectors() throws IOException {
         optimize();
-        int sectorCount = getSectorCount();
-        for( int i = 0; i < sectorCount; i++ ) {
-            Sector sector = sectors[ i ];
+        for( Sector sector : sectors ) {
             if( sector != null ) {
                 unloadSector( sector );
             }
