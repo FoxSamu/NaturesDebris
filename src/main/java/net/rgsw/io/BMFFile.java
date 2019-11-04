@@ -56,8 +56,8 @@ import java.util.zip.InflaterInputStream;
  * The implementation uses a {@link RandomAccessFile} to read and write files.
  * <p/>
  * <h2>Usage</h2>
- * A {@code BMFFile} can be instantiated with an overload {@link #create} or {@link #open}. When using {@link
- * #open}, it automatically attempts to load the file.
+ * A {@code BMFFile} can be instantiated with an overload {@link #create} or {@link #open}. When using {@link #open}, it
+ * automatically attempts to load the file.
  * <p/>
  * There are 4 methods for managing entries stored in the file:
  * <ul>
@@ -72,7 +72,10 @@ import java.util.zip.InflaterInputStream;
  * The file can be written to disk with {@link #flush} or {@link #close}. Both methods save and optimize the file, but
  * {@link #close} also cleans up buffered sectors and minimizes the internal sector array, assuming that the instance
  * will not be used for a while. Try to use {@link #flush} when you plan to write more to the file right after saving as
- * this keeps buffered sectors.
+ * this keeps buffered sectors.<br/>
+ *
+ * The underlying I/O-stream of an instance automatically closes when that instance is collected by the garbage
+ * collector (see {@link Object#finalize}).
  * <p/>
  * A {@code BMFFile} can be used in a try-with-resources statement.
  */
@@ -495,6 +498,109 @@ public class BMFFile implements Flushable, Closeable {
 
 
     /**
+     * Converts this BMF file to a file with a different structure. This creates a new file instance with the new
+     * structure and then copies all the entries that are saved in this instance to the new instance. The structure of
+     * this instance will not change, and any change made to the restructured file will not apply to this file.
+     *
+     * @param file        The file path to save the file with the new structure at
+     * @param compression The new compression type
+     * @param sectorSize  The new sector size
+     * @return A new file instance with the specified compression type and sector size.
+     *
+     * @throws IOException When an I/O error occurs.
+     */
+    public BMFFile convert( File file, Compression compression, int sectorSize ) throws IOException {
+        BMFFile converted = create( file, sectorSize, compression );
+        for( long key : entries.keySet() ) {
+            InputStream in = readEntry( key );
+            OutputStream out = converted.writeEntry( key );
+
+            int b;
+            while( ( b = in.read() ) >= 0 ) out.write( b );
+            in.close();
+            out.close();
+        }
+        return converted;
+    }
+
+    /**
+     * Converts this BMF file to a file with a different structure. This creates a new file instance with the new
+     * structure and then copies all the entries that are saved in this instance to the new instance. The structure of
+     * this instance will not change, and any change made to the restructured file will not apply to this file.
+     *
+     * @param file       The file path to save the file with the new structure at
+     * @param sectorSize The new sector size
+     * @return A new file instance with the specified compression type and sector size.
+     *
+     * @throws IOException When an I/O error occurs.
+     */
+    public BMFFile convert( File file, int sectorSize ) throws IOException {
+        return convert( file, compressionType, sectorSize );
+    }
+
+    /**
+     * Converts this BMF file to a file with a different structure. This creates a new file instance with the new
+     * structure and then copies all the entries that are saved in this instance to the new instance. The structure of
+     * this instance will not change, and any change made to the restructured file will not apply to this file.
+     *
+     * @param file        The file path to save the file with the new structure at
+     * @param compression The new compression type
+     * @return A new file instance with the specified compression type and sector size.
+     *
+     * @throws IOException When an I/O error occurs.
+     */
+    public BMFFile convert( File file, Compression compression ) throws IOException {
+        return convert( file, compression, sectorSize );
+    }
+
+    /**
+     * Converts this BMF file to a file with a different structure. This creates a new file instance with the new
+     * structure and then copies all the entries that are saved in this instance to the new instance. The structure of
+     * this instance will not change, and any change made to the restructured file will not apply to this file. The new
+     * file will write to the same file as this file.
+     *
+     * @param compression The new compression type
+     * @param sectorSize  The new sector size
+     * @return A new file instance with the specified compression type and sector size.
+     *
+     * @throws IOException When an I/O error occurs.
+     */
+    public BMFFile convert( Compression compression, int sectorSize ) throws IOException {
+        return convert( file, compression, sectorSize );
+    }
+
+    /**
+     * Converts this BMF file to a file with a different structure. This creates a new file instance with the new
+     * structure and then copies all the entries that are saved in this instance to the new instance. The structure of
+     * this instance will not change, and any change made to the restructured file will not apply to this file.
+     *
+     * @param sectorSize The new sector size
+     * @return A new file instance with the specified compression type and sector size.
+     *
+     * @throws IOException When an I/O error occurs.
+     */
+    public BMFFile convert( int sectorSize ) throws IOException {
+        return convert( file, compressionType, sectorSize );
+    }
+
+    /**
+     * Converts this BMF file to a file with a different structure. This creates a new file instance with the new
+     * structure and then copies all the entries that are saved in this instance to the new instance. The structure of
+     * this instance will not change, and any change made to the restructured file will not apply to this file.
+     *
+     * @param compression The new compression type
+     * @return A new file instance with the specified compression type and sector size.
+     *
+     * @throws IOException When an I/O error occurs.
+     */
+    public BMFFile convert( Compression compression ) throws IOException {
+        return convert( file, compression, sectorSize );
+    }
+
+
+
+
+    /**
      * Returns the type of compression used to compress this file.
      */
     public Compression getCompressionType() {
@@ -639,8 +745,10 @@ public class BMFFile implements Flushable, Closeable {
         return false;
     }
 
-
-
+    @Override
+    protected void finalize() throws Throwable {
+        io.close();
+    }
 
     public static BMFFile create( File file, int initialCapacity, Compression compression, int sectorSize ) throws IOException {
         return new BMFFile( file, initialCapacity, compression, sectorSize );
