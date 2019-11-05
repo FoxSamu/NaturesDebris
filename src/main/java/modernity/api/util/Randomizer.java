@@ -1,6 +1,6 @@
 package modernity.api.util;
 
-import net.rgsw.InstanceOfUtilityClassException;
+import net.rgsw.exc.InstanceOfUtilityClassException;
 
 import java.util.Random;
 
