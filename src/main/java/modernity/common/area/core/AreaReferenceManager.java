@@ -1,34 +1,38 @@
-package modernity.common.area;
+package modernity.common.area.core;
 
+import modernity.api.util.BMFRegionCacher;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.ReportedException;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.chunk.storage.RegionFileCache;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayDeque;
 import java.util.HashMap;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
 
-public class AreaReferenceManager extends RegionFileCache {
+public class AreaReferenceManager extends BMFRegionCacher {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private final HashMap<ChunkPos, AreaReferenceChunk> loadedReferenceChunks = new HashMap<>();
+    private final HashMap<ChunkPos, TrackableAreaReferenceChunk> loadedReferenceChunks = new HashMap<>();
+    private final ArrayDeque<ChunkPos> unloadQueue = new ArrayDeque<>();
 
     protected AreaReferenceManager( File dir ) {
         super( dir );
     }
 
-    public AreaReferenceChunk getLoadedChunk( int x, int z ) {
+    public TrackableAreaReferenceChunk getLoadedChunk( int x, int z ) {
         return loadedReferenceChunks.get( new ChunkPos( x, z ) );
     }
 
-    private AreaReferenceChunk loadChunk( int x, int z ) {
+    private TrackableAreaReferenceChunk loadChunk( int x, int z ) {
         try {
             CompoundNBT nbt = readChunk( new ChunkPos( x, z ) );
-            AreaReferenceChunk chunk = new AreaReferenceChunk( x, z );
+            TrackableAreaReferenceChunk chunk = new TrackableAreaReferenceChunk( x, z );
             if( nbt != null ) {
                 chunk.read( nbt );
             }
@@ -42,8 +46,8 @@ public class AreaReferenceManager extends RegionFileCache {
         }
     }
 
-    public AreaReferenceChunk getChunk( int x, int z ) {
-        AreaReferenceChunk chunk = getLoadedChunk( x, z );
+    public TrackableAreaReferenceChunk getChunk( int x, int z ) {
+        TrackableAreaReferenceChunk chunk = getLoadedChunk( x, z );
         if( chunk == null ) {
             chunk = loadChunk( x, z );
         }
@@ -51,7 +55,7 @@ public class AreaReferenceManager extends RegionFileCache {
     }
 
     private void saveChunk( int x, int z ) {
-        AreaReferenceChunk saving = getLoadedChunk( x, z );
+        TrackableAreaReferenceChunk saving = getLoadedChunk( x, z );
         if( saving == null ) {
             LOGGER.warn( "Attempted to save unloaded chunk" );
             return;
@@ -66,6 +70,16 @@ public class AreaReferenceManager extends RegionFileCache {
                   .addDetail( "Chunk pos", new ChunkPos( x, z ) );
             throw new ReportedException( report );
         }
+    }
+
+    private void writeChunk( ChunkPos pos, CompoundNBT nbt ) throws IOException {
+        long key = pos.asLong();
+        saveNBT( pos.getRegionCoordX(), pos.getRegionCoordZ(), key, nbt );
+    }
+
+    private CompoundNBT readChunk( ChunkPos pos ) throws IOException {
+        long key = pos.asLong();
+        return loadNBT( pos.getRegionCoordX(), pos.getRegionCoordZ(), key );
     }
 
     public boolean isLoaded( int x, int z ) {
@@ -87,11 +101,41 @@ public class AreaReferenceManager extends RegionFileCache {
         for( ChunkPos pos : loadedReferenceChunks.keySet() ) {
             saveChunk( pos.x, pos.z );
         }
+
+        try {
+            flushAll();
+        } catch( IOException exc ) {
+            CrashReport report = CrashReport.makeCrashReport( exc, "Flushing world area references to file system" );
+            throw new ReportedException( report );
+        }
         LOGGER.info( "Saved all reference chunks" );
     }
 
     public void unloadAll() {
         saveAll();
         loadedReferenceChunks.clear();
+    }
+
+    public Stream<TrackableAreaReferenceChunk> loadedChunksStream() {
+        return loadedReferenceChunks.values().stream();
+    }
+
+    public void unloadNotWatched( Consumer<ChunkPos> doBeforeUnload ) {
+        for( ChunkPos pos : loadedReferenceChunks.keySet() ) {
+            TrackableAreaReferenceChunk chunk = loadedReferenceChunks.get( pos );
+            if( ! chunk.isTracked() ) {
+                unloadQueue.add( pos );
+            }
+        }
+        while( ! unloadQueue.isEmpty() ) {
+            ChunkPos pos = unloadQueue.removeFirst();
+            doBeforeUnload.accept( pos );
+            unload( pos.x, pos.z );
+        }
+    }
+
+    @Override
+    protected String getFileName( int x, int z ) {
+        return "r." + x + "." + z;
     }
 }

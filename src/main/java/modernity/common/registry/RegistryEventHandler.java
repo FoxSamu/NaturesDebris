@@ -2,6 +2,8 @@ package modernity.common.registry;
 
 import com.google.common.reflect.TypeToken;
 import modernity.common.Modernity;
+import modernity.common.area.MDAreas;
+import modernity.common.area.core.AreaType;
 import modernity.common.biome.MDBiomes;
 import modernity.common.block.MDBlocks;
 import modernity.common.container.MDContainerTypes;
@@ -55,6 +57,7 @@ public enum RegistryEventHandler {
         MDPlacements.setup( this );
         MDBlockEvents.setup( this );
         MDEnvEvents.setup( this );
+        MDAreas.setup( this );
         MDParticleTypes.setup( this );
     }
 
@@ -105,6 +108,12 @@ public enum RegistryEventHandler {
             .setType( EnvironmentEventType.class )
             .setMaxID( Integer.MAX_VALUE - 1 )
             .setName( Modernity.res( "environment_events" ) )
+            .create();
+
+        new RegistryBuilder<AreaType>()
+            .setType( AreaType.class )
+            .setMaxID( Integer.MAX_VALUE - 1 )
+            .setName( Modernity.res( "area_types" ) )
             .create();
     }
 

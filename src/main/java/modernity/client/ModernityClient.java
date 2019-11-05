@@ -11,12 +11,12 @@ import modernity.client.render.block.CustomFluidRenderer;
 import modernity.client.render.environment.SurfaceCloudRenderer;
 import modernity.client.render.environment.SurfaceSkyRenderer;
 import modernity.common.Modernity;
+import modernity.common.area.core.ClientWorldAreaManager;
 import modernity.common.block.MDBlocks;
 import modernity.common.container.MDContainerTypes;
 import modernity.common.entity.MDEntityTypes;
 import modernity.common.item.MDItems;
 import modernity.common.net.SSeedPacket;
-import modernity.common.particle.MDParticleTypes;
 import modernity.common.world.dimen.MDSurfaceDimension;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IFutureReloadListener;
@@ -25,7 +25,6 @@ import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.concurrent.ThreadTaskExecutor;
 import net.minecraft.world.dimension.Dimension;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -44,6 +43,8 @@ public class ModernityClient extends Modernity {
     private BiomeColoringProfile blackwoodColors;
     private BiomeColoringProfile inverColors;
     private BiomeColoringProfile waterColors;
+
+    private ClientWorldAreaManager worldAreaManager;
 
     // Used to give color to humus particles
     private final ColorMap humusColors = new ColorMap( new ResourceLocation( "modernity:textures/block/humus_top.png" ), 0xffffff );
@@ -110,10 +111,10 @@ public class ModernityClient extends Modernity {
     @SubscribeEvent
     public void onWorldLoad( WorldEvent.Load event ) {
         if( event.getWorld().isRemote() ) {
-            Dimension d = event.getWorld().getDimension();
-            if( d instanceof MDSurfaceDimension ) {
-                d.setSkyRenderer( new SurfaceSkyRenderer( lastWorldSeed ) );
-                d.setCloudRenderer( new SurfaceCloudRenderer() );
+            Dimension dimen = event.getWorld().getDimension();
+            if( dimen instanceof MDSurfaceDimension ) {
+                dimen.setSkyRenderer( new SurfaceSkyRenderer( lastWorldSeed ) );
+                dimen.setCloudRenderer( new SurfaceCloudRenderer() );
             }
         }
     }
@@ -122,10 +123,12 @@ public class ModernityClient extends Modernity {
     public void onTick( TickEvent.ClientTickEvent event ) {
         if( event.phase == TickEvent.Phase.END ) {
             if( mc.world != null && ! mc.isGamePaused() ) {
-                Dimension d = mc.world.dimension;
-                if( d instanceof IClientTickingDimension ) {
-                    ( (IClientTickingDimension) d ).tickClient();
+                Dimension dimen = mc.world.dimension;
+                if( dimen instanceof IClientTickingDimension ) {
+                    ( (IClientTickingDimension) dimen ).tickClient();
                 }
+
+                getWorldAreaManager().tick();
             }
         }
     }
@@ -170,6 +173,24 @@ public class ModernityClient extends Modernity {
      */
     public ColorMap getHumusColors() {
         return humusColors;
+    }
+
+    public ClientWorldAreaManager getWorldAreaManager() {
+        if( worldAreaManager == null ) {
+            if( mc.world != null ) {
+                return worldAreaManager = new ClientWorldAreaManager( mc.world );
+            }
+        }
+        if( worldAreaManager != null ) {
+            if( mc.world == null ) {
+                return worldAreaManager = null;
+            } else {
+                if( mc.world != worldAreaManager.getWorld() ) {
+                    worldAreaManager = new ClientWorldAreaManager( mc.world );
+                }
+            }
+        }
+        return worldAreaManager;
     }
 
     /**

@@ -1,27 +1,32 @@
-package modernity.common.area;
+package modernity.common.area.core;
 
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import modernity.api.util.StreamUtil;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.LongArrayNBT;
+import net.minecraft.util.math.ChunkPos;
 
 import java.util.stream.LongStream;
 
-public class AreaReferenceChunk {
+class SimpleAreaReferenceChunk implements IAreaReferenceChunk {
     public final int x;
     public final int z;
     private final LongSet references = new LongOpenHashSet();
 
-    public AreaReferenceChunk( int x, int z ) {
+    public final WrappingAreaReferenceChunk unmodifiable = new WrappingAreaReferenceChunk( this );
+
+    SimpleAreaReferenceChunk( int x, int z ) {
         this.x = x;
         this.z = z;
     }
 
+    @Override
     public LongStream referenceStream() {
         return StreamUtil.streamLongs( references, true );
     }
 
+    @Override
     public boolean hasReference( long ref ) {
         return references.contains( ref );
     }
@@ -34,8 +39,9 @@ public class AreaReferenceChunk {
         references.remove( ref );
     }
 
-    public void removeAllReferences() {
-        references.clear();
+    @Override
+    public boolean hasReferences() {
+        return ! references.isEmpty();
     }
 
     public void write( CompoundNBT nbt ) {
@@ -45,6 +51,12 @@ public class AreaReferenceChunk {
     public void read( CompoundNBT nbt ) {
         references.clear();
         long[] ls = nbt.getLongArray( "references" );
-        for( long l : ls ) references.add( l );
+        for( long l : ls ) addReference( l );
+    }
+
+
+    @Override
+    public ChunkPos getPos() {
+        return new ChunkPos( x, z );
     }
 }

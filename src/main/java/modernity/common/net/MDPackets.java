@@ -17,5 +17,7 @@ public final class MDPackets {
         channel.register( ESide.SERVER, SCaveHeightsPacket.class );
         channel.register( ESide.SERVER, SSatellitePacket.class );
         channel.register( ESide.SERVER, SEnvironmentPacket.class );
+        channel.register( ESide.SERVER, SAreaUnwatchPacket.class );
+        channel.register( ESide.SERVER, SAreaUpdatePacket.class );
     }
 }
