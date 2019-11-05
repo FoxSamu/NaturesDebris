@@ -28,7 +28,7 @@ public class SAreaUpdatePacket implements Packet {
     @Override
     public void write( PacketBuffer buf ) {
         buf.writeLong( area.getReferenceID() );
-        buf.writeCompoundTag( Area.serialize( area ) );
+        buf.writeCompoundTag( Area.serialize( area, Area.SerializeType.NETWORK ) );
         buf.writeInt( dimen.getId() );
     }
 

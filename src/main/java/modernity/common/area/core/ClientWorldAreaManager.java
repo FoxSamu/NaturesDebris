@@ -85,7 +85,7 @@ public class ClientWorldAreaManager implements IWorldAreaManager {
 
         Area area = loadedAreas.get( refID );
         if( area == null ) {
-            area = Area.deserialize( nbt, refID, world );
+            area = Area.deserialize( nbt, refID, world, Area.SerializeType.NETWORK );
             if( area == null ) {
                 throw new UnexpectedCaseException( "Unable to deserialize area from packet buffer because of unknown ID..." );
             }
@@ -110,7 +110,7 @@ public class ClientWorldAreaManager implements IWorldAreaManager {
                 }
             }
         } else {
-            area.read( nbt );
+            area.read( nbt, Area.SerializeType.NETWORK );
         }
     }
 

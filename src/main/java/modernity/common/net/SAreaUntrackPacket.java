@@ -7,16 +7,16 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.dimension.DimensionType;
 
-public class SAreaUnwatchPacket implements Packet {
+public class SAreaUntrackPacket implements Packet {
     private long refID;
     private DimensionType dimen;
 
-    public SAreaUnwatchPacket( long refID, IWorld world ) {
+    public SAreaUntrackPacket( long refID, IWorld world ) {
         this.refID = refID;
         this.dimen = world.getDimension().getType();
     }
 
-    public SAreaUnwatchPacket() {
+    public SAreaUntrackPacket() {
     }
 
     @Override

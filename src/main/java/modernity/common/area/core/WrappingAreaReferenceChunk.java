@@ -4,10 +4,10 @@ import net.minecraft.util.math.ChunkPos;
 
 import java.util.stream.LongStream;
 
-class WrappingAreaReferenceChunk implements IAreaReferenceChunk {
+public class WrappingAreaReferenceChunk implements IAreaReferenceChunk {
     private final IAreaReferenceChunk chunk;
 
-    WrappingAreaReferenceChunk( IAreaReferenceChunk chunk ) {
+    public WrappingAreaReferenceChunk( IAreaReferenceChunk chunk ) {
         this.chunk = chunk;
     }
 

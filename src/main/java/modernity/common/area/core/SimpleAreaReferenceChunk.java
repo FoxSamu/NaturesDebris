@@ -9,14 +9,14 @@ import net.minecraft.util.math.ChunkPos;
 
 import java.util.stream.LongStream;
 
-class SimpleAreaReferenceChunk implements IAreaReferenceChunk {
+public class SimpleAreaReferenceChunk implements IAreaReferenceChunk {
     public final int x;
     public final int z;
     private final LongSet references = new LongOpenHashSet();
 
     public final WrappingAreaReferenceChunk unmodifiable = new WrappingAreaReferenceChunk( this );
 
-    SimpleAreaReferenceChunk( int x, int z ) {
+    public SimpleAreaReferenceChunk( int x, int z ) {
         this.x = x;
         this.z = z;
     }

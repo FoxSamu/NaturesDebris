@@ -27,7 +27,7 @@ public class AreaIOManager extends BMFRegionCacher {
             CompoundNBT nbt = loadNBT( regX, regZ, refID );
 
             if( nbt == null ) return null;
-            return Area.deserialize( nbt, refID, world );
+            return Area.deserialize( nbt, refID, world, Area.SerializeType.FILESYSTEM );
         } catch( Exception exc ) {
             CrashReport report = CrashReport.makeCrashReport( exc, "Loading world area" );
             report.makeCategory( "Reference" )
@@ -42,7 +42,7 @@ public class AreaIOManager extends BMFRegionCacher {
         short regZ = (short) ( refID >>> 32 & 0xffffL );
         AreaType type = area.getType();
         try {
-            CompoundNBT nbt = Area.serialize( area );
+            CompoundNBT nbt = Area.serialize( area, Area.SerializeType.FILESYSTEM );
             saveNBT( regX, regZ, refID, nbt );
         } catch( Exception exc ) {
             CrashReport report = CrashReport.makeCrashReport( exc, "Saving world area" );

@@ -7,10 +7,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
-class TrackableAreaReferenceChunk extends SimpleAreaReferenceChunk {
+public class TrackableAreaReferenceChunk extends SimpleAreaReferenceChunk {
     private final ObjectOpenHashSet<ServerPlayerEntity> trackers = new ObjectOpenHashSet<>();
 
-    TrackableAreaReferenceChunk( int x, int z ) {
+    public TrackableAreaReferenceChunk( int x, int z ) {
         super( x, z );
     }
 

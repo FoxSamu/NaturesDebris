@@ -11,7 +11,7 @@ import net.minecraftforge.registries.ObjectHolder;
 import java.util.function.BiFunction;
 
 @ObjectHolder( "modernity" )
-public class MDAreas {
+public final class MDAreas {
     private static final RegistryHandler<AreaType> ENTRIES = new RegistryHandler<>( "modernity" );
 
     public static final AreaType TEST = register( "test", TestArea::new, 20 );
@@ -22,5 +22,8 @@ public class MDAreas {
 
     public static void setup( RegistryEventHandler handler ) {
         handler.addHandler( AreaType.class, ENTRIES );
+    }
+
+    private MDAreas() {
     }
 }

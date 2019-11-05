@@ -12,11 +12,9 @@ public class TestArea extends Area implements ISidedTickableArea {
 
     @Override
     public void tickServer() {
-        System.out.println( "Server Area Tick" );
     }
 
     @Override
     public void tickClient() {
-        System.out.println( "Client Area Tick" );
     }
 }

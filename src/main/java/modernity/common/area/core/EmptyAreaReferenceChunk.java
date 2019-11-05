@@ -7,11 +7,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.stream.LongStream;
 
 @OnlyIn( Dist.CLIENT )
-class EmptyAreaReferenceChunk implements IAreaReferenceChunk {
+public class EmptyAreaReferenceChunk implements IAreaReferenceChunk {
     public final int x;
     public final int z;
 
-    EmptyAreaReferenceChunk( int x, int z ) {
+    public EmptyAreaReferenceChunk( int x, int z ) {
         this.x = x;
         this.z = z;
     }

@@ -3,7 +3,7 @@ package modernity.common.area.core;
 import it.unimi.dsi.fastutil.longs.Long2ObjectLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import modernity.common.Modernity;
-import modernity.common.net.SAreaUnwatchPacket;
+import modernity.common.net.SAreaUntrackPacket;
 import modernity.common.net.SAreaUpdatePacket;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.ChunkPos;
@@ -16,11 +16,13 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ServerWorldAreaManager implements IWorldAreaManager {
     private static final Logger LOGGER = LogManager.getLogger();
+    private static final int TRACK_RANGE = 16; // TODO: Setting for this tracking range (16)
 
     private final ServerWorld world;
 
@@ -29,11 +31,11 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
 
     private final Long2ObjectLinkedOpenHashMap<AreaHolder> loadedAreas = new Long2ObjectLinkedOpenHashMap<>();
 
-    private final HashSet<ServerPlayerEntity> watchers = new HashSet<>();
-    private final HashSet<ServerPlayerEntity> unwatchers = new HashSet<>();
+    private final HashSet<ServerPlayerEntity> trackers = new HashSet<>();
+    private final HashSet<ServerPlayerEntity> untrackers = new HashSet<>();
     private final HashSet<ChunkPos> unloading = new HashSet<>();
 
-    private int watcherCheckTimer = 0;
+    private int trackingTimer = 0;
     private int unloadTimer = 0;
 
     public ServerWorldAreaManager( ServerWorld world ) {
@@ -55,65 +57,86 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
             holder.tick();
         }
 
-        watcherCheckTimer++;
+        trackingTimer++;
         // TODO: Setting for this tick count (5)
-        if( watcherCheckTimer >= 5 ) {
-            referenceManager.loadedChunksStream()
-                            .forEach( this::checkWatchers );
-            watcherCheckTimer = 0;
+        if( trackingTimer >= 5 ) {
+            updateTrackers();
+            trackingTimer = 0;
         }
 
         unloadTimer++;
         // TODO: Setting for this tick count (100)
         if( unloadTimer >= 100 ) {
-            unloading.clear();
-            referenceManager.loadedChunksStream()
-                            .filter( TrackableAreaReferenceChunk::isNotTracked )
-                            .map( TrackableAreaReferenceChunk::getPos )
-                            .collect( Collectors.toCollection( () -> unloading ) )
-                            .forEach( this::unloadChunk );
+            updateUnloading();
             unloadTimer = 0;
         }
     }
 
-    private void checkWatchers( TrackableAreaReferenceChunk chunk ) {
-        ChunkPos pos = chunk.getPos();
+    public void init() {
+        updateTrackers();
+    }
 
-        watchers.clear();
-        unwatchers.clear();
-
+    private void updateTrackers() {
         world.getServer()
              .getPlayerList()
              .getPlayers()
-             .stream()
-             .filter(
-                 player -> player.world.getDimension().getType()
-                               == world.getDimension().getType()
-             ) // TODO: Setting for this tracking range (16)
-             .filter( player -> isCloseEnough( player, pos, 16 ) )
-             .collect( Collectors.toCollection( () -> watchers ) );
+             .forEach( player -> {
+                 if( player.world.getDimension().getType() != world.dimension.getType() ) return;
+                 int px = MathHelper.floor( player.posX ) >> 4;
+                 int pz = MathHelper.floor( player.posZ ) >> 4;
+                 for( int x = - TRACK_RANGE; x <= TRACK_RANGE; x++ ) {
+                     for( int z = - TRACK_RANGE; z <= TRACK_RANGE; z++ ) {
+                         trackChunk( new ChunkPos( x + px, z + pz ), player );
+                     }
+                 }
+             } );
 
-        watchers.forEach( player -> {
-            if( ! chunk.isTracked( player ) ) {
-                chunkWatch( pos, player );
-            }
-        } );
+        referenceManager.loadedChunksStream()
+                        .forEach( this::checkTrackers );
+    }
+
+    private void updateUnloading() {
+        unloading.clear();
+        referenceManager.loadedChunksStream()
+                        .filter( TrackableAreaReferenceChunk::isNotTracked )
+                        .map( IAreaReferenceChunk::getPos )
+                        .collect( Collectors.toCollection( () -> unloading ) )
+                        .forEach( this::unloadChunk );
+    }
+
+    private void checkTrackers( TrackableAreaReferenceChunk chunk ) {
+        ChunkPos pos = chunk.getPos();
+
+        untrackers.clear();
+        trackers.clear();
+
+        Set<ServerPlayerEntity> players
+            = world.getServer()
+                   .getPlayerList()
+                   .getPlayers()
+                   .stream()
+                   .filter(
+                       player -> player.world.getDimension().getType()
+                                     == world.dimension.getType()
+                   )
+                   .collect( Collectors.toCollection( () -> trackers ) );
+
 
         chunk.trackerStream()
-             .collect( Collectors.toCollection( () -> unwatchers ) )
+             .collect( Collectors.toCollection( () -> untrackers ) )
              .forEach( player -> {
-                 if( ! watchers.contains( player ) ) {
-                     chunkUnwatch( pos, player );
+                 if( ! players.contains( player ) || ! isCloseEnough( player, pos, TRACK_RANGE ) ) {
+                     untrackChunk( pos, player );
                  }
              } );
     }
 
     private boolean isCloseEnough( ServerPlayerEntity entity, ChunkPos pos, int dist ) {
-        int x = MathHelper.floor( entity.posX ) >> 16;
-        int z = MathHelper.floor( entity.posZ ) >> 16;
+        int x = MathHelper.floor( entity.posX ) >> 4;
+        int z = MathHelper.floor( entity.posZ ) >> 4;
         int xDist = Math.abs( pos.x - x );
         int zDist = Math.abs( pos.z - z );
-        return Math.max( xDist, zDist ) <= dist;
+        return xDist <= dist && zDist <= dist;
     }
 
     private void putArea( AreaHolder holder ) {
@@ -174,42 +197,42 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
 
 
 
-    private void chunkWatch( ChunkPos pos, ServerPlayerEntity player ) {
-        loadChunk( pos ); // Load chunk if vanilla didn't load it...
+    private void trackChunk( ChunkPos pos, ServerPlayerEntity player ) {
+        loadChunk( pos ); // Load chunk if not loaded...
         TrackableAreaReferenceChunk chunk = referenceManager.getLoadedChunk( pos.x, pos.z );
         if( chunk.track( player ) ) {
-            chunk.referenceStream().forEach( ref -> watchRef( ref, player ) );
+            chunk.referenceStream().forEach( ref -> trackRef( ref, player ) );
         }
     }
 
-    private void watchRef( long ref, ServerPlayerEntity entity ) {
+    private void trackRef( long ref, ServerPlayerEntity entity ) {
         AreaHolder holder = loadedAreas.get( ref );
         if( holder == null ) {
-            LOGGER.error( "Player tries to watch a not-loaded area?! Did someone hack the area system?" );
+            LOGGER.error( "Player tries to track a not-loaded area?! Did someone hack the area system?" );
             return;
         }
-        holder.watch( entity );
+        holder.track( entity );
     }
 
 
 
-    private void chunkUnwatch( ChunkPos pos, ServerPlayerEntity player ) {
+    private void untrackChunk( ChunkPos pos, ServerPlayerEntity player ) {
         TrackableAreaReferenceChunk chunk = referenceManager.getLoadedChunk( pos.x, pos.z );
         if( chunk == null ) {
             return;
         }
         if( chunk.untrack( player ) ) {
-            chunk.referenceStream().forEach( ref -> unwatchRef( ref, player ) );
+            chunk.referenceStream().forEach( ref -> untrackRef( ref, player ) );
         }
     }
 
-    private void unwatchRef( long ref, ServerPlayerEntity entity ) {
+    private void untrackRef( long ref, ServerPlayerEntity entity ) {
         AreaHolder holder = loadedAreas.get( ref );
         if( holder == null ) {
-            LOGGER.error( "Player tries to unwatch a not-loaded area?! Did someone hack the area system?" );
+            LOGGER.error( "Player tries to untrack a not-loaded area?! Did someone hack the area system?" );
             return;
         }
-        holder.unwatch( entity );
+        holder.untrack( entity );
     }
 
 
@@ -243,7 +266,7 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
                 if( chunk != null ) {
                     chunk.addReference( refID );
                     holder.reference();
-                    chunk.trackerStream().forEach( holder::watch ); // Notify clients of new area
+                    chunk.trackerStream().forEach( holder::track ); // Notify clients of new area
                 }
             }
         }
@@ -324,7 +347,7 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
         int updateCounter;
 
 
-        final Object2IntOpenHashMap<ServerPlayerEntity> watchers = new Object2IntOpenHashMap<>();
+        final Object2IntOpenHashMap<ServerPlayerEntity> trackers = new Object2IntOpenHashMap<>();
 
         private AreaHolder( Area area ) {
             this.area = area;
@@ -344,37 +367,41 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
         }
 
         void unload() {
-            Modernity.network().sendToPlayers( new SAreaUnwatchPacket( area.getReferenceID(), area.world ), watchers.keySet() );
+            Modernity.network().sendToPlayers( new SAreaUntrackPacket( area.getReferenceID(), area.world ), trackers.keySet() );
         }
 
-        void watch( ServerPlayerEntity player ) {
-            if( ! watchers.containsKey( player ) ) {
-                watchers.put( player, 0 );
-                Modernity.network().sendToPlayer( new SAreaUpdatePacket( area, area.world ), player );
+        void track( ServerPlayerEntity player ) {
+            if( ! trackers.containsKey( player ) ) {
+                trackers.put( player, 0 );
+                if( area.getType().updateInterval > 0 ) {
+                    Modernity.network().sendToPlayer( new SAreaUpdatePacket( area, area.world ), player );
+                }
             }
-            watchers.addTo( player, 1 );
+            trackers.addTo( player, 1 );
         }
 
-        void unwatch( ServerPlayerEntity player ) {
-            if( watchers.containsKey( player ) ) {
-                int counter = watchers.addTo( player, - 1 ) - 1;
+        void untrack( ServerPlayerEntity player ) {
+            if( trackers.containsKey( player ) ) {
+                int counter = trackers.addTo( player, - 1 ) - 1;
                 if( counter <= 0 ) {
                     if( counter < 0 ) {
-                        LOGGER.error( "Watcher count was negative?! Did someone hack the area system? Unwatching anyways..." );
+                        LOGGER.error( "Trackers count was negative?! Did someone hack the area system? Untracking anyways..." );
                     }
-                    Modernity.network().sendToPlayer( new SAreaUnwatchPacket( area.getReferenceID(), area.world ), player );
-                    watchers.removeInt( player );
+                    Modernity.network().sendToPlayer( new SAreaUntrackPacket( area.getReferenceID(), area.world ), player );
+                    trackers.removeInt( player );
                 }
             } else {
-                LOGGER.error( "A not-watching player wants to unwatch area?! Did someone hack the area system?" );
+                LOGGER.error( "A not-tracking player wants to untrack area?! Did someone hack the area system?" );
             }
         }
 
         void tick() {
-            updateCounter++;
-            if( updateCounter > area.getType().updateInterval ) {
-                updateCounter = 0;
-                Modernity.network().sendToPlayers( new SAreaUpdatePacket( area, area.world ), watchers.keySet() );
+            if( area.getType().updateInterval > 0 ) {
+                updateCounter++;
+                if( updateCounter >= area.getType().updateInterval ) {
+                    updateCounter = 0;
+                    Modernity.network().sendToPlayers( new SAreaUpdatePacket( area, area.world ), trackers.keySet() );
+                }
             }
 
             if( tickable != null ) {

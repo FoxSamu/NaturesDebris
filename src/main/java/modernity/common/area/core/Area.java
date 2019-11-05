@@ -1,8 +1,13 @@
 package modernity.common.area.core;
 
 import modernity.common.registry.MDRegistries;
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 public abstract class Area {
@@ -45,30 +50,85 @@ public abstract class Area {
         referenceID = refID;
     }
 
-    public void write( CompoundNBT nbt ) {
+    public void write( CompoundNBT nbt, SerializeType type ) {
     }
 
-    public void read( CompoundNBT nbt ) {
+    public void read( CompoundNBT nbt, SerializeType type ) {
     }
 
-    public static Area deserialize( CompoundNBT nbt, long refID, World world ) {
+    public boolean isInside( int x, int y, int z ) {
+        return box.contains( x, y, z );
+    }
+
+    public boolean isInside( double x, double y, double z ) {
+        return box.contains( x, y, z );
+    }
+
+    public boolean isInside( float x, float y, float z ) {
+        return box.contains( x, y, z );
+    }
+
+    public boolean isInside( Vec3i vec ) {
+        return box.contains( vec );
+    }
+
+    public boolean isInside( Vec3d vec ) {
+        return box.contains( vec );
+    }
+
+    public boolean isInside( Entity e ) {
+        return box.contains( e );
+    }
+
+    public boolean intersects( AreaBox box ) {
+        return getBox().intersects( box );
+    }
+
+    public boolean intersects( AxisAlignedBB box ) {
+        return getBox().intersects( box );
+    }
+
+    public boolean intersects( MutableBoundingBox box ) {
+        return getBox().intersects( box );
+    }
+
+    public boolean intersects( Area area ) {
+        return getBox().intersects( area.getBox() );
+    }
+
+    @Override
+    public boolean equals( Object obj ) {
+        return obj instanceof Area && ( (Area) obj ).referenceID == referenceID;
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.hashCode( referenceID );
+    }
+
+    public static Area deserialize( CompoundNBT nbt, long refID, World world, SerializeType serializeType ) {
         ResourceLocation id = new ResourceLocation( nbt.getString( "id" ) );
         AreaType type = MDRegistries.AREA_TYPES.getValue( id );
         if( type == null ) return null;
         AreaBox box = new AreaBox( nbt, "box" );
         Area area = type.create( world, box );
         area.setReferenceID( refID );
-        area.read( nbt );
+        area.read( nbt, serializeType );
         return area;
     }
 
-    public static CompoundNBT serialize( Area area ) {
+    public static CompoundNBT serialize( Area area, SerializeType serializeType ) {
         CompoundNBT nbt = new CompoundNBT();
-        area.write( nbt );
+        area.write( nbt, serializeType );
         ResourceLocation id = MDRegistries.AREA_TYPES.getKey( area.getType() );
         if( id == null ) throw new RuntimeException( "Trying to save unregistered area type" );
         nbt.putString( "id", id.toString() );
         area.getBox().serialize( nbt, "box" );
         return nbt;
+    }
+
+    public enum SerializeType {
+        FILESYSTEM,
+        NETWORK
     }
 }
