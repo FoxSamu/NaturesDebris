@@ -1,6 +1,9 @@
 package modernity.common.area.core;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.Objects;
@@ -35,5 +38,25 @@ public interface IWorldAreaManager {
 
     default Stream<Area> getAreasAt( BlockPos pos ) {
         return getAreasAt( pos.getX(), pos.getY(), pos.getZ() );
+    }
+
+    default boolean isInsideArea( int x, int y, int z, AreaType type ) {
+        return getAreasAt( x, y, z ).anyMatch( area -> area.getType() == type );
+    }
+
+    default boolean isInsideArea( BlockPos pos, AreaType type ) {
+        return isInsideArea( pos.getX(), pos.getY(), pos.getZ(), type );
+    }
+
+    default boolean isInsideArea( Vec3d pos, AreaType type ) {
+        return isInsideArea( pos.x, pos.y, pos.z, type );
+    }
+
+    default boolean isInsideArea( double x, double y, double z, AreaType type ) {
+        return isInsideArea( MathHelper.floor( x ), MathHelper.floor( y ), MathHelper.floor( z ), type );
+    }
+
+    default boolean isInsideArea( Entity entity, AreaType type ) {
+        return isInsideArea( entity.posX, entity.posY, entity.posZ, type );
     }
 }
