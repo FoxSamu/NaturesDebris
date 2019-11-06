@@ -115,7 +115,7 @@ public class BMFFile implements Flushable, Closeable {
         this.compressionType = compression;
         this.sectorSize = sectorSize;
         this.sectorSizeMask = sectorSize - 1;
-        this.sectorSizeExponent = Integer.numberOfLeadingZeros( sectorSize );
+        this.sectorSizeExponent = Integer.numberOfTrailingZeros( sectorSize );
 
         if( ! file.exists() ) {
             if( file.getParentFile() != null ) {
@@ -127,7 +127,7 @@ public class BMFFile implements Flushable, Closeable {
         io = new RandomAccessFile( file, "rw" );
     }
 
-    private void readIDTable() throws IOException {
+    private synchronized void readIDTable() throws IOException {
         io.seek( 0 );
 
         int sectorCount = io.readInt();
@@ -158,7 +158,7 @@ public class BMFFile implements Flushable, Closeable {
     }
 
 
-    private void writeIDTable() throws IOException {
+    private synchronized void writeIDTable() throws IOException {
         io.seek( 0 );
         int sectorCount = getSectorCount();
         io.writeInt( sectorCount );
@@ -225,7 +225,7 @@ public class BMFFile implements Flushable, Closeable {
     }
 
     private void writeIndices( int[] ids ) throws IOException {
-        int len = ids.length, curr = 0, n, streak;
+        int len = ids.length, curr = 0, n;
         io.writeInt( len );
 
         while( curr < len ) {
@@ -233,29 +233,29 @@ public class BMFFile implements Flushable, Closeable {
             io.writeInt( n );
             curr++;
 
-            streak = 0;
-            for( int i = curr; i < ids.length; i++ ) {
-                int n2 = getSectorIndex( ids[ i ] );
-                if( n + 1 == n2 ) {
-                    streak++;
-                    n = n2;
-                } else {
-                    break;
-                }
-            }
-
-            if( streak > 1 ) {
-                io.writeInt( - 2 );
-                io.writeInt( streak );
-                curr += streak;
-            }
+//            int streak = 0;
+//            for( int i = curr; i < ids.length; i++ ) {
+//                int n2 = getSectorIndex( ids[ i ] );
+//                if( n + 1 == n2 ) {
+//                    streak++;
+//                    n = n2;
+//                } else {
+//                    break;
+//                }
+//            }
+//
+//            if( streak > 1 ) {
+//                io.writeInt( - 2 );
+//                io.writeInt( streak );
+//                curr += streak;
+//            }
         }
     }
 
 
 
 
-    private void loadSector( Sector sector ) throws IOException {
+    private synchronized void loadSector( Sector sector ) throws IOException {
         checkSector( sector );
         if( sector.type == SectorType.UNLOADED ) {
             seekSector( sector.index );
@@ -265,7 +265,7 @@ public class BMFFile implements Flushable, Closeable {
         }
     }
 
-    private void saveSector( Sector sector ) throws IOException {
+    private synchronized void saveSector( Sector sector ) throws IOException {
         checkSector( sector );
         if( sector.type == SectorType.DIRTY ) {
             seekSector( sector.index );
@@ -274,26 +274,26 @@ public class BMFFile implements Flushable, Closeable {
         }
     }
 
-    private void unloadSector( Sector sector ) throws IOException {
+    private synchronized void unloadSector( Sector sector ) throws IOException {
         checkSector( sector );
         saveSector( sector );
         sector.type = SectorType.UNLOADED;
         sector.buffer = null;
     }
 
-    private Sector getSectorByID( int id ) {
+    private synchronized Sector getSectorByID( int id ) {
         return sectors[ idsToIndices.get( id ) ];
     }
 
-    private int getSectorID( int index ) {
+    private synchronized int getSectorID( int index ) {
         return index < 0 ? 0 : sectors[ index ].id;
     }
 
-    private int getSectorIndex( int id ) {
+    private synchronized int getSectorIndex( int id ) {
         return id == 0 ? - 1 : idsToIndices.get( id );
     }
 
-    private void moveSector( Sector sector, int newIndex ) throws IOException {
+    private synchronized void moveSector( Sector sector, int newIndex ) throws IOException {
         checkSector( sector );
         if( sectors[ newIndex ] != null ) {
             throw new IOException( "Cannot move sector #" + sector.index + " to #" + newIndex + " as a sector already exists there." );
@@ -310,13 +310,13 @@ public class BMFFile implements Flushable, Closeable {
         idsToIndices.put( sector.id, newIndex );
     }
 
-    private void removeSector( Sector sector ) throws IOException {
+    private synchronized void removeSector( Sector sector ) throws IOException {
         checkSector( sector );
         sectors[ sector.index ] = null;
         idsToIndices.remove( sector.id );
     }
 
-    private Sector newSector( int index ) throws IOException {
+    private synchronized Sector newSector( int index ) throws IOException {
         if( index >= MAX_SECTORS ) {
             throw new IOException( "Maximum sector count reached!" );
         }
@@ -325,7 +325,7 @@ public class BMFFile implements Flushable, Closeable {
         return sector;
     }
 
-    private Sector newSector() throws IOException {
+    private synchronized Sector newSector() throws IOException {
         for( int i = 0; i < sectors.length; i++ ) {
             if( sectors[ i ] == null ) {
                 return newSector( i );
@@ -335,7 +335,7 @@ public class BMFFile implements Flushable, Closeable {
         return newSector( sectors.length - 1 );
     }
 
-    private void saveAllSectors() throws IOException {
+    private synchronized void saveAllSectors() throws IOException {
         optimize();
         for( Sector sector : sectors ) {
             if( sector != null ) {
@@ -344,7 +344,7 @@ public class BMFFile implements Flushable, Closeable {
         }
     }
 
-    private void unloadAllSectors() throws IOException {
+    private synchronized void unloadAllSectors() throws IOException {
         optimize();
         for( Sector sector : sectors ) {
             if( sector != null ) {
@@ -353,7 +353,7 @@ public class BMFFile implements Flushable, Closeable {
         }
     }
 
-    private void discardAllSectors() {
+    private synchronized void discardAllSectors() {
         for( int i = 0; i < sectors.length; i++ ) {
             sectors[ i ] = null;
         }
@@ -362,7 +362,7 @@ public class BMFFile implements Flushable, Closeable {
 
 
 
-    private void createEntrySectors( Entry entry ) throws IOException {
+    private synchronized void createEntrySectors( Entry entry ) throws IOException {
         for( int i = 0; i < entry.sectors.length; i++ ) {
             int sectorID = entry.sectors[ i ];
             if( sectorID == 0 ) {
@@ -372,7 +372,7 @@ public class BMFFile implements Flushable, Closeable {
         }
     }
 
-    private void setEntrySectorsAndRemoveOthers( Entry entry, List<Sector> sectors, int count ) throws IOException {
+    private synchronized void setEntrySectorsAndRemoveOthers( Entry entry, List<Sector> sectors, int count ) throws IOException {
         entry.sectors = new int[ count ];
         for( int i = 0; i < count; i++ ) {
             entry.sectors[ i ] = sectors.get( i ).id;
@@ -382,7 +382,7 @@ public class BMFFile implements Flushable, Closeable {
         }
     }
 
-    private SectorOutputStream createOut( Entry entry ) throws IOException {
+    private synchronized SectorOutputStream createOut( Entry entry ) throws IOException {
         createEntrySectors( entry );
 
         Sector[] sectors = new Sector[ entry.sectors.length ];
@@ -396,7 +396,7 @@ public class BMFFile implements Flushable, Closeable {
         return new SectorOutputStream( sectors, entry );
     }
 
-    private SectorInputStream createIn( Entry entry ) throws IOException {
+    private synchronized SectorInputStream createIn( Entry entry ) throws IOException {
         createEntrySectors( entry );
 
         Sector[] sectors = new Sector[ entry.sectors.length ];
@@ -410,7 +410,7 @@ public class BMFFile implements Flushable, Closeable {
         return new SectorInputStream( sectors, entry );
     }
 
-    private Entry newEntry( long key ) throws IOException {
+    private synchronized Entry newEntry( long key ) throws IOException {
         if( entries.containsKey( key ) ) {
             throw new IOException( "Cannot create an entry for key " + key + " as an entry with that key already exists" );
         }
@@ -430,7 +430,7 @@ public class BMFFile implements Flushable, Closeable {
      *
      * @throws IOException If an I/O error occurs, or when the entry is already being streamed.
      */
-    public InputStream readEntry( long key ) throws IOException {
+    public synchronized InputStream readEntry( long key ) throws IOException {
         Entry entry = entries.get( key );
         if( entry == null ) return new EmptyInputStream();
         if( entry.used ) {
@@ -448,7 +448,7 @@ public class BMFFile implements Flushable, Closeable {
      *
      * @throws IOException If an I/O error occurs, or when the entry is already being streamed.
      */
-    public OutputStream writeEntry( long key ) throws IOException {
+    public synchronized OutputStream writeEntry( long key ) throws IOException {
         Entry entry = entries.get( key );
         if( entry == null ) {
             entry = newEntry( key );
@@ -465,7 +465,7 @@ public class BMFFile implements Flushable, Closeable {
      * @param key The key to check.
      * @return True when an entry exists with the specified key, false otherwise.
      */
-    public boolean containsEntry( long key ) {
+    public synchronized boolean containsEntry( long key ) {
         return entries.containsKey( key );
     }
 
@@ -476,7 +476,7 @@ public class BMFFile implements Flushable, Closeable {
      * @return True when the entry does not exist, or when the existing entry is not already being streamed, false
      *     otherwise
      */
-    public boolean canStreamEntry( long key ) {
+    public synchronized boolean canStreamEntry( long key ) {
         return entries.containsKey( key );
     }
 
@@ -486,7 +486,7 @@ public class BMFFile implements Flushable, Closeable {
      * @param key The key of the entry to remove.
      * @throws IOException When the entry is being streamed.
      */
-    public void removeEntry( long key ) throws IOException {
+    public synchronized void removeEntry( long key ) throws IOException {
         Entry e = entries.get( key );
         if( e != null && e.used ) {
             throw new IOException( "Entry #" + key + " is being streamed, it cannot be removed" );
@@ -509,7 +509,7 @@ public class BMFFile implements Flushable, Closeable {
      *
      * @throws IOException When an I/O error occurs.
      */
-    public BMFFile convert( File file, Compression compression, int sectorSize ) throws IOException {
+    public synchronized BMFFile convert( File file, Compression compression, int sectorSize ) throws IOException {
         BMFFile converted = create( file, sectorSize, compression );
         for( long key : entries.keySet() ) {
             InputStream in = readEntry( key );
@@ -534,7 +534,7 @@ public class BMFFile implements Flushable, Closeable {
      *
      * @throws IOException When an I/O error occurs.
      */
-    public BMFFile convert( File file, int sectorSize ) throws IOException {
+    public synchronized BMFFile convert( File file, int sectorSize ) throws IOException {
         return convert( file, compressionType, sectorSize );
     }
 
@@ -549,7 +549,7 @@ public class BMFFile implements Flushable, Closeable {
      *
      * @throws IOException When an I/O error occurs.
      */
-    public BMFFile convert( File file, Compression compression ) throws IOException {
+    public synchronized BMFFile convert( File file, Compression compression ) throws IOException {
         return convert( file, compression, sectorSize );
     }
 
@@ -565,7 +565,7 @@ public class BMFFile implements Flushable, Closeable {
      *
      * @throws IOException When an I/O error occurs.
      */
-    public BMFFile convert( Compression compression, int sectorSize ) throws IOException {
+    public synchronized BMFFile convert( Compression compression, int sectorSize ) throws IOException {
         return convert( file, compression, sectorSize );
     }
 
@@ -579,7 +579,7 @@ public class BMFFile implements Flushable, Closeable {
      *
      * @throws IOException When an I/O error occurs.
      */
-    public BMFFile convert( int sectorSize ) throws IOException {
+    public synchronized BMFFile convert( int sectorSize ) throws IOException {
         return convert( file, compressionType, sectorSize );
     }
 
@@ -593,7 +593,7 @@ public class BMFFile implements Flushable, Closeable {
      *
      * @throws IOException When an I/O error occurs.
      */
-    public BMFFile convert( Compression compression ) throws IOException {
+    public synchronized BMFFile convert( Compression compression ) throws IOException {
         return convert( file, compression, sectorSize );
     }
 
@@ -617,24 +617,24 @@ public class BMFFile implements Flushable, Closeable {
 
 
 
-    private void ensureSectorCount( int count ) {
+    private synchronized void ensureSectorCount( int count ) {
         if( count >= sectors.length ) {
             resizeSectorArray( count + 16 );
         }
     }
 
-    private void resizeSectorArray( int newSize ) {
+    private synchronized void resizeSectorArray( int newSize ) {
         int oldSize = sectors.length;
         Sector[] old = sectors;
         sectors = new Sector[ newSize ];
         System.arraycopy( old, 0, sectors, 0, oldSize < newSize ? oldSize : newSize );
     }
 
-    private void cleanSectorArray() {
+    private synchronized void cleanSectorArray() {
         resizeSectorArray( getSectorCount() );
     }
 
-    private int getAFreeSectorID() {
+    private synchronized int getAFreeSectorID() {
         int highestID = 0;
         for( Sector sector : sectors ) {
             if( sector != null && sector.id > highestID ) {
@@ -644,11 +644,11 @@ public class BMFFile implements Flushable, Closeable {
         return highestID + 1;
     }
 
-    private void seekSector( int index ) throws IOException {
+    private synchronized void seekSector( int index ) throws IOException {
         io.seek( 4 + sectorSize * index );
     }
 
-    private int getSectorCount() {
+    private synchronized int getSectorCount() {
         int count = 0;
         for( Sector s : sectors ) {
             if( s != null ) {
@@ -658,7 +658,7 @@ public class BMFFile implements Flushable, Closeable {
         return count + 1;
     }
 
-    private Sector checkSector( Sector sector ) throws IOException {
+    private synchronized Sector checkSector( Sector sector ) throws IOException {
         if( sector == null ) {
             throw new NullPointerException( "Can't check null sector" );
         }
@@ -671,7 +671,7 @@ public class BMFFile implements Flushable, Closeable {
 
 
 
-    private void optimize() throws IOException {
+    private synchronized void optimize() throws IOException {
         Set<Integer> usedSectorIDs = new HashSet<>();
         for( Entry entry : entries.values() ) {
             for( int id : entry.sectors ) {
@@ -708,7 +708,7 @@ public class BMFFile implements Flushable, Closeable {
      * @throws IOException If an I/O error occurs.
      */
     @Override
-    public void flush() throws IOException {
+    public synchronized void flush() throws IOException {
         saveAllSectors();
         writeIDTable();
     }
@@ -721,7 +721,7 @@ public class BMFFile implements Flushable, Closeable {
      * @throws IOException If an I/O error occurs.
      */
     @Override
-    public void close() throws IOException {
+    public synchronized void close() throws IOException {
         unloadAllSectors();
         writeIDTable();
         cleanSectorArray();
@@ -735,7 +735,7 @@ public class BMFFile implements Flushable, Closeable {
      *
      * @throws IOException If an I/O error occurs.
      */
-    public boolean open() throws IOException {
+    public synchronized boolean open() throws IOException {
         io.seek( 0 );
         int b = io.read();
         if( b >= 0 ) {
@@ -750,14 +750,38 @@ public class BMFFile implements Flushable, Closeable {
         io.close();
     }
 
+    public void printDebug( PrintStream out ) {
+        out.println( "===========================================================================================" );
+        out.printf( "Sector count: %d\n", getSectorCount() );
+        out.println( "Sectors:" );
+        for( Sector s : sectors ) {
+            if( s == null ) {
+                out.println( "- NULL" );
+            } else {
+                out.printf( "- #%X@%d: %s", s.id, s.index, s.type );
+                if( s.buffer != null ) {
+                    out.print( ": " );
+                    out.print( new String( s.buffer ) );
+                }
+                out.println();
+            }
+        }
+        out.println( "Entries:" );
+        for( Map.Entry<Long, Entry> entry : entries.entrySet() ) {
+            out.printf( "- #%X: %s\n", entry.getKey(), Arrays.toString( entry.getValue().sectors ) );
+        }
+        out.println( "===========================================================================================" );
+    }
+
+
     public static BMFFile create( File file, int initialCapacity, Compression compression, int sectorSize ) throws IOException {
         return new BMFFile( file, initialCapacity, compression, sectorSize );
     }
 
     public static BMFFile open( File file, int initialCapacity, Compression compression, int sectorSize ) throws IOException {
-        BMFFile dmf = create( file, initialCapacity, compression, sectorSize );
-        dmf.open();
-        return dmf;
+        BMFFile bmf = create( file, initialCapacity, compression, sectorSize );
+        bmf.open();
+        return bmf;
     }
 
     public static BMFFile createUncompressed( File file ) throws IOException {
@@ -881,30 +905,34 @@ public class BMFFile implements Flushable, Closeable {
 
         @Override
         public int read() throws IOException {
-            if( index < length ) {
-                int sectorIndex = (int) ( index >>> sectorSizeExponent );
-                int sectorByte = (int) ( index & sectorSizeMask );
-                index++;
+            synchronized( BMFFile.this ) {
+                if( index < length ) {
+                    int sectorIndex = (int) ( index >>> sectorSizeExponent );
+                    int sectorByte = (int) ( index & sectorSizeMask );
+                    index++;
 
-                Sector sector = sectors[ sectorIndex ];
-                loadSector( sector );
-                if( sector.buffer == null ) {
-                    throw new IOException( "Cannot read from loaded sector with null buffer" );
+                    Sector sector = sectors[ sectorIndex ];
+                    loadSector( sector );
+                    if( sector.buffer == null ) {
+                        throw new IOException( "Cannot read from loaded sector with null buffer" );
+                    }
+
+                    return sector.buffer[ sectorByte ] & 0xFF;
+                } else {
+                    return - 1;
                 }
-
-                return sector.buffer[ sectorByte ];
-            } else {
-                return - 1;
             }
         }
 
         @Override
         public void close() throws IOException {
-            if( closed ) {
-                throw new IOException( "Already closed!" );
+            synchronized( BMFFile.this ) {
+                if( closed ) {
+                    throw new IOException( "Already closed!" );
+                }
+                entry.used = false;
+                closed = true;
             }
-            entry.used = false;
-            closed = true;
         }
     }
 

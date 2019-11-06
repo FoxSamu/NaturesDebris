@@ -11,45 +11,51 @@ public final class DatabaseFileTest {
     private static BMFFile file;
 
     public static void main( String[] args ) throws IOException {
-        file = BMFFile.create( new File( "database.data" ), 16, BMFFile.Compression.NONE );
+        open();
+        put( 1, "This is some text in BMF" );
+        put( 2, "This is other text in BMF" );
+        put( 3, "Loooooooooooooooooooooooooooooooooooooooooooooooong text" );
+        put( 4, "ShortTxt" );
+        put( 5, "A LOT OF RANDOM DATA IS COMING" );
+        close();
 
-        save();
-//        load();
+        open();
+        get( 1 );
+        get( 2 );
+        get( 3 );
+        put( 1, "This is a lot of text for entry 1 that is longer than before!" );
+        get( 4 );
+        get( 2 );
+        close();
+
+        open();
+        put( 2, "aoksdpqweoimvqwopeibjwoepjeowpibmqbweoibjqwebiqwe" );
+        put( 5, "akjsdfjkakjlsdfjklajklsdfljkjklasdjklfkjaskjldfkljakjlsdfkljakljsdfkljajklsdfjkljklasdkljfjklasdf" );
+        get( 1 );
+        get( 2 );
+        get( 5 );
+        close();
     }
 
-    private static void load() throws IOException {
-        file.open();
+    public static void open() throws IOException {
+        file = BMFFile.open( new File( "database.data" ), 16, BMFFile.Compression.DEFLATE );
+    }
 
-        InputStream stream = file.readEntry( 1 );
+    public static void close() throws IOException {
+        file.close();
+    }
+
+    public static void put( long key, String value ) throws IOException {
+        OutputStream stream = file.writeEntry( key );
+        DataOutput out = new DataOutputStream( stream );
+        out.writeUTF( value );
+        stream.close();
+    }
+
+    public static void get( long key ) throws IOException {
+        InputStream stream = file.readEntry( key );
         DataInput in = new DataInputStream( stream );
         System.out.println( in.readUTF() );
-
-        InputStream stream2 = file.readEntry( 2 );
-        DataInput in2 = new DataInputStream( stream2 );
-        System.out.println( in2.readUTF() );
-
         stream.close();
-        stream2.close();
-    }
-
-    private static void save() throws IOException {
-        OutputStream stream = file.writeEntry( 1 );
-        DataOutput out = new DataOutputStream( stream );
-        out.writeUTF( "This is UTF-8 text that is spread over multiple sectors... If it's randomly spread it will not be readable..." );
-
-        OutputStream stream2 = file.writeEntry( 2 );
-        DataOutput out2 = new DataOutputStream( stream2 );
-        out2.writeUTF( "This is a piece of text that may or may not be between the text of the other entry." );
-
-        stream.close();
-        stream2.close();
-
-        OutputStream stream3 = file.writeEntry( 1 );
-        DataOutput out3 = new DataOutputStream( stream3 );
-        out3.writeUTF( "This is overwritten text with more sectors than it had before and it will terefore append sectors at the end of the file so the last part of the text is cut off and pasted at the end of the file..." );
-
-        stream3.close();
-
-        file.close();
     }
 }
