@@ -233,22 +233,22 @@ public class BMFFile implements Flushable, Closeable {
             io.writeInt( n );
             curr++;
 
-//            int streak = 0;
-//            for( int i = curr; i < ids.length; i++ ) {
-//                int n2 = getSectorIndex( ids[ i ] );
-//                if( n + 1 == n2 ) {
-//                    streak++;
-//                    n = n2;
-//                } else {
-//                    break;
-//                }
-//            }
-//
-//            if( streak > 1 ) {
-//                io.writeInt( - 2 );
-//                io.writeInt( streak );
-//                curr += streak;
-//            }
+            int streak = 0;
+            for( int i = curr; i < ids.length; i++ ) {
+                int n2 = getSectorIndex( ids[ i ] );
+                if( n + 1 == n2 ) {
+                    streak++;
+                    n = n2;
+                } else {
+                    break;
+                }
+            }
+
+            if( streak > 1 ) {
+                io.writeInt( - 2 );
+                io.writeInt( streak );
+                curr += streak;
+            }
         }
     }
 
