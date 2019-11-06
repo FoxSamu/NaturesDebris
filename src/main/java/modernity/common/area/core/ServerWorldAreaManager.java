@@ -52,7 +52,7 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
     }
 
     @Override
-    public void tick() {
+    public synchronized void tick() {
         for( AreaHolder holder : loadedAreas.values() ) {
             holder.tick();
         }
@@ -72,7 +72,7 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
         }
     }
 
-    public void init() {
+    public synchronized void init() {
         updateTrackers();
     }
 
@@ -145,7 +145,7 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
 
 
 
-    public synchronized void loadChunk( ChunkPos pos ) {
+    private synchronized void loadChunk( ChunkPos pos ) {
         if( referenceManager.isLoaded( pos.x, pos.z ) ) return;
 
         referenceManager.load( pos.x, pos.z );
@@ -168,7 +168,7 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
 
 
 
-    public synchronized void unloadChunk( ChunkPos pos ) {
+    private synchronized void unloadChunk( ChunkPos pos ) {
         TrackableAreaReferenceChunk chunk = referenceManager.getLoadedChunk( pos.x, pos.z );
         if( chunk == null ) {
             return;
@@ -301,7 +301,8 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
 
     @Override
     public Area getLoadedArea( long reference ) {
-        return loadedAreas.get( reference ).area;
+        AreaHolder area = loadedAreas.get( reference );
+        return area == null ? null : area.area;
     }
 
     @Override
