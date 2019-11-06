@@ -110,7 +110,7 @@ public abstract class Area {
         ResourceLocation id = new ResourceLocation( nbt.getString( "id" ) );
         AreaType type = MDRegistries.AREA_TYPES.getValue( id );
         if( type == null ) return null;
-        AreaBox box = new AreaBox( nbt, "box" );
+        AreaBox box = AreaBox.deserialize( nbt, "box" );
         Area area = type.create( world, box );
         area.setReferenceID( refID );
         area.read( nbt, serializeType );
