@@ -1,11 +1,11 @@
 modLoader="javafml"
 loaderVersion="[28.1,)"
-issueTrackerURL="https://github.com/RedGalaxySoftware/TheModernity/issues"
+issueTrackerURL="https://github.com/RedGalaxySW/TheModernity/issues"
 [[mods]]
 modId="modernity"
 version="${version}"
 displayName="The Modernity"
-updateJSONURL="https://raw.githubusercontent.com/RedGalaxySoftware/TheModernity/1.14.4/update.json"
+updateJSONURL="https://raw.githubusercontent.com/RedGalaxySW/TheModernity/1.14.4/update.json"
 #displayURL="http://example.com/"
 #logoFile="examplemod.png"
 credits="Copyright (c) 2019 Red Galaxy and contributors."
