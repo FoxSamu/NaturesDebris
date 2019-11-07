@@ -6,7 +6,7 @@ Do not redistribute.
 
 ***
 
-The Modernity is licensed under the Terms and Conditions of Red Galaxy (the "License"). Any violation of the License is a violation of the applicable law. The License can be found at:
+The Modernity is licensed under the Terms and Conditions of Red Galaxy (the "License"). Any violation of the License is a violation of the law. The License can be found at:
 
 - https://github.com/RedGalaxySW/TheModernity/wiki/Terms-and-Conditions
 
