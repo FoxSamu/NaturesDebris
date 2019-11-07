@@ -1,4 +1,10 @@
 ## Copyright &copy; 2019-2020 RGSW, RedGalaxy and other owners or copyright holders
+<b>
+All rights reserved.
+Do not redistribute.
+</b>
+
+***
 
 The Modernity is licensed under the Terms and Conditions of Red Galaxy (the "License"). Any violation of the License is a violation of the applicable law. The License can be found at:
 
