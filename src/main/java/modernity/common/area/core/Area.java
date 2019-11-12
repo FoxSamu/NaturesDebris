@@ -1,14 +1,17 @@
 package modernity.common.area.core;
 
 import modernity.common.registry.MDRegistries;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.fluid.IFluidState;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
+
+import java.util.List;
+import java.util.function.Predicate;
 
 public abstract class Area {
     protected final AreaType type;
@@ -94,6 +97,34 @@ public abstract class Area {
 
     public boolean intersects( Area area ) {
         return getBox().intersects( area.getBox() );
+    }
+
+    public BlockState getBlockState( BlockPos pos ) {
+        return world.getBlockState( getBox().getGlobal( pos ) );
+    }
+
+    public IFluidState getFluidState( BlockPos pos ) {
+        return world.getFluidState( getBox().getGlobal( pos ) );
+    }
+
+    public boolean setBlockState( BlockPos pos, BlockState state ) {
+        return world.setBlockState( getBox().getGlobal( pos ), state );
+    }
+
+    public boolean setBlockState( BlockPos pos, BlockState state, int flags ) {
+        return world.setBlockState( getBox().getGlobal( pos ), state, flags );
+    }
+
+    public TileEntity getTileEntity( BlockPos pos ) {
+        return world.getTileEntity( pos );
+    }
+
+    public List<Entity> getEntitiesInside() {
+        return getEntitiesInside( entity -> true );
+    }
+
+    public List<Entity> getEntitiesInside( Predicate<Entity> predicate ) {
+        return world.getEntitiesInAABBexcluding( null, getBox().toAABB(), predicate );
     }
 
     @Override

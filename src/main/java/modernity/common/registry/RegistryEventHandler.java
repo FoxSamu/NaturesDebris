@@ -97,6 +97,8 @@ public enum RegistryEventHandler {
     public void registerRegistries( RegistryEvent.NewRegistry event ) {
         TypeToken<BlockEvent<?>> blockEventToken = new TypeToken<BlockEvent<?>>() {
         };
+        TypeToken<AreaType<?>> areaTypeToken = new TypeToken<AreaType<?>>() {
+        };
         new RegistryBuilder<BlockEvent<?>>()
             .setType( (Class<BlockEvent<?>>) blockEventToken.getRawType() )
             .setMaxID( Integer.MAX_VALUE - 1 )
@@ -110,8 +112,8 @@ public enum RegistryEventHandler {
             .setName( Modernity.res( "environment_events" ) )
             .create();
 
-        new RegistryBuilder<AreaType>()
-            .setType( AreaType.class )
+        new RegistryBuilder<AreaType<?>>()
+            .setType( (Class<AreaType<?>>) areaTypeToken.getRawType() )
             .setMaxID( Integer.MAX_VALUE - 1 )
             .setName( Modernity.res( "area_types" ) )
             .create();

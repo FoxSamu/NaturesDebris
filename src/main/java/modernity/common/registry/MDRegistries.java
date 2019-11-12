@@ -14,7 +14,7 @@ public final class MDRegistries {
 
     public static final ForgeRegistry<BlockEvent<?>> BLOCK_EVENTS = RegistryManager.ACTIVE.getRegistry( Modernity.res( "block_events" ) );
     public static final ForgeRegistry<EnvironmentEventType> ENVIRONMENT_EVENTS = RegistryManager.ACTIVE.getRegistry( Modernity.res( "environment_events" ) );
-    public static final ForgeRegistry<AreaType> AREA_TYPES = RegistryManager.ACTIVE.getRegistry( Modernity.res( "area_types" ) );
+    public static final ForgeRegistry<AreaType<?>> AREA_TYPES = RegistryManager.ACTIVE.getRegistry( Modernity.res( "area_types" ) );
 
     private MDRegistries() {
     }

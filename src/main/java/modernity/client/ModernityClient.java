@@ -5,12 +5,15 @@ import modernity.api.dimension.IClientTickingDimension;
 import modernity.client.colormap.ColorMap;
 import modernity.client.handler.FogHandler;
 import modernity.client.handler.ParticleRegistryHandler;
+import modernity.client.handler.WorldRenderHandler;
 import modernity.client.handler.TextureStitchHandler;
 import modernity.client.reloader.BiomeColorProfileReloader;
+import modernity.client.render.area.AreaRenderManager;
 import modernity.client.render.block.CustomFluidRenderer;
 import modernity.client.render.environment.SurfaceCloudRenderer;
 import modernity.client.render.environment.SurfaceSkyRenderer;
 import modernity.common.Modernity;
+import modernity.common.area.MDAreas;
 import modernity.common.area.core.ClientWorldAreaManager;
 import modernity.common.block.MDBlocks;
 import modernity.common.container.MDContainerTypes;
@@ -45,6 +48,7 @@ public class ModernityClient extends Modernity {
     private BiomeColoringProfile waterColors;
 
     private ClientWorldAreaManager worldAreaManager;
+    private AreaRenderManager areaRenderManager;
 
     // Used to give color to humus particles
     private final ColorMap humusColors = new ColorMap( new ResourceLocation( "modernity:textures/block/humus_top.png" ), 0xffffff );
@@ -64,6 +68,9 @@ public class ModernityClient extends Modernity {
 
         addFutureReloadListener( fluidRenderer );
         addFutureReloadListener( humusColors );
+
+        areaRenderManager = new AreaRenderManager();
+        MDAreas.setupClient( areaRenderManager );
     }
 
     @Override
@@ -86,6 +93,7 @@ public class ModernityClient extends Modernity {
         MOD_EVENT_BUS.register( TextureStitchHandler.INSTANCE );
         MOD_EVENT_BUS.register( ParticleRegistryHandler.INSTANCE );
         FORGE_EVENT_BUS.register( FogHandler.INSTANCE );
+        FORGE_EVENT_BUS.register( WorldRenderHandler.INSTANCE );
     }
 
     /**
@@ -191,6 +199,10 @@ public class ModernityClient extends Modernity {
             }
         }
         return worldAreaManager;
+    }
+
+    public AreaRenderManager getAreaRenderManager() {
+        return areaRenderManager;
     }
 
     /**

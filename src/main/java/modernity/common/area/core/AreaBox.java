@@ -6,6 +6,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.IntArrayNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.*;
+import net.rgsw.MathUtil;
 import net.rgsw.exc.UnexpectedCaseException;
 import org.apache.commons.lang3.Validate;
 
@@ -232,6 +233,16 @@ public class AreaBox {
         return other.maxX >= minX && other.minX <= maxX
                    && other.maxY >= minY && other.minX <= maxY
                    && other.maxZ >= minZ && other.minX <= maxZ;
+    }
+
+    /**
+     * Checks whether this box and the specified entity hit or intersect each other.
+     *
+     * @param e The entity
+     * @return True if the box and entity intersect or hit each other
+     */
+    public boolean intersects( Entity e ) {
+        return intersects( e.getBoundingBox() );
     }
 
     /**
@@ -473,6 +484,61 @@ public class AreaBox {
      */
     public Vec3i getMax() {
         return new Vec3i( maxX, maxY, maxZ );
+    }
+
+    /**
+     * Computes the box-local position from the global position
+     *
+     * @param global The global block pos
+     * @return The local block pos
+     */
+    public BlockPos getLocal( BlockPos global ) {
+        return global.add( - minX, - minY, - minZ );
+    }
+
+    /**
+     * Computes the global position from the box-local position
+     *
+     * @param local The local block pos
+     * @return The global block pos
+     */
+    public BlockPos getGlobal( BlockPos local ) {
+        return local.add( minX, minY, minZ );
+    }
+
+    /**
+     * Computes the shortest manhattan distance between the specified point and a point in this box.
+     *
+     * @param x The X coordinate
+     * @param y The Y coordinate
+     * @param z The z coordinate
+     * @return The shortest manhattan distance
+     */
+    public double getManhattanDistance( double x, double y, double z ) {
+        if( contains( x, y, z ) ) return 0;
+        double xDist = Math.max( x < minX ? minX - x : x - maxX, 0 );
+        double yDist = Math.max( y < minY ? minY - y : y - minY, 0 );
+        double zDist = Math.max( z < minZ ? minZ - z : z - maxZ, 0 );
+        return xDist + yDist + zDist;
+    }
+
+    /**
+     * Computes the shortest euler distance between the specified point and a point in this box.
+     *
+     * @param x The X coordinate
+     * @param y The Y coordinate
+     * @param z The z coordinate
+     * @return The shortest distance
+     */
+    public double getDistance( double x, double y, double z ) {
+        if( contains( x, y, z ) ) return 0;
+        double clampX = MathUtil.clamp( x, minX, maxX );
+        double clampY = MathUtil.clamp( y, minY, maxY );
+        double clampZ = MathUtil.clamp( z, minZ, maxZ );
+        double distX = x - clampX;
+        double distY = y - clampY;
+        double distZ = z - clampZ;
+        return Math.sqrt( distX * distX + distY * distY + distZ * distZ );
     }
 
     @Override

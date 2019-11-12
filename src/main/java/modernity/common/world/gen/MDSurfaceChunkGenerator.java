@@ -1,16 +1,12 @@
 package modernity.common.world.gen;
 
 import modernity.api.util.IntArrays;
-import modernity.common.area.TestArea;
-import modernity.common.area.core.AreaBox;
-import modernity.common.area.core.ServerWorldAreaManager;
 import modernity.common.world.gen.map.DarkrockGenerator;
 import modernity.common.world.gen.structure.MDStructures;
 import modernity.common.world.gen.terrain.MDSurfaceCaveGenerator;
 import modernity.common.world.gen.terrain.MDSurfaceDecorator;
 import modernity.common.world.gen.terrain.MDSurfaceSurfaceGenerator;
 import modernity.common.world.gen.terrain.MDSurfaceTerrainGenerator;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.provider.BiomeProvider;
@@ -66,12 +62,6 @@ public class MDSurfaceChunkGenerator extends ChunkGenerator<MDSurfaceGenSettings
 
         WorldGenRegion region = (WorldGenRegion) world;
         darkrockGenerator.generate( region );
-
-        if( chunk.getPos().equals( new ChunkPos( 0, 0 ) ) ) {
-            ServerWorldAreaManager
-                .get( (World) this.world )
-                .ifPresent( manager -> manager.addArea( new TestArea( manager.getWorld(), new AreaBox( 0, 0, 0, 16, 256, 16 ) ) ) );
-        }
     }
 
     @Override

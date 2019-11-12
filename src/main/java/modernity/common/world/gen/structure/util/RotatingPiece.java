@@ -34,6 +34,12 @@ public abstract class RotatingPiece extends StructurePiece {
             .add( Blocks.JUNGLE_FENCE )
             .add( Blocks.LADDER )
             .add( Blocks.IRON_BARS )
+            .add( Blocks.DARK_OAK_STAIRS )
+            .add( Blocks.OAK_STAIRS )
+            .add( Blocks.JUNGLE_STAIRS )
+            .add( Blocks.BIRCH_STAIRS )
+            .add( Blocks.ACACIA_STAIRS )
+            .add( Blocks.SPRUCE_STAIRS )
             .build();
 
     protected RotatingPiece( IStructurePieceType type, int depth ) {

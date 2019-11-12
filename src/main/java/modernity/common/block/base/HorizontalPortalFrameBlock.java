@@ -6,6 +6,7 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Rotation;
 
 import javax.annotation.Nullable;
 
@@ -27,5 +28,14 @@ public class HorizontalPortalFrameBlock extends AbstractPortalFrameBlock {
     @Override
     public BlockState getStateForPlacement( BlockItemUseContext context ) {
         return getDefaultState().with( DIRECTION, context.getPlacementHorizontalFacing().getAxis() );
+    }
+
+    @Override
+    public BlockState rotate( BlockState state, Rotation direction ) {
+        Direction.Axis axis = state.get( DIRECTION );
+        if( direction != Rotation.CLOCKWISE_180 ) {
+            axis = axis == Direction.Axis.Z ? Direction.Axis.X : Direction.Axis.Z;
+        }
+        return state.with( DIRECTION, axis );
     }
 }

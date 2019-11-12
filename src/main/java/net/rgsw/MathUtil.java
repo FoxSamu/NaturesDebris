@@ -66,10 +66,34 @@ public final class MathUtil {
         return t * t * t * ( t * ( t * 6 - 15 ) + 10 );
     }
 
+    /**
+     * Clamps the value <code>t</code> to the specified lower and upper bounds. This returns:
+     * <ul>
+     * <li><code>min</code> when <code>t < min</code></li>
+     * <li><code>max</code> when <code>t > max && t >= min</code></li>
+     * <li><code>t</code> when <code>t >= min && t <= max</code></li>
+     * </ul>
+     *
+     * @param t   The value to clamp
+     * @param min The lower bound
+     * @param max The upper bound
+     */
     public static double clamp( double t, double min, double max ) {
         return t < min ? min : t > max ? max : t;
     }
 
+    /**
+     * Clamps the value <code>t</code> to the specified lower and upper bounds. This returns:
+     * <ul>
+     * <li><code>min</code> when <code>t < min</code></li>
+     * <li><code>max</code> when <code>t > max && t >= min</code></li>
+     * <li><code>t</code> when <code>t >= min && t <= max</code></li>
+     * </ul>
+     *
+     * @param t   The value to clamp
+     * @param min The lower bound
+     * @param max The upper bound
+     */
     public static float clamp( float t, float min, float max ) {
         return t < min ? min : t > max ? max : t;
     }
