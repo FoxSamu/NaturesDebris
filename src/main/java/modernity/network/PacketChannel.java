@@ -37,6 +37,7 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 /**
  * A packet channel sends packets over a {@link SimpleChannel}.
@@ -154,6 +155,18 @@ public class PacketChannel {
         for( ServerPlayerEntity e : players ) {
             sendToPlayer( pkt, e );
         }
+    }
+
+    /**
+     * Sends a packet from the server to the specified players' clients.
+     *
+     * @param pkt     The packet to send.
+     * @param players The list of players to send to.
+     * @see #sendToPlayers(Packet, ServerPlayerEntity...)
+     * @see #sendToPlayer(Packet, ServerPlayerEntity)
+     */
+    public void sendToPlayers( Packet pkt, Stream<ServerPlayerEntity> players ) {
+        players.forEach( e -> sendToPlayer( pkt, e ) );
     }
 
     /**
