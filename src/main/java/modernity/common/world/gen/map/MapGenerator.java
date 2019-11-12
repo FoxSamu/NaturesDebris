@@ -9,6 +9,7 @@ import java.util.Random;
  * A map generator generates a part of a large feature in a chunk. It usually generates some noise field or a cave. The
  * currently only implementation is {@link DarkrockGenerator}.
  */
+// TODO: Make all chunk generation depend on these map generators
 public abstract class MapGenerator {
     public final IWorld world;
     public final Random rand;
