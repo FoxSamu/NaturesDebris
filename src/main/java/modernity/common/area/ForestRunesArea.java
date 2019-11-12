@@ -72,6 +72,13 @@ public class ForestRunesArea extends Area implements IServerTickableArea, IParti
                 }
             }
         }
+
+        for( BlockPos pos : CORNERS ) {
+            BlockState state = getBlockState( pos );
+            if( state.getBlock() instanceof PortalCornerBlock ) {
+                setBlockState( pos, state.with( PortalCornerBlock.STATE, PortalCornerBlock.State.ACTIVE ) );
+            }
+        }
     }
 
     private void deactivate() {
@@ -84,6 +91,15 @@ public class ForestRunesArea extends Area implements IServerTickableArea, IParti
                 BlockState state = getBlockState( mpos );
                 if( state.getBlock() instanceof AbstractPortalFrameBlock ) {
                     setBlockState( mpos, state.with( AbstractPortalFrameBlock.ACTIVE, false ) );
+                }
+            }
+        }
+
+        for( BlockPos pos : CORNERS ) {
+            BlockState state = getBlockState( pos );
+            if( state.getBlock() instanceof PortalCornerBlock ) {
+                if( state.get( PortalCornerBlock.STATE ) == PortalCornerBlock.State.ACTIVE ) {
+                    setBlockState( pos, state.with( PortalCornerBlock.STATE, PortalCornerBlock.State.EXHAUSTED ) );
                 }
             }
         }
