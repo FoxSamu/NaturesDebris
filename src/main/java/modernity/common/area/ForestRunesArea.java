@@ -1,19 +1,19 @@
 package modernity.common.area;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.common.area.core.Area;
-import modernity.common.area.core.AreaBox;
-import modernity.common.area.core.IServerTickableArea;
-import modernity.common.area.core.ServerWorldAreaManager;
+import modernity.common.area.core.*;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.base.AbstractPortalFrameBlock;
 import modernity.common.block.base.PortalCornerBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ForestRunesArea extends Area implements IServerTickableArea {
+import java.util.Random;
+
+public class ForestRunesArea extends Area implements IServerTickableArea, IParticleSpawningArea {
     private static final BlockPos[] CORNERS = {
         new BlockPos( 4, 3, 4 ),
         new BlockPos( 4, 3, 7 ),
@@ -151,6 +151,27 @@ public class ForestRunesArea extends Area implements IServerTickableArea {
             } else if( states[ i ] != null ) {
                 states[ i ] = null;
                 cornerUpdate( null );
+            }
+        }
+    }
+
+    @Override
+    public void particleTick( Random rand ) {
+        if( isActive() ) {
+            for( int i = 0; i < 3; i++ ) {
+                double x = rand.nextDouble() * 2 + box.minX + 5;
+                double y = rand.nextDouble() * 0.4 + box.minY + 3;
+                double z = rand.nextDouble() * 2 + box.minZ + 5;
+
+                world.addParticle( ParticleTypes.SMOKE, x, y, z, 0, 0, 0 );
+            }
+
+            for( int i = 0; i < 3; i++ ) {
+                double x = rand.nextDouble() * 2 + box.minX + 5;
+                double y = rand.nextDouble() * 0.4 + box.minY + 3;
+                double z = rand.nextDouble() * 2 + box.minZ + 5;
+
+                world.addParticle( ParticleTypes.ENTITY_EFFECT, x, y, z, 1, 0.7, 0 );
             }
         }
     }

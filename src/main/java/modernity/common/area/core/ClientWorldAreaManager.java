@@ -3,6 +3,8 @@ package modernity.common.area.core;
 import it.unimi.dsi.fastutil.longs.Long2ObjectLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import modernity.client.ModernityClient;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.ChunkPos;
@@ -10,8 +12,6 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rgsw.exc.UnexpectedCaseException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -20,11 +20,10 @@ import java.util.stream.Stream;
 
 @OnlyIn( Dist.CLIENT )
 public class ClientWorldAreaManager implements IWorldAreaManager {
-    private static final Logger LOGGER = LogManager.getLogger();
-
     private final ClientWorld world;
     private final Long2ObjectLinkedOpenHashMap<Area> loadedAreas = new Long2ObjectLinkedOpenHashMap<>();
     private final Set<IClientTickableArea> tickableAreas = new HashSet<>();
+    private final Set<IParticleSpawningArea> particleAreas = new HashSet<>();
 
     private final Long2ObjectOpenHashMap<SimpleAreaReferenceChunk> loadedChunks = new Long2ObjectOpenHashMap<>();
 
@@ -41,6 +40,15 @@ public class ClientWorldAreaManager implements IWorldAreaManager {
     public void tick() {
         for( IClientTickableArea tickable : tickableAreas ) {
             tickable.tickClient();
+        }
+        ClientPlayerEntity entity = Minecraft.getInstance().player;
+        for( IParticleSpawningArea emitter : particleAreas ) {
+            Area area = (Area) emitter;
+            double dist = area.getBox().getDistance( entity.posX, entity.posY, entity.posZ );
+            double fn = emitter.spawningFallofFunction( dist );
+            if( fn > 0 && world.rand.nextDouble() < fn ) {
+                emitter.particleTick( world.rand );
+            }
         }
     }
 
@@ -93,6 +101,9 @@ public class ClientWorldAreaManager implements IWorldAreaManager {
             if( area instanceof IClientTickableArea ) {
                 tickableAreas.add( (IClientTickableArea) area );
             }
+            if( area instanceof IParticleSpawningArea ) {
+                particleAreas.add( (IParticleSpawningArea) area );
+            }
 
             int minX = area.getBox().getMinChunkX();
             int minZ = area.getBox().getMinChunkZ();
@@ -120,6 +131,9 @@ public class ClientWorldAreaManager implements IWorldAreaManager {
         Area area = loadedAreas.remove( refID );
         if( area instanceof IClientTickableArea ) {
             tickableAreas.remove( area );
+        }
+        if( area instanceof IParticleSpawningArea ) {
+            particleAreas.remove( area );
         }
 
         int minX = area.getBox().getMinChunkX();
