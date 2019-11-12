@@ -10,5 +10,7 @@ public enum WorldRenderHandler {
     @SubscribeEvent
     public void onRenderWorldLast( RenderWorldLastEvent event ) {
         ModernityClient.get().getAreaRenderManager().renderAreas( event.getPartialTicks() );
+
+        // TODO: Add render last particles and render them here if queued...
     }
 }
