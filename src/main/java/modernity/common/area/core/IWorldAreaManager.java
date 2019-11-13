@@ -1,5 +1,6 @@
 package modernity.common.area.core;
 
+import modernity.common.Modernity;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -7,6 +8,7 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public interface IWorldAreaManager {
@@ -58,5 +60,9 @@ public interface IWorldAreaManager {
 
     default boolean isInsideArea( Entity entity, AreaType type ) {
         return isInsideArea( entity.posX, entity.posY, entity.posZ, type );
+    }
+
+    static Optional<IWorldAreaManager> get( World world ) {
+        return Optional.ofNullable( Modernity.get().getWorldAreaManager( world ) );
     }
 }

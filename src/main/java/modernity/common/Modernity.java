@@ -3,6 +3,7 @@ package modernity.common;
 import modernity.MDInfo;
 import modernity.ModernityBootstrap;
 import modernity.api.dimension.IInitializeDimension;
+import modernity.common.area.core.IWorldAreaManager;
 import modernity.common.area.core.ServerWorldAreaManager;
 import modernity.common.capability.MDCapabilities;
 import modernity.common.command.MDCommands;
@@ -21,6 +22,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.concurrent.ThreadTaskExecutor;
 import net.minecraft.util.concurrent.TickDelayedTask;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.dimension.Dimension;
@@ -250,6 +252,11 @@ public abstract class Modernity {
             }
             return manager;
         }
+    }
+
+    public IWorldAreaManager getWorldAreaManager( World world ) {
+        if( ! ( world instanceof ServerWorld ) ) return null;
+        return getWorldAreaManager( (ServerWorld) world );
     }
 
     /**

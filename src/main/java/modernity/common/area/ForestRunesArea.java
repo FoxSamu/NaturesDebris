@@ -7,13 +7,14 @@ import modernity.common.block.base.AbstractPortalFrameBlock;
 import modernity.common.block.base.PortalCornerBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class ForestRunesArea extends Area implements IServerTickableArea, IParticleSpawningArea {
+public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements IServerTickableArea, IParticleSpawningArea {
     private static final BlockPos[] CORNERS = {
         new BlockPos( 4, 3, 4 ),
         new BlockPos( 4, 3, 7 ),
@@ -32,6 +33,8 @@ public class ForestRunesArea extends Area implements IServerTickableArea, IParti
 
     public ForestRunesArea( World world, AreaBox box ) {
         super( MDAreas.FOREST_RUNES, world, box );
+
+        registerMessage( 0, ActivationMessage.class, () -> new ActivationMessage( false ) );
     }
 
     public static ForestRunesArea create( World world, AreaBox box ) {
@@ -79,6 +82,8 @@ public class ForestRunesArea extends Area implements IServerTickableArea, IParti
                 setBlockState( pos, state.with( PortalCornerBlock.STATE, PortalCornerBlock.State.ACTIVE ) );
             }
         }
+
+        sendMessage( 8, new ActivationMessage( true ) );
     }
 
     private void deactivate() {
@@ -103,6 +108,8 @@ public class ForestRunesArea extends Area implements IServerTickableArea, IParti
                 }
             }
         }
+
+        sendMessage( 8, new ActivationMessage( false ) );
     }
 
     private void cornerUpdate( PortalCornerBlock.State state ) {
@@ -115,9 +122,9 @@ public class ForestRunesArea extends Area implements IServerTickableArea, IParti
             }
         }
         if( eyes == 4 ) {
-            activate();
+            if( ! active ) activate();
         } else {
-            deactivate();
+            if( active ) deactivate();
         }
     }
 
@@ -176,7 +183,7 @@ public class ForestRunesArea extends Area implements IServerTickableArea, IParti
         if( isActive() ) {
             for( int i = 0; i < 3; i++ ) {
                 double x = rand.nextDouble() * 2 + box.minX + 5;
-                double y = rand.nextDouble() * 0.4 + box.minY + 3;
+                double y = rand.nextDouble() * 0.4 + box.minY + 2;
                 double z = rand.nextDouble() * 2 + box.minZ + 5;
 
                 world.addParticle( ParticleTypes.SMOKE, x, y, z, 0, 0, 0 );
@@ -184,11 +191,35 @@ public class ForestRunesArea extends Area implements IServerTickableArea, IParti
 
             for( int i = 0; i < 3; i++ ) {
                 double x = rand.nextDouble() * 2 + box.minX + 5;
-                double y = rand.nextDouble() * 0.4 + box.minY + 3;
+                double y = rand.nextDouble() * 0.4 + box.minY + 2;
                 double z = rand.nextDouble() * 2 + box.minZ + 5;
 
                 world.addParticle( ParticleTypes.ENTITY_EFFECT, x, y, z, 1, 0.7, 0 );
             }
+        }
+    }
+
+    private static class ActivationMessage implements IAreaMessage<ForestRunesArea> {
+        private boolean active;
+
+        ActivationMessage( boolean active ) {
+            this.active = active;
+        }
+
+        @Override
+        public void write( PacketBuffer buf ) {
+            buf.writeBoolean( active );
+        }
+
+        @Override
+        public void read( PacketBuffer buf ) {
+            active = buf.readBoolean();
+        }
+
+        @Override
+        public void receive( ForestRunesArea area ) {
+            area.active = active;
+            System.out.println( "Activate" );
         }
     }
 }

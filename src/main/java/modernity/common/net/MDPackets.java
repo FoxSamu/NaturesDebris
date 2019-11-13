@@ -19,5 +19,6 @@ public final class MDPackets {
         channel.register( ESide.SERVER, SEnvironmentPacket.class );
         channel.register( ESide.SERVER, SAreaUntrackPacket.class );
         channel.register( ESide.SERVER, SAreaUpdatePacket.class );
+        channel.register( ESide.SERVER, SAreaMessagePacket.class );
     }
 }

@@ -332,6 +332,16 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
         return referenceManager.getChunk( x, z ).unmodifiable;
     }
 
+    public Stream<ServerPlayerEntity> getTrackingPlayers( Area area ) {
+        return area == null ? Stream.empty() : getTrackingPlayers( area.getReferenceID() );
+    }
+
+    public Stream<ServerPlayerEntity> getTrackingPlayers( long refID ) {
+        AreaHolder holder = loadedAreas.get( refID );
+        if( holder == null ) return Stream.empty();
+        return holder.trackers.keySet().stream();
+    }
+
     private static File getAreaFolder( ServerWorld world ) {
         return new File( world.getDimension().getType().getDirectory( world.getSaveHandler().getWorldDirectory() ), "md/area" );
     }

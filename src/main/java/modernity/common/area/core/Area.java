@@ -1,28 +1,40 @@
 package modernity.common.area.core;
 
+import modernity.common.Modernity;
+import modernity.common.net.SAreaMessagePacket;
 import modernity.common.registry.MDRegistries;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.rgsw.exc.UnexpectedCaseException;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public abstract class Area {
     protected final AreaType type;
     protected final World world;
     protected final AreaBox box;
+    protected final IWorldAreaManager manager;
     private long referenceID;
 
     public Area( AreaType type, World world, AreaBox box ) {
         this.type = type;
         this.world = world;
         this.box = box;
+        this.manager = IWorldAreaManager.get( world ).orElseThrow(
+            () -> new UnexpectedCaseException( "Adding area to world without area manager?" )
+        );
     }
 
     public final AreaType getType() {
@@ -57,6 +69,35 @@ public abstract class Area {
     }
 
     public void read( CompoundNBT nbt, SerializeType type ) {
+    }
+
+    public void writeMessage( Object msg, PacketBuffer buf ) {
+    }
+
+    @OnlyIn( Dist.CLIENT )
+    public Object readMessage( PacketBuffer buf ) {
+        return null;
+    }
+
+    @OnlyIn( Dist.CLIENT )
+    public void receiveMessage( Object msg ) {
+    }
+
+    public void sendMessage( int distance, Object message ) {
+        if( manager instanceof ServerWorldAreaManager ) {
+            ServerWorldAreaManager manager = (ServerWorldAreaManager) this.manager;
+            Stream<ServerPlayerEntity> players = manager.getTrackingPlayers( this );
+            if( distance >= 0 ) {
+                players = players.filter(
+                    player -> box.getManhattanDistance( player.posX, player.posY, player.posZ ) < distance
+                );
+            }
+            Modernity.network().sendToPlayers( new SAreaMessagePacket( this, message ), players );
+        }
+    }
+
+    public void sendMessage( Object message ) {
+        sendMessage( - 1, message );
     }
 
     public boolean isInside( int x, int y, int z ) {
