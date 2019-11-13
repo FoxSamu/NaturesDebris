@@ -11,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.util.math.Vec3i;
+import org.lwjgl.opengl.GL11;
 
 
 public class AreaRenderManager {
@@ -44,11 +45,11 @@ public class AreaRenderManager {
             if( renderer == null ) return;
             Vec3i v = area.getBox().getMin();
             renderer.render( mc.world, area, v.getX() - x, v.getY() - y, v.getZ() - z, partialTicks );
-            drawAreaBox( area.getBox() );
+            drawAreaBox( area.getBox(), v.getX() - x, v.getY() - y, v.getZ() - z );
         } );
     }
 
-    private void drawAreaBox( AreaBox box ) {
+    private void drawAreaBox( AreaBox box, double x, double y, double z ) {
         // Draw area bounding boxes when the 'Show bounding boxes' debug option is enabled
         // MAYBE: Link this to our own debug tools?
         if( Minecraft.getInstance().getRenderManager().isDebugBoundingBox() ) {
@@ -57,11 +58,15 @@ public class AreaRenderManager {
             GlStateManager.disableLighting();
             GlStateManager.disableCull();
             GlStateManager.disableBlend();
-            WorldRenderer.drawBoundingBox( box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, 0, 1, 1, 1 );
+            GlStateManager.shadeModel( GL11.GL_FLAT );
+            GlStateManager.pushMatrix();
+            GlStateManager.translated( x, y, z );
+            WorldRenderer.drawBoundingBox( 0, 0, 0, box.getXSize(), box.getYSize(), box.getZSize(), 0, 1, 1, 1 );
+            GlStateManager.popMatrix();
             GlStateManager.enableTexture();
             GlStateManager.enableLighting();
             GlStateManager.enableCull();
-            GlStateManager.disableBlend();
+            GlStateManager.enableBlend();
             GlStateManager.depthMask( true );
         }
     }
