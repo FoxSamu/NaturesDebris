@@ -15,6 +15,7 @@ import modernity.client.render.environment.SurfaceSkyRenderer;
 import modernity.common.Modernity;
 import modernity.common.area.MDAreas;
 import modernity.common.area.core.ClientWorldAreaManager;
+import modernity.common.area.core.IWorldAreaManager;
 import modernity.common.block.MDBlocks;
 import modernity.common.container.MDContainerTypes;
 import modernity.common.entity.MDEntityTypes;
@@ -22,11 +23,13 @@ import modernity.common.item.MDItems;
 import modernity.common.net.SSeedPacket;
 import modernity.common.world.dimen.MDSurfaceDimension;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.resources.IFutureReloadListener;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.concurrent.ThreadTaskExecutor;
+import net.minecraft.world.World;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -199,6 +202,20 @@ public class ModernityClient extends Modernity {
             }
         }
         return worldAreaManager;
+    }
+
+    @Override
+    public IWorldAreaManager getWorldAreaManager( World world ) {
+        if( world == null ) {
+            return getWorldAreaManager();
+        }
+        if( world instanceof ClientWorld ) {
+            if( world == mc.world ) {
+                return getWorldAreaManager();
+            }
+            return null;
+        }
+        return super.getWorldAreaManager( world );
     }
 
     public AreaRenderManager getAreaRenderManager() {
