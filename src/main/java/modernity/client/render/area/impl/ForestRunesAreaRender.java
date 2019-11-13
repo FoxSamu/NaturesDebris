@@ -20,6 +20,8 @@ public class ForestRunesAreaRender implements IAreaRenderer<ForestRunesArea> {
             GlStateManager.enableBlend();
             GlStateManager.disableAlphaTest();
             GlStateManager.disableTexture();
+            GlStateManager.enableColorMaterial();
+            GlStateManager.disableLighting();
             GlStateManager.depthMask( false );
             GlStateManager.blendFunc( GL11.GL_SRC_ALPHA, GL11.GL_ONE );
 
@@ -62,8 +64,8 @@ public class ForestRunesAreaRender implements IAreaRenderer<ForestRunesArea> {
             GlStateManager.enableCull();
             GlStateManager.popMatrix();
             GlStateManager.disableBlend();
-            GlStateManager.depthMask( true );
             GlStateManager.enableAlphaTest();
+            GlStateManager.depthMask( true );
         }
     }
 }
