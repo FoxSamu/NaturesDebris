@@ -23,7 +23,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Teleporter;
-import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
@@ -105,10 +104,10 @@ public final class DimensionTraveling {
                 double newX = entity.posX * movementFactor;
                 double newZ = entity.posZ * movementFactor;
 
-                double borderMinX = Math.min( - 2.9999872E7D, toWorld.getWorldBorder().minX() + 16.0D );
-                double borderMinZ = Math.min( - 2.9999872E7D, toWorld.getWorldBorder().minZ() + 16.0D );
-                double morderMaxX = Math.min( 2.9999872E7D, toWorld.getWorldBorder().maxX() - 16.0D );
-                double borderMaxZ = Math.min( 2.9999872E7D, toWorld.getWorldBorder().maxZ() - 16.0D );
+                double borderMinX = Math.min( - 3E7, toWorld.getWorldBorder().minX() + 16 );
+                double borderMinZ = Math.min( - 3E7, toWorld.getWorldBorder().minZ() + 16 );
+                double morderMaxX = Math.min( 3E7, toWorld.getWorldBorder().maxX() - 16 );
+                double borderMaxZ = Math.min( 3E7, toWorld.getWorldBorder().maxZ() - 16 );
                 newX = MathHelper.clamp( newX, borderMinX, morderMaxX );
                 newZ = MathHelper.clamp( newZ, borderMinZ, borderMaxZ );
 
