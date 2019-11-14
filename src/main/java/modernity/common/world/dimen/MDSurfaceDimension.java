@@ -14,6 +14,7 @@ import modernity.client.environment.Fog;
 import modernity.client.environment.Sky;
 import modernity.common.environment.event.EnvironmentEventManager;
 import modernity.common.environment.event.MDEnvEvents;
+import modernity.common.environment.event.impl.CloudsEnvEvent;
 import modernity.common.environment.event.impl.FogEnvEvent;
 import modernity.common.environment.satellite.SatelliteData;
 import modernity.common.world.gen.MDSurfaceChunkGenerator;
@@ -164,7 +165,8 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
     private EnvironmentEventManager createEnvEventManager( int updateInterval ) {
         return new EnvironmentEventManager(
             updateInterval, world,
-            MDEnvEvents.FOG
+            MDEnvEvents.FOG,
+            MDEnvEvents.CLOUDS
         );
     }
 
@@ -232,6 +234,17 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
             sky.backlightColor[ 0 ] = MathUtil.lerp( sky.backlightColor[ 0 ], 0.15F, fogFac );
             sky.backlightColor[ 1 ] = MathUtil.lerp( sky.backlightColor[ 1 ], 0.15F, fogFac );
             sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], 0.15F, fogFac );
+        }
+
+        CloudsEnvEvent cloudsEv = envManager.getByType( MDEnvEvents.CLOUDS );
+        float cloudsFac = cloudsEv.getEffect();
+        if( cloudsFac > 0 ) {
+            sky.cloudAmount = MathUtil.lerp( sky.cloudAmount, cloudsEv.getCloudAmount(), cloudsFac );
+            sky.backlightColor[ 0 ] = MathUtil.lerp( sky.backlightColor[ 0 ], 0.15F, cloudsFac * 0.3F );
+            sky.backlightColor[ 1 ] = MathUtil.lerp( sky.backlightColor[ 1 ], 0.15F, cloudsFac * 0.3F );
+            sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], 0.15F, cloudsFac * 0.3F );
+            sky.moonBrightness = MathUtil.lerp( sky.moonBrightness, 0.6F, cloudsFac );
+            sky.starBrightness = MathUtil.lerp( sky.starBrightness, 0.7F, cloudsFac );
         }
     }
 
