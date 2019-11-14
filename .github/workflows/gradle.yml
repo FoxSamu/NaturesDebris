@@ -16,3 +16,11 @@ jobs:
         java-version: 1.8
     - name: Build and publish
       run: ./gradlew publish
+      env:
+        mdKeyStore: ${{ secrets.mdKeyStore }}
+        mdKeyStoreAlias: ${{ secrets.mdKeyStoreAlias }}
+        mdKeyStorePass: ${{ secrets.mdKeyStorePass }}
+        mdKeyStoreKeyPass: ${{ secrets.mdKeyStoreKeyPass }}
+        mdSignSHA1: ${{ secrets.mdSignSHA1 }}
+        gprUser: ${{ secrets.gprUser }}
+        gprKey: ${{ secrets.gprKey }}
