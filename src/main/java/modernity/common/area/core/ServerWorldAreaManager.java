@@ -10,6 +10,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.rgsw.exc.UnexpectedCaseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -329,7 +330,10 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
 
     @Override
     public IAreaReferenceChunk getChunk( int x, int z ) {
-        return referenceManager.getChunk( x, z ).unmodifiable;
+        loadChunk( new ChunkPos( x, z ) );
+        TrackableAreaReferenceChunk chunk = referenceManager.getLoadedChunk( x, z );
+        if( chunk == null ) throw new UnexpectedCaseException( "Chunk was null but loaded" );
+        return chunk.unmodifiable;
     }
 
     public Stream<ServerPlayerEntity> getTrackingPlayers( Area area ) {
