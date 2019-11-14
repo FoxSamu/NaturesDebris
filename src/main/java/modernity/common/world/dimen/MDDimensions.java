@@ -34,9 +34,7 @@ import java.util.function.BiFunction;
  */
 @ObjectHolder( "modernity" )
 public final class MDDimensions {
-    private static boolean isSurfaceRegistered;
     private static final RegistryHandler<ModDimension> ENTRIES = new RegistryHandler<>( "modernity" );
-    public static final int MODERNITY_ID = 5;
     public static final ModernityDim MODERNITY = register( "modernity", new ModernityDim( MDSurfaceDimension::new ) );
 
     private static ImmutableSet<ResourceLocation> dimensionResLocs;
