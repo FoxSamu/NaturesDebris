@@ -39,7 +39,7 @@ project.ext.getProjectFingerprint = {
 
 // Attempts to get a project variable and if none is found it tries to read from a system environment variable
 project.ext.getVariable = { key ->
-    return project.hasProperty( key ) ? project.property( key ) : ENV[ key ]
+    return project.hasProperty( key ) ? project.property( key ) : ENV.containsKey( key ) ? ENV[ key ] : System.getProperty( key )
 }
 
 project.ext.ENV = System.getenv()
@@ -152,7 +152,7 @@ task signJar( dependsOn: 'reobfJar' ) {
                 jar: "${ jar.archivePath }",
                 alias: getVariable( 'mdKeyStoreAlias' ),
                 storetype: "jks",
-                keystore: getVariable( 'mdKeyStore' ),
+                keystore: getVariable( "mdKeyStore" ),
                 storepass: getVariable( 'mdKeyStorePass' ),
                 keypass: getVariable( 'mdKeyStoreKeyPass' ),
                 verbose: true,
@@ -168,6 +168,7 @@ task signJar( dependsOn: 'reobfJar' ) {
 
 task generateSources( type: Copy ) {
     doFirst {
+        project.ext.isIDE = false
         delete "$buildDir/generated-src"
     }
     outputs.upToDateWhen { false }
@@ -210,7 +211,6 @@ compileJava {
 }
 
 build {
-    project.ext.isIDE = false
     dependsOn signJar
     doLast {
         project.ext.isIDE = true
@@ -228,18 +228,18 @@ publishing {
         mavenJava( MavenPublication ) {
             groupId = 'redgalaxy'
             artifactId = 'TheModernity'
-            version = "${project.version}-SNAPSHOT"
-            
+            version = "${ project.version }"
+
             artifact reobfArtifact
         }
     }
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/RedGalaxySW/TheModernity")
+            url = uri( "https://maven.pkg.github.com/RedGalaxySW/TheModernity" )
             credentials {
-                username = getVariable("gprUser").toLowerCase()
-                password = getVariable("gprKey").toLowerCase()
+                username = getVariable( "gprUser" ).toLowerCase()
+                password = getVariable( "gprKey" ).toLowerCase()
             }
         }
     }
