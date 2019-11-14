@@ -4,14 +4,27 @@ import modernity.api.util.MovingBlockPos;
 import modernity.common.area.core.*;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.base.AbstractPortalFrameBlock;
+import modernity.common.block.base.HorizontalPortalFrameBlock;
 import modernity.common.block.base.PortalCornerBlock;
+import modernity.common.world.dimen.MDDimensions;
+import modernity.common.world.teleporter.DimensionTraveling;
+import modernity.common.world.teleporter.RunesTeleporter;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.server.ServerWorld;
 
+import java.util.List;
 import java.util.Random;
 
 public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements IServerTickableArea, IParticleSpawningArea {
@@ -45,6 +58,61 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
         return area;
     }
 
+    public static ForestRunesArea createAt( World world, int x, int z ) {
+        int height = 512;
+        MovingBlockPos mpos = new MovingBlockPos();
+        for( int mx = x - 3; mx < x + 3; mx++ ) {
+            for( int mz = z - 3; mz < z + 3; mz++ ) {
+                int h = 512;
+                for( int y = 255; y >= 0; y-- ) {
+                    mpos.setPos( mx, y, mz );
+                    BlockState state = world.getBlockState( mpos );
+                    if( state.isSolid() && ! state.isIn( BlockTags.LEAVES ) ) {
+                        h = y - 1;
+                        break;
+                    }
+                }
+                if( h < height ) height = h;
+            }
+        }
+
+        AreaBox box = AreaBox.makeWithSize( x - 6, height - 1, z - 6, 12, 12, 12 );
+        ForestRunesArea area = create( world, box );
+        area.buildActivePortal();
+        return area;
+    }
+
+    public static ForestRunesArea findAt( World world, int x, int z ) {
+        ForestRunesArea[] area = new ForestRunesArea[ 1 ];
+
+        ServerWorldAreaManager
+            .get( world )
+            .ifPresent( manager -> {
+                int cx = x >> 4;
+                int cz = z >> 4;
+                boolean[] br = { false };
+                for( int r = 0; r < 13; r++ ) {
+                    for( int mx = - r; mx <= r; mx++ ) {
+                        for( int mz = - r; mz <= r; mz++ ) {
+                            if( Math.abs( mx ) == r || Math.abs( mz ) == r ) {
+                                IAreaReferenceChunk chunk = manager.getChunk( mx + cx, mz + cz );
+                                chunk.referenceStream().forEach( ref -> {
+                                    Area a = manager.getLoadedArea( ref );
+                                    if( a instanceof ForestRunesArea && ( (ForestRunesArea) a ).isActive() ) {
+                                        area[ 0 ] = (ForestRunesArea) a;
+                                        br[ 0 ] = true;
+                                    }
+                                } );
+                                if( br[ 0 ] ) break;
+                            }
+                        }
+                    }
+                }
+            } );
+
+        return area[ 0 ];
+    }
+
     public static ForestRunesArea get( World world, long ref ) {
         ForestRunesArea[] area = new ForestRunesArea[ 1 ];
         ServerWorldAreaManager
@@ -56,6 +124,41 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
                 }
             } );
         return area[ 0 ];
+    }
+
+    public void buildActivePortal() {
+        for( int x = 2; x <= 9; x++ ) {
+            for( int z = 2; z <= 9; z++ ) {
+                if( ( x == 2 || x == 9 ) && ( z == 2 || z == 9 ) ) {
+                    continue;
+                }
+                for( int y = 2; y <= 6; y++ ) {
+                    setBlockState( new BlockPos( x, y, z ), Blocks.AIR.getDefaultState() );
+                }
+                setBlockState( new BlockPos( x, 1, z ), MDBlocks.DARK_STONE_BRICKS.getDefaultState() );
+            }
+        }
+
+        setBlockState( new BlockPos( 4, 2, 4 ), MDBlocks.VERTICAL_PORTAL_FRAME.getDefaultState() );
+        setBlockState( new BlockPos( 4, 2, 7 ), MDBlocks.VERTICAL_PORTAL_FRAME.getDefaultState() );
+        setBlockState( new BlockPos( 7, 2, 7 ), MDBlocks.VERTICAL_PORTAL_FRAME.getDefaultState() );
+        setBlockState( new BlockPos( 7, 2, 4 ), MDBlocks.VERTICAL_PORTAL_FRAME.getDefaultState() );
+
+        setBlockState( new BlockPos( 4, 2, 5 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z ) );
+        setBlockState( new BlockPos( 4, 2, 6 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z ) );
+        setBlockState( new BlockPos( 7, 2, 5 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z ) );
+        setBlockState( new BlockPos( 7, 2, 6 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z ) );
+        setBlockState( new BlockPos( 5, 2, 4 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X ) );
+        setBlockState( new BlockPos( 6, 2, 4 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X ) );
+        setBlockState( new BlockPos( 5, 2, 7 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X ) );
+        setBlockState( new BlockPos( 6, 2, 7 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X ) );
+
+        // Set tot EYE state because these block changes still cause the portal to activate
+        setBlockState( new BlockPos( 4, 3, 4 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerBlock.State.EYE ) );
+        setBlockState( new BlockPos( 4, 3, 7 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerBlock.State.EYE ) );
+        setBlockState( new BlockPos( 7, 3, 7 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerBlock.State.EYE ) );
+        setBlockState( new BlockPos( 7, 3, 4 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerBlock.State.EYE ) );
+
     }
 
     public boolean isActive() {
@@ -130,17 +233,23 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
 
     private byte[] serializeStates() {
         return new byte[] {
-            (byte) states[ 0 ].ordinal(),
-            (byte) states[ 1 ].ordinal(),
-            (byte) states[ 2 ].ordinal(),
-            (byte) states[ 3 ].ordinal()
+            getStateByte( 0 ),
+            getStateByte( 1 ),
+            getStateByte( 2 ),
+            getStateByte( 3 )
         };
+    }
+
+    private byte getStateByte( int index ) {
+        return (byte) ( states[ index ] == null ? - 1 : states[ index ].ordinal() );
     }
 
     private void deserializeStates( byte[] b ) {
         for( int i = 0; i < 4; i++ ) {
             if( i >= b.length ) return;
-            states[ i ] = PortalCornerBlock.State.values()[ b[ i ] ];
+            if( b[ i ] >= 0 )
+                states[ i ] = PortalCornerBlock.State.values()[ b[ i ] ];
+            else states[ i ] = null;
         }
     }
 
@@ -162,18 +271,53 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
 
     @Override
     public void tickServer() {
-        for( int i = 0; i < 4; i++ ) {
-            BlockPos pos = CORNERS[ i ];
-            BlockState state = getBlockState( pos );
-            if( state.getBlock() == MDBlocks.PORTAL_CORNER ) {
-                PortalCornerBlock.State s = state.get( PortalCornerBlock.STATE );
-                if( s != states[ i ] ) {
-                    states[ i ] = s;
-                    cornerUpdate( s );
+        if( world.isAreaLoaded( box.minX, box.minY, box.minZ, box.maxX - 1, box.maxY - 1, box.maxZ - 1 ) ) {
+            for( int i = 0; i < 4; i++ ) {
+                BlockPos pos = CORNERS[ i ];
+                BlockState state = getBlockState( pos );
+                if( state.getBlock() == MDBlocks.PORTAL_CORNER ) {
+                    PortalCornerBlock.State s = state.get( PortalCornerBlock.STATE );
+                    if( s != states[ i ] ) {
+                        states[ i ] = s;
+                        cornerUpdate( s );
+                    }
+                } else if( states[ i ] != null ) {
+                    states[ i ] = null;
+                    cornerUpdate( null );
                 }
-            } else if( states[ i ] != null ) {
-                states[ i ] = null;
-                cornerUpdate( null );
+            }
+        }
+
+        if( isActive() ) {
+
+            AxisAlignedBB portalRegion = new AxisAlignedBB(
+                box.minX + 5,
+                box.minY + 2,
+                box.minZ + 5,
+                box.minX + 7,
+                box.minY + 3,
+                box.minZ + 7
+            );
+            List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity( null, portalRegion );
+
+            if( ! entities.isEmpty() ) {
+                DimensionType type = null;
+                if( world.dimension.getType() == MDDimensions.MODERNITY.getType() ) {
+                    type = DimensionType.OVERWORLD;
+                }
+                if( world.dimension.getType() == DimensionType.OVERWORLD ) {
+                    type = MDDimensions.MODERNITY.getType();
+                }
+                if( type != null ) {
+                    MinecraftServer server = world.getServer();
+                    if( server != null ) {
+                        ServerWorld world = server.getWorld( type );
+                        RunesTeleporter tp = RunesTeleporter.get( world );
+                        for( Entity entity : entities ) {
+                            DimensionTraveling.changeDimension( entity, type, tp );
+                        }
+                    }
+                }
             }
         }
     }
@@ -181,7 +325,7 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
     @Override
     public void particleTick( Random rand ) {
         if( isActive() ) {
-            for( int i = 0; i < 3; i++ ) {
+            for( int i = 0; i < 4; i++ ) {
                 double x = rand.nextDouble() * 2 + box.minX + 5;
                 double y = rand.nextDouble() * 0.4 + box.minY + 2;
                 double z = rand.nextDouble() * 2 + box.minZ + 5;
@@ -189,7 +333,15 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
                 world.addParticle( ParticleTypes.SMOKE, x, y, z, 0, 0, 0 );
             }
 
-            for( int i = 0; i < 3; i++ ) {
+            for( int i = 0; i < 2; i++ ) {
+                double x = rand.nextDouble() * 2 + box.minX + 5;
+                double y = rand.nextDouble() * 0.4 + box.minY + 2;
+                double z = rand.nextDouble() * 2 + box.minZ + 5;
+
+                world.addParticle( ParticleTypes.POOF, x, y, z, 0, 0, 0 );
+            }
+
+            if( rand.nextInt( 3 ) == 0 ) {
                 double x = rand.nextDouble() * 2 + box.minX + 5;
                 double y = rand.nextDouble() * 0.4 + box.minY + 2;
                 double z = rand.nextDouble() * 2 + box.minZ + 5;
