@@ -133,8 +133,8 @@ jar {
     }
 }
 
-version = 'INDEV-0.2.1'
-project.ext.versionName = "A Bugfix Update"
+version = 'INDEV-0.3.0'
+project.ext.versionName = "The Environment Update"
 project.ext.isIDE = true
 group = 'net.rgsw'
 archivesBaseName = 'modernity'
@@ -167,6 +167,9 @@ task signJar( dependsOn: 'reobfJar' ) {
 }
 
 task generateSources( type: Copy ) {
+    doFirst {
+        delete "$buildDir/generated-src"
+    }
     outputs.upToDateWhen { false }
     from 'src/main/java'
     into "$buildDir/generated-src"
@@ -223,12 +226,21 @@ def reobfArtifact = artifacts.add( 'default', reobfFile ) {
 publishing {
     publications {
         mavenJava( MavenPublication ) {
+            groupId = 'redgalaxy'
+            artifactId = 'TheModernity'
+            version = "${project.verions}-SNAPSHOT"
+            
             artifact reobfArtifact
         }
     }
     repositories {
         maven {
-            url "file:///${ project.projectDir }/mcmodsrepo"
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/RedGalaxySW/TheModernity")
+            credentials {
+                username = getVariable("gpr.user").toLowerCase()
+                password = getVariable("gpr.key").toLowerCase()
+            }
         }
     }
 }
