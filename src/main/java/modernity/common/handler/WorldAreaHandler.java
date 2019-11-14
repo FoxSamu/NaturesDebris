@@ -23,4 +23,9 @@ public enum WorldAreaHandler {
     public void worldLoad( WorldEvent.Load event ) {
         ServerWorldAreaManager.get( (World) event.getWorld() ).ifPresent( ServerWorldAreaManager::init );
     }
+
+    @SubscribeEvent
+    public void worldUnload( WorldEvent.Unload event ) {
+        ServerWorldAreaManager.get( (World) event.getWorld() ).ifPresent( ServerWorldAreaManager::saveAll );
+    }
 }
