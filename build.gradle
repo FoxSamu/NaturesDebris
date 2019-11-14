@@ -228,7 +228,7 @@ publishing {
         mavenJava( MavenPublication ) {
             groupId = 'redgalaxy'
             artifactId = 'TheModernity'
-            version = "${project.verions}-SNAPSHOT"
+            version = "${project.version}-SNAPSHOT"
             
             artifact reobfArtifact
         }
@@ -238,8 +238,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/RedGalaxySW/TheModernity")
             credentials {
-                username = getVariable("gpr.user").toLowerCase()
-                password = getVariable("gpr.key").toLowerCase()
+                username = getVariable("gprUser").toLowerCase()
+                password = getVariable("gprKey").toLowerCase()
             }
         }
     }
