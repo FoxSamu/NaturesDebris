@@ -4,6 +4,7 @@ import modernity.common.event.MDBlockEvents;
 import modernity.common.item.MDItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
@@ -64,6 +65,12 @@ public class PortalCornerBlock extends Block {
         if( state.get( STATE ) == State.EXHAUSTED ) {
             world.setBlockState( pos, state.with( STATE, State.INACTIVE ) );
             MDBlockEvents.BREAK_EYE.play( world, pos );
+            if( ! world.isRemote ) {
+                world.addEntity( new ItemEntity(
+                    world, pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5,
+                    new ItemStack( MDItems.EYE_OF_THE_CURSE )
+                ) );
+            }
             return true;
         }
         return false;
