@@ -1,9 +1,10 @@
 /*
- * Copyright (c) 2019 RGSW.
- * This file belongs to a separate library, made for the Modernity.
- * Licensed under the Apache Licence v2.0. Do not redistribute.
+ * Copyright (c) 2019 RGSW
+ * All rights reserved. Do not distribute.
+ * This file is part of the Modernity, and is licensed under the terms and conditions of RedGalaxy.
  *
- * Date: 6 - 26 - 2019
+ * Date:   11 - 14 - 2019
+ * Author: rgsw
  */
 
 package net.rgsw;

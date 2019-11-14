@@ -1,10 +1,9 @@
 /*
- * Copyright (c) 2019 RedGalaxy & co.
- * Licensed under the Apache Licence v2.0.
- * Do not redistribute.
+ * Copyright (c) 2019 RedGalaxy
+ * All rights reserved. Do not distribute.
  *
- * By  : RGSW
- * Date: 7 - 2 - 2019
+ * Date:   11 - 14 - 2019
+ * Author: rgsw
  */
 
 package modernity.common.block.base;
