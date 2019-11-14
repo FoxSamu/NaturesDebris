@@ -247,7 +247,7 @@ public abstract class Modernity {
         } else {
             DimensionType type = world.getDimension().getType();
             ServerWorldAreaManager manager = areaManagers.get( type );
-            if( manager == null ) {
+            if( manager == null || manager.getWorld() != world ) {
                 areaManagers.put( type, manager = new ServerWorldAreaManager( world ) );
             }
             return manager;
