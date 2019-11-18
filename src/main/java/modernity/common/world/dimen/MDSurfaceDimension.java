@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 18 - 2019
  * Author: rgsw
  */
 
@@ -225,7 +225,7 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
         float fogFac = fogEv.getEffect();
         if( fogFac > 0 ) {
             sky.twilightBrightness = MathUtil.lerp( sky.twilightBrightness, 0.1F, fogFac );
-            sky.starBrightness = MathUtil.lerp( sky.starBrightness, 0.1F, fogFac );
+            sky.starBrightness = MathUtil.lerp( sky.starBrightness, 0.0F, fogFac );
             sky.moonBrightness = MathUtil.lerp( sky.moonBrightness, 0.1F, fogFac );
             sky.backlightBrightness = MathUtil.lerp( sky.backlightBrightness, 0.5F, fogFac );
             sky.skylightBrightness = MathUtil.lerp( sky.skylightBrightness, 0.3F, fogFac );
@@ -238,12 +238,16 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
         CloudsEnvEvent cloudsEv = envManager.getByType( MDEnvEvents.CLOUDS );
         float cloudsFac = cloudsEv.getEffect();
         if( cloudsFac > 0 ) {
-            sky.cloudAmount = MathUtil.lerp( sky.cloudAmount, cloudsEv.getCloudAmount(), cloudsFac );
-            sky.backlightColor[ 0 ] = MathUtil.lerp( sky.backlightColor[ 0 ], 0.15F, cloudsFac * 0.3F );
-            sky.backlightColor[ 1 ] = MathUtil.lerp( sky.backlightColor[ 1 ], 0.15F, cloudsFac * 0.3F );
-            sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], 0.15F, cloudsFac * 0.3F );
-            sky.moonBrightness = MathUtil.lerp( sky.moonBrightness, 0.6F, cloudsFac );
-            sky.starBrightness = MathUtil.lerp( sky.starBrightness, 0.7F, cloudsFac );
+            float cloudAmount = cloudsEv.getCloudAmount();
+            float backlightLerp = cloudAmount * 1.5F + 0.3F;
+            float starBrightness = Math.max( 0.15F - cloudAmount, 0 );
+            float moonBrightness = 0.4F - cloudAmount;
+            sky.cloudAmount = MathUtil.lerp( sky.cloudAmount, cloudAmount, cloudsFac );
+            sky.backlightColor[ 0 ] = MathUtil.lerp( sky.backlightColor[ 0 ], 0.15F, cloudsFac * backlightLerp );
+            sky.backlightColor[ 1 ] = MathUtil.lerp( sky.backlightColor[ 1 ], 0.15F, cloudsFac * backlightLerp );
+            sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], 0.15F, cloudsFac * backlightLerp );
+            sky.moonBrightness = MathUtil.lerp( sky.moonBrightness, moonBrightness, cloudsFac );
+            sky.starBrightness = MathUtil.lerp( sky.starBrightness, starBrightness, cloudsFac );
         }
     }
 
