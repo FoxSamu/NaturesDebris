@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 18 - 2019
  * Author: rgsw
  */
 
@@ -713,10 +713,10 @@ public class SurfaceSkyRenderer implements IRenderHandler {
 
                 double alpha = 1;
                 if( cld.age < 70 ) {
-                    alpha = cld.age / 70;
+                    alpha = Math.max( cld.age / 70D, 0 );
                 }
                 if( cld.age > cld.maxAge - 70 ) {
-                    alpha = ( cld.maxAge - cld.age ) / 70;
+                    alpha = Math.max( ( cld.maxAge - cld.age ) / 70D, 0 );
                 }
                 distance = 1 / Math.sqrt( distance );
                 x *= distance;
