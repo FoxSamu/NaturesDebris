@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 18 - 2019
  * Author: rgsw
  */
 
@@ -12,9 +12,11 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import modernity.api.util.Functions;
+import modernity.common.command.argument.EnumArgumentType;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -48,7 +50,7 @@ public abstract class ScheduledEnvEvent extends EnvironmentEvent {
             rand = null;
             return;
         }
-        rand = manager.getWorld().rand;
+        rand = new Random( manager.getWorld().rand.nextLong() );
         setPhase( Phase.INACTIVE );
     }
 
@@ -79,6 +81,10 @@ public abstract class ScheduledEnvEvent extends EnvironmentEvent {
         super.setActive( phase == Phase.ACTIVE );
 
         onChangePhase();
+
+        if( phase == Phase.INACTIVE ) {
+            onRestartSchedule();
+        }
     }
 
     /**
@@ -212,13 +218,12 @@ public abstract class ScheduledEnvEvent extends EnvironmentEvent {
         maxTimeInPhase = nbt.getInt( "max" );
     }
 
-    @Override
-    public void buildCommands( ArrayList<ArgumentBuilder<CommandSource, ?>> list ) {
+    public static void buildCommand( ArrayList<ArgumentBuilder<CommandSource, ?>> list, EnvironmentEventType type ) {
         list.add(
             Commands.literal( "restart" )
                     .requires( src -> src.hasPermissionLevel( 2 ) )
                     .executes( ctx -> {
-                        ScheduledEnvEvent ev = getFromCommand( ctx );
+                        ScheduledEnvEvent ev = getFromCommand( ctx, type );
                         ev.restartSchedule();
                         return 0;
                     } )
@@ -227,14 +232,14 @@ public abstract class ScheduledEnvEvent extends EnvironmentEvent {
             Commands.literal( "next" )
                     .requires( src -> src.hasPermissionLevel( 2 ) )
                     .executes( ctx -> {
-                        ScheduledEnvEvent ev = getFromCommand( ctx );
+                        ScheduledEnvEvent ev = getFromCommand( ctx, type );
                         ev.nextPhase();
                         return 0;
                     } )
                     .then(
                         Commands.argument( "count", IntegerArgumentType.integer( 1, 4 ) )
                                 .executes( ctx -> {
-                                    ScheduledEnvEvent ev = getFromCommand( ctx );
+                                    ScheduledEnvEvent ev = getFromCommand( ctx, type );
                                     int t = ctx.getArgument( "count", Integer.class );
                                     for( int i = 0; i < t; i++ ) ev.nextPhase();
                                     return 0;
@@ -245,24 +250,24 @@ public abstract class ScheduledEnvEvent extends EnvironmentEvent {
             = Commands.literal( "set" )
                       .requires( src -> src.hasPermissionLevel( 2 ) );
 
-        for( Phase phase : Phase.values() ) {
-            setCMD.then(
-                Commands.literal( phase.name().toLowerCase() )
-                        .executes( ctx -> {
-                            ScheduledEnvEvent ev = getFromCommand( ctx );
-                            ev.setPhase( phase );
-                            return 0;
-                        } )
-                        .then(
-                            Commands.argument( "duration", IntegerArgumentType.integer( 0 ) )
-                                    .executes( ctx -> {
-                                        ScheduledEnvEvent ev = getFromCommand( ctx );
-                                        ev.setPhase( phase, ctx.getArgument( "duration", Integer.class ) );
-                                        return 0;
-                                    } )
-                        )
-            );
-        }
+        setCMD.then(
+            Commands.argument( "phase", EnumArgumentType.enumerator( Phase.class ) )
+                    .executes( ctx -> {
+                        Phase phase = ctx.getArgument( "phase", Phase.class );
+                        ScheduledEnvEvent ev = getFromCommand( ctx, type );
+                        ev.setPhase( phase );
+                        return 0;
+                    } )
+                    .then(
+                        Commands.argument( "duration", IntegerArgumentType.integer( 0 ) )
+                                .executes( ctx -> {
+                                    Phase phase = ctx.getArgument( "phase", Phase.class );
+                                    ScheduledEnvEvent ev = getFromCommand( ctx, type );
+                                    ev.setPhase( phase, ctx.getArgument( "duration", Integer.class ) );
+                                    return 0;
+                                } )
+                    )
+        );
 
         list.add( setCMD );
 
@@ -270,12 +275,12 @@ public abstract class ScheduledEnvEvent extends EnvironmentEvent {
             Commands.literal( "status" )
                     .executes( Functions.tryOrPrint( ctx -> {
                         CommandSource src = ctx.getSource();
-                        ScheduledEnvEvent ev = getFromCommand( ctx );
+                        ScheduledEnvEvent ev = getFromCommand( ctx, type );
                         Phase phase = ev.getPhase();
                         src.sendFeedback(
                             new TranslationTextComponent(
                                 TK_STATUS + "." + phase.name().toLowerCase(),
-                                getType().getRegistryName(),
+                                type.getRegistryName(),
                                 ev.getTimeInPhase(),
                                 ev.getMaxTimeInPhase()
                             ),
@@ -298,7 +303,7 @@ public abstract class ScheduledEnvEvent extends EnvironmentEvent {
     /**
      * The 4 phases of an event.
      */
-    public enum Phase {
+    public enum Phase implements IStringSerializable {
         /** When inactive, an event is (tada!) inactive. */
         INACTIVE,
 
@@ -309,6 +314,11 @@ public abstract class ScheduledEnvEvent extends EnvironmentEvent {
         ACTIVE,
 
         /** When cooling down, an event is inactive, but it may play some post-event effects. */
-        COOLDOWN
+        COOLDOWN;
+
+        @Override
+        public String getName() {
+            return name().toLowerCase();
+        }
     }
 }

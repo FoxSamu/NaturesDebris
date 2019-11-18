@@ -2,20 +2,17 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 18 - 2019
  * Author: rgsw
  */
 
 package modernity.common.environment.event;
 
-import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import modernity.api.dimension.IEnvEventsDimension;
 import net.minecraft.command.CommandSource;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
 
 /**
  * Represents a single environment event in a world with an {@link EnvironmentEventManager}.
@@ -130,17 +127,12 @@ public abstract class EnvironmentEvent {
     public abstract void read( CompoundNBT nbt );
 
     /**
-     * Builds the command for this event.
-     */
-    public abstract void buildCommands( ArrayList<ArgumentBuilder<CommandSource, ?>> list );
-
-    /**
      * Returns this event in the specified command context. Use this to get the actual event to apply command
      * invocations on, instead of using {@code this}. Because a dummy event is used to build the commands, {@code this}
      * will reference the dummy event and not the actual event.
      */
-    protected <T extends EnvironmentEvent> T getFromCommand( CommandContext<CommandSource> ctx ) {
-        return getFromCommand( ctx.getSource() );
+    protected static <T extends EnvironmentEvent> T getFromCommand( CommandContext<CommandSource> ctx, EnvironmentEventType type ) {
+        return getFromCommand( ctx.getSource(), type );
     }
 
     /**
@@ -148,11 +140,10 @@ public abstract class EnvironmentEvent {
      * invocations on, instead of using {@code this}. Because a dummy event is used to build the commands, {@code this}
      * will reference the dummy event and not the actual event.
      */
-    protected <T extends EnvironmentEvent> T getFromCommand( CommandSource src ) {
+    protected static <T extends EnvironmentEvent> T getFromCommand( CommandSource src, EnvironmentEventType type ) {
         World world = src.getWorld();
         if( world.dimension instanceof IEnvEventsDimension ) {
-            System.out.println( getType().getRegistryName() );
-            return ( (IEnvEventsDimension) world.dimension ).getEnvEventManager().getByType( getType() );
+            return ( (IEnvEventsDimension) world.dimension ).getEnvEventManager().getByType( type );
         }
         return null;
     }

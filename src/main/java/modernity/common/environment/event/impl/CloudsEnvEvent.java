@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 18 - 2019
  * Author: rgsw
  */
 
@@ -19,7 +19,7 @@ public class CloudsEnvEvent extends ScheduledEnvEvent {
     private float effect;
 
     public CloudsEnvEvent( EnvironmentEventManager manager ) {
-        super( MDEnvEvents.FOG, manager );
+        super( MDEnvEvents.CLOUDS, manager );
     }
 
     public float getCloudAmount() {
@@ -33,9 +33,9 @@ public class CloudsEnvEvent extends ScheduledEnvEvent {
     @Override
     protected int computeMaxTimeForPhase( Phase phase ) {
         switch( phase ) {
-            case INACTIVE: return rand.nextInt( 10 * Ticks.MINUTES ) + 20 * Ticks.MINUTES;
+            case INACTIVE: return rand.nextInt( 20 * Ticks.MINUTES ) + 40 * Ticks.MINUTES;
             case WAITING: return - 1;
-            case ACTIVE: return rand.nextInt( 4 * Ticks.MINUTES ) + 10 * Ticks.MINUTES;
+            case ACTIVE: return rand.nextInt( 6 * Ticks.MINUTES ) + 10 * Ticks.MINUTES;
             case COOLDOWN: return 0;
         }
         return 0;

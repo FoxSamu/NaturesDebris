@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 18 - 2019
  * Author: rgsw
  */
 
@@ -11,6 +11,7 @@ package modernity.common.command;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import modernity.api.dimension.IEnvEventsDimension;
+import modernity.common.command.node.ResourceLiteralArgumentBuilder;
 import modernity.common.environment.event.EnvironmentEvent;
 import modernity.common.environment.event.EnvironmentEventType;
 import modernity.common.registry.MDRegistries;
@@ -42,13 +43,12 @@ public final class EventsCommand {
                                                             .requires( EventsCommand::checkSource );
 
         for( EnvironmentEventType type : MDRegistries.ENVIRONMENT_EVENTS.getValues() ) {
-            LiteralArgumentBuilder<CommandSource> evcmd
-                = Commands.literal( type.getRegistryName() + "" )
+            ResourceLiteralArgumentBuilder<CommandSource> evcmd
+                = MDCommands.resLiteral( type.getRegistryName() )
                           .requires( src -> EventsCommand.checkSource( src, type ) );
 
-            EnvironmentEvent ev = type.getDummy();
             ArrayList<ArgumentBuilder<CommandSource, ?>> evlist = new ArrayList<>();
-            ev.buildCommands( evlist );
+            type.buildCommand( evlist );
 
             // Don't build command if event does not provide a command implementation...
             if( evlist.isEmpty() ) continue;

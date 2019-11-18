@@ -2,15 +2,19 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 18 - 2019
  * Author: rgsw
  */
 
 package modernity.common.environment.event;
 
+import com.mojang.brigadier.builder.ArgumentBuilder;
+import net.minecraft.command.CommandSource;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import java.util.ArrayList;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 /**
@@ -20,16 +24,17 @@ import java.util.function.Function;
 public final class EnvironmentEventType extends ForgeRegistryEntry<EnvironmentEventType> {
 
     private final Function<EnvironmentEventManager, EnvironmentEvent> factory;
-    private EnvironmentEvent dummy;
+    private final BiConsumer<ArrayList<ArgumentBuilder<CommandSource, ?>>, EnvironmentEventType> commandFactory;
 
     /**
      * Creates an environment event type.
      *
-     * @param factory Function for creating new event instances. It MUST handle a {@code null} environment manager,
-     *                which is used to create a dummy.
+     * @param factory Function for creating new event instances.
+     * @param commandFactory Function for setting up the command for this event.
      */
-    public EnvironmentEventType( Function<EnvironmentEventManager, EnvironmentEvent> factory ) {
+    public EnvironmentEventType( Function<EnvironmentEventManager, EnvironmentEvent> factory, BiConsumer<ArrayList<ArgumentBuilder<CommandSource, ?>>, EnvironmentEventType> commandFactory ) {
         this.factory = factory;
+        this.commandFactory = commandFactory;
     }
 
     /**
@@ -39,18 +44,7 @@ public final class EnvironmentEventType extends ForgeRegistryEntry<EnvironmentEv
         return factory.apply( manager );
     }
 
-    /**
-     * Returns a dummy instance, apart from any manager instance (it's referenced manager is null). Currently only used
-     * for building commands.
-     */
-    @SuppressWarnings( "unchecked" )
-    public <T extends EnvironmentEvent> T getDummy() {
-        if( dummy == null ) {
-            dummy = factory.apply( null );
-            if( dummy == null ) {
-                throw new NullPointerException( "Environment event factory returns null" );
-            }
-        }
-        return (T) dummy;
+    public void buildCommand( ArrayList<ArgumentBuilder<CommandSource, ?>> list ) {
+        commandFactory.accept( list, this );
     }
 }
