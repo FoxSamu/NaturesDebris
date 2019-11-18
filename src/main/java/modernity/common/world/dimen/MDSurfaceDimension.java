@@ -13,6 +13,7 @@ import modernity.client.environment.Fog;
 import modernity.client.environment.Sky;
 import modernity.common.environment.event.EnvironmentEventManager;
 import modernity.common.environment.event.MDEnvEvents;
+import modernity.common.environment.event.impl.CloudlessEnvEvent;
 import modernity.common.environment.event.impl.CloudsEnvEvent;
 import modernity.common.environment.event.impl.FogEnvEvent;
 import modernity.common.environment.satellite.SatelliteData;
@@ -165,7 +166,8 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
         return new EnvironmentEventManager(
             updateInterval, world,
             MDEnvEvents.FOG,
-            MDEnvEvents.CLOUDS
+            MDEnvEvents.CLOUDS,
+            MDEnvEvents.CLOUDLESS
         );
     }
 
@@ -221,6 +223,17 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
 
         EnvironmentEventManager envManager = getEnvEventManager();
 
+
+        CloudlessEnvEvent cloudlessEv = envManager.getByType( MDEnvEvents.CLOUDLESS );
+        float cloudlessFac = cloudlessEv.getEffect();
+        if( cloudlessFac > 0 ) {
+            float cloudAmount = cloudlessEv.getCloudAmount();
+            sky.cloudAmount = MathUtil.lerp( sky.cloudAmount, cloudAmount, cloudlessFac );
+            sky.backlightColor[ 0 ] = MathUtil.lerp( sky.backlightColor[ 0 ], 9 / 255F, cloudlessFac );
+            sky.backlightColor[ 1 ] = MathUtil.lerp( sky.backlightColor[ 1 ], 10 / 255F, cloudlessFac );
+            sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], 15 / 255F, cloudlessFac );
+        }
+
         FogEnvEvent fogEv = envManager.getByType( MDEnvEvents.FOG );
         float fogFac = fogEv.getEffect();
         if( fogFac > 0 ) {
@@ -229,7 +242,6 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
             sky.moonBrightness = MathUtil.lerp( sky.moonBrightness, 0.1F, fogFac );
             sky.backlightBrightness = MathUtil.lerp( sky.backlightBrightness, 0.5F, fogFac );
             sky.skylightBrightness = MathUtil.lerp( sky.skylightBrightness, 0.3F, fogFac );
-            sky.cloudAmount = MathUtil.lerp( sky.cloudAmount, 0.1F, fogFac );
             sky.backlightColor[ 0 ] = MathUtil.lerp( sky.backlightColor[ 0 ], 0.15F, fogFac );
             sky.backlightColor[ 1 ] = MathUtil.lerp( sky.backlightColor[ 1 ], 0.15F, fogFac );
             sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], 0.15F, fogFac );

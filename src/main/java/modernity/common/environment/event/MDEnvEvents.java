@@ -9,6 +9,7 @@
 package modernity.common.environment.event;
 
 import com.mojang.brigadier.builder.ArgumentBuilder;
+import modernity.common.environment.event.impl.CloudlessEnvEvent;
 import modernity.common.environment.event.impl.CloudsEnvEvent;
 import modernity.common.environment.event.impl.FogEnvEvent;
 import modernity.common.registry.RegistryEventHandler;
@@ -29,6 +30,7 @@ public final class MDEnvEvents {
 
     public static final EnvironmentEventType FOG = register( "fog", FogEnvEvent::new, ScheduledEnvEvent::buildCommand );
     public static final EnvironmentEventType CLOUDS = register( "clouds", CloudsEnvEvent::new, ScheduledEnvEvent::buildCommand );
+    public static final EnvironmentEventType CLOUDLESS = register( "cloudless", CloudlessEnvEvent::new, ScheduledEnvEvent::buildCommand );
 
     private static EnvironmentEventType register( String id, Function<EnvironmentEventManager, EnvironmentEvent> factory, BiConsumer<ArrayList<ArgumentBuilder<CommandSource, ?>>, EnvironmentEventType> commandFactory ) {
         return ENTRIES.register( id, new EnvironmentEventType( factory, commandFactory ) );

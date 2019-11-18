@@ -14,12 +14,12 @@ import modernity.common.environment.event.MDEnvEvents;
 import modernity.common.environment.event.ScheduledEnvEvent;
 import net.minecraft.nbt.CompoundNBT;
 
-public class CloudsEnvEvent extends ScheduledEnvEvent {
+public class CloudlessEnvEvent extends ScheduledEnvEvent {
     private float cloudAmount;
     private float effect;
 
-    public CloudsEnvEvent( EnvironmentEventManager manager ) {
-        super( MDEnvEvents.CLOUDS, manager );
+    public CloudlessEnvEvent( EnvironmentEventManager manager ) {
+        super( MDEnvEvents.CLOUDLESS, manager );
     }
 
     public float getCloudAmount() {
@@ -34,7 +34,7 @@ public class CloudsEnvEvent extends ScheduledEnvEvent {
     protected int computeMaxTimeForPhase( Phase phase ) {
         switch( phase ) {
             case INACTIVE: return rand.nextInt( 20 * Ticks.MINUTES ) + 40 * Ticks.MINUTES;
-            case WAITING: return getManager().getByType( MDEnvEvents.CLOUDLESS ).isActive() ? 0 : - 1;
+            case WAITING: return getManager().getByType( MDEnvEvents.CLOUDS ).isActive() ? 0 : - 1;
             case ACTIVE: return rand.nextInt( 6 * Ticks.MINUTES ) + 10 * Ticks.MINUTES;
             case COOLDOWN: return 0;
         }
@@ -48,8 +48,8 @@ public class CloudsEnvEvent extends ScheduledEnvEvent {
 
     @Override
     protected void onStart() {
-        getManager().getByType( MDEnvEvents.CLOUDLESS ).setActive( false );
-        cloudAmount = rand.nextFloat() * 0.2F + 0.1F;
+        getManager().getByType( MDEnvEvents.CLOUDS ).setActive( false );
+        cloudAmount = rand.nextFloat() * 0.01F;
     }
 
     @Override
