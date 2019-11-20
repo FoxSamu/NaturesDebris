@@ -3,7 +3,7 @@
  * All rights reserved. Do not distribute.
  * This file is part of the Modernity, and is licensed under the terms and conditions of RedGalaxy.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -65,6 +65,22 @@ public final class MathUtil {
      */
     public static double smooth( double t ) {
         return t * t * t * ( t * ( t * 6 - 15 ) + 10 );
+    }
+
+    /**
+     * Clamps the value <code>t</code> to the specified lower and upper bounds. This returns:
+     * <ul>
+     * <li><code>min</code> when <code>t < min</code></li>
+     * <li><code>max</code> when <code>t > max && t >= min</code></li>
+     * <li><code>t</code> when <code>t >= min && t <= max</code></li>
+     * </ul>
+     *
+     * @param t   The value to clamp
+     * @param min The lower bound
+     * @param max The upper bound
+     */
+    public static int clamp( int t, int min, int max ) {
+        return t < min ? min : t > max ? max : t;
     }
 
     /**

@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 18 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -22,9 +22,11 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TranslationTextComponent;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Predicate;
 
 @SuppressWarnings( "unchecked" )
 public class EnumArgumentType<T extends Enum & IStringSerializable> implements ArgumentType<T> {
@@ -36,7 +38,7 @@ public class EnumArgumentType<T extends Enum & IStringSerializable> implements A
     private final Object[] values;
     private final String[] names;
 
-    public EnumArgumentType( Class<T> cls ) {
+    private EnumArgumentType( Class<T> cls ) {
         if( cls == null ) {
             throw new NullPointerException( "Specified class is null" );
         }
@@ -45,6 +47,45 @@ public class EnumArgumentType<T extends Enum & IStringSerializable> implements A
         }
 
         values = cls.getEnumConstants();
+        names = new String[ values.length ];
+
+        for( int i = 0; i < values.length; i++ ) {
+            names[ i ] = ( (IStringSerializable) values[ i ] ).getName();
+        }
+    }
+
+    private EnumArgumentType( Class<T> cls, T... allowed ) {
+        if( cls == null ) {
+            throw new NullPointerException( "Specified class is null" );
+        }
+        if( ! cls.isEnum() ) {
+            throw new IllegalArgumentException( "Specified class is not an enum" );
+        }
+
+        values = allowed;
+        names = new String[ values.length ];
+
+        for( int i = 0; i < values.length; i++ ) {
+            names[ i ] = ( (IStringSerializable) values[ i ] ).getName();
+        }
+    }
+
+    private EnumArgumentType( Class<T> cls, Predicate<T> allowed ) {
+        if( cls == null ) {
+            throw new NullPointerException( "Specified class is null" );
+        }
+        if( ! cls.isEnum() ) {
+            throw new IllegalArgumentException( "Specified class is not an enum" );
+        }
+        ArrayList<T> list = new ArrayList<>();
+
+        for( T t : cls.getEnumConstants() ) {
+            if( allowed.test( t ) ) {
+                list.add( t );
+            }
+        }
+
+        values = list.toArray();
         names = new String[ values.length ];
 
         for( int i = 0; i < values.length; i++ ) {
@@ -89,6 +130,14 @@ public class EnumArgumentType<T extends Enum & IStringSerializable> implements A
 
     public static <T extends Enum & IStringSerializable> EnumArgumentType<T> enumerator( Class<T> cls ) {
         return new EnumArgumentType<>( cls );
+    }
+
+    public static <T extends Enum & IStringSerializable> EnumArgumentType<T> enumerator( Class<T> cls, T... allowed ) {
+        return new EnumArgumentType<>( cls, allowed );
+    }
+
+    public static <T extends Enum & IStringSerializable> EnumArgumentType<T> enumerator( Class<T> cls, Predicate<T> allowed ) {
+        return new EnumArgumentType<>( cls, allowed );
     }
 
     public static class Serializer implements IArgumentSerializer<EnumArgumentType<?>> {

@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -10,6 +10,7 @@ package modernity.common.biome;
 
 import modernity.api.util.IBlockProvider;
 import modernity.common.block.MDBlocks;
+import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.world.gen.feature.ClusterBushFeature;
 import modernity.common.world.gen.feature.GroupedBushFeature;
 import modernity.common.world.gen.feature.MDFeatures;
@@ -29,6 +30,7 @@ public class WaterlandsBiome extends ModernityBiome {
             new Builder()
                 .baseHeight( 0 ).heightVariation( 0 ).heightDifference( 2 )
                 .surfaceGen( new GrassSurfaceGenerator() )
+                .precipitation( IPrecipitationFunction.swampy() )
         );
 
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.GROUPED_BUSH, new GroupedBushFeature.Config( 3, 5, 4, MDBlocks.REEDS ), Placement.COUNT_TOP_SOLID, new FrequencyConfig( 1 ) ) );

@@ -2,21 +2,20 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 18 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
 package modernity.common.environment.event.impl;
 
 import modernity.api.util.Ticks;
+import modernity.common.environment.event.EffectingEnvEvent;
 import modernity.common.environment.event.EnvironmentEventManager;
 import modernity.common.environment.event.MDEnvEvents;
-import modernity.common.environment.event.ScheduledEnvEvent;
 import net.minecraft.nbt.CompoundNBT;
 
-public class CloudlessEnvEvent extends ScheduledEnvEvent {
+public class CloudlessEnvEvent extends EffectingEnvEvent {
     private float cloudAmount;
-    private float effect;
 
     public CloudlessEnvEvent( EnvironmentEventManager manager ) {
         super( MDEnvEvents.CLOUDLESS, manager );
@@ -24,10 +23,6 @@ public class CloudlessEnvEvent extends ScheduledEnvEvent {
 
     public float getCloudAmount() {
         return cloudAmount;
-    }
-
-    public float getEffect() {
-        return effect;
     }
 
     @Override
@@ -56,29 +51,11 @@ public class CloudlessEnvEvent extends ScheduledEnvEvent {
     public void write( CompoundNBT nbt ) {
         super.write( nbt );
         nbt.putFloat( "cloudAmount", cloudAmount );
-        nbt.putFloat( "effect", effect );
     }
 
     @Override
     public void read( CompoundNBT nbt ) {
         super.read( nbt );
         cloudAmount = nbt.getFloat( "cloudAmount" );
-        effect = nbt.getFloat( "effect" );
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        if( isActive() ) {
-            effect += 0.002;
-            if( effect > 1 ) {
-                effect = 1;
-            }
-        } else {
-            effect -= 0.002;
-            if( effect < 0 ) {
-                effect = 0;
-            }
-        }
     }
 }

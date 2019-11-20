@@ -2,12 +2,13 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
 package modernity.common.biome;
 
+import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.world.gen.surface.ISurfaceGenerator;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
@@ -25,6 +26,7 @@ public abstract class ModernityBiome extends Biome {
     private final float blendWeight;
     private final float waterFogDensity;
     private final ISurfaceGenerator<?> surfaceGen;
+    private final IPrecipitationFunction precipitationFunction;
 
     protected ModernityBiome( Builder builder ) {
         super( builder.vanilla() );
@@ -34,6 +36,9 @@ public abstract class ModernityBiome extends Biome {
         blendWeight = builder.blendWeight;
         waterFogDensity = builder.waterFogDensity;
         surfaceGen = builder.surfaceGen;
+        precipitationFunction = builder.precipitationFunction;
+        if( precipitationFunction == null )
+            throw new NullPointerException( "Null precipitation function" );
     }
 
     /**
@@ -72,6 +77,13 @@ public abstract class ModernityBiome extends Biome {
     }
 
     /**
+     * Returns the {@link IPrecipitationFunction} that determines the precipitation in this biome.
+     */
+    public IPrecipitationFunction getPrecipitationFunction() {
+        return precipitationFunction;
+    }
+
+    /**
      * Returns the surface generator of this biome
      */
     @SuppressWarnings( "unchecked" )
@@ -90,6 +102,8 @@ public abstract class ModernityBiome extends Biome {
         private float heightDifference;
         private float blendWeight = 1;
         private float waterFogDensity;
+
+        private IPrecipitationFunction precipitationFunction;
 
         private ISurfaceGenerator<?> surfaceGen;
 
@@ -129,6 +143,11 @@ public abstract class ModernityBiome extends Biome {
 
         public Builder surfaceGen( ISurfaceGenerator<?> value ) {
             this.surfaceGen = value;
+            return this;
+        }
+
+        public Builder precipitation( IPrecipitationFunction value ) {
+            this.precipitationFunction = value;
             return this;
         }
 

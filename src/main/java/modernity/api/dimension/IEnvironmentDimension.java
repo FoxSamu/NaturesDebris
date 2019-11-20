@@ -2,13 +2,14 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
 package modernity.api.dimension;
 
 import modernity.client.environment.Fog;
+import modernity.client.environment.Precipitation;
 import modernity.client.environment.Sky;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -20,4 +21,5 @@ public interface IEnvironmentDimension {
     @OnlyIn( Dist.CLIENT )
     void updateFog( Fog fog );
     void updateSky( Sky sky );
+    void updatePrecipitation( Precipitation prec );
 }

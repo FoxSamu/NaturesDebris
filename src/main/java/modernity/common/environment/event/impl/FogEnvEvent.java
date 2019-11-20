@@ -2,21 +2,20 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 18 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
 package modernity.common.environment.event.impl;
 
 import modernity.api.util.Ticks;
+import modernity.common.environment.event.EffectingEnvEvent;
 import modernity.common.environment.event.EnvironmentEventManager;
 import modernity.common.environment.event.MDEnvEvents;
-import modernity.common.environment.event.ScheduledEnvEvent;
 import net.minecraft.nbt.CompoundNBT;
 
-public class FogEnvEvent extends ScheduledEnvEvent {
+public class FogEnvEvent extends EffectingEnvEvent {
     private float density;
-    private float effect;
 
     public FogEnvEvent( EnvironmentEventManager manager ) {
         super( MDEnvEvents.FOG, manager );
@@ -24,10 +23,6 @@ public class FogEnvEvent extends ScheduledEnvEvent {
 
     public float getDensity() {
         return density;
-    }
-
-    public float getEffect() {
-        return effect;
     }
 
     @Override
@@ -55,29 +50,11 @@ public class FogEnvEvent extends ScheduledEnvEvent {
     public void write( CompoundNBT nbt ) {
         super.write( nbt );
         nbt.putFloat( "density", density );
-        nbt.putFloat( "effect", effect );
     }
 
     @Override
     public void read( CompoundNBT nbt ) {
         super.read( nbt );
         density = nbt.getFloat( "density" );
-        effect = nbt.getFloat( "effect" );
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        if( isActive() ) {
-            effect += 0.002;
-            if( effect > 1 ) {
-                effect = 1;
-            }
-        } else {
-            effect -= 0.002;
-            if( effect < 0 ) {
-                effect = 0;
-            }
-        }
     }
 }

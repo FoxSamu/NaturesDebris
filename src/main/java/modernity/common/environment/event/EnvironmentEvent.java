@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 18 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -21,6 +21,8 @@ public abstract class EnvironmentEvent {
     private final EnvironmentEventType type;
     private final EnvironmentEventManager manager;
     private boolean active;
+
+    private boolean enabled = true;
 
     public EnvironmentEvent( EnvironmentEventType type, EnvironmentEventManager manager ) {
         this.type = type;
@@ -116,6 +118,32 @@ public abstract class EnvironmentEvent {
 
     }
 
+    protected void onEnable() {
+
+    }
+
+    protected void onDisable() {
+        stop();
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled( boolean enabled ) {
+        this.enabled = enabled;
+        if( enabled ) onEnable();
+        else onDisable();
+    }
+
+    public void enable() {
+        setEnabled( true );
+    }
+
+    public void disable() {
+        setEnabled( false );
+    }
+
     /**
      * Writes this event to the specified NBT tag.
      */
@@ -131,7 +159,7 @@ public abstract class EnvironmentEvent {
      * invocations on, instead of using {@code this}. Because a dummy event is used to build the commands, {@code this}
      * will reference the dummy event and not the actual event.
      */
-    protected static <T extends EnvironmentEvent> T getFromCommand( CommandContext<CommandSource> ctx, EnvironmentEventType type ) {
+    public static <T extends EnvironmentEvent> T getFromCommand( CommandContext<CommandSource> ctx, EnvironmentEventType type ) {
         return getFromCommand( ctx.getSource(), type );
     }
 
@@ -140,7 +168,7 @@ public abstract class EnvironmentEvent {
      * invocations on, instead of using {@code this}. Because a dummy event is used to build the commands, {@code this}
      * will reference the dummy event and not the actual event.
      */
-    protected static <T extends EnvironmentEvent> T getFromCommand( CommandSource src, EnvironmentEventType type ) {
+    public static <T extends EnvironmentEvent> T getFromCommand( CommandSource src, EnvironmentEventType type ) {
         World world = src.getWorld();
         if( world.dimension instanceof IEnvEventsDimension ) {
             return ( (IEnvEventsDimension) world.dimension ).getEnvEventManager().getByType( type );

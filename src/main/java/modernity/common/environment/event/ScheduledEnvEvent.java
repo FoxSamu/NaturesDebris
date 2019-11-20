@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 18 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -37,7 +37,7 @@ import java.util.Random;
  * Implementations can define how long an event is in a specific phase and can jump between phases if necessary.
  */
 public abstract class ScheduledEnvEvent extends EnvironmentEvent {
-    private static final String TK_STATUS = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:event.schedule.status" ) );
+    protected static final String TK_STATUS = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:event.schedule.status" ) );
 
     private Phase phase;
     private int timeInPhase;
@@ -216,6 +216,11 @@ public abstract class ScheduledEnvEvent extends EnvironmentEvent {
         phase = Phase.values()[ nbt.getByte( "phase" ) ];
         timeInPhase = nbt.getInt( "ticks" );
         maxTimeInPhase = nbt.getInt( "max" );
+    }
+
+    @Override
+    protected void onDisable() {
+        setPhase( Phase.INACTIVE );
     }
 
     public static void buildCommand( ArrayList<ArgumentBuilder<CommandSource, ?>> list, EnvironmentEventType type ) {

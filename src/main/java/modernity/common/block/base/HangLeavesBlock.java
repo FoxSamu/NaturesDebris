@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -41,7 +41,7 @@ public class HangLeavesBlock extends LeavesBlock {
     public HangLeavesBlock( Tag<Block> logTag, Block.Properties properties ) {
         super( properties );
         this.logTag = logTag;
-        setDefaultState( stateContainer.getBaseState().with( DISTANCE, MAX_DIST ) );
+        setDefaultState( getStateContainer().getBaseState().with( DISTANCE, MAX_DIST ) );
     }
 
     @Override

@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -11,6 +11,7 @@ package modernity.common.biome;
 import modernity.api.util.BlockPredicates;
 import modernity.api.util.IBlockProvider;
 import modernity.common.block.MDBlocks;
+import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.world.gen.feature.*;
 import modernity.common.world.gen.surface.HumusSurfaceGenerator;
 import net.minecraft.world.gen.GenerationStage;
@@ -29,6 +30,7 @@ public class ForestBiome extends ModernityBiome {
             new Builder()
                 .baseHeight( 4 ).heightVariation( 6 ).heightDifference( 3 )
                 .surfaceGen( new HumusSurfaceGenerator() )
+                .precipitation( IPrecipitationFunction.standard() )
         );
 
         addFeature( GenerationStage.Decoration.LOCAL_MODIFICATIONS, createDecoratedFeature( MDFeatures.LAKE, new LakeFeature.Config( MDBlocks.MODERNIZED_WATER, null, null, MDBlocks.DARK_GRASS_BLOCK ), Placement.WATER_LAKE, new LakeChanceConfig( 5 ) ) );

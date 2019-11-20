@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 18 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -10,13 +10,16 @@ package modernity.common.world.dimen;
 
 import modernity.api.dimension.*;
 import modernity.client.environment.Fog;
+import modernity.client.environment.Precipitation;
 import modernity.client.environment.Sky;
 import modernity.common.environment.event.EnvironmentEventManager;
 import modernity.common.environment.event.MDEnvEvents;
 import modernity.common.environment.event.impl.CloudlessEnvEvent;
 import modernity.common.environment.event.impl.CloudsEnvEvent;
 import modernity.common.environment.event.impl.FogEnvEvent;
+import modernity.common.environment.event.impl.PrecipitationEnvEvent;
 import modernity.common.environment.satellite.SatelliteData;
+import modernity.common.handler.WorldTickHandler;
 import modernity.common.world.gen.MDSurfaceChunkGenerator;
 import modernity.common.world.gen.MDSurfaceGenSettings;
 import modernity.common.world.gen.biome.MDSurfaceBiomeProvider;
@@ -138,6 +141,17 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
 
     @Override
     public boolean canDoRainSnowIce( Chunk chunk ) {
+        if( world instanceof ServerWorld ) {
+            WorldTickHandler.INSTANCE.doRainSnowIce( (ServerWorld) world, chunk, getEnvEventManager() );
+        }
+        return false;
+    }
+
+    @Override
+    public boolean canDoLightning( Chunk chunk ) {
+        if( world instanceof ServerWorld ) {
+            WorldTickHandler.INSTANCE.doLightning( (ServerWorld) world, chunk, getEnvEventManager() );
+        }
         return false;
     }
 
@@ -167,7 +181,8 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
             updateInterval, world,
             MDEnvEvents.FOG,
             MDEnvEvents.CLOUDS,
-            MDEnvEvents.CLOUDLESS
+            MDEnvEvents.CLOUDLESS,
+            MDEnvEvents.PRECIPITATION
         );
     }
 
@@ -185,10 +200,22 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
 
         EnvironmentEventManager envManager = getEnvEventManager();
 
+        PrecipitationEnvEvent precEv = envEventManager.getByType( MDEnvEvents.PRECIPITATION );
+        float precFac = precEv.getEffect();
+        if( precFac > 0 ) {
+            float fogDens = precEv.getLevel() * 0.006F + 0.01F;
+            float density = MathUtil.lerp( fog.density, fogDens, precFac );
+            if( density > fog.density ) fog.density = density;
+            fog.color[ 0 ] = MathUtil.lerp( fog.color[ 0 ], 0.15F, precFac );
+            fog.color[ 1 ] = MathUtil.lerp( fog.color[ 1 ], 0.15F, precFac );
+            fog.color[ 2 ] = MathUtil.lerp( fog.color[ 2 ], 0.15F, precFac );
+        }
+
+
         FogEnvEvent fogEv = envManager.getByType( MDEnvEvents.FOG );
         float fogFac = fogEv.getEffect();
-        float fogDens = fogEv.getDensity();
         if( fogFac > 0 ) {
+            float fogDens = fogEv.getDensity();
             float density = MathUtil.lerp( fog.density, fogDens, fogFac );
             if( density > fog.density ) fog.density = density;
             fog.color[ 0 ] = MathUtil.lerp( fog.color[ 0 ], 0.3F, fogFac );
@@ -234,6 +261,19 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
             sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], 15 / 255F, cloudlessFac );
         }
 
+        PrecipitationEnvEvent precEv = envEventManager.getByType( MDEnvEvents.PRECIPITATION );
+        float precFac = precEv.getEffect();
+        if( precFac > 0 ) {
+            sky.twilightBrightness = MathUtil.lerp( sky.twilightBrightness, 0.1F, precFac );
+            sky.starBrightness = MathUtil.lerp( sky.starBrightness, 0.0F, precFac );
+            sky.moonBrightness = MathUtil.lerp( sky.moonBrightness, 0.1F, precFac );
+            sky.backlightBrightness = MathUtil.lerp( sky.backlightBrightness, 0.5F, precFac );
+            sky.skylightBrightness = MathUtil.lerp( sky.skylightBrightness, 0.3F, precFac );
+            sky.backlightColor[ 0 ] = MathUtil.lerp( sky.backlightColor[ 0 ], 0.15F, precFac );
+            sky.backlightColor[ 1 ] = MathUtil.lerp( sky.backlightColor[ 1 ], 0.15F, precFac );
+            sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], 0.15F, precFac );
+        }
+
         FogEnvEvent fogEv = envManager.getByType( MDEnvEvents.FOG );
         float fogFac = fogEv.getEffect();
         if( fogFac > 0 ) {
@@ -260,6 +300,20 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
             sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], 0.15F, cloudsFac * backlightLerp );
             sky.moonBrightness = MathUtil.lerp( sky.moonBrightness, moonBrightness, cloudsFac );
             sky.starBrightness = MathUtil.lerp( sky.starBrightness, starBrightness, cloudsFac );
+        }
+    }
+
+    @Override
+    public void updatePrecipitation( Precipitation prec ) {
+        prec.level = 0;
+        prec.strength = 0;
+
+        PrecipitationEnvEvent precEv = envEventManager.getByType( MDEnvEvents.PRECIPITATION );
+        float precFac = precEv.getEffect();
+        int precLv = precEv.getLevel();
+        if( precFac > 0 && precLv > 0 ) {
+            prec.level = precLv;
+            prec.strength = precFac;
         }
     }
 

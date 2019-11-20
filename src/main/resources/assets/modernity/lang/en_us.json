@@ -222,6 +222,18 @@
   "command.modernity.event.schedule.status.active": "Environment event %1$s is active for %2$s out of %3$s ticks.",
   "command.modernity.event.schedule.status.cooldown": "Environment event %1$s is cooling down for %2$s out of %3$s ticks.",
 
+  "command.modernity.event.precipitation.status.inactive": "Environment event %1$s is inactive for %2$s out of %3$s ticks.",
+  "command.modernity.event.precipitation.status.waiting": "Environment event %1$s is waiting for something for %2$s out of %3$s ticks.",
+  "command.modernity.event.precipitation.status.active.light": "Environment event %1$s is active for %2$s out of %3$s ticks. Light precipitation, no thunderstorm.",
+  "command.modernity.event.precipitation.status.active.moderate": "Environment event %1$s is active for %2$s out of %3$s ticks. Moderate precipitation, no thunderstorm.",
+  "command.modernity.event.precipitation.status.active.reasonable": "Environment event %1$s is active for %2$s out of %3$s ticks. Reasonable precipitation, no thunderstorm.",
+  "command.modernity.event.precipitation.status.active.heavy": "Environment event %1$s is active for %2$s out of %3$s ticks. Heavy precipitation, no thunderstorm.",
+  "command.modernity.event.precipitation.status.active.light.thunder": "Environment event %1$s is active for %2$s out of %3$s ticks. Light precipitation, with thunderstorm.",
+  "command.modernity.event.precipitation.status.active.moderate.thunder": "Environment event %1$s is active for %2$s out of %3$s ticks. Moderate precipitation, with thunderstorm.",
+  "command.modernity.event.precipitation.status.active.reasonable.thunder": "Environment event %1$s is active for %2$s out of %3$s ticks. Reasonable precipitation, with thunderstorm.",
+  "command.modernity.event.precipitation.status.active.heavy.thunder": "Environment event %1$s is active for %2$s out of %3$s ticks. Heavy precipitation, with thunderstorm.",
+  "command.modernity.event.precipitation.status.cooldown": "Environment event %1$s is cooling down for %2$s out of %3$s ticks.",
+
   "entity.modernity.fall_block": "Falling Block (Modernity)",
 
   "biome.modernity.forest": "Modern Forest",

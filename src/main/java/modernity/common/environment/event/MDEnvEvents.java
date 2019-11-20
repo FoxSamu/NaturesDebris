@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 18 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -12,6 +12,7 @@ import com.mojang.brigadier.builder.ArgumentBuilder;
 import modernity.common.environment.event.impl.CloudlessEnvEvent;
 import modernity.common.environment.event.impl.CloudsEnvEvent;
 import modernity.common.environment.event.impl.FogEnvEvent;
+import modernity.common.environment.event.impl.PrecipitationEnvEvent;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.command.CommandSource;
@@ -31,6 +32,7 @@ public final class MDEnvEvents {
     public static final EnvironmentEventType FOG = register( "fog", FogEnvEvent::new, ScheduledEnvEvent::buildCommand );
     public static final EnvironmentEventType CLOUDS = register( "clouds", CloudsEnvEvent::new, ScheduledEnvEvent::buildCommand );
     public static final EnvironmentEventType CLOUDLESS = register( "cloudless", CloudlessEnvEvent::new, ScheduledEnvEvent::buildCommand );
+    public static final EnvironmentEventType PRECIPITATION = register( "precipitation", PrecipitationEnvEvent::new, PrecipitationEnvEvent::buildCommand );
 
     private static EnvironmentEventType register( String id, Function<EnvironmentEventManager, EnvironmentEvent> factory, BiConsumer<ArrayList<ArgumentBuilder<CommandSource, ?>>, EnvironmentEventType> commandFactory ) {
         return ENTRIES.register( id, new EnvironmentEventType( factory, commandFactory ) );

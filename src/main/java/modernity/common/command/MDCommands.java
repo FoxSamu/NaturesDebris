@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 18 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -49,6 +49,7 @@ public final class MDCommands {
 
         TPDimCommand.createCommand( commandList );
         EventsCommand.createCommand( commandList );
+        SatelliteCommand.createCommand( commandList );
         MinecraftForge.EVENT_BUS.post( new ModernityCommandSetupEvent( commandList ) );
         register( "modernity", dispatcher, commandList );
         register( "md", dispatcher, commandList );

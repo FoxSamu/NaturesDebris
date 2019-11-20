@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -94,7 +94,9 @@ public class EnvironmentEventManager extends WorldSavedData {
     public void tick() {
         markDirty();
         for( EnvironmentEvent event : events ) {
-            event.tick();
+            if( event.isEnabled() ) {
+                event.tick();
+            }
         }
         if( updateInterval < 0 ) return;
 
@@ -125,6 +127,7 @@ public class EnvironmentEventManager extends WorldSavedData {
                 CompoundNBT eventNBT = nbt.getCompound( key );
                 event.read( eventNBT );
                 event.setActive( eventNBT.getBoolean( "active" ) );
+                event.setEnabled( ! eventNBT.contains( "enabled", 1 ) || eventNBT.getBoolean( "enabled" ) );
             }
         }
     }
@@ -137,6 +140,7 @@ public class EnvironmentEventManager extends WorldSavedData {
             CompoundNBT eventNBT = new CompoundNBT();
             event.write( eventNBT );
             eventNBT.putBoolean( "active", event.isActive() );
+            eventNBT.putBoolean( "enabled", event.isEnabled() );
 
             nbt.put( type.getRegistryName() + "", eventNBT );
         }

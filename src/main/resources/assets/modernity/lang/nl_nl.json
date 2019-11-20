@@ -218,6 +218,18 @@
   "command.modernity.event.schedule.status.active": "Omgevingsgebeurtenis %1$s is actief voor %2$s van de %3$s ticks.",
   "command.modernity.event.schedule.status.cooldown": "Omgevingsgebeurtenis %1$s is aan het afkoelen voor %2$s van de %3$s ticks.",
 
+  "command.modernity.event.precipitation.status.inactive": "Omgevingsgebeurtenis %1$s is inactief voor %2$s van de %3$s ticks.",
+  "command.modernity.event.precipitation.status.waiting": "Omgevingsgebeurtenis %1$s wacht op iets voor %2$s van de %3$s ticks.",
+  "command.modernity.event.precipitation.status.active.light": "Omgevingsgebeurtenis %1$s is actief voor %2$s van de %3$s ticks. Lichte neerslag, geen onweer.",
+  "command.modernity.event.precipitation.status.active.moderate": "Omgevingsgebeurtenis %1$s is actief voor %2$s van de %3$s ticks. Gematigde neerslag, geen onweer.",
+  "command.modernity.event.precipitation.status.active.reasonable": "Omgevingsgebeurtenis %1$s is actief voor %2$s van de %3$s ticks. Behoorlijke neerslag, geen onweer.",
+  "command.modernity.event.precipitation.status.active.heavy": "Omgevingsgebeurtenis %1$s is actief voor %2$s van de %3$s ticks. Extreme neerslag, geen onweer.",
+  "command.modernity.event.precipitation.status.active.light.thunder": "Omgevingsgebeurtenis %1$s is actief voor %2$s van de %3$s ticks. Lichte neerslag met onweer.",
+  "command.modernity.event.precipitation.status.active.moderate.thunder": "Omgevingsgebeurtenis %1$s is actief voor %2$s van de %3$s ticks. Gematigde neerslag met onweer.",
+  "command.modernity.event.precipitation.status.active.reasonable.thunder": "Omgevingsgebeurtenis %1$s is actief voor %2$s van de %3$s ticks. Behoorlijke neerslag met onweer.",
+  "command.modernity.event.precipitation.status.active.heavy.thunder": "Omgevingsgebeurtenis %1$s is actief voor %2$s van de %3$s ticks. Extreme neerslag met onweer.",
+  "command.modernity.event.precipitation.status.cooldown": "Omgevingsgebeurtenis %1$s is aan het afkoelen voor %2$s van de %3$s ticks.",
+
   "entity.modernity.fall_block": "Vallend Blok (Modernity)",
 
   "biome.modernity.forest": "Modern Bos",

@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -11,6 +11,7 @@ package modernity.common.particle;
 import com.google.common.reflect.TypeToken;
 import modernity.client.particle.DripParticle;
 import modernity.client.particle.LeafParticle;
+import modernity.client.particle.PrecipitationParticle;
 import modernity.client.particle.SaltParticle;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
@@ -32,6 +33,8 @@ public final class MDParticleTypes {
     public static final BasicParticleType OIL_DRIPPING = register( "oil_dripping", new BasicParticleType( false ) );
     public static final BasicParticleType OIL_FALLING = register( "oil_falling", new BasicParticleType( false ) );
     public static final BasicParticleType OIL_LANDING = register( "oil_landing", new BasicParticleType( false ) );
+    public static final BasicParticleType RAIN = register( "rain", new BasicParticleType( false ) );
+    public static final BasicParticleType HAIL = register( "hail", new BasicParticleType( false ) );
 
     private static <T extends ParticleType<?>> T register( String id, T type, String... aliases ) {
         return ENTRIES.register( id, type, aliases );
@@ -52,6 +55,8 @@ public final class MDParticleTypes {
         manager.registerFactory( OIL_DRIPPING, DripParticle.Oil.DrippingFactory::new );
         manager.registerFactory( OIL_FALLING, DripParticle.Oil.FallingFactory::new );
         manager.registerFactory( OIL_LANDING, DripParticle.Oil.LandingFactory::new );
+        manager.registerFactory( RAIN, PrecipitationParticle.DripFactory::new );
+        manager.registerFactory( HAIL, PrecipitationParticle.HailFactory::new );
     }
 
     private MDParticleTypes() {

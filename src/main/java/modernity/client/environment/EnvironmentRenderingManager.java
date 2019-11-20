@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -14,6 +14,7 @@ package modernity.client.environment;
 public final class EnvironmentRenderingManager {
     public static final Fog FOG = new Fog();
     public static final Sky SKY = new Sky();
+    public static final Precipitation PRECIPITATION = new Precipitation();
 
     private EnvironmentRenderingManager() {
     }

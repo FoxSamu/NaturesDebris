@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -21,7 +21,6 @@ public enum ParticleRegistryHandler {
 
     @SubscribeEvent
     public void registerParticleFactories( ParticleFactoryRegisterEvent event ) {
-        System.out.println( "Registering particle factories" );
         MDParticleTypes.setupFactories( Minecraft.getInstance().particles );
     }
 }

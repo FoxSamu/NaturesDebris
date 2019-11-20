@@ -1,4 +1,5 @@
 {
   "renderblock": "core/renderblock.js",
-  "checkinwater": "core/checkinwater.js"
+  "checkinwater": "core/checkinwater.js",
+  "syncheightmaps": "core/syncheightmaps.js"
 }

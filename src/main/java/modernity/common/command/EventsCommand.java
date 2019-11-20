@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 18 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -49,6 +49,7 @@ public final class EventsCommand {
 
             ArrayList<ArgumentBuilder<CommandSource, ?>> evlist = new ArrayList<>();
             type.buildCommand( evlist );
+            buildDefaultCommand( evlist, type );
 
             // Don't build command if event does not provide a command implementation...
             if( evlist.isEmpty() ) continue;
@@ -63,8 +64,27 @@ public final class EventsCommand {
         list.add( cmd );
     }
 
+    private static void buildDefaultCommand( ArrayList<ArgumentBuilder<CommandSource, ?>> list, EnvironmentEventType type ) {
+        list.add(
+            Commands.literal( "disable" )
+                    .executes( ctx -> {
+                        EnvironmentEvent ev = EnvironmentEvent.getFromCommand( ctx, type );
+                        ev.disable();
+                        return 0;
+                    } )
+        );
+        list.add(
+            Commands.literal( "enable" )
+                    .executes( ctx -> {
+                        EnvironmentEvent ev = EnvironmentEvent.getFromCommand( ctx, type );
+                        ev.enable();
+                        return 0;
+                    } )
+        );
+    }
+
     private static boolean checkSource( CommandSource src ) {
-        return src.getWorld().dimension instanceof IEnvEventsDimension;
+        return src.getWorld().dimension instanceof IEnvEventsDimension && src.hasPermissionLevel( 2 );
     }
 
     private static boolean checkSource( CommandSource src, EnvironmentEventType type ) {

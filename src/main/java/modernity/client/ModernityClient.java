@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 20 - 2019
  * Author: rgsw
  */
 
@@ -13,13 +13,14 @@ import modernity.api.dimension.IClientTickingDimension;
 import modernity.client.colormap.ColorMap;
 import modernity.client.handler.FogHandler;
 import modernity.client.handler.ParticleRegistryHandler;
-import modernity.client.handler.WorldRenderHandler;
 import modernity.client.handler.TextureStitchHandler;
+import modernity.client.handler.WorldRenderHandler;
 import modernity.client.reloader.BiomeColorProfileReloader;
 import modernity.client.render.area.AreaRenderManager;
 import modernity.client.render.block.CustomFluidRenderer;
 import modernity.client.render.environment.SurfaceCloudRenderer;
 import modernity.client.render.environment.SurfaceSkyRenderer;
+import modernity.client.render.environment.SurfaceWeatherRenderer;
 import modernity.common.Modernity;
 import modernity.common.area.MDAreas;
 import modernity.common.area.core.ClientWorldAreaManager;
@@ -134,6 +135,7 @@ public class ModernityClient extends Modernity {
             if( dimen instanceof MDSurfaceDimension ) {
                 dimen.setSkyRenderer( new SurfaceSkyRenderer( lastWorldSeed ) );
                 dimen.setCloudRenderer( new SurfaceCloudRenderer() );
+                dimen.setWeatherRenderer( new SurfaceWeatherRenderer() );
             }
         }
     }
