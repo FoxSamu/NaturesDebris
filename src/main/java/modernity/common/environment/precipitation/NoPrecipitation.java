@@ -69,4 +69,9 @@ public class NoPrecipitation implements IPrecipitation {
     public void blockUpdate( World world, BlockPos pos ) {
 
     }
+
+    @Override
+    public boolean isNone() {
+        return true;
+    }
 }

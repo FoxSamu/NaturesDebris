@@ -53,4 +53,8 @@ public interface IPrecipitation {
     default int getHeight( World world, int x, int z ) {
         return world.getHeight( Heightmap.Type.MOTION_BLOCKING, x, z );
     }
+
+    default boolean isNone() {
+        return false;
+    }
 }

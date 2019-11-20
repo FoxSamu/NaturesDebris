@@ -12,12 +12,15 @@ import modernity.api.dimension.*;
 import modernity.client.environment.Fog;
 import modernity.client.environment.Precipitation;
 import modernity.client.environment.Sky;
+import modernity.common.biome.ModernityBiome;
 import modernity.common.environment.event.EnvironmentEventManager;
 import modernity.common.environment.event.MDEnvEvents;
 import modernity.common.environment.event.impl.CloudlessEnvEvent;
 import modernity.common.environment.event.impl.CloudsEnvEvent;
 import modernity.common.environment.event.impl.FogEnvEvent;
 import modernity.common.environment.event.impl.PrecipitationEnvEvent;
+import modernity.common.environment.precipitation.IPrecipitation;
+import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.environment.satellite.SatelliteData;
 import modernity.common.handler.WorldTickHandler;
 import modernity.common.world.gen.MDSurfaceChunkGenerator;
@@ -43,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  * The surface dimension of the Modernity.
  */
-public class MDSurfaceDimension extends Dimension implements IEnvironmentDimension, ISatelliteDimension, IEnvEventsDimension, IClientTickingDimension, IInitializeDimension {
+public class MDSurfaceDimension extends Dimension implements IEnvironmentDimension, ISatelliteDimension, IEnvEventsDimension, IClientTickingDimension, IInitializeDimension, IPrecipitationDimension {
 
     private SatelliteData satelliteData;
     private EnvironmentEventManager envEventManager;
@@ -164,6 +167,8 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
     public void tick() {
         getSatelliteData().tick();
         getEnvEventManager().tick();
+
+        world.setThunderStrength( 0 );
     }
 
     @Override
@@ -320,5 +325,26 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
     @Override
     public void tickClient() {
         tick();
+    }
+
+    @Override
+    public boolean isRaining() {
+        PrecipitationEnvEvent precEv = envEventManager.getByType( MDEnvEvents.PRECIPITATION );
+        return precEv.getLevel() > 0 && precEv.getEffect() > 0.2;
+    }
+
+    @Override
+    public boolean isRainingAt( BlockPos pos ) {
+        PrecipitationEnvEvent precEv = envEventManager.getByType( MDEnvEvents.PRECIPITATION );
+        ModernityBiome biome = (ModernityBiome) world.getBiome( pos );
+        IPrecipitationFunction func = biome.getPrecipitationFunction();
+        IPrecipitation prec = func.computePrecipitation( precEv.getLevel() );
+        if( precEv.getEffect() <= 0.2 ) {
+            return false;
+        } else if( prec.getHeight( world, pos.getX(), pos.getZ() ) > pos.getY() ) {
+            return false;
+        } else {
+            return ! prec.isNone();
+        }
     }
 }

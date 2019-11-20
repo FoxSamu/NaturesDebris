@@ -98,6 +98,12 @@ public class PrecipitationEnvEvent extends EffectingEnvEvent {
         thunderstorm = nbt.getBoolean( "thunder" );
     }
 
+    @Override
+    protected void onDisable() {
+        level = 0;
+        thunderstorm = false;
+    }
+
     public static void buildCommand( ArrayList<ArgumentBuilder<CommandSource, ?>> list, EnvironmentEventType type ) {
         list.add(
             Commands.literal( "restart" )

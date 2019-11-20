@@ -97,4 +97,9 @@ public enum EDefaultPrecipitation implements IPrecipitation {
     public int getHeight( World world, int x, int z ) {
         return wrapped.getHeight( world, x, z );
     }
+
+    @Override
+    public boolean isNone() {
+        return wrapped.isNone();
+    }
 }
