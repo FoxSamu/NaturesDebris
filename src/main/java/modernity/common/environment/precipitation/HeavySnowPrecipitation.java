@@ -95,6 +95,7 @@ public class HeavySnowPrecipitation implements IPrecipitation {
     }
 
     private boolean doesSnowGenerate( World world, BlockPos pos ) {
+        if( ! world.isAreaLoaded( pos, 1 ) ) return false;
         if( pos.getY() >= 0 && pos.getY() < 256 && world.getLightFor( LightType.BLOCK, pos ) < 10 ) {
             BlockState state = world.getBlockState( pos );
             boolean canReplace = state.isAir( world, pos ) || state.getBlock() == Blocks.SNOW && state.get( SnowBlock.LAYERS ) < 4;

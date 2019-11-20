@@ -78,6 +78,7 @@ public class SnowPrecipitation implements IPrecipitation {
 
     @Override
     public void blockUpdate( World world, BlockPos pos ) {
+        if( world.rand.nextInt( 2 ) != 0 ) return;
         BlockPos heightPos = new BlockPos( pos.getX(), getHeight( world, pos.getX(), pos.getZ() ), pos.getZ() );
 
         if( doesSnowGenerate( world, heightPos ) ) {
@@ -86,6 +87,7 @@ public class SnowPrecipitation implements IPrecipitation {
     }
 
     private boolean doesSnowGenerate( World world, BlockPos pos ) {
+        if( ! world.isAreaLoaded( pos, 1 ) ) return false;
         if( pos.getY() >= 0 && pos.getY() < 256 && world.getLightFor( LightType.BLOCK, pos ) < 10 ) {
             BlockState state = world.getBlockState( pos );
             return state.isAir( world, pos ) && Blocks.SNOW.getDefaultState().isValidPosition( world, pos );

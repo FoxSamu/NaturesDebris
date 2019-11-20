@@ -19,13 +19,10 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
 
-import java.util.HashSet;
-
 /**
  * Handles all common coremod hooks.
  */
 public final class Hooks {
-    private static final HashSet<Biome> STRUCTURE_BIOMES = new HashSet<>();
 
     private Hooks() {
     }
@@ -38,7 +35,7 @@ public final class Hooks {
     }
 
     public static boolean mustSyncHeightmap( Heightmap.Type type ) {
-        return true;
+        return type.func_222683_c();
     }
 
     public static boolean isMotionBlockingNoLeaves( BlockState block ) {
