@@ -2,23 +2,18 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   11 - 22 - 2019
  * Author: rgsw
  */
 
 package modernity.common.world.dimen;
 
 import modernity.api.dimension.*;
-import modernity.client.environment.Fog;
-import modernity.client.environment.Precipitation;
-import modernity.client.environment.Sky;
+import modernity.client.environment.*;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.environment.event.EnvironmentEventManager;
 import modernity.common.environment.event.MDEnvEvents;
-import modernity.common.environment.event.impl.CloudlessEnvEvent;
-import modernity.common.environment.event.impl.CloudsEnvEvent;
-import modernity.common.environment.event.impl.FogEnvEvent;
-import modernity.common.environment.event.impl.PrecipitationEnvEvent;
+import modernity.common.environment.event.impl.*;
 import modernity.common.environment.precipitation.IPrecipitation;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.environment.satellite.SatelliteData;
@@ -124,7 +119,7 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
 
     @Override
     public float getSunBrightness( float partialTicks ) {
-        return 0.15F;
+        return 1;// 0.15F;
     }
 
     @Override
@@ -187,13 +182,24 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
             MDEnvEvents.FOG,
             MDEnvEvents.CLOUDS,
             MDEnvEvents.CLOUDLESS,
-            MDEnvEvents.PRECIPITATION
+            MDEnvEvents.PRECIPITATION,
+            MDEnvEvents.SKYLIGHT
         );
     }
 
     @Override
     public DimensionType getRespawnDimension( ServerPlayerEntity player ) {
         return getType();
+    }
+
+    @Override
+    protected void generateLightBrightnessTable() {
+        LightUtil.genLightBrightnessTable( this.lightBrightnessTable, 4, 0, 1 );
+    }
+
+    @Override
+    public void getLightmapColors( float partialTicks, float sunBrightness, float skyLight, float blockLight, float[] colors ) {
+        LightUtil.updateLightColors( colors, partialTicks, sunBrightness, skyLight, blockLight );
     }
 
     @Override
@@ -226,6 +232,15 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
             fog.color[ 0 ] = MathUtil.lerp( fog.color[ 0 ], 0.3F, fogFac );
             fog.color[ 1 ] = MathUtil.lerp( fog.color[ 1 ], 0.3F, fogFac );
             fog.color[ 2 ] = MathUtil.lerp( fog.color[ 2 ], 0.3F, fogFac );
+        }
+
+        SkyLightEnvEvent skylightEv = getEnvEventManager().getByType( MDEnvEvents.SKYLIGHT );
+        float skylightFac = skylightEv.getEffect();
+        if( skylightFac > 0 ) {
+            SkyLightEnvEvent.Color color = skylightEv.getColor();
+            fog.color[ 0 ] = MathUtil.lerp( fog.color[ 0 ], color.r, skylightFac * 0.3F * fogFac );
+            fog.color[ 1 ] = MathUtil.lerp( fog.color[ 1 ], color.g, skylightFac * 0.3F * fogFac );
+            fog.color[ 2 ] = MathUtil.lerp( fog.color[ 2 ], color.b, skylightFac * 0.3F * fogFac );
         }
     }
 
@@ -306,14 +321,31 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
             sky.moonBrightness = MathUtil.lerp( sky.moonBrightness, moonBrightness, cloudsFac );
             sky.starBrightness = MathUtil.lerp( sky.starBrightness, starBrightness, cloudsFac );
         }
+
+        SkyLightEnvEvent skylightEv = envManager.getByType( MDEnvEvents.SKYLIGHT );
+        float skylightFac = skylightEv.getEffect();
+        if( skylightFac > 0 ) {
+            SkyLightEnvEvent.Color color = skylightEv.getColor();
+            sky.skylightColor[ 0 ] = MathUtil.lerp( sky.skylightColor[ 0 ], color.r, skylightFac );
+            sky.skylightColor[ 1 ] = MathUtil.lerp( sky.skylightColor[ 1 ], color.g, skylightFac );
+            sky.skylightColor[ 2 ] = MathUtil.lerp( sky.skylightColor[ 2 ], color.b, skylightFac );
+            sky.backlightColor[ 0 ] = MathUtil.lerp( sky.backlightColor[ 0 ], color.r, skylightFac * 0.2F );
+            sky.backlightColor[ 1 ] = MathUtil.lerp( sky.backlightColor[ 1 ], color.g, skylightFac * 0.2F );
+            sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], color.b, skylightFac * 0.2F );
+        }
+
+        if( world.getLastLightningBolt() > 0 ) {
+            sky.setBacklightColor( 0.6F, 0.6F, 0.6F );
+        }
     }
 
     @Override
+    @OnlyIn( Dist.CLIENT )
     public void updatePrecipitation( Precipitation prec ) {
         prec.level = 0;
         prec.strength = 0;
 
-        PrecipitationEnvEvent precEv = envEventManager.getByType( MDEnvEvents.PRECIPITATION );
+        PrecipitationEnvEvent precEv = getEnvEventManager().getByType( MDEnvEvents.PRECIPITATION );
         float precFac = precEv.getEffect();
         int precLv = precEv.getLevel();
         if( precFac > 0 && precLv > 0 ) {
@@ -323,6 +355,28 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
     }
 
     @Override
+    @OnlyIn( Dist.CLIENT )
+    public void updateLight( Light light ) {
+        light.setSky( 0.15, 0.15, 0.15 );
+        light.setAmbient( 0, 0, 0 );
+        light.setBlock( 1, 1, 1 );
+
+        SkyLightEnvEvent skylightEv = getEnvEventManager().getByType( MDEnvEvents.SKYLIGHT );
+        float skylightFac = skylightEv.getEffect();
+        if( skylightFac > 0 ) {
+            SkyLightEnvEvent.Color color = skylightEv.getColor();
+            light.sky[ 0 ] = MathUtil.lerp( light.sky[ 0 ], color.r * 0.15F + 0.55F, skylightFac );
+            light.sky[ 1 ] = MathUtil.lerp( light.sky[ 1 ], color.g * 0.15F + 0.55F, skylightFac );
+            light.sky[ 2 ] = MathUtil.lerp( light.sky[ 2 ], color.b * 0.15F + 0.55F, skylightFac );
+        }
+
+        if( world.getLastLightningBolt() > 0 ) {
+            light.setSky( 0.7, 0.7, 0.7 );
+        }
+    }
+
+    @Override
+    @OnlyIn( Dist.CLIENT )
     public void tickClient() {
         tick();
     }
