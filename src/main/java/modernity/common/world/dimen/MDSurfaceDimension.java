@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 22 - 2019
+ * Date:   11 - 23 - 2019
  * Author: rgsw
  */
 
@@ -194,7 +194,7 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
 
     @Override
     protected void generateLightBrightnessTable() {
-        LightUtil.genLightBrightnessTable( this.lightBrightnessTable, 4, 0, 1 );
+        LightUtil.genLightBrightnessTable( lightBrightnessTable, 3, 0, 1 );
     }
 
     @Override
@@ -238,9 +238,9 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
         float skylightFac = skylightEv.getEffect();
         if( skylightFac > 0 ) {
             SkyLightEnvEvent.Color color = skylightEv.getColor();
-            fog.color[ 0 ] = MathUtil.lerp( fog.color[ 0 ], color.r, skylightFac * 0.3F * fogFac );
-            fog.color[ 1 ] = MathUtil.lerp( fog.color[ 1 ], color.g, skylightFac * 0.3F * fogFac );
-            fog.color[ 2 ] = MathUtil.lerp( fog.color[ 2 ], color.b, skylightFac * 0.3F * fogFac );
+            fog.color[ 0 ] = MathUtil.lerp( fog.color[ 0 ], color.r, skylightFac * 0.1F * fogFac );
+            fog.color[ 1 ] = MathUtil.lerp( fog.color[ 1 ], color.g, skylightFac * 0.1F * fogFac );
+            fog.color[ 2 ] = MathUtil.lerp( fog.color[ 2 ], color.b, skylightFac * 0.1F * fogFac );
         }
     }
 
@@ -329,13 +329,18 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
             sky.skylightColor[ 0 ] = MathUtil.lerp( sky.skylightColor[ 0 ], color.r, skylightFac );
             sky.skylightColor[ 1 ] = MathUtil.lerp( sky.skylightColor[ 1 ], color.g, skylightFac );
             sky.skylightColor[ 2 ] = MathUtil.lerp( sky.skylightColor[ 2 ], color.b, skylightFac );
-            sky.backlightColor[ 0 ] = MathUtil.lerp( sky.backlightColor[ 0 ], color.r, skylightFac * 0.2F );
-            sky.backlightColor[ 1 ] = MathUtil.lerp( sky.backlightColor[ 1 ], color.g, skylightFac * 0.2F );
-            sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], color.b, skylightFac * 0.2F );
+            sky.backlightColor[ 0 ] = MathUtil.lerp( sky.backlightColor[ 0 ], color.r, skylightFac * 0.06F );
+            sky.backlightColor[ 1 ] = MathUtil.lerp( sky.backlightColor[ 1 ], color.g, skylightFac * 0.06F );
+            sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], color.b, skylightFac * 0.06F );
+            sky.twilightColor[ 0 ] = MathUtil.lerp( sky.twilightColor[ 0 ], color.r, skylightFac * 0.13F );
+            sky.twilightColor[ 1 ] = MathUtil.lerp( sky.twilightColor[ 1 ], color.g, skylightFac * 0.13F );
+            sky.twilightColor[ 2 ] = MathUtil.lerp( sky.twilightColor[ 2 ], color.b, skylightFac * 0.13F );
         }
 
         if( world.getLastLightningBolt() > 0 ) {
-            sky.setBacklightColor( 0.6F, 0.6F, 0.6F );
+            sky.backlightColor[ 0 ] = MathUtil.lerp( sky.backlightColor[ 0 ], 1, 0.5F );
+            sky.backlightColor[ 1 ] = MathUtil.lerp( sky.backlightColor[ 1 ], 1, 0.5F );
+            sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], 1, 0.5F );
         }
     }
 
@@ -357,17 +362,17 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
     @Override
     @OnlyIn( Dist.CLIENT )
     public void updateLight( Light light ) {
-        light.setSky( 0.15, 0.15, 0.15 );
+        light.setSky( 0.07, 0.08, 0.1 );
         light.setAmbient( 0, 0, 0 );
-        light.setBlock( 1, 1, 1 );
+        light.setBlock( 0xfef0de );
 
         SkyLightEnvEvent skylightEv = getEnvEventManager().getByType( MDEnvEvents.SKYLIGHT );
         float skylightFac = skylightEv.getEffect();
         if( skylightFac > 0 ) {
             SkyLightEnvEvent.Color color = skylightEv.getColor();
-            light.sky[ 0 ] = MathUtil.lerp( light.sky[ 0 ], color.r * 0.15F + 0.55F, skylightFac );
-            light.sky[ 1 ] = MathUtil.lerp( light.sky[ 1 ], color.g * 0.15F + 0.55F, skylightFac );
-            light.sky[ 2 ] = MathUtil.lerp( light.sky[ 2 ], color.b * 0.15F + 0.55F, skylightFac );
+            light.sky[ 0 ] = MathUtil.lerp( light.sky[ 0 ], color.r * 0.2F + 0.4F, skylightFac );
+            light.sky[ 1 ] = MathUtil.lerp( light.sky[ 1 ], color.g * 0.2F + 0.4F, skylightFac );
+            light.sky[ 2 ] = MathUtil.lerp( light.sky[ 2 ], color.b * 0.2F + 0.4F, skylightFac );
         }
 
         if( world.getLastLightningBolt() > 0 ) {
