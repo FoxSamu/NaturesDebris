@@ -2,5 +2,6 @@
   "renderblock": "core/renderblock.js",
   "checkinwater": "core/checkinwater.js",
   "syncheightmaps": "core/syncheightmaps.js",
+  "prerendershaders": "core/prerendershaders.js",
   "rain": "core/rain.js"
 }
