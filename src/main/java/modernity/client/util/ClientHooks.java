@@ -2,13 +2,14 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 23 - 2019
  * Author: rgsw
  */
 
 package modernity.client.util;
 
 import modernity.api.block.fluid.ICustomRenderFluid;
+import modernity.api.event.RenderShadersEvent;
 import modernity.client.ModernityClient;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
@@ -21,6 +22,7 @@ import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.data.IModelData;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.Random;
 
@@ -30,7 +32,7 @@ import java.util.Random;
 @OnlyIn( Dist.CLIENT )
 public final class ClientHooks {
     public static void preRenderShaders( float partialTicks ) {
-
+        MinecraftForge.EVENT_BUS.post( new RenderShadersEvent( partialTicks ) );
     }
 
     /**
