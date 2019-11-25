@@ -2,15 +2,17 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   11 - 25 - 2019
  * Author: rgsw
  */
 
 package modernity.client.handler;
 
 import modernity.api.dimension.IEnvironmentDimension;
+import modernity.api.event.RenderShadersEvent;
 import modernity.client.ModernityClient;
 import modernity.client.environment.EnvironmentRenderingManager;
+import modernity.client.shaders.ShaderManager;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.environment.precipitation.IPrecipitation;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
@@ -29,8 +31,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Random;
@@ -40,6 +44,7 @@ public enum WorldRenderHandler {
 
     private final Random rand = new Random();
     private final Minecraft mc = Minecraft.getInstance();
+    private final ShaderManager shaderManager = ModernityClient.get().getShaderManager();
     private int rainSoundCounter;
     private int renderUpdateCount;
 
@@ -48,6 +53,18 @@ public enum WorldRenderHandler {
         ModernityClient.get().getAreaRenderManager().renderAreas( event.getPartialTicks() );
 
         // TODO: Add render last particles and render them here if queued...
+
+        shaderManager.updateShaders( event.getPartialTicks() );
+    }
+
+    @SubscribeEvent
+    public void onRenderShaders( RenderShadersEvent event ) {
+        shaderManager.renderShaders( event.getPartialTicks() );
+    }
+
+    @SubscribeEvent( priority = EventPriority.HIGHEST )
+    public void onRenderOverlay( RenderBlockOverlayEvent event ) {
+        if( shaderManager.cancelOverlays() ) event.setCanceled( true );
     }
 
     @SubscribeEvent

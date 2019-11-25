@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 23 - 2019
+ * Date:   11 - 25 - 2019
  * Author: rgsw
  */
 
@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 /**
  * The surface dimension of the Modernity.
  */
-public class MDSurfaceDimension extends Dimension implements IEnvironmentDimension, ISatelliteDimension, IEnvEventsDimension, IClientTickingDimension, IInitializeDimension, IPrecipitationDimension {
+public class MDSurfaceDimension extends Dimension implements IEnvironmentDimension, ISatelliteDimension, IEnvEventsDimension, IClientTickingDimension, IInitializeDimension, IPrecipitationDimension, IShaderDimension {
 
     private SatelliteData satelliteData;
     private EnvironmentEventManager envEventManager;

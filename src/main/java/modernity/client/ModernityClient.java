@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   11 - 25 - 2019
  * Author: rgsw
  */
 
@@ -21,6 +21,7 @@ import modernity.client.render.block.CustomFluidRenderer;
 import modernity.client.render.environment.SurfaceCloudRenderer;
 import modernity.client.render.environment.SurfaceSkyRenderer;
 import modernity.client.render.environment.SurfaceWeatherRenderer;
+import modernity.client.shaders.ShaderManager;
 import modernity.common.Modernity;
 import modernity.common.area.MDAreas;
 import modernity.common.area.core.ClientWorldAreaManager;
@@ -61,6 +62,7 @@ public class ModernityClient extends Modernity {
 
     private ClientWorldAreaManager worldAreaManager;
     private AreaRenderManager areaRenderManager;
+    private ShaderManager shaderManager;
 
     // Used to give color to humus particles
     private final ColorMap humusColors = new ColorMap( new ResourceLocation( "modernity:textures/block/humus_top.png" ), 0xffffff );
@@ -83,6 +85,8 @@ public class ModernityClient extends Modernity {
 
         areaRenderManager = new AreaRenderManager();
         MDAreas.setupClient( areaRenderManager );
+        shaderManager = new ShaderManager();
+        addFutureReloadListener( shaderManager );
     }
 
     @Override
@@ -90,6 +94,7 @@ public class ModernityClient extends Modernity {
         super.init();
         MDEntityTypes.initEntityRenderers();
         MDContainerTypes.registerScreens();
+
     }
 
     @Override
@@ -230,6 +235,10 @@ public class ModernityClient extends Modernity {
 
     public AreaRenderManager getAreaRenderManager() {
         return areaRenderManager;
+    }
+
+    public ShaderManager getShaderManager() {
+        return shaderManager;
     }
 
     /**
