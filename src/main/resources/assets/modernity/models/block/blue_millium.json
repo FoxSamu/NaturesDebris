@@ -1,7 +1,6 @@
 {
-  "parent": "block/cross",
+  "parent": "modernity:block/air",
   "textures": {
-    "cross": "modernity:block/millium_blue",
-    "particle": "modernity:block/millium_blue"
+    "particle": "modernity:item/soul_light"
   }
 }
