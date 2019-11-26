@@ -92,6 +92,7 @@ public class SoulLightParticle extends Particle implements IRenderLastParticle {
         GlStateManager.depthMask( false );
         GlStateManager.enableBlend();
         GlStateManager.enableTexture();
+        GlStateManager.enableFog();
         GlStateManager.disableCull();
         GlStateManager.enableColorMaterial();
         GlStateManager.blendFunc( GL11.GL_SRC_ALPHA, GL11.GL_ONE );
@@ -132,6 +133,7 @@ public class SoulLightParticle extends Particle implements IRenderLastParticle {
         GlStateManager.disableBlend();
         GlStateManager.enableCull();
         GlStateManager.enableAlphaTest();
+        GlStateManager.alphaFunc( GL11.GL_GREATER, 0.1F );
     }
 
     @Override

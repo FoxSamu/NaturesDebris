@@ -45,12 +45,13 @@ public class SoulLightTileEntity extends TileEntity implements ISidedTickableTil
     }
 
     public ESoulLightColor getColor() {
-        return color == null ? color = ESoulLightColor.DEFAULT : color;
+        return color == null ? setColor( ESoulLightColor.DEFAULT ) : color;
     }
 
-    public void setColor( ESoulLightColor color ) {
+    public ESoulLightColor setColor( ESoulLightColor color ) {
         this.color = color;
         markDirty();
+        return color;
     }
 
     public boolean fades() {
@@ -76,6 +77,7 @@ public class SoulLightTileEntity extends TileEntity implements ISidedTickableTil
     public void read( CompoundNBT compound ) {
         color = ESoulLightColor.fromOrdinal( compound.getByte( "color" ) );
         fades = compound.getBoolean( "fades" );
+        super.read( compound );
     }
 
     @Override
@@ -119,7 +121,7 @@ public class SoulLightTileEntity extends TileEntity implements ISidedTickableTil
                 return;
             }
 
-            int distRandom = MathHelper.floor( distSq / 2048 ) + 1;
+            int distRandom = MathHelper.floor( distSq / 1024 ) + 1;
 
             baseParticleCounter++;
             cloudParticleCounter++;
@@ -151,11 +153,6 @@ public class SoulLightTileEntity extends TileEntity implements ISidedTickableTil
             }
             beingRendered = false;
         }
-    }
-
-    @Override
-    public double getMaxRenderDistanceSquared() {
-        return 16384;
     }
 
     @Override

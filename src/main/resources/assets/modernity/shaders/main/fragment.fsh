@@ -18,6 +18,7 @@ varying vec2 texCoord;
 uniform sampler2D diffuse;
 uniform sampler2D depth;
 uniform mat4 inverseMVP;
+uniform int fogMode;
 uniform int lightCount;
 uniform LightSource lights[LIGHT_COUNT];
 
@@ -53,12 +54,13 @@ void main() {
     vec4 sourceColor = texture2D(diffuse, texCoord);
     vec4 color = vec4(sourceColor);
 
+    float fogMult = 1.0 - getFogMultiplier(fragPos, fogMode);
     for (int i = 0; i < lightCount; i++) {
         LightSource light = lights[i];
         vec3 lightPos = light.position;
         float dist = distance(lightPos, fragPos);
         float radius = light.radius;
-        vec3 lightColor = light.color.xyz * light.color.w;
+        vec3 lightColor = light.color.xyz * light.color.w * fogMult;
 
         if (dist < radius) {
             if (light.type == TYPE_LIGHT) {

@@ -19,12 +19,12 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
-import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 
 import static com.mojang.blaze3d.platform.GlStateManager.*;
+import static org.lwjgl.opengl.GL11.*;
 
 public class MainShader extends PostProcessingEffect {
     public static final ResourceLocation WORLD_DEPTH_TEXTURE = new ResourceLocation( "modernity:world_depth" );
@@ -69,6 +69,8 @@ public class MainShader extends PostProcessingEffect {
     private Program.Uniform depthSamplerUniform;
     private Program.Uniform inverseMVPUniform;
 
+    private Program.Uniform fogModeUniform;
+
     private Program.Uniform lightCountUniform;
     private final Program.Uniform[] lightPositionUniforms = new Program.Uniform[ LIGHT_COUNT ];
     private final Program.Uniform[] lightColorUniforms = new Program.Uniform[ LIGHT_COUNT ];
@@ -109,8 +111,8 @@ public class MainShader extends PostProcessingEffect {
     }
 
     public void updateMatrices() {
-        GL11.glGetFloatv( GL11.GL_MODELVIEW_MATRIX, modelViewBuff );
-        GL11.glGetFloatv( GL11.GL_PROJECTION_MATRIX, projectionBuff );
+        glGetFloatv( GL_MODELVIEW_MATRIX, modelViewBuff );
+        glGetFloatv( GL_PROJECTION_MATRIX, projectionBuff );
         modelView.load( modelViewBuff );
         projection.load( projectionBuff );
         Matrix4f.mul( projection, modelView, mvp );
@@ -124,6 +126,7 @@ public class MainShader extends PostProcessingEffect {
         depthSamplerUniform = program.uniform( "depth" );
         inverseMVPUniform = program.uniform( "inverseMVP" );
         lightCountUniform = program.uniform( "lightCount" );
+        fogModeUniform = program.uniform( "fogMode" );
 
         for( int i = 0; i < LIGHT_COUNT; i++ ) {
             lightColorUniforms[ i ] = program.uniform( "lights[" + i + "].color" );
@@ -140,6 +143,7 @@ public class MainShader extends PostProcessingEffect {
         diffuseSamplerUniform.set( 0 );
         depthSamplerUniform.set( 1 );
         inverseMVPUniform.setMatrix( inverseMVPBuff );
+        fogModeUniform.set( glGetInteger( GL_FOG_MODE ) );
 
         lights.sort( LIGHT_SOURCE_SORTER );
 

@@ -77,10 +77,13 @@ public class ShaderManager implements ISelectiveResourceReloadListener {
             GlStateManager.pushMatrix();
             GlStateManager.matrixMode( GL11.GL_MODELVIEW );
             GlStateManager.pushMatrix();
+            GlStateManager.disableDepthTest();
+            GlStateManager.depthMask( true );
             cancelOverlays = true;
             renderHandMethod.call( mc.gameRenderer, mc.gameRenderer.getActiveRenderInfo(), partialTicks );
             setupCameraTransformMethod.call( mc.gameRenderer, partialTicks );
             cancelOverlays = false;
+            GlStateManager.enableDepthTest();
             GlStateManager.matrixMode( GL11.GL_TEXTURE );
             GlStateManager.popMatrix();
             GlStateManager.matrixMode( GL11.GL_PROJECTION );
