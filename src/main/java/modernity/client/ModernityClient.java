@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 25 - 2019
+ * Date:   11 - 26 - 2019
  * Author: rgsw
  */
 
@@ -31,6 +31,8 @@ import modernity.common.container.MDContainerTypes;
 import modernity.common.entity.MDEntityTypes;
 import modernity.common.item.MDItems;
 import modernity.common.net.SSeedPacket;
+import modernity.common.tileentity.MDTileEntitiyTypes;
+import modernity.common.util.ISidedTickable;
 import modernity.common.world.dimen.MDSurfaceDimension;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
@@ -94,7 +96,6 @@ public class ModernityClient extends Modernity {
         super.init();
         MDEntityTypes.initEntityRenderers();
         MDContainerTypes.registerScreens();
-
     }
 
     @Override
@@ -102,6 +103,7 @@ public class ModernityClient extends Modernity {
         super.postInit();
         MDBlocks.initBlockColors();
         MDItems.initItemColors();
+        MDTileEntitiyTypes.setupClient();
     }
 
     @Override
@@ -111,6 +113,12 @@ public class ModernityClient extends Modernity {
         MOD_EVENT_BUS.register( ParticleRegistryHandler.INSTANCE );
         FORGE_EVENT_BUS.register( FogHandler.INSTANCE );
         FORGE_EVENT_BUS.register( WorldRenderHandler.INSTANCE );
+    }
+
+    @Override
+    public void callSidedTick( ISidedTickable tickable ) {
+        tickable.serverTick();
+        tickable.clientTick();
     }
 
     /**

@@ -2,19 +2,23 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 26 - 2019
  * Author: rgsw
  */
 
 package modernity.common.tileentity;
 
 import com.google.common.reflect.TypeToken;
+import modernity.client.render.tileentity.SoulLightRenderer;
 import modernity.common.block.MDBlocks;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -28,6 +32,8 @@ import java.util.function.Supplier;
 public final class MDTileEntitiyTypes {
 
     private static final RegistryHandler<TileEntityType<?>> ENTRIES = new RegistryHandler<>( "modernity" );
+
+    public static final TileEntityType<SoulLightTileEntity> SOUL_LIGHT = register( "soul_light", create( SoulLightTileEntity::new, MDBlocks.SOUL_LIGHT ) );
 
     public static void register( IForgeRegistry<TileEntityType<?>> registry ) {
         for( TileEntityType<?> type : ENTRIES ) {
@@ -49,6 +55,11 @@ public final class MDTileEntitiyTypes {
         TypeToken<TileEntityType<?>> token = new TypeToken<TileEntityType<?>>( TileEntityType.class ) {
         };
         handler.addHandler( (Class<TileEntityType<?>>) token.getRawType(), ENTRIES );
+    }
+
+    @OnlyIn( Dist.CLIENT )
+    public static void setupClient() {
+        ClientRegistry.bindTileEntitySpecialRenderer( SoulLightTileEntity.class, new SoulLightRenderer() );
     }
 
     private MDTileEntitiyTypes() {

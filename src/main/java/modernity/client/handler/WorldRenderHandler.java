@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 25 - 2019
+ * Date:   11 - 26 - 2019
  * Author: rgsw
  */
 
@@ -12,6 +12,7 @@ import modernity.api.dimension.IEnvironmentDimension;
 import modernity.api.event.RenderShadersEvent;
 import modernity.client.ModernityClient;
 import modernity.client.environment.EnvironmentRenderingManager;
+import modernity.client.particle.IRenderLastParticle;
 import modernity.client.shaders.ShaderManager;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.environment.precipitation.IPrecipitation;
@@ -20,7 +21,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.ActiveRenderInfo;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.settings.ParticleStatus;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.particles.IParticleData;
@@ -28,6 +32,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.biome.Biome;
@@ -37,6 +42,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public enum WorldRenderHandler {
@@ -44,27 +50,51 @@ public enum WorldRenderHandler {
 
     private final Random rand = new Random();
     private final Minecraft mc = Minecraft.getInstance();
-    private final ShaderManager shaderManager = ModernityClient.get().getShaderManager();
     private int rainSoundCounter;
     private int renderUpdateCount;
+
+    private final ArrayList<IRenderLastParticle> renderLastParticles = new ArrayList<>();
 
     @SubscribeEvent
     public void onRenderWorldLast( RenderWorldLastEvent event ) {
         ModernityClient.get().getAreaRenderManager().renderAreas( event.getPartialTicks() );
 
-        // TODO: Add render last particles and render them here if queued...
+        renderRenderLastParticles( event.getPartialTicks() );
 
-        shaderManager.updateShaders( event.getPartialTicks() );
+        ShaderManager.get().updateShaders( event.getPartialTicks() );
+    }
+
+    private void renderRenderLastParticles( float partialTicks ) {
+        mc.gameRenderer.enableLightmap();
+        ActiveRenderInfo info = mc.gameRenderer.getActiveRenderInfo();
+
+        float rx = MathHelper.cos( info.getYaw() * ( (float) Math.PI / 180 ) );
+        float ryz = MathHelper.sin( info.getYaw() * ( (float) Math.PI / 180 ) );
+        float rxy = - ryz * MathHelper.sin( info.getPitch() * ( (float) Math.PI / 180 ) );
+        float rxz = rx * MathHelper.sin( info.getPitch() * ( (float) Math.PI / 180 ) );
+        float rz = MathHelper.cos( info.getPitch() * ( (float) Math.PI / 180 ) );
+
+        Particle.interpPosX = info.getProjectedView().x;
+        Particle.interpPosY = info.getProjectedView().y;
+        Particle.interpPosZ = info.getProjectedView().z;
+
+        Tessellator tess = Tessellator.getInstance();
+        BufferBuilder buff = tess.getBuffer();
+
+        for( IRenderLastParticle particle : renderLastParticles ) {
+            particle.renderParticleLast( buff, info, partialTicks, rx, rz, ryz, rxy, rxz );
+        }
+        renderLastParticles.clear();
     }
 
     @SubscribeEvent
     public void onRenderShaders( RenderShadersEvent event ) {
-        shaderManager.renderShaders( event.getPartialTicks() );
+        ShaderManager.get().renderShaders( event.getPartialTicks() );
     }
 
     @SubscribeEvent( priority = EventPriority.HIGHEST )
     public void onRenderOverlay( RenderBlockOverlayEvent event ) {
-        if( shaderManager.cancelOverlays() ) event.setCanceled( true );
+        if( ShaderManager.get().cancelOverlays() ) event.setCanceled( true );
     }
 
     @SubscribeEvent
@@ -177,5 +207,9 @@ public enum WorldRenderHandler {
             }
 
         }
+    }
+
+    public void addRenderLastParticle( IRenderLastParticle rlp ) {
+        renderLastParticles.add( rlp );
     }
 }

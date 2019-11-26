@@ -2,16 +2,17 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 25 - 2019
+ * Date:   11 - 26 - 2019
  * Author: rgsw
  */
 
 package modernity.client.shaders.post;
 
 import com.mojang.blaze3d.platform.GLX;
+import modernity.api.util.Matrix4f;
+import modernity.client.shaders.LightSource;
 import modernity.client.shaders.PostProcessingEffect;
 import modernity.client.shaders.Program;
-import modernity.client.shaders.LightSource;
 import modernity.client.util.DepthBuffer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -20,7 +21,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
 import org.lwjgl.opengl.GL11;
 
-import javax.vecmath.Matrix4f;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -93,8 +93,6 @@ public class MainShader extends PostProcessingEffect {
 
     @Override
     public void render( float partialTicks ) {
-        updateMatrices();
-
         bind( 0, diffuse.framebufferTexture );
         bind( 1, depth.getGlTextureId() );
 
@@ -110,16 +108,14 @@ public class MainShader extends PostProcessingEffect {
         activeTexture( GLX.GL_TEXTURE0 );
     }
 
-    private void updateMatrices() {
+    public void updateMatrices() {
         GL11.glGetFloatv( GL11.GL_MODELVIEW_MATRIX, modelViewBuff );
         GL11.glGetFloatv( GL11.GL_PROJECTION_MATRIX, projectionBuff );
-        modelView.set( modelViewBuff );
-        projection.set( projectionBuff );
-        mvp.mul( modelView, projection );
-        inverseMVP.invert( mvp );
-        for( int i = 0; i < 16; i++ ) {
-            inverseMVPBuff[ i ] = inverseMVP.getElement( i >>> 2, i & 3 );
-        }
+        modelView.load( modelViewBuff );
+        projection.load( projectionBuff );
+        Matrix4f.mul( projection, modelView, mvp );
+        Matrix4f.invert( mvp, inverseMVP );
+        inverseMVP.store( inverseMVPBuff );
     }
 
     @Override

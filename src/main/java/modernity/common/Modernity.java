@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   11 - 26 - 2019
  * Author: rgsw
  */
 
@@ -21,6 +21,7 @@ import modernity.common.handler.EntitySwimHandler;
 import modernity.common.handler.WorldAreaHandler;
 import modernity.common.loot.MDLootTables;
 import modernity.common.net.MDPackets;
+import modernity.common.util.ISidedTickable;
 import modernity.common.world.dimen.MDDimensions;
 import modernity.common.world.gen.structure.MDStructurePieceTypes;
 import modernity.common.world.gen.structure.MDStructures;
@@ -192,6 +193,10 @@ public abstract class Modernity {
      */
     public void postInit() {
 
+    }
+
+    public void callSidedTick( ISidedTickable tickable ) {
+        tickable.serverTick();
     }
 
     /**

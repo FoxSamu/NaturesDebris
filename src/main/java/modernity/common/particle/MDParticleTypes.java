@@ -2,17 +2,14 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   11 - 26 - 2019
  * Author: rgsw
  */
 
 package modernity.common.particle;
 
 import com.google.common.reflect.TypeToken;
-import modernity.client.particle.DripParticle;
-import modernity.client.particle.LeafParticle;
-import modernity.client.particle.PrecipitationParticle;
-import modernity.client.particle.SaltParticle;
+import modernity.client.particle.*;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.client.particle.ParticleManager;
@@ -35,6 +32,8 @@ public final class MDParticleTypes {
     public static final BasicParticleType OIL_LANDING = register( "oil_landing", new BasicParticleType( false ) );
     public static final BasicParticleType RAIN = register( "rain", new BasicParticleType( false ) );
     public static final BasicParticleType HAIL = register( "hail", new BasicParticleType( false ) );
+    public static final ParticleType<SoulLightParticleData> SOUL_LIGHT = register( "soul_light", new ParticleType<>( true, SoulLightParticleData.DESERIALIZER ) );
+    public static final ParticleType<SoulLightParticleData> SOUL_LIGHT_CLOUD = register( "soul_light_cloud", new ParticleType<>( true, SoulLightParticleData.DESERIALIZER ) );
 
     private static <T extends ParticleType<?>> T register( String id, T type, String... aliases ) {
         return ENTRIES.register( id, type, aliases );
@@ -57,6 +56,8 @@ public final class MDParticleTypes {
         manager.registerFactory( OIL_LANDING, DripParticle.Oil.LandingFactory::new );
         manager.registerFactory( RAIN, PrecipitationParticle.DripFactory::new );
         manager.registerFactory( HAIL, PrecipitationParticle.HailFactory::new );
+        manager.registerFactory( SOUL_LIGHT, new SoulLightParticle.BaseFactory() );
+        manager.registerFactory( SOUL_LIGHT_CLOUD, new SoulLightParticle.CloudFactory() );
     }
 
     private MDParticleTypes() {

@@ -2,13 +2,14 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 25 - 2019
+ * Date:   11 - 26 - 2019
  * Author: rgsw
  */
 
 package modernity.client.shaders;
 
 import com.mojang.blaze3d.platform.GLX;
+import com.mojang.blaze3d.platform.GlStateManager;
 import modernity.api.dimension.IShaderDimension;
 import modernity.api.reflect.MethodAccessor;
 import modernity.client.ModernityClient;
@@ -69,13 +70,26 @@ public class ShaderManager implements ISelectiveResourceReloadListener {
 
     public void updateShaders( float partialTicks ) {
         if( canUseShaders() && shouldUseShaders() ) {
-            checkGLCaps();
+            cancelOverlays = true;
+            GlStateManager.matrixMode( GL11.GL_TEXTURE );
+            GlStateManager.pushMatrix();
+            GlStateManager.matrixMode( GL11.GL_PROJECTION );
+            GlStateManager.pushMatrix();
+            GlStateManager.matrixMode( GL11.GL_MODELVIEW );
+            GlStateManager.pushMatrix();
             cancelOverlays = true;
             renderHandMethod.call( mc.gameRenderer, mc.gameRenderer.getActiveRenderInfo(), partialTicks );
             setupCameraTransformMethod.call( mc.gameRenderer, partialTicks );
             cancelOverlays = false;
+            GlStateManager.matrixMode( GL11.GL_TEXTURE );
+            GlStateManager.popMatrix();
+            GlStateManager.matrixMode( GL11.GL_PROJECTION );
+            GlStateManager.popMatrix();
+            GlStateManager.matrixMode( GL11.GL_MODELVIEW );
+            GlStateManager.popMatrix();
 
             mainShader.updateInputFBO( mc.getFramebuffer() );
+            mainShader.updateMatrices();
         }
     }
 
