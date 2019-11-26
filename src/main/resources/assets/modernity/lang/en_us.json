@@ -105,21 +105,21 @@
   "block.modernity.dark_tall_grass": "Dark Grass",
   "block.modernity.reeds": "Reeds",
 
-  "block.modernity.melion.red": "Red Melion",
-  "block.modernity.melion.orange": "Orange Melion",
-  "block.modernity.melion.yellow": "Yellow Melion",
-  "block.modernity.melion.white": "White Melion",
-  "block.modernity.melion.blue": "Blue Melion",
-  "block.modernity.melion.indigo": "Indigo Melion",
-  "block.modernity.melion.magenta": "Magenta Melion",
+  "block.modernity.red_melion": "Red Melion",
+  "block.modernity.orange_melion": "Orange Melion",
+  "block.modernity.yellow_melion": "Yellow Melion",
+  "block.modernity.white_melion": "White Melion",
+  "block.modernity.blue_melion": "Blue Melion",
+  "block.modernity.indigo_melion": "Indigo Melion",
+  "block.modernity.magenta_melion": "Magenta Melion",
 
-  "block.modernity.millium.red": "Red Millium",
-  "block.modernity.millium.yellow": "Yellow Millium",
-  "block.modernity.millium.white": "White Millium",
-  "block.modernity.millium.cyan": "Cyan Millium",
-  "block.modernity.millium.green": "Green Millium",
-  "block.modernity.millium.magenta": "Magenta Millium",
-  "block.modernity.millium.blue": "Blue Millium",
+  "block.modernity.red_millium": "Red Millium",
+  "block.modernity.yellow_millium": "Yellow Millium",
+  "block.modernity.white_millium": "White Millium",
+  "block.modernity.cyan_millium": "Cyan Millium",
+  "block.modernity.green_millium": "Green Millium",
+  "block.modernity.magenta_millium": "Magenta Millium",
+  "block.modernity.blue_millium": "Blue Millium",
 
   "block.modernity.mint_plant": "Mint Plant",
   "block.modernity.redwold": "Redwold",
@@ -153,15 +153,23 @@
   "block.modernity.extinguished_anthracite_torch": "Extinguished Anthracite Torch",
   "block.modernity.lightrock_torch": "Lightrock Torch",
 
-  "block.modernity.portal_cauldron": "Portal Cauldron",
-  "block.modernity.nether_altar": "Nether Altar",
-  "block.modernity.gold_carved_nether_bricks.nature": "Gold Carved Nether Bricks (Nature)",
-  "block.modernity.gold_carved_nether_bricks.curse": "Gold Carved Nether Bricks (Curse)",
-  "block.modernity.gold_carved_nether_bricks.cyen": "Gold Carved Nether Bricks (Cyen)",
-  "block.modernity.gold_carved_nether_bricks.fyren": "Gold Carved Nether Bricks (Fyren)",
-  "block.modernity.gold_carved_nether_bricks.timen": "Gold Carved Nether Bricks (Timen)",
-  "block.modernity.gold_carved_nether_bricks.portal": "Gold Carved Nether Bricks (Portal)",
-  "block.modernity.gold_carved_nether_bricks.rgsw": "Gold Carved Nether Bricks (RGSW)",
+  "block.modernity.dark_stone_bricks": "Dark Stone Bricks",
+  "block.modernity.inscribed_dark_stone_bricks": "Inscribed Dark Stone Bricks",
+  "block.modernity.dark_stone_bricks_nature": "Gold-Carved Dark Stone Bricks",
+  "block.modernity.dark_stone_bricks_curse": "Gold-Carved Dark Stone Bricks",
+  "block.modernity.dark_stone_bricks_cyen": "Gold-Carved Dark Stone Bricks",
+  "block.modernity.dark_stone_bricks_fyren": "Gold-Carved Dark Stone Bricks",
+  "block.modernity.dark_stone_bricks_timen": "Gold-Carved Dark Stone Bricks",
+  "block.modernity.dark_stone_bricks_portal": "Gold-Carved Dark Stone Bricks",
+  "block.modernity.dark_stone_bricks_rgsw": "Gold-Carved Dark Stone Bricks",
+
+  "block.modernity.horizontal_portal_frame": "Horizontal Portal Frame",
+  "block.modernity.vertical_portal_frame": "Vertical Portal Frame",
+  "block.modernity.portal_corner": "Portal Corner",
+
+  "block.modernity.puddle": "Puddle",
+
+  "block.modernity.soul_light": "Soul Light",
 
 
   "--- ITEMS ---": "",
@@ -197,13 +205,10 @@
   "item.modernity.aluminium_leggings": "Aluminium Leggings",
   "item.modernity.aluminium_boots": "Aluminium Boots",
 
-  "item.modernity.curse_crystal.shard_1": "Curse Crystal Shard",
-  "item.modernity.curse_crystal.shard_2": "Curse Crystal Shard",
-  "item.modernity.curse_crystal.shard_3": "Curse Crystal Shard",
-  "item.modernity.curse_crystal.shard_4": "Curse Crystal Shard",
-  "item.modernity.curse_crystal": "Curse Crystal",
+  "item.modernity.eye_of_the_curse": "Eye Of The Curse",
 
 
+  "--- COMMANDS ---": "",
   "command.modernity.checklog": "Check the game log",
   "command.modernity.main.title": "The Modernity",
   "command.modernity.main.version": "Version %1$s: %2$s",
@@ -234,8 +239,22 @@
   "command.modernity.event.precipitation.status.active.heavy.thunder": "Environment event %1$s is active for %2$s out of %3$s ticks. Heavy precipitation, with thunderstorm.",
   "command.modernity.event.precipitation.status.cooldown": "Environment event %1$s is cooling down for %2$s out of %3$s ticks.",
 
+  "command.modernity.satellite.query": "Moon is in phase %1$s, tick %2$s",
+  "command.modernity.satellite.set.phase": "Set moon phase to %1$s",
+  "command.modernity.satellite.set.tick": "Set moon tick to %1$s",
+  "command.modernity.satellite.set.both": "Set moon tick to %1$s and phase to %2$s",
+  "command.modernity.satellite.play.full": "Playing full moon",
+  "command.modernity.satellite.play.new": "Playing new moon",
+  "command.modernity.satellite.play.first": "Playing first-quarter moon",
+  "command.modernity.satellite.play.last": "Playing last-quarter moon",
+  "command.modernity.satellite.play.phase": "Playing moon phase %1$s",
+
+
+  "--- ENTITIES ---": "",
   "entity.modernity.fall_block": "Falling Block (Modernity)",
 
+
+  "--- BIOMES ---": "",
   "biome.modernity.forest": "Modern Forest",
   "biome.modernity.lush_meadow": "Lush Meadow",
   "biome.modernity.meadow": "Meadow",
@@ -243,8 +262,8 @@
   "biome.modernity.swamp": "Modern Swamp",
   "biome.modernity.waterlands": "Waterlands",
 
-  "gui.modernity.nether_altar": "Nether Altar",
 
+  "--- ITEM GROUPS ---": "",
   "itemgroup.modernity.blocks": "Modernity Blocks",
   "itemgroup.modernity.decoratives": "Modernity Decoratives",
   "itemgroup.modernity.misc": "Modernity Miscellaneous",
@@ -252,77 +271,23 @@
   "itemgroup.modernity.combat": "Modernity Combat",
   "itemgroup.modernity.tools": "Modernity Tools",
 
-  "generator.modernity.surface": "Modernity Surface",
+
+  "--- WORLD GENERATORS ---": "",
+  "generator.modernity.surface": "Modernity Oppervlakte",
 
   "generator.modernity.modernity": "Modernity",
   "generator.modernity.modernity.info": "Same as default, but the world spawn will be in the Modernity instead...",
 
-  "options.modernity": "The Modernity...",
 
-  "gui.modernity.wiki": "Wiki Image Exporter",
-  "gui.modernity.wiki.type_crafting": "Crafting Recipe",
-  "gui.modernity.wiki.type_smelting": "Smelting Recipe",
-  "gui.modernity.wiki.type_brewing": "Brewing Recipe",
-  "gui.modernity.wiki.type_fluid": "Fluid Image",
-  "gui.modernity.wiki.type_block": "Block Image",
-  "gui.modernity.wiki.type_item": "Item Image",
-  "gui.modernity.wiki.type_item_icon": "Item Icon",
-  "gui.modernity.wiki.type_item_frame": "Framed Item Image",
-  "gui.modernity.wiki.type_entity": "Entity Image",
-  "gui.modernity.wiki.export": "Export!",
-  "gui.modernity.wiki.item_label": "Item ID",
-  "gui.modernity.wiki.count": "Count",
-  "gui.modernity.wiki.damage": "Damage",
-  "gui.modernity.wiki.clipboard": "Clipboard",
-  "gui.modernity.wiki.copy": "Copy",
-  "gui.modernity.wiki.paste": "Paste",
-  "gui.modernity.wiki.reset": "Reset",
-  "gui.modernity.wiki.scale": "Scale",
-  "gui.modernity.wiki.filename": "File Name",
-  "gui.modernity.wiki.block_state": "Block State",
-  "gui.modernity.wiki.rot_mode.top_3d": "3D Top",
-  "gui.modernity.wiki.rot_mode.top_3d_side": "3D Side Top",
-  "gui.modernity.wiki.rot_mode.bottom_3d": "3D Bottom",
-  "gui.modernity.wiki.rot_mode.bottom_3d_side": "3D Side Bottom",
-  "gui.modernity.wiki.rot_mode.bottom": "Bottom",
-  "gui.modernity.wiki.rot_mode.top": "Top",
-  "gui.modernity.wiki.rot_mode.front": "Front",
-  "gui.modernity.wiki.rot_mode.right": "Right",
-  "gui.modernity.wiki.rot_mode.back": "Back",
-  "gui.modernity.wiki.rot_mode.left": "Left",
-  "gui.modernity.wiki.fluids_enabled.false": "Fluids Off",
-  "gui.modernity.wiki.fluids_enabled.true": "Fluids On",
+  "--- GUI ---": "",
 
-  "gui.modernity.settings.reset": "R",
-  "gui.modernity.settings.reset.desc": "[Reset] Reset to default",
-  "gui.modernity.settings.revert": "U",
-  "gui.modernity.settings.revert.desc": "[Undo] Revert to last value",
-  "gui.modernity.settings.revertdef": "D",
-  "gui.modernity.settings.revertdef.desc": "[Default] Revert to default world setting",
-  "gui.modernity.settings.revertdefault": "Reset default settings",
-  "gui.modernity.settings.revertdefault.desc": "Resets this world's settings to the default world settings",
 
-  "settings.modernity.true": "ON",
-  "settings.modernity.false": "OFF",
-
-  "settings.modernity.type.client": "Client Settings...",
-  "settings.modernity.type.server_default": "Default World Settings...",
-  "settings.modernity.type.server_local": "Settings For Current World...",
-  "settings.modernity.type.wiki": "Wiki Exporting Utilities...",
-
-  "settings.modernity.category.rendering": "Rendering Settings...",
-
-  "settings.modernity.moonPhase": "Moon Phase: %s",
-  "settings.modernity.moonPhase.desc": "Sets which moon phase is visible at the Modernity sky",
-  "settings.modernity.settingsCmdPermission": "Perm. /settings: %s",
-  "settings.modernity.settingsCmdPermission.desc": "Sets the minimum permission required for changing settings via '/settings'. Note that '/settings get' can always be used.",
-
-  "settings.modernity.walkingParticles": "Walking Particles: %s",
-  "settings.modernity.walkingParticles.desc": "Enables particles appearing when walking through or over specific blocks (e.g. whether humus blocks show leaves).\n- ON: Walking particles will appear: this can make the game look significantly slower on slow computers\n- OFF: Walking particles will not appear\nNote that the particles have to be enabled in the video settings.",
-
+  "--- ADVANCEMENTS ---": "",
   "modernity.advancements.extinguish_torch": "Set fire to the rain!",
   "modernity.advancements.extinguish_torch.desc": "Extinguish an anthracite torch.",
 
+
+  "--- DEATH MESSAGES ---": "",
   "modernity.death.nettles": "%1$2 was killed by nettles",
   "modernity.death.nettles.player": "%1$s was killed by nettles whilst fighting %2$s",
 
