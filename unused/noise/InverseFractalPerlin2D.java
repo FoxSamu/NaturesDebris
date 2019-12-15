@@ -1,9 +1,8 @@
 /*
- * Copyright (c) 2019 RGSW
+ * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
- * This file is part of the Modernity, and is licensed under the terms and conditions of RedGalaxy.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 15 - 2019
  * Author: rgsw
  */
 
@@ -13,7 +12,7 @@ package net.rgsw.noise;
  * Fractal-Perlin noise generator for 2D space. This generator uses a specified amount of {@link Perlin2D}-instances as
  * octaves.
  */
-public class FractalPerlin2D extends Noise2D {
+public class InverseFractalPerlin2D extends Noise2D {
 
     private final Perlin2D[] noiseOctaves;
 
@@ -23,7 +22,7 @@ public class FractalPerlin2D extends Noise2D {
      * @param seed    The seed, may be any {@code int}.
      * @param octaves The amount of octaves.
      */
-    public FractalPerlin2D( int seed, int octaves ) {
+    public InverseFractalPerlin2D( int seed, int octaves ) {
         super( seed );
 
         if( octaves < 1 ) {
@@ -44,7 +43,7 @@ public class FractalPerlin2D extends Noise2D {
      * @param scale   The coordinate scaling along every axis.
      * @param octaves The amount of octaves.
      */
-    public FractalPerlin2D( int seed, double scale, int octaves ) {
+    public InverseFractalPerlin2D( int seed, double scale, int octaves ) {
         super( seed, scale );
 
         if( octaves < 1 ) {
@@ -66,7 +65,7 @@ public class FractalPerlin2D extends Noise2D {
      * @param scaleY  The coordinate scaling along Y axis.
      * @param octaves The amount of octaves.
      */
-    public FractalPerlin2D( int seed, double scaleX, double scaleY, int octaves ) {
+    public InverseFractalPerlin2D( int seed, double scaleX, double scaleY, int octaves ) {
         super( seed, scaleX, scaleY );
 
         if( octaves < 1 ) {
@@ -90,8 +89,8 @@ public class FractalPerlin2D extends Noise2D {
         double n = 0;
 
         for( Perlin2D noise : this.noiseOctaves ) {
-            t += 1 / d;
-            n += noise.generate( x * d, y * d ) / d;
+            t += 1 * d;
+            n += noise.generate( x / d, y / d ) * d;
             d *= 2;
         }
         return n / t;

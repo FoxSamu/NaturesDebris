@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 12 - 2019
+ * Date:   12 - 15 - 2019
  * Author: rgsw
  */
 
@@ -50,16 +50,26 @@ project.ext.modid = 'modernity'
 
 project.ext.server = false
 
+// Make sure you have these properties declared in your computer's gradle.properties file.
+// It may be any token, as long as that token has the read:packages permission granted.
+project.ext.gprUser = getVariable( "gprUser" )
+project.ext.gprKey = getVariable( "gprKey" )
+
 
 repositories {
     mavenLocal()
     maven {
         url uri('https://maven.pkg.github.com/RedGalaxySW/Noise')
         credentials {
+        }
+    }
+    maven {
+        url uri('https://maven.pkg.github.com/RedGalaxySW/IOLib')
+        credentials {
             // Make sure you have these properties declared in your computer's gradle.properties file.
             // It may be any token, as long as that token has the read:packages permission granted.
-            username = getVariable( "gprUser" )
-            password = getVariable( "gprKey" )
+            username = project.ext.gprUser
+            password = project.ext.gprKey
         }
     }
 }
@@ -118,7 +128,8 @@ minecraft {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.14.4-28.1.40'
 
-    compile 'net.rgsw:noise:1.0.1'
+    compile 'net.rgsw:noise:1.0.3'
+    compile 'net.rgsw:io:1.0'
 
     // provided 'dep' // May not exist at runtime
     // deobf 'dep' // Remaps a dependency
@@ -248,8 +259,8 @@ publishing {
             name = "GitHubPackages"
             url = uri( "https://maven.pkg.github.com/RedGalaxySW/TheModernity" )
             credentials {
-                username = getVariable( "gprUser" ).toLowerCase()
-                password = getVariable( "gprKey" ).toLowerCase()
+                username = gprUser.toLowerCase()
+                password = gprKey.toLowerCase()
             }
         }
     }

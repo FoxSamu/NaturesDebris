@@ -1,65 +1,64 @@
 /*
- * Copyright (c) 2019 RGSW
+ * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
- * This file is part of the Modernity, and is licensed under the terms and conditions of RedGalaxy.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 15 - 2019
  * Author: rgsw
  */
 
 package net.rgsw.noise;
 
 /**
- * Fractal-OpenSimplex noise generator for 3D space. This generator uses a specified amount of {@link
- * OpenSimplex3D}-instances as octaves.
+ * Fractal-Perlin noise generator for 3D space. This generator uses a specified amount of {@link Perlin3D}-instances as
+ * octaves.
  */
-public class InverseFractalOpenSimplex3D extends Noise3D {
+public class FractalPerlin3D extends Noise3D {
 
-    private final OpenSimplex3D[] noiseOctaves;
+    private final Perlin3D[] noiseOctaves;
 
     /**
-     * Constructs a Fractal-OpenSimplex noise generator.
+     * Constructs a Fractal-Perlin noise generator.
      *
      * @param seed    The seed, may be any {@code int}.
      * @param octaves The amount of octaves.
      */
-    public InverseFractalOpenSimplex3D( int seed, int octaves ) {
+    public FractalPerlin3D( int seed, int octaves ) {
         super( seed );
 
         if( octaves < 1 ) {
             throw new IllegalArgumentException( "There should be at least one octave." );
         }
 
-        this.noiseOctaves = new OpenSimplex3D[ octaves ];
+        this.noiseOctaves = new Perlin3D[ octaves ];
 
         for( int i = 0; i < octaves; i++ ) {
-            this.noiseOctaves[ i ] = new OpenSimplex3D( seed );
+            this.noiseOctaves[ i ] = new Perlin3D( seed );
         }
     }
 
     /**
-     * Constructs a Fractal-OpenSimplex noise generator.
+     * Constructs a Fractal-Perlin noise generator.
      *
      * @param seed    The seed, may be any {@code int}.
      * @param scale   The coordinate scaling along every axis.
      * @param octaves The amount of octaves.
      */
-    public InverseFractalOpenSimplex3D( int seed, double scale, int octaves ) {
+    public FractalPerlin3D( int seed, double scale, int octaves ) {
         super( seed, scale );
 
         if( octaves < 1 ) {
             throw new IllegalArgumentException( "There should be at least one octave." );
         }
 
-        this.noiseOctaves = new OpenSimplex3D[ octaves ];
+        this.noiseOctaves = new Perlin3D[ octaves ];
 
         for( int i = 0; i < octaves; i++ ) {
-            this.noiseOctaves[ i ] = new OpenSimplex3D( seed );
+            this.noiseOctaves[ i ] = new Perlin3D( seed );
         }
     }
 
     /**
-     * Constructs a Fractal-OpenSimplex noise generator.
+     * Constructs a Fractal-Perlin noise generator.
      *
      * @param seed    The seed, may be any {@code int}.
      * @param scaleX  The coordinate scaling along X axis.
@@ -67,17 +66,17 @@ public class InverseFractalOpenSimplex3D extends Noise3D {
      * @param scaleZ  The coordinate scaling along Z axis.
      * @param octaves The amount of octaves.
      */
-    public InverseFractalOpenSimplex3D( int seed, double scaleX, double scaleY, double scaleZ, int octaves ) {
+    public FractalPerlin3D( int seed, double scaleX, double scaleY, double scaleZ, int octaves ) {
         super( seed, scaleX, scaleY, scaleZ );
 
         if( octaves < 1 ) {
             throw new IllegalArgumentException( "There should be at least one octave." );
         }
 
-        this.noiseOctaves = new OpenSimplex3D[ octaves ];
+        this.noiseOctaves = new Perlin3D[ octaves ];
 
         for( int i = 0; i < octaves; i++ ) {
-            this.noiseOctaves[ i ] = new OpenSimplex3D( seed );
+            this.noiseOctaves[ i ] = new Perlin3D( seed );
         }
     }
 
@@ -87,21 +86,23 @@ public class InverseFractalOpenSimplex3D extends Noise3D {
         y /= this.scaleY;
         z /= this.scaleZ;
 
+        double t = 0;
         double d = 1;
         double n = 0;
 
-        for( OpenSimplex3D noise : this.noiseOctaves ) {
-            n += noise.generate( x / d, y / d, z / d ) * d;
+        for( Perlin3D noise : this.noiseOctaves ) {
+            t += 1 / d;
+            n += noise.generate( x * d, y * d, z * d ) / d;
             d *= 2;
         }
-        return NoiseMath.clamp( - 1, 1, n );
+        return n / t;
     }
 
     @Override
     public void setSeed( int seed ) {
         this.seed = seed;
-        for( OpenSimplex3D noise : this.noiseOctaves ) {
-            noise.setSeed( this.seed );
+        for( Perlin3D perlin : this.noiseOctaves ) {
+            perlin.setSeed( this.seed );
         }
     }
 }
