@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 15 - 2019
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.common.area.core;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.rgsw.MathUtil;
+import net.redgalaxy.MathUtil;
 
 import java.util.Random;
 

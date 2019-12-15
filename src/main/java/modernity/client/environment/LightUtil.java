@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 22 - 2019
+ * Date:   12 - 15 - 2019
  * Author: rgsw
  */
 
@@ -11,7 +11,7 @@ package modernity.client.environment;
 import modernity.api.dimension.IEnvironmentDimension;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
-import net.rgsw.MathUtil;
+import net.redgalaxy.MathUtil;
 
 public final class LightUtil {
     private LightUtil() {

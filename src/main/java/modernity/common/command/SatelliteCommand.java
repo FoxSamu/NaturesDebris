@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   12 - 15 - 2019
  * Author: rgsw
  */
 
@@ -18,7 +18,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.rgsw.exc.UnexpectedCaseException;
+import net.redgalaxy.exc.UnexpectedCaseException;
 
 import java.util.ArrayList;
 

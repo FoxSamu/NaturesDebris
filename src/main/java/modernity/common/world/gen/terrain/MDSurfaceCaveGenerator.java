@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 15 - 2019
  * Author: rgsw
  */
 
@@ -16,7 +16,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.IChunk;
-import net.rgsw.MathUtil;
+import net.redgalaxy.MathUtil;
 import net.rgsw.noise.FractalOpenSimplex3D;
 import net.rgsw.noise.OpenSimplex3D;
 

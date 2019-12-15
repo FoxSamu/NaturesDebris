@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 18 - 2019
+ * Date:   12 - 15 - 2019
  * Author: rgsw
  */
 
@@ -21,7 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.IRenderHandler;
-import net.rgsw.MathUtil;
+import net.redgalaxy.MathUtil;
 import net.rgsw.noise.FractalPerlin3D;
 import net.rgsw.noise.INoise3D;
 import org.lwjgl.opengl.GL11;
