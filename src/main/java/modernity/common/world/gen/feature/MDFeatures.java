@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 17 - 2019
  * Author: rgsw
  */
 
@@ -37,7 +37,7 @@ public final class MDFeatures {
     public static final SphericalTreeFeature INVER_TREE = register( "inver_tree", new SphericalTreeFeature(
         MDBlocks.INVER_LEAVES.getDefaultState(),
         MDBlocks.INVER_LOG.getDefaultState(),
-        MDBlocks.INVER.getDefaultState()
+        MDBlocks.INVER_WOOD.getDefaultState()
     ) );
 
     private static <T extends Feature<?>> T register( String id, T feature ) {
