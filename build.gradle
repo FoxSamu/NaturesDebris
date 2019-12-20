@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 15 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -208,6 +208,9 @@ task generateSources( type: Copy ) {
 }
 
 processResources {
+    doFirst {
+        delete "$buildDir/resources" // Delete resources to fully clean up unused items
+    }
     // Import png and ogg apart from other files as we don't want lines to be
     // replaced in such files...
     from( 'src/main/resources' ) {
