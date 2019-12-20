@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 15 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -133,6 +133,9 @@ public class SoulLightParticle extends Particle implements IRenderLastParticle {
         GlStateManager.disableBlend();
         GlStateManager.enableCull();
         GlStateManager.enableAlphaTest();
+        GlStateManager.disableFog();
+        GlStateManager.disableColorMaterial();
+        GlStateManager.color4f( 1, 1, 1, 1 );
         GlStateManager.alphaFunc( GL11.GL_GREATER, 0.1F );
     }
 

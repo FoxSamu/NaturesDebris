@@ -17,6 +17,7 @@ varying vec2 texCoord;
 
 uniform sampler2D diffuse;
 uniform sampler2D depth;
+uniform sampler2D handDepth;
 uniform mat4 inverseMVP;
 uniform int fogMode;
 uniform int lightCount;
@@ -27,7 +28,7 @@ float depth2D(sampler2D sampler, vec2 coord) {
 }
 
 vec3 getFragPos() {
-    float depthValue = depth2D(depth, texCoord);
+    float depthValue = min(depth2D(depth, texCoord), depth2D(handDepth, texCoord));
     float depthCoord = depthValue * 2.0 - 1.0;
 
     vec4 fragPos = vec4(texCoord.xy * 2.0 - 1.0, depthCoord, 1.0) * inverseMVP;

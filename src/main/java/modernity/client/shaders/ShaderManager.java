@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 26 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -45,7 +45,7 @@ public class ShaderManager implements ISelectiveResourceReloadListener {
 
     private final BlitBuffer blit = new BlitBuffer();
 
-    private boolean cancelOverlays;
+    private boolean renderingOverlays;
 
     private boolean shaderError;
     private boolean required;
@@ -60,8 +60,8 @@ public class ShaderManager implements ISelectiveResourceReloadListener {
         return areShadersSupported() && ! shaderError;
     }
 
-    public boolean cancelOverlays() {
-        return cancelOverlays;
+    public boolean renderingOverlays() {
+        return renderingOverlays;
     }
 
     public boolean shouldUseShaders() {
@@ -69,42 +69,48 @@ public class ShaderManager implements ISelectiveResourceReloadListener {
     }
 
     public void updateShaders( float partialTicks ) {
-        if( canUseShaders() && shouldUseShaders() ) {
-            cancelOverlays = true;
-            GlStateManager.matrixMode( GL11.GL_TEXTURE );
-            GlStateManager.pushMatrix();
-            GlStateManager.matrixMode( GL11.GL_PROJECTION );
-            GlStateManager.pushMatrix();
-            GlStateManager.matrixMode( GL11.GL_MODELVIEW );
-            GlStateManager.pushMatrix();
-            GlStateManager.disableDepthTest();
-            GlStateManager.depthMask( true );
-            cancelOverlays = true;
-            renderHandMethod.call( mc.gameRenderer, mc.gameRenderer.getActiveRenderInfo(), partialTicks );
-            setupCameraTransformMethod.call( mc.gameRenderer, partialTicks );
-            cancelOverlays = false;
-            GlStateManager.enableDepthTest();
-            GlStateManager.matrixMode( GL11.GL_TEXTURE );
-            GlStateManager.popMatrix();
-            GlStateManager.matrixMode( GL11.GL_PROJECTION );
-            GlStateManager.popMatrix();
-            GlStateManager.matrixMode( GL11.GL_MODELVIEW );
-            GlStateManager.popMatrix();
-
-            mainShader.updateInputFBO( mc.getFramebuffer() );
+        if( useShaders() ) {
             mainShader.updateMatrices();
+            mainShader.updateInputFBO( mc.getFramebuffer() );
         }
     }
 
     public void renderShaders( float partialTicks ) {
-        if( canUseShaders() && shouldUseShaders() ) {
+        if( useShaders() ) {
             blit.setSize( mc.mainWindow.getFramebufferWidth(), mc.mainWindow.getFramebufferHeight() );
+            mainShader.updateHandFBO( mc.getFramebuffer() );
             mainShader.setMirrorY( true );
             mainShader.setOutputFBO( blit.getFBO() );
             mainShader.render( partialTicks );
             blit.render();
+            renderOverlays( partialTicks );
         }
         required = false;
+    }
+
+    private void renderOverlays( float partialTicks ) {
+        renderingOverlays = true;
+
+        GlStateManager.matrixMode( GL11.GL_PROJECTION );
+        GlStateManager.pushMatrix();
+        GlStateManager.matrixMode( GL11.GL_MODELVIEW );
+        GlStateManager.pushMatrix();
+        GlStateManager.disableAlphaTest();
+        GlStateManager.enableCull();
+        GlStateManager.color4f( 1, 1, 1, 1 );
+        GlStateManager.depthMask( true );
+        renderHandMethod.call( mc.gameRenderer, mc.gameRenderer.getActiveRenderInfo(), partialTicks );
+        GlStateManager.enableAlphaTest();
+        GlStateManager.matrixMode( GL11.GL_PROJECTION );
+        GlStateManager.popMatrix();
+        GlStateManager.matrixMode( GL11.GL_MODELVIEW );
+        GlStateManager.popMatrix();
+
+        renderingOverlays = false;
+    }
+
+    public boolean useShaders() {
+        return canUseShaders() && shouldUseShaders();
     }
 
     @Override

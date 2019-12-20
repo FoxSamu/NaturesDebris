@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 26 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -37,6 +37,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -85,6 +86,7 @@ public enum WorldRenderHandler {
             particle.renderParticleLast( buff, info, partialTicks, rx, rz, ryz, rxy, rxz );
         }
         renderLastParticles.clear();
+
     }
 
     @SubscribeEvent
@@ -94,7 +96,16 @@ public enum WorldRenderHandler {
 
     @SubscribeEvent( priority = EventPriority.HIGHEST )
     public void onRenderOverlay( RenderBlockOverlayEvent event ) {
-        if( ShaderManager.get().cancelOverlays() ) event.setCanceled( true );
+        if( ShaderManager.get().useShaders() && ! ShaderManager.get().renderingOverlays() ) {
+            event.setCanceled( true );
+        }
+    }
+
+    @SubscribeEvent( priority = EventPriority.HIGHEST )
+    public void onRenderHand( RenderHandEvent event ) {
+        if( ShaderManager.get().useShaders() && ShaderManager.get().renderingOverlays() ) {
+            event.setCanceled( true );
+        }
     }
 
     @SubscribeEvent

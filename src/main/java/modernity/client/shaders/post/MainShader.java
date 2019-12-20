@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 26 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -28,6 +28,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class MainShader extends PostProcessingEffect {
     public static final ResourceLocation WORLD_DEPTH_TEXTURE = new ResourceLocation( "modernity:world_depth" );
+    public static final ResourceLocation HAND_DEPTH_TEXTURE = new ResourceLocation( "modernity:hand_depth" );
     private static final int LIGHT_COUNT = 32;
 
     private static final Comparator<LightSource> LIGHT_SOURCE_SORTER = ( o1, o2 ) -> {
@@ -62,11 +63,13 @@ public class MainShader extends PostProcessingEffect {
 
     private Framebuffer diffuse;
     private DepthBuffer depth;
+    private DepthBuffer handDepth;
 
     private final ArrayList<LightSource> lights = new ArrayList<>();
 
     private Program.Uniform diffuseSamplerUniform;
     private Program.Uniform depthSamplerUniform;
+    private Program.Uniform handDepthSamplerUniform;
     private Program.Uniform inverseMVPUniform;
 
     private Program.Uniform fogModeUniform;
@@ -87,6 +90,12 @@ public class MainShader extends PostProcessingEffect {
         updateDepthBuffer();
     }
 
+    public void updateHandFBO( Framebuffer fbo ) {
+        handDepth.blitDepthBufferFrom( fbo );
+        fbo.bindFramebuffer( false );
+        bindTexture( 0 );
+    }
+
     private void updateDepthBuffer() {
         depth.blitDepthBufferFrom( diffuse );
         diffuse.bindFramebuffer( false );
@@ -97,11 +106,13 @@ public class MainShader extends PostProcessingEffect {
     public void render( float partialTicks ) {
         bind( 0, diffuse.framebufferTexture );
         bind( 1, depth.getGlTextureId() );
+        bind( 2, handDepth.getGlTextureId() );
 
         super.render( partialTicks );
 
         bind( 0, 0 );
         bind( 1, 0 );
+        bind( 2, 0 );
     }
 
     private void bind( int slot, int texture ) {
@@ -124,6 +135,7 @@ public class MainShader extends PostProcessingEffect {
     protected void init() {
         diffuseSamplerUniform = program.uniform( "diffuse" );
         depthSamplerUniform = program.uniform( "depth" );
+        handDepthSamplerUniform = program.uniform( "handDepth" );
         inverseMVPUniform = program.uniform( "inverseMVP" );
         lightCountUniform = program.uniform( "lightCount" );
         fogModeUniform = program.uniform( "fogMode" );
@@ -136,12 +148,14 @@ public class MainShader extends PostProcessingEffect {
         }
 
         depth = new DepthBuffer( textureManager, WORLD_DEPTH_TEXTURE );
+        handDepth = new DepthBuffer( textureManager, HAND_DEPTH_TEXTURE );
     }
 
     @Override
     protected void preRender( float partialTicks ) {
         diffuseSamplerUniform.set( 0 );
         depthSamplerUniform.set( 1 );
+        handDepthSamplerUniform.set( 2 );
         inverseMVPUniform.setMatrix( inverseMVPBuff );
         fogModeUniform.set( glGetInteger( GL_FOG_MODE ) );
 
