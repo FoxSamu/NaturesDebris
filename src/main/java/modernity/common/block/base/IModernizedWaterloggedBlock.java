@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -26,12 +26,12 @@ import net.minecraft.world.IWorld;
 public interface IModernizedWaterloggedBlock extends IBucketPickupHandler, ILiquidContainer {
     @Override
     default boolean canContainFluid( IBlockReader world, BlockPos pos, BlockState state, Fluid fluid ) {
-        return ! state.get( BlockStateProperties.WATERLOGGED ) && fluid == MDFluids.MODERNIZED_WATER;
+        return ! state.get( BlockStateProperties.WATERLOGGED ) && fluid == MDFluids.MURKY_WATER;
     }
 
     @Override
     default boolean receiveFluid( IWorld world, BlockPos pos, BlockState state, IFluidState fstate ) {
-        if( ! state.get( BlockStateProperties.WATERLOGGED ) && fstate.getFluid() == MDFluids.MODERNIZED_WATER ) {
+        if( ! state.get( BlockStateProperties.WATERLOGGED ) && fstate.getFluid() == MDFluids.MURKY_WATER ) {
             if( ! world.isRemote() ) {
                 world.setBlockState( pos, state.with( BlockStateProperties.WATERLOGGED, true ), 3 );
                 world.getPendingFluidTicks().scheduleTick( pos, fstate.getFluid(), fstate.getFluid().getTickRate( world ) );
@@ -47,7 +47,7 @@ public interface IModernizedWaterloggedBlock extends IBucketPickupHandler, ILiqu
     default Fluid pickupFluid( IWorld world, BlockPos pos, BlockState state ) {
         if( state.get( BlockStateProperties.WATERLOGGED ) ) {
             world.setBlockState( pos, state.with( BlockStateProperties.WATERLOGGED, false ), 3 );
-            return MDFluids.MODERNIZED_WATER;
+            return MDFluids.MURKY_WATER;
         } else {
             return Fluids.EMPTY;
         }

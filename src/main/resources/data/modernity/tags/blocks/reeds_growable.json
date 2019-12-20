@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
-    "modernity:dark_dirt",
-    "modernity:coarse_dark_dirt",
+    "modernity:murky_dirt",
+    "modernity:murky_coarse_dirt",
     "modernity:humus",
-    "modernity:dark_grass_block",
-    "modernity:dark_sand",
+    "modernity:murky_grass_block",
+    "modernity:murky_sand",
     "modernity:mud"
   ]
 }

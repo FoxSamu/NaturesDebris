@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -73,9 +73,9 @@ public class TorchBlock extends WaterloggedBlock {
         if( facing == UP ) return false;
         BlockPos offPos = pos.offset( facing );
         if( facing == DOWN ) {
-            return func_220055_a( world, offPos, Direction.UP );
+            return func_220055_a( world, offPos, Direction.UP ) || world.getBlockState( offPos ).getBlock() instanceof StickyBlock;
         } else {
-            return world.getBlockState( offPos ).func_224755_d( world, offPos, facing.getOpposite() ) && world.getBlockState( offPos ).isSolid();
+            return world.getBlockState( offPos ).func_224755_d( world, offPos, facing.getOpposite() ) && world.getBlockState( offPos ).isSolid() || world.getBlockState( offPos ).getBlock() instanceof StickyBlock;
         }
     }
 

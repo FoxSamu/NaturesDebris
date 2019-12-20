@@ -1,7 +1,7 @@
 {
   "textures": {
-    "water": "modernity:liquid/modernized_water_still",
-    "particle": "modernity:liquid/modernized_water_still"
+    "water": "block/water_still",
+    "particle": "block/water_still"
   },
   "elements": [
     {

@@ -1,8 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "modernity:item/aluminium_bucket",
-    "layer1": "modernity:item/bucket_inner_heatrock",
-    "layer2": "modernity:item/aluminium_bucket_overlay"
-  }
-}

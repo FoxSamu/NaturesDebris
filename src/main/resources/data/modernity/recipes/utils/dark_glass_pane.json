@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "modernity:dark_glass"
+      "item": "modernity:murky_glass"
     }
   },
   "result": {
-    "item": "modernity:dark_glass_pane",
+    "item": "modernity:murky_glass_pane",
     "count": 16
   }
 }

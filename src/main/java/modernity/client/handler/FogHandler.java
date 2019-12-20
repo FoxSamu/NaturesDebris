@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -84,7 +84,7 @@ public enum FogHandler {
             event.setDensity( 1 );
 
             GLX.setupNvFogDistance();
-        } else if( fluid.isTagged( MDFluidTags.MODERNIZED_WATER ) ) {
+        } else if( fluid.isTagged( MDFluidTags.MURKY_WATER ) ) {
             GlStateManager.fogMode( GlStateManager.FogMode.EXP2 );
             int waterColor = ModernityClient.get().getWaterColors().getColor( mc.world, renderInfo.getBlockPos() );
             setColor( ColorUtil.darken( waterColor, 0.4 ) );
@@ -108,7 +108,7 @@ public enum FogHandler {
             } else {
                 event.setDensity( 0.1F );
             }
-        } else if( fluid.isTagged( MDFluidTags.HEATROCK ) ) {
+        } else if( fluid.isTagged( MDFluidTags.MOLTEN_ROCK ) ) {
             GlStateManager.fogMode( GlStateManager.FogMode.EXP );
             setColor( 0xfc9803 );
             event.setDensity( 2 );

@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -108,7 +108,7 @@ public class DirtBlock extends DigableBlock {
                 return;
             if( ! canRemainAt( world, pos ) && type.canDecay ) {
                 // Do decaying
-                world.setBlockState( pos, MDBlocks.DARK_DIRT.getDefaultState() );
+                world.setBlockState( pos, MDBlocks.MURKY_DIRT.getDefaultState() );
             } else if( type.canSpread ) {
                 // Do spreading
                 if( world.getLight( pos.up() ) >= 9 ) {
@@ -118,7 +118,7 @@ public class DirtBlock extends DigableBlock {
                             return;
                         }
 
-                        if( world.getBlockState( growPos ).getBlock() == MDBlocks.DARK_DIRT && canGrowAt( world, growPos ) ) {
+                        if( world.getBlockState( growPos ).getBlock() == MDBlocks.MURKY_DIRT && canGrowAt( world, growPos ) ) {
                             world.setBlockState( growPos, this.getDefaultState() );
                         }
                     }

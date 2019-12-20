@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -41,5 +41,17 @@ public class GlassBlock extends Block implements IFluidOverlayBlock {
     @OnlyIn( Dist.CLIENT )
     public boolean isSideInvisible( BlockState state, BlockState adjacentBlockState, Direction side ) {
         return adjacentBlockState.getBlock() == this || super.isSideInvisible( state, adjacentBlockState, side );
+    }
+
+    public static class Translucent extends GlassBlock {
+
+        public Translucent( Properties properties ) {
+            super( properties );
+        }
+
+        @Override
+        public BlockRenderLayer getRenderLayer() {
+            return BlockRenderLayer.TRANSLUCENT;
+        }
     }
 }

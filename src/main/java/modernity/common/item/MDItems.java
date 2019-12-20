@@ -2,21 +2,18 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
 package modernity.common.item;
 
-import modernity.api.block.IColoredBlock;
 import modernity.api.item.IColoredItem;
 import modernity.common.fluid.MDFluids;
 import modernity.common.item.base.AluminiumBucketItem;
 import modernity.common.item.base.BaseBucketItem;
-import modernity.common.item.base.CurseCrystalItem;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -44,8 +41,8 @@ public final class MDItems {
     public static final Item INVER_STICK = item( "inver_stick", new Item( new Item.Properties().group( MDItemGroups.MISC ) ) );
 
     public static final BaseBucketItem ALUMINIUM_BUCKET = item( "aluminium_bucket", new AluminiumBucketItem( Fluids.EMPTY, new Item.Properties().group( MDItemGroups.MISC ) ) );
-    public static final BaseBucketItem ALUMINIUM_WATER_BUCKET = item( "aluminium_water_bucket", new AluminiumBucketItem( MDFluids.MODERNIZED_WATER, new Item.Properties().group( MDItemGroups.MISC ).containerItem( ALUMINIUM_BUCKET ) ) );
-    public static final BaseBucketItem ALUMINIUM_HEATROCK_BUCKET = item( "aluminium_heatrock_bucket", new AluminiumBucketItem( MDFluids.HEATROCK, new Item.Properties().group( MDItemGroups.MISC ).containerItem( ALUMINIUM_BUCKET ) ) );
+    public static final BaseBucketItem ALUMINIUM_WATER_BUCKET = item( "aluminium_water_bucket", new AluminiumBucketItem( MDFluids.MURKY_WATER, new Item.Properties().group( MDItemGroups.MISC ).containerItem( ALUMINIUM_BUCKET ) ) );
+    public static final BaseBucketItem ALUMINIUM_LAVA_BUCKET = item( "aluminium_lava_bucket", new AluminiumBucketItem( MDFluids.MOLTEN_ROCK, new Item.Properties().group( MDItemGroups.MISC ).containerItem( ALUMINIUM_BUCKET ) ) );
     public static final BaseBucketItem ALUMINIUM_OIL_BUCKET = item( "aluminium_oil_bucket", new AluminiumBucketItem( MDFluids.OIL, new Item.Properties().group( MDItemGroups.MISC ).containerItem( ALUMINIUM_BUCKET ) ) );
 
     public static final PickaxeItem BLACKWOOD_PICKAXE = item( "blackwood_pickaxe", new PickaxeItem( ItemTier.WOOD, 1, - 2.8F, new Item.Properties().group( MDItemGroups.TOOLS ) ) );

@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -211,7 +211,7 @@ public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock imple
     }
 
     private boolean blocked( BlockState state ) {
-        return state.getMaterial().blocksMovement() || state.getMaterial().isLiquid() && state.getFluidState().getFluid() != MDFluids.MODERNIZED_WATER || isSelfState( state );
+        return state.getMaterial().blocksMovement() || state.getMaterial().isLiquid() && state.getFluidState().getFluid() != MDFluids.MURKY_WATER || isSelfState( state );
     }
 
     /**
@@ -312,12 +312,12 @@ public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock imple
         @Override
         public boolean canBlockSustain( IBlockReader reader, BlockPos pos, BlockState state ) {
             if( state.isIn( MDBlockTags.REEDS_GROWABLE ) ) {
-                if( reader.getFluidState( pos.up() ).getFluid() == MDFluids.MODERNIZED_WATER ) {
+                if( reader.getFluidState( pos.up() ).getFluid() == MDFluids.MURKY_WATER ) {
                     return true;
                 }
                 for( Direction facing : Direction.Plane.HORIZONTAL ) {
                     BlockPos pos1 = pos.offset( facing );
-                    if( reader.getFluidState( pos1 ).getFluid() == MDFluids.MODERNIZED_WATER ) {
+                    if( reader.getFluidState( pos1 ).getFluid() == MDFluids.MURKY_WATER ) {
                         return true;
                     }
                 }
@@ -343,14 +343,14 @@ public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock imple
             } else if( canGrow( world, pos, state ) ) {
                 // Set age to 0 before growing so that the new state receives the grow update...
                 world.setBlockState( pos, state.with( AGE, 0 ) );
-                world.setBlockState( pos.up(), getDefaultState().with( WATERLOGGED, world.getFluidState( pos.up() ).getFluid() == MDFluids.MODERNIZED_WATER ) );
+                world.setBlockState( pos.up(), getDefaultState().with( WATERLOGGED, world.getFluidState( pos.up() ).getFluid() == MDFluids.MURKY_WATER ) );
             }
         }
 
         private boolean canGrow( World world, BlockPos pos, BlockState state ) {
             BlockPos upPos = pos.up();
             BlockState upState = world.getBlockState( upPos );
-            if( ! upState.isAir( world, upPos ) && upState.getBlock() != MDBlocks.MODERNIZED_WATER ) {
+            if( ! upState.isAir( world, upPos ) && upState.getBlock() != MDBlocks.MURKY_WATER ) {
                 return false;
             }
             int owHeight = 0, totHeight = 0;
@@ -371,7 +371,7 @@ public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock imple
         }
 
         private boolean blocked( BlockState state ) {
-            return state.getMaterial().blocksMovement() || state.getMaterial().isLiquid() && state.getFluidState().getFluid() != MDFluids.MODERNIZED_WATER || isSelfState( state );
+            return state.getMaterial().blocksMovement() || state.getMaterial().isLiquid() && state.getFluidState().getFluid() != MDFluids.MURKY_WATER || isSelfState( state );
         }
 
         @Override
@@ -387,7 +387,7 @@ public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock imple
                 int height = 0;
                 for( int i = 0; i < uwHeight; i++ ) {
                     IFluidState state = world.getFluidState( rpos );
-                    if( state.getFluid() == MDFluids.MODERNIZED_WATER ) {
+                    if( state.getFluid() == MDFluids.MURKY_WATER ) {
                         height++;
                     } else {
                         break;
@@ -397,7 +397,7 @@ public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock imple
 
                 for( int i = 0; i < owHeight; i++ ) {
                     IFluidState state = world.getFluidState( rpos );
-                    if( state.getFluid() != MDFluids.MODERNIZED_WATER ) {
+                    if( state.getFluid() != MDFluids.MURKY_WATER ) {
                         height++;
                     } else {
                         break;
@@ -418,7 +418,7 @@ public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock imple
                     rpos.moveDown();
                     boolean start = i == 0;
                     if( ! blocked( world.getBlockState( rpos ) ) ) {
-                        boolean water = world.getFluidState( rpos ).getFluid() == MDFluids.MODERNIZED_WATER;
+                        boolean water = world.getFluidState( rpos ).getFluid() == MDFluids.MURKY_WATER;
                         world.setBlockState( rpos, getDefaultState().with( WATERLOGGED, water ).with( BOTTOM, start ).with( TOP, end ), 2 | 16 );
                         m++;
                     } else {

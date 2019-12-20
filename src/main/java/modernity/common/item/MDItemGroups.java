@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -24,7 +24,7 @@ public final class MDItemGroups {
 
         @Override
         public ItemStack createIcon() {
-            return new ItemStack( MDBlocks.DARK_GRASS_BLOCK.asItem() );
+            return new ItemStack( MDBlocks.MURKY_GRASS_BLOCK.asItem() );
         }
     };
     public static final ItemGroup DECORATIVES = new ItemGroup( "decoratives" ) {

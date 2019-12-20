@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 15 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -136,10 +136,10 @@ public class MDSurfaceCaveGenerator {
                                 }
 
                                 BlockState state = region.getBlockState( rpos );
-                                if( noise < BASE_LIMIT && state.getBlock() != MDBlocks.MODERN_BEDROCK ) {
+                                if( noise < BASE_LIMIT && state.getBlock() != MDBlocks.UNBREAKABLE_STONE ) {
                                     region.setBlockState( rpos, by > 16
                                                                 ? Blocks.CAVE_AIR.getDefaultState()
-                                                                : MDBlocks.MODERNIZED_WATER.getDefaultState(), false );
+                                                                : MDBlocks.MURKY_WATER.getDefaultState(), false );
                                 }
                             }
 

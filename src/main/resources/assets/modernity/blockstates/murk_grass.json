@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "bottom=false,top=false": {
+      "model": "modernity:block/murk_grass_middle"
+    },
+    "bottom=false,top=true": {
+      "model": "modernity:block/murk_grass_top"
+    },
+    "bottom=true,top=true": {
+      "model": "modernity:block/murk_grass"
+    },
+    "bottom=true,top=false": {
+      "model": "modernity:block/murk_grass_bottom"
+    }
+  }
+}

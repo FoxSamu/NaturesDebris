@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -17,13 +17,9 @@ import net.minecraft.util.ResourceLocation;
  * Holder class for Modernity fluid tags.
  */
 public final class MDFluidTags {
-    // Fluids assigned to this tag can be converted to portal fluid
-    public static final Tag<Fluid> PORTALIZABLE = new FluidTags.Wrapper( new ResourceLocation( "modernity:portalizable" ) );
-
-
     public static final Tag<Fluid> OIL = new FluidTags.Wrapper( new ResourceLocation( "modernity:oil" ) );
-    public static final Tag<Fluid> MODERNIZED_WATER = new FluidTags.Wrapper( new ResourceLocation( "modernity:modernized_water" ) );
-    public static final Tag<Fluid> HEATROCK = new FluidTags.Wrapper( new ResourceLocation( "modernity:heatrock" ) );
+    public static final Tag<Fluid> MURKY_WATER = new FluidTags.Wrapper( new ResourceLocation( "modernity:murky_water" ) );
+    public static final Tag<Fluid> MOLTEN_ROCK = new FluidTags.Wrapper( new ResourceLocation( "modernity:molten_rock" ) );
 
     private MDFluidTags() {
     }

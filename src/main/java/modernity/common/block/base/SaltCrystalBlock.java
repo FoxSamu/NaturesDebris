@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -230,7 +230,7 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IModernizedWat
     public int calculateGrowWeight( World world, BlockPos pos, BlockPos.MutableBlockPos mpos ) {
         int chance = 0;
         // Use modernized water as salt source
-        if( world.getFluidState( pos ).getFluid() == MDFluids.MODERNIZED_WATER ) {
+        if( world.getFluidState( pos ).getFluid() == MDFluids.MURKY_WATER ) {
             chance += 44;
         }
 
@@ -259,7 +259,7 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IModernizedWat
 
     @Override
     public boolean canContainFluid( IBlockReader world, BlockPos pos, BlockState state, Fluid fluid ) {
-        return fluid == MDFluids.MODERNIZED_WATER || fluid == Fluids.WATER;
+        return fluid == MDFluids.MURKY_WATER || fluid == Fluids.WATER;
     }
 
     @Override
@@ -270,10 +270,10 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IModernizedWat
                     world.setBlockState( pos, state.with( WATERLOGGED, EWaterlogType.WATER ), 3 );
                     world.getPendingFluidTicks().scheduleTick( pos, Fluids.WATER, Fluids.WATER.getTickRate( world ) );
                 }
-            } else if( fluidState.getFluid() == MDFluids.MODERNIZED_WATER ) {
+            } else if( fluidState.getFluid() == MDFluids.MURKY_WATER ) {
                 if( ! world.isRemote() ) {
                     world.setBlockState( pos, state.with( WATERLOGGED, EWaterlogType.MODERNIZED_WATER ), 3 );
-                    world.getPendingFluidTicks().scheduleTick( pos, MDFluids.MODERNIZED_WATER, MDFluids.MODERNIZED_WATER.getTickRate( world ) );
+                    world.getPendingFluidTicks().scheduleTick( pos, MDFluids.MURKY_WATER, MDFluids.MURKY_WATER.getTickRate( world ) );
                 }
             } else {
                 return false;
@@ -305,7 +305,7 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IModernizedWat
             world.getPendingFluidTicks().scheduleTick( currentPos, Fluids.WATER, Fluids.WATER.getTickRate( world ) );
         }
         if( state.get( WATERLOGGED ) == EWaterlogType.MODERNIZED_WATER ) {
-            world.getPendingFluidTicks().scheduleTick( currentPos, MDFluids.MODERNIZED_WATER, MDFluids.MODERNIZED_WATER.getTickRate( world ) );
+            world.getPendingFluidTicks().scheduleTick( currentPos, MDFluids.MURKY_WATER, MDFluids.MURKY_WATER.getTickRate( world ) );
         }
         return state;
     }

@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -24,7 +24,7 @@ import java.util.Random;
 public class HumusSurfaceGenerator implements ISurfaceGenerator<MDSurfaceGenSettings> {
 
     private static final BlockState HUMUS = MDBlocks.HUMUS.getDefaultState();
-    private static final BlockState DIRT = MDBlocks.DARK_DIRT.getDefaultState();
+    private static final BlockState DIRT = MDBlocks.MURKY_DIRT.getDefaultState();
 
     @Override
     public void buildSurface( IChunk chunk, int cx, int cz, int x, int z, Random rand, ModernityBiome biome, INoise3D surfaceNoise, MovingBlockPos rpos, MDSurfaceGenSettings settings ) {

@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 15 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -127,7 +127,7 @@ public class MDSurfaceTerrainGenerator {
                                 BlockState state = Blocks.AIR.getDefaultState();
 
                                 if( posy < settings.getWaterLevel() ) {
-                                    state = MDBlocks.MODERNIZED_WATER.getDefaultState();
+                                    state = MDBlocks.MURKY_WATER.getDefaultState();
                                 }
 
                                 if( noise > 0 ) {

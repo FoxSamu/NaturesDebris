@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -12,7 +12,7 @@ import com.google.common.collect.Maps;
 import modernity.api.block.IFluidOverlayBlock;
 import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.api.block.fluid.IGaseousFluid;
-import modernity.common.fluid.ModernizedWaterFluid;
+import modernity.common.fluid.MurkyWaterFluid;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.StainedGlassBlock;
@@ -139,9 +139,9 @@ public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
      * always equivalent (they're both water, not?).
      */
     private static boolean areEquivalent( Fluid fluidA, Fluid fluidB ) {
-        if( fluidA instanceof WaterFluid && fluidB instanceof ModernizedWaterFluid ) {
+        if( fluidA instanceof WaterFluid && fluidB instanceof MurkyWaterFluid ) {
             return true;
-        } else if( fluidB instanceof WaterFluid && fluidA instanceof ModernizedWaterFluid ) {
+        } else if( fluidB instanceof WaterFluid && fluidA instanceof MurkyWaterFluid ) {
             return true;
         } else {
             return fluidA.isEquivalentTo( fluidB );
@@ -269,14 +269,14 @@ public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
                     float dir = (float) MathHelper.atan2( flowDirection.z, flowDirection.x ) - (float) Math.PI / 2F;
                     float sine = MathHelper.sin( dir ) * 0.25F;
                     float cosine = MathHelper.cos( dir ) * 0.25F;
-                    texU1 = texture.getInterpolatedU( (double) ( 8.0F + ( - cosine - sine ) * 16.0F ) );
-                    texV1 = texture.getInterpolatedV( (double) ( 8.0F + ( - cosine + sine ) * 16.0F ) );
-                    texU2 = texture.getInterpolatedU( (double) ( 8.0F + ( - cosine + sine ) * 16.0F ) );
-                    texV2 = texture.getInterpolatedV( (double) ( 8.0F + ( cosine + sine ) * 16.0F ) );
-                    texU3 = texture.getInterpolatedU( (double) ( 8.0F + ( cosine + sine ) * 16.0F ) );
-                    texV3 = texture.getInterpolatedV( (double) ( 8.0F + ( cosine - sine ) * 16.0F ) );
-                    texU4 = texture.getInterpolatedU( (double) ( 8.0F + ( cosine - sine ) * 16.0F ) );
-                    texV4 = texture.getInterpolatedV( (double) ( 8.0F + ( - cosine - sine ) * 16.0F ) );
+                    texU1 = texture.getInterpolatedU( 8.0F + ( - cosine - sine ) * 16.0F );
+                    texV1 = texture.getInterpolatedV( 8.0F + ( - cosine + sine ) * 16.0F );
+                    texU2 = texture.getInterpolatedU( 8.0F + ( - cosine + sine ) * 16.0F );
+                    texV2 = texture.getInterpolatedV( 8.0F + ( cosine + sine ) * 16.0F );
+                    texU3 = texture.getInterpolatedU( 8.0F + ( cosine + sine ) * 16.0F );
+                    texV3 = texture.getInterpolatedV( 8.0F + ( cosine - sine ) * 16.0F );
+                    texU4 = texture.getInterpolatedU( 8.0F + ( cosine - sine ) * 16.0F );
+                    texV4 = texture.getInterpolatedV( 8.0F + ( - cosine - sine ) * 16.0F );
                 }
 
                 // Compute light
@@ -417,8 +417,8 @@ public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
                     // Compute UV coords
                     float minU = texture.getInterpolatedU( 0.0D );
                     float maxU = texture.getInterpolatedU( 8.0D );
-                    float leftV = texture.getInterpolatedV( (double) ( ( 1.0F - leftHeight ) * 16.0F * 0.5F ) );
-                    float rightV = texture.getInterpolatedV( (double) ( ( 1.0F - rightHeight ) * 16.0F * 0.5F ) );
+                    float leftV = texture.getInterpolatedV( ( 1.0F - leftHeight ) * 16.0F * 0.5F );
+                    float rightV = texture.getInterpolatedV( ( 1.0F - rightHeight ) * 16.0F * 0.5F );
                     float maxV = texture.getInterpolatedV( 8.0D );
 
                     // Compute light

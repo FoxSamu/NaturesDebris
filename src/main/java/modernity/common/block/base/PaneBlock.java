@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -206,6 +206,18 @@ public class PaneBlock extends WaterloggedBlock {
                 return state.with( EAST, state.get( WEST ) ).with( WEST, state.get( EAST ) );
             default:
                 return super.mirror( state, mirr );
+        }
+    }
+
+    public static class Translucent extends PaneBlock {
+
+        public Translucent( Properties properties ) {
+            super( properties );
+        }
+
+        @Override
+        public BlockRenderLayer getRenderLayer() {
+            return BlockRenderLayer.TRANSLUCENT;
         }
     }
 }

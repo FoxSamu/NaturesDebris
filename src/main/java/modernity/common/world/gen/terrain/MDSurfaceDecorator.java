@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -60,7 +60,7 @@ public class MDSurfaceDecorator {
             this.features.put( stage, Lists.newArrayList() );
         }
 
-        addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature( MDFeatures.MINABLE, new MinableFeature.Config( BlockPredicates.ROCK_TYPES, MDBlocks.DARK_DIRT.getDefaultState(), 50 ), MDPlacements.COUNT_CAVE, new FrequencyConfig( 2 ) ) );
+        addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature( MDFeatures.MINABLE, new MinableFeature.Config( BlockPredicates.ROCK_TYPES, MDBlocks.MURKY_DIRT.getDefaultState(), 50 ), MDPlacements.COUNT_CAVE, new FrequencyConfig( 2 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature( MDFeatures.MINABLE, new MinableFeature.Config( BlockPredicates.ROCK_TYPES, MDBlocks.DARKROCK.getDefaultState(), 50 ), MDPlacements.COUNT_CAVE, new FrequencyConfig( 3 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature( MDFeatures.MINABLE, new MinableFeature.Config( BlockPredicates.ROCK_TYPES, MDBlocks.LIGHTROCK.getDefaultState(), 30 ), MDPlacements.CHANCE_CAVE, new ChanceConfig( 2 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature( MDFeatures.MINABLE, new MinableFeature.Config( BlockPredicates.ROCK_TYPES, MDBlocks.REDROCK.getDefaultState(), 40 ), MDPlacements.COUNT_CAVE, new FrequencyConfig( 1 ) ) );
@@ -68,9 +68,9 @@ public class MDSurfaceDecorator {
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature( MDFeatures.MINABLE, new MinableFeature.Config( BlockMatcher.forBlock( MDBlocks.ROCK ), MDBlocks.SALT_ORE.getDefaultState(), 15 ), Placement.COUNT_BIASED_RANGE, new CountRangeConfig( 17, 4, 4, 128 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature( MDFeatures.MINABLE, new MinableFeature.Config( BlockMatcher.forBlock( MDBlocks.ROCK ), MDBlocks.ALUMINIUM_ORE.getDefaultState(), 9 ), Placement.COUNT_BIASED_RANGE, new CountRangeConfig( 11, 4, 4, 128 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_ORES, createDecoratedFeature( MDFeatures.MINABLE, new MinableFeature.Config( BlockMatcher.forBlock( MDBlocks.ROCK ), MDBlocks.ANTHRACITE_ORE.getDefaultState(), 15 ), Placement.COUNT_BIASED_RANGE, new CountRangeConfig( 20, 4, 4, 128 ) ) );
-        addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createDecoratedFeature( MDFeatures.FLUID_FALL, new FluidFallFeature.Config( MDFluids.MODERNIZED_WATER, FluidFallFeature.STILL | FluidFallFeature.FLOWING ), MDPlacements.COUNT_CAVE, new FrequencyConfig( 10 ) ) );
-        addFeature( GenerationStage.Decoration.RAW_GENERATION, createDecoratedFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockState::isSolid, MDBlocks.DARK_SAND.getDefaultState() ), MDPlacements.LIMITED_HEIGHTMAP, new AtSurfaceBelowHeight.FrequencyConfig( settings.getWaterLevel() - 1, 24 ) ) );
-        addFeature( GenerationStage.Decoration.RAW_GENERATION, createDecoratedFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockState::isSolid, MDBlocks.DARK_CLAY.getDefaultState() ), MDPlacements.LIMITED_HEIGHTMAP, new AtSurfaceBelowHeight.ChanceConfig( settings.getWaterLevel() - 1, 4 ) ) );
+        addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createDecoratedFeature( MDFeatures.FLUID_FALL, new FluidFallFeature.Config( MDFluids.MURKY_WATER, FluidFallFeature.STILL | FluidFallFeature.FLOWING ), MDPlacements.COUNT_CAVE, new FrequencyConfig( 10 ) ) );
+        addFeature( GenerationStage.Decoration.RAW_GENERATION, createDecoratedFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockState::isSolid, MDBlocks.MURKY_SAND.getDefaultState() ), MDPlacements.LIMITED_HEIGHTMAP, new AtSurfaceBelowHeight.FrequencyConfig( settings.getWaterLevel() - 1, 24 ) ) );
+        addFeature( GenerationStage.Decoration.RAW_GENERATION, createDecoratedFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockState::isSolid, MDBlocks.MURKY_CLAY.getDefaultState() ), MDPlacements.LIMITED_HEIGHTMAP, new AtSurfaceBelowHeight.ChanceConfig( settings.getWaterLevel() - 1, 4 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createDecoratedFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 50, 5, MDBlocks.SALT_CRYSTAL ), MDPlacements.LIMITED_HEIGHTMAP, new AtSurfaceBelowHeight.ChanceConfig( settings.getWaterLevel() - 1, 35 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createDecoratedFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 50, 5, MDBlocks.SALT_CRYSTAL ), MDPlacements.COUNT_CAVE, new FrequencyConfig( 4 ) ) );
         addFeature( GenerationStage.Decoration.UNDERGROUND_DECORATION, createDecoratedFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 80, 8, MDBlocks.MURINA ), MDPlacements.COUNT_CAVE, new FrequencyConfig( 7 ) ) );

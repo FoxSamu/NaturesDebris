@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 17 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -43,22 +43,22 @@ public final class MDBlocks {
     public static final Block DARKROCK = blockItem( "darkrock", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroups.BLOCKS );
     public static final Block LIGHTROCK = blockItem( "lightrock", new Block( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroups.BLOCKS );
     public static final Block REDROCK = blockItem( "redrock", new Block( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroups.BLOCKS );
-    public static final Block MODERN_BEDROCK = blockItem( "modern_bedrock", new Block( rock( MaterialColor.BLACK, - 1, 3600000 ) ), MDItemGroups.BLOCKS );
+    public static final Block UNBREAKABLE_STONE = blockItem( "unbreakable_stone", new Block( rock( MaterialColor.BLACK, - 1, 3600000 ) ), MDItemGroups.BLOCKS, "modern_bedrock" );
     public static final Block BASALT = blockItem( "basalt", new Block( rock( MaterialColor.BLACK, 3, 9 ) ), MDItemGroups.BLOCKS );
     public static final Block LIMESTONE = blockItem( "limestone", new Block( rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 ) ), MDItemGroups.BLOCKS );
 
-    public static final DirtBlock DARK_DIRT = blockItem( "dark_dirt", new DirtBlock( DirtBlock.TYPE_DIRT, dirt( MaterialColor.DIRT, false ) ), MDItemGroups.BLOCKS );
-    public static final DirtBlock DARK_GRASS_BLOCK = blockItem( "dark_grass_block", new DirtBlock.ColoredGrass( DirtBlock.TYPE_GRASS, dirt( MaterialColor.GRASS, true ) ), MDItemGroups.BLOCKS );
-    public static final DigableFallBlock DARK_SAND = blockItem( "dark_sand", new DigableFallBlock( 0x584c39, dust( MaterialColor.SAND, true ) ), MDItemGroups.BLOCKS );
-    public static final DigableBlock DARK_CLAY = blockItem( "dark_clay", new DigableBlock( clay( MaterialColor.GRAY_TERRACOTTA ) ), MDItemGroups.BLOCKS );
-    public static final DirtBlock COARSE_DARK_DIRT = blockItem( "coarse_dark_dirt", new DirtBlock( DirtBlock.TYPE_DIRT, dirt( MaterialColor.DIRT, false ) ), MDItemGroups.BLOCKS );
+    public static final DirtBlock MURKY_DIRT = blockItem( "murky_dirt", new DirtBlock( DirtBlock.TYPE_DIRT, dirt( MaterialColor.DIRT, false ) ), MDItemGroups.BLOCKS, "dark_dirt" );
+    public static final DirtBlock MURKY_GRASS_BLOCK = blockItem( "murky_grass_block", new DirtBlock.ColoredGrass( DirtBlock.TYPE_GRASS, dirt( MaterialColor.GRASS, true ) ), MDItemGroups.BLOCKS, "dark_grass_block" );
+    public static final DigableFallBlock MURKY_SAND = blockItem( "murky_sand", new DigableFallBlock( 0x584c39, dust( MaterialColor.SAND, true ) ), MDItemGroups.BLOCKS, "dark_sand" );
+    public static final DigableBlock MURKY_CLAY = blockItem( "murky_clay", new DigableBlock( clay( MaterialColor.GRAY_TERRACOTTA ) ), MDItemGroups.BLOCKS, "dark_clay" );
+    public static final DirtBlock MURKY_COARSE_DIRT = blockItem( "murky_coarse_dirt", new DirtBlock( DirtBlock.TYPE_DIRT, dirt( MaterialColor.DIRT, false ) ), MDItemGroups.BLOCKS, "coarse_dark_dirt" );
     public static final DirtBlock HUMUS = blockItem( "humus", new DirtBlock( DirtBlock.TYPE_HUMUS, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroups.BLOCKS );
-    public static final DirtBlock DARK_PODZOL = blockItem( "dark_podzol", new DirtBlock( DirtBlock.TYPE_PODZOL, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroups.BLOCKS );
+    public static final DirtBlock MURKY_PODZOL = blockItem( "murky_podzol", new DirtBlock( DirtBlock.TYPE_PODZOL, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroups.BLOCKS, "dark_podzol" );
     public static final StickyBlock MUD = blockItem( "mud", new StickyBlock.Digable( dirt( MaterialColor.BROWN_TERRACOTTA, false ) ), MDItemGroups.BLOCKS );
-    public static final DigableFallBlock ROCK_GRAVEL = blockItem( "rock_gravel", new DigableFallBlock( 0x584c39, dust( MaterialColor.STONE, true ) ), MDItemGroups.BLOCKS );
+    public static final DigableFallBlock REGOLITH = blockItem( "regolith", new DigableFallBlock( 0x584c39, dust( MaterialColor.STONE, true ) ), MDItemGroups.BLOCKS, "rock_gravel" );
 
-    public static final RegularFluidBlock MODERNIZED_WATER = blockOnly( "modernized_water", new RegularFluidBlock( MDFluids.MODERNIZED_WATER, fluid( Material.WATER, MaterialColor.WATER ) ) );
-    public static final RegularFluidBlock HEATROCK = blockOnly( "heatrock", new RegularFluidBlock( MDFluids.HEATROCK, fluid( Material.LAVA, MaterialColor.TNT ).lightValue( 15 ) ) );
+    public static final RegularFluidBlock MURKY_WATER = blockOnly( "murky_water", new RegularFluidBlock( MDFluids.MURKY_WATER, fluid( Material.WATER, MaterialColor.WATER ) ), "modernized_water" );
+    public static final RegularFluidBlock MOLTEN_ROCK = blockOnly( "molten_rock", new RegularFluidBlock( MDFluids.MOLTEN_ROCK, fluid( Material.LAVA, MaterialColor.TNT ).lightValue( 15 ) ), "heatrock" );
     public static final RegularFluidBlock OIL = blockOnly( "oil", new OilFluidBlock( MDFluids.OIL, fluid( MDMaterial.OIL, MaterialColor.BLACK ) ) );
 
     public static final Block ROCK_BRICKS = blockItem( "rock_bricks", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroups.BLOCKS );
@@ -125,13 +125,13 @@ public final class MDBlocks {
     public static final FenceGateBlock BLACKWOOD_FENCE_GATE = blockItem( "blackwood_fence_gate", new FenceGateBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.DECORATIVES );
     public static final FenceGateBlock INVER_FENCE_GATE = blockItem( "inver_fence_gate", new FenceGateBlock( wood( MaterialColor.WOOD ) ), MDItemGroups.DECORATIVES );
 
-    public static final GlassBlock DARK_GLASS = blockItem( "dark_glass", new GlassBlock( glass() ), MDItemGroups.BLOCKS );
-    public static final PaneBlock DARK_GLASS_PANE = blockItem( "dark_glass_pane", new PaneBlock( glass() ), MDItemGroups.DECORATIVES );
+    public static final GlassBlock MURKY_GLASS = blockItem( "murky_glass", new GlassBlock.Translucent( glass() ), MDItemGroups.BLOCKS, "dark_glass" );
+    public static final PaneBlock MURKY_GLASS_PANE = blockItem( "murky_glass_pane", new PaneBlock.Translucent( glass() ), MDItemGroups.DECORATIVES, "dark_glass_pane" );
 
     public static final FallBlock ASH_BLOCK = blockItem( "ash_block", new DigableFallBlock( 0x333333, ash( MaterialColor.GRAY ) ), MDItemGroups.BLOCKS );
     public static final FallBlock SALT_DUST_BLOCK = blockItem( "salt_dust_block", new DigableFallBlock( 0xffffff, dust( MaterialColor.SNOW, false ) ), MDItemGroups.BLOCKS );
 
-    public static final TallPlantBlock DARK_TALLGRASS = blockItem( "dark_tall_grass", new TallPlantBlock.ColoredGrass( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
+    public static final TallPlantBlock MURK_GRASS = blockItem( "murk_grass", new TallPlantBlock.ColoredGrass( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "dark_tall_grass" );
     public static final TallWaterloggingPlantBlock REEDS = blockItem( "reeds", new TallWaterloggingPlantBlock.Reeds( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
 
     public static final SinglePlantBlock RED_MELION = blockItem( "red_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS, "melion/red" );

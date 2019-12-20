@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -120,7 +120,7 @@ public class LakeFeature extends Feature<LakeFeature.Config> {
                                         rpos.addPos( x, y, z );
                                         tpos.setPos( rpos );
                                         tpos.moveDown();
-                                        if( world.getBlockState( tpos ).getBlock() == MDBlocks.DARK_DIRT && world.getLightFor( LightType.SKY, rpos ) > 0 ) {
+                                        if( world.getBlockState( tpos ).getBlock() == MDBlocks.MURKY_DIRT && world.getLightFor( LightType.SKY, rpos ) > 0 ) {
                                             world.setBlockState( tpos, config.replaceGrass.getDefaultState(), 2 );
                                         }
                                     }

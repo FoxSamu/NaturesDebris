@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -42,7 +42,7 @@ public class ModernizedWaterloggedBlock extends Block implements IModernizedWate
     @Override
     public IFluidState getFluidState( BlockState state ) {
         return state.get( WATERLOGGED )
-               ? MDFluids.MODERNIZED_WATER.getDefaultState()
+               ? MDFluids.MURKY_WATER.getDefaultState()
                : Fluids.EMPTY.getDefaultState();
     }
 
@@ -57,6 +57,6 @@ public class ModernizedWaterloggedBlock extends Block implements IModernizedWate
     @Override
     public BlockState getStateForPlacement( BlockItemUseContext context ) {
         IFluidState fluid = context.getWorld().getFluidState( context.getPos() );
-        return getDefaultState().with( WATERLOGGED, fluid.getFluid() == MDFluids.MODERNIZED_WATER );
+        return getDefaultState().with( WATERLOGGED, fluid.getFluid() == MDFluids.MURKY_WATER );
     }
 }

@@ -14,7 +14,7 @@
   "block.modernity.darkrock": "Donker Rotsblok",
   "block.modernity.lightrock": "Verlicht Rotsblok",
   "block.modernity.redrock": "Rood Rotsblok",
-  "block.modernity.modern_bedrock": "Modern Bodemsteen",
+  "block.modernity.unbreakable_stone": "Onbreekbaar Steen",
   "block.modernity.basalt": "Basalt",
   "block.modernity.limestone": "Kalksteen",
 
@@ -81,14 +81,14 @@
   "block.modernity.inver_door": "Inverhouten Deur",
   "block.modernity.aluminium_door": "Aluminiumdeur",
 
-  "block.modernity.dark_glass": "Donker Glas",
-  "block.modernity.dark_glass_pane": "Donkere Glasplaat",
+  "block.modernity.murky_glass": "Vuil Glas",
+  "block.modernity.murky_glass_pane": "Vuil Glasplaat",
 
-  "block.modernity.dark_podzol": "Donker Podzol",
+  "block.modernity.murky_podzol": "Vuil Podzol",
   "block.modernity.mud": "Modder",
-  "block.modernity.rock_gravel": "Rotsig Grind",
+  "block.modernity.regolith": "Regoliet",
 
-  "block.modernity.heatrock_fluid": "Vloeisteen",
+  "block.modernity.molten_rock": "Gesmolten Rotsen",
   "block.modernity.oil": "Olie",
 
   "block.modernity.reeds": "Riet",
@@ -105,7 +105,7 @@
 
   "block.modernity.anthracite_ore": "Antracieterts",
 
-  "block.modernity.anthracite_block": "Antracieterts",
+  "block.modernity.anthracite_block": "Antracietblok",
 
   "block.modernity.anthracite_torch": "Antracietfakkel",
   "block.modernity.extinguished_anthracite_torch": "Uitgedoofde Antracietfakkel",
@@ -114,15 +114,14 @@
   "block.modernity.asphalt_concrete": "Asfaltbeton",
   "block.modernity.ash_block": "Asblok",
   "block.modernity.salt_dust_block": "Zoutpoederblok",
-  "block.modernity.dark_dirt": "Donkere Aarde",
-  "block.modernity.dark_grass_block": "Donker Grasblok",
-  "block.modernity.dark_sand": "Donker Zand",
-  "block.modernity.dark_clay": "Donkere Klei",
-  "block.modernity.coarse_dark_dirt": "Grove Donkere Aarde",
+  "block.modernity.murky_dirt": "Vuile Aarde",
+  "block.modernity.murky_grass_block": "Vuil Grasblok",
+  "block.modernity.murky_sand": "Vuil Zand",
+  "block.modernity.murky_clay": "Vuile Klei",
+  "block.modernity.murky_coarse_dirt": "Vuile Grove Aarde",
   "block.modernity.humus": "Humus",
-  "block.modernity.modernized_water": "Modern Water",
-  "block.modernity.portal_fluid": "Modernity Portaalvloeistof",
-  "block.modernity.dark_tall_grass": "Hoog Donker Gras",
+  "block.modernity.murky_water": "Vuil Water",
+  "block.modernity.murk_grass": "Vuilgras",
   "block.modernity.red_melion": "Rode Melion",
   "block.modernity.orange_melion": "Oranje Melion",
   "block.modernity.yellow_melion": "Gele Melion",
@@ -180,10 +179,9 @@
   "item.modernity.inver_stick": "Inverstok",
 
   "item.modernity.aluminium_bucket": "Aluminium Emmer",
-  "item.modernity.aluminium_water_bucket": "Aluminium Emmer met Modern Water",
-  "item.modernity.aluminium_heatrock_bucket": "Aluminium Emmer met Vloeisteen",
+  "item.modernity.aluminium_water_bucket": "Aluminium Emmer met Vuil Water",
+  "item.modernity.aluminium_heatrock_bucket": "Aluminium Emmer met Gesmolten Rotsen",
   "item.modernity.aluminium_oil_bucket": "Aluminium Emmer met Olie",
-  "item.modernity.aluminium_portal_bucket": "Aluminium Emmer met Portaalvloeistof",
 
   "item.modernity.blackwood_pickaxe": "Zwarthouten Houweel",
   "item.modernity.blackwood_axe": "Zwarthouten Bijl",

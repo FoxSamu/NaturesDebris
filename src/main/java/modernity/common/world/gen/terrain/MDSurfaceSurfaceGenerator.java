@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -84,7 +84,7 @@ public class MDSurfaceSurfaceGenerator {
                 for( int y = 4; y >= 0; y-- ) {
                     mpos.setPos( x, y, z );
                     if( y <= rand.nextInt( 5 ) ) {
-                        chunk.setBlockState( mpos, MDBlocks.MODERN_BEDROCK.getDefaultState(), false );
+                        chunk.setBlockState( mpos, MDBlocks.UNBREAKABLE_STONE.getDefaultState(), false );
                     }
                 }
 

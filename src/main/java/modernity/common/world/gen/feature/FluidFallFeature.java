@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -38,7 +38,7 @@ public class FluidFallFeature extends Feature<FluidFallFeature.Config> {
     public static final int FLOWING = 2;
 
     public FluidFallFeature() {
-        super( dynamic -> new Config( MDFluids.MODERNIZED_WATER, STILL ) );
+        super( dynamic -> new Config( MDFluids.MURKY_WATER, STILL ) );
     }
 
     @Override

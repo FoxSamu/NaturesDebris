@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -22,7 +22,7 @@ import java.util.function.Supplier;
 public enum EWaterlogType implements IStringSerializable {
     NONE( "none", Fluids.EMPTY::getDefaultState ),
     WATER( "water", Fluids.WATER::getDefaultState ),
-    MODERNIZED_WATER( "modernized_water", MDFluids.MODERNIZED_WATER::getDefaultState );
+    MODERNIZED_WATER( "modernized_water", MDFluids.MURKY_WATER::getDefaultState );
 
     private final String name;
     private final Supplier<IFluidState> fluidStateSupplier;
@@ -58,7 +58,7 @@ public enum EWaterlogType implements IStringSerializable {
         if( fluid == Fluids.WATER && this != WATER ) {
             return true;
         }
-        if( fluid == MDFluids.MODERNIZED_WATER && this != MODERNIZED_WATER ) {
+        if( fluid == MDFluids.MURKY_WATER && this != MODERNIZED_WATER ) {
             return true;
         }
         return fluid == Fluids.EMPTY && this != NONE;
@@ -68,7 +68,7 @@ public enum EWaterlogType implements IStringSerializable {
      * Returns the type for a specific fluid state
      */
     public static EWaterlogType getType( IFluidState state ) {
-        if( state.getFluid() == MDFluids.MODERNIZED_WATER ) {
+        if( state.getFluid() == MDFluids.MURKY_WATER ) {
             return MODERNIZED_WATER;
         }
         if( state.getFluid() == Fluids.WATER ) {

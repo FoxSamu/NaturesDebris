@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -29,11 +29,11 @@ public final class MDFluids {
     private static final RegistryHandler<Fluid> ENTRIES = new RegistryHandler<>( "modernity" );
 
     // V I0.2.0
-    public static final ModernizedWaterFluid MODERNIZED_WATER = register( "modernized_water", new ModernizedWaterFluid.Source() );
-    public static final ModernizedWaterFluid FLOWING_MODERNIZED_WATER = register( "flowing_modernized_water", new ModernizedWaterFluid.Flowing() );
+    public static final MurkyWaterFluid MURKY_WATER = register( "murky_water", new MurkyWaterFluid.Source(), "modernized_water" );
+    public static final MurkyWaterFluid FLOWING_MURKY_WATER = register( "flowing_murky_water", new MurkyWaterFluid.Flowing(), "flowing_modernized_water" );
 
-    public static final HeatrockFluid HEATROCK = register( "heatrock", new HeatrockFluid.Source() );
-    public static final HeatrockFluid FLOWING_HEATROCK = register( "flowing_heatrock", new HeatrockFluid.Flowing() );
+    public static final MoltenRockFluid MOLTEN_ROCK = register( "molten_rock", new MoltenRockFluid.Source(), "heatrock" );
+    public static final MoltenRockFluid FLOWING_MOLTEN_ROCK = register( "flowing_molten_rock", new MoltenRockFluid.Flowing(), "flowing_heatrock" );
 
     public static final OilFluid OIL = register( "oil", new OilFluid.Source() );
     public static final OilFluid FLOWING_OIL = register( "flowing_oil", new OilFluid.Flowing() );
@@ -51,9 +51,9 @@ public final class MDFluids {
      * Checks if two fluids are equivalent.
      */
     public static boolean areEquivalent( Fluid fluidA, Fluid fluidB ) {
-        if( fluidA instanceof WaterFluid && fluidB instanceof ModernizedWaterFluid ) {
+        if( fluidA instanceof WaterFluid && fluidB instanceof MurkyWaterFluid ) {
             return true;
-        } else if( fluidB instanceof WaterFluid && fluidA instanceof ModernizedWaterFluid ) {
+        } else if( fluidB instanceof WaterFluid && fluidA instanceof MurkyWaterFluid ) {
             return true;
         } else {
             return fluidA.isEquivalentTo( fluidB );

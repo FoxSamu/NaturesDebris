@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -23,8 +23,8 @@ import java.util.Random;
  */
 public class GrassSurfaceGenerator implements ISurfaceGenerator<MDSurfaceGenSettings> {
 
-    private static final BlockState GRASS = MDBlocks.DARK_GRASS_BLOCK.getDefaultState();
-    private static final BlockState DIRT = MDBlocks.DARK_DIRT.getDefaultState();
+    private static final BlockState GRASS = MDBlocks.MURKY_GRASS_BLOCK.getDefaultState();
+    private static final BlockState DIRT = MDBlocks.MURKY_DIRT.getDefaultState();
     private static final BlockState MUD = MDBlocks.MUD.getDefaultState();
 
     @Override

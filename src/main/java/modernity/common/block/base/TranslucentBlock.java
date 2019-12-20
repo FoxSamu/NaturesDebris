@@ -2,12 +2,13 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
 package modernity.common.block.base;
 
+import modernity.api.block.IFluidOverlayBlock;
 import modernity.common.particle.MDParticleTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,7 +24,7 @@ import java.util.Random;
 /**
  * Describes a translucent block. A translucent block only culls faces of equivalent blocks.
  */
-public class TranslucentBlock extends Block {
+public class TranslucentBlock extends Block implements IFluidOverlayBlock {
 
     public TranslucentBlock( Block.Properties properties ) {
         super( properties );

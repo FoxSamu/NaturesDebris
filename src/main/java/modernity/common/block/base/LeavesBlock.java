@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   12 - 20 - 2019
  * Author: rgsw
  */
 
@@ -112,7 +112,7 @@ public class LeavesBlock extends Block implements IShearable {
             }
 
             // TODO: Tag
-            if( belowState.getBlock() == MDBlocks.DARK_DIRT ) {
+            if( belowState.getBlock() == MDBlocks.MURKY_DIRT ) {
                 world.setBlockState( mpos, MDBlocks.HUMUS.getDefaultState() );
             }
             break;
