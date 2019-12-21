@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 15 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
@@ -27,6 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
@@ -395,7 +396,9 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
     @Override
     public boolean isRainingAt( BlockPos pos ) {
         PrecipitationEnvEvent precEv = envEventManager.getByType( MDEnvEvents.PRECIPITATION );
-        ModernityBiome biome = (ModernityBiome) world.getBiome( pos );
+        Biome b = world.getBiome( pos );
+        if( ! ( b instanceof ModernityBiome ) ) return false;
+        ModernityBiome biome = (ModernityBiome) b;
         IPrecipitationFunction func = biome.getPrecipitationFunction();
         IPrecipitation prec = func.computePrecipitation( precEv.getLevel() );
         if( precEv.getEffect() <= 0.2 ) {
