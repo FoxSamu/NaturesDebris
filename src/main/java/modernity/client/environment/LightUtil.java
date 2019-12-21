@@ -10,6 +10,7 @@ package modernity.client.environment;
 
 import modernity.api.dimension.IEnvironmentDimension;
 import net.minecraft.client.Minecraft;
+import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
 import net.redgalaxy.MathUtil;
 
@@ -38,7 +39,10 @@ public final class LightUtil {
         float[] block = EnvironmentRenderingManager.LIGHT.block;
         float[] sky = EnvironmentRenderingManager.LIGHT.sky;
 
-        float nvb = Minecraft.getInstance().gameRenderer.getNightVisionBrightness( Minecraft.getInstance().player, partialTicks );
+        float nvb = 0;
+        if( Minecraft.getInstance().player != null && Minecraft.getInstance().player.isPotionActive( Effects.NIGHT_VISION ) ) {
+            nvb = Minecraft.getInstance().gameRenderer.getNightVisionBrightness( Minecraft.getInstance().player, partialTicks );
+        }
 
         if( nvb > 0 ) {
             ambient[ 0 ] = MathUtil.lerp( ambient[ 0 ], ambient[ 0 ] * 0.2F + 0.8F, nvb );
