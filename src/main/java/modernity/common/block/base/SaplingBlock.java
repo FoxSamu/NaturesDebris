@@ -68,17 +68,19 @@ public class SaplingBlock extends SinglePlantBlock {
      * Grows the sapling.
      */
     public void growOlder( BlockState state, IWorld world, BlockPos pos, Random rand ) {
-        if( state.get( AGE ) == 5 ) {
-            long seed = rand.nextLong();
-            Random local = new Random( seed );
-            if( tree.get().canGenerate( world, local, pos ) ) {
-                world.removeBlock( pos, false );
+        if( world.isRemote() ) {
+            if( state.get( AGE ) == 5 ) {
+                long seed = rand.nextLong();
+                Random local = new Random( seed );
+                if( tree.get().canGenerate( world, local, pos ) ) {
+                    world.removeBlock( pos, false );
 
-                local.setSeed( seed );
-                tree.get().generate( world, local, pos );
+                    local.setSeed( seed );
+                    tree.get().generate( world, local, pos );
+                }
+            } else {
+                world.setBlockState( pos, state.with( AGE, state.get( AGE ) + 1 ), BlockUpdates.CAUSE_UPDATE | BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_RENDER | BlockUpdates.NO_NEIGHBOR_REACTIONS );
             }
-        } else {
-            world.setBlockState( pos, state.with( AGE, state.get( AGE ) + 1 ), BlockUpdates.CAUSE_UPDATE | BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_RENDER | BlockUpdates.NO_NEIGHBOR_REACTIONS );
         }
     }
 
@@ -86,6 +88,7 @@ public class SaplingBlock extends SinglePlantBlock {
     public boolean onBlockActivated( BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result ) {
         if( player.getHeldItem( hand ).getItem().isIn( MDItemTags.FERTILIZER ) ) {
             growOlder( state, world, pos, world.rand );
+            world.playEvent( 2005, pos, 0 );
             return true;
         }
         return false;
