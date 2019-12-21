@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 15 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
@@ -37,6 +37,14 @@ public final class LightUtil {
         float[] ambient = EnvironmentRenderingManager.LIGHT.ambient;
         float[] block = EnvironmentRenderingManager.LIGHT.block;
         float[] sky = EnvironmentRenderingManager.LIGHT.sky;
+
+        float nvb = Minecraft.getInstance().gameRenderer.getNightVisionBrightness( Minecraft.getInstance().player, partialTicks );
+
+        if( nvb > 0 ) {
+            ambient[ 0 ] = MathUtil.lerp( ambient[ 0 ], ambient[ 0 ] * 0.2F + 0.8F, nvb );
+            ambient[ 1 ] = MathUtil.lerp( ambient[ 1 ], ambient[ 1 ] * 0.2F + 0.8F, nvb );
+            ambient[ 2 ] = MathUtil.lerp( ambient[ 2 ], ambient[ 2 ] * 0.2F + 0.8F, nvb );
+        }
 
         colors[ 0 ] = interpolate( sky[ 0 ], block[ 0 ], ambient[ 0 ], skyLight, blockLight );
         colors[ 1 ] = interpolate( sky[ 1 ], block[ 1 ], ambient[ 1 ], skyLight, blockLight );
