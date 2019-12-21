@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
@@ -41,7 +41,7 @@ import java.util.Random;
  * Describes the salt crystal block.
  */
 @SuppressWarnings( "deprecation" )
-public class SaltCrystalBlock extends SinglePlantBlock implements IModernizedWaterloggedBlock {
+public class SaltCrystalBlock extends SinglePlantBlock implements IMurkyWaterloggedBlock {
     public static final IntegerProperty AGE = IntegerProperty.create( "age", 0, 11 );
     public static final BooleanProperty NATURAL = BooleanProperty.create( "natural" );
     public static final EnumProperty<EWaterlogType> WATERLOGGED = EnumProperty.create( "waterlogged", EWaterlogType.class );
@@ -272,7 +272,7 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IModernizedWat
                 }
             } else if( fluidState.getFluid() == MDFluids.MURKY_WATER ) {
                 if( ! world.isRemote() ) {
-                    world.setBlockState( pos, state.with( WATERLOGGED, EWaterlogType.MODERNIZED_WATER ), 3 );
+                    world.setBlockState( pos, state.with( WATERLOGGED, EWaterlogType.MURKY_WATER ), 3 );
                     world.getPendingFluidTicks().scheduleTick( pos, MDFluids.MURKY_WATER, MDFluids.MURKY_WATER.getTickRate( world ) );
                 }
             } else {
@@ -286,15 +286,6 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IModernizedWat
     }
 
     @Override
-    public Fluid pickupFluid( IWorld world, BlockPos pos, BlockState state ) {
-        if( state.get( WATERLOGGED ) == EWaterlogType.WATER ) {
-            world.setBlockState( pos, state.with( WATERLOGGED, EWaterlogType.NONE ), 3 );
-            return Fluids.WATER;
-        }
-        return Fluids.EMPTY;
-    }
-
-    @Override
     public IFluidState getFluidState( BlockState state ) {
         return state.get( WATERLOGGED ).getFluidState();
     }
@@ -304,7 +295,7 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IModernizedWat
         if( state.get( WATERLOGGED ) == EWaterlogType.WATER ) {
             world.getPendingFluidTicks().scheduleTick( currentPos, Fluids.WATER, Fluids.WATER.getTickRate( world ) );
         }
-        if( state.get( WATERLOGGED ) == EWaterlogType.MODERNIZED_WATER ) {
+        if( state.get( WATERLOGGED ) == EWaterlogType.MURKY_WATER ) {
             world.getPendingFluidTicks().scheduleTick( currentPos, MDFluids.MURKY_WATER, MDFluids.MURKY_WATER.getTickRate( world ) );
         }
         return state;

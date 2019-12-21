@@ -2,15 +2,15 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
 package modernity.common.block.base;
 
+import modernity.api.block.IModernityBucketPickupHandler;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.IBucketPickupHandler;
 import net.minecraft.block.ILiquidContainer;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -23,7 +23,7 @@ import net.minecraft.world.IWorld;
 /**
  * Handles waterlogging in Modernized Water only
  */
-public interface IModernizedWaterloggedBlock extends IBucketPickupHandler, ILiquidContainer {
+public interface IMurkyWaterloggedBlock extends IModernityBucketPickupHandler, ILiquidContainer {
     @Override
     default boolean canContainFluid( IBlockReader world, BlockPos pos, BlockState state, Fluid fluid ) {
         return ! state.get( BlockStateProperties.WATERLOGGED ) && fluid == MDFluids.MURKY_WATER;
@@ -44,7 +44,7 @@ public interface IModernizedWaterloggedBlock extends IBucketPickupHandler, ILiqu
     }
 
     @Override
-    default Fluid pickupFluid( IWorld world, BlockPos pos, BlockState state ) {
+    default Fluid pickupFluidModernity( IWorld world, BlockPos pos, BlockState state ) {
         if( state.get( BlockStateProperties.WATERLOGGED ) ) {
             world.setBlockState( pos, state.with( BlockStateProperties.WATERLOGGED, false ), 3 );
             return MDFluids.MURKY_WATER;

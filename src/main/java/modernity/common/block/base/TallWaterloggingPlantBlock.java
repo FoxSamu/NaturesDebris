@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
@@ -44,7 +44,7 @@ import java.util.function.Function;
  * Describes a tall plant that can grow in and out water.
  */
 @SuppressWarnings( "deprecation" )
-public class TallWaterloggingPlantBlock extends ModernizedWaterloggedBlock implements IBlockProvider {
+public class TallWaterloggingPlantBlock extends MurkyWaterloggedBlock implements IBlockProvider {
     public static final BooleanProperty BOTTOM = BooleanProperty.create( "bottom" );
     public static final BooleanProperty TOP = BooleanProperty.create( "top" );
     private int maxHeight;

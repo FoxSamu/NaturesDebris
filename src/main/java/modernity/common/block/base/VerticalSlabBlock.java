@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
@@ -158,6 +158,12 @@ public class VerticalSlabBlock extends WaterloggedBlock {
     public Fluid pickupFluid( IWorld world, BlockPos pos, BlockState state ) {
         if( state.get( TYPE ) == Type.DOUBLE ) return Fluids.EMPTY;
         return super.pickupFluid( world, pos, state );
+    }
+
+    @Override
+    public Fluid pickupFluidModernity( IWorld world, BlockPos pos, BlockState state ) {
+        if( state.get( TYPE ) == Type.DOUBLE ) return Fluids.EMPTY;
+        return super.pickupFluidModernity( world, pos, state );
     }
 
     @Override

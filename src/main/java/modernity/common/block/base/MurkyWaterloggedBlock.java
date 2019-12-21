@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
@@ -27,10 +27,10 @@ import javax.annotation.Nullable;
 /**
  * Describes a block that can be placed inside modernized water.
  */
-public class ModernizedWaterloggedBlock extends Block implements IModernizedWaterloggedBlock {
+public class MurkyWaterloggedBlock extends Block implements IMurkyWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public ModernizedWaterloggedBlock( Properties properties ) {
+    public MurkyWaterloggedBlock( Properties properties ) {
         super( properties );
     }
 
