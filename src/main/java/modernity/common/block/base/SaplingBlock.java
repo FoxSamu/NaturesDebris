@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
@@ -11,6 +11,7 @@ package modernity.common.block.base;
 import modernity.api.util.BlockUpdates;
 import modernity.api.util.MDVoxelShapes;
 import modernity.common.item.MDItemTags;
+import modernity.common.world.gen.tree.Tree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,16 +40,17 @@ public class SaplingBlock extends SinglePlantBlock {
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_5;
 
-    private final Supplier<TreeFeature> feature;
+    private final Supplier<Tree> tree;
 
     /**
      * Creates a sapling block.
-     * @param feature The tree feature to generate when this sapling is full grown.
+     *
+     * @param tree The tree feature to generate when this sapling is full grown.
      */
-    public SaplingBlock( Supplier<TreeFeature> feature, Properties properties ) {
+    public SaplingBlock( Supplier<Tree> tree, Properties properties ) {
         super( properties );
         setDefaultState( stateContainer.getBaseState().with( AGE, 0 ) );
-        this.feature = feature;
+        this.tree = tree;
     }
 
     @Override
@@ -67,8 +69,14 @@ public class SaplingBlock extends SinglePlantBlock {
      */
     public void growOlder( BlockState state, IWorld world, BlockPos pos, Random rand ) {
         if( state.get( AGE ) == 5 ) {
-            world.removeBlock( pos, false );
-            feature.get().generate( world, rand, pos );
+            long seed = rand.nextLong();
+            Random local = new Random( seed );
+            if( tree.get().canGenerate( world, local, pos ) ) {
+                world.removeBlock( pos, false );
+
+                local.setSeed( seed );
+                tree.get().generate( world, local, pos );
+            }
         } else {
             world.setBlockState( pos, state.with( AGE, state.get( AGE ) + 1 ), BlockUpdates.CAUSE_UPDATE | BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_RENDER | BlockUpdates.NO_NEIGHBOR_REACTIONS );
         }
@@ -96,10 +104,5 @@ public class SaplingBlock extends SinglePlantBlock {
     @Override
     public VoxelShape getCollisionShape( BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext ctx ) {
         return VoxelShapes.empty();
-    }
-
-    @FunctionalInterface
-    public interface TreeFeature {
-        boolean generate( IWorld world, Random rand, BlockPos pos );
     }
 }

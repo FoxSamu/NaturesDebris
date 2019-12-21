@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
@@ -27,8 +27,16 @@ public class RegistryHandler<E extends IForgeRegistryEntry<E>> implements Iterab
 
     protected final String modid;
 
+    protected final boolean ignoreMissing;
+
     public RegistryHandler( String modid ) {
         this.modid = modid;
+        ignoreMissing = false;
+    }
+
+    public RegistryHandler( String modid, boolean ignoreMissing ) {
+        this.modid = modid;
+        this.ignoreMissing = ignoreMissing;
     }
 
     /**
@@ -47,6 +55,8 @@ public class RegistryHandler<E extends IForgeRegistryEntry<E>> implements Iterab
         for( RegistryEvent.MissingMappings.Mapping<E> mapping : mappings ) {
             if( remappings.containsKey( mapping.key ) ) {
                 mapping.remap( remappings.get( mapping.key ).entry );
+            } else if( ignoreMissing ) {
+                mapping.ignore();
             }
         }
     }

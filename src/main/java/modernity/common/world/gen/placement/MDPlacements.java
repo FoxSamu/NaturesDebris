@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
@@ -19,7 +19,7 @@ import net.minecraftforge.registries.ObjectHolder;
  */
 @ObjectHolder( "modernity" )
 public final class MDPlacements {
-    private static final RegistryHandler<Placement<?>> ENTRIES = new RegistryHandler<>( "modernity" );
+    private static final RegistryHandler<Placement<?>> ENTRIES = new RegistryHandler<>( "modernity", true );
 
     public static final InCave CAVE = register( "cave", new InCave() );
     public static final InCave.WithChance CHANCE_CAVE = register( "chance_cave", new InCave.WithChance() );

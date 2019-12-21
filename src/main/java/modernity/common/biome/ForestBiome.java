@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
@@ -14,8 +14,8 @@ import modernity.common.block.MDBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.world.gen.feature.*;
 import modernity.common.world.gen.surface.HumusSurfaceGenerator;
+import modernity.common.world.gen.tree.MDTrees;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.LakeChanceConfig;
@@ -44,8 +44,8 @@ public class ForestBiome extends ModernityBiome {
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.GROUPED_BUSH, new GroupedBushFeature.Config( 3, 5, 4, MDBlocks.REEDS ), Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig( 3 ) ) );
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.GROUPED_BUSH, new GroupedBushFeature.Config( 3, 5, 4, MDBlocks.REDWOLD ), Placement.CHANCE_HEIGHTMAP, new ChanceConfig( 6 ) ) );
 
-        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.INVER_TREE, IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_HEIGHTMAP, new FrequencyConfig( 5 ) ) );
-        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.BLACKWOOD_TREE, IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_HEIGHTMAP, new FrequencyConfig( 6 ) ) );
+        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.TREE, MDTrees.INVER, Placement.COUNT_HEIGHTMAP, new FrequencyConfig( 5 ) ) );
+        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.TREE, MDTrees.BLACKWOOD, Placement.COUNT_HEIGHTMAP, new FrequencyConfig( 6 ) ) );
         addFeature( GenerationStage.Decoration.LOCAL_MODIFICATIONS, createDecoratedFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.ROCK.getDefaultState() ), Placement.CHANCE_HEIGHTMAP, new ChanceConfig( 8 ) ) );
         addFeature( GenerationStage.Decoration.LOCAL_MODIFICATIONS, createDecoratedFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.DARKROCK.getDefaultState() ), Placement.CHANCE_HEIGHTMAP, new ChanceConfig( 16 ) ) );
     }

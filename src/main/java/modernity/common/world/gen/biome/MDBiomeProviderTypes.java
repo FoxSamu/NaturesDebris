@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
@@ -19,7 +19,7 @@ import net.minecraftforge.registries.ObjectHolder;
  */
 @ObjectHolder( "modernity" )
 public final class MDBiomeProviderTypes {
-    private static final RegistryHandler<BiomeProviderType<?, ?>> ENTRIES = new RegistryHandler<>( "modernity" );
+    private static final RegistryHandler<BiomeProviderType<?, ?>> ENTRIES = new RegistryHandler<>( "modernity", true );
 
     private static <T extends BiomeProviderType<?, ?>> T register( String id, T type ) {
         return ENTRIES.register( id, type );

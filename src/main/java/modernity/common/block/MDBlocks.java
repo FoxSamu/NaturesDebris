@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
@@ -14,7 +14,7 @@ import modernity.common.fluid.MDFluids;
 import modernity.common.item.MDItemGroups;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
-import modernity.common.world.gen.feature.MDFeatures;
+import modernity.common.world.gen.tree.MDTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -49,7 +49,7 @@ public final class MDBlocks {
 
     public static final DirtBlock MURKY_DIRT = blockItem( "murky_dirt", new DirtBlock( DirtBlock.TYPE_DIRT, dirt( MaterialColor.DIRT, false ) ), MDItemGroups.BLOCKS, "dark_dirt" );
     public static final DirtBlock MURKY_GRASS_BLOCK = blockItem( "murky_grass_block", new DirtBlock.ColoredGrass( DirtBlock.TYPE_GRASS, dirt( MaterialColor.GRASS, true ) ), MDItemGroups.BLOCKS, "dark_grass_block" );
-    public static final DigableFallBlock MURKY_SAND = blockItem( "murky_sand", new DigableFallBlock( 0x584c39, dust( MaterialColor.SAND, true ) ), MDItemGroups.BLOCKS, "dark_sand" );
+    public static final DigableFallBlock MURKY_SAND = blockItem( "murky_sand", new DigableFallBlock( 0x584c39, dust( MaterialColor.SAND, false ) ), MDItemGroups.BLOCKS, "dark_sand" );
     public static final DigableBlock MURKY_CLAY = blockItem( "murky_clay", new DigableBlock( clay( MaterialColor.GRAY_TERRACOTTA ) ), MDItemGroups.BLOCKS, "dark_clay" );
     public static final DirtBlock MURKY_COARSE_DIRT = blockItem( "murky_coarse_dirt", new DirtBlock( DirtBlock.TYPE_DIRT, dirt( MaterialColor.DIRT, false ) ), MDItemGroups.BLOCKS, "coarse_dark_dirt" );
     public static final DirtBlock HUMUS = blockItem( "humus", new DirtBlock( DirtBlock.TYPE_HUMUS, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroups.BLOCKS );
@@ -160,14 +160,14 @@ public final class MDBlocks {
     public static final AxisBlock BLACKWOOD_LOG = blockItem( "blackwood_log", new StripableLogBlock( () -> STRIPPED_BLACKWOOD_LOG, wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.BLOCKS );
     public static final Block STRIPPED_BLACKWOOD = blockItem( "stripped_blackwood", new Block( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.BLOCKS );
     public static final Block BLACKWOOD = blockItem( "blackwood", new StripableBlock( () -> STRIPPED_BLACKWOOD, wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.BLOCKS );
-    public static final SaplingBlock BLACKWOOD_SAPLING = blockItem( "blackwood_sapling", new SaplingBlock( () -> MDFeatures.BLACKWOOD_TREE::generate, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
+    public static final SaplingBlock BLACKWOOD_SAPLING = blockItem( "blackwood_sapling", new SaplingBlock( () -> MDTrees.BLACKWOOD, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
     public static final HangLeavesBlock BLACKWOOD_LEAVES = blockItem( "blackwood_leaves", new HangLeavesBlock.ColoredBlackwood( MDBlockTags.BLACKWOOD_LOG, leaves( MaterialColor.FOLIAGE, 0.2 ) ), MDItemGroups.PLANTS );
 
     public static final AxisBlock STRIPPED_INVER_LOG = blockItem( "stripped_inver_log", new AxisBlock( wood( MaterialColor.WOOD ) ), MDItemGroups.BLOCKS );
     public static final AxisBlock INVER_LOG = blockItem( "inver_log", new StripableLogBlock( () -> STRIPPED_INVER_LOG, wood( MaterialColor.WOOD ) ), MDItemGroups.BLOCKS );
     public static final Block STRIPPED_INVER = blockItem( "stripped_inver_wood", new Block( wood( MaterialColor.WOOD ) ), MDItemGroups.BLOCKS );
     public static final Block INVER_WOOD = blockItem( "inver_wood", new StripableBlock( () -> STRIPPED_INVER, wood( MaterialColor.WOOD ) ), MDItemGroups.BLOCKS );
-    public static final SaplingBlock INVER_SAPLING = blockItem( "inver_sapling", new SaplingBlock( () -> MDFeatures.INVER_TREE::generate, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
+    public static final SaplingBlock INVER_SAPLING = blockItem( "inver_sapling", new SaplingBlock( () -> MDTrees.INVER, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroups.PLANTS );
     public static final DecayLeavesBlock INVER_LEAVES = blockItem( "inver_leaves", new DecayLeavesBlock.ColoredInver( MDBlockTags.INVER_LOG, leaves( MaterialColor.FOLIAGE, 0.2 ) ), MDItemGroups.PLANTS );
 
     public static final Block SALT_ORE = blockItem( "salt_ore", new Block( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroups.BLOCKS );
