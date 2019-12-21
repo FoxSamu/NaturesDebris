@@ -2,13 +2,16 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
 package modernity.common.block.base;
 
 import com.google.common.collect.Lists;
+import modernity.api.block.IModernityBucketPickupHandler;
+import modernity.api.block.fluid.IModernityBucketTakeable;
+import modernity.api.block.fluid.IVanillaBucketTakeable;
 import modernity.common.fluid.RegularFluid;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
@@ -36,7 +39,7 @@ import java.util.Random;
  * Describes a fluid wrapper block that allows the fluid being gaseous (inverse gravity) and custom flow quanta...
  */
 @SuppressWarnings( "deprecation" )
-public class RegularFluidBlock extends Block implements IBucketPickupHandler {
+public class RegularFluidBlock extends Block implements IBucketPickupHandler, IModernityBucketPickupHandler {
 
     // The fluid this block represents
     protected final RegularFluid fluid;
@@ -170,7 +173,7 @@ public class RegularFluidBlock extends Block implements IBucketPickupHandler {
 
     @Override
     public Fluid pickupFluid( IWorld world, BlockPos pos, BlockState state ) {
-        if( state.get( level ) == 0 ) { // Only pick up source blocks
+        if( fluid instanceof IVanillaBucketTakeable && state.get( level ) == 0 ) { // Only pick up source blocks
             world.setBlockState( pos, Blocks.AIR.getDefaultState(), 11 );
             return fluid;
         } else {
@@ -182,6 +185,16 @@ public class RegularFluidBlock extends Block implements IBucketPickupHandler {
     public void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity ) {
         if( this.fluid.isIn( FluidTags.LAVA ) ) {
             entity.setInLava();
+        }
+    }
+
+    @Override
+    public Fluid pickupFluidModernity( IWorld world, BlockPos pos, BlockState state ) {
+        if( fluid instanceof IModernityBucketTakeable && state.get( level ) == 0 ) { // Only pick up source blocks
+            world.setBlockState( pos, Blocks.AIR.getDefaultState(), 11 );
+            return fluid;
+        } else {
+            return Fluids.EMPTY;
         }
     }
 }

@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
@@ -16,6 +16,6 @@ import net.minecraft.item.Item;
  * @author RGSW
  */
 @FunctionalInterface
-public interface IAluminiumBucketTakeable {
+public interface IAluminiumBucketTakeable extends IModernityBucketTakeable {
     Item getFilledAluminiumBucket();
 }

@@ -2,18 +2,18 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 21 - 2019
  * Author: rgsw
  */
 
 package modernity.common.item.base;
 
+import modernity.api.block.IModernityBucketPickupHandler;
 import modernity.api.block.fluid.ICustomBucketSound;
 import modernity.api.block.fluid.ICustomVaporize;
 import modernity.common.fluid.RegularFluid;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.IBucketPickupHandler;
 import net.minecraft.block.ILiquidContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
@@ -78,13 +78,11 @@ public class BaseBucketItem extends Item {
             BlockRayTraceResult brtr = (BlockRayTraceResult) rtr;
             BlockPos pos = brtr.getPos();
             if( world.isBlockModifiable( player, pos ) && player.canPlayerEdit( pos, brtr.getFace(), held ) ) {
+                BlockState state = world.getBlockState( pos );
                 if( containing == Fluids.EMPTY ) {
                     // Bucket is empty: try to pick up fluid
-
-                    BlockState state = world.getBlockState( pos );
-
-                    if( state.getBlock() instanceof IBucketPickupHandler ) {
-                        Fluid fluid = ( (IBucketPickupHandler) state.getBlock() ).pickupFluid( world, pos, state );
+                    if( state.getBlock() instanceof IModernityBucketPickupHandler ) {
+                        Fluid fluid = ( (IModernityBucketPickupHandler) state.getBlock() ).pickupFluidModernity( world, pos, state );
 
                         if( fluid != Fluids.EMPTY ) {
                             player.addStat( Stats.ITEM_USED.get( this ) );
@@ -108,7 +106,6 @@ public class BaseBucketItem extends Item {
                 } else {
                     // Bucket is filled: try to place fluid
 
-                    BlockState state = world.getBlockState( pos );
                     BlockPos placePos = getPlacementPosition( state, pos, brtr );
                     if( tryPlaceContainedLiquid( player, world, placePos, brtr, hand ) ) {
                         onLiquidPlaced( world, held, placePos );
