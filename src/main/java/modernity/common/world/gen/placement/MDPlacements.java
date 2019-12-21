@@ -25,6 +25,7 @@ public final class MDPlacements {
     public static final InCave.WithChance CHANCE_CAVE = register( "chance_cave", new InCave.WithChance() );
     public static final InCave.WithFrequency COUNT_CAVE = register( "count_cave", new InCave.WithFrequency() );
     public static final AtSurfaceBelowHeight LIMITED_HEIGHTMAP = register( "limited_heightmap", new AtSurfaceBelowHeight() );
+    public static final AtSurfaceWithChanceNoLeaves CHANCE_HEIGHTMAP_NO_LEAVES = register( "chance_heightmap_no_leaves", new AtSurfaceWithChanceNoLeaves() );
 
     private static <T extends Placement<?>> T register( String id, T placement ) {
         return ENTRIES.register( id, placement );

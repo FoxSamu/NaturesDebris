@@ -13,6 +13,7 @@ import modernity.api.util.IBlockProvider;
 import modernity.common.block.MDBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.world.gen.feature.*;
+import modernity.common.world.gen.placement.MDPlacements;
 import modernity.common.world.gen.surface.HumusSurfaceGenerator;
 import modernity.common.world.gen.tree.MDTrees;
 import net.minecraft.world.gen.GenerationStage;
@@ -46,7 +47,7 @@ public class ForestBiome extends ModernityBiome {
 
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.TREE, MDTrees.INVER, Placement.COUNT_HEIGHTMAP, new FrequencyConfig( 5 ) ) );
         addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.TREE, MDTrees.BLACKWOOD, Placement.COUNT_HEIGHTMAP, new FrequencyConfig( 6 ) ) );
-        addFeature( GenerationStage.Decoration.LOCAL_MODIFICATIONS, createDecoratedFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.ROCK.getDefaultState() ), Placement.CHANCE_HEIGHTMAP, new ChanceConfig( 8 ) ) );
-        addFeature( GenerationStage.Decoration.LOCAL_MODIFICATIONS, createDecoratedFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.DARKROCK.getDefaultState() ), Placement.CHANCE_HEIGHTMAP, new ChanceConfig( 16 ) ) );
+        addFeature( GenerationStage.Decoration.LOCAL_MODIFICATIONS, createDecoratedFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.ROCK.getDefaultState() ), MDPlacements.CHANCE_HEIGHTMAP_NO_LEAVES, new ChanceConfig( 8 ) ) );
+        addFeature( GenerationStage.Decoration.LOCAL_MODIFICATIONS, createDecoratedFeature( MDFeatures.DEPOSIT, new DepositFeature.Config( 4, BlockPredicates.TRUE, MDBlocks.DARKROCK.getDefaultState() ), MDPlacements.CHANCE_HEIGHTMAP_NO_LEAVES, new ChanceConfig( 16 ) ) );
     }
 }
