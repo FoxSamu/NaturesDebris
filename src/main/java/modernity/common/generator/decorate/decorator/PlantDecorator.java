@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class PlantDecorator implements IDecorator {
-    private static final ThreadLocal<PlantLayer> PLANT_LAYER = new ThreadLocal<>();
+    private static final ThreadLocal<PlantLayer> PLANT_LAYER = ThreadLocal.withInitial( PlantLayer::new );
 
     private final ArrayList<IVegetation> vegetations = new ArrayList<>();
 

@@ -8,17 +8,18 @@
 
 package modernity.common.biome;
 
-import modernity.api.util.IBlockProvider;
+import modernity.common.block.MDBlockProviders;
 import modernity.common.block.MDBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
-import modernity.common.world.gen.feature.ClusterBushFeature;
-import modernity.common.world.gen.feature.GroupedBushFeature;
-import modernity.common.world.gen.feature.MDFeatures;
+import modernity.common.generator.decorate.count.Chance;
+import modernity.common.generator.decorate.count.Fixed;
+import modernity.common.generator.decorate.count.One;
+import modernity.common.generator.decorate.decoration.ClusterBushDecoration;
+import modernity.common.generator.decorate.decoration.GroupedBushDecoration;
+import modernity.common.generator.decorate.decorator.DecorationDecorator;
+import modernity.common.generator.decorate.position.Surface;
 import modernity.common.generator.surface.GrassSurfaceGenerator;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.FrequencyConfig;
-import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.Heightmap;
 
 /**
  * The 'River' or 'modernity:river' biome.
@@ -33,10 +34,10 @@ public class RiverBiome extends ModernityBiome {
                 .precipitation( IPrecipitationFunction.standard() )
         );
 
-        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.GROUPED_BUSH, new GroupedBushFeature.Config( 3, 5, 4, MDBlocks.REEDS ), Placement.COUNT_HEIGHTMAP, new FrequencyConfig( 1 ) ) );
+        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlocks.REEDS ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new One() ) );
 
-        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 100, 6, MDBlocks.MURK_GRASS ), Placement.COUNT_HEIGHTMAP, new FrequencyConfig( 5 ) ) );
-        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 81, 7, new IBlockProvider.ChooseRandom( MDBlocks.BLUE_MILLIUM, MDBlocks.CYAN_MILLIUM, MDBlocks.GREEN_MILLIUM, MDBlocks.YELLOW_MILLIUM, MDBlocks.MAGENTA_MILLIUM, MDBlocks.RED_MILLIUM, MDBlocks.WHITE_MILLIUM ) ), Placement.CHANCE_HEIGHTMAP, new ChanceConfig( 6 ) ) );
+        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlocks.MURK_GRASS ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Fixed( 5 ) ) );
+        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlockProviders.RANDOM_MILLIUM ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Chance( 1 / 6D ) ) );
     }
 
 }

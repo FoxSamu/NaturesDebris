@@ -8,20 +8,22 @@
 
 package modernity.common.biome;
 
-import modernity.api.util.IBlockProvider;
+import modernity.common.block.MDBlockProviders;
 import modernity.common.block.MDBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
-import modernity.common.world.gen.feature.ClusterBushFeature;
-import modernity.common.world.gen.feature.GroupedBushFeature;
-import modernity.common.world.gen.feature.LakeFeature;
-import modernity.common.world.gen.feature.MDFeatures;
+import modernity.common.generator.decorate.count.Chance;
+import modernity.common.generator.decorate.count.Fixed;
+import modernity.common.generator.decorate.count.One;
+import modernity.common.generator.decorate.decoration.ClusterBushDecoration;
+import modernity.common.generator.decorate.decoration.GroupedBushDecoration;
+import modernity.common.generator.decorate.decoration.LakeDecoration;
+import modernity.common.generator.decorate.decoration.TreeDecoration;
+import modernity.common.generator.decorate.decorator.DecorationDecorator;
+import modernity.common.generator.decorate.position.FixedHeight;
+import modernity.common.generator.decorate.position.Surface;
 import modernity.common.generator.surface.GrassSurfaceGenerator;
 import modernity.common.generator.tree.MDTrees;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.FrequencyConfig;
-import net.minecraft.world.gen.placement.LakeChanceConfig;
-import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.Heightmap;
 
 /**
  * The 'Meadow' or 'modernity:meadow' biome.
@@ -35,16 +37,16 @@ public class MeadowBiome extends ModernityBiome {
                 .precipitation( IPrecipitationFunction.standard() )
         );
 
-        addFeature( GenerationStage.Decoration.LOCAL_MODIFICATIONS, createDecoratedFeature( MDFeatures.LAKE, new LakeFeature.Config( MDBlocks.MURKY_WATER, null, null, MDBlocks.MURKY_GRASS_BLOCK ), Placement.WATER_LAKE, new LakeChanceConfig( 5 ) ) );
+        addDecorator( new DecorationDecorator( new LakeDecoration( MDBlocks.MURKY_WATER, null, null, MDBlocks.MURKY_GRASS_BLOCK ), new FixedHeight( 128 ), new Chance( 0.2 ) ) );
 
-        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.GROUPED_BUSH, new GroupedBushFeature.Config( 3, 5, 4, MDBlocks.REEDS ), Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig( 3 ) ) );
+        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlocks.REEDS ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 1 / 3D ) ) );
 
-        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 120, 6, MDBlocks.MURK_GRASS ), Placement.COUNT_HEIGHTMAP, new FrequencyConfig( 12 ) ) );
-        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 120, 6, MDBlocks.NETTLES ), Placement.CHANCE_HEIGHTMAP, new ChanceConfig( 4 ) ) );
-        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 81, 7, new IBlockProvider.ChooseRandom( MDBlocks.BLUE_MILLIUM, MDBlocks.CYAN_MILLIUM, MDBlocks.GREEN_MILLIUM, MDBlocks.YELLOW_MILLIUM, MDBlocks.MAGENTA_MILLIUM, MDBlocks.RED_MILLIUM, MDBlocks.WHITE_MILLIUM ) ), Placement.CHANCE_HEIGHTMAP, new ChanceConfig( 2 ) ) );
-        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.CLUSTER_BUSH, new ClusterBushFeature.Config( 81, 7, new IBlockProvider.ChooseRandom( MDBlocks.BLUE_MELION, MDBlocks.ORANGE_MELION, MDBlocks.INDIGO_MELION, MDBlocks.YELLOW_MELION, MDBlocks.MAGENTA_MELION, MDBlocks.RED_MELION, MDBlocks.WHITE_MELION ) ), Placement.COUNT_HEIGHTMAP, new FrequencyConfig( 1 ) ) );
+        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 120, 6, MDBlocks.MURK_GRASS ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Fixed( 12 ) ) );
+        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 120, 6, MDBlocks.NETTLES ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Chance( 0.25 ) ) );
+        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockProviders.RANDOM_MILLIUM ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Chance( 0.5 ) ) );
+        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockProviders.RANDOM_MELION ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new One() ) );
 
-        addFeature( GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature( MDFeatures.TREE, MDTrees.BLACKWOOD, Placement.CHANCE_HEIGHTMAP, new ChanceConfig( 30 ) ) );
+        addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 1 / 30D ) ) );
     }
 
 }

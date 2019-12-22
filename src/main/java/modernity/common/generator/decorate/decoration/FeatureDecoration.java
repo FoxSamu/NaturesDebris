@@ -26,6 +26,14 @@ public class FeatureDecoration<T extends IFeatureConfig> implements IDecoration 
         this.config = config;
     }
 
+    public Feature<T> getFeature() {
+        return feature;
+    }
+
+    public T getConfig() {
+        return config;
+    }
+
     @Override
     public void generate( IWorld world, BlockPos pos, Random rand, ChunkGenerator<?> chunkGenerator ) {
         feature.place( world, chunkGenerator, rand, pos, config );
