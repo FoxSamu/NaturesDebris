@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   12 - 22 - 2019
  * Author: rgsw
  */
 
@@ -15,7 +15,7 @@ import modernity.common.biome.MDBiomes;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.block.MDBlocks;
 import modernity.common.world.gen.MDSurfaceGenSettings;
-import modernity.common.world.gen.surface.ISurfaceGenerator;
+import modernity.common.generator.surface.ISurfaceGenerator;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;

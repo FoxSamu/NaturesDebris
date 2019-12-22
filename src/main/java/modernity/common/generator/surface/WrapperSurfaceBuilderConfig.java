@@ -2,11 +2,11 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 22 - 2019
  * Author: rgsw
  */
 
-package modernity.common.world.gen.surface;
+package modernity.common.generator.surface;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.GenerationSettings;

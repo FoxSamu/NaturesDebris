@@ -2,19 +2,27 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   12 - 22 - 2019
  * Author: rgsw
  */
 
 package modernity.common.biome;
 
 import modernity.common.environment.precipitation.IPrecipitationFunction;
-import modernity.common.world.gen.surface.ISurfaceGenerator;
+import modernity.common.generator.decorate.decorator.IDecorator;
+import modernity.common.generator.surface.ISurfaceGenerator;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.SharedSeedRandom;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+
+import java.util.ArrayList;
 
 /**
  * Base of all Modernity biomes. It holds additional values for generating the the Modernity.
@@ -27,6 +35,8 @@ public abstract class ModernityBiome extends Biome {
     private final float waterFogDensity;
     private final ISurfaceGenerator<?> surfaceGen;
     private final IPrecipitationFunction precipitationFunction;
+
+    private final ArrayList<IDecorator> decorators = new ArrayList<>();
 
     protected ModernityBiome( Builder builder ) {
         super( builder.vanilla() );
@@ -89,6 +99,24 @@ public abstract class ModernityBiome extends Biome {
     @SuppressWarnings( "unchecked" )
     public <T extends GenerationSettings> ISurfaceGenerator<T> getSurfaceGen() {
         return (ISurfaceGenerator<T>) surfaceGen;
+    }
+
+    public void addDecorator( IDecorator decorator ) {
+        decorators.add( decorator );
+    }
+
+    public void removeDecorator( IDecorator decorator ) {
+        decorators.remove( decorator );
+    }
+
+
+    @Override
+    public void decorate( GenerationStage.Decoration stage, ChunkGenerator<?> chunkGenerator, IWorld world, long seed, SharedSeedRandom rand, BlockPos pos ) {
+        if( stage == GenerationStage.Decoration.RAW_GENERATION ) {
+            for( IDecorator decorator : decorators ) {
+                decorator.decorate( world, pos.getX() >> 4, pos.getZ() >> 4, this, rand, chunkGenerator );
+            }
+        }
     }
 
     /**

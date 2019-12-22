@@ -2,13 +2,13 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 21 - 2019
+ * Date:   12 - 22 - 2019
  * Author: rgsw
  */
 
 package modernity.common.world.gen.feature;
 
-import modernity.common.world.gen.tree.Tree;
+import modernity.common.generator.tree.Tree;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;

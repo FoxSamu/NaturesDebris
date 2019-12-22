@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 21 - 2019
+ * Date:   12 - 22 - 2019
  * Author: rgsw
  */
 
@@ -11,7 +11,7 @@ package modernity.common.block.base;
 import modernity.api.util.BlockUpdates;
 import modernity.api.util.MDVoxelShapes;
 import modernity.common.item.MDItemTags;
-import modernity.common.world.gen.tree.Tree;
+import modernity.common.generator.tree.Tree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 21 - 2019
+ * Date:   12 - 22 - 2019
  * Author: rgsw
  */
 
@@ -15,8 +15,8 @@ import modernity.common.world.gen.feature.ClusterBushFeature;
 import modernity.common.world.gen.feature.GroupedBushFeature;
 import modernity.common.world.gen.feature.LakeFeature;
 import modernity.common.world.gen.feature.MDFeatures;
-import modernity.common.world.gen.surface.GrassSurfaceGenerator;
-import modernity.common.world.gen.tree.MDTrees;
+import modernity.common.generator.surface.GrassSurfaceGenerator;
+import modernity.common.generator.tree.MDTrees;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.FrequencyConfig;

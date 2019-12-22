@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 21 - 2019
+ * Date:   12 - 22 - 2019
  * Author: rgsw
  */
 
@@ -14,7 +14,7 @@ import modernity.common.fluid.MDFluids;
 import modernity.common.item.MDItemGroups;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
-import modernity.common.world.gen.tree.MDTrees;
+import modernity.common.generator.tree.MDTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
