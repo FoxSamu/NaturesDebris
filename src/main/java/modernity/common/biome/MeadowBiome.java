@@ -11,6 +11,7 @@ package modernity.common.biome;
 import modernity.common.block.MDBlockProviders;
 import modernity.common.block.MDBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
+import modernity.common.generator.decorate.DefaultDecoration;
 import modernity.common.generator.decorate.count.Chance;
 import modernity.common.generator.decorate.count.Fixed;
 import modernity.common.generator.decorate.count.One;
@@ -36,6 +37,8 @@ public class MeadowBiome extends ModernityBiome {
                 .surfaceGen( new GrassSurfaceGenerator() )
                 .precipitation( IPrecipitationFunction.standard() )
         );
+
+        DefaultDecoration.setupDefaultDecoration( this );
 
         addDecorator( new DecorationDecorator( new LakeDecoration( MDBlocks.MURKY_WATER, null, null, MDBlocks.MURKY_GRASS_BLOCK ), new FixedHeight( 128 ), new Chance( 0.2 ) ) );
 

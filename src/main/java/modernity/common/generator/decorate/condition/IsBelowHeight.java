@@ -13,11 +13,11 @@ import net.minecraft.world.IWorld;
 
 import java.util.Random;
 
-public class BelowHeight implements IDecorCondition {
+public class IsBelowHeight implements IDecorCondition {
 
     private final int max;
 
-    public BelowHeight( int max ) {
+    public IsBelowHeight( int max ) {
         this.max = max;
     }
 

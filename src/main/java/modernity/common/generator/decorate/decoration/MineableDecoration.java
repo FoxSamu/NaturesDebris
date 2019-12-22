@@ -75,7 +75,7 @@ public class MineableDecoration implements IDecoration {
         for( int x = minX; x <= minX + xzSize; ++ x ) {
             for( int z = minZ; z <= minZ + xzSize; ++ z ) {
                 if( minY <= world.getHeight( Heightmap.Type.OCEAN_FLOOR_WG, x, z ) ) {
-                    generate( world, rand, x1, x2, z1, z2, y1, y2, minX, minY, minZ, xzSize, ySize );
+                    generate( world, rand, x1, y1, z1, x2, y2, z2, minX, minY, minZ, xzSize, ySize );
                     return;
                 }
             }
@@ -207,8 +207,8 @@ public class MineableDecoration implements IDecoration {
     }
 
     private boolean setBlockState( IWorld world, BlockPos pos, BlockState state ) {
-        int cx = pos.getX() >>> 4;
-        int cz = pos.getZ() >>> 4;
+        int cx = pos.getX() >> 4;
+        int cz = pos.getZ() >> 4;
         if( world.chunkExists( cx, cz ) ) { // Prevent out of bounds crash
             if( target.test( world.getBlockState( pos ) ) ) {
                 world.setBlockState( pos, state, BlockUpdates.NOTIFY_CLIENTS );
