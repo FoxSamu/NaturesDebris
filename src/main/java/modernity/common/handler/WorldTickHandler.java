@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   12 - 23 - 2019
  * Author: rgsw
  */
 
@@ -126,30 +126,33 @@ public enum WorldTickHandler {
         int sx = cpos.getXStart();
         int sz = cpos.getZStart();
 
-        if( rain && world.rand.nextInt( 16 ) == 0 ) {
-            BlockPos pos = randomPos( sx, 0, sz, 15 );
-            BlockPos heightPos = world.getHeight( Heightmap.Type.MOTION_BLOCKING, pos );
-            Biome biome = world.getBiome( heightPos );
+        int n = world.getGameRules().get( GameRules.RANDOM_TICK_SPEED ).get();
 
-            ModernityBiome mbiome = (ModernityBiome) biome;
-            IPrecipitationFunction precFn = mbiome.getPrecipitationFunction();
-            IPrecipitation prec = precFn.computePrecipitation( level );
+        for( int i = 0; i < n; i++ ) {
+            if( rain && world.rand.nextInt( 16 ) == 0 ) {
+                BlockPos pos = randomPos( sx, 0, sz, 15 );
+                Biome biome = world.getBiome( pos );
 
-            prec.blockUpdate( world, pos );
+                ModernityBiome mbiome = (ModernityBiome) biome;
+                IPrecipitationFunction precFn = mbiome.getPrecipitationFunction();
+                IPrecipitation prec = precFn.computePrecipitation( level );
 
-//            if( world.isAreaLoaded( heightPos, 1 ) ) {
-//                if( biome.doesWaterFreeze( world, heightBlockPos ) ) {
-//                    world.setBlockState( heightBlockPos, Blocks.ICE.getDefaultState() );
+                prec.blockUpdate( world, pos );
+
+//                if( world.isAreaLoaded( heightPos, 1 ) ) {
+//                    if( biome.doesWaterFreeze( world, heightBlockPos ) ) {
+//                        world.setBlockState( heightBlockPos, Blocks.ICE.getDefaultState() );
+//                    }
 //                }
-//            }
 
-//            if( rain && biome.doesSnowGenerate( world, heightPos ) ) {
-//                world.setBlockState( heightPos, Blocks.SNOW.getDefaultState() );
-//            }
+//                if( rain && biome.doesSnowGenerate( world, heightPos ) ) {
+//                    world.setBlockState( heightPos, Blocks.SNOW.getDefaultState() );
+//                }
 //
-//            if( rain && world.getBiome( heightBlockPos ).getPrecipitation() == Biome.RainType.RAIN ) {
-//                world.getBlockState( heightBlockPos ).getBlock().fillWithRain( world, heightBlockPos );
-//            }
+//                if( rain && world.getBiome( heightBlockPos ).getPrecipitation() == Biome.RainType.RAIN ) {
+//                    world.getBlockState( heightBlockPos ).getBlock().fillWithRain( world, heightBlockPos );
+//                }
+            }
         }
     }
 
