@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 26 - 2019
+ * Date:   12 - 23 - 2019
  * Author: rgsw
  */
 
@@ -27,9 +27,6 @@ public final class MDParticleTypes {
     public static final BasicParticleType SALT = register( "salt", new BasicParticleType( false ) );
     public static final BasicParticleType HUMUS = register( "humus", new BasicParticleType( false ) );
     public static final ParticleType<RgbParticleData> FALLING_LEAF = register( "falling_leaf", new ParticleType<>( false, RgbParticleData.DESERIALIZER ) );
-    public static final BasicParticleType OIL_DRIPPING = register( "oil_dripping", new BasicParticleType( false ) );
-    public static final BasicParticleType OIL_FALLING = register( "oil_falling", new BasicParticleType( false ) );
-    public static final BasicParticleType OIL_LANDING = register( "oil_landing", new BasicParticleType( false ) );
     public static final BasicParticleType RAIN = register( "rain", new BasicParticleType( false ) );
     public static final BasicParticleType HAIL = register( "hail", new BasicParticleType( false ) );
     public static final ParticleType<SoulLightParticleData> SOUL_LIGHT = register( "soul_light", new ParticleType<>( true, SoulLightParticleData.DESERIALIZER ) );
@@ -51,9 +48,6 @@ public final class MDParticleTypes {
         manager.registerFactory( SALT, SaltParticle.Factory::new );
         manager.registerFactory( HUMUS, LeafParticle.HumusFactory::new );
         manager.registerFactory( FALLING_LEAF, LeafParticle.FallingLeafFactory::new );
-        manager.registerFactory( OIL_DRIPPING, DripParticle.Oil.DrippingFactory::new );
-        manager.registerFactory( OIL_FALLING, DripParticle.Oil.FallingFactory::new );
-        manager.registerFactory( OIL_LANDING, DripParticle.Oil.LandingFactory::new );
         manager.registerFactory( RAIN, PrecipitationParticle.DripFactory::new );
         manager.registerFactory( HAIL, PrecipitationParticle.HailFactory::new );
         manager.registerFactory( SOUL_LIGHT, new SoulLightParticle.BaseFactory() );

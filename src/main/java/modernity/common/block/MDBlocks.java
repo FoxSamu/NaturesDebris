@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   12 - 23 - 2019
  * Author: rgsw
  */
 
@@ -59,7 +59,6 @@ public final class MDBlocks {
 
     public static final RegularFluidBlock MURKY_WATER = blockOnly( "murky_water", new RegularFluidBlock( MDFluids.MURKY_WATER, fluid( Material.WATER, MaterialColor.WATER ) ), "modernized_water" );
     public static final RegularFluidBlock MOLTEN_ROCK = blockOnly( "molten_rock", new RegularFluidBlock( MDFluids.MOLTEN_ROCK, fluid( Material.LAVA, MaterialColor.TNT ).lightValue( 15 ) ), "heatrock" );
-    public static final RegularFluidBlock OIL = blockOnly( "oil", new OilFluidBlock( MDFluids.OIL, fluid( MDMaterial.OIL, MaterialColor.BLACK ) ) );
 
     public static final Block ROCK_BRICKS = blockItem( "rock_bricks", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroups.BLOCKS );
     public static final Block DARKROCK_BRICKS = blockItem( "darkrock_bricks", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroups.BLOCKS );

@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   12 - 23 - 2019
  * Author: rgsw
  */
 
@@ -111,10 +111,6 @@ public enum FogHandler {
         } else if( fluid.isTagged( MDFluidTags.MOLTEN_ROCK ) ) {
             GlStateManager.fogMode( GlStateManager.FogMode.EXP );
             setColor( 0xfc9803 );
-            event.setDensity( 2 );
-        } else if( fluid.isTagged( MDFluidTags.OIL ) ) {
-            GlStateManager.fogMode( GlStateManager.FogMode.EXP );
-            setColor( 0x222222 );
             event.setDensity( 2 );
         } else if( mc.world.dimension instanceof IEnvironmentDimension ) {
             IEnvironmentDimension d = (IEnvironmentDimension) mc.world.dimension;

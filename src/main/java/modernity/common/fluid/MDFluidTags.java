@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   12 - 23 - 2019
  * Author: rgsw
  */
 
@@ -17,7 +17,6 @@ import net.minecraft.util.ResourceLocation;
  * Holder class for Modernity fluid tags.
  */
 public final class MDFluidTags {
-    public static final Tag<Fluid> OIL = new FluidTags.Wrapper( new ResourceLocation( "modernity:oil" ) );
     public static final Tag<Fluid> MURKY_WATER = new FluidTags.Wrapper( new ResourceLocation( "modernity:murky_water" ) );
     public static final Tag<Fluid> MOLTEN_ROCK = new FluidTags.Wrapper( new ResourceLocation( "modernity:molten_rock" ) );
 

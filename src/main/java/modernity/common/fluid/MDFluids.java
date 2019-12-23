@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   12 - 23 - 2019
  * Author: rgsw
  */
 
@@ -34,9 +34,6 @@ public final class MDFluids {
 
     public static final MoltenRockFluid MOLTEN_ROCK = register( "molten_rock", new MoltenRockFluid.Source(), "heatrock" );
     public static final MoltenRockFluid FLOWING_MOLTEN_ROCK = register( "flowing_molten_rock", new MoltenRockFluid.Flowing(), "flowing_heatrock" );
-
-    public static final OilFluid OIL = register( "oil", new OilFluid.Source() );
-    public static final OilFluid FLOWING_OIL = register( "flowing_oil", new OilFluid.Flowing() );
 
     private static <T extends Fluid> T register( String id, T fluid, String... aliases ) {
         ENTRIES.register( id, fluid, aliases );
