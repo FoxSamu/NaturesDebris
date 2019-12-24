@@ -1,0 +1,9 @@
+{
+  "parent": "modernity:block/abstract_facing_column",
+  "textures": {
+    "side": "modernity:block/blackwood_workbench_side",
+    "top": "modernity:block/blackwood_workbench_top",
+    "bottom": "modernity:block/blackwood_planks",
+    "front": "modernity:block/blackwood_workbench_front"
+  }
+}

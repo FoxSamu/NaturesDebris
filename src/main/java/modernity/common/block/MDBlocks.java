@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 23 - 2019
+ * Date:   12 - 24 - 2019
  * Author: rgsw
  */
 
@@ -11,10 +11,10 @@ package modernity.common.block;
 import modernity.api.block.IColoredBlock;
 import modernity.common.block.base.*;
 import modernity.common.fluid.MDFluids;
+import modernity.common.generator.tree.MDTrees;
 import modernity.common.item.MDItemGroups;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
-import modernity.common.generator.tree.MDTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -199,6 +199,10 @@ public final class MDBlocks {
     public static final PuddleBlock PUDDLE = blockOnly( "puddle", new PuddleBlock( Block.Properties.create( Material.WATER, MaterialColor.WATER ) ) );
 
     public static final SoulLightBlock SOUL_LIGHT = blockItem( "soul_light", new SoulLightBlock( Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ) ), MDItemGroups.DECORATIVES );
+
+    // V I0.4.0
+    public static final WorkbenchBlock BLACKWOOD_WORKBENCH = blockItem( "blackwood_workbench", new WorkbenchBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.BLOCKS );
+    public static final WorkbenchBlock INVER_WORKBENCH = blockItem( "inver_workbench", new WorkbenchBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.BLOCKS );
 
     private static <T extends Block> T blockOnly( String name, T block, String... aliases ) {
         BLOCKS.register( name, block, aliases );

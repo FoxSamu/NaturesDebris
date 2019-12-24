@@ -2,13 +2,14 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 24 - 2019
  * Author: rgsw
  */
 
 package modernity.common.container;
 
 import com.google.common.reflect.TypeToken;
+import modernity.client.gui.container.WorkbenchScreen;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.client.gui.ScreenManager;
@@ -24,6 +25,8 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder( "modernity" )
 public final class MDContainerTypes {
     private static final RegistryHandler<ContainerType<?>> ENTRIES = new RegistryHandler<>( "modernity" );
+
+    public static final ContainerType<WorkbenchContainer> WORKBENCH = register( "workbench", new ContainerType<>( WorkbenchContainer::new ) );
 
     @SuppressWarnings( "unchecked" )
     private static <T extends Container> ContainerType<T> register( String id, ContainerType<?> type, String... aliases ) {
@@ -47,6 +50,7 @@ public final class MDContainerTypes {
      */
     @OnlyIn( Dist.CLIENT )
     public static void registerScreens() {
+        ScreenManager.registerFactory( WORKBENCH, WorkbenchScreen::new );
     }
 
     private MDContainerTypes() {
