@@ -2,11 +2,11 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 24 - 2019
  * Author: rgsw
  */
 
-package modernity.common.world.gen.map;
+package modernity.common.generator.map;
 
 import modernity.api.util.BlockUpdates;
 import modernity.api.util.MovingBlockPos;

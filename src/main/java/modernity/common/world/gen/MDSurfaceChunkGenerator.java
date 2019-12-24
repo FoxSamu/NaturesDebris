@@ -2,14 +2,15 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 24 - 2019
  * Author: rgsw
  */
 
 package modernity.common.world.gen;
 
 import modernity.api.util.IntArrays;
-import modernity.common.world.gen.map.DarkrockGenerator;
+import modernity.common.generator.map.CanyonGenerator;
+import modernity.common.generator.map.DarkrockGenerator;
 import modernity.common.world.gen.structure.MDStructures;
 import modernity.common.world.gen.terrain.MDSurfaceCaveGenerator;
 import modernity.common.world.gen.terrain.MDSurfaceDecorator;
@@ -31,6 +32,7 @@ public class MDSurfaceChunkGenerator extends ChunkGenerator<MDSurfaceGenSettings
     private final MDSurfaceDecorator decorator;
 
     private final DarkrockGenerator darkrockGenerator;
+    private final CanyonGenerator canyonGenerator;
 
     public MDSurfaceChunkGenerator( IWorld world, BiomeProvider biomeProvider, MDSurfaceGenSettings settings ) {
         super( world, biomeProvider, settings );
@@ -40,6 +42,7 @@ public class MDSurfaceChunkGenerator extends ChunkGenerator<MDSurfaceGenSettings
         cave = new MDSurfaceCaveGenerator( world, biomeProvider, settings );
         decorator = new MDSurfaceDecorator( world, biomeProvider, this, settings );
         darkrockGenerator = new DarkrockGenerator( world );
+        canyonGenerator = new CanyonGenerator( world );
     }
 
     public MDSurfaceChunkGenerator( IWorld world, BiomeProvider provider ) {
@@ -57,18 +60,20 @@ public class MDSurfaceChunkGenerator extends ChunkGenerator<MDSurfaceGenSettings
 
     @Override
     public void makeBase( IWorld world, IChunk chunk ) {
+        WorldGenRegion region = (WorldGenRegion) world;
+
         int cx = chunk.getPos().x;
         int cz = chunk.getPos().z;
 
         terrain.generateTerrain( chunk );
         int[] hm = surface.buildSurface( chunk );
         cave.generateCaves( chunk, hm );
+        canyonGenerator.generate( region, hm );
 
         IntArrays.add( hm, - 8 );
 
         MDStructures.CAVE.addCaves( this, chunk, cx, cz, hm, world.getSeed() );
 
-        WorldGenRegion region = (WorldGenRegion) world;
         darkrockGenerator.generate( region );
     }
 
