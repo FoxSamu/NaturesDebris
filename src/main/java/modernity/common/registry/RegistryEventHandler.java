@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 24 - 2019
  * Author: rgsw
  */
 
@@ -21,15 +21,13 @@ import modernity.common.environment.event.MDEnvEvents;
 import modernity.common.event.BlockEvent;
 import modernity.common.event.MDBlockEvents;
 import modernity.common.fluid.MDFluids;
+import modernity.common.generator.biome.MDBiomeProviderTypes;
+import modernity.common.generator.terrain.MDChunkGeneratorTypes;
 import modernity.common.item.MDItems;
 import modernity.common.particle.MDParticleTypes;
 import modernity.common.tileentity.MDTileEntitiyTypes;
 import modernity.common.world.dimen.MDDimensions;
-import modernity.common.world.gen.MDChunkGeneratorTypes;
-import modernity.common.world.gen.biome.MDBiomeProviderTypes;
-import modernity.common.world.gen.feature.MDFeatures;
-import modernity.common.world.gen.placement.MDPlacements;
-import modernity.common.world.gen.structure.MDStructures;
+import modernity.common.generator.structure.MDStructures;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -61,8 +59,6 @@ public enum RegistryEventHandler {
         MDChunkGeneratorTypes.setup( this );
         MDBiomeProviderTypes.setup( this );
         MDStructures.setup( this );
-        MDFeatures.setup( this );
-        MDPlacements.setup( this );
         MDBlockEvents.setup( this );
         MDEnvEvents.setup( this );
         MDAreas.setup( this );

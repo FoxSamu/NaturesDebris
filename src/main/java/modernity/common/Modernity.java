@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 26 - 2019
+ * Date:   12 - 24 - 2019
  * Author: rgsw
  */
 
@@ -23,8 +23,8 @@ import modernity.common.loot.MDLootTables;
 import modernity.common.net.MDPackets;
 import modernity.common.util.ISidedTickable;
 import modernity.common.world.dimen.MDDimensions;
-import modernity.common.world.gen.structure.MDStructurePieceTypes;
-import modernity.common.world.gen.structure.MDStructures;
+import modernity.common.generator.structure.MDStructurePieceTypes;
+import modernity.common.generator.structure.MDStructures;
 import modernity.network.PacketChannel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;

@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   12 - 24 - 2019
  * Author: rgsw
  */
 
@@ -11,7 +11,7 @@ package modernity.common.generator.surface;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.block.MDBlocks;
-import modernity.common.world.gen.MDSurfaceGenSettings;
+import modernity.common.generator.terrain.surface.SurfaceGenSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.chunk.IChunk;
 import net.rgsw.noise.INoise3D;
@@ -21,13 +21,13 @@ import java.util.Random;
 /**
  * Surface generator that generates a basic humus surface, with mud underwater.
  */
-public class HumusSurfaceGenerator implements ISurfaceGenerator<MDSurfaceGenSettings> {
+public class HumusSurfaceGenerator implements ISurfaceGenerator<SurfaceGenSettings> {
 
     private static final BlockState HUMUS = MDBlocks.HUMUS.getDefaultState();
     private static final BlockState DIRT = MDBlocks.MURKY_DIRT.getDefaultState();
 
     @Override
-    public void buildSurface( IChunk chunk, int cx, int cz, int x, int z, Random rand, ModernityBiome biome, INoise3D surfaceNoise, MovingBlockPos rpos, MDSurfaceGenSettings settings ) {
+    public void buildSurface( IChunk chunk, int cx, int cz, int x, int z, Random rand, ModernityBiome biome, INoise3D surfaceNoise, MovingBlockPos rpos, SurfaceGenSettings settings ) {
         int ctrl = 0;
         for( int y = 255; y >= 0; y-- ) {
             rpos.setPos( x, y, z );

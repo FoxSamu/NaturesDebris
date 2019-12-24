@@ -2,14 +2,14 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 24 - 2019
  * Author: rgsw
  */
 
 package modernity.common.net;
 
 import it.unimi.dsi.fastutil.longs.LongSet;
-import modernity.common.world.gen.structure.CaveStructure;
+import modernity.common.generator.structure.CaveStructure;
 import modernity.network.Packet;
 import modernity.network.ProcessContext;
 import net.minecraft.client.Minecraft;
