@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 26 - 2019
  * Author: rgsw
  */
 
@@ -13,6 +13,10 @@ import modernity.client.ModernityClient;
 import modernity.common.Modernity;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.server.ModernityServer;
+import modul.Modul;
+import modul.core.MListFile;
+import modul.core.ModulCore;
+import modul.root.ModulRoot;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.LogicalSide;
@@ -21,6 +25,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.versions.forge.ForgeVersion;
+import net.redgalaxy.Version;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,64 +35,35 @@ import org.apache.logging.log4j.Logger;
  * we're running on ({@link ModernityClient} for the client and {@link ModernityServer} for the dedicated server).
  */
 @Mod( "modernity" )
-@SuppressWarnings( "unused" )
-public class ModernityBootstrap {
+public class ModernityBootstrap implements ModulRoot {
     private static final Logger LOGGER = LogManager.getLogger( "ModernityBootstrap" );
 
-    private static Modernity proxy;
-
     public ModernityBootstrap() {
+        ModulCore.start( this );
+        MDModules.load();
         FMLJavaModLoadingContext.get().getModEventBus().addListener( this::setup );
         FMLJavaModLoadingContext.get().getModEventBus().addListener( this::loadComplete );
         FMLJavaModLoadingContext.get().getModEventBus().register( RegistryEventHandler.INSTANCE );
         MinecraftForge.EVENT_BUS.register( RegistryEventHandler.INSTANCE );
-        if( FMLEnvironment.dist == Dist.CLIENT ) {
-            clientSetup();
-        } else {
-            serverSetup();
-        }
+    }
+
+    @Override
+    public void onStart( Modul modul ) {
+        initProxy( FMLEnvironment.dist == Dist.CLIENT ? LogicalSide.CLIENT : LogicalSide.SERVER );
     }
 
     /**
      * Calls {@link Modernity#init()} on our proxy.
      */
     private void setup( FMLCommonSetupEvent event ) {
-        proxy.init();
-    }
-
-    /**
-     * Creates {@link ModernityClient}. Uses reflection because it may not be available while Java still checks the use
-     * of it.
-     */
-    private void clientSetup() {
-        try {
-            Class cls = Class.forName( "modernity.client.ModernityClient" );
-            proxy = (Modernity) cls.newInstance();
-        } catch( ClassNotFoundException | IllegalAccessException | InstantiationException e ) {
-            throw new IllegalStateException( "Unable to instantiate ModernityClient", e );
-        }
-        initProxy( LogicalSide.CLIENT );
-    }
-
-    /**
-     * Creates {@link ModernityServer}. Uses reflection because it may not be available while Java still checks the use
-     * of it.
-     */
-    private void serverSetup() {
-        try {
-            Class cls = Class.forName( "modernity.server.ModernityServer" );
-            proxy = (Modernity) cls.newInstance();
-        } catch( ClassNotFoundException | IllegalAccessException | InstantiationException e ) {
-            throw new IllegalStateException( "Unable to instantiate ModernityServer", e );
-        }
-        initProxy( LogicalSide.SERVER );
+        Modernity.get().init();
     }
 
     /**
      * Calls {@link Modernity#postInit()}.
      */
     private void loadComplete( FMLLoadCompleteEvent event ) {
-        proxy.postInit();
+        Modernity.get().postInit();
     }
 
 
@@ -95,10 +72,32 @@ public class ModernityBootstrap {
      * Modernity#preInit()} and casts an event on the forge event bus indicating that the Modernity is initialized.
      */
     private void initProxy( LogicalSide side ) {
-        MinecraftForge.EVENT_BUS.register( proxy );
-        proxy.registerListeners();
-        proxy.preInit();
-        LOGGER.info( "Modernity version {} initialized for side {}: {}", MDInfo.VERSION, side, proxy );
-        MinecraftForge.EVENT_BUS.post( new ModernityReadyEvent( side, proxy ) );
+        MinecraftForge.EVENT_BUS.register( Modernity.get() );
+        Modernity.get().registerListeners();
+        Modernity.get().preInit();
+        LOGGER.info( "Modernity version {} initialized for side {}: {}", MDInfo.VERSION, side, Modernity.get() );
+        MinecraftForge.EVENT_BUS.post( new ModernityReadyEvent( side, Modernity.get() ) );
+    }
+
+    @Override
+    public MListFile.Context buildCoreContext( MListFile.Context ctx ) {
+        Version modernity = new Version( MDInfo.VERSION, "INDEV" );
+        Version minecraft = new Version( "1.14.4" );
+        Version forge = new Version( ForgeVersion.getVersion() );
+        LogicalSide side = FMLEnvironment.dist == Dist.CLIENT ? LogicalSide.CLIENT : LogicalSide.SERVER;
+
+        return ctx.withCondition( MListFile.prefix( "DIST", str -> str.equalsIgnoreCase( side.name() ) ) )
+                  .withCondition( MListFile.prefix( "VERSION_MODERNITY", str -> Version.compare( str, modernity ) ) )
+                  .withCondition( MListFile.prefix( "VERSION_MINECRAFT", str -> Version.compare( str, minecraft ) ) )
+                  .withCondition( MListFile.prefix( "VERSION_FORGE", str -> Version.compare( str, forge ) ) );
+    }
+
+    @Override
+    public Object instantiate( Class<?> cls ) {
+        try {
+            return cls.newInstance();
+        } catch( InstantiationException | IllegalAccessException e ) {
+            throw new IllegalStateException( "Unable to instantiate " + cls, e );
+        }
     }
 }

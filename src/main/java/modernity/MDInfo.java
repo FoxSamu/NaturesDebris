@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 15 - 2019
+ * Date:   12 - 26 - 2019
  * Author: rgsw
  */
 
@@ -56,7 +56,7 @@ public final class MDInfo {
     private static final class DynamicConstants {
         static final boolean IDE = true;
         static final boolean SIGNED = false;
-        static final String VERSION = "IDE";
+        static final String VERSION = "INDEV-0.4.0";
         static final String VERSION_NAME = "The IDE Version";
         static final String SHA1 = "NO:FI:NG:ER:PR:IN:TA:VA:IL:AB:LE";
     }
