@@ -29,7 +29,9 @@ public class ModuleManager<T> {
 
             modules.put( type, module );
         }
+    }
 
+    public void init() {
         for( Module module : modules.values() ) {
             module.onInit();
         }

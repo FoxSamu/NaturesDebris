@@ -24,12 +24,10 @@ import modernity.common.handler.EntitySwimHandler;
 import modernity.common.handler.WorldAreaHandler;
 import modernity.common.loot.MDLootTables;
 import modernity.common.net.MDPackets;
-import modernity.common.random.RandomModule;
 import modernity.common.util.ISidedTickable;
 import modernity.common.world.dimen.MDDimensions;
 import modernity.network.PacketChannel;
 import modul.module.ModuleManager;
-import modul.module.ModuleType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
@@ -79,8 +77,6 @@ import java.util.HashMap;
 public abstract class Modernity {
     public static final Logger LOGGER = LogManager.getLogger( "Modernity" );
 
-    public static final ModuleType<Modernity, RandomModule> RANDOM = new ModuleType<>( RandomModule::new, "MODERNITY:Random" );
-
     private static Modernity instance;
 
     public static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
@@ -106,7 +102,7 @@ public abstract class Modernity {
      * that need to be initialized as early as possible.
      */
     public void preInit() {
-
+        modules.init();
     }
 
     /**

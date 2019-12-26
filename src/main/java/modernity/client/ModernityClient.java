@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 26 - 2019
+ * Date:   12 - 26 - 2019
  * Author: rgsw
  */
 
@@ -34,6 +34,7 @@ import modernity.common.net.SSeedPacket;
 import modernity.common.tileentity.MDTileEntitiyTypes;
 import modernity.common.util.ISidedTickable;
 import modernity.common.world.dimen.MDSurfaceDimension;
+import modul.module.ModuleType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.resources.IFutureReloadListener;
@@ -54,6 +55,8 @@ import net.minecraftforge.fml.LogicalSide;
  * loading for the client side only.
  */
 public class ModernityClient extends Modernity {
+    public static final ModuleType<Modernity, ShaderManager> SHADER_MANAGER = new ModuleType<>( ShaderManager::new, "Modernity:ShaderManager" );
+
     /** The {@link Minecraft} instance. */
     public final Minecraft mc = Minecraft.getInstance();
 
@@ -64,7 +67,6 @@ public class ModernityClient extends Modernity {
 
     private ClientWorldAreaManager worldAreaManager;
     private AreaRenderManager areaRenderManager;
-    private ShaderManager shaderManager;
 
     // Used to give color to humus particles
     private final ColorMap humusColors = new ColorMap( new ResourceLocation( "modernity:textures/block/humus_top.png" ), 0xffffff );
@@ -87,8 +89,6 @@ public class ModernityClient extends Modernity {
 
         areaRenderManager = new AreaRenderManager();
         MDAreas.setupClient( areaRenderManager );
-        shaderManager = new ShaderManager();
-        addFutureReloadListener( shaderManager );
     }
 
     @Override
@@ -243,10 +243,6 @@ public class ModernityClient extends Modernity {
 
     public AreaRenderManager getAreaRenderManager() {
         return areaRenderManager;
-    }
-
-    public ShaderManager getShaderManager() {
-        return shaderManager;
     }
 
     /**
