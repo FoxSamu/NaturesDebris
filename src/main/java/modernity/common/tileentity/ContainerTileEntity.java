@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 29 - 2019
  * Author: rgsw
  */
 
@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
  * A tile entity with a container.
  */
 public abstract class ContainerTileEntity extends LockableTileEntity {
-    private final NonNullList<ItemStack> stacks = NonNullList.withSize( getSizeInventory(), ItemStack.EMPTY );
+    protected final NonNullList<ItemStack> stacks = NonNullList.withSize( getSizeInventory(), ItemStack.EMPTY );
 
     protected ContainerTileEntity( TileEntityType<?> type ) {
         super( type );
@@ -147,7 +147,7 @@ public abstract class ContainerTileEntity extends LockableTileEntity {
     public void read( CompoundNBT compound ) {
         super.read( compound );
         ListNBT list = compound.getList( "items", 10 );
-        for( int i = 0; i < list.size(); i++ ) {
+        for( int i = 0; i < Math.min( list.size(), stacks.size() ); i++ ) {
             stacks.set( i, ItemStack.read( list.getCompound( i ) ) );
         }
     }

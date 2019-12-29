@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 26 - 2019
+ * Date:   12 - 29 - 2019
  * Author: rgsw
  */
 
@@ -22,6 +22,7 @@ import modernity.client.render.environment.SurfaceCloudRenderer;
 import modernity.client.render.environment.SurfaceSkyRenderer;
 import modernity.client.render.environment.SurfaceWeatherRenderer;
 import modernity.client.shaders.ShaderManager;
+import modernity.client.util.MDRecipeBookCategories;
 import modernity.common.Modernity;
 import modernity.common.area.MDAreas;
 import modernity.common.area.core.ClientWorldAreaManager;
@@ -89,6 +90,8 @@ public class ModernityClient extends Modernity {
 
         areaRenderManager = new AreaRenderManager();
         MDAreas.setupClient( areaRenderManager );
+
+        MDRecipeBookCategories.init();
     }
 
     @Override

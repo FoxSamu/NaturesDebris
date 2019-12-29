@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 24 - 2019
+ * Date:   12 - 29 - 2019
  * Author: rgsw
  */
 
@@ -203,6 +203,7 @@ public final class MDBlocks {
     // V I0.4.0
     public static final WorkbenchBlock BLACKWOOD_WORKBENCH = blockItem( "blackwood_workbench", new WorkbenchBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.BLOCKS );
     public static final WorkbenchBlock INVER_WORKBENCH = blockItem( "inver_workbench", new WorkbenchBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroups.BLOCKS );
+    public static final RockFurnaceBlock ROCK_FURNACE = blockItem( "rock_furnace", new RockFurnaceBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroups.BLOCKS );
 
     private static <T extends Block> T blockOnly( String name, T block, String... aliases ) {
         BLOCKS.register( name, block, aliases );

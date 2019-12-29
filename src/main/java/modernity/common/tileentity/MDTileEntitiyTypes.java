@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 26 - 2019
+ * Date:   12 - 29 - 2019
  * Author: rgsw
  */
 
@@ -19,7 +19,6 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.function.Supplier;
@@ -34,12 +33,8 @@ public final class MDTileEntitiyTypes {
     private static final RegistryHandler<TileEntityType<?>> ENTRIES = new RegistryHandler<>( "modernity" );
 
     public static final TileEntityType<SoulLightTileEntity> SOUL_LIGHT = register( "soul_light", create( SoulLightTileEntity::new, MDBlocks.SOUL_LIGHT ) );
-
-    public static void register( IForgeRegistry<TileEntityType<?>> registry ) {
-        for( TileEntityType<?> type : ENTRIES ) {
-            registry.register( type );
-        }
-    }
+    public static final TileEntityType<RockFurnaceTileEntity> ROCK_FURNACE = register( "rock_furnace", create( RockFurnaceTileEntity::new, MDBlocks.ROCK_FURNACE ) );
+    public static final TileEntityType<WorkbenchTileEntity> WORKBENCH = register( "workbench", create( WorkbenchTileEntity::new, MDBlocks.BLACKWOOD_WORKBENCH, MDBlocks.INVER_WORKBENCH ) );
 
     private static <T extends TileEntity> TileEntityType.Builder<T> create( Supplier<? extends T> factory, Block... validBlocks ) {
         return TileEntityType.Builder.create( factory, validBlocks );

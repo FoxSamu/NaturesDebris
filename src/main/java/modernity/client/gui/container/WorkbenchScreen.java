@@ -2,16 +2,17 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 24 - 2019
+ * Date:   12 - 29 - 2019
  * Author: rgsw
  */
 
 package modernity.client.gui.container;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import modernity.client.gui.recipebook.RecipeBookGui;
+import modernity.client.gui.recipebook.WorkbenchBookType;
 import modernity.common.container.WorkbenchContainer;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
-import net.minecraft.client.gui.recipebook.RecipeBookGui;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.entity.player.PlayerInventory;
@@ -26,7 +27,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class WorkbenchScreen extends ContainerScreen<WorkbenchContainer> implements IRecipeShownListener {
     private static final ResourceLocation CRAFTING_TABLE_GUI_TEXTURES = new ResourceLocation( "textures/gui/container/crafting_table.png" );
     private static final ResourceLocation RECIPE_BUTTON_TEXTURE = new ResourceLocation( "textures/gui/recipe_button.png" );
-    private final RecipeBookGui recipeBookGui = new RecipeBookGui();
+    private final RecipeBookGui recipeBookGui = new RecipeBookGui( new WorkbenchBookType() );
     private boolean tooNarrow;
 
     public WorkbenchScreen( WorkbenchContainer container, PlayerInventory playerInv, ITextComponent title ) {
@@ -40,14 +41,14 @@ public class WorkbenchScreen extends ContainerScreen<WorkbenchContainer> impleme
 
         assert minecraft != null;
 
-        recipeBookGui.func_201520_a( width, height, minecraft, tooNarrow, container );
-        guiLeft = recipeBookGui.updateScreenPosition( tooNarrow, width, xSize );
+        recipeBookGui.init( width, height, minecraft, tooNarrow, container );
+        guiLeft = recipeBookGui.computeMainScreenX( tooNarrow, width, xSize );
         children.add( recipeBookGui );
         func_212928_a( recipeBookGui );
         addButton( new ImageButton( guiLeft + 5, height / 2 - 49, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, btn -> {
-            recipeBookGui.func_201518_a( tooNarrow );
+            recipeBookGui.setupGui( tooNarrow );
             recipeBookGui.toggleVisibility();
-            guiLeft = recipeBookGui.updateScreenPosition( tooNarrow, width, xSize );
+            guiLeft = recipeBookGui.computeMainScreenX( tooNarrow, width, xSize );
             ( (ImageButton) btn ).setPosition( guiLeft + 5, height / 2 - 49 );
         } ) );
     }
@@ -107,7 +108,7 @@ public class WorkbenchScreen extends ContainerScreen<WorkbenchContainer> impleme
     @Override
     protected boolean hasClickedOutside( double x, double y, int guiX, int guiZ, int button ) {
         boolean outside = x < (double) guiX || y < (double) guiZ || x >= (double) ( guiX + this.xSize ) || y >= (double) ( guiZ + this.ySize );
-        return recipeBookGui.func_195604_a( x, y, this.guiLeft, this.guiTop, this.xSize, this.ySize, button ) && outside;
+        return recipeBookGui.isClickOutside( x, y, this.guiLeft, this.guiTop, this.xSize, this.ySize, button ) && outside;
     }
 
     @Override
@@ -123,7 +124,7 @@ public class WorkbenchScreen extends ContainerScreen<WorkbenchContainer> impleme
 
     @Override
     public void removed() {
-        recipeBookGui.removed();
+        recipeBookGui.onRemove();
         super.removed();
     }
 

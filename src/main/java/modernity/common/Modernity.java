@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 26 - 2019
+ * Date:   12 - 29 - 2019
  * Author: rgsw
  */
 
@@ -18,10 +18,7 @@ import modernity.common.capability.MDCapabilities;
 import modernity.common.command.MDCommands;
 import modernity.common.generator.structure.MDStructurePieceTypes;
 import modernity.common.generator.structure.MDStructures;
-import modernity.common.handler.CapabilityHandler;
-import modernity.common.handler.CaveHandler;
-import modernity.common.handler.EntitySwimHandler;
-import modernity.common.handler.WorldAreaHandler;
+import modernity.common.handler.*;
 import modernity.common.loot.MDLootTables;
 import modernity.common.net.MDPackets;
 import modernity.common.util.ISidedTickable;
@@ -220,6 +217,8 @@ public abstract class Modernity {
         FORGE_EVENT_BUS.register( CaveHandler.INSTANCE );
         FORGE_EVENT_BUS.register( CapabilityHandler.INSTANCE );
         FORGE_EVENT_BUS.register( WorldAreaHandler.INSTANCE );
+        FORGE_EVENT_BUS.register( FuelHandler.INSTANCE );
+        FORGE_EVENT_BUS.register( ContainerHandler.INSTANCE );
     }
 
     /**

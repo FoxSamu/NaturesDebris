@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 24 - 2019
+ * Date:   12 - 29 - 2019
  * Author: rgsw
  */
 
@@ -25,6 +25,7 @@ import modernity.common.generator.biome.MDBiomeProviderTypes;
 import modernity.common.generator.terrain.MDChunkGeneratorTypes;
 import modernity.common.item.MDItems;
 import modernity.common.particle.MDParticleTypes;
+import modernity.common.recipes.MDRecipeSerializers;
 import modernity.common.tileentity.MDTileEntitiyTypes;
 import modernity.common.world.dimen.MDDimensions;
 import modernity.common.generator.structure.MDStructures;
@@ -63,6 +64,7 @@ public enum RegistryEventHandler {
         MDEnvEvents.setup( this );
         MDAreas.setup( this );
         MDParticleTypes.setup( this );
+        MDRecipeSerializers.setup( this );
     }
 
     private <T extends IForgeRegistryEntry<T>> void register( Class<T> entryClass, IForgeRegistry<T> registry ) {

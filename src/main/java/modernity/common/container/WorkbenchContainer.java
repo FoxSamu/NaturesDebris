@@ -2,14 +2,17 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 24 - 2019
+ * Date:   12 - 29 - 2019
  * Author: rgsw
  */
 
 package modernity.common.container;
 
 import com.google.common.collect.Lists;
+import modernity.api.container.IPostOpenHandler;
 import modernity.common.block.base.WorkbenchBlock;
+import modernity.common.container.inventory.WorkbenchInventory;
+import modernity.common.tileentity.WorkbenchTileEntity;
 import net.minecraft.client.util.RecipeBookCategories;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -34,23 +37,56 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.List;
 import java.util.Optional;
 
-public class WorkbenchContainer extends RecipeBookContainer<CraftingInventory> {
-    private final CraftingInventory craftingInv = new CraftingInventory( this, 3, 3 );
-    private final CraftResultInventory resultInv = new CraftResultInventory();
+public class WorkbenchContainer extends RecipeBookContainer<CraftingInventory> implements IPostOpenHandler {
+    private final CraftingInventory craftingInv;
+    private final CraftResultInventory resultInv;
     private final IWorldPosCallable sidedCallable;
     private final PlayerEntity player;
 
     public WorkbenchContainer( int windowID, PlayerInventory playerInv ) {
-        this( windowID, playerInv, IWorldPosCallable.DUMMY );
+        super( MDContainerTypes.WORKBENCH, windowID );
+        this.sidedCallable = IWorldPosCallable.DUMMY;
+        this.player = playerInv.player;
+        this.craftingInv = new CraftingInventory( this, 3, 3 );
+        this.resultInv = new CraftResultInventory();
+
+        setupSlots( playerInv );
     }
 
-    public WorkbenchContainer( int windowID, PlayerInventory playerInv, IWorldPosCallable slotChangeHandler ) {
+    public WorkbenchContainer( int windowID, PlayerInventory playerInv, CraftingInventory craftingInv ) {
+        super( MDContainerTypes.WORKBENCH, windowID );
+        this.sidedCallable = IWorldPosCallable.DUMMY;
+        this.player = playerInv.player;
+        this.craftingInv = craftingInv;
+        this.resultInv = new CraftResultInventory();
+
+        setupSlots( playerInv );
+    }
+
+    public WorkbenchContainer( int windowID, PlayerInventory playerInv, WorkbenchTileEntity te, IWorldPosCallable slotChangeHandler ) {
         super( MDContainerTypes.WORKBENCH, windowID );
         this.sidedCallable = slotChangeHandler;
         this.player = playerInv.player;
+        this.craftingInv = new WorkbenchInventory( this, 3, 3, te );
+        this.resultInv = new CraftResultInventory();
 
-        // Result
-        addSlot( new CraftingResultSlot( playerInv.player, craftingInv, resultInv, 0, 124, 35 ) );
+        setupSlots( playerInv );
+    }
+
+    public WorkbenchContainer( int windowID, PlayerInventory playerInv, CraftingInventory craftingInv, IWorldPosCallable slotChangeHandler ) {
+        super( MDContainerTypes.WORKBENCH, windowID );
+        this.sidedCallable = slotChangeHandler;
+        this.player = playerInv.player;
+        this.craftingInv = craftingInv;
+        this.resultInv = new CraftResultInventory();
+
+        setupSlots( playerInv );
+    }
+
+    private void setupSlots( PlayerInventory playerInv ) {
+        if( player instanceof ServerPlayerEntity ) {
+            addListener( (ServerPlayerEntity) player );
+        }
 
         // Crafting Grid
         for( int y = 0; y < 3; ++ y ) {
@@ -58,6 +94,9 @@ public class WorkbenchContainer extends RecipeBookContainer<CraftingInventory> {
                 addSlot( new Slot( craftingInv, x + y * 3, 30 + x * 18, 17 + y * 18 ) );
             }
         }
+
+        // Result
+        addSlot( new CraftingResultSlot( playerInv.player, craftingInv, resultInv, 0, 124, 35 ) );
 
         // Player Inventory
         for( int y = 0; y < 3; ++ y ) {
@@ -70,10 +109,9 @@ public class WorkbenchContainer extends RecipeBookContainer<CraftingInventory> {
         for( int x = 0; x < 9; ++ x ) {
             addSlot( new Slot( playerInv, x, 8 + x * 18, 142 ) );
         }
-
     }
 
-    protected static void sendPacket( int windowID, World world, PlayerEntity player, CraftingInventory craftingInv, CraftResultInventory resultInv ) {
+    protected static void computeResult( int windowID, World world, PlayerEntity player, CraftingInventory craftingInv, CraftResultInventory resultInv ) {
         if( ! world.isRemote ) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
             ItemStack stack = ItemStack.EMPTY;
@@ -86,17 +124,15 @@ public class WorkbenchContainer extends RecipeBookContainer<CraftingInventory> {
                 }
             }
 
-            resultInv.setInventorySlotContents( 0, stack );
-            serverPlayer.connection.sendPacket( new SSetSlotPacket( windowID, 0, stack ) );
+            resultInv.setInventorySlotContents( 9, stack );
+            serverPlayer.connection.sendPacket( new SSetSlotPacket( windowID, 9, stack ) );
         }
     }
 
-    /**
-     * Callback for when the crafting matrix is changed.
-     */
     @Override
     public void onCraftMatrixChanged( IInventory inventoryIn ) {
-        sidedCallable.consume( ( world, pos ) -> sendPacket( windowId, world, player, craftingInv, resultInv ) );
+        sidedCallable.consume( ( world, pos ) -> computeResult( windowId, world, player, craftingInv, resultInv ) );
+        detectAndSendChanges();
     }
 
     @Override // fillStackedContents
@@ -118,7 +154,7 @@ public class WorkbenchContainer extends RecipeBookContainer<CraftingInventory> {
     @Override
     public void onContainerClosed( PlayerEntity player ) {
         super.onContainerClosed( player );
-        sidedCallable.consume( ( world, pos ) -> clearContainer( player, world, craftingInv ) );
+//        sidedCallable.consume( ( world, pos ) -> clearContainer( player, world, craftingInv ) );
     }
 
     @Override
@@ -144,7 +180,7 @@ public class WorkbenchContainer extends RecipeBookContainer<CraftingInventory> {
         if( slot != null && slot.getHasStack() ) {
             ItemStack slotStack = slot.getStack();
             stack = slotStack.copy();
-            if( index == 0 ) {
+            if( index == 9 ) {
                 sidedCallable.consume( ( world, pos ) -> slotStack.getItem().onCreated( slotStack, world, player ) );
                 if( ! mergeItemStack( slotStack, 10, 46, true ) ) {
                     return ItemStack.EMPTY;
@@ -174,7 +210,7 @@ public class WorkbenchContainer extends RecipeBookContainer<CraftingInventory> {
             }
 
             ItemStack takenStack = slot.onTake( player, slotStack );
-            if( index == 0 ) {
+            if( index == 9 ) {
                 player.dropItem( takenStack, false );
             }
         }
@@ -189,7 +225,7 @@ public class WorkbenchContainer extends RecipeBookContainer<CraftingInventory> {
 
     @Override
     public int getOutputSlot() {
-        return 0;
+        return 9;
     }
 
     @Override
@@ -211,5 +247,10 @@ public class WorkbenchContainer extends RecipeBookContainer<CraftingInventory> {
     @Override
     public List<RecipeBookCategories> getRecipeBookCategories() {
         return Lists.newArrayList( RecipeBookCategories.SEARCH, RecipeBookCategories.EQUIPMENT, RecipeBookCategories.BUILDING_BLOCKS, RecipeBookCategories.MISC, RecipeBookCategories.REDSTONE );
+    }
+
+    @Override
+    public void onOpened() {
+        sidedCallable.consume( ( world, pos ) -> computeResult( windowId, world, player, craftingInv, resultInv ) );
     }
 }

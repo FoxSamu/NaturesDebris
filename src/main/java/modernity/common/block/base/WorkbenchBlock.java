@@ -2,32 +2,44 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 24 - 2019
+ * Date:   12 - 29 - 2019
  * Author: rgsw
  */
 
 package modernity.common.block.base;
 
-import modernity.common.container.WorkbenchContainer;
+import modernity.common.tileentity.WorkbenchTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.stats.Stats;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
-import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 @SuppressWarnings( "deprecation" )
 public class WorkbenchBlock extends HorizontalFacingBlock {
-    private static final ITextComponent TITLE = new TranslationTextComponent( "container.crafting" );
 
     public WorkbenchBlock( Properties properties ) {
         super( properties );
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity( BlockState state, IBlockReader world ) {
+        return new WorkbenchTileEntity();
+    }
+
+    @Override
+    public boolean hasTileEntity( BlockState state ) {
+        return true;
     }
 
     @Override
@@ -39,12 +51,23 @@ public class WorkbenchBlock extends HorizontalFacingBlock {
 
     @Override
     public INamedContainerProvider getContainer( BlockState state, World world, BlockPos pos ) {
-        return new SimpleNamedContainerProvider(
-            ( windowID, playerInv, player ) -> new WorkbenchContainer(
-                windowID, playerInv,
-                IWorldPosCallable.of( world, pos )
-            ),
-            TITLE
-        );
+        TileEntity te = world.getTileEntity( pos );
+        if( te instanceof WorkbenchTileEntity ) {
+            return (INamedContainerProvider) te;
+        }
+        return null;
+    }
+
+    @Override
+    public void onReplaced( BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving ) {
+        if( state.getBlock() != newState.getBlock() ) {
+            TileEntity tileentity = worldIn.getTileEntity( pos );
+            if( tileentity instanceof IInventory ) {
+                InventoryHelper.dropInventoryItems( worldIn, pos, (IInventory) tileentity );
+                worldIn.updateComparatorOutputLevel( pos, this );
+            }
+
+            super.onReplaced( state, worldIn, pos, newState, isMoving );
+        }
     }
 }
