@@ -59,15 +59,15 @@ public class WorkbenchBlock extends HorizontalFacingBlock {
     }
 
     @Override
-    public void onReplaced( BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving ) {
+    public void onReplaced( BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving ) {
         if( state.getBlock() != newState.getBlock() ) {
-            TileEntity tileentity = worldIn.getTileEntity( pos );
-            if( tileentity instanceof IInventory ) {
-                InventoryHelper.dropInventoryItems( worldIn, pos, (IInventory) tileentity );
-                worldIn.updateComparatorOutputLevel( pos, this );
+            TileEntity te = world.getTileEntity( pos );
+            if( te instanceof IInventory ) {
+                InventoryHelper.dropInventoryItems( world, pos, (IInventory) te );
+                world.updateComparatorOutputLevel( pos, this );
             }
 
-            super.onReplaced( state, worldIn, pos, newState, isMoving );
+            super.onReplaced( state, world, pos, newState, isMoving );
         }
     }
 }
