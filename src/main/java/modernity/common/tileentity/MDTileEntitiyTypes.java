@@ -2,7 +2,7 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 29 - 2019
+ * Date:   12 - 31 - 2020
  * Author: rgsw
  */
 
@@ -10,6 +10,7 @@ package modernity.common.tileentity;
 
 import com.google.common.reflect.TypeToken;
 import modernity.client.render.tileentity.SoulLightRenderer;
+import modernity.client.render.tileentity.WorkbenchRenderer;
 import modernity.common.block.MDBlocks;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
@@ -55,6 +56,7 @@ public final class MDTileEntitiyTypes {
     @OnlyIn( Dist.CLIENT )
     public static void setupClient() {
         ClientRegistry.bindTileEntitySpecialRenderer( SoulLightTileEntity.class, new SoulLightRenderer() );
+        ClientRegistry.bindTileEntitySpecialRenderer( WorkbenchTileEntity.class, new WorkbenchRenderer() );
     }
 
     private MDTileEntitiyTypes() {

@@ -2,12 +2,14 @@
  * Copyright (c) 2019 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   12 - 31 - 2020
  * Author: rgsw
  */
 
 package modernity.api.util;
 
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 
@@ -48,5 +50,23 @@ public final class MDVoxelShapes {
      */
     public static VoxelShape create64( double x1, double y1, double z1, double x2, double y2, double z2 ) {
         return create( x1, y1, z1, x2, y2, z2, 64 );
+    }
+
+
+    public static boolean hitsSideOfCube( VoxelShape shape, Direction side ) {
+        Direction.Axis axis = side.getAxis();
+        double proximity;
+        if( side.getAxisDirection() == Direction.AxisDirection.POSITIVE ) {
+            proximity = 1 - shape.getEnd( axis );
+        } else {
+            proximity = shape.getStart( axis );
+        }
+        return proximity < 0.000001;
+    }
+
+    public static boolean coversRect( VoxelShape shape, VoxelShape covered, Direction side ) {
+        VoxelShape s = shape.project( side.getOpposite() );
+        VoxelShape c = covered.project( side );
+        return VoxelShapes.compare( s, c, IBooleanFunction.NOT_FIRST );
     }
 }
