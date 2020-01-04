@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
  * Holder class for Modernity creative tabs.
  */
 public final class MDItemGroups {
-    public static final ItemGroup BLOCKS = new ItemGroup( "blocks" ) {
+    public static final ItemGroup BLOCKS = new ItemGroup( "modernity.blocks" ) {
         @Override
         public String getTranslationKey() {
             return "itemgroup.modernity.blocks";
@@ -27,7 +27,7 @@ public final class MDItemGroups {
             return new ItemStack( MDBlocks.MURKY_GRASS_BLOCK.asItem() );
         }
     };
-    public static final ItemGroup DECORATIVES = new ItemGroup( "decoratives" ) {
+    public static final ItemGroup DECORATIVES = new ItemGroup( "modernity.decoratives" ) {
         @Override
         public String getTranslationKey() {
             return "itemgroup.modernity.decoratives";
@@ -38,7 +38,7 @@ public final class MDItemGroups {
             return new ItemStack( MDBlocks.LIGHTROCK_TORCH.asItem() );
         }
     };
-    public static final ItemGroup MISC = new ItemGroup( "misc" ) {
+    public static final ItemGroup MISC = new ItemGroup( "modernity.misc" ) {
         @Override
         public String getTranslationKey() {
             return "itemgroup.modernity.misc";
@@ -49,7 +49,7 @@ public final class MDItemGroups {
             return new ItemStack( MDItems.ALUMINIUM_INGOT );
         }
     };
-    public static final ItemGroup PLANTS = new ItemGroup( "plants" ) {
+    public static final ItemGroup PLANTS = new ItemGroup( "modernity.plants" ) {
         @Override
         public String getTranslationKey() {
             return "itemgroup.modernity.plants";
@@ -60,7 +60,7 @@ public final class MDItemGroups {
             return new ItemStack( MDBlocks.MINT_PLANT.asItem() );
         }
     };
-    public static final ItemGroup COMBAT = new ItemGroup( "combat" ) {
+    public static final ItemGroup COMBAT = new ItemGroup( "modernity.combat" ) {
         @Override
         public String getTranslationKey() {
             return "itemgroup.modernity.combat";
@@ -71,7 +71,7 @@ public final class MDItemGroups {
             return new ItemStack( MDItems.ALUMINIUM_SWORD );
         }
     };
-    public static final ItemGroup TOOLS = new ItemGroup( "tools" ) {
+    public static final ItemGroup TOOLS = new ItemGroup( "modernity.tools" ) {
         @Override
         public String getTranslationKey() {
             return "itemgroup.modernity.tools";
