@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   01 - 04 - 2020
  * Author: rgsw
  */
 
@@ -79,7 +79,7 @@ public final class MDItemGroups {
 
         @Override
         public ItemStack createIcon() {
-            return new ItemStack( MDItems.ALUMINIUM_SWORD );
+            return new ItemStack( MDItems.ALUMINIUM_PICKAXE );
         }
     };
 
