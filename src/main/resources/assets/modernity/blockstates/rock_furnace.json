@@ -1,0 +1,44 @@
+{
+  "variants": {
+    "facing=north,lit=false": {
+      "model": "modernity:block/rock_furnace",
+      "y": 0,
+      "uvlock": true
+    },
+    "facing=south,lit=false": {
+      "model": "modernity:block/rock_furnace",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east,lit=false": {
+      "model": "modernity:block/rock_furnace",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west,lit=false": {
+      "model": "modernity:block/rock_furnace",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=north,lit=true": {
+      "model": "modernity:block/rock_furnace_on",
+      "y": 0,
+      "uvlock": true
+    },
+    "facing=south,lit=true": {
+      "model": "modernity:block/rock_furnace_on",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east,lit=true": {
+      "model": "modernity:block/rock_furnace_on",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west,lit=true": {
+      "model": "modernity:block/rock_furnace_on",
+      "y": 270,
+      "uvlock": true
+    }
+  }
+}
