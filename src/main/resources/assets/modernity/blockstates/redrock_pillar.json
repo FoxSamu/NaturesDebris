@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "modernity:block/redrock_pillar"
+    },
+    "axis=z": {
+      "model": "modernity:block/redrock_pillar", "x": 90
+    },
+    "axis=x": {
+      "model": "modernity:block/redrock_pillar", "x": 90, "y": 90
+    }
+  }
+}

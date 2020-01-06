@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 06 - 2020
  * Author: rgsw
  */
 
@@ -21,7 +21,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 
 /**
  * A block that can be placed in both vanilla water as modernized water.
@@ -50,7 +50,7 @@ public class WaterloggedBlock extends Block implements IWaterloggedBlock {
         return super.updatePostPlacement( state, facing, facingState, world, currentPos, facingPos );
     }
 
-    @Nullable
+    @Nonnull
     @Override
     public BlockState getStateForPlacement( BlockItemUseContext context ) {
         IFluidState fluid = context.getWorld().getFluidState( context.getPos() );

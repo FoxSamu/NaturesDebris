@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 29 - 2019
+ * Date:   01 - 06 - 2020
  * Author: rgsw
  */
 
@@ -45,7 +45,6 @@ public class RockFurnaceBlock extends AbstractFurnaceBlock {
             player.openContainer( (INamedContainerProvider) te );
             player.addStat( Stats.INTERACT_WITH_FURNACE );
         }
-
     }
 
     @Override
