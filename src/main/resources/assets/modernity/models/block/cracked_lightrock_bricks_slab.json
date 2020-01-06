@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "side": "modernity:block/lightrock_bricks_cracked",
+    "top": "modernity:block/lightrock_bricks_cracked",
+    "bottom": "modernity:block/lightrock_bricks_cracked"
+  }
+}

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 04 - 2020
+ * Date:   01 - 06 - 2020
  * Author: rgsw
  */
 
@@ -12,6 +12,10 @@ import runs.generator.FileCopy;
 
 public class FullBlockTemplate extends Template {
     public FullBlockTemplate( String name ) {
+        this( name, name );
+    }
+
+    public FullBlockTemplate( String name, String textureName ) {
         super( modIDFromName( name ) );
         addCopy(
             new FileCopy( "templates/blockstates/full_block.json", wrapIntoFolder( name, "assets", "blockstates", ".json" ) )
@@ -19,7 +23,7 @@ public class FullBlockTemplate extends Template {
         );
         addCopy(
             new FileCopy( "templates/models/block/full_block.json", wrapIntoFolder( name, "assets", "models/block", ".json" ) )
-                .property( "name", toSubfolder( name, "block" ) )
+                .property( "name", toSubfolder( textureName, "block" ) )
         );
         addCopy(
             new FileCopy( "templates/models/item/parent.json", wrapIntoFolder( name, "assets", "models/item", ".json" ) )

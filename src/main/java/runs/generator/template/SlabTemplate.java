@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 04 - 2020
+ * Date:   01 - 06 - 2020
  * Author: rgsw
  */
 
@@ -12,6 +12,10 @@ import runs.generator.FileCopy;
 
 public class SlabTemplate extends Template {
     public SlabTemplate( String slabName, String fullName ) {
+        this( slabName, fullName, fullName );
+    }
+
+    public SlabTemplate( String slabName, String fullName, String textureName ) {
         super( modIDFromName( slabName ) );
         addCopy(
             new FileCopy( "templates/blockstates/slab.json", wrapIntoFolder( slabName, "assets", "blockstates", ".json" ) )
@@ -20,7 +24,7 @@ public class SlabTemplate extends Template {
         );
         addCopy(
             new FileCopy( "templates/models/block/slab.json", wrapIntoFolder( slabName, "assets", "models/block", ".json" ) )
-                .property( "name", toSubfolder( fullName, "block" ) )
+                .property( "name", toSubfolder( textureName, "block" ) )
         );
         addCopy(
             new FileCopy( "templates/models/item/parent.json", wrapIntoFolder( slabName, "assets", "models/item", ".json" ) )

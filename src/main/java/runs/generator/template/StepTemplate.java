@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 04 - 2020
+ * Date:   01 - 06 - 2020
  * Author: rgsw
  */
 
@@ -12,6 +12,10 @@ import runs.generator.FileCopy;
 
 public class StepTemplate extends Template {
     public StepTemplate( String stairsName, String innerName, String outerName, String fullName ) {
+        this( stairsName, innerName, outerName, fullName, fullName );
+    }
+
+    public StepTemplate( String stairsName, String innerName, String outerName, String fullName, String textureName ) {
         super( modIDFromName( stairsName ) );
         innerName = innerName.replaceAll( "^%", stairsName );
         outerName = outerName.replaceAll( "^%", stairsName );
@@ -23,15 +27,15 @@ public class StepTemplate extends Template {
         );
         addCopy(
             new FileCopy( "templates/models/block/step.json", wrapIntoFolder( stairsName, "assets", "models/block", ".json" ) )
-                .property( "name", toSubfolder( fullName, "block" ) )
+                .property( "name", toSubfolder( textureName, "block" ) )
         );
         addCopy(
             new FileCopy( "templates/models/block/outer_step.json", wrapIntoFolder( outerName, "assets", "models/block", ".json" ) )
-                .property( "name", toSubfolder( fullName, "block" ) )
+                .property( "name", toSubfolder( textureName, "block" ) )
         );
         addCopy(
             new FileCopy( "templates/models/block/inner_step.json", wrapIntoFolder( innerName, "assets", "models/block", ".json" ) )
-                .property( "name", toSubfolder( fullName, "block" ) )
+                .property( "name", toSubfolder( textureName, "block" ) )
         );
         addCopy(
             new FileCopy( "templates/models/item/parent.json", wrapIntoFolder( stairsName, "assets", "models/item", ".json" ) )

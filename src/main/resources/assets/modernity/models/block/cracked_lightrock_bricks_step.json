@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/step",
+  "textures": {
+    "stairs": "modernity:block/lightrock_bricks_cracked"
+  }
+}

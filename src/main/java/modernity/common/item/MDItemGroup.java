@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 05 - 2020
+ * Date:   01 - 06 - 2020
  * Author: rgsw
  */
 
@@ -124,6 +124,9 @@ public class MDItemGroup extends ItemGroup {
         }
         NonNullList<ItemStack> itemStacks = NonNullList.create();
         for( Item item : ForgeRegistries.ITEMS ) {
+            if( item == MDBlocks.MURKY_DIRT.asItem() ) {
+
+            }
             item.fillItemGroup( this, itemStacks );
         }
         for( ItemStack stack : itemStacks ) {

@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/inner_step",
+  "textures": {
+    "stairs": "modernity:block/redrock_bricks_mossy"
+  }
+}

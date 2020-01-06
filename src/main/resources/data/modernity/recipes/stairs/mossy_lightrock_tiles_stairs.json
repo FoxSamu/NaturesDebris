@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:mossy_lightrock_tiles"
+    }
+  },
+  "result": {
+    "item": "modernity:mossy_lightrock_tiles_stairs",
+    "count": 4
+  }
+}

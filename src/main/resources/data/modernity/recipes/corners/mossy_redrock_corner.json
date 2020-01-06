@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "# #",
+    "   ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:mossy_redrock"
+    }
+  },
+  "result": {
+    "item": "modernity:mossy_redrock_corner",
+    "count": 32
+  }
+}

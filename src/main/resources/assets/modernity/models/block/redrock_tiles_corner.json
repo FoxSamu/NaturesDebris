@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/corner",
+  "textures": {
+    "corner": "modernity:block/redrock_tiles"
+  }
+}

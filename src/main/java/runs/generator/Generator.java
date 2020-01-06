@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 04 - 2020
+ * Date:   01 - 06 - 2020
  * Author: rgsw
  */
 
@@ -33,8 +33,10 @@ public final class Generator {
     }
 
     public static void main( String[] args ) {
-        addTemplate( new FullSetTemplate( "modernity:rock", true ) );
-        addTemplate( new FullSetTemplate( "modernity:darkrock", true ) );
+        addTemplate( new FullBlockTemplate( "modernity:chiseled_rock", "modernity:rock_chiseled" ) );
+        addTemplate( new FullBlockTemplate( "modernity:chiseled_darkrock", "modernity:darkrock_chiseled" ) );
+        addTemplate( new FullBlockTemplate( "modernity:chiseled_lightrock", "modernity:lightrock_chiseled" ) );
+        addTemplate( new FullBlockTemplate( "modernity:chiseled_redrock", "modernity:redrock_chiseled" ) );
 
         go();
     }

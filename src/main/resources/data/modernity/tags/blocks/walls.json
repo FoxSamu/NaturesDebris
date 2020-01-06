@@ -3,9 +3,35 @@
   "values": [
     "modernity:rock_wall",
     "modernity:darkrock_wall",
-    "modernity:limestone_wall",
+    "modernity:lightrock_wall",
+    "modernity:redrock_wall",
+
     "modernity:rock_bricks_wall",
     "modernity:darkrock_bricks_wall",
+    "modernity:lightrock_bricks_wall",
+    "modernity:redrock_bricks_wall",
+
+    "modernity:smooth_rock_wall",
+    "modernity:smooth_darkrock_wall",
+    "modernity:smooth_lightrock_wall",
+    "modernity:smooth_redrock_wall",
+
+    "modernity:mossy_rock_wall",
+    "modernity:mossy_darkrock_wall",
+    "modernity:mossy_lightrock_wall",
+    "modernity:mossy_redrock_wall",
+
+    "modernity:mossy_rock_bricks_wall",
+    "modernity:mossy_darkrock_bricks_wall",
+    "modernity:mossy_lightrock_bricks_wall",
+    "modernity:mossy_redrock_bricks_wall",
+
+    "modernity:cracked_rock_bricks_wall",
+    "modernity:cracked_darkrock_bricks_wall",
+    "modernity:cracked_lightrock_bricks_wall",
+    "modernity:cracked_redrock_bricks_wall",
+
+    "modernity:limestone_wall",
     "modernity:asphalt_concrete_wall"
   ]
 }

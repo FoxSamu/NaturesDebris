@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/outer_stairs",
+  "textures": {
+    "stairs": "modernity:block/redrock_tiles"
+  }
+}

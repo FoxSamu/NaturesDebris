@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/step",
+  "textures": {
+    "stairs": "modernity:block/darkrock_bricks_cracked"
+  }
+}

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 21 - 2019
+ * Date:   01 - 06 - 2020
  * Author: rgsw
  */
 
@@ -44,6 +44,9 @@ public class RegistryHandler<E extends IForgeRegistryEntry<E>> implements Iterab
      */
     public void fillRegistry( IForgeRegistry<E> registry ) {
         for( Entry<E> e : registryItems ) {
+            if( e.name.toString().equals( "modernity:murky_dirt" ) ) {
+                System.out.println( "Registering murky dirt" );
+            }
             registry.register( e.entry );
         }
     }
@@ -69,6 +72,7 @@ public class RegistryHandler<E extends IForgeRegistryEntry<E>> implements Iterab
      * @return The object passed as second argument
      */
     public <T extends E> T register( String name, T e, String... aliases ) {
+        if( name.equals( "murky_dirt" ) ) System.out.println( "Added murky dirt" );
         ResourceLocation id = computeID( name );
         Entry<E> entry = new Entry<>( id, e, aliases );
         registryItems.add( entry );

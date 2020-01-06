@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 04 - 2020
+ * Date:   01 - 06 - 2020
  * Author: rgsw
  */
 
@@ -12,6 +12,10 @@ import runs.generator.FileCopy;
 
 public class CornerTemplate extends Template {
     public CornerTemplate( String cornerName, String fullName ) {
+        this( cornerName, fullName, fullName );
+    }
+
+    public CornerTemplate( String cornerName, String fullName, String textureName ) {
         super( modIDFromName( cornerName ) );
         addCopy(
             new FileCopy( "templates/blockstates/corner.json", wrapIntoFolder( cornerName, "assets", "blockstates", ".json" ) )
@@ -19,7 +23,7 @@ public class CornerTemplate extends Template {
         );
         addCopy(
             new FileCopy( "templates/models/block/corner.json", wrapIntoFolder( cornerName, "assets", "models/block", ".json" ) )
-                .property( "name", toSubfolder( fullName, "block" ) )
+                .property( "name", toSubfolder( textureName, "block" ) )
         );
         addCopy(
             new FileCopy( "templates/models/item/parent.json", wrapIntoFolder( cornerName, "assets", "models/item", ".json" ) )

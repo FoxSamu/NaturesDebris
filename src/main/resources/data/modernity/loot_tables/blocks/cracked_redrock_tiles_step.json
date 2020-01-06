@@ -1,0 +1,15 @@
+{
+  "pools": [
+    {
+      "name": "basic",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [ { "condition": "minecraft:survives_explosion" } ],
+          "name": "modernity:cracked_redrock_tiles_step"
+        }
+      ]
+    }
+  ]
+}

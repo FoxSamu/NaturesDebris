@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 05 - 2020
+ * Date:   01 - 06 - 2020
  * Author: rgsw
  */
 
@@ -77,46 +77,303 @@ public final class MDBlocks {
     // Stone full blocks
     public static final Block ROCK_BRICKS = blockItem( "rock_bricks", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final Block DARKROCK_BRICKS = blockItem( "darkrock_bricks", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block LIGHTROCK_BRICKS = blockItem( "lightrock_bricks", new Block( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final Block REDROCK_BRICKS = blockItem( "redrock_bricks", new Block( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final Block SMOOTH_ROCK = blockItem( "smooth_rock", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block SMOOTH_DARKROCK = blockItem( "smooth_darkrock", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block SMOOTH_LIGHTROCK = blockItem( "smooth_lightrock", new Block( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final Block SMOOTH_REDROCK = blockItem( "smooth_redrock", new Block( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final Block ROCK_TILES = blockItem( "rock_tiles", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block DARKROCK_TILES = blockItem( "darkrock_tiles", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block LIGHTROCK_TILES = blockItem( "lightrock_tiles", new Block( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final Block REDROCK_TILES = blockItem( "redrock_tiles", new Block( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final Block MOSSY_ROCK = blockItem( "mossy_rock", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block MOSSY_DARKROCK = blockItem( "mossy_darkrock", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block MOSSY_LIGHTROCK = blockItem( "mossy_lightrock", new Block( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final Block MOSSY_REDROCK = blockItem( "mossy_redrock", new Block( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final Block MOSSY_ROCK_BRICKS = blockItem( "mossy_rock_bricks", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block MOSSY_DARKROCK_BRICKS = blockItem( "mossy_darkrock_bricks", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block MOSSY_LIGHTROCK_BRICKS = blockItem( "mossy_lightrock_bricks", new Block( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final Block MOSSY_REDROCK_BRICKS = blockItem( "mossy_redrock_bricks", new Block( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final Block MOSSY_ROCK_TILES = blockItem( "mossy_rock_tiles", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block MOSSY_DARKROCK_TILES = blockItem( "mossy_darkrock_tiles", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block MOSSY_LIGHTROCK_TILES = blockItem( "mossy_lightrock_tiles", new Block( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final Block MOSSY_REDROCK_TILES = blockItem( "mossy_redrock_tiles", new Block( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final Block CRACKED_ROCK_BRICKS = blockItem( "cracked_rock_bricks", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block CRACKED_DARKROCK_BRICKS = blockItem( "cracked_darkrock_bricks", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block CRACKED_LIGHTROCK_BRICKS = blockItem( "cracked_lightrock_bricks", new Block( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final Block CRACKED_REDROCK_BRICKS = blockItem( "cracked_redrock_bricks", new Block( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final Block CRACKED_ROCK_TILES = blockItem( "cracked_rock_tiles", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block CRACKED_DARKROCK_TILES = blockItem( "cracked_darkrock_tiles", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block CRACKED_LIGHTROCK_TILES = blockItem( "cracked_lightrock_tiles", new Block( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final Block CRACKED_REDROCK_TILES = blockItem( "cracked_redrock_tiles", new Block( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final Block POLISHED_ROCK = blockItem( "polished_rock", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block POLISHED_DARKROCK = blockItem( "polished_darkrock", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block POLISHED_LIGHTROCK = blockItem( "polished_lightrock", new Block( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final Block POLISHED_REDROCK = blockItem( "polished_redrock", new Block( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final Block CHISELED_ROCK = blockItem( "chiseled_rock", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block CHISELED_DARKROCK = blockItem( "chiseled_darkrock", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block CHISELED_LIGHTROCK = blockItem( "chiseled_lightrock", new Block( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final Block CHISELED_REDROCK = blockItem( "chiseled_redrock", new Block( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
 
     // Stone slabs
     public static final VerticalSlabBlock ROCK_SLAB = blockItem( "rock_slab", new VerticalSlabBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final VerticalSlabBlock DARKROCK_SLAB = blockItem( "darkrock_slab", new VerticalSlabBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
-    public static final VerticalSlabBlock LIMESTONE_SLAB = blockItem( "limestone_slab", new VerticalSlabBlock( rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock LIGHTROCK_SLAB = blockItem( "lightrock_slab", new VerticalSlabBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock REDROCK_SLAB = blockItem( "redrock_slab", new VerticalSlabBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
     public static final VerticalSlabBlock ROCK_BRICKS_SLAB = blockItem( "rock_bricks_slab", new VerticalSlabBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final VerticalSlabBlock DARKROCK_BRICKS_SLAB = blockItem( "darkrock_bricks_slab", new VerticalSlabBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock LIGHTROCK_BRICKS_SLAB = blockItem( "lightrock_bricks_slab", new VerticalSlabBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock REDROCK_BRICKS_SLAB = blockItem( "redrock_bricks_slab", new VerticalSlabBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final VerticalSlabBlock SMOOTH_ROCK_SLAB = blockItem( "smooth_rock_slab", new VerticalSlabBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock SMOOTH_DARKROCK_SLAB = blockItem( "smooth_darkrock_slab", new VerticalSlabBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock SMOOTH_LIGHTROCK_SLAB = blockItem( "smooth_lightrock_slab", new VerticalSlabBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock SMOOTH_REDROCK_SLAB = blockItem( "smooth_redrock_slab", new VerticalSlabBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final VerticalSlabBlock ROCK_TILES_SLAB = blockItem( "rock_tiles_slab", new VerticalSlabBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock DARKROCK_TILES_SLAB = blockItem( "darkrock_tiles_slab", new VerticalSlabBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock LIGHTROCK_TILES_SLAB = blockItem( "lightrock_tiles_slab", new VerticalSlabBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock REDROCK_TILES_SLAB = blockItem( "redrock_tiles_slab", new VerticalSlabBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final VerticalSlabBlock MOSSY_ROCK_SLAB = blockItem( "mossy_rock_slab", new VerticalSlabBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock MOSSY_DARKROCK_SLAB = blockItem( "mossy_darkrock_slab", new VerticalSlabBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock MOSSY_LIGHTROCK_SLAB = blockItem( "mossy_lightrock_slab", new VerticalSlabBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock MOSSY_REDROCK_SLAB = blockItem( "mossy_redrock_slab", new VerticalSlabBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final VerticalSlabBlock MOSSY_ROCK_BRICKS_SLAB = blockItem( "mossy_rock_bricks_slab", new VerticalSlabBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock MOSSY_DARKROCK_BRICKS_SLAB = blockItem( "mossy_darkrock_bricks_slab", new VerticalSlabBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock MOSSY_LIGHTROCK_BRICKS_SLAB = blockItem( "mossy_lightrock_bricks_slab", new VerticalSlabBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock MOSSY_REDROCK_BRICKS_SLAB = blockItem( "mossy_redrock_bricks_slab", new VerticalSlabBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final VerticalSlabBlock MOSSY_ROCK_TILES_SLAB = blockItem( "mossy_rock_tiles_slab", new VerticalSlabBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock MOSSY_DARKROCK_TILES_SLAB = blockItem( "mossy_darkrock_tiles_slab", new VerticalSlabBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock MOSSY_LIGHTROCK_TILES_SLAB = blockItem( "mossy_lightrock_tiles_slab", new VerticalSlabBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock MOSSY_REDROCK_TILES_SLAB = blockItem( "mossy_redrock_tiles_slab", new VerticalSlabBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final VerticalSlabBlock CRACKED_ROCK_BRICKS_SLAB = blockItem( "cracked_rock_bricks_slab", new VerticalSlabBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock CRACKED_DARKROCK_BRICKS_SLAB = blockItem( "cracked_darkrock_bricks_slab", new VerticalSlabBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock CRACKED_LIGHTROCK_BRICKS_SLAB = blockItem( "cracked_lightrock_bricks_slab", new VerticalSlabBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock CRACKED_REDROCK_BRICKS_SLAB = blockItem( "cracked_redrock_bricks_slab", new VerticalSlabBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final VerticalSlabBlock CRACKED_ROCK_TILES_SLAB = blockItem( "cracked_rock_tiles_slab", new VerticalSlabBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock CRACKED_DARKROCK_TILES_SLAB = blockItem( "cracked_darkrock_tiles_slab", new VerticalSlabBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock CRACKED_LIGHTROCK_TILES_SLAB = blockItem( "cracked_lightrock_tiles_slab", new VerticalSlabBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock CRACKED_REDROCK_TILES_SLAB = blockItem( "cracked_redrock_tiles_slab", new VerticalSlabBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final VerticalSlabBlock POLISHED_ROCK_SLAB = blockItem( "polished_rock_slab", new VerticalSlabBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock POLISHED_DARKROCK_SLAB = blockItem( "polished_darkrock_slab", new VerticalSlabBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock POLISHED_LIGHTROCK_SLAB = blockItem( "polished_lightrock_slab", new VerticalSlabBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock POLISHED_REDROCK_SLAB = blockItem( "polished_redrock_slab", new VerticalSlabBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
     public static final VerticalSlabBlock ASPHALT_CONCRETE_SLAB = blockItem( "asphalt_concrete_slab", new VerticalSlabBlock( asphalt() ), MDItemGroup.BLOCKS );
+    public static final VerticalSlabBlock LIMESTONE_SLAB = blockItem( "limestone_slab", new VerticalSlabBlock( rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 ) ), MDItemGroup.BLOCKS );
 
     // Stone stairs
     public static final StairsBlock ROCK_STAIRS = blockItem( "rock_stairs", new StairsBlock( false, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final StairsBlock DARKROCK_STAIRS = blockItem( "darkrock_stairs", new StairsBlock( false, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
-    public static final StairsBlock LIMESTONE_STAIRS = blockItem( "limestone_stairs", new StairsBlock( false, rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock LIGHTROCK_STAIRS = blockItem( "lightrock_stairs", new StairsBlock( false, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock REDROCK_STAIRS = blockItem( "redrock_stairs", new StairsBlock( false, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
     public static final StairsBlock ROCK_BRICKS_STAIRS = blockItem( "rock_bricks_stairs", new StairsBlock( false, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final StairsBlock DARKROCK_BRICKS_STAIRS = blockItem( "darkrock_bricks_stairs", new StairsBlock( false, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock LIGHTROCK_BRICKS_STAIRS = blockItem( "lightrock_bricks_stairs", new StairsBlock( false, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock REDROCK_BRICKS_STAIRS = blockItem( "redrock_bricks_stairs", new StairsBlock( false, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock SMOOTH_ROCK_STAIRS = blockItem( "smooth_rock_stairs", new StairsBlock( false, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock SMOOTH_DARKROCK_STAIRS = blockItem( "smooth_darkrock_stairs", new StairsBlock( false, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock SMOOTH_LIGHTROCK_STAIRS = blockItem( "smooth_lightrock_stairs", new StairsBlock( false, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock SMOOTH_REDROCK_STAIRS = blockItem( "smooth_redrock_stairs", new StairsBlock( false, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock ROCK_TILES_STAIRS = blockItem( "rock_tiles_stairs", new StairsBlock( false, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock DARKROCK_TILES_STAIRS = blockItem( "darkrock_tiles_stairs", new StairsBlock( false, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock LIGHTROCK_TILES_STAIRS = blockItem( "lightrock_tiles_stairs", new StairsBlock( false, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock REDROCK_TILES_STAIRS = blockItem( "redrock_tiles_stairs", new StairsBlock( false, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock MOSSY_ROCK_STAIRS = blockItem( "mossy_rock_stairs", new StairsBlock( false, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_DARKROCK_STAIRS = blockItem( "mossy_darkrock_stairs", new StairsBlock( false, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_LIGHTROCK_STAIRS = blockItem( "mossy_lightrock_stairs", new StairsBlock( false, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_REDROCK_STAIRS = blockItem( "mossy_redrock_stairs", new StairsBlock( false, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock MOSSY_ROCK_BRICKS_STAIRS = blockItem( "mossy_rock_bricks_stairs", new StairsBlock( false, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_DARKROCK_BRICKS_STAIRS = blockItem( "mossy_darkrock_bricks_stairs", new StairsBlock( false, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_LIGHTROCK_BRICKS_STAIRS = blockItem( "mossy_lightrock_bricks_stairs", new StairsBlock( false, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_REDROCK_BRICKS_STAIRS = blockItem( "mossy_redrock_bricks_stairs", new StairsBlock( false, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock MOSSY_ROCK_TILES_STAIRS = blockItem( "mossy_rock_tiles_stairs", new StairsBlock( false, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_DARKROCK_TILES_STAIRS = blockItem( "mossy_darkrock_tiles_stairs", new StairsBlock( false, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_LIGHTROCK_TILES_STAIRS = blockItem( "mossy_lightrock_tiles_stairs", new StairsBlock( false, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_REDROCK_TILES_STAIRS = blockItem( "mossy_redrock_tiles_stairs", new StairsBlock( false, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock CRACKED_ROCK_BRICKS_STAIRS = blockItem( "cracked_rock_bricks_stairs", new StairsBlock( false, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock CRACKED_DARKROCK_BRICKS_STAIRS = blockItem( "cracked_darkrock_bricks_stairs", new StairsBlock( false, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock CRACKED_LIGHTROCK_BRICKS_STAIRS = blockItem( "cracked_lightrock_bricks_stairs", new StairsBlock( false, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock CRACKED_REDROCK_BRICKS_STAIRS = blockItem( "cracked_redrock_bricks_stairs", new StairsBlock( false, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock CRACKED_ROCK_TILES_STAIRS = blockItem( "cracked_rock_tiles_stairs", new StairsBlock( false, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock CRACKED_DARKROCK_TILES_STAIRS = blockItem( "cracked_darkrock_tiles_stairs", new StairsBlock( false, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock CRACKED_LIGHTROCK_TILES_STAIRS = blockItem( "cracked_lightrock_tiles_stairs", new StairsBlock( false, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock CRACKED_REDROCK_TILES_STAIRS = blockItem( "cracked_redrock_tiles_stairs", new StairsBlock( false, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock POLISHED_ROCK_STAIRS = blockItem( "polished_rock_stairs", new StairsBlock( false, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock POLISHED_DARKROCK_STAIRS = blockItem( "polished_darkrock_stairs", new StairsBlock( false, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock POLISHED_LIGHTROCK_STAIRS = blockItem( "polished_lightrock_stairs", new StairsBlock( false, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock POLISHED_REDROCK_STAIRS = blockItem( "polished_redrock_stairs", new StairsBlock( false, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
     public static final StairsBlock ASPHALT_CONCRETE_STAIRS = blockItem( "asphalt_concrete_stairs", new StairsBlock( false, asphalt() ), MDItemGroup.BLOCKS );
+    public static final StairsBlock LIMESTONE_STAIRS = blockItem( "limestone_stairs", new StairsBlock( false, rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 ) ), MDItemGroup.BLOCKS );
 
     // Stone steps
     public static final StairsBlock ROCK_STEP = blockItem( "rock_step", new StairsBlock( true, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final StairsBlock DARKROCK_STEP = blockItem( "darkrock_step", new StairsBlock( true, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
-    public static final StairsBlock LIMESTONE_STEP = blockItem( "limestone_step", new StairsBlock( true, rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock LIGHTROCK_STEP = blockItem( "lightrock_step", new StairsBlock( true, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock REDROCK_STEP = blockItem( "redrock_step", new StairsBlock( true, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
     public static final StairsBlock ROCK_BRICKS_STEP = blockItem( "rock_bricks_step", new StairsBlock( true, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final StairsBlock DARKROCK_BRICKS_STEP = blockItem( "darkrock_bricks_step", new StairsBlock( true, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock LIGHTROCK_BRICKS_STEP = blockItem( "lightrock_bricks_step", new StairsBlock( true, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock REDROCK_BRICKS_STEP = blockItem( "redrock_bricks_step", new StairsBlock( true, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock SMOOTH_ROCK_STEP = blockItem( "smooth_rock_step", new StairsBlock( true, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock SMOOTH_DARKROCK_STEP = blockItem( "smooth_darkrock_step", new StairsBlock( true, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock SMOOTH_LIGHTROCK_STEP = blockItem( "smooth_lightrock_step", new StairsBlock( true, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock SMOOTH_REDROCK_STEP = blockItem( "smooth_redrock_step", new StairsBlock( true, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock ROCK_TILES_STEP = blockItem( "rock_tiles_step", new StairsBlock( true, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock DARKROCK_TILES_STEP = blockItem( "darkrock_tiles_step", new StairsBlock( true, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock LIGHTROCK_TILES_STEP = blockItem( "lightrock_tiles_step", new StairsBlock( true, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock REDROCK_TILES_STEP = blockItem( "redrock_tiles_step", new StairsBlock( true, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock MOSSY_ROCK_STEP = blockItem( "mossy_rock_step", new StairsBlock( true, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_DARKROCK_STEP = blockItem( "mossy_darkrock_step", new StairsBlock( true, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_LIGHTROCK_STEP = blockItem( "mossy_lightrock_step", new StairsBlock( true, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_REDROCK_STEP = blockItem( "mossy_redrock_step", new StairsBlock( true, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock MOSSY_ROCK_BRICKS_STEP = blockItem( "mossy_rock_bricks_step", new StairsBlock( true, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_DARKROCK_BRICKS_STEP = blockItem( "mossy_darkrock_bricks_step", new StairsBlock( true, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_LIGHTROCK_BRICKS_STEP = blockItem( "mossy_lightrock_bricks_step", new StairsBlock( true, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_REDROCK_BRICKS_STEP = blockItem( "mossy_redrock_bricks_step", new StairsBlock( true, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock MOSSY_ROCK_TILES_STEP = blockItem( "mossy_rock_tiles_step", new StairsBlock( true, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_DARKROCK_TILES_STEP = blockItem( "mossy_darkrock_tiles_step", new StairsBlock( true, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_LIGHTROCK_TILES_STEP = blockItem( "mossy_lightrock_tiles_step", new StairsBlock( true, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock MOSSY_REDROCK_TILES_STEP = blockItem( "mossy_redrock_tiles_step", new StairsBlock( true, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock CRACKED_ROCK_BRICKS_STEP = blockItem( "cracked_rock_bricks_step", new StairsBlock( true, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock CRACKED_DARKROCK_BRICKS_STEP = blockItem( "cracked_darkrock_bricks_step", new StairsBlock( true, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock CRACKED_LIGHTROCK_BRICKS_STEP = blockItem( "cracked_lightrock_bricks_step", new StairsBlock( true, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock CRACKED_REDROCK_BRICKS_STEP = blockItem( "cracked_redrock_bricks_step", new StairsBlock( true, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock CRACKED_ROCK_TILES_STEP = blockItem( "cracked_rock_tiles_step", new StairsBlock( true, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock CRACKED_DARKROCK_TILES_STEP = blockItem( "cracked_darkrock_tiles_step", new StairsBlock( true, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock CRACKED_LIGHTROCK_TILES_STEP = blockItem( "cracked_lightrock_tiles_step", new StairsBlock( true, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock CRACKED_REDROCK_TILES_STEP = blockItem( "cracked_redrock_tiles_step", new StairsBlock( true, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final StairsBlock POLISHED_ROCK_STEP = blockItem( "polished_rock_step", new StairsBlock( true, rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock POLISHED_DARKROCK_STEP = blockItem( "polished_darkrock_step", new StairsBlock( true, rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock POLISHED_LIGHTROCK_STEP = blockItem( "polished_lightrock_step", new StairsBlock( true, rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final StairsBlock POLISHED_REDROCK_STEP = blockItem( "polished_redrock_step", new StairsBlock( true, rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
     public static final StairsBlock ASPHALT_CONCRETE_STEP = blockItem( "asphalt_concrete_step", new StairsBlock( true, asphalt() ), MDItemGroup.BLOCKS );
+    public static final StairsBlock LIMESTONE_STEP = blockItem( "limestone_step", new StairsBlock( true, rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 ) ), MDItemGroup.BLOCKS );
 
     // Stone corners
     public static final CornerBlock ROCK_CORNER = blockItem( "rock_corner", new CornerBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final CornerBlock DARKROCK_CORNER = blockItem( "darkrock_corner", new CornerBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
-    public static final CornerBlock LIMESTONE_CORNER = blockItem( "limestone_corner", new CornerBlock( rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock LIGHTROCK_CORNER = blockItem( "lightrock_corner", new CornerBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock REDROCK_CORNER = blockItem( "redrock_corner", new CornerBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
     public static final CornerBlock ROCK_BRICKS_CORNER = blockItem( "rock_bricks_corner", new CornerBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final CornerBlock DARKROCK_BRICKS_CORNER = blockItem( "darkrock_bricks_corner", new CornerBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock LIGHTROCK_BRICKS_CORNER = blockItem( "lightrock_bricks_corner", new CornerBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock REDROCK_BRICKS_CORNER = blockItem( "redrock_bricks_corner", new CornerBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final CornerBlock SMOOTH_ROCK_CORNER = blockItem( "smooth_rock_corner", new CornerBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock SMOOTH_DARKROCK_CORNER = blockItem( "smooth_darkrock_corner", new CornerBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock SMOOTH_LIGHTROCK_CORNER = blockItem( "smooth_lightrock_corner", new CornerBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock SMOOTH_REDROCK_CORNER = blockItem( "smooth_redrock_corner", new CornerBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final CornerBlock ROCK_TILES_CORNER = blockItem( "rock_tiles_corner", new CornerBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock DARKROCK_TILES_CORNER = blockItem( "darkrock_tiles_corner", new CornerBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock LIGHTROCK_TILES_CORNER = blockItem( "lightrock_tiles_corner", new CornerBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock REDROCK_TILES_CORNER = blockItem( "redrock_tiles_corner", new CornerBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final CornerBlock MOSSY_ROCK_CORNER = blockItem( "mossy_rock_corner", new CornerBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock MOSSY_DARKROCK_CORNER = blockItem( "mossy_darkrock_corner", new CornerBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock MOSSY_LIGHTROCK_CORNER = blockItem( "mossy_lightrock_corner", new CornerBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock MOSSY_REDROCK_CORNER = blockItem( "mossy_redrock_corner", new CornerBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final CornerBlock MOSSY_ROCK_BRICKS_CORNER = blockItem( "mossy_rock_bricks_corner", new CornerBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock MOSSY_DARKROCK_BRICKS_CORNER = blockItem( "mossy_darkrock_bricks_corner", new CornerBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock MOSSY_LIGHTROCK_BRICKS_CORNER = blockItem( "mossy_lightrock_bricks_corner", new CornerBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock MOSSY_REDROCK_BRICKS_CORNER = blockItem( "mossy_redrock_bricks_corner", new CornerBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final CornerBlock MOSSY_ROCK_TILES_CORNER = blockItem( "mossy_rock_tiles_corner", new CornerBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock MOSSY_DARKROCK_TILES_CORNER = blockItem( "mossy_darkrock_tiles_corner", new CornerBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock MOSSY_LIGHTROCK_TILES_CORNER = blockItem( "mossy_lightrock_tiles_corner", new CornerBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock MOSSY_REDROCK_TILES_CORNER = blockItem( "mossy_redrock_tiles_corner", new CornerBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final CornerBlock CRACKED_ROCK_BRICKS_CORNER = blockItem( "cracked_rock_bricks_corner", new CornerBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock CRACKED_DARKROCK_BRICKS_CORNER = blockItem( "cracked_darkrock_bricks_corner", new CornerBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock CRACKED_LIGHTROCK_BRICKS_CORNER = blockItem( "cracked_lightrock_bricks_corner", new CornerBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock CRACKED_REDROCK_BRICKS_CORNER = blockItem( "cracked_redrock_bricks_corner", new CornerBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final CornerBlock CRACKED_ROCK_TILES_CORNER = blockItem( "cracked_rock_tiles_corner", new CornerBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock CRACKED_DARKROCK_TILES_CORNER = blockItem( "cracked_darkrock_tiles_corner", new CornerBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock CRACKED_LIGHTROCK_TILES_CORNER = blockItem( "cracked_lightrock_tiles_corner", new CornerBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock CRACKED_REDROCK_TILES_CORNER = blockItem( "cracked_redrock_tiles_corner", new CornerBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
+    public static final CornerBlock POLISHED_ROCK_CORNER = blockItem( "polished_rock_corner", new CornerBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock POLISHED_DARKROCK_CORNER = blockItem( "polished_darkrock_corner", new CornerBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock POLISHED_LIGHTROCK_CORNER = blockItem( "polished_lightrock_corner", new CornerBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
+    public static final CornerBlock POLISHED_REDROCK_CORNER = blockItem( "polished_redrock_corner", new CornerBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.BLOCKS );
+
     public static final CornerBlock ASPHALT_CONCRETE_CORNER = blockItem( "asphalt_concrete_corner", new CornerBlock( asphalt() ), MDItemGroup.BLOCKS );
+    public static final CornerBlock LIMESTONE_CORNER = blockItem( "limestone_corner", new CornerBlock( rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 ) ), MDItemGroup.BLOCKS );
 
     // Stone walls
     public static final WallBlock ROCK_WALL = blockItem( "rock_wall", new WallBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
     public static final WallBlock DARKROCK_WALL = blockItem( "darkrock_wall", new WallBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
-    public static final WallBlock LIMESTONE_WALL = blockItem( "limestone_wall", new WallBlock( rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock LIGHTROCK_WALL = blockItem( "lightrock_wall", new WallBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock REDROCK_WALL = blockItem( "redrock_wall", new WallBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+
     public static final WallBlock ROCK_BRICKS_WALL = blockItem( "rock_bricks_wall", new WallBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
     public static final WallBlock DARKROCK_BRICKS_WALL = blockItem( "darkrock_bricks_wall", new WallBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock LIGHTROCK_BRICKS_WALL = blockItem( "lightrock_bricks_wall", new WallBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock REDROCK_BRICKS_WALL = blockItem( "redrock_bricks_wall", new WallBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+
+    public static final WallBlock SMOOTH_ROCK_WALL = blockItem( "smooth_rock_wall", new WallBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock SMOOTH_DARKROCK_WALL = blockItem( "smooth_darkrock_wall", new WallBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock SMOOTH_LIGHTROCK_WALL = blockItem( "smooth_lightrock_wall", new WallBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock SMOOTH_REDROCK_WALL = blockItem( "smooth_redrock_wall", new WallBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+
+    public static final WallBlock MOSSY_ROCK_WALL = blockItem( "mossy_rock_wall", new WallBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock MOSSY_DARKROCK_WALL = blockItem( "mossy_darkrock_wall", new WallBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock MOSSY_LIGHTROCK_WALL = blockItem( "mossy_lightrock_wall", new WallBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock MOSSY_REDROCK_WALL = blockItem( "mossy_redrock_wall", new WallBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+
+    public static final WallBlock MOSSY_ROCK_BRICKS_WALL = blockItem( "mossy_rock_bricks_wall", new WallBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock MOSSY_DARKROCK_BRICKS_WALL = blockItem( "mossy_darkrock_bricks_wall", new WallBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock MOSSY_LIGHTROCK_BRICKS_WALL = blockItem( "mossy_lightrock_bricks_wall", new WallBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock MOSSY_REDROCK_BRICKS_WALL = blockItem( "mossy_redrock_bricks_wall", new WallBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+
+    public static final WallBlock CRACKED_ROCK_BRICKS_WALL = blockItem( "cracked_rock_bricks_wall", new WallBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock CRACKED_DARKROCK_BRICKS_WALL = blockItem( "cracked_darkrock_bricks_wall", new WallBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock CRACKED_LIGHTROCK_BRICKS_WALL = blockItem( "cracked_lightrock_bricks_wall", new WallBlock( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.DECORATIVES );
+    public static final WallBlock CRACKED_REDROCK_BRICKS_WALL = blockItem( "cracked_redrock_bricks_wall", new WallBlock( rock( MaterialColor.TNT, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+
     public static final WallBlock ASPHALT_CONCRETE_WALL = blockItem( "asphalt_concrete_wall", new WallBlock( asphalt() ), MDItemGroup.DECORATIVES );
+    public static final WallBlock LIMESTONE_WALL = blockItem( "limestone_wall", new WallBlock( rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 ) ), MDItemGroup.DECORATIVES );
 
     // Wooden full blocks
     public static final Block BLACKWOOD_PLANKS = blockItem( "blackwood_planks", new Block( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.BLOCKS );

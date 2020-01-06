@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/inner_stairs",
+  "textures": {
+    "stairs": "modernity:block/redrock_smooth"
+  }
+}

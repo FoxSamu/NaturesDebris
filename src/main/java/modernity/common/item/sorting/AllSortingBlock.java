@@ -2,17 +2,20 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 05 - 2020
+ * Date:   01 - 06 - 2020
  * Author: rgsw
  */
 
 package modernity.common.item.sorting;
 
+import com.google.common.collect.Lists;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
+import java.util.List;
+
 public class AllSortingBlock implements ItemSortingBlock {
-    private final NonNullList<ItemStack> stacks = NonNullList.create();
+    private final List<ItemStack> stacks = Lists.newArrayList();
 
     @Override
     public void reset() {
