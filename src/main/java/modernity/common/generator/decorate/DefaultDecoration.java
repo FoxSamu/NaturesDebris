@@ -25,7 +25,6 @@ import modernity.common.generator.decorate.position.BetweenHeight;
 import modernity.common.generator.decorate.position.InCave;
 import modernity.common.generator.decorate.position.Surface;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.pattern.BlockMatcher;
 import net.minecraft.world.gen.Heightmap;
 
 public final class DefaultDecoration {
@@ -40,9 +39,9 @@ public final class DefaultDecoration {
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.REDROCK.getDefaultState(), 40 ), new BelowHeight( 128 ) ) );
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.LIMESTONE.getDefaultState(), 40 ), new BelowHeight( 128 ) ) );
 
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockMatcher.forBlock( MDBlocks.ROCK ), MDBlocks.SALT_ORE.getDefaultState(), 15 ), new BetweenHeight( 4, 128 ), new Fixed( 17 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockMatcher.forBlock( MDBlocks.ROCK ), MDBlocks.ALUMINIUM_ORE.getDefaultState(), 9 ), new BetweenHeight( 4, 128 ), new Fixed( 11 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockMatcher.forBlock( MDBlocks.ROCK ), MDBlocks.ANTHRACITE_ORE.getDefaultState(), 15 ), new BetweenHeight( 4, 128 ), new Fixed( 20 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.block( MDBlocks.ROCK ), MDBlocks.SALT_ORE.getDefaultState(), 15 ), new BetweenHeight( 4, 128 ), new Fixed( 17 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.block( MDBlocks.ROCK ), MDBlocks.ALUMINIUM_ORE.getDefaultState(), 9 ), new BetweenHeight( 4, 128 ), new Fixed( 11 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.block( MDBlocks.ROCK ), MDBlocks.ANTHRACITE_ORE.getDefaultState(), 15 ), new BetweenHeight( 4, 128 ), new Fixed( 20 ) ) );
 
         biome.addDecorator( new DecorationDecorator( new SpringDecoration( MDFluids.MURKY_WATER, SpringDecoration.STILL | SpringDecoration.FLOWING ), new InCave(), new Fixed( 10 ) ) );
 
