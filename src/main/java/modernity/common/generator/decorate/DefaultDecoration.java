@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   01 - 06 - 2020
  * Author: rgsw
  */
 
@@ -33,7 +33,8 @@ public final class DefaultDecoration {
     }
 
     public static void setupDefaultDecoration( ModernityBiome biome ) {
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.MURKY_DIRT.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 2 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.MURKY_DIRT.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 3 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.REGOLITH.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 2 ) ) );
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.DARKROCK.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 3 ) ) );
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.LIGHTROCK.getDefaultState(), 30 ), new BelowHeight( 128 ), new Chance( 0.5 ) ) );
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.REDROCK.getDefaultState(), 40 ), new BelowHeight( 128 ) ) );
