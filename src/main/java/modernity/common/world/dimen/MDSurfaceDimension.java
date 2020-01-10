@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 24 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -17,11 +17,8 @@ import modernity.common.environment.event.impl.*;
 import modernity.common.environment.precipitation.IPrecipitation;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.environment.satellite.SatelliteData;
+import modernity.common.generator.SurfaceGeneration;
 import modernity.common.handler.WorldTickHandler;
-import modernity.common.generator.terrain.surface.SurfaceGenerator;
-import modernity.common.generator.terrain.surface.SurfaceGenSettings;
-import modernity.common.generator.biome.MDSurfaceBiomeProvider;
-import modernity.common.generator.biome.MDSurfaceBiomeProviderSettings;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -65,10 +62,15 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
 
     @Override
     public ChunkGenerator<?> createChunkGenerator() {
-        SurfaceGenSettings mgs = new SurfaceGenSettings();
-        MDSurfaceBiomeProviderSettings bps = new MDSurfaceBiomeProviderSettings( world.getWorldInfo(), mgs );
-        MDSurfaceBiomeProvider bp = new MDSurfaceBiomeProvider( bps );
-        return new SurfaceGenerator( world, bp, mgs );
+//        MDSurfaceBiomeProvider biomeGen = new MDSurfaceBiomeProvider( world.getWorldInfo() );
+//        LayerBiomeProvider biomeGen = MDBiomeProviders.LAYERED.create(
+//            MDBiomeProviders.LAYERED
+//                .createSettings()
+//                .setBiomes( MDDimension.MURK_SURFACE )
+//                .setGenerators( Layers.buildSurfaceGenerator( world.getSeed() ) )
+//        );
+//        return new SurfaceGenerator( world, biomeGen );
+        return SurfaceGeneration.buildChunkGenerator( world );
     }
 
     @Nullable

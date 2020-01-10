@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 29 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -21,8 +21,8 @@ import modernity.common.environment.event.MDEnvEvents;
 import modernity.common.event.BlockEvent;
 import modernity.common.event.MDBlockEvents;
 import modernity.common.fluid.MDFluids;
-import modernity.common.generator.biome.MDBiomeProviderTypes;
-import modernity.common.generator.terrain.MDChunkGeneratorTypes;
+import modernity.common.generator.biome.MDBiomeProviders;
+import modernity.common.generator.MDChunkGeneratorTypes;
 import modernity.common.item.MDItems;
 import modernity.common.particle.MDParticleTypes;
 import modernity.common.recipes.MDRecipeSerializers;
@@ -58,7 +58,7 @@ public enum RegistryEventHandler {
         MDDimensions.setup( this );
         MDBiomes.setup( this );
         MDChunkGeneratorTypes.setup( this );
-        MDBiomeProviderTypes.setup( this );
+        MDBiomeProviders.setup( this );
         MDStructures.setup( this );
         MDBlockEvents.setup( this );
         MDEnvEvents.setup( this );

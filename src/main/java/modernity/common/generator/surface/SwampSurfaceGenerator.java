@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 24 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -11,7 +11,6 @@ package modernity.common.generator.surface;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.block.MDBlocks;
-import modernity.common.generator.terrain.surface.SurfaceGenSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.chunk.IChunk;
 import net.rgsw.noise.FractalOpenSimplex2D;
@@ -22,7 +21,7 @@ import java.util.Random;
 /**
  * Surface generator that generates the swamp surface, with mud underwater and marshes in shallow water.
  */
-public class SwampSurfaceGenerator implements ISurfaceGenerator<SurfaceGenSettings> {
+public class SwampSurfaceGenerator implements ISurfaceGenerator {
 
     private static final BlockState GRASS = MDBlocks.MURKY_GRASS_BLOCK.getDefaultState();
     private static final BlockState DIRT = MDBlocks.MURKY_DIRT.getDefaultState();
@@ -32,13 +31,13 @@ public class SwampSurfaceGenerator implements ISurfaceGenerator<SurfaceGenSettin
     private FractalOpenSimplex2D marshGroupNoise;
 
     @Override
-    public void init( Random rand, SurfaceGenSettings settings ) {
+    public void init( Random rand ) {
         marshNoise = new FractalOpenSimplex2D( rand.nextInt(), 3.26224, 3 );
         marshGroupNoise = new FractalOpenSimplex2D( rand.nextInt(), 31.46233, 3 );
     }
 
     @Override
-    public void buildSurface( IChunk chunk, int cx, int cz, int x, int z, Random rand, ModernityBiome biome, INoise3D surfaceNoise, MovingBlockPos rpos, SurfaceGenSettings settings ) {
+    public void buildSurface( IChunk chunk, int cx, int cz, int x, int z, Random rand, ModernityBiome biome, INoise3D surfaceNoise, MovingBlockPos rpos ) {
         int ctrl = 0;
         BlockState secondLayers = null;
         for( int y = 255; y >= 0; y-- ) {
@@ -48,10 +47,10 @@ public class SwampSurfaceGenerator implements ISurfaceGenerator<SurfaceGenSettin
             } else if( ctrl == - 1 && chunk.getBlockState( rpos ).getMaterial().blocksMovement() ) {
                 ctrl = (int) ( 3 + 2 * surfaceNoise.generate( x + cx * 16, y, z + cz * 16 ) );
 
-                boolean underwater = y < settings.getWaterLevel() - 1;
+                boolean underwater = y < 71;
                 boolean marsh = false;
                 secondLayers = underwater ? MUD : DIRT;
-                if( y == settings.getWaterLevel() - 2 ) {
+                if( y == 70 ) {
                     double groupNoise = marshGroupNoise.generateMultiplied( cx * 16 + x, cz * 16 + z, 8 ) + 1;
                     if( groupNoise > 0 ) {
                         double noise = marshNoise.generateMultiplied( cx * 16 + x, cz * 16 + z, 8 );

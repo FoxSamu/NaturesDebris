@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -23,16 +23,15 @@ import java.util.Random;
  */
 public class WrapperSurfaceBuilder extends SurfaceBuilder<WrapperSurfaceBuilderConfig> {
     public WrapperSurfaceBuilder() {
-        super( dynamic -> new WrapperSurfaceBuilderConfig( null, null ) );
+        super( dynamic -> new WrapperSurfaceBuilderConfig( null ) );
     }
 
     @Override
-    @SuppressWarnings( "unchecked" )
     public void buildSurface( Random random, IChunk chunk, Biome biome, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, WrapperSurfaceBuilderConfig config ) {
         ISurfaceGenerator gen = config.getSurfaceGen();
         FractalPerlin3D surfaceNoise = new FractalPerlin3D( (int) seed, 6.348456, 0.52, 6.348456, 6 );
 
-        gen.init( new Random( seed ), config.getChunkgenSettings() );
-        gen.buildSurface( chunk, chunk.getPos().x, chunk.getPos().z, x, z, random, (ModernityBiome) biome, surfaceNoise, new MovingBlockPos(), config.getChunkgenSettings() );
+        gen.init( new Random( seed ) );
+        gen.buildSurface( chunk, chunk.getPos().x, chunk.getPos().z, x, z, random, (ModernityBiome) biome, surfaceNoise, new MovingBlockPos() );
     }
 }

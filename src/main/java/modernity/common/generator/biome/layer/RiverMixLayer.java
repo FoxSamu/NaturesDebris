@@ -1,36 +1,30 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 24 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.biome.layer;
 
 import modernity.common.biome.MDBiomes;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.gen.INoiseRandom;
-import net.minecraft.world.gen.area.IArea;
-import net.minecraft.world.gen.layer.traits.IAreaTransformer2;
-import net.minecraft.world.gen.layer.traits.IDimOffset0Transformer;
+import modernity.common.generator.biome.core.IRegionRNG;
 
-/**
- * Biome layer that mixes the {@linkplain RiverLayer river shapes} into the biome layers.
- */
-public enum RiverMixLayer implements IAreaTransformer2, IDimOffset0Transformer {
-    INSTANCE;
+public class RiverMixLayer implements IFilterMergerLayer {
+    public static final RiverMixLayer INSTANCE = new RiverMixLayer();
 
-    private static final int RIVER = Registry.BIOME.getId( MDBiomes.RIVER );
+    protected RiverMixLayer() {
+    }
+
+    private final int river = biomeID( MDBiomes.RIVER );
 
     @Override
-    public int apply( INoiseRandom context, IArea area1, IArea area2, int x, int z ) {
-        int biomes = area1.getValue( x, z );
-        int rivers = area2.getValue( x, z );
-        if( rivers == RIVER ) {
-            return RIVER;
+    public int generate( IRegionRNG rng, int a, int b ) {
+        if( b > 0 ) {
+            return river;
         } else {
-            return biomes;
+            return a;
         }
     }
 }

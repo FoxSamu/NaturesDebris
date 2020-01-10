@@ -2,13 +2,12 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 06 - 2020
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.decorate;
 
-import modernity.api.util.BlockPredicates;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.block.MDBlocks;
 import modernity.common.fluid.MDFluids;
@@ -27,21 +26,27 @@ import modernity.common.generator.decorate.position.Surface;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.Heightmap;
 
+import static modernity.api.util.BlockPredicates.*;
+
 public final class DefaultDecoration {
     private DefaultDecoration() {
     }
 
-    public static void setupDefaultDecoration( ModernityBiome biome ) {
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.MURKY_DIRT.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 3 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.REGOLITH.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 2 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.DARKROCK.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 3 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.LIGHTROCK.getDefaultState(), 30 ), new BelowHeight( 128 ), new Chance( 0.5 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.REDROCK.getDefaultState(), 40 ), new BelowHeight( 128 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.ROCK_TYPES, MDBlocks.LIMESTONE.getDefaultState(), 40 ), new BelowHeight( 128 ) ) );
 
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.block( MDBlocks.ROCK ), MDBlocks.SALT_ORE.getDefaultState(), 15 ), new BetweenHeight( 4, 128 ), new Fixed( 17 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.block( MDBlocks.ROCK ), MDBlocks.ALUMINIUM_ORE.getDefaultState(), 9 ), new BetweenHeight( 4, 128 ), new Fixed( 11 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( BlockPredicates.block( MDBlocks.ROCK ), MDBlocks.ANTHRACITE_ORE.getDefaultState(), 15 ), new BetweenHeight( 4, 128 ), new Fixed( 20 ) ) );
+    public static void setupDefaultDecoration( ModernityBiome biome ) {
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCKS_OR_LIMESTONE, MDBlocks.MURKY_DIRT.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 3 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCKS_OR_LIMESTONE, MDBlocks.MURKY_SAND.getDefaultState(), 50 ), new BelowHeight( 128 ), new Chance( 0.4 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCKS_OR_LIMESTONE, MDBlocks.MURKY_COARSE_DIRT.getDefaultState(), 50 ), new BelowHeight( 128 ), new Chance( 0.4 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCKS_OR_LIMESTONE, MDBlocks.REGOLITH.getDefaultState(), 50 ), new BelowHeight( 128 ) ) );
+
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_TYPES, MDBlocks.DARKROCK.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 3 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_TYPES, MDBlocks.LIGHTROCK.getDefaultState(), 30 ), new BelowHeight( 128 ), new Chance( 0.5 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_TYPES, MDBlocks.REDROCK.getDefaultState(), 40 ), new BelowHeight( 128 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_TYPES, MDBlocks.LIMESTONE.getDefaultState(), 40 ), new BelowHeight( 128 ) ) );
+
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.SALT_ORE.getDefaultState(), 15 ), new BetweenHeight( 4, 128 ), new Fixed( 17 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.ALUMINIUM_ORE.getDefaultState(), 9 ), new BetweenHeight( 4, 128 ), new Fixed( 11 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.ANTHRACITE_ORE.getDefaultState(), 15 ), new BetweenHeight( 4, 128 ), new Fixed( 20 ) ) );
 
         biome.addDecorator( new DecorationDecorator( new SpringDecoration( MDFluids.MURKY_WATER, SpringDecoration.STILL | SpringDecoration.FLOWING ), new InCave(), new Fixed( 10 ) ) );
 

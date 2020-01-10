@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
 package modernity.common.biome;
 
-import modernity.api.util.EMDDimension;
+import modernity.api.util.MDDimension;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.util.registry.Registry;
@@ -26,17 +26,19 @@ import java.util.stream.Collectors;
 @ObjectHolder( "modernity" )
 public final class MDBiomes {
     private static final RegistryHandler<Biome> ENTRIES = new RegistryHandler<>( "modernity" );
-    private static final EnumMap<EMDDimension, ArrayList<Entry>> BIOME_LISTS = new EnumMap<>( EMDDimension.class );
+    private static final EnumMap<MDDimension, ArrayList<Entry>> BIOME_LISTS = new EnumMap<>( MDDimension.class );
 
 
-    public static final MeadowBiome MEADOW = register( "meadow", new MeadowBiome(), EMDDimension.SURFACE, 1000 );
-    public static final LushMeadowBiome LUSH_MEADOW = register( "lush_meadow", new LushMeadowBiome(), EMDDimension.SURFACE, 1000 );
-    public static final ForestBiome FOREST = register( "forest", new ForestBiome(), EMDDimension.SURFACE, 1000 );
-    public static final RiverBiome RIVER = register( "river", new RiverBiome(), EMDDimension.SURFACE, 0 );
-    public static final SwampBiome SWAMP = register( "swamp", new SwampBiome(), EMDDimension.SURFACE, 1000 );
-    public static final WaterlandsBiome WATERLANDS = register( "waterlands", new WaterlandsBiome(), EMDDimension.SURFACE, 1000 );
+    public static final MeadowBiome MEADOW = register( "meadow", new MeadowBiome(), MDDimension.MURK_SURFACE, 1000 );
+    public static final LushMeadowBiome LUSH_MEADOW = register( "lush_meadow", new LushMeadowBiome(), MDDimension.MURK_SURFACE, 1000 );
+    public static final ForestBiome FOREST = register( "forest", new ForestBiome(), MDDimension.MURK_SURFACE, 1000 );
+    public static final RiverBiome RIVER = register( "river", new RiverBiome(), MDDimension.MURK_SURFACE, 0 );
+    public static final SwampBiome SWAMP = register( "swamp", new SwampBiome(), MDDimension.MURK_SURFACE, 1000 );
+    public static final WaterlandsBiome WATERLANDS = register( "waterlands", new WaterlandsBiome(), MDDimension.MURK_SURFACE, 1000 );
 
-    private static <T extends ModernityBiome> T register( String id, T biome, EMDDimension dimension, int weight, String... aliases ) {
+    public static final ModernityBiome DEFAULT = MEADOW;
+
+    private static <T extends ModernityBiome> T register( String id, T biome, MDDimension dimension, int weight, String... aliases ) {
         BIOME_LISTS.computeIfAbsent( dimension, d -> new ArrayList<>() )
                    .add( new Entry( dimension, biome, weight ) );
         return ENTRIES.register( id, biome, aliases );
@@ -52,14 +54,14 @@ public final class MDBiomes {
     /**
      * Returns a list of biomes for the specified modernity dimension.
      */
-    public static List<ModernityBiome> getBiomesFor( EMDDimension dimen ) {
+    public static List<ModernityBiome> getBiomesFor( MDDimension dimen ) {
         return BIOME_LISTS.get( dimen ).stream().map( elem -> elem.biome ).collect( Collectors.toList() );
     }
 
     /**
      * Creates a generation profile for the speicified modernity dimension. Used in biome layer system.
      */
-    public static GenProfile createGenProfile( EMDDimension dimen ) {
+    public static GenProfile createGenProfile( MDDimension dimen ) {
         ArrayList<Entry> entries = BIOME_LISTS.computeIfAbsent( dimen, dim -> new ArrayList<>() );
         int[] ids = new int[ entries.size() ];
         int[] wgs = new int[ entries.size() ];
@@ -81,11 +83,11 @@ public final class MDBiomes {
     }
 
     private static class Entry {
-        public final EMDDimension dimen;
+        public final MDDimension dimen;
         public final ModernityBiome biome;
         public final int weight;
 
-        private Entry( EMDDimension dimen, ModernityBiome biome, int weight ) {
+        private Entry( MDDimension dimen, ModernityBiome biome, int weight ) {
             this.dimen = dimen;
             this.biome = biome;
             this.weight = weight;

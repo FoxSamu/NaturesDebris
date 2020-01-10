@@ -1,35 +1,37 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 24 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.biome.layer;
 
-import modernity.common.biome.MDBiomes;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.gen.INoiseRandom;
-import net.minecraft.world.gen.layer.traits.ICastleTransformer;
+import modernity.common.generator.biome.core.IRegionRNG;
 
-/**
- * Biome layer that actually generates the river shapes from the {@linkplain RiverInitLayer river fields}.
- */
-public enum RiverLayer implements ICastleTransformer {
-    INSTANCE;
+public class RiverLayer implements ICastleTransformerLayer {
+    public static final RiverLayer INSTANCE = new RiverLayer();
 
-    public static final int RIVER = Registry.BIOME.getId( MDBiomes.RIVER );
+    protected RiverLayer() {
+    }
+
+    @Override
+    public int generate( IRegionRNG rng, int center, int negX, int posX, int negZ, int posZ ) {
+        int centerFilter = riverFilter( center );
+        int negXFilter = riverFilter( negX );
+        int negZFilter = riverFilter( negZ );
+        int posXFilter = riverFilter( posX );
+        int posZFilter = riverFilter( posZ );
+        boolean same = areAllSame( centerFilter, negXFilter, negZFilter, posXFilter, posZFilter );
+        return same ? 0 : 1;
+    }
 
     private static int riverFilter( int value ) {
         return value >= 2 ? 2 + ( value & 1 ) : value;
     }
 
-    @Override
-    public int apply( INoiseRandom context, int north, int west, int south, int east, int center ) {
-        int i = riverFilter( center );
-        return i == riverFilter( west ) && i == riverFilter( north ) && i == riverFilter( east ) && i == riverFilter( south )
-               ? - 1
-               : RIVER;
+    private static boolean areAllSame( int a, int b, int c, int d, int e ) {
+        return e == a && e == b && e == c && e == d;
     }
 }

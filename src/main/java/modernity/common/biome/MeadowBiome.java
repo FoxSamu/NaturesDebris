@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -33,7 +33,7 @@ public class MeadowBiome extends ModernityBiome {
     protected MeadowBiome() {
         super(
             new Builder()
-                .baseHeight( 2 ).heightVariation( 3 ).heightDifference( 2 )
+                .depth( 2 ).variation( 3 ).scale( 2 )
                 .surfaceGen( new GrassSurfaceGenerator() )
                 .precipitation( IPrecipitationFunction.standard() )
         );

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -30,7 +30,7 @@ public class WaterlandsBiome extends ModernityBiome {
     protected WaterlandsBiome() {
         super(
             new Builder()
-                .baseHeight( 0 ).heightVariation( 0 ).heightDifference( 2 )
+                .depth( 0 ).variation( 0 ).scale( 2 )
                 .surfaceGen( new GrassSurfaceGenerator() )
                 .precipitation( IPrecipitationFunction.swampy() )
         );

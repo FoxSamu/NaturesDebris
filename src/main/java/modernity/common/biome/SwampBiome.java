@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -30,7 +30,7 @@ public class SwampBiome extends ModernityBiome {
     protected SwampBiome() {
         super(
             new Builder()
-                .baseHeight( - 1 ).heightVariation( 4 ).heightDifference( 1 )
+                .depth( - 1 ).variation( 4 ).scale( 1 )
                 .surfaceGen( new SwampSurfaceGenerator() )
                 .precipitation( IPrecipitationFunction.swampy() )
         );

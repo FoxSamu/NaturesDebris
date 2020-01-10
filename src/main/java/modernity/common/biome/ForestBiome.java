@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -31,7 +31,7 @@ public class ForestBiome extends ModernityBiome {
     protected ForestBiome() {
         super(
             new Builder()
-                .baseHeight( 4 ).heightVariation( 6 ).heightDifference( 3 )
+                .depth( 4 ).variation( 6 ).scale( 3 )
                 .surfaceGen( new HumusSurfaceGenerator() )
                 .precipitation( IPrecipitationFunction.standard() )
         );
@@ -49,8 +49,8 @@ public class ForestBiome extends ModernityBiome {
         addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlocks.REEDS ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 1 / 3D ) ) );
         addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlocks.REDWOLD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 1 / 6D ) ) );
 
-        addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.TRUE, MDBlocks.ROCK.getDefaultState() ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.125 ) ) );
-        addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.TRUE, MDBlocks.DARKROCK.getDefaultState() ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.0625 ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.TRUE, MDBlocks.ROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.125 ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.TRUE, MDBlocks.DARKROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.0625 ) ) );
 
         addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.INVER ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Fixed( 5 ) ) );
         addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Fixed( 6 ) ) );

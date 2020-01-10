@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -11,19 +11,22 @@ package modernity.common.generator.surface;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.biome.ModernityBiome;
 import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.gen.GenerationSettings;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.rgsw.noise.INoise3D;
 
 import java.util.Random;
 
 /**
  * Default surface generator interface.
- *
- * @param <T> The chunk generator settings.
  */
 @FunctionalInterface
-public interface ISurfaceGenerator<T extends GenerationSettings> {
-    default void init( Random rand, T settings ) {
+public interface ISurfaceGenerator {
+    default SurfaceBuilderConfig createBuilderConfig() {
+        return SurfaceBuilder.AIR_CONFIG;
+    }
+
+    default void init( Random rand ) {
     }
 
     /**
@@ -38,7 +41,6 @@ public interface ISurfaceGenerator<T extends GenerationSettings> {
      * @param biome        The biome to generate the surface of.
      * @param surfaceNoise A noise generator that generates the surface depths.
      * @param mpos         A {@link MovingBlockPos} to reuse.
-     * @param settings     The chunk generator settings of the chunk generator that generates the surface.
      */
-    void buildSurface( IChunk chunk, int cx, int cz, int x, int z, Random rand, ModernityBiome biome, INoise3D surfaceNoise, MovingBlockPos mpos, T settings );
+    void buildSurface( IChunk chunk, int cx, int cz, int x, int z, Random rand, ModernityBiome biome, INoise3D surfaceNoise, MovingBlockPos mpos );
 }

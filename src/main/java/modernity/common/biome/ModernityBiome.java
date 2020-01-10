@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -11,16 +11,14 @@ package modernity.common.biome;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.generator.decorate.decorator.IDecorator;
 import modernity.common.generator.surface.ISurfaceGenerator;
-import net.minecraft.block.Blocks;
+import modernity.common.generator.util.BiomeMetrics;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.ArrayList;
 
@@ -28,22 +26,17 @@ import java.util.ArrayList;
  * Base of all Modernity biomes. It holds additional values for generating the the Modernity.
  */
 public abstract class ModernityBiome extends Biome {
-    private final float baseHeight;
-    private final float heightVariation;
-    private final float heightDifference;
-    private final float blendWeight;
     private final float waterFogDensity;
-    private final ISurfaceGenerator<?> surfaceGen;
+    private final ISurfaceGenerator surfaceGen;
     private final IPrecipitationFunction precipitationFunction;
+
+    private final BiomeMetrics metrics;
 
     private final ArrayList<IDecorator> decorators = new ArrayList<>();
 
     protected ModernityBiome( Builder builder ) {
         super( builder.vanilla() );
-        baseHeight = builder.baseHeight;
-        heightVariation = builder.heightVariation;
-        heightDifference = builder.heightDifference;
-        blendWeight = builder.blendWeight;
+        metrics = builder.buildMetrics();
         waterFogDensity = builder.waterFogDensity;
         surfaceGen = builder.surfaceGen;
         precipitationFunction = builder.precipitationFunction;
@@ -52,31 +45,10 @@ public abstract class ModernityBiome extends Biome {
     }
 
     /**
-     * Returns the base height, which is the upwards offset from water level.
+     * Returns the {@link BiomeMetrics} of this biome.
      */
-    public float getBaseHeight() {
-        return baseHeight;
-    }
-
-    /**
-     * Returns the noise interpolation range at base height to generate any hills.
-     */
-    public float getHeightVariation() {
-        return heightVariation;
-    }
-
-    /**
-     * Returns the range of any additional height differences.
-     */
-    public float getHeightDifference() {
-        return heightDifference;
-    }
-
-    /**
-     * Returns the weight for blending this biome with others.
-     */
-    public float getBlendWeight() {
-        return blendWeight;
+    public BiomeMetrics metrics() {
+        return metrics;
     }
 
     /**
@@ -96,9 +68,8 @@ public abstract class ModernityBiome extends Biome {
     /**
      * Returns the surface generator of this biome
      */
-    @SuppressWarnings( "unchecked" )
-    public <T extends GenerationSettings> ISurfaceGenerator<T> getSurfaceGen() {
-        return (ISurfaceGenerator<T>) surfaceGen;
+    public ISurfaceGenerator getSurfaceGen() {
+        return surfaceGen;
     }
 
     public void addDecorator( IDecorator decorator ) {
@@ -119,43 +90,54 @@ public abstract class ModernityBiome extends Biome {
         }
     }
 
+    public static ModernityBiome get( Biome biome, ModernityBiome def ) {
+        if( biome instanceof ModernityBiome ) {
+            return (ModernityBiome) biome;
+        }
+        return def;
+    }
+
+    public static ModernityBiome get( Biome biome ) {
+        return get( biome, MDBiomes.DEFAULT );
+    }
+
     /**
      * Builder for Modernity biomes, used instead of vanilla biome builder.
      */
     public static class Builder {
         private final Biome.Builder vanillaBuilder = new Biome.Builder();
 
-        private float baseHeight;
-        private float heightVariation;
-        private float heightDifference;
+        private float depth;
+        private float variation;
+        private float scale;
         private float blendWeight = 1;
         private float waterFogDensity;
 
         private IPrecipitationFunction precipitationFunction;
 
-        private ISurfaceGenerator<?> surfaceGen;
+        private ISurfaceGenerator surfaceGen;
 
         public Builder() {
             vanillaBuilder.category( Category.NONE );
             vanillaBuilder.temperature( 0.02F );
-            vanillaBuilder.waterColor( 0x4e76c2 );
+            vanillaBuilder.waterColor( 0x4E76C2 );
             vanillaBuilder.downfall( 0 );
             vanillaBuilder.precipitation( RainType.NONE );
-            vanillaBuilder.waterFogColor( 0x1a2a5c );
+            vanillaBuilder.waterFogColor( 0x1A2A5C );
         }
 
-        public Builder baseHeight( float value ) {
-            this.baseHeight = value;
+        public Builder depth( float value ) {
+            this.depth = value;
             return this;
         }
 
-        public Builder heightVariation( float value ) {
-            this.heightVariation = value;
+        public Builder variation( float value ) {
+            this.variation = value;
             return this;
         }
 
-        public Builder heightDifference( float value ) {
-            this.heightDifference = value;
+        public Builder scale( float value ) {
+            this.scale = value;
             return this;
         }
 
@@ -169,7 +151,7 @@ public abstract class ModernityBiome extends Biome {
             return this;
         }
 
-        public Builder surfaceGen( ISurfaceGenerator<?> value ) {
+        public Builder surfaceGen( ISurfaceGenerator value ) {
             this.surfaceGen = value;
             return this;
         }
@@ -179,14 +161,14 @@ public abstract class ModernityBiome extends Biome {
             return this;
         }
 
+        private BiomeMetrics buildMetrics() {
+            return new BiomeMetrics( depth, scale, variation, blendWeight );
+        }
+
         private Biome.Builder vanilla() {
-            vanillaBuilder.depth( baseHeight / 8 );
-            vanillaBuilder.scale( heightVariation / 8 );
-            vanillaBuilder.surfaceBuilder( SurfaceBuilder.NOPE, new SurfaceBuilderConfig(
-                Blocks.AIR.getDefaultState(),
-                Blocks.AIR.getDefaultState(),
-                Blocks.AIR.getDefaultState()
-            ) );
+            vanillaBuilder.depth( depth / 8 );
+            vanillaBuilder.scale( variation / 8 );
+            vanillaBuilder.surfaceBuilder( SurfaceBuilder.NOPE, surfaceGen.createBuilderConfig() );
             return vanillaBuilder;
         }
     }
