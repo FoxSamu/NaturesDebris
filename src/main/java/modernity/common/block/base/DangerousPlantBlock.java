@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -21,6 +21,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.redgalaxy.util.Lazy;
 
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -32,20 +33,20 @@ import java.util.function.Supplier;
 public class DangerousPlantBlock extends SinglePlantBlock {
 
     private final float damage;
-    private final Supplier<DamageSource> damageSupplier;
+    private final Lazy<DamageSource> damageLazy;
     private final Predicate<Entity> entityFilter;
 
     public DangerousPlantBlock( double damage, Supplier<DamageSource> damageSupplier, Predicate<Entity> entityFilter, Block.Properties properties ) {
         super( properties );
         this.damage = (float) damage;
-        this.damageSupplier = damageSupplier;
+        this.damageLazy = Lazy.of( damageSupplier );
         this.entityFilter = entityFilter;
     }
 
     @Override
     public void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity ) {
         if( entityFilter.test( entity ) ) {
-            entity.attackEntityFrom( damageSupplier.get(), damage );
+            entity.attackEntityFrom( damageLazy.get(), damage );
         }
     }
 
