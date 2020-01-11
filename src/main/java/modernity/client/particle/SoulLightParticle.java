@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -23,7 +23,7 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.redgalaxy.MathUtil;
+import net.redgalaxy.util.MathUtil;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;

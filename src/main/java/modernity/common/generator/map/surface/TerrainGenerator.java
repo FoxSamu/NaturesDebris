@@ -21,7 +21,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.WorldGenRegion;
-import net.redgalaxy.MathUtil;
+import net.redgalaxy.util.MathUtil;
 import net.rgsw.noise.FractalPerlin2D;
 import net.rgsw.noise.INoise2D;
 import net.rgsw.noise.INoise3D;

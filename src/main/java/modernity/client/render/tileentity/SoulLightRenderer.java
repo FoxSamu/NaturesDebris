@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 15 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -17,7 +17,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.redgalaxy.MathUtil;
+import net.redgalaxy.util.MathUtil;
 
 public class SoulLightRenderer extends TileEntityRenderer<SoulLightTileEntity> {
 

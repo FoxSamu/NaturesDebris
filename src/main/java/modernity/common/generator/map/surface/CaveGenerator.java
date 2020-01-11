@@ -17,7 +17,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.WorldGenRegion;
-import net.redgalaxy.MathUtil;
+import net.redgalaxy.util.MathUtil;
 import net.rgsw.noise.FractalOpenSimplex3D;
 import net.rgsw.noise.OpenSimplex3D;
 

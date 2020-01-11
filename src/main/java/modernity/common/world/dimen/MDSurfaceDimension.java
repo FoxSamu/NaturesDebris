@@ -32,7 +32,7 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.redgalaxy.MathUtil;
+import net.redgalaxy.util.MathUtil;
 
 import javax.annotation.Nullable;
 

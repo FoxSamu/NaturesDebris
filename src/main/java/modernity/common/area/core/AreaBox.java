@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 15 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -14,7 +14,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.IntArrayNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.*;
-import net.redgalaxy.MathUtil;
+import net.redgalaxy.util.MathUtil;
 import net.redgalaxy.exc.UnexpectedCaseException;
 import org.apache.commons.lang3.Validate;
 

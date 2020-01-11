@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 21 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -12,7 +12,7 @@ import modernity.api.dimension.IEnvironmentDimension;
 import net.minecraft.client.Minecraft;
 import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
-import net.redgalaxy.MathUtil;
+import net.redgalaxy.util.MathUtil;
 
 public final class LightUtil {
     private LightUtil() {

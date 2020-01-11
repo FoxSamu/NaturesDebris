@@ -1,15 +1,15 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 15 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
 package modernity.api.util;
 
 import net.minecraft.util.math.MathHelper;
-import net.redgalaxy.MathUtil;
+import net.redgalaxy.util.MathUtil;
 
 /**
  * Utility class for processing {@code int}-formatted colors.

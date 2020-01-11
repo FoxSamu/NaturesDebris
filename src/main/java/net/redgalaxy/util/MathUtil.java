@@ -6,7 +6,7 @@
  * Author: rgsw
  */
 
-package net.redgalaxy;
+package net.redgalaxy.util;
 
 import net.redgalaxy.exc.InstanceOfUtilityClassException;
 
