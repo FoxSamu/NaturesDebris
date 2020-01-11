@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -13,7 +13,6 @@ import modernity.api.util.IBlockProvider;
 import modernity.api.util.MDVoxelShapes;
 import modernity.api.util.MovingBlockPos;
 import modernity.client.ModernityClient;
-import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -211,7 +210,7 @@ public class TallPlantBlock extends Block implements IBlockProvider {
     }
 
     private boolean blocked( BlockState state ) {
-        return state.getMaterial().blocksMovement() || state.getMaterial().isLiquid() || isSelfState( state );
+        return state.getMaterial().blocksMovement() || ! state.getFluidState().isEmpty() || isSelfState( state );
     }
 
     /**

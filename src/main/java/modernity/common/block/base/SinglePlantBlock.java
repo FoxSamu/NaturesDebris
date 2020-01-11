@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 11 - 2020
  * Author: rgsw
  */
 
@@ -110,7 +110,7 @@ public class SinglePlantBlock extends Block implements IBlockProvider {
     }
 
     private boolean blocked( BlockState state ) {
-        return state.getMaterial().blocksMovement() || state.getMaterial().isLiquid() || isSelfState( state );
+        return state.getMaterial().blocksMovement() || ! state.getFluidState().isEmpty() || isSelfState( state );
     }
 
     @Override
