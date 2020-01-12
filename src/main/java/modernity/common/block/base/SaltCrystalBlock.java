@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 21 - 2019
+ * Date:   01 - 12 - 2020
  * Author: rgsw
  */
 
@@ -128,7 +128,7 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IMurkyWaterlog
     }
 
     /**
-     * Is the specified block state a salt source (is it in the 'modernity:salt_source' tab)
+     * Is the specified block state a salt source (is it in the 'modernity:salt_source' tag)?
      */
     public boolean isSaltSource( BlockState state ) {
         return state.isIn( MDBlockTags.SALT_SOURCE );

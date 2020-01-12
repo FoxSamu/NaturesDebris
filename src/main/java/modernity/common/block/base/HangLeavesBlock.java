@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   01 - 12 - 2020
  * Author: rgsw
  */
 
@@ -45,13 +45,11 @@ public class HangLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    @SuppressWarnings( "deprecation" )
     public boolean ticksRandomly( BlockState state ) {
         return state.get( DISTANCE ) == MAX_DIST || super.ticksRandomly( state );
     }
 
     @Override
-    @SuppressWarnings( "deprecation" )
     public void randomTick( BlockState state, World world, BlockPos pos, Random random ) {
         super.randomTick( state, world, pos, random );
         if( state.get( DISTANCE ) == MAX_DIST ) {
