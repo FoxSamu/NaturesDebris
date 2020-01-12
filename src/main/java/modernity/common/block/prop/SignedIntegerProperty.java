@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 12 - 2020
  * Author: rgsw
  */
 
@@ -76,7 +76,7 @@ public class SignedIntegerProperty extends Property<Integer> {
         try {
             int neg = value.charAt( 0 ) == 'n' ? - 1 : 1;
             int off = value.charAt( 0 ) == 'p' || neg < 0 ? 1 : 0;
-            Integer val = Integer.valueOf( value.substring( off ) ) * neg;
+            int val = Integer.parseInt( value.substring( off ) ) * neg;
             return allowedValues.contains( val ) ? Optional.of( val ) : Optional.empty();
         } catch( Exception exc ) {
             return Optional.empty();

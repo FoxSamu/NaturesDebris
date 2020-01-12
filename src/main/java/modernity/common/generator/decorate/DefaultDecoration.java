@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   01 - 12 - 2020
  * Author: rgsw
  */
 
@@ -14,10 +14,7 @@ import modernity.common.fluid.MDFluids;
 import modernity.common.generator.decorate.condition.IsBelowHeight;
 import modernity.common.generator.decorate.count.Chance;
 import modernity.common.generator.decorate.count.Fixed;
-import modernity.common.generator.decorate.decoration.ClusterBushDecoration;
-import modernity.common.generator.decorate.decoration.DepositDecoration;
-import modernity.common.generator.decorate.decoration.MineableDecoration;
-import modernity.common.generator.decorate.decoration.SpringDecoration;
+import modernity.common.generator.decorate.decoration.*;
 import modernity.common.generator.decorate.decorator.DecorationDecorator;
 import modernity.common.generator.decorate.position.BelowHeight;
 import modernity.common.generator.decorate.position.BetweenHeight;
@@ -56,5 +53,7 @@ public final class DefaultDecoration {
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 50, 5, MDBlocks.SALT_CRYSTAL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 1 / 35D ), new IsBelowHeight( 71 ) ) );
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 50, 5, MDBlocks.SALT_CRYSTAL ), new InCave(), new Fixed( 4 ) ) );
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlocks.MURINA ), new InCave(), new Fixed( 7 ) ) );
+
+        biome.addDecorator( new DecorationDecorator( new GroupedBushDecoration( 4, 5, 4, MDBlocks.PUDDLE ), new InCave(), new Fixed( 7 ) ) );
     }
 }

@@ -9,8 +9,10 @@
 package modernity.common.block.base;
 
 import modernity.api.block.IColoredBlock;
+import modernity.api.util.IBlockProvider;
 import modernity.api.util.MovingBlockPos;
 import modernity.client.ModernityClient;
+import modernity.common.block.prop.SignedIntegerProperty;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -19,7 +21,6 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathNodeType;
-import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.BlockRenderLayer;
@@ -36,8 +37,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class PuddleBlock extends Block implements IColoredBlock {
-    public static final IntegerProperty DISTANCE = IntegerProperty.create( "distance", 0, 3 );
+public class PuddleBlock extends Block implements IColoredBlock, IBlockProvider {
+    public static final SignedIntegerProperty DISTANCE = SignedIntegerProperty.create( "distance", - 1, 3 );
     private static final VoxelShape SHAPE = VoxelShapes.empty();
 
     public PuddleBlock( Properties properties ) {
@@ -113,6 +114,9 @@ public class PuddleBlock extends Block implements IColoredBlock {
     }
 
     private void updateDistance( World world, BlockPos pos, BlockState state ) {
+        if( state.get( DISTANCE ) == - 1 ) {
+            return;
+        }
         int dist;
         if( ! world.isRaining() ) {
             dist = 3;
@@ -143,6 +147,9 @@ public class PuddleBlock extends Block implements IColoredBlock {
     }
 
     public void rainTick( World world, BlockPos pos, BlockState state, double spreadChance ) {
+        if( state.get( DISTANCE ) == - 1 ) {
+            return;
+        }
         if( ! world.isAreaLoaded( pos, 2 ) ) return;
         MovingBlockPos mpos = new MovingBlockPos();
         if( state.get( DISTANCE ) < 2 ) {
@@ -193,5 +200,13 @@ public class PuddleBlock extends Block implements IColoredBlock {
     @Override
     public int colorMultiplier( BlockState state, @Nullable IEnviromentBlockReader reader, @Nullable BlockPos pos, int tintIndex ) {
         return ModernityClient.get().getWaterColors().getColor( reader, pos );
+    }
+
+    @Override
+    public boolean provide( IWorld world, BlockPos pos, Random rand ) {
+        if( world.isAirBlock( pos ) && canRemain( world, pos ) ) {
+            world.setBlockState( pos, getDefaultState().with( DISTANCE, - 1 ), 2 | 16 );
+        }
+        return false;
     }
 }
