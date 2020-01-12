@@ -1,21 +1,23 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   01 - 12 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.base;
 
+import modernity.api.block.fluid.IVanillaBucketTakeable;
 import modernity.api.util.EWaterlogType;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShulkerBoxBlock;
+import modernity.common.block.MDBlockStateProperties;
+import net.minecraft.block.*;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.BlockRenderLayer;
@@ -36,7 +38,9 @@ import javax.annotation.Nullable;
 /**
  * Describes a pane block.
  */
-public class PaneBlock extends WaterloggedBlock {
+public class ExtendedPaneBlock extends PaneBlock implements IWaterloggedBlock {
+    public static final EnumProperty<EWaterlogType> WATERLOGGED = MDBlockStateProperties.WATERLOGGED;
+
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
     public static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
@@ -62,9 +66,13 @@ public class PaneBlock extends WaterloggedBlock {
         }
     }
 
+    private final StateContainer<Block, BlockState> stateContainer;
 
-    public PaneBlock( Properties properties ) {
+    public ExtendedPaneBlock( Properties properties ) {
         super( properties );
+        StateContainer.Builder<Block, BlockState> builder = new StateContainer.Builder<>( this );
+        builder.add( WATERLOGGED, NORTH, EAST, SOUTH, WEST );
+        stateContainer = builder.create( BlockState::new );
 
         setDefaultState( stateContainer.getBaseState()
                                        .with( NORTH, false )
@@ -75,14 +83,14 @@ public class PaneBlock extends WaterloggedBlock {
     }
 
     @Override
-    protected void fillStateContainer( StateContainer.Builder<Block, BlockState> builder ) {
-        super.fillStateContainer( builder );
-        builder.add( NORTH, EAST, SOUTH, WEST );
+    public StateContainer<Block, BlockState> getStateContainer() {
+        return stateContainer;
     }
 
     @Override
     public BlockState updatePostPlacement( BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos ) {
-        super.updatePostPlacement( state, facing, facingState, world, pos, facingPos );
+        Fluid fluid = world.getFluidState( pos ).getFluid();
+        world.getPendingFluidTicks().scheduleTick( pos, fluid, fluid.getTickRate( world ) );
 
         if( facing != Direction.DOWN ) {
             boolean north = facing == Direction.NORTH
@@ -132,7 +140,7 @@ public class PaneBlock extends WaterloggedBlock {
 
     private boolean attachesTo( BlockState state, boolean solidSide, Direction facing ) {
         Block block = state.getBlock();
-        return ! shouldSkipAttachment( block ) && solidSide || state.getBlock() instanceof PaneBlock;
+        return ! shouldSkipAttachment( block ) && solidSide || state.getBlock() instanceof ExtendedPaneBlock;
     }
 
     /**
@@ -200,16 +208,51 @@ public class PaneBlock extends WaterloggedBlock {
     @Override
     public BlockState mirror( BlockState state, Mirror mirr ) {
         switch( mirr ) {
+            default:
+                return state;
             case LEFT_RIGHT:
                 return state.with( NORTH, state.get( SOUTH ) ).with( SOUTH, state.get( NORTH ) );
             case FRONT_BACK:
                 return state.with( EAST, state.get( WEST ) ).with( WEST, state.get( EAST ) );
-            default:
-                return super.mirror( state, mirr );
         }
     }
 
-    public static class Translucent extends PaneBlock {
+    @Override
+    public IFluidState getFluidState( BlockState state ) {
+        return state.get( WATERLOGGED ).getFluidState();
+    }
+
+    @Override
+    public boolean canContainFluid( IBlockReader world, BlockPos pos, BlockState state, Fluid fluid ) {
+        return state.get( MDBlockStateProperties.WATERLOGGED ).canContain( fluid );
+    }
+
+    @Override
+    public boolean receiveFluid( IWorld world, BlockPos pos, BlockState state, IFluidState fstate ) {
+        if( state.get( MDBlockStateProperties.WATERLOGGED ).canContain( fstate.getFluid() ) ) {
+            if( ! world.isRemote() ) {
+                world.setBlockState( pos, state.with( MDBlockStateProperties.WATERLOGGED, EWaterlogType.getType( fstate ) ), 3 );
+                world.getPendingFluidTicks().scheduleTick( pos, fstate.getFluid(), fstate.getFluid().getTickRate( world ) );
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public Fluid pickupFluid( IWorld world, BlockPos pos, BlockState state ) {
+        EWaterlogType type = state.get( MDBlockStateProperties.WATERLOGGED );
+        if( ! type.isEmpty() && type.getFluidState().getFluid() instanceof IVanillaBucketTakeable ) {
+            world.setBlockState( pos, state.with( MDBlockStateProperties.WATERLOGGED, EWaterlogType.NONE ), 3 );
+            return type.getFluidState().getFluid();
+        } else {
+            return Fluids.EMPTY;
+        }
+    }
+
+    public static class Translucent extends ExtendedPaneBlock {
 
         public Translucent( Properties properties ) {
             super( properties );
