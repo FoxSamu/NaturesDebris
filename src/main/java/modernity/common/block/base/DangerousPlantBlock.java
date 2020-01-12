@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   01 - 12 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.base;
 
 import modernity.api.util.MDVoxelShapes;
+import modernity.common.entity.MDEntityTags;
 import modernity.common.util.MDDamageSource;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -54,10 +55,14 @@ public class DangerousPlantBlock extends SinglePlantBlock {
      * The nettles block.
      */
     public static class Nettles extends DangerousPlantBlock {
-        public static final VoxelShape MINT_SHAPE = MDVoxelShapes.create16( 1, 0, 1, 15, 14, 15 );
+        public static final VoxelShape NETTLES_SHAPE = MDVoxelShapes.create16( 1, 0, 1, 15, 14, 15 );
 
         public Nettles( Block.Properties properties ) {
-            super( 1.5, () -> MDDamageSource.NETTLES, e -> e instanceof LivingEntity, properties );
+            super(
+                1.5, () -> MDDamageSource.NETTLES,
+                e -> e instanceof LivingEntity && ! e.getType().isContained( MDEntityTags.NETTLES_IMMUNE ),
+                properties
+            );
         }
 
         @Override
@@ -73,7 +78,7 @@ public class DangerousPlantBlock extends SinglePlantBlock {
         @Override
         public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx ) {
             Vec3d off = state.getOffset( world, pos );
-            return MINT_SHAPE.withOffset( off.x, off.y, off.z );
+            return NETTLES_SHAPE.withOffset( off.x, off.y, off.z );
         }
     }
 }
