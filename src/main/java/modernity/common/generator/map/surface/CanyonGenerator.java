@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   01 - 12 - 2020
  * Author: rgsw
  */
 
@@ -142,7 +142,7 @@ public class CanyonGenerator extends RangeMapGenerator<SurfaceGenData> {
                                         }
                                     }
 
-                                    canGenerate = checkPosition( mpos, world );
+                                    canGenerate = checkPosition( mpos, world, cx, cz );
                                     if( ! canGenerate ) break checkLoop;
                                 }
                             }
@@ -213,22 +213,34 @@ public class CanyonGenerator extends RangeMapGenerator<SurfaceGenData> {
         return false;
     }
 
-    protected boolean checkPosition( MovingBlockPos pos, IWorld world ) {
+    protected boolean checkPosition( MovingBlockPos pos, IWorld world, int cx, int cz ) {
         if( ! world.isAreaLoaded( pos, 2 ) ) {
             return false;
         }
         int y = pos.getY();
         for( Direction dir : Direction.values() ) {
             pos.move( dir, 1 );
-            BlockState bstate = world.getBlockState( pos );
-            pos.move( dir, - 1 );
 
+            if( pos.getX() < cx * 16 || pos.getX() > cx * 16 + 15 ) {
+                pos.move( dir, - 1 );
+                continue;
+            }
+
+            if( pos.getZ() < cz * 16 || pos.getZ() > cz * 16 + 15 ) {
+                pos.move( dir, - 1 );
+                continue;
+            }
+
+            BlockState bstate = world.getBlockState( pos );
             IFluidState fstate = bstate.getFluidState();
-            if( ! fstate.isEmpty() && y > 16 ) {
+
+            if( y > SurfaceGeneration.CAVE_WATER_LEVEL && ! ( dir == Direction.DOWN || fstate.isEmpty() ) ) {
                 return false;
-            } else if( fstate.getFluid() != MDFluids.MURKY_WATER && ! bstate.getMaterial().blocksMovement() && y <= SurfaceGeneration.CAVE_WATER_LEVEL ) {
+            } else if( y <= SurfaceGeneration.CAVE_WATER_LEVEL && ! ( dir == Direction.UP || fstate.getFluid() == MDFluids.MURKY_WATER || bstate.getMaterial().blocksMovement() ) ) {
                 return false;
             }
+
+            pos.move( dir, - 1 );
         }
         return true;
     }
