@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   01 - 12 - 2020
  * Author: rgsw
  */
 
@@ -149,8 +149,11 @@ public class PuddleBlock extends Block implements IColoredBlock {
             for( Direction dir : Direction.Plane.HORIZONTAL ) {
                 if( world.rand.nextDouble() < spreadChance ) {
                     for( int y = 0; y > - 10; y-- ) {
-                        mpos.setPos( pos ).move( dir ).moveDown( y );
-                        if( world.getBlockState( mpos ).isAir( world, mpos ) && canRemain( world, mpos ) ) {
+                        mpos.setPos( pos ).move( dir ).moveUp( y );
+                        if( ! world.getBlockState( mpos ).isAir( world, mpos ) ) {
+                            break;
+                        }
+                        if( canRemain( world, mpos ) ) {
                             world.setBlockState( mpos, state.with( DISTANCE, state.get( DISTANCE ) + 1 ), 7 );
                             break;
                         }

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   01 - 12 - 2020
  * Author: rgsw
  */
 
@@ -87,12 +87,12 @@ public class HailPrecipitation implements IPrecipitation {
 
     @Override
     public void blockUpdate( World world, BlockPos pos ) {
-        BlockPos heightPos = new BlockPos( pos.getX(), getHeight( world, pos.getX(), pos.getZ() ), pos.getZ() );
+        int height = getHeight( world, pos.getX(), pos.getZ() );
 
-        if( doesPuddleGenerate( world, heightPos ) ) {
-            BlockState state = world.getBlockState( heightPos );
-            if( state.isAir( world, heightPos ) ) {
-                world.setBlockState( heightPos, MDBlocks.PUDDLE.getDefaultState().with( PuddleBlock.DISTANCE, 0 ), 7 );
+        if( doesPuddleGenerate( world, pos ) ) {
+            BlockState state = world.getBlockState( pos );
+            if( state.isAir( world, pos ) && pos.getY() == height ) {
+                world.setBlockState( pos, MDBlocks.PUDDLE.getDefaultState().with( PuddleBlock.DISTANCE, 0 ), 7 );
             } else {
                 MDBlocks.PUDDLE.rainTick( world, pos, state, 0.25 );
             }

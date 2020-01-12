@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 23 - 2019
+ * Date:   01 - 12 - 2020
  * Author: rgsw
  */
 
@@ -130,14 +130,16 @@ public enum WorldTickHandler {
 
         for( int i = 0; i < n; i++ ) {
             if( rain && world.rand.nextInt( 16 ) == 0 ) {
-                BlockPos pos = randomPos( sx, 0, sz, 15 );
-                Biome biome = world.getBiome( pos );
+                for( int j = 0; j < 6; j++ ) {
+                    BlockPos pos = randomPos( sx, 0, sz, 15 );
+                    Biome biome = world.getBiome( pos );
 
-                ModernityBiome mbiome = (ModernityBiome) biome;
-                IPrecipitationFunction precFn = mbiome.getPrecipitationFunction();
-                IPrecipitation prec = precFn.computePrecipitation( level );
+                    ModernityBiome mbiome = (ModernityBiome) biome;
+                    IPrecipitationFunction precFn = mbiome.getPrecipitationFunction();
+                    IPrecipitation prec = precFn.computePrecipitation( level );
 
-                prec.blockUpdate( world, pos );
+                    prec.blockUpdate( world, pos );
+                }
 
 //                if( world.isAreaLoaded( heightPos, 1 ) ) {
 //                    if( biome.doesWaterFreeze( world, heightBlockPos ) ) {
