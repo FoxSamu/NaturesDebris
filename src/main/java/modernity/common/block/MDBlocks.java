@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 06 - 2020
+ * Date:   01 - 12 - 2020
  * Author: rgsw
  */
 
@@ -409,7 +409,7 @@ public final class MDBlocks {
 
     // Other building blocks
     public static final GlassBlock MURKY_GLASS = blockItem( "murky_glass", new GlassBlock.Translucent( glass() ), MDItemGroup.BLOCKS, "dark_glass" );
-    public static final PaneBlock MURKY_GLASS_PANE = blockItem( "murky_glass_pane", new PaneBlock.Translucent( glass() ), MDItemGroup.DECORATIVES, "dark_glass_pane" );
+    public static final ExtendedPaneBlock MURKY_GLASS_PANE = blockItem( "murky_glass_pane", new ExtendedPaneBlock.Translucent( glass() ), MDItemGroup.DECORATIVES, "dark_glass_pane" );
 
     public static final PillarBlock ROCK_PILLAR = blockItem( "rock_pillar", new PillarBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
     public static final PillarBlock DARKROCK_PILLAR = blockItem( "darkrock_pillar", new PillarBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
