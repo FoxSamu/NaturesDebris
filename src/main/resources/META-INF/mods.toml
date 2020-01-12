@@ -14,14 +14,14 @@ description='''
 The Modernity dimension is a dark and mysterious world where the ancient forces of nature fused into a modern network of natural intelligence... In this world live the remnants of ancient civilization that suffered from an angry curse that diffused all over the network, which now has the control over the complete world... Only a strong and tough person with a fresh soul could save the world.
 '''
 
-[[dependencies.examplemod]]
+[[dependencies.modernity]]
     modId="forge"
     mandatory=true
-    versionRange="[28.1.40,)"
+    versionRange="[28.1.56,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.modernity]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.14.4]"
