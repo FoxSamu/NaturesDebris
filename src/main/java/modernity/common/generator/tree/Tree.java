@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   01 - 13 - 2020
  * Author: rgsw
  */
 
@@ -14,7 +14,7 @@ import com.mojang.datafixers.Dynamic;
 import com.mojang.datafixers.types.DynamicOps;
 import modernity.api.util.BlockUpdates;
 import modernity.api.util.MovingBlockPos;
-import modernity.common.block.base.DirtBlock;
+import modernity.common.block.MDBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.Property;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -116,7 +116,7 @@ public abstract class Tree implements IFeatureConfig {
     }
 
     public boolean isSustainable( IWorldReader world, BlockPos pos, BlockState state ) {
-        return state.getBlock() instanceof DirtBlock;
+        return state.isIn( MDBlockTags.DIRTLIKE );
     }
 
     @Override

@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 12 - 2020
+ * Date:   01 - 13 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.base;
 
 import modernity.api.util.MDVoxelShapes;
+import modernity.common.block.MDBlockTags;
 import modernity.common.entity.MDEntityTags;
 import modernity.common.util.MDDamageSource;
 import net.minecraft.block.Block;
@@ -67,7 +68,7 @@ public class DangerousPlantBlock extends SinglePlantBlock {
 
         @Override
         public boolean canBlockSustain( BlockState state ) {
-            return state.getBlock() instanceof DirtBlock;
+            return state.isIn( MDBlockTags.DIRTLIKE );
         }
 
         @Override

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 23 - 2019
+ * Date:   01 - 13 - 2020
  * Author: rgsw
  */
 
@@ -25,7 +25,7 @@ public final class MDParticleTypes {
     private static final RegistryHandler<ParticleType<?>> ENTRIES = new RegistryHandler<>( "modernity" );
 
     public static final BasicParticleType SALT = register( "salt", new BasicParticleType( false ) );
-    public static final BasicParticleType HUMUS = register( "humus", new BasicParticleType( false ) );
+    public static final BasicParticleType FALLEN_LEAF = register( "fallen_leaf", new BasicParticleType( false ), "humus" );
     public static final ParticleType<RgbParticleData> FALLING_LEAF = register( "falling_leaf", new ParticleType<>( false, RgbParticleData.DESERIALIZER ) );
     public static final BasicParticleType RAIN = register( "rain", new BasicParticleType( false ) );
     public static final BasicParticleType HAIL = register( "hail", new BasicParticleType( false ) );
@@ -46,7 +46,7 @@ public final class MDParticleTypes {
     @OnlyIn( Dist.CLIENT )
     public static void setupFactories( ParticleManager manager ) {
         manager.registerFactory( SALT, SaltParticle.Factory::new );
-        manager.registerFactory( HUMUS, LeafParticle.HumusFactory::new );
+        manager.registerFactory( FALLEN_LEAF, LeafParticle.HumusFactory::new );
         manager.registerFactory( FALLING_LEAF, LeafParticle.FallingLeafFactory::new );
         manager.registerFactory( RAIN, PrecipitationParticle.DripFactory::new );
         manager.registerFactory( HAIL, PrecipitationParticle.HailFactory::new );

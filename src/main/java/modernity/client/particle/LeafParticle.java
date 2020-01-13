@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 13 - 2020
  * Author: rgsw
  */
 
@@ -88,7 +88,7 @@ public class LeafParticle extends PhysicsParticle {
         @Nullable
         @Override
         public Particle makeParticle( BasicParticleType type, World world, double x, double y, double z, double xv, double yv, double zv ) {
-            int rgb = ModernityClient.get().getHumusColors().random( world.rand );
+            int rgb = ModernityClient.get().getFallenLeafColors().random( world.rand );
             return new LeafParticle( world, x, y, z, xv, yv, zv, rgb, 30, 20, sprite );
         }
     }

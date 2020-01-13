@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   01 - 13 - 2020
  * Author: rgsw
  */
 
@@ -13,6 +13,7 @@ import modernity.api.util.IBlockProvider;
 import modernity.api.util.MDVoxelShapes;
 import modernity.api.util.MovingBlockPos;
 import modernity.client.ModernityClient;
+import modernity.common.block.MDBlockTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -275,7 +276,7 @@ public class TallPlantBlock extends Block implements IBlockProvider {
 
         @Override
         public boolean canBlockSustain( BlockState state ) {
-            return state.getBlock() instanceof DirtBlock;
+            return state.isIn( MDBlockTags.DIRTLIKE );
         }
 
         @Override

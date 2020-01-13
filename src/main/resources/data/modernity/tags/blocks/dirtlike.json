@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "modernity:murky_dirt",
+    "modernity:murky_grass_block",
+    "modernity:murky_coarse_dirt",
+    "modernity:humus",
+    "modernity:murky_podzol"
+  ]
+}

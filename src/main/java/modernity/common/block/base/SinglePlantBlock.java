@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   01 - 13 - 2020
  * Author: rgsw
  */
 
@@ -10,6 +10,7 @@ package modernity.common.block.base;
 
 import modernity.api.util.IBlockProvider;
 import modernity.api.util.MDVoxelShapes;
+import modernity.common.block.MDBlockTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
@@ -134,7 +135,7 @@ public class SinglePlantBlock extends Block implements IBlockProvider {
 
         @Override
         public boolean canBlockSustain( BlockState state ) {
-            return state.getBlock() instanceof DirtBlock;
+            return state.isIn( MDBlockTags.DIRTLIKE );
         }
 
         @Override
@@ -161,7 +162,7 @@ public class SinglePlantBlock extends Block implements IBlockProvider {
 
         @Override
         public boolean canBlockSustain( BlockState state ) {
-            return state.getBlock() instanceof DirtBlock;
+            return state.isIn( MDBlockTags.DIRTLIKE );
         }
 
         @Override
@@ -188,7 +189,7 @@ public class SinglePlantBlock extends Block implements IBlockProvider {
 
         @Override
         public boolean canBlockSustain( BlockState state ) {
-            return state.getBlock() instanceof DirtBlock;
+            return state.isIn( MDBlockTags.DIRTLIKE );
         }
 
         @Override

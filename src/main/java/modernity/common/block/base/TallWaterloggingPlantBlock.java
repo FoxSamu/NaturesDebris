@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 21 - 2019
+ * Date:   01 - 13 - 2020
  * Author: rgsw
  */
 
@@ -276,7 +276,7 @@ public class TallWaterloggingPlantBlock extends MurkyWaterloggedBlock implements
 
         @Override
         public boolean canBlockSustain( BlockState state ) {
-            return state.getBlock() instanceof DirtBlock;
+            return state.isIn( MDBlockTags.DIRTLIKE );
         }
 
         @Override

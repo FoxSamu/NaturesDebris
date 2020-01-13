@@ -1,16 +1,16 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   01 - 13 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.tree;
 
 import modernity.api.util.MovingBlockPos;
+import modernity.common.block.MDBlockTags;
 import modernity.common.block.base.DecayLeavesBlock;
-import modernity.common.block.base.DirtBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.util.Direction;
@@ -47,7 +47,7 @@ public class SphericalTree extends Tree {
     }
 
     public boolean isSustainable( IWorld world, BlockPos pos, BlockState state ) {
-        return state.getBlock() instanceof DirtBlock;
+        return state.isIn( MDBlockTags.DIRTLIKE );
     }
 
     @Override

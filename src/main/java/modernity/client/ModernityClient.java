@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 06 - 2020
+ * Date:   01 - 13 - 2020
  * Author: rgsw
  */
 
@@ -69,8 +69,8 @@ public class ModernityClient extends Modernity {
     private ClientWorldAreaManager worldAreaManager;
     private AreaRenderManager areaRenderManager;
 
-    // Used to give color to humus particles
-    private final ColorMap humusColors = new ColorMap( new ResourceLocation( "modernity:textures/block/humus_top.png" ), 0xffffff );
+    // Used to give color to fallen leaf particles
+    private final ColorMap fallenLeafColors = new ColorMap( new ResourceLocation( "modernity:textures/block/murky_podzol_top.png" ), 0xffffff );
 
     private final CustomFluidRenderer fluidRenderer = new CustomFluidRenderer();
 
@@ -86,7 +86,7 @@ public class ModernityClient extends Modernity {
         addFutureReloadListener( new BiomeColorProfileReloader( "water", e -> waterColors = e ) );
 
         addFutureReloadListener( fluidRenderer );
-        addFutureReloadListener( humusColors );
+        addFutureReloadListener( fallenLeafColors );
 
         areaRenderManager = new AreaRenderManager();
         MDAreas.setupClient( areaRenderManager );
@@ -208,8 +208,8 @@ public class ModernityClient extends Modernity {
     /**
      * Returns the Humus color map, used to give color to humus particles
      */
-    public ColorMap getHumusColors() {
-        return humusColors;
+    public ColorMap getFallenLeafColors() {
+        return fallenLeafColors;
     }
 
     public ClientWorldAreaManager getWorldAreaManager() {

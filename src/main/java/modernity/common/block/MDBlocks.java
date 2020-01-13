@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 12 - 2020
+ * Date:   01 - 13 - 2020
  * Author: rgsw
  */
 
@@ -10,12 +10,17 @@ package modernity.common.block;
 
 import modernity.api.block.IColoredBlock;
 import modernity.common.block.base.*;
+import modernity.common.block.dirt.DirtBlock;
+import modernity.common.block.dirt.GrassBlock;
+import modernity.common.block.dirt.LeaflessDirtBlock;
+import modernity.common.block.dirt.LeafyDirtBlock;
 import modernity.common.fluid.MDFluids;
 import modernity.common.generator.tree.MDTrees;
 import modernity.common.item.MDItemGroup;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -23,11 +28,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.ArrayList;
+import java.util.function.Supplier;
 
 /**
  * Object holder for modernity blocks.
@@ -54,13 +61,13 @@ public final class MDBlocks {
     public static final Block ASPHALT_CONCRETE = blockItem( "asphalt_concrete", new Block( asphalt() ), MDItemGroup.BLOCKS );
 
     // Soils
-    public static final DirtBlock MURKY_DIRT = blockItem( "murky_dirt", new DirtBlock( DirtBlock.TYPE_DIRT, dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS, "dark_dirt" );
-    public static final DirtBlock MURKY_GRASS_BLOCK = blockItem( "murky_grass_block", new DirtBlock.ColoredGrass( DirtBlock.TYPE_GRASS, dirt( MaterialColor.GRASS, true ) ), MDItemGroup.BLOCKS, "dark_grass_block" );
+    public static final DirtBlock MURKY_DIRT = blockItem( "murky_dirt", new DirtBlock( dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS, "dark_dirt" );
+    public static final GrassBlock MURKY_GRASS_BLOCK = blockItem( "murky_grass_block", new GrassBlock( dirt( MaterialColor.GRASS, true ), supply( "murky_dirt" ) ), MDItemGroup.BLOCKS, "dark_grass_block" );
     public static final DigableFallBlock MURKY_SAND = blockItem( "murky_sand", new DigableFallBlock( 0x826f52, dust( MaterialColor.SAND, false ) ), MDItemGroup.BLOCKS, "dark_sand" );
     public static final DigableBlock MURKY_CLAY = blockItem( "murky_clay", new DigableBlock( clay( MaterialColor.GRAY_TERRACOTTA ) ), MDItemGroup.BLOCKS, "dark_clay" );
-    public static final DirtBlock MURKY_COARSE_DIRT = blockItem( "murky_coarse_dirt", new DirtBlock( DirtBlock.TYPE_DIRT, dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS, "coarse_dark_dirt" );
-    public static final DirtBlock HUMUS = blockItem( "humus", new DirtBlock( DirtBlock.TYPE_HUMUS, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS );
-    public static final DirtBlock MURKY_PODZOL = blockItem( "murky_podzol", new DirtBlock( DirtBlock.TYPE_PODZOL, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS, "dark_podzol" );
+    public static final DirtBlock MURKY_COARSE_DIRT = blockItem( "murky_coarse_dirt", new DirtBlock( dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS, "coarse_dark_dirt" );
+    public static final LeaflessDirtBlock HUMUS = blockItem( "humus", new LeaflessDirtBlock( dirt( MaterialColor.ORANGE_TERRACOTTA, true ), supply( "murky_podzol" ), MDBlockTags.PODZOL_SOURCE ), MDItemGroup.BLOCKS );
+    public static final LeafyDirtBlock MURKY_PODZOL = blockItem( "murky_podzol", new LeafyDirtBlock( dirt( MaterialColor.ORANGE_TERRACOTTA, true ), supply( "humus" ) ), MDItemGroup.BLOCKS, "dark_podzol" );
     public static final StickyBlock MUD = blockItem( "mud", new StickyBlock.Digable( dirt( MaterialColor.BROWN_TERRACOTTA, false ) ), MDItemGroup.BLOCKS );
     public static final DigableFallBlock REGOLITH = blockItem( "regolith", new DigableFallBlock( 0x737d8c, dust( MaterialColor.STONE, true ) ), MDItemGroup.BLOCKS, "rock_gravel" );
 
@@ -578,6 +585,10 @@ public final class MDBlocks {
                 Minecraft.getInstance().getItemColors().register( ( (IColoredBlock) block )::colorMultiplier, block );
             }
         }
+    }
+
+    public static Supplier<BlockState> supply( String id ) {
+        return new BlockStateSupplier( new ResourceLocation( "modernity", id ) );
     }
 
     private static Item createBlockItem( Block t, Item.Properties props ) {

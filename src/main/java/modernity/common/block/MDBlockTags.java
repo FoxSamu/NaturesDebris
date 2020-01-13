@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 13 - 2020
  * Author: rgsw
  */
 
@@ -35,6 +35,8 @@ public final class MDBlockTags {
 
     public static final Tag<Block> SALT_SOURCE = tag( "salt_source" );
     public static final Tag<Block> REEDS_GROWABLE = tag( "reeds_growable" );
+    public static final Tag<Block> DIRTLIKE = tag( "dirtlike" );
+    public static final Tag<Block> PODZOL_SOURCE = tag( "podzol_source" );
 
     private MDBlockTags() {
     }
