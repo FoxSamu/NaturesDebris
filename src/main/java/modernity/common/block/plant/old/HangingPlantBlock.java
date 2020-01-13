@@ -1,12 +1,12 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
-package modernity.common.block.base;
+package modernity.common.block.plant.old;
 
 import modernity.api.block.IColoredBlock;
 import modernity.api.util.IBlockProvider;

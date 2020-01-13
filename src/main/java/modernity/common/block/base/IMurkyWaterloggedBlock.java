@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 21 - 2019
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
@@ -15,6 +15,7 @@ import net.minecraft.block.ILiquidContainer;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
@@ -24,6 +25,8 @@ import net.minecraft.world.IWorld;
  * Handles waterlogging in Modernized Water only
  */
 public interface IMurkyWaterloggedBlock extends IModernityBucketPickupHandler, ILiquidContainer {
+    BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
     @Override
     default boolean canContainFluid( IBlockReader world, BlockPos pos, BlockState state, Fluid fluid ) {
         return ! state.get( BlockStateProperties.WATERLOGGED ) && fluid == MDFluids.MURKY_WATER;

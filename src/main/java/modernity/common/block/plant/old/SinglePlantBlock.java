@@ -2,11 +2,11 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 13 - 2020
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
-package modernity.common.block.base;
+package modernity.common.block.plant.old;
 
 import modernity.api.util.IBlockProvider;
 import modernity.api.util.MDVoxelShapes;

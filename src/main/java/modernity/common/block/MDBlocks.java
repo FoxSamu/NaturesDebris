@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 13 - 2020
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
@@ -14,6 +14,7 @@ import modernity.common.block.dirt.DirtBlock;
 import modernity.common.block.dirt.GrassBlock;
 import modernity.common.block.dirt.LeaflessDirtBlock;
 import modernity.common.block.dirt.LeafyDirtBlock;
+import modernity.common.block.plant.*;
 import modernity.common.fluid.MDFluids;
 import modernity.common.generator.tree.MDTrees;
 import modernity.common.item.MDItemGroup;
@@ -437,31 +438,31 @@ public final class MDBlocks {
     /* ==== PLANTS ==== */
 
     // Basic
-    public static final TallPlantBlock MURK_GRASS = blockItem( "murk_grass", new TallPlantBlock.ColoredGrass( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "dark_tall_grass" );
-    public static final TallWaterloggingPlantBlock REEDS = blockItem( "reeds", new TallWaterloggingPlantBlock.Reeds( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
-    public static final SinglePlantBlock MINT_PLANT = blockItem( "mint_plant", new SinglePlantBlock.Mint( weakPlant( MaterialColor.GRASS, 0.2 ) ), MDItemGroup.PLANTS );
-    public static final SinglePlantBlock REDWOLD = blockItem( "redwold", new SinglePlantBlock.Redwold( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
-    public static final DangerousPlantBlock NETTLES = blockItem( "nettles", new DangerousPlantBlock.Nettles( weakPlant( MaterialColor.GRASS, 0.5 ) ), MDItemGroup.PLANTS );
+    public static final TallMurkGrassBlock MURK_GRASS = blockItem( "murk_grass", new TallMurkGrassBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "dark_tall_grass" );
+    public static final ReedsBlock REEDS = blockItem( "reeds", new ReedsBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock MINT_PLANT = blockItem( "mint_plant", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ), SimplePlantBlock.MINT_SHAPE ), MDItemGroup.PLANTS );
+    public static final RedwoldBlock REDWOLD = blockItem( "redwold", new RedwoldBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
+    public static final NettlesBlock NETTLES = blockItem( "nettles", new NettlesBlock( weakPlant( MaterialColor.GRASS, 0.5 ) ), MDItemGroup.PLANTS );
     public static final SaltCrystalBlock SALT_CRYSTAL = blockItem( "salt_crystal", new SaltCrystalBlock( crystal( MaterialColor.SNOW, 0.2 ) ), MDItemGroup.PLANTS );
-    public static final HangingPlantBlock MURINA = blockItem( "murina", new HangingPlantBlock.ColoredMurina( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
+    public static final MurinaBlock MURINA = blockItem( "murina", new MurinaBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
 
     // Melion
-    public static final SinglePlantBlock RED_MELION = blockItem( "red_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "melion/red" );
-    public static final SinglePlantBlock ORANGE_MELION = blockItem( "orange_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "melion/orange" );
-    public static final SinglePlantBlock YELLOW_MELION = blockItem( "yellow_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "melion/yellow" );
-    public static final SinglePlantBlock WHITE_MELION = blockItem( "white_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "melion/white" );
-    public static final SinglePlantBlock BLUE_MELION = blockItem( "blue_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "melion/blue" );
-    public static final SinglePlantBlock INDIGO_MELION = blockItem( "indigo_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "melion/indigo" );
-    public static final SinglePlantBlock MAGENTA_MELION = blockItem( "magenta_melion", new SinglePlantBlock.Melion( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "melion/magenta" );
+    public static final SimplePlantBlock RED_MELION = blockItem( "red_melion", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.MELION_SHAPE ), MDItemGroup.PLANTS, "melion/red" );
+    public static final SimplePlantBlock ORANGE_MELION = blockItem( "orange_melion", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.MELION_SHAPE ), MDItemGroup.PLANTS, "melion/orange" );
+    public static final SimplePlantBlock YELLOW_MELION = blockItem( "yellow_melion", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.MELION_SHAPE ), MDItemGroup.PLANTS, "melion/yellow" );
+    public static final SimplePlantBlock WHITE_MELION = blockItem( "white_melion", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.MELION_SHAPE ), MDItemGroup.PLANTS, "melion/white" );
+    public static final SimplePlantBlock BLUE_MELION = blockItem( "blue_melion", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.MELION_SHAPE ), MDItemGroup.PLANTS, "melion/blue" );
+    public static final SimplePlantBlock INDIGO_MELION = blockItem( "indigo_melion", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.MELION_SHAPE ), MDItemGroup.PLANTS, "melion/indigo" );
+    public static final SimplePlantBlock MAGENTA_MELION = blockItem( "magenta_melion", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.MELION_SHAPE ), MDItemGroup.PLANTS, "melion/magenta" );
 
     // Millium
-    public static final SinglePlantBlock RED_MILLIUM = blockItem( "red_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "millium/red" );
-    public static final SinglePlantBlock YELLOW_MILLIUM = blockItem( "yellow_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "millium/yellow" );
-    public static final SinglePlantBlock WHITE_MILLIUM = blockItem( "white_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "millium/white" );
-    public static final SinglePlantBlock CYAN_MILLIUM = blockItem( "cyan_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "millium/cyan" );
-    public static final SinglePlantBlock GREEN_MILLIUM = blockItem( "green_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "millium/green" );
-    public static final SinglePlantBlock MAGENTA_MILLIUM = blockItem( "magenta_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "millium/magenta" );
-    public static final SinglePlantBlock BLUE_MILLIUM = blockItem( "blue_millium", new SinglePlantBlock.Millium( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "millium/blue" );
+    public static final SimplePlantBlock RED_MILLIUM = blockItem( "red_millium", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ).lightValue( 5 ), SimplePlantBlock.MILLIUM_SHAPE ), MDItemGroup.PLANTS, "millium/red" );
+    public static final SimplePlantBlock YELLOW_MILLIUM = blockItem( "yellow_millium", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ).lightValue( 5 ), SimplePlantBlock.MILLIUM_SHAPE ), MDItemGroup.PLANTS, "millium/yellow" );
+    public static final SimplePlantBlock WHITE_MILLIUM = blockItem( "white_millium", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ).lightValue( 5 ), SimplePlantBlock.MILLIUM_SHAPE ), MDItemGroup.PLANTS, "millium/white" );
+    public static final SimplePlantBlock CYAN_MILLIUM = blockItem( "cyan_millium", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ).lightValue( 5 ), SimplePlantBlock.MILLIUM_SHAPE ), MDItemGroup.PLANTS, "millium/cyan" );
+    public static final SimplePlantBlock GREEN_MILLIUM = blockItem( "green_millium", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ).lightValue( 5 ), SimplePlantBlock.MILLIUM_SHAPE ), MDItemGroup.PLANTS, "millium/green" );
+    public static final SimplePlantBlock MAGENTA_MILLIUM = blockItem( "magenta_millium", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ).lightValue( 5 ), SimplePlantBlock.MILLIUM_SHAPE ), MDItemGroup.PLANTS, "millium/magenta" );
+    public static final SimplePlantBlock BLUE_MILLIUM = blockItem( "blue_millium", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ).lightValue( 5 ), SimplePlantBlock.MILLIUM_SHAPE ), MDItemGroup.PLANTS, "millium/blue" );
 
 
 

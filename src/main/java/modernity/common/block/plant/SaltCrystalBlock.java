@@ -2,14 +2,15 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 12 - 2020
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
-package modernity.common.block.base;
+package modernity.common.block.plant;
 
 import modernity.api.util.EWaterlogType;
 import modernity.common.block.MDBlockTags;
+import modernity.common.block.base.IWaterloggedBlock;
 import modernity.common.fluid.MDFluids;
 import modernity.common.particle.MDParticleTypes;
 import net.minecraft.block.Block;
@@ -19,7 +20,6 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
@@ -41,10 +41,9 @@ import java.util.Random;
  * Describes the salt crystal block.
  */
 @SuppressWarnings( "deprecation" )
-public class SaltCrystalBlock extends SinglePlantBlock implements IMurkyWaterloggedBlock {
+public class SaltCrystalBlock extends SimplePlantBlock implements IWaterloggedBlock {
     public static final IntegerProperty AGE = IntegerProperty.create( "age", 0, 11 );
     public static final BooleanProperty NATURAL = BooleanProperty.create( "natural" );
-    public static final EnumProperty<EWaterlogType> WATERLOGGED = EnumProperty.create( "waterlogged", EWaterlogType.class );
 
     private static final int[] STAGE_HEIGHTS = {
         2,
@@ -118,7 +117,7 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IMurkyWaterlog
     };
 
     public SaltCrystalBlock( Block.Properties properties ) {
-        super( properties );
+        super( properties, null );
         setDefaultState( stateContainer.getBaseState().with( AGE, 0 ).with( NATURAL, true ).with( WATERLOGGED, EWaterlogType.NONE ) );
     }
 
@@ -171,15 +170,15 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IMurkyWaterlog
 
                 // Try to grow on a higher or lower block
                 npos.move( Direction.UP );
-                if( ! canRemainAt( world, npos, getDefaultState() ) ) {
+                if( ! isValidPosition( getDefaultState(), world, npos ) ) {
                     npos.move( Direction.DOWN );
-                    if( ! canRemainAt( world, npos, getDefaultState() ) )
+                    if( ! isValidPosition( getDefaultState(), world, npos ) )
                         npos.move( Direction.DOWN );
                 }
 
                 // Compute weight
                 BlockState s = world.getBlockState( npos );
-                if( canRemainAt( world, npos, getDefaultState() ) && ( s.getMaterial().isLiquid() || s.isAir( world, npos ) ) ) {
+                if( isValidPosition( getDefaultState(), world, npos ) && ( s.getMaterial().isLiquid() || s.isAir( world, npos ) ) ) {
                     int w = calculateGrowWeight( world, npos, mpos );
                     if( i > 8 ) w /= 2;
                     totalWeight += w;
@@ -210,15 +209,15 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IMurkyWaterlog
             npos.move( loc.getX(), 0, loc.getZ() );
 
             npos.move( Direction.UP );
-            if( ! canRemainAt( world, npos, getDefaultState() ) ) {
+            if( ! isValidPosition( getDefaultState(), world, npos ) ) {
                 npos.move( Direction.DOWN );
-                if( ! canRemainAt( world, npos, getDefaultState() ) )
+                if( ! isValidPosition( getDefaultState(), world, npos ) )
                     npos.move( Direction.DOWN );
             }
 
             // Grow to the selected block...
             BlockState s = world.getBlockState( npos );
-            if( canRemainAt( world, npos, getDefaultState() ) && ( s.getMaterial().isLiquid() || s.isAir( world, npos ) ) ) {
+            if( isValidPosition( getDefaultState(), world, npos ) && ( s.getMaterial().isLiquid() || s.isAir( world, npos ) ) ) {
                 world.setBlockState( npos, getDefaultState().with( NATURAL, rand.nextInt( 5 ) == 0 ).with( WATERLOGGED, EWaterlogType.getType( world.getFluidState( pos ) ) ) );
             }
         }
@@ -321,7 +320,7 @@ public class SaltCrystalBlock extends SinglePlantBlock implements IMurkyWaterlog
 
     @Override
     public boolean provide( IWorld world, BlockPos pos, Random rand ) {
-        if( canRemainAt( world, pos, world.getBlockState( pos ) ) && ! world.getBlockState( pos ).getMaterial().blocksMovement() ) {
+        if( isValidPosition( world.getBlockState( pos ), world, pos ) && ! world.getBlockState( pos ).getMaterial().blocksMovement() ) {
             world.setBlockState( pos, getGenerationStage( rand, world.getFluidState( pos ) ), 2 | 16 );
             return true;
         }

@@ -1,15 +1,15 @@
 {
   "variants": {
-    "bottom=false,top=false": {
+    "root=false,end=false": {
       "model": "modernity:block/reeds_middle"
     },
-    "bottom=false,top=true": {
+    "root=false,end=true": {
       "model": "modernity:block/reeds_top"
     },
-    "bottom=true,top=true": {
+    "root=true,end=true": {
       "model": "modernity:block/reeds"
     },
-    "bottom=true,top=false": {
+    "root=true,end=false": {
       "model": "modernity:block/reeds_bottom"
     }
   }

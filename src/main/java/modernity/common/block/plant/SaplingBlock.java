@@ -1,17 +1,19 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
-package modernity.common.block.base;
+package modernity.common.block.plant;
 
 import modernity.api.util.BlockUpdates;
+import modernity.api.util.Events;
 import modernity.api.util.MDVoxelShapes;
-import modernity.common.item.MDItemTags;
+import modernity.common.block.MDBlockTags;
 import modernity.common.generator.tree.Tree;
+import modernity.common.item.MDItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,6 +29,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -35,7 +38,7 @@ import java.util.function.Supplier;
 /**
  * Describes a sapling.
  */
-public class SaplingBlock extends SinglePlantBlock {
+public class SaplingBlock extends SimplePlantBlock {
     public static final VoxelShape SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 12, 14 );
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_5;
@@ -48,17 +51,19 @@ public class SaplingBlock extends SinglePlantBlock {
      * @param tree The tree feature to generate when this sapling is full grown.
      */
     public SaplingBlock( Supplier<Tree> tree, Properties properties ) {
-        super( properties );
+        super( properties, SHAPE );
         setDefaultState( stateContainer.getBaseState().with( AGE, 0 ) );
         this.tree = tree;
     }
 
     @Override
     protected void fillStateContainer( StateContainer.Builder<Block, BlockState> builder ) {
+        super.fillStateContainer( builder );
         builder.add( AGE );
     }
 
     @Override
+    @SuppressWarnings( "deprecation" )
     public void randomTick( BlockState state, World world, BlockPos pos, Random rand ) {
         growOlder( state, world, pos, rand );
         super.randomTick( state, world, pos, rand );
@@ -85,10 +90,11 @@ public class SaplingBlock extends SinglePlantBlock {
     }
 
     @Override
+    @SuppressWarnings( "deprecation" )
     public boolean onBlockActivated( BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result ) {
         if( player.getHeldItem( hand ).getItem().isIn( MDItemTags.FERTILIZER ) ) {
             growOlder( state, world, pos, world.rand );
-            world.playEvent( 2005, pos, 0 );
+            world.playEvent( Events.FERTILIZER_USE, pos, 0 );
             return true;
         }
         return false;
@@ -107,5 +113,10 @@ public class SaplingBlock extends SinglePlantBlock {
     @Override
     public VoxelShape getCollisionShape( BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext ctx ) {
         return VoxelShapes.empty();
+    }
+
+    @Override
+    public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
+        return state.isIn( MDBlockTags.DIRTLIKE );
     }
 }

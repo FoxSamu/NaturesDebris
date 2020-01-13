@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 21 - 2019
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
@@ -19,6 +19,7 @@ import net.minecraft.block.ILiquidContainer;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
+import net.minecraft.state.EnumProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
@@ -27,16 +28,18 @@ import net.minecraft.world.IWorld;
  * Handles waterlogging in both Modernized Water and Vanilla Water
  */
 public interface IWaterloggedBlock extends IBucketPickupHandler, IModernityBucketPickupHandler, ILiquidContainer {
+    EnumProperty<EWaterlogType> WATERLOGGED = MDBlockStateProperties.WATERLOGGED;
+
     @Override
     default boolean canContainFluid( IBlockReader world, BlockPos pos, BlockState state, Fluid fluid ) {
-        return state.get( MDBlockStateProperties.WATERLOGGED ).canContain( fluid );
+        return state.get( WATERLOGGED ).canContain( fluid );
     }
 
     @Override
     default boolean receiveFluid( IWorld world, BlockPos pos, BlockState state, IFluidState fstate ) {
-        if( state.get( MDBlockStateProperties.WATERLOGGED ).canContain( fstate.getFluid() ) ) {
+        if( state.get( WATERLOGGED ).canContain( fstate.getFluid() ) ) {
             if( ! world.isRemote() ) {
-                world.setBlockState( pos, state.with( MDBlockStateProperties.WATERLOGGED, EWaterlogType.getType( fstate ) ), 3 );
+                world.setBlockState( pos, state.with( WATERLOGGED, EWaterlogType.getType( fstate ) ), 3 );
                 world.getPendingFluidTicks().scheduleTick( pos, fstate.getFluid(), fstate.getFluid().getTickRate( world ) );
             }
 
@@ -48,9 +51,9 @@ public interface IWaterloggedBlock extends IBucketPickupHandler, IModernityBucke
 
     @Override
     default Fluid pickupFluid( IWorld world, BlockPos pos, BlockState state ) {
-        EWaterlogType type = state.get( MDBlockStateProperties.WATERLOGGED );
+        EWaterlogType type = state.get( WATERLOGGED );
         if( ! type.isEmpty() && type.getFluidState().getFluid() instanceof IVanillaBucketTakeable ) {
-            world.setBlockState( pos, state.with( MDBlockStateProperties.WATERLOGGED, EWaterlogType.NONE ), 3 );
+            world.setBlockState( pos, state.with( WATERLOGGED, EWaterlogType.NONE ), 3 );
             return type.getFluidState().getFluid();
         } else {
             return Fluids.EMPTY;
@@ -59,9 +62,9 @@ public interface IWaterloggedBlock extends IBucketPickupHandler, IModernityBucke
 
     @Override
     default Fluid pickupFluidModernity( IWorld world, BlockPos pos, BlockState state ) {
-        EWaterlogType type = state.get( MDBlockStateProperties.WATERLOGGED );
+        EWaterlogType type = state.get( WATERLOGGED );
         if( ! type.isEmpty() && type.getFluidState().getFluid() instanceof IModernityBucketTakeable ) {
-            world.setBlockState( pos, state.with( MDBlockStateProperties.WATERLOGGED, EWaterlogType.NONE ), 3 );
+            world.setBlockState( pos, state.with( WATERLOGGED, EWaterlogType.NONE ), 3 );
             return type.getFluidState().getFluid();
         } else {
             return Fluids.EMPTY;
