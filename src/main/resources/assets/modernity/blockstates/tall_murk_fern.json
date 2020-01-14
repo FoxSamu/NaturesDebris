@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "type=root": {
+      "model": "modernity:block/tall_murk_fern_bottom"
+    },
+    "type=end": {
+      "model": "modernity:block/tall_murk_fern_top"
+    }
+  }
+}

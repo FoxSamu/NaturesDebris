@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/abstract_moss",
+  "textures": {
+    "moss": "modernity:block/lichen"
+  }
+}

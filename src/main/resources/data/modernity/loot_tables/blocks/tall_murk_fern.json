@@ -1,0 +1,29 @@
+{
+  "pools": [
+    {
+      "name": "basic",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "block_state_property",
+              "block": "modernity:tall_murk_fern",
+              "properties": {
+                "type": "root"
+              }
+            },
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "item": "minecraft:shears"
+              }
+            }
+          ],
+          "name": "modernity:tall_murk_fern"
+        }
+      ]
+    }
+  ]
+}

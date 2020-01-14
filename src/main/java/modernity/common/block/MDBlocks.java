@@ -12,7 +12,6 @@ import modernity.api.block.IColoredBlock;
 import modernity.common.block.base.*;
 import modernity.common.block.dirt.DirtBlock;
 import modernity.common.block.dirt.GrassBlock;
-import modernity.common.block.dirt.LeaflessDirtBlock;
 import modernity.common.block.dirt.LeafyDirtBlock;
 import modernity.common.block.plant.*;
 import modernity.common.fluid.MDFluids;
@@ -67,7 +66,7 @@ public final class MDBlocks {
     public static final DigableFallBlock MURKY_SAND = blockItem( "murky_sand", new DigableFallBlock( 0x826f52, dust( MaterialColor.SAND, false ) ), MDItemGroup.BLOCKS, "dark_sand" );
     public static final DigableBlock MURKY_CLAY = blockItem( "murky_clay", new DigableBlock( clay( MaterialColor.GRAY_TERRACOTTA ) ), MDItemGroup.BLOCKS, "dark_clay" );
     public static final DirtBlock MURKY_COARSE_DIRT = blockItem( "murky_coarse_dirt", new DirtBlock( dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS, "coarse_dark_dirt" );
-    public static final LeaflessDirtBlock HUMUS = blockItem( "humus", new LeaflessDirtBlock( dirt( MaterialColor.ORANGE_TERRACOTTA, true ), supply( "murky_podzol" ), MDBlockTags.PODZOL_SOURCE ), MDItemGroup.BLOCKS );
+    public static final DirtBlock HUMUS = blockItem( "humus", new DirtBlock( dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS );
     public static final LeafyDirtBlock MURKY_PODZOL = blockItem( "murky_podzol", new LeafyDirtBlock( dirt( MaterialColor.ORANGE_TERRACOTTA, true ), supply( "humus" ) ), MDItemGroup.BLOCKS, "dark_podzol" );
     public static final StickyBlock MUD = blockItem( "mud", new StickyBlock.Digable( dirt( MaterialColor.BROWN_TERRACOTTA, false ) ), MDItemGroup.BLOCKS );
     public static final DigableFallBlock REGOLITH = blockItem( "regolith", new DigableFallBlock( 0x737d8c, dust( MaterialColor.STONE, true ) ), MDItemGroup.BLOCKS, "rock_gravel" );
@@ -446,6 +445,10 @@ public final class MDBlocks {
     public static final SaltCrystalBlock SALT_CRYSTAL = blockItem( "salt_crystal", new SaltCrystalBlock( crystal( MaterialColor.SNOW, 0.2 ) ), MDItemGroup.PLANTS );
     public static final MurinaBlock MURINA = blockItem( "murina", new MurinaBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final MossBlock MOSS = blockItem( "moss", new MossBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
+    public static final FacingPlantBlock DEAD_MOSS = blockItem( "dead_moss", new FacingPlantBlock( weakPlant( MaterialColor.GRASS, 0 ), 2 ), MDItemGroup.PLANTS );
+    public static final FacingPlantBlock LICHEN = blockItem( "lichen", new FacingPlantBlock( weakPlant( MaterialColor.GRASS, 0 ), 2 ), MDItemGroup.PLANTS );
+    public static final MurkFernBlock MURK_FERN = blockItem( "murk_fern", new MurkFernBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
+    public static final TallMurkFernBlock TALL_MURK_FERN = blockItem( "tall_murk_fern", new TallMurkFernBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
 
     // Melion
     public static final SimplePlantBlock RED_MELION = blockItem( "red_melion", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.MELION_SHAPE ), MDItemGroup.PLANTS, "melion/red" );

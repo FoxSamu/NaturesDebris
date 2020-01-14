@@ -10,6 +10,7 @@ package modernity.common.block.plant;
 
 import modernity.api.util.Events;
 import modernity.common.block.prop.IntEnumProperty;
+import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -120,9 +121,23 @@ public abstract class DoubleDirectionalPlantBlock extends DirectionalPlantBlock 
     }
 
     @Override
+    public boolean canGenerateAt( IWorld world, BlockPos pos, BlockState state ) {
+        BlockPos upPos = pos.offset( growDir );
+        BlockState upState = world.getBlockState( upPos );
+        boolean upAir = upState.isAir( world, upPos );
+        if( this instanceof IWaterPlant ) {
+            upAir = upState.getFluidState().getFluid() == MDFluids.MURKY_WATER;
+        }
+        return upAir && super.canGenerateAt( world, pos, state );
+    }
+
+    @Override
     public boolean provide( IWorld world, BlockPos pos, Random rand ) {
         if( canGenerateAt( world, pos, world.getBlockState( pos ) ) ) {
-            world.setBlockState( pos, getDefaultState(), 2 );
+            BlockState lower = computeStateForPos( world, pos, getDefaultState().with( TYPE, ROOT ) );
+            BlockState upper = computeStateForPos( world, pos, getDefaultState().with( TYPE, END ) );
+            world.setBlockState( pos, lower, 2 );
+            world.setBlockState( pos.offset( growDir ), upper, 2 );
             return true;
         }
         return false;

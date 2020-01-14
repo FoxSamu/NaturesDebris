@@ -29,6 +29,11 @@ public class RedwoldBlock extends SimplePlantBlock {
     }
 
     @Override
+    public OffsetType getOffsetType() {
+        return OffsetType.NONE;
+    }
+
+    @Override
     public boolean isReplaceable( BlockState state, BlockItemUseContext ctx ) {
         return true;
     }

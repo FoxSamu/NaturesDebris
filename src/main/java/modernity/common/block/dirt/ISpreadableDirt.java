@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 13 - 2020
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
@@ -11,6 +11,7 @@ package modernity.common.block.dirt;
 import net.minecraft.block.BlockState;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -22,7 +23,10 @@ public interface ISpreadableDirt {
     }
 
     default boolean canSpread( World world, BlockPos pos, BlockState state ) {
-        return world.getLight( pos.up() ) >= getRequiredSpreadLight();
+        BlockPos up = pos.up();
+        int block = world.getLightFor( LightType.BLOCK, up );
+        int sky = world.getLightFor( LightType.SKY, up );
+        return Math.max( block, sky ) >= getRequiredSpreadLight();
     }
 
     boolean canGrowUpon( BlockState state );

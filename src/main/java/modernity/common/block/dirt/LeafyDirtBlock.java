@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 13 - 2020
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
@@ -10,9 +10,7 @@ package modernity.common.block.dirt;
 
 import modernity.api.reflect.FieldAccessor;
 import modernity.common.particle.MDParticleTypes;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -23,36 +21,19 @@ import net.redgalaxy.util.Lazy;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class LeafyDirtBlock extends SnowyDirtlikeBlock implements IDecayableDirt, ISpreadableDirt {
+public class LeafyDirtBlock extends SnowyDirtlikeBlock implements IDecayableDirt {
     private static final FieldAccessor<Entity, Float> nextStepDistanceField = new FieldAccessor<>( Entity.class, "field_70150_b" );
 
     private final Lazy<BlockState> leaflessState;
-    private final Lazy<Block> leaflessBlock;
 
     public LeafyDirtBlock( Properties properties, Supplier<BlockState> leafless ) {
         super( properties );
         this.leaflessState = Lazy.of( leafless );
-        this.leaflessBlock = leaflessState.map( BlockState::getBlock );
     }
 
     @Override
     public BlockState getDecayState( World world, BlockPos pos, BlockState state ) {
         return leaflessState.get();
-    }
-
-    @Override
-    public boolean canGrowUpon( BlockState state ) {
-        return state.getBlock() == leaflessBlock.get();
-    }
-
-    @Override
-    public BlockState getGrowState( World world, BlockPos pos, BlockState state ) {
-        boolean snowy = false;
-        BlockState upState = world.getBlockState( pos.up() );
-        if( upState.getBlock() == Blocks.SNOW || upState.getBlock() == Blocks.SNOW_BLOCK ) {
-            snowy = true;
-        }
-        return getDefaultState().with( SNOWY, snowy );
     }
 
     @Override
