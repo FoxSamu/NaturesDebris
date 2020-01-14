@@ -93,7 +93,7 @@ public abstract class PlantBlock extends Block implements IBlockProvider {
     @Override
     @SuppressWarnings( "deprecation" )
     public BlockState updatePostPlacement( BlockState state, Direction dir, BlockState adjState, IWorld world, BlockPos pos, BlockPos adjPos ) {
-        if( this instanceof IMurkyWaterloggedBlock || this instanceof IWaterloggedBlock ) {
+        if( this instanceof IMurkyWaterloggedBlock || this instanceof IWaterloggedBlock || this instanceof IWaterPlant ) {
             Fluid fluid = world.getFluidState( pos ).getFluid();
             world.getPendingFluidTicks().scheduleTick( pos, fluid, fluid.getTickRate( world ) );
         }
@@ -111,6 +111,11 @@ public abstract class PlantBlock extends Block implements IBlockProvider {
     @Override
     @SuppressWarnings( "deprecation" )
     public boolean isValidPosition( BlockState state, IWorldReader world, BlockPos pos ) {
+        if( this instanceof IWaterPlant ) {
+            if( world.getFluidState( pos ).getFluid() != MDFluids.MURKY_WATER ) {
+                return false;
+            }
+        }
         for( Direction dir : Direction.values() ) {
             BlockPos off = pos.offset( dir );
             BlockState offState = world.getBlockState( off );
@@ -120,7 +125,11 @@ public abstract class PlantBlock extends Block implements IBlockProvider {
     }
 
     public boolean canGenerateAt( IWorld world, BlockPos pos, BlockState state ) {
-        return state.isAir( world, pos ) && isValidPosition( state, world, pos );
+        boolean air = state.isAir( world, pos );
+        if( this instanceof IWaterPlant ) {
+            air = state.getFluidState().getFluid() == MDFluids.MURKY_WATER;
+        }
+        return air && isValidPosition( state, world, pos );
     }
 
     @Nullable
@@ -156,6 +165,10 @@ public abstract class PlantBlock extends Block implements IBlockProvider {
 
         if( this instanceof IWaterloggedBlock ) {
             return state.get( IWaterloggedBlock.WATERLOGGED ).getFluidState();
+        }
+
+        if( this instanceof IWaterPlant ) {
+            return MDFluids.MURKY_WATER.getDefaultState();
         }
 
         return Fluids.EMPTY.getDefaultState();
