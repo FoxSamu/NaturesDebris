@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 29 - 2019
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
@@ -345,6 +345,7 @@ public abstract class Modernity {
      * @return <code>modernity:...</code>
      */
     public static ResourceLocation res( String id ) {
+        if( id != null && id.indexOf( ':' ) >= 0 ) return new ResourceLocation( id );
         return new ResourceLocation( MDInfo.MODID + ":" + id );
     }
 }

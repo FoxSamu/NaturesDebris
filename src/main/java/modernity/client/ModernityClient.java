@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 13 - 2020
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
@@ -65,6 +65,7 @@ public class ModernityClient extends Modernity {
     private BiomeColoringProfile blackwoodColors;
     private BiomeColoringProfile inverColors;
     private BiomeColoringProfile waterColors;
+    private BiomeColoringProfile mossColors;
 
     private ClientWorldAreaManager worldAreaManager;
     private AreaRenderManager areaRenderManager;
@@ -84,6 +85,7 @@ public class ModernityClient extends Modernity {
         addFutureReloadListener( new BiomeColorProfileReloader( "blackwood", e -> blackwoodColors = e ) );
         addFutureReloadListener( new BiomeColorProfileReloader( "inver", e -> inverColors = e ) );
         addFutureReloadListener( new BiomeColorProfileReloader( "water", e -> waterColors = e ) );
+        addFutureReloadListener( new BiomeColorProfileReloader( "moss", e -> mossColors = e ) );
 
         addFutureReloadListener( fluidRenderer );
         addFutureReloadListener( fallenLeafColors );
@@ -196,6 +198,13 @@ public class ModernityClient extends Modernity {
      */
     public BiomeColoringProfile getWaterColors() {
         return waterColors;
+    }
+
+    /**
+     * Gets the biome color profile for moss colors
+     */
+    public BiomeColoringProfile getMossColors() {
+        return mossColors;
     }
 
     /**

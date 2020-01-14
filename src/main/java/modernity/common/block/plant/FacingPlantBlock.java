@@ -17,7 +17,9 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -36,6 +38,8 @@ public class FacingPlantBlock extends PlantBlock {
         super( properties );
         this.thickness = thickness;
         this.marge = marge;
+
+        createShapes();
 
         setDefaultState( stateContainer.getBaseState().with( FACING, Direction.UP ) );
     }
@@ -67,6 +71,12 @@ public class FacingPlantBlock extends PlantBlock {
     }
 
     @Override
+    @SuppressWarnings( "deprecation" )
+    public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx ) {
+        return shapes[ state.get( FACING ).ordinal() ];
+    }
+
+    @Override
     protected void fillStateContainer( StateContainer.Builder<Block, BlockState> builder ) {
         super.fillStateContainer( builder );
         builder.add( FACING );
@@ -90,9 +100,16 @@ public class FacingPlantBlock extends PlantBlock {
     public BlockState getStateForPlacement( BlockItemUseContext ctx ) {
         World world = ctx.getWorld();
         BlockPos pos = ctx.getPos();
+        Direction face = ctx.getFace();
+
+        BlockPos off = pos.offset( face, - 1 );
+        if( canBlockSustain( world, off, world.getBlockState( off ), face ) ) {
+            return computeStateForPos( world, pos, getDefaultState().with( FACING, face ) );
+        }
+
         Direction[] dirs = ctx.getNearestLookingDirections();
         for( Direction dir : dirs ) {
-            BlockPos off = pos.offset( dir, - 1 );
+            off = pos.offset( dir, - 1 );
             if( canBlockSustain( world, off, world.getBlockState( off ), dir ) ) {
                 return computeStateForPos( world, pos, getDefaultState().with( FACING, dir ) );
             }
