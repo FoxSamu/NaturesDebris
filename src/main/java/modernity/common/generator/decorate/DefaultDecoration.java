@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 12 - 2020
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
@@ -52,7 +52,10 @@ public final class DefaultDecoration {
 
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 50, 5, MDBlocks.SALT_CRYSTAL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 1 / 35D ), new IsBelowHeight( 71 ) ) );
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 50, 5, MDBlocks.SALT_CRYSTAL ), new InCave(), new Fixed( 4 ) ) );
-        biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlocks.MURINA ), new InCave(), new Fixed( 7 ) ) );
+        biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlocks.MURINA ), new InCave(), new Fixed( 10 ) ) );
+        biome.addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 0.8, MDBlocks.MOSS ), new InCave(), new Fixed( 6 ) ) );
+        biome.addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 0.8, MDBlocks.DEAD_MOSS ), new InCave(), new Fixed( 4 ) ) );
+        biome.addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 0.8, MDBlocks.LICHEN ), new InCave(), new Fixed( 6 ) ) );
 
         biome.addDecorator( new DecorationDecorator( new GroupedBushDecoration( 4, 5, 4, MDBlocks.PUDDLE ), new InCave(), new Fixed( 7 ) ) );
     }

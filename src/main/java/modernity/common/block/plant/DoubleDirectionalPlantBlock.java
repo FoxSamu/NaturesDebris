@@ -84,7 +84,7 @@ public abstract class DoubleDirectionalPlantBlock extends DirectionalPlantBlock 
 
     @Override
     public boolean canRemainOn( IWorldReader world, BlockPos pos, BlockState state, BlockState selfState ) {
-        if( selfState.get( TYPE ) == ROOT ) {
+        if( selfState.getBlock() != this || selfState.get( TYPE ) == ROOT ) {
             return canBlockSustain( world, pos, state );
         } else {
             return isSelfState( world, pos, state ) && state.get( TYPE ) == ROOT;

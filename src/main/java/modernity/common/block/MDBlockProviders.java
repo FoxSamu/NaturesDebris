@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
@@ -33,6 +33,15 @@ public final class MDBlockProviders {
         MDBlocks.RED_MELION,
         MDBlocks.WHITE_MELION
     );
+
+    public static final IBlockProvider MURK_FERN_RAND_HEIGHT = ( world, pos, rand ) -> {
+        if( rand.nextInt( 4 ) == 0 ) {
+            if( MDBlocks.TALL_MURK_FERN.provide( world, pos, rand ) ) {
+                return true;
+            }
+        }
+        return MDBlocks.MURK_FERN.provide( world, pos, rand );
+    };
 
     private static final Function<Random, Integer> GRASS_HEIGHT_PROVIDER = rng -> Math.min( 4, rng.nextInt( 4 ) + rng.nextInt( 2 ) + 1 );
 

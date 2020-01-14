@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
@@ -44,6 +44,7 @@ public class LushMeadowBiome extends ModernityBiome {
 
         addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlocks.REEDS ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.5 ) ) );
         addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlocks.REDWOLD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.5 ) ) );
+        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 4, 0.6, MDBlocks.MOSS ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 1 / 10D ) ) );
 
         addDecorator( new DecorationDecorator( new ClusterBushDecoration( 120, 6, MDBlockProviders.HIGH_GRASS ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Fixed( 24 ) ) );
         addDecorator( new DecorationDecorator( new ClusterBushDecoration( 120, 6, MDBlocks.NETTLES ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Chance( 0.25 ) ) );

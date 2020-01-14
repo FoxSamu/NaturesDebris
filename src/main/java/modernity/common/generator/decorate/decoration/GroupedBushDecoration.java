@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   01 - 14 - 2020
  * Author: rgsw
  */
 
@@ -19,10 +19,17 @@ import java.util.Random;
 public class GroupedBushDecoration implements IDecoration {
     private final int iterations;
     private final int radius;
-    private final int chance;
+    private final double chance;
     private final IBlockProvider provider;
 
     public GroupedBushDecoration( int iterations, int radius, int chance, IBlockProvider provider ) {
+        this.iterations = iterations;
+        this.radius = radius;
+        this.chance = 1D / chance;
+        this.provider = provider;
+    }
+
+    public GroupedBushDecoration( int iterations, int radius, double chance, IBlockProvider provider ) {
         this.iterations = iterations;
         this.radius = radius;
         this.chance = chance;
@@ -37,7 +44,7 @@ public class GroupedBushDecoration implements IDecoration {
         return radius;
     }
 
-    public int getChance() {
+    public double getChance() {
         return chance;
     }
 
@@ -66,7 +73,7 @@ public class GroupedBushDecoration implements IDecoration {
                         if( x * x + y * y + z * z <= rad * rad ) {
                             rpos.setPos( posx, posy, posz );
 
-                            if( rand.nextInt( chance ) == 0 ) {
+                            if( rand.nextDouble() < chance ) {
                                 provider.provide( world, rpos, rand );
                             }
                         }
