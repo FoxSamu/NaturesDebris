@@ -150,12 +150,12 @@ public class SaltCrystalBlock extends SingleDirectionalPlantBlock implements IMu
                     int naturalChance = 8;
 
                     if( world.getFluidState( pos ).getFluid() == MDFluids.MURKY_WATER ) {
-                        noSpreadChance = 5; // Lower value: higher chance
-                        naturalChance = 9;  // Higher value: lower chance
+                        noSpreadChance = 5; // Lower values: higher chances
+                        naturalChance = 6;
                     }
 
 
-                    int amount = 2 + rand.nextInt( 5 );
+                    int amount = 2 + rand.nextInt( 7 );
                     for( int i = 0; i < amount; i++ ) {
 
                         if( rand.nextInt( MAX_SPREAD_CHANCE ) < spreadChance ) {
