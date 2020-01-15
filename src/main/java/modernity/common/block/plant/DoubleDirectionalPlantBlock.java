@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.api.util.Events;
+import modernity.common.block.MDBlocks;
 import modernity.common.block.prop.IntEnumProperty;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
@@ -126,7 +127,7 @@ public abstract class DoubleDirectionalPlantBlock extends DirectionalPlantBlock 
         BlockState upState = world.getBlockState( upPos );
         boolean upAir = upState.isAir( world, upPos );
         if( this instanceof IWaterPlant ) {
-            upAir = upState.getFluidState().getFluid() == MDFluids.MURKY_WATER;
+            upAir = upState.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDBlocks.MURKY_WATER;
         }
         return upAir && super.canGenerateAt( world, pos, state );
     }

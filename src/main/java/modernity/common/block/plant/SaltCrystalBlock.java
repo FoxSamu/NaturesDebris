@@ -2,21 +2,20 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
-import modernity.api.util.EWaterlogType;
+import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlockTags;
-import modernity.common.block.base.IWaterloggedBlock;
+import modernity.common.block.MDBlocks;
+import modernity.common.block.base.IMurkyWaterloggedBlock;
 import modernity.common.fluid.MDFluids;
 import modernity.common.particle.MDParticleTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
@@ -30,6 +29,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -37,45 +37,27 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-/**
- * Describes the salt crystal block.
- */
-@SuppressWarnings( "deprecation" )
-public class SaltCrystalBlock extends SimplePlantBlock implements IWaterloggedBlock {
+public class SaltCrystalBlock extends SingleDirectionalPlantBlock implements IMurkyWaterloggedBlock {
     public static final IntegerProperty AGE = IntegerProperty.create( "age", 0, 11 );
     public static final BooleanProperty NATURAL = BooleanProperty.create( "natural" );
+    public static final BooleanProperty CAN_SPREAD = BooleanProperty.create( "can_spread" );
 
-    private static final int[] STAGE_HEIGHTS = {
-        2,
-        2,
-        2,
-        4,
-        4,
-        5,
-        5,
-        7,
-        7,
-        9,
-        9,
-        12
-    };
+    private static final int MAX_GROW_CHANCE = 6 * 10;
+    private static final int MAX_SPREAD_CHANCE = MAX_GROW_CHANCE * 5;
+
+    private static final int[] STAGE_HEIGHTS = { 2, 2, 4, 4, 5, 6, 7, 7, 8, 9, 11, 12 };
+
+    private static final int[] SPREAD_CHANCE_MULT = { 0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 4, 5 };
 
     private static final AxisAlignedBB[] STATE_BOXES = new AxisAlignedBB[ 12 ];
     private static final VoxelShape[] STATE_SHAPES = new VoxelShape[ 12 ];
 
     static {
         for( int i = 0; i <= 11; i++ ) {
-            STATE_BOXES[ i ] = new AxisAlignedBB( 1 / 16D, 0, 1 / 16D, 15 / 16D, STAGE_HEIGHTS[ i ] / 16D, 15 / 16D );
+            STATE_BOXES[ i ] = new AxisAlignedBB( 0 / 16D, 0, 0 / 16D, 16 / 16D, STAGE_HEIGHTS[ i ] / 16D, 16 / 16D );
             STATE_SHAPES[ i ] = VoxelShapes.create( STATE_BOXES[ i ] );
         }
     }
-
-    // Salt crystal grow area (s = source):
-    //   o o o
-    // o o o o o
-    // o o s o o
-    // o o o o o
-    //   o o o
 
     /**
      * All relative positions a salt crystal can grow to.
@@ -116,21 +98,20 @@ public class SaltCrystalBlock extends SimplePlantBlock implements IWaterloggedBl
         new BlockPos( - 1, 0, - 2 )
     };
 
-    public SaltCrystalBlock( Block.Properties properties ) {
-        super( properties, null );
-        setDefaultState( stateContainer.getBaseState().with( AGE, 0 ).with( NATURAL, true ).with( WATERLOGGED, EWaterlogType.NONE ) );
+    private static final int[] SPREAD_DIR_CHANCES = { 2, 3, 2, 3, 2, 3, 2, 3, 5, 4, 5, 5, 4, 5, 5, 4, 5, 5, 4, 5 };
+
+    public SaltCrystalBlock( Properties properties ) {
+        super( properties, Direction.UP );
+
+        setDefaultState( getDefaultState().with( AGE, 0 )
+                                          .with( NATURAL, true )
+                                          .with( CAN_SPREAD, false ) );
     }
 
     @Override
     protected void fillStateContainer( StateContainer.Builder<Block, BlockState> builder ) {
-        builder.add( AGE, NATURAL, WATERLOGGED );
-    }
-
-    /**
-     * Is the specified block state a salt source (is it in the 'modernity:salt_source' tag)?
-     */
-    public boolean isSaltSource( BlockState state ) {
-        return state.isIn( MDBlockTags.SALT_SOURCE );
+        super.fillStateContainer( builder );
+        builder.add( AGE, NATURAL, CAN_SPREAD );
     }
 
     @Override
@@ -139,195 +120,176 @@ public class SaltCrystalBlock extends SimplePlantBlock implements IWaterloggedBl
     }
 
     @Override
+    @SuppressWarnings( "deprecation" )
     public void randomTick( BlockState state, World world, BlockPos pos, Random rand ) {
+        MovingBlockPos mpos = new MovingBlockPos();
 
-        // Grow older
+
         int age = state.get( AGE );
-        BlockPos.MutableBlockPos mpos = new BlockPos.MutableBlockPos();
-        int growWeight = calculateGrowWeight( world, pos, mpos );
-        if( age < 11 && rand.nextInt( 88 ) < growWeight ) {
-            age++;
-            world.setBlockState( pos, state.with( AGE, age ), 3 );
-        }
+        boolean natural = state.get( NATURAL );
+        boolean canSpread = state.get( CAN_SPREAD );
 
-        // Do not extend natural crystals
-        if( state.get( NATURAL ) ) return;
 
-        // Grow chance: 1/3
-        if( rand.nextInt( 3 ) != 0 ) return;
-
-        // Grow to close blocks
-        if( rand.nextInt( 88 ) < growWeight && rand.nextInt( 12 ) < age ) {
-            int totalWeight = 0;
-            int[] weights = new int[ 20 ];
-            int i = 0;
-
-            // Compute weights for each possible grow position
-            BlockPos.MutableBlockPos npos = new BlockPos.MutableBlockPos();
-            for( BlockPos loc : GROW_AREA ) {
-                npos.setPos( pos );
-                npos.move( loc.getX(), 0, loc.getZ() );
-
-                // Try to grow on a higher or lower block
-                npos.move( Direction.UP );
-                if( ! isValidPosition( getDefaultState(), world, npos ) ) {
-                    npos.move( Direction.DOWN );
-                    if( ! isValidPosition( getDefaultState(), world, npos ) )
-                        npos.move( Direction.DOWN );
-                }
-
-                // Compute weight
-                BlockState s = world.getBlockState( npos );
-                if( isValidPosition( getDefaultState(), world, npos ) && ( s.getMaterial().isLiquid() || s.isAir( world, npos ) ) ) {
-                    int w = calculateGrowWeight( world, npos, mpos );
-                    if( i > 8 ) w /= 2;
-                    totalWeight += w;
-                    weights[ i ] = w;
-                }
-
-                i++;
+        int growChance = computeGrowChance( world, pos, natural );
+        if( growChance > 0 && rand.nextInt( MAX_GROW_CHANCE ) < growChance ) {
+            // Grow if not at full age
+            if( age < 11 ) {
+                age++; // Replace old values with new so that we can continue our processing with new values
+                state = state.with( AGE, age );
+                world.setBlockState( pos, state, 3 );
             }
 
-            // No growing when no place to grow...
-            if( totalWeight == 0 ) return;
+            // Spreading is only done when growing is possible
+            if( canSpread ) {
 
-            // Find best growing place using weighted random: more saline places have higher weights...
-            int random = rand.nextInt( totalWeight );
-            int weight = 0;
+                int spreadChance = growChance * SPREAD_CHANCE_MULT[ age ];
+                if( spreadChance > 0 ) {
 
-            i = 0;
-            for( ; i < 20; i++ ) {
-                weight += weights[ i ];
-                if( weight > random ) {
-                    break;
+                    // Compute the chance that a certain crystal is natural or can't spread
+                    int noSpreadChance = 8;
+                    int naturalChance = 8;
+
+                    if( world.getFluidState( pos ).getFluid() == MDFluids.MURKY_WATER ) {
+                        noSpreadChance = 5; // Lower value: higher chance
+                        naturalChance = 9;  // Higher value: lower chance
+                    }
+
+
+                    int amount = 2 + rand.nextInt( 5 );
+                    for( int i = 0; i < amount; i++ ) {
+
+                        if( rand.nextInt( MAX_SPREAD_CHANCE ) < spreadChance ) {
+
+                            int offIndex = rand.nextInt( 20 ); // Index in offset lookup table
+
+                            if( rand.nextInt( SPREAD_DIR_CHANCES[ offIndex ] ) == 0 ) {
+                                BlockPos offset = GROW_AREA[ offIndex ];
+
+                                // Check vertical offset
+                                for( int y = 1; y >= - 1; y-- ) {
+                                    mpos.setPos( pos ).addPos( offset ).moveUp( y );
+
+                                    // Check sustaining block
+                                    mpos.moveDown();
+                                    if( ! canBlockSustain( world, mpos, world.getBlockState( mpos ) ) ) {
+                                        continue;
+                                    }
+                                    mpos.moveUp();
+
+                                    // Check if block at location is empty
+                                    BlockState bstate = world.getBlockState( mpos );
+                                    IFluidState fstate = bstate.getFluidState();
+                                    if( ! bstate.isAir( world, mpos ) && ! ( fstate.getFluid() == MDFluids.MURKY_WATER && bstate.getBlock() == MDBlocks.MURKY_WATER ) ) {
+                                        continue;
+                                    }
+
+                                    // Recursively check if block is reachable from root crystal
+                                    // We can move at y=0 and then go down so we check y=-1 as if y=0
+                                    int offY = y == - 1 ? 0 : y;
+                                    if( ! canReachLocation( world, pos, offset.getX(), offY, offset.getZ(), mpos ) ) {
+                                        // Also try y=-1
+                                        if( y != - 1 || ! canReachLocation( world, pos, offset.getX(), - 1, offset.getZ(), mpos ) ) {
+                                            continue;
+                                        }
+                                    }
+
+                                    // Naturality and spreadability
+                                    boolean isNatural = rand.nextInt( naturalChance ) == 0;
+                                    boolean noSpread = rand.nextInt( noSpreadChance ) == 0;
+
+                                    // Apply growing chance
+                                    int localChance = computeGrowChance( world, mpos, isNatural );
+                                    if( localChance > 0 && rand.nextInt( MAX_GROW_CHANCE ) < localChance ) {
+                                        mpos.setPos( pos ).addPos( offset ).moveUp( y );
+
+                                        // Place block
+                                        BlockState placeState = getDefaultState().with( CAN_SPREAD, ! noSpread )
+                                                                                 .with( NATURAL, isNatural );
+
+                                        world.setBlockState( mpos, computeStateForPos( world, mpos, placeState ), 3 );
+                                    }
+                                }
+                            }
+
+                        }
+                    }
                 }
-            }
-
-            // Find the location to grow at: can we grow here
-            BlockPos loc = GROW_AREA[ i ];
-            npos.setPos( pos );
-            npos.move( loc.getX(), 0, loc.getZ() );
-
-            npos.move( Direction.UP );
-            if( ! isValidPosition( getDefaultState(), world, npos ) ) {
-                npos.move( Direction.DOWN );
-                if( ! isValidPosition( getDefaultState(), world, npos ) )
-                    npos.move( Direction.DOWN );
-            }
-
-            // Grow to the selected block...
-            BlockState s = world.getBlockState( npos );
-            if( isValidPosition( getDefaultState(), world, npos ) && ( s.getMaterial().isLiquid() || s.isAir( world, npos ) ) ) {
-                world.setBlockState( npos, getDefaultState().with( NATURAL, rand.nextInt( 5 ) == 0 ).with( WATERLOGGED, EWaterlogType.getType( world.getFluidState( pos ) ) ) );
             }
         }
     }
 
-    /**
-     * Calculate the chance that a salt crystal grows (that it increases its age).
-     */
-    public int calculateGrowWeight( World world, BlockPos pos, BlockPos.MutableBlockPos mpos ) {
-        int chance = 0;
-        // Use modernized water as salt source
-        if( world.getFluidState( pos ).getFluid() == MDFluids.MURKY_WATER ) {
-            chance += 44;
-        }
+    @Override
+    protected BlockState computeStateForPos( IWorldReader world, BlockPos pos, BlockState state ) {
+        return state.with( WATERLOGGED, world.getFluidState( pos ).getFluid() == MDFluids.MURKY_WATER );
+    }
 
-        // Find block sources
+    private boolean canReachLocation( World world, BlockPos pos, int x, int y, int z, MovingBlockPos mpos ) {
+        if( x == 0 && z == 0 ) return true;
+
+        mpos.setPos( pos ).addPos( x, y, z );
+        if( world.getBlockState( mpos ).getMaterial().blocksMovement() ) return false;
+
+        boolean canReach = false;
+        if( x > 0 ) canReach = canReachLocation( world, pos, x - 1, y, z, mpos );
+        if( x < 0 ) canReach = canReachLocation( world, pos, x + 1, y, z, mpos );
+        if( z > 0 && ! canReach ) canReach = canReachLocation( world, pos, x, y, z - 1, mpos );
+        if( z < 0 && ! canReach ) canReach = canReachLocation( world, pos, x, y, z + 1, mpos );
+
+        return canReach;
+    }
+
+    private int computeGrowChance( World world, BlockPos pos, boolean natural ) {
         int sources = 0;
+
+        MovingBlockPos mpos = new MovingBlockPos();
+
         for( int x = - 1; x <= 1; x++ ) {
             for( int z = - 1; z <= 1; z++ ) {
-                mpos.setPos( pos );
-                if( isSaltSource( world.getBlockState( mpos.move( x, - 1, z ) ) ) ) {
+                mpos.setPos( pos ).addPos( x, - 1, z );
+
+                if( isSaltSource( world.getBlockState( mpos ) ) ) {
+                    sources++;
                     if( x == 0 && z == 0 ) {
-                        sources += 24;
-                    } else if( x == 0 || z == 0 ) {
-                        sources += 4;
-                    } else {
-                        sources += 1;
+                        sources++;
                     }
                 }
             }
         }
 
-        chance += sources;
+        int fluid = 0;
 
-        return chance;
-    }
-
-
-    @Override
-    public boolean canContainFluid( IBlockReader world, BlockPos pos, BlockState state, Fluid fluid ) {
-        return fluid == MDFluids.MURKY_WATER || fluid == Fluids.WATER;
-    }
-
-    @Override
-    public boolean receiveFluid( IWorld world, BlockPos pos, BlockState state, IFluidState fluidState ) {
-        if( state.get( WATERLOGGED ) == EWaterlogType.NONE ) {
-            if( fluidState.getFluid() == Fluids.WATER ) {
-                if( ! world.isRemote() ) {
-                    world.setBlockState( pos, state.with( WATERLOGGED, EWaterlogType.WATER ), 3 );
-                    world.getPendingFluidTicks().scheduleTick( pos, Fluids.WATER, Fluids.WATER.getTickRate( world ) );
-                }
-            } else if( fluidState.getFluid() == MDFluids.MURKY_WATER ) {
-                if( ! world.isRemote() ) {
-                    world.setBlockState( pos, state.with( WATERLOGGED, EWaterlogType.MURKY_WATER ), 3 );
-                    world.getPendingFluidTicks().scheduleTick( pos, MDFluids.MURKY_WATER, MDFluids.MURKY_WATER.getTickRate( world ) );
-                }
-            } else {
-                return false;
-            }
-
-            return true;
-        } else {
-            return false;
+        if( world.getFluidState( pos ).getFluid() == MDFluids.MURKY_WATER ) {
+            fluid = 3;
         }
+
+        if( natural ) fluid++;
+
+        return sources * Math.min( 6, fluid );
     }
 
-    @Override
-    public IFluidState getFluidState( BlockState state ) {
-        return state.get( WATERLOGGED ).getFluidState();
+    private boolean isSaltSource( BlockState state ) {
+        return state.isIn( MDBlockTags.SALT_SOURCE );
     }
 
-    @Override
-    public BlockState updatePostPlacement( BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos ) {
-        if( state.get( WATERLOGGED ) == EWaterlogType.WATER ) {
-            world.getPendingFluidTicks().scheduleTick( currentPos, Fluids.WATER, Fluids.WATER.getTickRate( world ) );
-        }
-        if( state.get( WATERLOGGED ) == EWaterlogType.MURKY_WATER ) {
-            world.getPendingFluidTicks().scheduleTick( currentPos, MDFluids.MURKY_WATER, MDFluids.MURKY_WATER.getTickRate( world ) );
-        }
-        return state;
-    }
-
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement( BlockItemUseContext context ) {
-        IFluidState fluid = context.getWorld().getFluidState( context.getPos() );
-        return getDefaultState().with( WATERLOGGED, EWaterlogType.getType( fluid ) ).with( NATURAL, false );
-    }
-
-    /**
-     * Returns a random state for world generation.
-     */
-    public BlockState getGenerationStage( Random rand, IFluidState state ) {
+    private BlockState getGenerationStage( Random rand ) {
         int randAge = rand.nextInt( 6 );
         if( rand.nextBoolean() ) {
             randAge += rand.nextInt( 7 );
         }
-        return getDefaultState().with( AGE, randAge ).with( WATERLOGGED, EWaterlogType.getType( state ) );
+        return getDefaultState().with( AGE, randAge );
     }
 
     @Override
     public boolean provide( IWorld world, BlockPos pos, Random rand ) {
-        if( isValidPosition( world.getBlockState( pos ), world, pos ) && ! world.getBlockState( pos ).getMaterial().blocksMovement() ) {
-            world.setBlockState( pos, getGenerationStage( rand, world.getFluidState( pos ) ), 2 | 16 );
+        if( canGenerateAt( world, pos, world.getBlockState( pos ) ) ) {
+            world.setBlockState( pos, computeStateForPos( world, pos, getGenerationStage( rand ) ), 2 );
             return true;
         }
         return false;
     }
 
     @Override
+    @SuppressWarnings( "deprecation" )
     public VoxelShape getShape( BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext ctx ) {
         return STATE_SHAPES[ state.get( AGE ) ];
     }
@@ -344,5 +306,21 @@ public class SaltCrystalBlock extends SimplePlantBlock implements IWaterloggedBl
 
             world.addParticle( MDParticleTypes.SALT, x, y, z, rand.nextDouble() * 0.04 - 0.02, rand.nextDouble() * 0.04 - 0.02, rand.nextDouble() * 0.04 - 0.02 );
         }
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement( BlockItemUseContext ctx ) {
+        BlockPos pos = ctx.getPos();
+        World world = ctx.getWorld();
+        return getDefaultState().with( AGE, 0 )
+                                .with( NATURAL, false )
+                                .with( CAN_SPREAD, true )
+                                .with( WATERLOGGED, world.getFluidState( pos ).getFluid() == MDFluids.MURKY_WATER );
+    }
+
+    @Override
+    public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
+        return state.isSolid() && state.func_224755_d( world, pos, Direction.UP );
     }
 }

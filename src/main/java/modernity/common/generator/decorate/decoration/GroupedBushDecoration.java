@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 15 - 2020
  * Author: rgsw
  */
 
@@ -57,7 +57,7 @@ public class GroupedBushDecoration implements IDecoration {
         MovingBlockPos rpos = new MovingBlockPos();
 
         for( int i = 0; i < iterations; i++ ) {
-            int rad = rand.nextInt( Math.min( 4, radius ) ) + 2;
+            int rad = Math.min( radius, rand.nextInt( Math.min( 4, radius ) ) + 2 );
             int sr = radius - rad;
             int r2 = sr * 2 + 1;
             int rx = rand.nextInt( r2 ) + pos.getX() - rad;

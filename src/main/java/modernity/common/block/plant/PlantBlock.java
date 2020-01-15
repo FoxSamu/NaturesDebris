@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 15 - 2020
  * Author: rgsw
  */
 
@@ -10,6 +10,7 @@ package modernity.common.block.plant;
 
 import modernity.api.util.EWaterlogType;
 import modernity.api.util.IBlockProvider;
+import modernity.common.block.MDBlocks;
 import modernity.common.block.base.IMurkyWaterloggedBlock;
 import modernity.common.block.base.IWaterloggedBlock;
 import modernity.common.fluid.MDFluids;
@@ -127,7 +128,7 @@ public abstract class PlantBlock extends Block implements IBlockProvider {
     public boolean canGenerateAt( IWorld world, BlockPos pos, BlockState state ) {
         boolean air = state.isAir( world, pos );
         if( this instanceof IWaterPlant ) {
-            air = state.getFluidState().getFluid() == MDFluids.MURKY_WATER;
+            air = state.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDBlocks.MURKY_WATER;
         }
         return air && isValidPosition( state, world, pos );
     }

@@ -1,7 +1,7 @@
 {
   "parent": "block/cross",
   "textures": {
-    "cross": "modernity:block/salt_crystal_stage_3",
-    "particle": "modernity:block/salt_crystal_stage_3"
+    "cross": "modernity:block/salt_crystal_3",
+    "particle": "modernity:block/salt_crystal_3"
   }
 }

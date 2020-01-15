@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 15 - 2020
  * Author: rgsw
  */
 
@@ -22,7 +22,7 @@ public abstract class SingleDirectionalPlantBlock extends DirectionalPlantBlock 
     @Override
     public boolean provide( IWorld world, BlockPos pos, Random rand ) {
         if( canGenerateAt( world, pos, world.getBlockState( pos ) ) ) {
-            world.setBlockState( pos, getDefaultState(), 2 );
+            world.setBlockState( pos, computeStateForPos( world, pos, getDefaultState() ), 2 );
             return true;
         }
         return false;
