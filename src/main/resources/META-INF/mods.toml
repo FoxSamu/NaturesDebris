@@ -17,7 +17,7 @@ The Modernity dimension is a dark and mysterious world where the ancient forces 
 [[dependencies.modernity]]
     modId="forge"
     mandatory=true
-    versionRange="[28.1.56,)"
+    versionRange="[28.1.115,)"
     ordering="NONE"
     side="BOTH"
 
