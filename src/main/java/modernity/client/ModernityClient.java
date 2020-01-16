@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 16 - 2020
  * Author: rgsw
  */
 
@@ -15,6 +15,7 @@ import modernity.client.handler.FogHandler;
 import modernity.client.handler.ParticleRegistryHandler;
 import modernity.client.handler.TextureStitchHandler;
 import modernity.client.handler.WorldRenderHandler;
+import modernity.client.model.MDModelLoaders;
 import modernity.client.reloader.BiomeColorProfileReloader;
 import modernity.client.render.area.AreaRenderManager;
 import modernity.client.render.block.CustomFluidRenderer;
@@ -101,6 +102,7 @@ public class ModernityClient extends Modernity {
         MDContainerTypes.registerScreens();
 
         MDRecipeBookCategories.init();
+        MDModelLoaders.register();
     }
 
     @Override

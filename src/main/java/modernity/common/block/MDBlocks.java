@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 16 - 2020
  * Author: rgsw
  */
 
@@ -51,6 +51,7 @@ public final class MDBlocks {
     /* ==== NATURE BLOCKS ==== */
 
     // Rocks
+    public static final ConnectionTestBlock CONN_TEST = blockItem( "conn_test", new ConnectionTestBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final Block ROCK = blockItem( "rock", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final Block DARKROCK = blockItem( "darkrock", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final Block LIGHTROCK = blockItem( "lightrock", new Block( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );

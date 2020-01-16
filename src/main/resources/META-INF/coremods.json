@@ -3,5 +3,6 @@
   "checkinwater": "core/checkinwater.js",
   "syncheightmaps": "core/syncheightmaps.js",
   "prerendershaders": "core/prerendershaders.js",
-  "rain": "core/rain.js"
+  "rain": "core/rain.js",
+  "getunbaked": "core/getunbaked.js"
 }
