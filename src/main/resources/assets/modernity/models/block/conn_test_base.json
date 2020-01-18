@@ -1,8 +1,9 @@
 {
-  "parent": "modernity:block/abstract_farmland_base",
+  "parent": "modernity:block/abstract_grass_farmland_base",
   "textures": {
-    "top": "modernity:block/rock",
-    "side": "modernity:block/murky_dirt",
-    "bottom": "modernity:block/murky_dirt"
+    "top": "modernity:block/farmland/default",
+    "side": "modernity:block/murky_grass_block_side",
+    "bottom": "modernity:block/murky_dirt",
+    "overlay": "modernity:block/murky_grass_block_overlay"
   }
 }

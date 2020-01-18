@@ -4,17 +4,28 @@
     "model": "modernity:merged",
     "custom": {
       "models": [
+        "modernity:block/conn_test_base",
         {
-          "model": "modernity:block/conn_test_base"
+          "model": "modernity:block/farmland_ctm",
+          "textures": {
+            "all": "modernity:block/farmland/murky_base_layer_full",
+            "center": "modernity:block/farmland/murky_base_layer_center",
+            "cross": "modernity:block/farmland/murky_base_layer_cross",
+            "x": "modernity:block/farmland/murky_base_layer_horizontal",
+            "z": "modernity:block/farmland/murky_base_layer_vertical"
+          }
         },
         {
           "model": "modernity:block/farmland_ctm",
           "textures": {
-            "all": "modernity:block/conn_test_all",
-            "center": "modernity:block/conn_test_center",
-            "cross": "modernity:block/conn_test_cross",
-            "x": "modernity:block/conn_test_horizontal",
-            "z": "modernity:block/conn_test_vertical"
+            "all": "modernity:block/farmland/grass_layer_full",
+            "center": "modernity:block/farmland/grass_layer_center",
+            "cross": "modernity:block/farmland/grass_layer_cross",
+            "x": "modernity:block/farmland/grass_layer_horizontal",
+            "z": "modernity:block/farmland/grass_layer_vertical"
+          },
+          "custom": {
+            "tint": 0
           }
         }
       ]
