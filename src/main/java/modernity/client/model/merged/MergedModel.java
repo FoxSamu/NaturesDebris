@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 16 - 2020
+ * Date:   01 - 19 - 2020
  * Author: rgsw
  */
 
@@ -38,6 +38,7 @@ import java.util.function.Function;
 
 public class MergedModel implements IUnbakedModel {
     private final ArrayList<Entry> entries = new ArrayList<>();
+    private final HashMap<String, String> referenceableTextures = new HashMap<>();
 
     @Override
     public Collection<ResourceLocation> getDependencies() {
@@ -49,6 +50,15 @@ public class MergedModel implements IUnbakedModel {
         Set<ResourceLocation> tex = new HashSet<>();
         for( Entry entry : entries ) {
             entry.model = ModelLoaderRegistry.getModelOrMissing( entry.loc );
+            HashMap<String, String> remapKeys = new HashMap<>();
+            for( Map.Entry<String, String> e : entry.textures.entrySet() ) {
+                if( e.getValue().startsWith( "@" ) ) {
+                    remapKeys.put( e.getKey(), referenceableTextures.get( e.getValue().substring( 1 ) ) );
+                }
+            }
+            for( Map.Entry<String, String> e : remapKeys.entrySet() ) {
+                entry.textures.put( e.getKey(), e.getValue() );
+            }
             entry.process();
             Collection<ResourceLocation> textures = entry.model.getTextures( modelGetter, missingTextureErrors );
             tex.addAll( textures );
@@ -73,6 +83,15 @@ public class MergedModel implements IUnbakedModel {
             Entry entry = parseEntry( element );
             out.entries.add( entry );
         }
+        out.referenceableTextures.putAll( referenceableTextures );
+        return out;
+    }
+
+    @Override
+    public IUnbakedModel retexture( ImmutableMap<String, String> textures ) {
+        MergedModel out = new MergedModel();
+        out.referenceableTextures.putAll( textures );
+        out.entries.addAll( entries );
         return out;
     }
 

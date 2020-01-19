@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 18 - 2020
+ * Date:   01 - 19 - 2020
  * Author: rgsw
  */
 
@@ -10,9 +10,11 @@ package modernity.common.block.farmland;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import java.util.Optional;
+import java.util.Random;
 
 public interface IFarmlandLogic {
     int useFertility( int amount );
@@ -24,6 +26,7 @@ public interface IFarmlandLogic {
     void flood();
     void unflood( int amount );
     void dryout( int amount );
+    void makeWet();
 
     int decay( int amount );
     int undecay( int amount );
@@ -50,7 +53,9 @@ public interface IFarmlandLogic {
     int getMaxSaltiness();
     int getMaxFloodedUpdates();
 
-    static IFarmlandLogic get( World world, BlockPos pos ) {
+    void randomUpdate( Random rand );
+
+    static IFarmlandLogic get( IWorld world, BlockPos pos ) {
         TileEntity te = world.getTileEntity( pos );
         if( te instanceof IFarmlandLogic ) {
             return (IFarmlandLogic) te;

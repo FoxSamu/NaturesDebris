@@ -2,38 +2,28 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 19 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.dirt;
 
 import modernity.api.reflect.FieldAccessor;
+import modernity.common.block.dirt.logic.DirtLogic;
 import modernity.common.particle.MDParticleTypes;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.redgalaxy.util.Lazy;
 
 import java.util.Random;
-import java.util.function.Supplier;
 
-public class LeafyDirtBlock extends SnowyDirtlikeBlock implements IDecayableDirt {
+public class LeafyDirtlikeBlock extends SnowyDirtlikeBlock {
     private static final FieldAccessor<Entity, Float> nextStepDistanceField = new FieldAccessor<>( Entity.class, "field_70150_b" );
 
-    private final Lazy<BlockState> leaflessState;
-
-    public LeafyDirtBlock( Properties properties, Supplier<BlockState> leafless ) {
-        super( properties );
-        this.leaflessState = Lazy.of( leafless );
-    }
-
-    @Override
-    public BlockState getDecayState( World world, BlockPos pos, BlockState state ) {
-        return leaflessState.get();
+    public LeafyDirtlikeBlock( DirtLogic logic, Properties properties ) {
+        super( logic, properties );
     }
 
     @Override

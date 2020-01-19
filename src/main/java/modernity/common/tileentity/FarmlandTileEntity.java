@@ -2,18 +2,20 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 18 - 2020
+ * Date:   01 - 19 - 2020
  * Author: rgsw
  */
 
 package modernity.common.tileentity;
 
+import modernity.api.util.MovingBlockPos;
 import modernity.api.util.NBTUtil;
 import modernity.common.block.farmland.FarmlandBlock;
 import modernity.common.block.farmland.Fertility;
 import modernity.common.block.farmland.IFarmlandLogic;
 import modernity.common.block.farmland.Wetness;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
@@ -127,6 +129,7 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
     @Override
     public void flood() {
         wetness = maxFloodedUpdates;
+        markDirty();
     }
 
     @Override
@@ -169,6 +172,14 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
             return last - decay;
         }
         return 0;
+    }
+
+    @Override
+    public void makeWet() {
+        if( wetness < 0 ) {
+            wetness = 0;
+            markDirty();
+        }
     }
 
     @Override
@@ -266,7 +277,11 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
         return maxFloodedUpdates;
     }
 
+    @Override
     public void randomUpdate( Random rand ) {
+        assert world != null;
+        assert pos != null;
+
         if( hasDecay ) {
             if( fertility > 0 && decay < maxDecay ) {
                 boolean canDecay = true;
@@ -306,12 +321,40 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
         }
 
         if( isFlooded() ) {
-            unflood( 1 );
+            if( ! world.getFluidState( pos.up() ).isTagged( FluidTags.WATER ) ) {
+                unflood( 1 );
+            }
 
             if( isSalty() && rand.nextBoolean() ) {
                 useSaltiness( 1 );
             }
+        } else {
+            if( checkWater() ) {
+                makeWet();
+            } else {
+                dryout( 1 );
+            }
         }
+    }
+
+    private boolean checkWater() {
+        assert world != null;
+        assert pos != null;
+
+        MovingBlockPos mpos = new MovingBlockPos();
+
+        for( int x = - 4; x <= 4; x++ ) {
+            for( int z = - 4; z <= 4; z++ ) {
+                for( int y = 0; y <= 1; y++ ) {
+                    mpos.setPos( pos ).addPos( x, y, z );
+
+                    if( world.getFluidState( mpos ).isTagged( FluidTags.WATER ) ) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     private void updateProperties() {

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 16 - 2020
+ * Date:   01 - 19 - 2020
  * Author: rgsw
  */
 
@@ -102,10 +102,10 @@ public class BakedFarmlandConnectedTextureModel implements IBakedModel {
         int nz = offZ ? 8 : 0;
         int px = offX ? 16 : 8;
         int pz = offZ ? 16 : 8;
-        float nu = offX ? 8 : 0.001F;
-        float nv = offZ ? 8 : 0.001F;
-        float pu = offX ? 15.999F : 8;
-        float pv = offZ ? 15.999F : 8;
+        float nu = offX ? 8 : 0.003F;
+        float nv = offZ ? 8 : 0.003F;
+        float pu = offX ? 15.997F : 8;
+        float pv = offZ ? 15.997F : 8;
 
         for( int i = 0; i < 5; i++ ) {
             maker.start( transform );

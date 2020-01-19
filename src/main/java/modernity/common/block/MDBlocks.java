@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 16 - 2020
+ * Date:   01 - 19 - 2020
  * Author: rgsw
  */
 
@@ -10,9 +10,13 @@ package modernity.common.block;
 
 import modernity.api.block.IColoredBlock;
 import modernity.common.block.base.*;
-import modernity.common.block.dirt.DirtBlock;
+import modernity.common.block.dirt.DirtlikeBlock;
 import modernity.common.block.dirt.GrassBlock;
-import modernity.common.block.dirt.LeafyDirtBlock;
+import modernity.common.block.dirt.LeafyDirtlikeBlock;
+import modernity.common.block.dirt.SnowyDirtlikeBlock;
+import modernity.common.block.dirt.logic.MDDirtLogics;
+import modernity.common.block.farmland.FarmlandBlock;
+import modernity.common.block.farmland.GrassFarmlandBlock;
 import modernity.common.block.plant.*;
 import modernity.common.fluid.MDFluids;
 import modernity.common.generator.tree.MDTrees;
@@ -51,7 +55,6 @@ public final class MDBlocks {
     /* ==== NATURE BLOCKS ==== */
 
     // Rocks
-    public static final ConnectionTestBlock CONN_TEST = blockItem( "conn_test", new ConnectionTestBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final Block ROCK = blockItem( "rock", new Block( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final Block DARKROCK = blockItem( "darkrock", new Block( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.BLOCKS );
     public static final Block LIGHTROCK = blockItem( "lightrock", new Block( rock( MaterialColor.SNOW, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.BLOCKS );
@@ -62,13 +65,13 @@ public final class MDBlocks {
     public static final Block ASPHALT_CONCRETE = blockItem( "asphalt_concrete", new Block( asphalt() ), MDItemGroup.BLOCKS );
 
     // Soils
-    public static final DirtBlock MURKY_DIRT = blockItem( "murky_dirt", new DirtBlock( dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS, "dark_dirt" );
-    public static final GrassBlock MURKY_GRASS_BLOCK = blockItem( "murky_grass_block", new GrassBlock( dirt( MaterialColor.GRASS, true ), supply( "murky_dirt" ) ), MDItemGroup.BLOCKS, "dark_grass_block" );
+    public static final DirtlikeBlock MURKY_DIRT = blockItem( "murky_dirt", new DirtlikeBlock( MDDirtLogics.DIRT_LOGIC, dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS, "dark_dirt" );
+    public static final DirtlikeBlock MURKY_GRASS_BLOCK = blockItem( "murky_grass_block", new GrassBlock( MDDirtLogics.GRASS_LOGIC, dirt( MaterialColor.GRASS, true ) ), MDItemGroup.BLOCKS, "dark_grass_block" );
     public static final DigableFallBlock MURKY_SAND = blockItem( "murky_sand", new DigableFallBlock( 0x826f52, dust( MaterialColor.SAND, false ) ), MDItemGroup.BLOCKS, "dark_sand" );
     public static final DigableBlock MURKY_CLAY = blockItem( "murky_clay", new DigableBlock( clay( MaterialColor.GRAY_TERRACOTTA ) ), MDItemGroup.BLOCKS, "dark_clay" );
-    public static final DirtBlock MURKY_COARSE_DIRT = blockItem( "murky_coarse_dirt", new DirtBlock( dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS, "coarse_dark_dirt" );
-    public static final DirtBlock HUMUS = blockItem( "humus", new DirtBlock( dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS );
-    public static final LeafyDirtBlock MURKY_PODZOL = blockItem( "murky_podzol", new LeafyDirtBlock( dirt( MaterialColor.ORANGE_TERRACOTTA, true ), supply( "humus" ) ), MDItemGroup.BLOCKS, "dark_podzol" );
+    public static final DigableBlock MURKY_COARSE_DIRT = blockItem( "murky_coarse_dirt", new DigableBlock( dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS, "coarse_dark_dirt" );
+    public static final DirtlikeBlock HUMUS = blockItem( "humus", new SnowyDirtlikeBlock( MDDirtLogics.HUMUS_LOGIC, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS );
+    public static final DirtlikeBlock MURKY_PODZOL = blockItem( "murky_podzol", new LeafyDirtlikeBlock( MDDirtLogics.PODZOL_LOGIC, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS, "dark_podzol" );
     public static final StickyBlock MUD = blockItem( "mud", new StickyBlock.Digable( dirt( MaterialColor.BROWN_TERRACOTTA, false ) ), MDItemGroup.BLOCKS );
     public static final DigableFallBlock REGOLITH = blockItem( "regolith", new DigableFallBlock( 0x737d8c, dust( MaterialColor.STONE, true ) ), MDItemGroup.BLOCKS, "rock_gravel" );
 
@@ -77,6 +80,15 @@ public final class MDBlocks {
     public static final RegularFluidBlock MOLTEN_ROCK = blockOnly( "molten_rock", new RegularFluidBlock( MDFluids.MOLTEN_ROCK, fluid( Material.LAVA, MaterialColor.TNT ).lightValue( 15 ) ), "heatrock" );
 
     public static final PuddleBlock PUDDLE = blockOnly( "puddle", new PuddleBlock( Block.Properties.create( Material.WATER, MaterialColor.WATER ) ) );
+
+
+
+    /* ==== FARMING ==== */
+
+    public static final FarmlandBlock MURKY_DIRT_FARMLAND = blockItem( "murky_dirt_farmland", new FarmlandBlock( MDDirtLogics.DIRT_LOGIC_FL, dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS );
+    public static final FarmlandBlock MURKY_GRASS_BLOCK_FARMLAND = blockItem( "murky_grass_block_farmland", new GrassFarmlandBlock( MDDirtLogics.GRASS_LOGIC_FL, dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS );
+    public static final FarmlandBlock MURKY_PODZOL_FARMLAND = blockItem( "murky_podzol_farmland", new FarmlandBlock( MDDirtLogics.PODZOL_LOGIC_FL, dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS );
+    public static final FarmlandBlock MURKY_HUMUS_FARMLAND = blockItem( "murky_humus_farmland", new FarmlandBlock( MDDirtLogics.HUMUS_LOGIC_FL, dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS );
 
 
 

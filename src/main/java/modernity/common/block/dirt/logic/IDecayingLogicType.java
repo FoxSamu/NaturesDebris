@@ -6,27 +6,24 @@
  * Author: rgsw
  */
 
-package modernity.common.block.dirt;
+package modernity.common.block.dirt.logic;
 
-import modernity.common.block.dirt.logic.DirtLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
-@FunctionalInterface
-public interface IDecayableDirt {
-
+public interface IDecayingLogicType extends IDirtLogicType {
     default boolean canDecay( World world, BlockPos pos, BlockState state ) {
         return ! DirtLogic.canRemain( world, pos, state );
     }
 
-    BlockState getDecayState( World world, BlockPos pos, BlockState state );
+    IDirtLogicType getDecayed( World world, BlockPos pos, BlockState state );
 
     default void decay( World world, BlockPos pos, BlockState state ) {
-        BlockState decayState = getDecayState( world, pos, state );
-        world.setBlockState( pos, decayState, 3 );
+        IDirtLogicType decayed = getDecayed( world, pos, state );
+        DirtLogic.switchType( world, pos, decayed );
     }
 
     default boolean decayTick( World world, BlockPos pos, BlockState state, Random rand ) {

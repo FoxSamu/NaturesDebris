@@ -6,9 +6,8 @@
  * Author: rgsw
  */
 
-package modernity.common.block.dirt;
+package modernity.common.block.dirt.logic;
 
-import modernity.common.block.dirt.logic.DirtLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +16,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public interface ISpreadableDirt {
+public interface ISpreadingLogicType extends IDirtLogicType {
 
     default int getRequiredSpreadLight() {
         return 9;
@@ -30,23 +29,25 @@ public interface ISpreadableDirt {
         return Math.max( block, sky ) >= getRequiredSpreadLight();
     }
 
-    boolean canGrowUpon( BlockState state );
+    boolean canGrowUpon( DirtLogic logic );
 
     default boolean canGrowAt( World world, BlockPos pos, BlockState state ) {
+        DirtLogic logic = DirtLogic.getLogic( world, pos );
+        if( logic == null ) return false;
         BlockPos up = pos.up();
         BlockState upState = world.getBlockState( up );
-        return canGrowUpon( state ) && DirtLogic.canRemain( world, pos, state ) && ! preventsGrow( world, up, upState );
+        return canGrowUpon( logic ) && DirtLogic.canRemain( world, pos, state ) && ! preventsGrow( world, up, upState );
     }
 
     default boolean preventsGrow( World world, BlockPos pos, BlockState state ) {
         return state.getFluidState().isTagged( FluidTags.WATER );
     }
 
-    BlockState getGrowState( World world, BlockPos pos, BlockState state );
+    IDirtLogicType getGrowType( World world, BlockPos pos, BlockState state );
 
     default void growAt( World world, BlockPos pos, BlockState state ) {
-        BlockState growState = getGrowState( world, pos, state );
-        world.setBlockState( pos, growState );
+        IDirtLogicType type = getGrowType( world, pos, state );
+        DirtLogic.switchType( world, pos, type );
     }
 
     default void spread( World world, BlockPos pos, BlockState state, Random rand ) {
@@ -60,6 +61,7 @@ public interface ISpreadableDirt {
     }
 
     default void spreadTick( World world, BlockPos pos, BlockState state, Random rand ) {
+        if( ! world.isAreaLoaded( pos, 3 ) ) return;
         if( canSpread( world, pos, state ) ) {
             spread( world, pos, state, rand );
         }

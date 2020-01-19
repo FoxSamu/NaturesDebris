@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 16 - 2020
+ * Date:   01 - 19 - 2020
  * Author: rgsw
  */
 
@@ -22,7 +22,7 @@ public interface ITopTextureConnectionBlock {
     @OnlyIn( Dist.CLIENT )
     ModelProperty<Integer> CONNECTIONS = new ModelProperty<>();
 
-    default boolean canConnectTo( BlockState state ) {
+    default boolean canConnectTo( IEnviromentBlockReader world, MovingBlockPos pos, BlockState state ) {
         return state.getBlock() == this;
     }
 
@@ -31,17 +31,21 @@ public interface ITopTextureConnectionBlock {
         int connections = 0;
         MovingBlockPos mpos = new MovingBlockPos();
 
-        if( canConnectTo( world.getBlockState( mpos.setPos( pos ).moveNorth() ) ) ) connections |= CTMUtil.UP;
-        if( canConnectTo( world.getBlockState( mpos.setPos( pos ).moveEast() ) ) ) connections |= CTMUtil.RIGHT;
-        if( canConnectTo( world.getBlockState( mpos.setPos( pos ).moveSouth() ) ) ) connections |= CTMUtil.DOWN;
-        if( canConnectTo( world.getBlockState( mpos.setPos( pos ).moveWest() ) ) ) connections |= CTMUtil.LEFT;
-        if( canConnectTo( world.getBlockState( mpos.setPos( pos ).moveNorth().moveEast() ) ) )
+        if( canConnectTo( world, mpos.setPos( pos ).moveNorth(), world.getBlockState( mpos ) ) )
+            connections |= CTMUtil.UP;
+        if( canConnectTo( world, mpos.setPos( pos ).moveEast(), world.getBlockState( mpos ) ) )
+            connections |= CTMUtil.RIGHT;
+        if( canConnectTo( world, mpos.setPos( pos ).moveSouth(), world.getBlockState( mpos ) ) )
+            connections |= CTMUtil.DOWN;
+        if( canConnectTo( world, mpos.setPos( pos ).moveWest(), world.getBlockState( mpos ) ) )
+            connections |= CTMUtil.LEFT;
+        if( canConnectTo( world, mpos.setPos( pos ).moveNorth().moveEast(), world.getBlockState( mpos ) ) )
             connections |= CTMUtil.UPRIGHT;
-        if( canConnectTo( world.getBlockState( mpos.setPos( pos ).moveNorth().moveWest() ) ) )
+        if( canConnectTo( world, mpos.setPos( pos ).moveNorth().moveWest(), world.getBlockState( mpos ) ) )
             connections |= CTMUtil.UPLEFT;
-        if( canConnectTo( world.getBlockState( mpos.setPos( pos ).moveSouth().moveEast() ) ) )
+        if( canConnectTo( world, mpos.setPos( pos ).moveSouth().moveEast(), world.getBlockState( mpos ) ) )
             connections |= CTMUtil.DOWNRIGHT;
-        if( canConnectTo( world.getBlockState( mpos.setPos( pos ).moveSouth().moveWest() ) ) )
+        if( canConnectTo( world, mpos.setPos( pos ).moveSouth().moveWest(), world.getBlockState( mpos ) ) )
             connections |= CTMUtil.DOWNLEFT;
 
         data.setData( CONNECTIONS, connections );

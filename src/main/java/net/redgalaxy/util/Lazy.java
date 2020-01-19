@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   01 - 19 - 2020
  * Author: rgsw
  */
 
@@ -15,9 +15,9 @@ import java.util.function.Supplier;
 
 public class Lazy<T> implements Supplier<T> {
     private T value;
-    private Supplier<T> supplier;
+    private Supplier<? extends T> supplier;
 
-    private Lazy( Supplier<T> supplier ) {
+    private Lazy( Supplier<? extends T> supplier ) {
         set( supplier );
     }
 
@@ -25,7 +25,7 @@ public class Lazy<T> implements Supplier<T> {
         set( value );
     }
 
-    public void set( Supplier<T> supplier ) {
+    public void set( Supplier<? extends T> supplier ) {
         if( supplier == null ) throw new NullPointerException( "Supplier is null" );
         this.supplier = supplier;
         this.value = null;
@@ -76,7 +76,7 @@ public class Lazy<T> implements Supplier<T> {
         return new Lazy<>( value );
     }
 
-    public static <T> Lazy<T> of( Supplier<T> supplier ) {
+    public static <T> Lazy<T> of( Supplier<? extends T> supplier ) {
         return new Lazy<>( supplier );
     }
 }
