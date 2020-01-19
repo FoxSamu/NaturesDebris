@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 31 - 2020
+ * Date:   01 - 19 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.client.render.tileentity;
 
 import com.mojang.blaze3d.platform.GLX;
 import com.mojang.blaze3d.platform.GlStateManager;
-import modernity.common.block.base.WorkbenchBlock;
+import modernity.common.block.utils.WorkbenchBlock;
 import modernity.common.tileentity.WorkbenchTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;

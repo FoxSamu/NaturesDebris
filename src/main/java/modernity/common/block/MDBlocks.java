@@ -18,6 +18,8 @@ import modernity.common.block.dirt.logic.MDDirtLogics;
 import modernity.common.block.farmland.FarmlandBlock;
 import modernity.common.block.farmland.GrassFarmlandBlock;
 import modernity.common.block.plant.*;
+import modernity.common.block.utils.RockFurnaceBlock;
+import modernity.common.block.utils.WorkbenchBlock;
 import modernity.common.fluid.MDFluids;
 import modernity.common.generator.tree.MDTrees;
 import modernity.common.item.MDItemGroup;

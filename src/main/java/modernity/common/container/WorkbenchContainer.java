@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 29 - 2019
+ * Date:   01 - 19 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.common.container;
 
 import com.google.common.collect.Lists;
 import modernity.api.container.IPostOpenHandler;
-import modernity.common.block.base.WorkbenchBlock;
+import modernity.common.block.utils.WorkbenchBlock;
 import modernity.common.container.inventory.WorkbenchInventory;
 import modernity.common.tileentity.WorkbenchTileEntity;
 import net.minecraft.client.util.RecipeBookCategories;

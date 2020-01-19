@@ -1,13 +1,14 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 29 - 2019
+ * Date:   01 - 19 - 2020
  * Author: rgsw
  */
 
-package modernity.common.block.base;
+package modernity.common.block.utils;
 
+import modernity.common.block.base.HorizontalFacingBlock;
 import modernity.common.tileentity.WorkbenchTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

@@ -2,11 +2,11 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 06 - 2020
+ * Date:   01 - 19 - 2020
  * Author: rgsw
  */
 
-package modernity.common.block.base;
+package modernity.common.block.utils;
 
 import modernity.common.tileentity.RockFurnaceTileEntity;
 import net.minecraft.block.AbstractFurnaceBlock;
