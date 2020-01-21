@@ -275,6 +275,9 @@
 
 
   "--- GUI ---": "",
+  "container.modernity.cleaner": "Cleaner",
+  "container.modernity.cleaner.drain": "Drain",
+  "container.modernity.cleaner.drain.desc": "Let all the fluid go away...",
 
 
   "--- ADVANCEMENTS ---": "",

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 29 - 2019
+ * Date:   01 - 21 - 2020
  * Author: rgsw
  */
 
@@ -51,15 +51,16 @@ public abstract class AbstractRecipeButtonWidget extends Widget implements IReci
     public void renderButton( int mouseX, int mouseY, float partialTicks ) {
         RenderHelper.enableGUIStandardItemLighting();
         GlStateManager.enableAlphaTest();
-        mc.getTextureManager().bindTexture( RecipeOverlayGui.TEXTURE );
-        int texX = 152;
+        mc.getTextureManager().bindTexture( type.getTexture() );
+        int[] texCoords = type.getRecipeButtonTextureCoords();
+        int texX = texCoords[ 0 ];// 152;
         if( ! craftable ) {
-            texX += 26;
+            texX += texCoords[ 2 ];// 26;
         }
 
-        int texY = gui.isFurnace ? 130 : 78;
+        int texY = texCoords[ 1 ];// gui.isFurnace ? 130 : 78;
         if( isHovered() ) {
-            texY += 26;
+            texY += texCoords[ 3 ];// 26;
         }
 
         blit( x, y, texX, texY, width, height );

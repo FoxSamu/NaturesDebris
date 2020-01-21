@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 21 - 2019
+ * Date:   01 - 21 - 2020
  * Author: rgsw
  */
 
@@ -58,6 +58,14 @@ public class BaseBucketItem extends Item {
         this.containing = fluid;
         this.empty = empty;
         this.fluidToItem = fluidToItem;
+    }
+
+    public Fluid getContaining() {
+        return containing;
+    }
+
+    public Item getEmpty() {
+        return empty;
     }
 
     @Override

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 18 - 2020
+ * Date:   01 - 21 - 2020
  * Author: rgsw
  */
 
@@ -14,6 +14,7 @@ import modernity.client.render.tileentity.SoulLightRenderer;
 import modernity.client.render.tileentity.WorkbenchRenderer;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.farmland.FarmlandBlock;
+import modernity.common.block.utils.CleanerBlock;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.block.Block;
@@ -40,6 +41,7 @@ public final class MDTileEntitiyTypes {
     public static final TileEntityType<RockFurnaceTileEntity> ROCK_FURNACE = register( "rock_furnace", create( RockFurnaceTileEntity::new, MDBlocks.ROCK_FURNACE ) );
     public static final TileEntityType<WorkbenchTileEntity> WORKBENCH = register( "workbench", create( WorkbenchTileEntity::new, MDBlocks.BLACKWOOD_WORKBENCH, MDBlocks.INVER_WORKBENCH ) );
     public static final TileEntityType<FarmlandTileEntity> FARMLAND = register( "farmland", create( FarmlandTileEntity::new, block -> block instanceof FarmlandBlock ) );
+    public static final TileEntityType<CleanerTileEntity> CLEANER = register( "cleaner", create( CleanerTileEntity::new, block -> block instanceof CleanerBlock ) );
 
     private static <T extends TileEntity> TileEntityType.Builder<T> create( Supplier<? extends T> factory, Block... validBlocks ) {
         return TileEntityType.Builder.create( factory, validBlocks );

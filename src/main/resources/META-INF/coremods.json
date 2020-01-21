@@ -4,5 +4,6 @@
   "syncheightmaps": "core/syncheightmaps.js",
   "prerendershaders": "core/prerendershaders.js",
   "rain": "core/rain.js",
-  "getunbaked": "core/getunbaked.js"
+  "getunbaked": "core/getunbaked.js",
+  "recipecategory": "core/recipecategory.js"
 }

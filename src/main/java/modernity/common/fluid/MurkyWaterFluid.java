@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   01 - 21 - 2020
  * Author: rgsw
  */
 
@@ -12,6 +12,7 @@ import modernity.api.block.fluid.IAluminiumBucketTakeable;
 import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.client.ModernityClient;
 import modernity.common.block.MDBlocks;
+import modernity.common.item.MDItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluid;
@@ -62,8 +63,8 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
 
     @Override
     public Item getFilledAluminiumBucket() {
-        return Items.WATER_BUCKET;
-//        return MDItems.ALUMINIUM_WATER_BUCKET;
+//        return Items.WATER_BUCKET;
+        return MDItems.ALUMINIUM_WATER_BUCKET;
     }
 
     @Override
@@ -156,6 +157,11 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
     @Override
     public int getColor( IFluidState state, BlockPos pos, IEnviromentBlockReader world ) {
         return ModernityClient.get().getWaterColors().getColor( world, pos );
+    }
+
+    @Override
+    public int getDefaultColor() {
+        return ModernityClient.get().getWaterColors().getItemColor();
     }
 
     @Override

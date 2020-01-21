@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 23 - 2019
+ * Date:   01 - 21 - 2020
  * Author: rgsw
  */
 
@@ -19,6 +19,7 @@ import net.minecraft.util.ResourceLocation;
 public final class MDFluidTags {
     public static final Tag<Fluid> MURKY_WATER = new FluidTags.Wrapper( new ResourceLocation( "modernity:murky_water" ) );
     public static final Tag<Fluid> MOLTEN_ROCK = new FluidTags.Wrapper( new ResourceLocation( "modernity:molten_rock" ) );
+    public static final Tag<Fluid> CLEANING = new FluidTags.Wrapper( new ResourceLocation( "modernity:cleaning" ) );
 
     private MDFluidTags() {
     }

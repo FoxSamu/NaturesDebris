@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 05 - 2020
+ * Date:   01 - 21 - 2020
  * Author: rgsw
  */
 
@@ -54,8 +54,8 @@ public final class MDItems {
 
     // Buckets
     public static final BaseBucketItem ALUMINIUM_BUCKET = item( "aluminium_bucket", new AluminiumBucketItem( Fluids.EMPTY, new Item.Properties().group( MDItemGroup.MISC ) ) );
-    public static final BaseBucketItem ALUMINIUM_WATER_BUCKET = item( "aluminium_water_bucket", new AluminiumBucketItem( MDFluids.MURKY_WATER, new Item.Properties().group( MDItemGroup.MISC ).containerItem( ALUMINIUM_BUCKET ) ) );
-    public static final BaseBucketItem ALUMINIUM_LAVA_BUCKET = item( "aluminium_lava_bucket", new AluminiumBucketItem( MDFluids.MOLTEN_ROCK, new Item.Properties().group( MDItemGroup.MISC ).containerItem( ALUMINIUM_BUCKET ) ), "aluminium_heatrock_bucket" );
+    public static final BaseBucketItem ALUMINIUM_WATER_BUCKET = item( "aluminium_water_bucket", new AluminiumBucketItem( MDFluids.MURKY_WATER, new Item.Properties().group( MDItemGroup.MISC ).containerItem( ALUMINIUM_BUCKET ).maxStackSize( 1 ) ) );
+    public static final BaseBucketItem ALUMINIUM_LAVA_BUCKET = item( "aluminium_lava_bucket", new AluminiumBucketItem( MDFluids.MOLTEN_ROCK, new Item.Properties().group( MDItemGroup.MISC ).containerItem( ALUMINIUM_BUCKET ).maxStackSize( 1 ) ), "aluminium_heatrock_bucket" );
 
     // Blackwood Tools
     public static final PickaxeItem BLACKWOOD_PICKAXE = item( "blackwood_pickaxe", new PickaxeItem( ItemTier.WOOD, 1, - 2.8F, new Item.Properties().group( MDItemGroup.TOOLS ) ) );

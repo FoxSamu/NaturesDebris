@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 21 - 2020
  * Author: rgsw
  */
 
@@ -41,6 +41,11 @@ public interface ICustomRenderFluid {
     /** Color multiplier of the fluid */
     @OnlyIn( Dist.CLIENT )
     default int getColor( IFluidState state, BlockPos pos, IEnviromentBlockReader world ) {
+        return 0xffffff;
+    }
+
+    @OnlyIn( Dist.CLIENT )
+    default int getDefaultColor() {
         return 0xffffff;
     }
 

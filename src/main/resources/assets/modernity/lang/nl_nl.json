@@ -269,6 +269,10 @@
 
   "options.modernity": "De Modernity...",
 
+  "container.modernity.cleaner": "Reiniger",
+  "container.modernity.cleaner.drain": "Legen",
+  "container.modernity.cleaner.drain.desc": "Laat alle vloeistof wegstromen...",
+
   "gui.modernity.wiki": "Wikiplaatjes Exporter",
   "gui.modernity.wiki.type_crafting": "Werkbankrecept",
   "gui.modernity.wiki.type_smelting": "Ovenrecept",

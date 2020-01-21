@@ -1,14 +1,15 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 24 - 2019
+ * Date:   01 - 21 - 2020
  * Author: rgsw
  */
 
 package modernity.common.container;
 
 import com.google.common.reflect.TypeToken;
+import modernity.client.gui.container.CleanerScreen;
 import modernity.client.gui.container.WorkbenchScreen;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
@@ -27,11 +28,11 @@ public final class MDContainerTypes {
     private static final RegistryHandler<ContainerType<?>> ENTRIES = new RegistryHandler<>( "modernity" );
 
     public static final ContainerType<WorkbenchContainer> WORKBENCH = register( "workbench", new ContainerType<>( WorkbenchContainer::new ) );
+    public static final ContainerType<CleanerContainer> CLEANER = register( "cleaner", new ContainerType<>( CleanerContainer::new ) );
 
-    @SuppressWarnings( "unchecked" )
-    private static <T extends Container> ContainerType<T> register( String id, ContainerType<?> type, String... aliases ) {
+    private static <T extends Container> ContainerType<T> register( String id, ContainerType<T> type, String... aliases ) {
         ENTRIES.register( id, type, aliases );
-        return (ContainerType<T>) type;
+        return type;
     }
 
     /**
@@ -51,6 +52,7 @@ public final class MDContainerTypes {
     @OnlyIn( Dist.CLIENT )
     public static void registerScreens() {
         ScreenManager.registerFactory( WORKBENCH, WorkbenchScreen::new );
+        ScreenManager.registerFactory( CLEANER, CleanerScreen::new );
     }
 
     private MDContainerTypes() {

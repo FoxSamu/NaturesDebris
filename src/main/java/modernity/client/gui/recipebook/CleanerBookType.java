@@ -12,20 +12,22 @@ import net.minecraft.inventory.container.RecipeBookContainer;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 
-public class WorkbenchBookType implements IRecipeBookType {
+public class CleanerBookType implements IRecipeBookType {
+    public static final ResourceLocation TEXTURE = new ResourceLocation( "modernity:textures/gui/recipe_book_buttons.png" );
+
     @Override
     public ResourceLocation getTexture() {
-        return RecipeBookGui.TEXTURE;
+        return TEXTURE;
     }
 
     @Override
     public int[] getRecipeButtonTextureCoords() {
-        return new int[] { 152, 78, 26, 26 };
+        return new int[] { 113, 1, 26, 26 };
     }
 
     @Override
     public int[] getToggleButtonTextureCoords() {
-        return new int[] { 152, 41, 28, 18 };
+        return new int[] { 113, 53, 28, 18 };
     }
 
     @Override
@@ -35,6 +37,6 @@ public class WorkbenchBookType implements IRecipeBookType {
 
     @Override
     public AbstractRecipeButtonWidget createRecipeButton( RecipeOverlayGui gui, int x, int y, IRecipe<?> recipe, boolean craftable ) {
-        return new RecipeButtonWidget( gui, x, y, recipe, craftable );
+        return new CleanerRecipeButtonWidget( gui, x, y, recipe, craftable );
     }
 }

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 19 - 2020
+ * Date:   01 - 21 - 2020
  * Author: rgsw
  */
 
@@ -38,6 +38,7 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
     private Fertility lastFertileType;
 
     private boolean needsUpdate;
+    private boolean mustInvalidateOnNextTick;
 
     public FarmlandTileEntity() {
         this( 24, 24, 24, 17, true );
@@ -55,6 +56,11 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
     @Override
     public void tick() {
         assert world != null;
+
+        if( mustInvalidateOnNextTick ) {
+            invalidateState();
+            mustInvalidateOnNextTick = false;
+        }
 
         if( needsUpdate ) {
             updateProperties();
@@ -393,6 +399,7 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
 
     @Override
     public CompoundNBT write( CompoundNBT nbt ) {
+        super.write( nbt );
         nbt.putInt( "MaxFertility", maxFertility );
         nbt.putInt( "MaxSaltiness", maxSaltiness );
         nbt.putInt( "MaxDecay", maxDecay );
@@ -406,6 +413,7 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
 
     @Override
     public void read( CompoundNBT nbt ) {
+        super.read( nbt );
         maxFertility = NBTUtil.getOrDefault( nbt, "MaxFertility", 24 );
         maxSaltiness = NBTUtil.getOrDefault( nbt, "MaxSaltiness", 24 );
         maxDecay = NBTUtil.getOrDefault( nbt, "MaxDecay", 24 );
@@ -416,6 +424,6 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
         wetness = NBTUtil.getOrDefault( nbt, "Wetness", 0 );
 
         needsUpdate = true;
-        invalidateState();
+        mustInvalidateOnNextTick = true;
     }
 }

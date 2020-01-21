@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 29 - 2019
+ * Date:   01 - 21 - 2020
  * Author: rgsw
  */
 
@@ -13,6 +13,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
+import modernity.client.util.MDRecipeBookCategories;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IGuiEventListener;
 import net.minecraft.client.gui.IRenderable;
@@ -194,10 +195,11 @@ public class RecipeBookGui extends net.minecraft.client.gui.recipebook.RecipeBoo
 
 
     protected void initTextureValues() {
+        int[] uv = type.getToggleButtonTextureCoords();
         toggleRecipesButton.initTextureValues(
-            TOGGLE_BUTTON_TEX_X, TOGGLE_BUTTON_TEX_Y,
-            TOGGLE_BUTTON_DIFF_X, TOGGLE_BUTTON_DIFF_Y,
-            TEXTURE
+            uv[ 0 ], uv[ 1 ],
+            uv[ 2 ], uv[ 3 ],
+            type.getTexture()
         );
     }
 
@@ -288,7 +290,7 @@ public class RecipeBookGui extends net.minecraft.client.gui.recipebook.RecipeBoo
 
         for( RecipeTabToggleWidget tab : recipeTabs ) {
             RecipeBookCategories category = tab.getCategory();
-            if( category != RecipeBookCategories.SEARCH && category != RecipeBookCategories.FURNACE_SEARCH ) {
+            if( category != RecipeBookCategories.SEARCH && category != RecipeBookCategories.FURNACE_SEARCH && category != MDRecipeBookCategories.CLEANER_SEARCH ) {
                 if( tab.updateVisibility( recipeBook ) ) {
                     tab.setPosition( x, y + 27 * tabY++ );
                     tab.startAnimation( mc );

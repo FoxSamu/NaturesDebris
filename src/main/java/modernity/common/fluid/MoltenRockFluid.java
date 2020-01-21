@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   01 - 21 - 2020
  * Author: rgsw
  */
 
@@ -12,6 +12,7 @@ import modernity.api.block.fluid.IAluminiumBucketTakeable;
 import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.base.RegularFluidBlock;
+import modernity.common.item.MDItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluid;
@@ -58,9 +59,9 @@ public abstract class MoltenRockFluid extends RegularFluid implements ICustomRen
         return Items.LAVA_BUCKET;
     }
 
-    @Override // TODO
+    @Override
     public Item getFilledAluminiumBucket() {
-        return Items.LAVA_BUCKET;
+        return MDItems.ALUMINIUM_LAVA_BUCKET;
     }
 
     @Override
