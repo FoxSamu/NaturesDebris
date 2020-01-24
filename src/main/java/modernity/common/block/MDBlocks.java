@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 21 - 2020
+ * Date:   01 - 24 - 2020
  * Author: rgsw
  */
 
@@ -18,7 +18,6 @@ import modernity.common.block.dirt.logic.MDDirtLogics;
 import modernity.common.block.farmland.FarmlandBlock;
 import modernity.common.block.farmland.GrassFarmlandBlock;
 import modernity.common.block.plant.*;
-import modernity.common.block.utils.CleanerBlock;
 import modernity.common.block.utils.RockFurnaceBlock;
 import modernity.common.block.utils.WorkbenchBlock;
 import modernity.common.fluid.MDFluids;
@@ -531,7 +530,6 @@ public final class MDBlocks {
     public static final WorkbenchBlock BLACKWOOD_WORKBENCH = blockItem( "blackwood_workbench", new WorkbenchBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
     public static final WorkbenchBlock INVER_WORKBENCH = blockItem( "inver_workbench", new WorkbenchBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
     public static final RockFurnaceBlock ROCK_FURNACE = blockItem( "rock_furnace", new RockFurnaceBlock( rock( MaterialColor.STONE, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.DECORATIVES );
-    public static final CleanerBlock CLEANER = blockItem( "cleaner", new CleanerBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
 
 
 
