@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -13,4 +13,6 @@ import net.minecraft.util.math.BlockPos;
 public interface IPrecipitationDimension {
     boolean isRaining();
     boolean isRainingAt( BlockPos pos );
+    int getRainLevel();
+    double getRainAmount();
 }

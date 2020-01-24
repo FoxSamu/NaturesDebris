@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -17,7 +17,10 @@ import net.minecraft.util.ResourceLocation;
  * Holder class for Modernity item tags.
  */
 public final class MDItemTags {
+    public static final Tag<Item> LITTLE_FERTILIZER = new ItemTags.Wrapper( new ResourceLocation( "modernity:little_fertilizer" ) );
     public static final Tag<Item> FERTILIZER = new ItemTags.Wrapper( new ResourceLocation( "modernity:fertilizer" ) );
+    public static final Tag<Item> LITTLE_SALTY = new ItemTags.Wrapper( new ResourceLocation( "modernity:little_salty" ) );
+    public static final Tag<Item> SALTY = new ItemTags.Wrapper( new ResourceLocation( "modernity:salty" ) );
 
     public static final Tag<Item> LOGS = new ItemTags.Wrapper( new ResourceLocation( "modernity:logs" ) );
     public static final Tag<Item> STICKS = new ItemTags.Wrapper( new ResourceLocation( "modernity:sticks" ) );

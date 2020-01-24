@@ -2,22 +2,27 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 21 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.common.tileentity;
 
+import modernity.api.dimension.IPrecipitationDimension;
 import modernity.api.util.MovingBlockPos;
 import modernity.api.util.NBTUtil;
+import modernity.common.biome.ModernityBiome;
 import modernity.common.block.farmland.FarmlandBlock;
 import modernity.common.block.farmland.Fertility;
 import modernity.common.block.farmland.IFarmlandLogic;
 import modernity.common.block.farmland.Wetness;
+import modernity.common.environment.precipitation.IPrecipitation;
+import modernity.common.environment.precipitation.IPrecipitationFunction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.biome.Biome;
 
 import java.util.Random;
 
@@ -41,7 +46,7 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
     private boolean mustInvalidateOnNextTick;
 
     public FarmlandTileEntity() {
-        this( 24, 24, 24, 17, true );
+        this( 24, 24, 17, 17, true );
     }
 
     public FarmlandTileEntity( int maxFertility, int maxSaltiness, int maxDecay, int maxFloodedUpdates, boolean hasDecay ) {
@@ -56,6 +61,8 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
     @Override
     public void tick() {
         assert world != null;
+
+        if( world.isRemote ) return;
 
         if( mustInvalidateOnNextTick ) {
             invalidateState();
@@ -143,6 +150,15 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
         if( wetness > 0 ) {
             wetness -= amount;
             if( wetness < 0 ) wetness = 0;
+            markDirty();
+        }
+    }
+
+    @Override
+    public void flood( int amount ) {
+        if( wetness < maxFloodedUpdates ) {
+            wetness += amount;
+            if( wetness > maxFloodedUpdates ) wetness = maxFloodedUpdates;
             markDirty();
         }
     }
@@ -288,6 +304,8 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
         assert world != null;
         assert pos != null;
 
+        if( world.isRemote ) return;
+
         if( hasDecay ) {
             if( fertility > 0 && decay < maxDecay ) {
                 boolean canDecay = true;
@@ -326,8 +344,9 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
             }
         }
 
+        int rain = checkRain();
         if( isFlooded() ) {
-            if( ! world.getFluidState( pos.up() ).isTagged( FluidTags.WATER ) ) {
+            if( ! world.getFluidState( pos.up() ).isTagged( FluidTags.WATER ) && rain < 1 ) {
                 unflood( 1 );
             }
 
@@ -335,8 +354,14 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
                 useSaltiness( 1 );
             }
         } else {
-            if( checkWater() ) {
-                makeWet();
+            if( checkWater() || rain > 0 ) {
+                if( rain > 1 && rand.nextInt( 4 ) == 0 ) {
+                    if( wetness < maxFloodedUpdates / 3 ) {
+                        flood( 1 );
+                    }
+                } else {
+                    makeWet();
+                }
             } else {
                 dryout( 1 );
             }
@@ -361,6 +386,27 @@ public class FarmlandTileEntity extends TileEntity implements ITickableTileEntit
             }
         }
         return false;
+    }
+
+    private int checkRain() {
+        assert world != null;
+        assert pos != null;
+
+        if( world.dimension instanceof IPrecipitationDimension ) {
+            Biome biome = world.getBiome( pos );
+            if( biome instanceof ModernityBiome ) {
+                IPrecipitationFunction function = ( (ModernityBiome) biome ).getPrecipitationFunction();
+                int level = ( (IPrecipitationDimension) world.dimension ).getRainLevel();
+                if( ( (IPrecipitationDimension) world.dimension ).getRainAmount() < 0.2 ) level = 0;
+                IPrecipitation prec = function.computePrecipitation( level );
+                if( prec.type() == Biome.RainType.RAIN ) {
+                    return prec.canFloodFarmland() ? 2 : 1;
+                } else {
+                    return 0;
+                }
+            }
+        }
+        return world.isRainingAt( pos.up() ) ? 2 : 0;
     }
 
     private void updateProperties() {

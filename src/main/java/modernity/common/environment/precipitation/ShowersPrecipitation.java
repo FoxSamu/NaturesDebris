@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 12 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -20,6 +20,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -103,5 +104,10 @@ public class ShowersPrecipitation implements IPrecipitation {
         }
 
         return false;
+    }
+
+    @Override
+    public Biome.RainType type() {
+        return Biome.RainType.RAIN;
     }
 }

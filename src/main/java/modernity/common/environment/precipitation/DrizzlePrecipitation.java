@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 12 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -17,6 +17,7 @@ import net.minecraft.particles.IParticleData;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -105,5 +106,10 @@ public class DrizzlePrecipitation implements IPrecipitation {
     @Override
     public int getHeight( World world, int x, int z ) {
         return world.getHeight( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z );
+    }
+
+    @Override
+    public Biome.RainType type() {
+        return Biome.RainType.RAIN;
     }
 }

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -17,6 +17,7 @@ import net.minecraft.particles.IParticleData;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -99,5 +100,10 @@ public class WetSnowPrecipitation implements IPrecipitation {
         }
 
         return false;
+    }
+
+    @Override
+    public Biome.RainType type() {
+        return Biome.RainType.SNOW;
     }
 }

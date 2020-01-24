@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 19 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -12,15 +12,20 @@ import modernity.api.util.MovingBlockPos;
 import modernity.common.block.base.ITopTextureConnectionBlock;
 import modernity.common.block.dirt.DirtlikeBlock;
 import modernity.common.block.dirt.logic.FarmlandDirtLogic;
+import modernity.common.item.MDItemTags;
 import modernity.common.tileentity.FarmlandTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.IWorld;
@@ -109,5 +114,39 @@ public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectio
         if( logic != null ) {
             logic.randomUpdate( rand );
         }
+    }
+
+    @Override
+    @SuppressWarnings( "deprecation" )
+    public boolean onBlockActivated( BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit ) {
+        if( player.isSneaking() ) return false;
+        IFarmlandLogic logic = IFarmlandLogic.get( world, pos );
+        if( logic == null ) return false;
+        ItemStack stack = player.getHeldItem( hand );
+        if( stack.getItem().isIn( MDItemTags.LITTLE_SALTY ) ) {
+            if( world.rand.nextInt( 3 ) != 0 ) {
+                if( logic.addSaltiness( 1 ) ) return shrink( stack, player, hand );
+            }
+        }
+        if( stack.getItem().isIn( MDItemTags.SALTY ) ) {
+            if( logic.addSaltiness( world.rand.nextInt( 4 ) + 2 ) ) return shrink( stack, player, hand );
+        }
+        if( stack.getItem().isIn( MDItemTags.LITTLE_FERTILIZER ) ) {
+            if( world.rand.nextInt( 3 ) != 0 ) {
+                if( logic.addFertility( 1 ) ) return shrink( stack, player, hand );
+            }
+        }
+        if( stack.getItem().isIn( MDItemTags.FERTILIZER ) ) {
+            if( logic.addFertility( world.rand.nextInt( 4 ) + 2 ) ) return shrink( stack, player, hand );
+        }
+        return false;
+    }
+
+    private static boolean shrink( ItemStack stack, PlayerEntity player, Hand hand ) {
+        if( ! player.abilities.isCreativeMode ) {
+            stack.shrink( 1 );
+            player.setHeldItem( hand, stack.getCount() == 0 ? ItemStack.EMPTY : stack );
+        }
+        return true;
     }
 }

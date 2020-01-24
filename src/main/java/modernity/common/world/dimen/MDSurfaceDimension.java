@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -410,5 +410,17 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
         } else {
             return ! prec.isNone();
         }
+    }
+
+    @Override
+    public int getRainLevel() {
+        PrecipitationEnvEvent precEv = envEventManager.getByType( MDEnvEvents.PRECIPITATION );
+        return precEv.getLevel();
+    }
+
+    @Override
+    public double getRainAmount() {
+        PrecipitationEnvEvent precEv = envEventManager.getByType( MDEnvEvents.PRECIPITATION );
+        return precEv.getEffect();
     }
 }

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 19 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -25,6 +25,7 @@ public interface IFarmlandLogic {
 
     void flood();
     void unflood( int amount );
+    void flood( int amount );
     void dryout( int amount );
     void makeWet();
 
