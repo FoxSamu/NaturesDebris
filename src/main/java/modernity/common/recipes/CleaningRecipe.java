@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 21 - 2020
+ * Date:   01 - 24 - 2020
  * Author: rgsw
  */
 
@@ -12,7 +12,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSyntaxException;
-import modernity.common.block.MDBlocks;
 import modernity.common.container.inventory.ICleaningInventory;
 import modernity.common.tileentity.CleanerTileEntity;
 import net.minecraft.fluid.Fluid;
@@ -36,7 +35,7 @@ import java.util.HashSet;
 import java.util.function.Predicate;
 
 public class CleaningRecipe implements IRecipe<ICleaningInventory> {
-    private static final ItemStack ICON = new ItemStack( MDBlocks.CLEANER );
+    private static final ItemStack ICON = ItemStack.EMPTY;
     protected final IRecipeType<?> type;
     protected final ResourceLocation id;
     protected final String group;
