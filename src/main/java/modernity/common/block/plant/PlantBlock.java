@@ -2,17 +2,17 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 15 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
-import modernity.api.util.EWaterlogType;
+import modernity.common.block.fluid.WaterlogType;
 import modernity.api.util.IBlockProvider;
 import modernity.common.block.MDBlocks;
-import modernity.common.block.base.IMurkyWaterloggedBlock;
-import modernity.common.block.base.IWaterloggedBlock;
+import modernity.common.block.fluid.IMurkyWaterloggedBlock;
+import modernity.common.block.fluid.IWaterloggedBlock;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -48,7 +48,7 @@ public abstract class PlantBlock extends Block implements IBlockProvider {
             def = def.with( IMurkyWaterloggedBlock.WATERLOGGED, false );
         }
         if( this instanceof IWaterloggedBlock ) {
-            def = def.with( IWaterloggedBlock.WATERLOGGED, EWaterlogType.NONE );
+            def = def.with( IWaterloggedBlock.WATERLOGGED, WaterlogType.NONE );
         }
         setDefaultState( def );
     }
@@ -145,7 +145,7 @@ public abstract class PlantBlock extends Block implements IBlockProvider {
 
         if( this instanceof IWaterloggedBlock ) {
             IFluidState fluid = ctx.getWorld().getFluidState( ctx.getPos() );
-            return getDefaultState().with( IWaterloggedBlock.WATERLOGGED, EWaterlogType.getType( fluid ) );
+            return getDefaultState().with( IWaterloggedBlock.WATERLOGGED, WaterlogType.getType( fluid ) );
         }
 
         return state;

@@ -2,14 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.client.particle;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import modernity.api.util.ESoulLightColor;
+import modernity.common.block.misc.SoulLightColor;
 import modernity.common.particle.SoulLightParticleData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.IParticleFactory;
@@ -159,7 +159,7 @@ public class SoulLightParticle extends Particle implements IRenderLastParticle {
         @Nullable
         @Override
         public Particle makeParticle( SoulLightParticleData data, World world, double x, double y, double z, double xv, double yv, double zv ) {
-            ESoulLightColor color = data.getColor();
+            SoulLightColor color = data.getColor();
             boolean fades = data.fades();
             return new SoulLightParticle(
                 world,
@@ -179,7 +179,7 @@ public class SoulLightParticle extends Particle implements IRenderLastParticle {
         @Nullable
         @Override
         public Particle makeParticle( SoulLightParticleData data, World world, double x, double y, double z, double xv, double yv, double zv ) {
-            ESoulLightColor color = data.getColor();
+            SoulLightColor color = data.getColor();
             boolean fades = data.fades();
             return new SoulLightParticle(
                 world,

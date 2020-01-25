@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 21 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -11,7 +11,7 @@ package modernity.common.fluid;
 import modernity.api.block.fluid.IAluminiumBucketTakeable;
 import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.common.block.MDBlocks;
-import modernity.common.block.base.RegularFluidBlock;
+import modernity.common.block.fluid.RegularFluidBlock;
 import modernity.common.item.MDItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

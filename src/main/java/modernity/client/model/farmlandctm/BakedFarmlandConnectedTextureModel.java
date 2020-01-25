@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 19 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.client.model.farmlandctm;
 
 import modernity.api.util.CTMUtil;
 import modernity.client.model.QuadMaker;
-import modernity.common.block.base.ITopTextureConnectionBlock;
+import modernity.common.block.farmland.ITopTextureConnectionBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.model.BakedQuad;
 import net.minecraft.client.renderer.model.IBakedModel;

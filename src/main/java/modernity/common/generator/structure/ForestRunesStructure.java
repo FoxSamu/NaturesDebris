@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 24 - 2019
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -12,8 +12,9 @@ import modernity.common.area.ForestRunesArea;
 import modernity.common.area.core.AreaBox;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.base.HorizontalFacingBlock;
-import modernity.common.block.base.HorizontalPortalFrameBlock;
-import modernity.common.block.base.PortalCornerBlock;
+import modernity.common.block.portal.HorizontalPortalFrameBlock;
+import modernity.common.block.portal.PortalCornerBlock;
+import modernity.common.block.portal.PortalCornerState;
 import modernity.common.generator.structure.util.RotatingPiece;
 import modernity.common.generator.structure.util.StructureUtil;
 import net.minecraft.block.BlockState;
@@ -59,7 +60,7 @@ public class ForestRunesStructure extends Structure<NoFeatureConfig> {
     private static final BlockState FRAME_X = MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X );
     private static final BlockState FRAME_Z = MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z );
     private static final BlockState FRAME_Y = MDBlocks.VERTICAL_PORTAL_FRAME.getDefaultState();
-    private static final BlockState CORNER = MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerBlock.State.EXHAUSTED );
+    private static final BlockState CORNER = MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EXHAUSTED );
 
     private static final BlockState[] GOLD_BRICKS = {
         MDBlocks.DARK_STONE_BRICKS_CURSE.getDefaultState(),

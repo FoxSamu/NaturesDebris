@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 15 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.api.util.Events;
+import modernity.common.block.MDBlockStateProperties;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.prop.IntEnumProperty;
 import modernity.common.fluid.MDFluids;
@@ -35,10 +36,7 @@ import java.util.Random;
 public abstract class DoubleDirectionalPlantBlock extends DirectionalPlantBlock {
     public static final int ROOT = 0;
     public static final int END = 1;
-    public static final IntEnumProperty TYPE = IntEnumProperty.builder( "type" )
-                                                              .with( ROOT, "root" )
-                                                              .with( END, "end" )
-                                                              .create();
+    public static final IntEnumProperty TYPE = MDBlockStateProperties.ROOT_END_TYPE;
 
     public DoubleDirectionalPlantBlock( Properties properties, Direction growDir ) {
         super( properties, growDir );

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 13 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -12,7 +12,7 @@ import modernity.api.util.BlockUpdates;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlockTags;
 import modernity.common.block.MDBlocks;
-import modernity.common.block.base.HangLeavesBlock;
+import modernity.common.block.tree.HangLeavesBlock;
 import modernity.common.block.prop.SignedIntegerProperty;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;

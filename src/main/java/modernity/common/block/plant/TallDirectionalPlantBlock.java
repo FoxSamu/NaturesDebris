@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.api.util.MovingBlockPos;
+import modernity.common.block.MDBlockStateProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.BooleanProperty;
@@ -24,8 +25,8 @@ import java.util.Random;
 import java.util.function.Function;
 
 public abstract class TallDirectionalPlantBlock extends DirectionalPlantBlock {
-    public static final BooleanProperty ROOT = BooleanProperty.create( "root" );
-    public static final BooleanProperty END = BooleanProperty.create( "end" );
+    public static final BooleanProperty ROOT = MDBlockStateProperties.ROOT;
+    public static final BooleanProperty END = MDBlockStateProperties.END;
 
     public TallDirectionalPlantBlock( Properties properties, Direction growDir ) {
         super( properties, growDir );

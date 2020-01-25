@@ -1,14 +1,16 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 21 - 2019
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.base;
 
-import modernity.api.util.EWaterlogType;
+import modernity.common.block.MDBlockStateProperties;
+import modernity.common.block.fluid.WaterlogType;
+import modernity.common.block.fluid.WaterloggedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluid;
@@ -38,14 +40,14 @@ import static net.minecraft.util.Direction.*;
  * Describes the corner blocks: blocks that are subdivided in 8 smaller blocks.
  */
 public class CornerBlock extends WaterloggedBlock {
-    public static final BooleanProperty CORNER_000 = BooleanProperty.create( "c000" );
-    public static final BooleanProperty CORNER_001 = BooleanProperty.create( "c001" );
-    public static final BooleanProperty CORNER_010 = BooleanProperty.create( "c010" );
-    public static final BooleanProperty CORNER_011 = BooleanProperty.create( "c011" );
-    public static final BooleanProperty CORNER_100 = BooleanProperty.create( "c100" );
-    public static final BooleanProperty CORNER_101 = BooleanProperty.create( "c101" );
-    public static final BooleanProperty CORNER_110 = BooleanProperty.create( "c110" );
-    public static final BooleanProperty CORNER_111 = BooleanProperty.create( "c111" );
+    public static final BooleanProperty CORNER_000 = MDBlockStateProperties.CORNER_000;
+    public static final BooleanProperty CORNER_001 = MDBlockStateProperties.CORNER_001;
+    public static final BooleanProperty CORNER_010 = MDBlockStateProperties.CORNER_010;
+    public static final BooleanProperty CORNER_011 = MDBlockStateProperties.CORNER_011;
+    public static final BooleanProperty CORNER_100 = MDBlockStateProperties.CORNER_100;
+    public static final BooleanProperty CORNER_101 = MDBlockStateProperties.CORNER_101;
+    public static final BooleanProperty CORNER_110 = MDBlockStateProperties.CORNER_110;
+    public static final BooleanProperty CORNER_111 = MDBlockStateProperties.CORNER_111;
 
     private static final BooleanProperty[] CORNERS = {
         CORNER_000,
@@ -299,11 +301,11 @@ public class CornerBlock extends WaterloggedBlock {
                 state = state.with( CORNERS[ corner ], true );
 
                 // Remove waterlogging on full blocks
-                if( isFull( state ) ) state = state.with( WATERLOGGED, EWaterlogType.NONE );
+                if( isFull( state ) ) state = state.with( WATERLOGGED, WaterlogType.NONE );
                 return state;
             }
         }
-        return getDefaultState().with( CORNERS[ corner ], true ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
+        return getDefaultState().with( CORNERS[ corner ], true ).with( WATERLOGGED, WaterlogType.getType( fluid ) );
     }
 
     @Override

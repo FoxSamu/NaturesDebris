@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.common.event.impl;
 
-import modernity.common.block.base.LeavesBlock;
+import modernity.common.block.tree.LeavesBlock;
 import modernity.common.event.StateBlockEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

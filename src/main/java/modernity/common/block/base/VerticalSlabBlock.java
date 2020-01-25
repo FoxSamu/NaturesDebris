@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 21 - 2019
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.base;
 
-import modernity.api.util.EWaterlogType;
-import modernity.api.util.MDVoxelShapes;
+import modernity.common.block.MDBlockStateProperties;
+import modernity.common.block.fluid.WaterlogType;
+import modernity.common.block.fluid.WaterloggedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluid;
@@ -20,7 +21,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -37,12 +37,12 @@ import javax.annotation.Nullable;
  */
 @SuppressWarnings( "deprecation" )
 public class VerticalSlabBlock extends WaterloggedBlock {
-    public static final EnumProperty<Type> TYPE = EnumProperty.create( "type", Type.class );
+    public static final EnumProperty<SlabType> TYPE = MDBlockStateProperties.SLAB_TYPE;
 
     public VerticalSlabBlock( Properties properties ) {
         super( properties );
 
-        setDefaultState( stateContainer.getBaseState().with( TYPE, Type.DOWN ) );
+        setDefaultState( stateContainer.getBaseState().with( TYPE, SlabType.DOWN ) );
     }
 
     @Override
@@ -55,7 +55,7 @@ public class VerticalSlabBlock extends WaterloggedBlock {
     @Override
     public int getPackedLightmapCoords( BlockState state, IEnviromentBlockReader source, BlockPos pos ) {
         int i = source.getCombinedLight( pos, state.getLightValue( source, pos ) );
-        if( i == 0 && ( state.get( TYPE ).ordinal() < 2 || state.get( TYPE ) == Type.DOUBLE ) ) {
+        if( i == 0 && ( state.get( TYPE ).ordinal() < 2 || state.get( TYPE ) == SlabType.DOUBLE ) ) {
             pos = pos.down();
             state = source.getBlockState( pos );
             return source.getCombinedLight( pos, state.getLightValue( source, pos ) );
@@ -75,8 +75,8 @@ public class VerticalSlabBlock extends WaterloggedBlock {
         IFluidState fluid = ctx.getWorld().getFluidState( ctx.getPos() );
         BlockState state = ctx.getWorld().getBlockState( ctx.getPos() );
         if( state.getBlock() == this ) {
-            if( state.get( TYPE ) == Type.DOUBLE ) return null;
-            else return state.with( TYPE, Type.DOUBLE ).with( WATERLOGGED, EWaterlogType.NONE );
+            if( state.get( TYPE ) == SlabType.DOUBLE ) return null;
+            else return state.with( TYPE, SlabType.DOUBLE ).with( WATERLOGGED, WaterlogType.NONE );
         }
         boolean sidedPlacing = ctx.getPlayer() != null && ctx.getPlayer().isSneaking();
         if( sidedPlacing ) {
@@ -84,29 +84,30 @@ public class VerticalSlabBlock extends WaterloggedBlock {
             switch( facing ) {
                 default:
                 case UP:
-                    return getDefaultState().with( TYPE, Type.UP ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
+                    return getDefaultState().with( TYPE, SlabType.UP ).with( WATERLOGGED, WaterlogType.getType( fluid ) );
                 case DOWN:
-                    return getDefaultState().with( TYPE, Type.DOWN ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
+                    return getDefaultState().with( TYPE, SlabType.DOWN ).with( WATERLOGGED, WaterlogType.getType( fluid ) );
                 case NORTH:
-                    return getDefaultState().with( TYPE, Type.NORTH ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
+                    return getDefaultState().with( TYPE, SlabType.NORTH ).with( WATERLOGGED, WaterlogType.getType( fluid ) );
                 case EAST:
-                    return getDefaultState().with( TYPE, Type.EAST ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
+                    return getDefaultState().with( TYPE, SlabType.EAST ).with( WATERLOGGED, WaterlogType.getType( fluid ) );
                 case SOUTH:
-                    return getDefaultState().with( TYPE, Type.SOUTH ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
+                    return getDefaultState().with( TYPE, SlabType.SOUTH ).with( WATERLOGGED, WaterlogType.getType( fluid ) );
                 case WEST:
-                    return getDefaultState().with( TYPE, Type.WEST ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
+                    return getDefaultState().with( TYPE, SlabType.WEST ).with( WATERLOGGED, WaterlogType.getType( fluid ) );
             }
         } else {
             Direction facing = ctx.getFace();
             if( facing == Direction.UP )
-                return getDefaultState().with( TYPE, Type.DOWN ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
+                return getDefaultState().with( TYPE, SlabType.DOWN ).with( WATERLOGGED, WaterlogType.getType( fluid ) );
             else if( facing == Direction.DOWN )
-                return getDefaultState().with( TYPE, Type.UP ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
+                return getDefaultState().with( TYPE, SlabType.UP ).with( WATERLOGGED, WaterlogType.getType( fluid ) );
             else {
                 double hitY = ctx.getHitVec().y % 1;
                 if( hitY < 0.5 )
-                    return getDefaultState().with( TYPE, Type.DOWN ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
-                else return getDefaultState().with( TYPE, Type.UP ).with( WATERLOGGED, EWaterlogType.getType( fluid ) );
+                    return getDefaultState().with( TYPE, SlabType.DOWN ).with( WATERLOGGED, WaterlogType.getType( fluid ) );
+                else
+                    return getDefaultState().with( TYPE, SlabType.UP ).with( WATERLOGGED, WaterlogType.getType( fluid ) );
             }
         }
     }
@@ -118,29 +119,29 @@ public class VerticalSlabBlock extends WaterloggedBlock {
 
     @Override
     public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx ) {
-        return state.get( TYPE ).shape;
+        return state.get( TYPE ).getShape();
     }
 
     @Override
     public boolean isReplaceable( BlockState state, BlockItemUseContext ctx ) {
         ItemStack stack = ctx.getItem();
-        Type type = state.get( TYPE );
+        SlabType slabType = state.get( TYPE );
 
-        if( type != Type.DOUBLE && stack.getItem() == asItem() ) {
+        if( slabType != SlabType.DOUBLE && stack.getItem() == asItem() ) {
             if( ctx.replacingClickedOnBlock() ) {
                 boolean up = ctx.getHitVec().y % 1 > 0.5;
                 boolean south = ctx.getHitVec().z % 1 > 0.5;
                 boolean east = ctx.getHitVec().x % 1 > 0.5;
                 Direction face = ctx.getFace();
-                if( type == Type.DOWN ) {
+                if( slabType == SlabType.DOWN ) {
                     return face == Direction.UP || up && face.getAxis() != Direction.Axis.Y;
-                } else if( type == Type.UP ) {
+                } else if( slabType == SlabType.UP ) {
                     return face == Direction.DOWN || ! up && face.getAxis() != Direction.Axis.Y;
-                } else if( type == Type.NORTH ) {
+                } else if( slabType == SlabType.NORTH ) {
                     return face == Direction.SOUTH || south && face.getAxis() != Direction.Axis.Z;
-                } else if( type == Type.SOUTH ) {
+                } else if( slabType == SlabType.SOUTH ) {
                     return face == Direction.NORTH || ! south && face.getAxis() != Direction.Axis.Z;
-                } else if( type == Type.EAST ) {
+                } else if( slabType == SlabType.EAST ) {
                     return face == Direction.WEST || ! east && face.getAxis() != Direction.Axis.X;
                 } else {
                     return face == Direction.EAST || east && face.getAxis() != Direction.Axis.X;
@@ -156,38 +157,38 @@ public class VerticalSlabBlock extends WaterloggedBlock {
 
     @Override
     public Fluid pickupFluid( IWorld world, BlockPos pos, BlockState state ) {
-        if( state.get( TYPE ) == Type.DOUBLE ) return Fluids.EMPTY;
+        if( state.get( TYPE ) == SlabType.DOUBLE ) return Fluids.EMPTY;
         return super.pickupFluid( world, pos, state );
     }
 
     @Override
     public Fluid pickupFluidModernity( IWorld world, BlockPos pos, BlockState state ) {
-        if( state.get( TYPE ) == Type.DOUBLE ) return Fluids.EMPTY;
+        if( state.get( TYPE ) == SlabType.DOUBLE ) return Fluids.EMPTY;
         return super.pickupFluidModernity( world, pos, state );
     }
 
     @Override
     public boolean canContainFluid( IBlockReader world, BlockPos pos, BlockState state, Fluid fluid ) {
-        if( state.get( TYPE ) == Type.DOUBLE ) return false;
+        if( state.get( TYPE ) == SlabType.DOUBLE ) return false;
         return super.canContainFluid( world, pos, state, fluid );
     }
 
     @Override
     public boolean receiveFluid( IWorld world, BlockPos pos, BlockState state, IFluidState fluid ) {
-        if( state.get( TYPE ) == Type.DOUBLE ) return false;
+        if( state.get( TYPE ) == SlabType.DOUBLE ) return false;
         return super.receiveFluid( world, pos, state, fluid );
     }
 
     @Override
     public BlockState mirror( BlockState state, Mirror mirror ) {
-        if( state.get( TYPE ) == Type.DOUBLE ) return state;
-        return state.with( TYPE, Type.forFacing( mirror.mirror( state.get( TYPE ).facing ) ) );
+        if( state.get( TYPE ) == SlabType.DOUBLE ) return state;
+        return state.with( TYPE, SlabType.forFacing( mirror.mirror( state.get( TYPE ).getFacing() ) ) );
     }
 
     @Override
     public BlockState rotate( BlockState state, IWorld world, BlockPos pos, Rotation rotation ) {
-        if( state.get( TYPE ) == Type.DOUBLE ) return state;
-        return state.with( TYPE, Type.forFacing( rotation.rotate( state.get( TYPE ).facing ) ) );
+        if( state.get( TYPE ) == SlabType.DOUBLE ) return state;
+        return state.with( TYPE, SlabType.forFacing( rotation.rotate( state.get( TYPE ).getFacing() ) ) );
     }
 
     // RGSW: Don't ask me what this means, but vanilla slab block has this method overridden too...
@@ -197,63 +198,4 @@ public class VerticalSlabBlock extends WaterloggedBlock {
         return state.get( TYPE ).ordinal() < 2;
     }
 
-    /**
-     * The possible states of a vertical-placable slab block.
-     */
-    public enum Type implements IStringSerializable {
-        DOWN( "down", MDVoxelShapes.create16( 0, 0, 0, 16, 8, 16 ), Direction.DOWN ),
-        UP( "up", MDVoxelShapes.create16( 0, 8, 0, 16, 16, 16 ), Direction.UP ),
-        NORTH( "north", MDVoxelShapes.create16( 0, 0, 0, 16, 16, 8 ), Direction.NORTH ),
-        SOUTH( "south", MDVoxelShapes.create16( 0, 0, 8, 16, 16, 16 ), Direction.SOUTH ),
-        WEST( "west", MDVoxelShapes.create16( 0, 0, 0, 8, 16, 16 ), Direction.WEST ),
-        EAST( "east", MDVoxelShapes.create16( 8, 0, 0, 16, 16, 16 ), Direction.EAST ),
-        DOUBLE( "double", MDVoxelShapes.create16( 0, 0, 0, 16, 16, 16 ), null );
-
-        private final String name;
-        private final VoxelShape shape;
-        private final Direction facing;
-
-        Type( String name, VoxelShape shape, Direction facing ) {
-            this.name = name;
-            this.shape = shape;
-            this.facing = facing;
-        }
-
-        @Override
-        public String getName() {
-            return name;
-        }
-
-        /**
-         * Returns the shape of such slabs.
-         */
-        public VoxelShape getShape() {
-            return shape;
-        }
-
-        /**
-         * Returns the facing of this slab, or null when {@link #DOUBLE}.
-         */
-        public Direction getFacing() {
-            return facing;
-        }
-
-        /**
-         * Returns the type that belongs to the specified facing. Returns {@link #DOUBLE} when facing is null.
-         */
-        public static Type forFacing( Direction facing ) {
-            if( facing == null ) {
-                return DOUBLE;
-            }
-            switch( facing ) {
-                case UP: return UP;
-                case DOWN: return DOWN;
-                case EAST: return EAST;
-                case WEST: return WEST;
-                case NORTH: return NORTH;
-                case SOUTH: return SOUTH;
-                default: return DOUBLE;
-            }
-        }
-    }
 }

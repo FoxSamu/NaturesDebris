@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -19,7 +19,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
 
 /**
  * Describes a sticky block, which is a block that heavily limits the movement of entities and prevents them from
@@ -60,18 +59,4 @@ public class StickyBlock extends Block {
         return true;
     }
 
-    /**
-     * A digable variant of {@link StickyBlock}.
-     */
-    public static class Digable extends StickyBlock {
-
-        public Digable( Properties properties ) {
-            super( properties );
-        }
-
-        @Override
-        public boolean isToolEffective( BlockState state, ToolType tool ) {
-            return tool == ToolType.SHOVEL;
-        }
-    }
 }

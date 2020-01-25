@@ -1,14 +1,15 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.base;
 
-import modernity.api.util.EWaterlogType;
+import modernity.common.block.fluid.WaterlogType;
+import modernity.common.block.fluid.WaterloggedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -98,7 +99,7 @@ public class StairsBlock extends WaterloggedBlock {
                                             .with( HALF, face != Direction.DOWN && ( face == Direction.UP || ! ( ctx.getHitVec().y % 1 > 0.5 ) )
                                                          ? Half.BOTTOM
                                                          : Half.TOP )
-                                            .with( WATERLOGGED, EWaterlogType.getType( ctx.getWorld().getFluidState( ctx.getPos() ) ) );
+                                            .with( WATERLOGGED, WaterlogType.getType( ctx.getWorld().getFluidState( ctx.getPos() ) ) );
         return state.with( SHAPE, computeStairsShape( state, ctx.getWorld(), ctx.getPos() ) );
     }
 

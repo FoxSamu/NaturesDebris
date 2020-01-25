@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 13 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.common.generator.tree;
 
 import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlockTags;
-import modernity.common.block.base.DecayLeavesBlock;
+import modernity.common.block.tree.DecayLeavesBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.util.Direction;

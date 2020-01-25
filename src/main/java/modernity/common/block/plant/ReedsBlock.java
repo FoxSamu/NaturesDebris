@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -12,7 +12,7 @@ import modernity.api.util.MDVoxelShapes;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlockTags;
 import modernity.common.block.MDBlocks;
-import modernity.common.block.base.IMurkyWaterloggedBlock;
+import modernity.common.block.fluid.IMurkyWaterloggedBlock;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

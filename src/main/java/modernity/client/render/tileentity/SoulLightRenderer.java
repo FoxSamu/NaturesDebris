@@ -2,13 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.client.render.tileentity;
 
-import modernity.api.util.ESoulLightColor;
+import modernity.common.block.misc.SoulLightColor;
 import modernity.client.shaders.LightSource;
 import modernity.client.shaders.ShaderManager;
 import modernity.common.tileentity.SoulLightTileEntity;
@@ -43,7 +43,7 @@ public class SoulLightRenderer extends TileEntityRenderer<SoulLightTileEntity> {
             }
         }
 
-        ESoulLightColor col = te.getColor();
+        SoulLightColor col = te.getColor();
         ShaderManager.addLight( new LightSource(
             tx, ty, tz,
             col.red * 2,

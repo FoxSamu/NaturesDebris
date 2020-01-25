@@ -2,16 +2,17 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 15 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.api.util.MovingBlockPos;
+import modernity.common.block.MDBlockStateProperties;
 import modernity.common.block.MDBlockTags;
 import modernity.common.block.MDBlocks;
-import modernity.common.block.base.IMurkyWaterloggedBlock;
+import modernity.common.block.fluid.IMurkyWaterloggedBlock;
 import modernity.common.fluid.MDFluids;
 import modernity.common.particle.MDParticleTypes;
 import net.minecraft.block.Block;
@@ -38,9 +39,9 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class SaltCrystalBlock extends SingleDirectionalPlantBlock implements IMurkyWaterloggedBlock {
-    public static final IntegerProperty AGE = IntegerProperty.create( "age", 0, 11 );
-    public static final BooleanProperty NATURAL = BooleanProperty.create( "natural" );
-    public static final BooleanProperty CAN_SPREAD = BooleanProperty.create( "can_spread" );
+    public static final IntegerProperty AGE = MDBlockStateProperties.AGE_0_11;
+    public static final BooleanProperty NATURAL = MDBlockStateProperties.NATURAL;
+    public static final BooleanProperty CAN_SPREAD = MDBlockStateProperties.CAN_SPREAD;
 
     private static final int MAX_GROW_CHANCE = 6 * 10;
     private static final int MAX_SPREAD_CHANCE = MAX_GROW_CHANCE * 5;

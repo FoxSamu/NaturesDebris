@@ -1,25 +1,20 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.base;
 
 import modernity.api.block.IFluidOverlayBlock;
-import modernity.common.particle.MDParticleTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Random;
+import net.minecraft.world.IBlockReader;
 
 /**
  * Describes a translucent block. A translucent block only culls faces of equivalent blocks.
@@ -40,27 +35,9 @@ public class TranslucentBlock extends Block implements IFluidOverlayBlock {
         return adjacentBlockState.getBlock() == this || super.isSideInvisible( state, adjacentBlockState, side );
     }
 
-    /**
-     * A translucent block that drops salt particles.
-     */
-    public static class Salt extends TranslucentBlock {
-
-        public Salt( Block.Properties properties ) {
-            super( properties );
-        }
-
-        @Override
-        @OnlyIn( Dist.CLIENT )
-        public void animateTick( BlockState state, World world, BlockPos pos, Random rand ) {
-            if( rand.nextInt( 5 ) == 0 ) {
-                if( world.getBlockState( pos.down() ).getMaterial().blocksMovement() ) return;
-
-                double x = rand.nextDouble() + pos.getX();
-                double y = - 0.05 + pos.getY();
-                double z = rand.nextDouble() + pos.getZ();
-
-                world.addParticle( MDParticleTypes.SALT, x, y, z, 0, 0, 0 );
-            }
-        }
+    @Override
+    public boolean propagatesSkylightDown( BlockState state, IBlockReader reader, BlockPos pos ) {
+        return true;
     }
+
 }

@@ -11,7 +11,7 @@ package modernity.common.environment.precipitation;
 import modernity.client.ModernityClient;
 import modernity.client.render.environment.SurfaceWeatherRenderer;
 import modernity.common.block.MDBlocks;
-import modernity.common.block.base.PuddleBlock;
+import modernity.common.block.misc.PuddleBlock;
 import modernity.common.particle.MDParticleTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.particles.IParticleData;

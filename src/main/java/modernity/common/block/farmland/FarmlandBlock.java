@@ -9,7 +9,7 @@
 package modernity.common.block.farmland;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.common.block.base.ITopTextureConnectionBlock;
+import modernity.common.block.MDBlockStateProperties;
 import modernity.common.block.dirt.DirtlikeBlock;
 import modernity.common.block.dirt.logic.FarmlandDirtLogic;
 import modernity.common.item.MDItemTags;
@@ -35,8 +35,8 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectionBlock {
-    public static final EnumProperty<Fertility> FERTILITY = EnumProperty.create( "fertility", Fertility.class );
-    public static final EnumProperty<Wetness> WETNESS = EnumProperty.create( "wetness", Wetness.class );
+    public static final EnumProperty<Fertility> FERTILITY = MDBlockStateProperties.FERTILITY;
+    public static final EnumProperty<Wetness> WETNESS = MDBlockStateProperties.WETNESS;
 
     private final FarmlandDirtLogic farmlandLogic;
 

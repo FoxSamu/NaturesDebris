@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -11,9 +11,10 @@ package modernity.common.area;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.area.core.*;
 import modernity.common.block.MDBlocks;
-import modernity.common.block.base.AbstractPortalFrameBlock;
-import modernity.common.block.base.HorizontalPortalFrameBlock;
-import modernity.common.block.base.PortalCornerBlock;
+import modernity.common.block.portal.AbstractPortalFrameBlock;
+import modernity.common.block.portal.HorizontalPortalFrameBlock;
+import modernity.common.block.portal.PortalCornerBlock;
+import modernity.common.block.portal.PortalCornerState;
 import modernity.common.world.dimen.MDDimensions;
 import modernity.common.world.teleporter.DimensionTraveling;
 import modernity.common.world.teleporter.RunesTeleporter;
@@ -43,11 +44,11 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
         new BlockPos( 7, 3, 4 )
     };
 
-    private final PortalCornerBlock.State[] states = {
-        PortalCornerBlock.State.EXHAUSTED,
-        PortalCornerBlock.State.EXHAUSTED,
-        PortalCornerBlock.State.EXHAUSTED,
-        PortalCornerBlock.State.EXHAUSTED
+    private final PortalCornerState[] states = {
+        PortalCornerState.EXHAUSTED,
+        PortalCornerState.EXHAUSTED,
+        PortalCornerState.EXHAUSTED,
+        PortalCornerState.EXHAUSTED
     };
 
     private boolean active;
@@ -162,10 +163,10 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
         setBlockState( new BlockPos( 6, 2, 7 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X ) );
 
         // Set tot EYE state because these block changes still cause the portal to activate
-        setBlockState( new BlockPos( 4, 3, 4 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerBlock.State.EYE ) );
-        setBlockState( new BlockPos( 4, 3, 7 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerBlock.State.EYE ) );
-        setBlockState( new BlockPos( 7, 3, 7 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerBlock.State.EYE ) );
-        setBlockState( new BlockPos( 7, 3, 4 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerBlock.State.EYE ) );
+        setBlockState( new BlockPos( 4, 3, 4 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EYE ) );
+        setBlockState( new BlockPos( 4, 3, 7 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EYE ) );
+        setBlockState( new BlockPos( 7, 3, 7 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EYE ) );
+        setBlockState( new BlockPos( 7, 3, 4 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EYE ) );
 
     }
 
@@ -190,7 +191,7 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
         for( BlockPos pos : CORNERS ) {
             BlockState state = getBlockState( pos );
             if( state.getBlock() instanceof PortalCornerBlock ) {
-                setBlockState( pos, state.with( PortalCornerBlock.STATE, PortalCornerBlock.State.ACTIVE ) );
+                setBlockState( pos, state.with( PortalCornerBlock.STATE, PortalCornerState.ACTIVE ) );
             }
         }
 
@@ -214,8 +215,8 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
         for( BlockPos pos : CORNERS ) {
             BlockState state = getBlockState( pos );
             if( state.getBlock() instanceof PortalCornerBlock ) {
-                if( state.get( PortalCornerBlock.STATE ) == PortalCornerBlock.State.ACTIVE ) {
-                    setBlockState( pos, state.with( PortalCornerBlock.STATE, PortalCornerBlock.State.EXHAUSTED ) );
+                if( state.get( PortalCornerBlock.STATE ) == PortalCornerState.ACTIVE ) {
+                    setBlockState( pos, state.with( PortalCornerBlock.STATE, PortalCornerState.EXHAUSTED ) );
                 }
             }
         }
@@ -223,12 +224,12 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
         sendMessage( 8, new ActivationMessage( false ) );
     }
 
-    private void cornerUpdate( PortalCornerBlock.State state ) {
-        if( state == PortalCornerBlock.State.ACTIVE ) return;
+    private void cornerUpdate( PortalCornerState state ) {
+        if( state == PortalCornerState.ACTIVE ) return;
 
         int eyes = 0;
         for( int i = 0; i < 4; i++ ) {
-            if( states[ i ] == PortalCornerBlock.State.EYE ) {
+            if( states[ i ] == PortalCornerState.EYE ) {
                 eyes++;
             }
         }
@@ -256,7 +257,7 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
         for( int i = 0; i < 4; i++ ) {
             if( i >= b.length ) return;
             if( b[ i ] >= 0 )
-                states[ i ] = PortalCornerBlock.State.values()[ b[ i ] ];
+                states[ i ] = PortalCornerState.values()[ b[ i ] ];
             else states[ i ] = null;
         }
     }
@@ -284,7 +285,7 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
                 BlockPos pos = CORNERS[ i ];
                 BlockState state = getBlockState( pos );
                 if( state.getBlock() == MDBlocks.PORTAL_CORNER ) {
-                    PortalCornerBlock.State s = state.get( PortalCornerBlock.STATE );
+                    PortalCornerState s = state.get( PortalCornerBlock.STATE );
                     if( s != states[ i ] ) {
                         states[ i ] = s;
                         cornerUpdate( s );

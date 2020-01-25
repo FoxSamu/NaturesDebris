@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 26 - 2019
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.common.tileentity;
 
-import modernity.api.util.ESoulLightColor;
+import modernity.common.block.misc.SoulLightColor;
 import modernity.common.particle.MDParticleTypes;
 import modernity.common.particle.SoulLightParticleData;
 import net.minecraft.client.Minecraft;
@@ -27,7 +27,7 @@ import java.util.Random;
 
 public class SoulLightTileEntity extends TileEntity implements ISidedTickableTileEntity {
 
-    private ESoulLightColor color;
+    private SoulLightColor color;
     private boolean fades;
 
     private boolean beingRendered;
@@ -36,19 +36,19 @@ public class SoulLightTileEntity extends TileEntity implements ISidedTickableTil
     private int cloudParticleCounter;
 
     public SoulLightTileEntity() {
-        this( ESoulLightColor.random( new Random() ) );
+        this( SoulLightColor.random( new Random() ) );
     }
 
-    public SoulLightTileEntity( ESoulLightColor color ) {
+    public SoulLightTileEntity( SoulLightColor color ) {
         super( MDTileEntitiyTypes.SOUL_LIGHT );
         this.color = color;
     }
 
-    public ESoulLightColor getColor() {
-        return color == null ? setColor( ESoulLightColor.DEFAULT ) : color;
+    public SoulLightColor getColor() {
+        return color == null ? setColor( SoulLightColor.DEFAULT ) : color;
     }
 
-    public ESoulLightColor setColor( ESoulLightColor color ) {
+    public SoulLightColor setColor( SoulLightColor color ) {
         this.color = color;
         markDirty();
         return color;
@@ -75,7 +75,7 @@ public class SoulLightTileEntity extends TileEntity implements ISidedTickableTil
 
     @Override
     public void read( CompoundNBT compound ) {
-        color = ESoulLightColor.fromOrdinal( compound.getByte( "color" ) );
+        color = SoulLightColor.fromOrdinal( compound.getByte( "color" ) );
         fades = compound.getBoolean( "fades" );
         super.read( compound );
     }

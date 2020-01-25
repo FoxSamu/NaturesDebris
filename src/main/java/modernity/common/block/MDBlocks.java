@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 24 - 2020
+ * Date:   01 - 25 - 2020
  * Author: rgsw
  */
 
@@ -17,7 +17,14 @@ import modernity.common.block.dirt.SnowyDirtlikeBlock;
 import modernity.common.block.dirt.logic.MDDirtLogics;
 import modernity.common.block.farmland.FarmlandBlock;
 import modernity.common.block.farmland.GrassFarmlandBlock;
+import modernity.common.block.fluid.RegularFluidBlock;
+import modernity.common.block.misc.*;
+import modernity.common.block.misc.SaltBlock;
 import modernity.common.block.plant.*;
+import modernity.common.block.portal.HorizontalPortalFrameBlock;
+import modernity.common.block.portal.PortalCornerBlock;
+import modernity.common.block.portal.VerticalPortalFrameBlock;
+import modernity.common.block.tree.*;
 import modernity.common.block.utils.RockFurnaceBlock;
 import modernity.common.block.utils.WorkbenchBlock;
 import modernity.common.fluid.MDFluids;
@@ -74,7 +81,7 @@ public final class MDBlocks {
     public static final DigableBlock MURKY_COARSE_DIRT = blockItem( "murky_coarse_dirt", new DigableBlock( dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS, "coarse_dark_dirt" );
     public static final DirtlikeBlock HUMUS = blockItem( "humus", new SnowyDirtlikeBlock( MDDirtLogics.HUMUS_LOGIC, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS );
     public static final DirtlikeBlock MURKY_PODZOL = blockItem( "murky_podzol", new LeafyDirtlikeBlock( MDDirtLogics.PODZOL_LOGIC, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS, "dark_podzol" );
-    public static final StickyBlock MUD = blockItem( "mud", new StickyBlock.Digable( dirt( MaterialColor.BROWN_TERRACOTTA, false ) ), MDItemGroup.BLOCKS );
+    public static final StickyBlock MUD = blockItem( "mud", new DigableStickyBlock( dirt( MaterialColor.BROWN_TERRACOTTA, false ) ), MDItemGroup.BLOCKS );
     public static final DigableFallBlock REGOLITH = blockItem( "regolith", new DigableFallBlock( 0x737d8c, dust( MaterialColor.STONE, true ) ), MDItemGroup.BLOCKS, "rock_gravel" );
 
     // Fluids
@@ -430,8 +437,8 @@ public final class MDBlocks {
     public static final DoorBlock ALUMINIUM_DOOR = blockItem( "aluminium_door", new DoorBlock( metal( MaterialColor.IRON ) ), MDItemGroup.DECORATIVES );
 
     // Other building blocks
-    public static final GlassBlock MURKY_GLASS = blockItem( "murky_glass", new GlassBlock.Translucent( glass() ), MDItemGroup.BLOCKS, "dark_glass" );
-    public static final ExtendedPaneBlock MURKY_GLASS_PANE = blockItem( "murky_glass_pane", new ExtendedPaneBlock.Translucent( glass() ), MDItemGroup.DECORATIVES, "dark_glass_pane" );
+    public static final TranslucentBlock MURKY_GLASS = blockItem( "murky_glass", new TranslucentBlock( glass() ), MDItemGroup.BLOCKS, "dark_glass" );
+    public static final PanelBlock MURKY_GLASS_PANE = blockItem( "murky_glass_pane", new TranslucentPanelBlock( glass() ), MDItemGroup.DECORATIVES, "dark_glass_pane" );
 
     public static final PillarBlock ROCK_PILLAR = blockItem( "rock_pillar", new PillarBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
     public static final PillarBlock DARKROCK_PILLAR = blockItem( "darkrock_pillar", new PillarBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
@@ -457,7 +464,7 @@ public final class MDBlocks {
     public static final SimplePlantBlock MINT_PLANT = blockItem( "mint_plant", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ), SimplePlantBlock.MINT_SHAPE ), MDItemGroup.PLANTS );
     public static final RedwoldBlock REDWOLD = blockItem( "redwold", new RedwoldBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final NettlesBlock NETTLES = blockItem( "nettles", new NettlesBlock( weakPlant( MaterialColor.GRASS, 0.5 ) ), MDItemGroup.PLANTS );
-    public static final SaltCrystalBlock SALT_CRYSTAL = blockItem( "salt_crystal", new SaltCrystalBlock( crystal( MaterialColor.SNOW, 0.2 ) ), MDItemGroup.PLANTS );
+    public static final SaltBlock SALT_CRYSTAL = blockItem( "salt_crystal", new SaltBlock( crystal( MaterialColor.SNOW, 0.2 ) ), MDItemGroup.PLANTS );
     public static final MurinaBlock MURINA = blockItem( "murina", new MurinaBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final MossBlock MOSS = blockItem( "moss", new MossBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final FacingPlantBlock DEAD_MOSS = blockItem( "dead_moss", new FacingPlantBlock( weakPlant( MaterialColor.GRASS, 0 ), 2 ), MDItemGroup.PLANTS );
@@ -493,7 +500,7 @@ public final class MDBlocks {
     public static final Block STRIPPED_BLACKWOOD = blockItem( "stripped_blackwood", new Block( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.BLOCKS );
     public static final Block BLACKWOOD = blockItem( "blackwood", new StripableBlock( () -> STRIPPED_BLACKWOOD, wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.BLOCKS );
     public static final SaplingBlock BLACKWOOD_SAPLING = blockItem( "blackwood_sapling", new SaplingBlock( () -> MDTrees.BLACKWOOD, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
-    public static final HangLeavesBlock BLACKWOOD_LEAVES = blockItem( "blackwood_leaves", new HangLeavesBlock.ColoredBlackwood( MDBlockTags.BLACKWOOD_LOG, leaves( MaterialColor.FOLIAGE, 0.2 ) ), MDItemGroup.PLANTS );
+    public static final HangLeavesBlock BLACKWOOD_LEAVES = blockItem( "blackwood_leaves", new BlackwoodLeavesBlock( MDBlockTags.BLACKWOOD_LOG, leaves( MaterialColor.FOLIAGE, 0.2 ) ), MDItemGroup.PLANTS );
 
     // Inver
     public static final AxisBlock STRIPPED_INVER_LOG = blockItem( "stripped_inver_log", new AxisBlock( wood( MaterialColor.WOOD ) ), MDItemGroup.BLOCKS );
@@ -501,7 +508,7 @@ public final class MDBlocks {
     public static final Block STRIPPED_INVER = blockItem( "stripped_inver_wood", new Block( wood( MaterialColor.WOOD ) ), MDItemGroup.BLOCKS );
     public static final Block INVER_WOOD = blockItem( "inver_wood", new StripableBlock( () -> STRIPPED_INVER, wood( MaterialColor.WOOD ) ), MDItemGroup.BLOCKS );
     public static final SaplingBlock INVER_SAPLING = blockItem( "inver_sapling", new SaplingBlock( () -> MDTrees.INVER, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
-    public static final DecayLeavesBlock INVER_LEAVES = blockItem( "inver_leaves", new DecayLeavesBlock.ColoredInver( MDBlockTags.INVER_LOG, leaves( MaterialColor.FOLIAGE, 0.2 ) ), MDItemGroup.PLANTS );
+    public static final DecayLeavesBlock INVER_LEAVES = blockItem( "inver_leaves", new InverLeavesBlock( MDBlockTags.INVER_LOG, leaves( MaterialColor.FOLIAGE, 0.2 ) ), MDItemGroup.PLANTS );
 
 
 
@@ -513,7 +520,7 @@ public final class MDBlocks {
     public static final Block ANTHRACITE_ORE = blockItem( "anthracite_ore", new Block( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
 
     // Blocks
-    public static final TranslucentBlock SALT_BLOCK = blockItem( "salt_block", new TranslucentBlock.Salt( Block.Properties.create( Material.GLASS, MaterialColor.SNOW ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ) ), MDItemGroup.BLOCKS );
+    public static final TranslucentBlock SALT_BLOCK = blockItem( "salt_block", new SaltBlock( Block.Properties.create( Material.GLASS, MaterialColor.SNOW ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ) ), MDItemGroup.BLOCKS );
     public static final Block ALUMINIUM_BLOCK = blockItem( "aluminium_block", new Block( Block.Properties.create( Material.IRON, MaterialColor.IRON ).hardnessAndResistance( 5F, 6F ).sound( SoundType.METAL ) ), MDItemGroup.BLOCKS );
     public static final Block ANTHRACITE_BLOCK = blockItem( "anthracite_block", new Block( Block.Properties.create( Material.ROCK, MaterialColor.BLACK ).hardnessAndResistance( 3F, 6F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
 
