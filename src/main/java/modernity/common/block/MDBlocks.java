@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -72,6 +72,8 @@ public final class MDBlocks {
     public static final Block BASALT = blockItem( "basalt", new Block( rock( MaterialColor.BLACK, 3, 9 ) ), MDItemGroup.BLOCKS );
     public static final Block LIMESTONE = blockItem( "limestone", new Block( rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 ) ), MDItemGroup.BLOCKS );
     public static final Block ASPHALT_CONCRETE = blockItem( "asphalt_concrete", new Block( asphalt() ), MDItemGroup.BLOCKS );
+    public static final Block SUMESTONE = blockItem( "sumestone", new Block( rock( MaterialColor.STONE, 1.8, 6 ) ), MDItemGroup.BLOCKS );
+    public static final Block DARK_SUMESTONE = blockItem( "dark_sumestone", new Block( rock( MaterialColor.STONE, 1.8, 6 ) ), MDItemGroup.BLOCKS );
 
     // Soils
     public static final DirtlikeBlock MURKY_DIRT = blockItem( "murky_dirt", new DirtlikeBlock( MDDirtLogics.DIRT_LOGIC, dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS, "dark_dirt" );
@@ -464,7 +466,7 @@ public final class MDBlocks {
     public static final SimplePlantBlock MINT_PLANT = blockItem( "mint_plant", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ), SimplePlantBlock.MINT_SHAPE ), MDItemGroup.PLANTS );
     public static final RedwoldBlock REDWOLD = blockItem( "redwold", new RedwoldBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final NettlesBlock NETTLES = blockItem( "nettles", new NettlesBlock( weakPlant( MaterialColor.GRASS, 0.5 ) ), MDItemGroup.PLANTS );
-    public static final SaltBlock SALT_CRYSTAL = blockItem( "salt_crystal", new SaltBlock( crystal( MaterialColor.SNOW, 0.2 ) ), MDItemGroup.PLANTS );
+    public static final SaltCrystalBlock SALT_CRYSTAL = blockItem( "salt_crystal", new SaltCrystalBlock( crystal( MaterialColor.SNOW, 0.2 ) ), MDItemGroup.PLANTS );
     public static final MurinaBlock MURINA = blockItem( "murina", new MurinaBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final MossBlock MOSS = blockItem( "moss", new MossBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final FacingPlantBlock DEAD_MOSS = blockItem( "dead_moss", new FacingPlantBlock( weakPlant( MaterialColor.GRASS, 0 ), 2 ), MDItemGroup.PLANTS );
@@ -515,9 +517,12 @@ public final class MDBlocks {
     /* ==== MINERALS ==== */
 
     // Ores
-    public static final Block SALT_ORE = blockItem( "salt_ore", new Block( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
+    public static final OreBlock SALT_ORE = blockItem( "salt_ore", new OreBlock( 0, 3, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
     public static final Block ALUMINIUM_ORE = blockItem( "aluminium_ore", new Block( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
-    public static final Block ANTHRACITE_ORE = blockItem( "anthracite_ore", new Block( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
+    public static final OreBlock ANTHRACITE_ORE = blockItem( "anthracite_ore", new OreBlock( 0, 2, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
+    public static final OreBlock FINNERITE_ORE = blockItem( "finnerite_ore", new OreBlock( 2, 5, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
+    public static final OreBlock IVERITE_ORE = blockItem( "iverite_ore", new OreBlock( 2, 5, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
+    public static final OreBlock SAGERITE_ORE = blockItem( "sagerite_ore", new OreBlock( 2, 5, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
 
     // Blocks
     public static final TranslucentBlock SALT_BLOCK = blockItem( "salt_block", new SaltBlock( Block.Properties.create( Material.GLASS, MaterialColor.SNOW ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ) ), MDItemGroup.BLOCKS );

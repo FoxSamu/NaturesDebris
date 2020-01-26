@@ -1,0 +1,30 @@
+{
+  "pools": [
+    {
+      "name": "basic",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "alternatives",
+          "children": [
+            {
+              "type": "item",
+              "conditions": [
+                {
+                  "condition": "match_tool",
+                  "predicate": { "enchantments": [ { "enchantment": "silk_touch", "levels": { "min": 1 } } ] }
+                }
+              ],
+              "name": "modernity:finnerite_ore"
+            },
+            {
+              "type": "item",
+              "conditions": [ { "condition": "minecraft:survives_explosion" } ],
+              "name": "modernity:finnerite"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

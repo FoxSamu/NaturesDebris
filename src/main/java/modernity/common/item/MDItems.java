@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 21 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -39,6 +39,9 @@ public final class MDItems {
     public static final Item ALUMINIUM_INGOT = item( "aluminium_ingot", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item ALUMINIUM_NUGGET = item( "aluminium_nugget", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item ANTHRACITE = item( "anthracite", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item FINNERITE = item( "finnerite", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item IVERITE = item( "iverite", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item SAGERITE = item( "sagerite", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
 
 
 
