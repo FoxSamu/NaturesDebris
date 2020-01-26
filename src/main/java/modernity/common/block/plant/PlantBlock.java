@@ -2,17 +2,17 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
-import modernity.common.block.fluid.WaterlogType;
 import modernity.api.util.IBlockProvider;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.fluid.IMurkyWaterloggedBlock;
 import modernity.common.block.fluid.IWaterloggedBlock;
+import modernity.common.block.fluid.WaterlogType;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -186,6 +186,15 @@ public abstract class PlantBlock extends Block implements IBlockProvider {
 
                 entity.attackEntityFrom( src, damage );
             }
+        }
+    }
+
+    public boolean isBlockSideSustainable( BlockState state, IWorldReader world, BlockPos pos, Direction side ) {
+        Block block = state.getBlock();
+        if( block instanceof IPlantSustainer ) {
+            return ( (IPlantSustainer) block ).canSustainPlant( world, pos, state, this, side );
+        } else {
+            return state.isSolid() && state.func_224755_d( world, pos, side );
         }
     }
 }

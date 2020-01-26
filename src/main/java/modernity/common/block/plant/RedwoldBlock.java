@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -24,8 +24,7 @@ public class RedwoldBlock extends SimplePlantBlock {
 
     @Override
     public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
-        // 'func_224755_d' -> 'isSideSolid'
-        return state.isSolid() && state.func_224755_d( world, pos, Direction.UP );
+        return isBlockSideSustainable( state, world, pos, Direction.UP );
     }
 
     @Override

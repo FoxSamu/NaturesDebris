@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -25,6 +25,6 @@ public class HangingPlantBlock extends TallDirectionalPlantBlock {
 
     @Override
     public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
-        return state.func_224755_d( world, pos, Direction.DOWN );
+        return isBlockSideSustainable( state, world, pos, Direction.DOWN );
     }
 }

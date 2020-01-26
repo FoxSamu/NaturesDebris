@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -22,7 +22,7 @@ public abstract class DirectionalPlantBlock extends PlantBlock {
     }
 
     public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
-        return state.isOpaqueCube( world, pos );
+        return isBlockSideSustainable( state, world, pos, growDir );
     }
 
     public boolean canRemainOn( IWorldReader world, BlockPos pos, BlockState state, BlockState selfState ) {

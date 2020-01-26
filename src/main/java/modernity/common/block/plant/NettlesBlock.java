@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -15,6 +15,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.World;
 
@@ -44,5 +45,11 @@ public class NettlesBlock extends SimplePlantBlock implements IDangerousPlant {
     @Override
     public float getDamage( World world, BlockPos pos, BlockState state, Entity entity ) {
         return 1F;
+    }
+
+    @Override
+    public void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity ) {
+        super.onEntityCollision( state, world, pos, entity );
+        entity.setMotionMultiplier( state, new Vec3d( 0.75, 1, 0.75 ) );
     }
 }

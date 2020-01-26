@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -322,6 +322,6 @@ public class SaltCrystalBlock extends SingleDirectionalPlantBlock implements IMu
 
     @Override
     public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
-        return state.isSolid() && state.func_224755_d( world, pos, Direction.UP );
+        return isBlockSideSustainable( state, world, pos, Direction.UP );
     }
 }

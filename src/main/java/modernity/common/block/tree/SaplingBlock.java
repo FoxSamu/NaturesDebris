@@ -2,13 +2,12 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.tree;
 
-import modernity.api.util.BlockUpdates;
 import modernity.api.util.Events;
 import modernity.api.util.MDVoxelShapes;
 import modernity.common.block.MDBlockTags;
@@ -74,7 +73,7 @@ public class SaplingBlock extends SimplePlantBlock {
      * Grows the sapling.
      */
     public void growOlder( BlockState state, IWorld world, BlockPos pos, Random rand ) {
-        if( world.isRemote() ) {
+        if( ! world.isRemote() ) {
             if( state.get( AGE ) == 5 ) {
                 long seed = rand.nextLong();
                 Random local = new Random( seed );
@@ -85,7 +84,7 @@ public class SaplingBlock extends SimplePlantBlock {
                     tree.get().generate( world, local, pos );
                 }
             } else {
-                world.setBlockState( pos, state.with( AGE, state.get( AGE ) + 1 ), BlockUpdates.CAUSE_UPDATE | BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_RENDER | BlockUpdates.NO_NEIGHBOR_REACTIONS );
+                world.setBlockState( pos, state.with( AGE, state.get( AGE ) + 1 ), 3 );
             }
         }
     }

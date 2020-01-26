@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -83,7 +83,7 @@ public class FacingPlantBlock extends PlantBlock {
     }
 
     public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state, Direction direction ) {
-        return state.isSolid() && state.func_224755_d( world, pos, direction );
+        return isBlockSideSustainable( state, world, pos, direction );
     }
 
     @Override
