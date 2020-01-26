@@ -473,6 +473,8 @@ public final class MDBlocks {
     public static final FacingPlantBlock LICHEN = blockItem( "lichen", new FacingPlantBlock( weakPlant( MaterialColor.GRASS, 0 ), 2 ), MDItemGroup.PLANTS );
     public static final MurkFernBlock MURK_FERN = blockItem( "murk_fern", new MurkFernBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final TallMurkFernBlock TALL_MURK_FERN = blockItem( "tall_murk_fern", new TallMurkFernBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
+    public static final WireplantBlock WIREPLANT = blockItem( "wireplant", new WireplantBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
+    public static final WireplantBlock FLOWERED_WIREPLANT = blockItem( "flowered_wireplant", new WireplantBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
 
     // Melion
     public static final SimplePlantBlock RED_MELION = blockItem( "red_melion", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.MELION_SHAPE ), MDItemGroup.PLANTS, "melion/red" );

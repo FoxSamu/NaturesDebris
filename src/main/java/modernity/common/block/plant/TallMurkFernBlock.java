@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -36,7 +36,7 @@ public class TallMurkFernBlock extends DoubleDirectionalPlantBlock implements IC
 
     @Override
     public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
-        return state.isIn( MDBlockTags.DIRTLIKE );
+        return state.isIn( MDBlockTags.SOIL );
     }
 
     @Override
