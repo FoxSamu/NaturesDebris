@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 12 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -28,6 +28,7 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
@@ -129,16 +130,21 @@ public enum WorldTickHandler {
         int n = world.getGameRules().get( GameRules.RANDOM_TICK_SPEED ).get();
 
         for( int i = 0; i < n; i++ ) {
-            if( rain && world.rand.nextInt( 16 ) == 0 ) {
-                for( int j = 0; j < 6; j++ ) {
-                    BlockPos pos = randomPos( sx, 0, sz, 15 );
-                    Biome biome = world.getBiome( pos );
+            if( rain && world.rand.nextInt( 8 ) == 0 ) {
+                for( ChunkSection section : chunk.getSections() ) {
+                    if( section != null && section != Chunk.EMPTY_SECTION ) {
+                        int y = section.getYLocation();
+                        for( int j = 0; j < 4; j++ ) {
+                            BlockPos pos = randomPos( sx, y, sz, 15 );
+                            Biome biome = world.getBiome( pos );
 
-                    ModernityBiome mbiome = (ModernityBiome) biome;
-                    IPrecipitationFunction precFn = mbiome.getPrecipitationFunction();
-                    IPrecipitation prec = precFn.computePrecipitation( level );
+                            ModernityBiome mbiome = (ModernityBiome) biome;
+                            IPrecipitationFunction precFn = mbiome.getPrecipitationFunction();
+                            IPrecipitation prec = precFn.computePrecipitation( level );
 
-                    prec.blockUpdate( world, pos );
+                            prec.blockUpdate( world, pos );
+                        }
+                    }
                 }
 
 //                if( world.isAreaLoaded( heightPos, 1 ) ) {

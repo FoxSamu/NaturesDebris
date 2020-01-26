@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -80,10 +80,10 @@ public class SnowPrecipitation implements IPrecipitation {
     @Override
     public void blockUpdate( World world, BlockPos pos ) {
         if( world.rand.nextInt( 2 ) != 0 ) return;
-        BlockPos heightPos = new BlockPos( pos.getX(), getHeight( world, pos.getX(), pos.getZ() ), pos.getZ() );
+        int height = getHeight( world, pos.getX(), pos.getZ() );
 
-        if( doesSnowGenerate( world, heightPos ) ) {
-            world.setBlockState( heightPos, Blocks.SNOW.getDefaultState() );
+        if( pos.getY() == height && doesSnowGenerate( world, pos ) ) {
+            world.setBlockState( pos, Blocks.SNOW.getDefaultState() );
         }
     }
 

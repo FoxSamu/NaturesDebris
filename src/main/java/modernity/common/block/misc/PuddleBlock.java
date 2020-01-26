@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -158,7 +158,17 @@ public class PuddleBlock extends Block implements IColoredBlock, IBlockProvider 
                 if( world.rand.nextDouble() < spreadChance ) {
                     for( int y = 0; y > - 10; y-- ) {
                         mpos.setPos( pos ).move( dir ).moveUp( y );
-                        if( ! world.getBlockState( mpos ).isAir( world, mpos ) ) {
+                        BlockState state1 = world.getBlockState( mpos );
+                        if( state1.getBlock() == this && state1.get( DISTANCE ) > state.get( DISTANCE ) ) {
+                            if( state1.get( DISTANCE ) > state.get( DISTANCE ) + 1 ) {
+                                BlockState newState = state1.with( DISTANCE, state.get( DISTANCE ) + 1 );
+                                world.setBlockState( mpos, newState );
+                                state1 = newState;
+                            }
+                            rainTick( world, mpos, state1, spreadChance * 2 / 3 );
+                            break;
+                        }
+                        if( ! state1.isAir( world, mpos ) ) {
                             break;
                         }
                         if( canRemain( world, mpos ) ) {

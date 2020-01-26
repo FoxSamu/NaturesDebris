@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -80,18 +80,13 @@ public class HeavySnowPrecipitation implements IPrecipitation {
 
     @Override
     public void blockUpdate( World world, BlockPos pos ) {
-        int itr = world.rand.nextInt( 3 ) + 1 + ( world.rand.nextBoolean() ? world.rand.nextInt( 3 ) : 0 );
-        for( int i = 0; i < itr; i++ ) {
-            int x = pos.getX() + world.rand.nextInt( 4 ) - world.rand.nextInt( 4 );
-            int z = pos.getZ() + world.rand.nextInt( 4 ) - world.rand.nextInt( 4 );
-            BlockPos heightPos = new BlockPos( x, getHeight( world, x, z ), z );
+        int height = getHeight( world, pos.getX(), pos.getZ() );
 
-            if( doesSnowGenerate( world, heightPos ) ) {
-                BlockState state = world.getBlockState( heightPos );
-                int level = state.isAir( world, heightPos ) ? 0 : state.get( SnowBlock.LAYERS );
-                level += level < 4 ? 1 : 0;
-                world.setBlockState( heightPos, Blocks.SNOW.getDefaultState().with( SnowBlock.LAYERS, level ) );
-            }
+        if( pos.getY() == height && doesSnowGenerate( world, pos ) ) {
+            BlockState state = world.getBlockState( pos );
+            int level = state.isAir( world, pos ) ? 0 : state.get( SnowBlock.LAYERS );
+            level += level < 4 ? 1 : 0;
+            world.setBlockState( pos, Blocks.SNOW.getDefaultState().with( SnowBlock.LAYERS, level ) );
         }
     }
 

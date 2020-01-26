@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -83,12 +83,12 @@ public class RainPrecipitation implements IPrecipitation {
 
     @Override
     public void blockUpdate( World world, BlockPos pos ) {
-        if( world.rand.nextInt( 3 ) == 0 ) return;
+        if( world.rand.nextInt( 2 ) != 0 ) return;
         int height = getHeight( world, pos.getX(), pos.getZ() );
 
-        if( doesPuddleGenerate( world, pos ) ) {
+        if( pos.getY() == height && doesPuddleGenerate( world, pos ) ) {
             BlockState state = world.getBlockState( pos );
-            if( state.isAir( world, pos ) && pos.getY() == height ) {
+            if( state.isAir( world, pos ) ) {
                 world.setBlockState( pos, MDBlocks.PUDDLE.getDefaultState().with( PuddleBlock.DISTANCE, 0 ), 7 );
             } else {
                 MDBlocks.PUDDLE.rainTick( world, pos, state, 0.25 );
@@ -97,7 +97,6 @@ public class RainPrecipitation implements IPrecipitation {
     }
 
     private boolean doesPuddleGenerate( World world, BlockPos pos ) {
-        if( ! world.isAreaLoaded( pos, 1 ) ) return false;
         if( pos.getY() >= 0 && pos.getY() < 256 ) {
             BlockState state = world.getBlockState( pos );
             return ( state.isAir( world, pos ) || state.getBlock() == MDBlocks.PUDDLE ) && MDBlocks.PUDDLE.getDefaultState().isValidPosition( world, pos );
