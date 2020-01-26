@@ -1,18 +1,21 @@
 modLoader="javafml"
 loaderVersion="[28.1,)"
-issueTrackerURL="https://github.com/RedGalaxySW/TheModernity/issues"
+issueTrackerURL="https://github.com/RedGalaxyDev/TheModernity/issues"
 [[mods]]
-modId="modernity"
-version="${version}"
-displayName="The Modernity"
-updateJSONURL="https://raw.githubusercontent.com/RedGalaxySW/TheModernity/1.14.4/update.json"
-#displayURL="http://example.com/"
-#logoFile="examplemod.png"
-credits="Copyright (c) 2019 Red Galaxy and contributors."
-authors="Red Galaxy"
-description='''
-The Modernity dimension is a dark and mysterious world where the ancient forces of nature fused into a modern network of natural intelligence... In this world live the remnants of ancient civilization that suffered from an angry curse that diffused all over the network, which now has the control over the complete world... Only a strong and tough person with a fresh soul could save the world.
-'''
+    modId="modernity"
+    version="${version}"
+    displayName="The Modernity"
+    updateJSONURL="https://raw.githubusercontent.com/RedGalaxyDev/TheModernity/1.14.4/update.json"
+    #displayURL="http://example.com/"
+    #logoFile="examplemod.png"
+    credits="Copyright (c) 2019 Red Galaxy and contributors."
+    authors="Red Galaxy"
+    description="""\
+    The Modernity dimension is a dark and mysterious world where the ancient forces of nature fused into a modern \
+    network of natural intelligence... In this world live the remnants of ancient civilization that suffered from \
+    an angry curse that diffused all over the network, which now has the control over the complete world... Only a \
+    strong and tough person with a fresh soul could save the world.
+    """
 
 [[dependencies.modernity]]
     modId="forge"
