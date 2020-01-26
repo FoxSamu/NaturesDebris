@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   01 - 26 - 2020
  * Author: rgsw
  */
 
@@ -29,13 +29,13 @@ import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.World;
 
 public class PortalCornerBlock extends Block {
-    static final VoxelShape SLAB_SHAPE = makeCuboidShape( 0, 0, 0, 16, 8, 16 );
-    static final VoxelShape EYE_SHAPE = makeCuboidShape( 5, 8, 5, 11, 10, 11 );
-
-    static final VoxelShape COMBINED_SHAPE = VoxelShapes.or( SLAB_SHAPE, EYE_SHAPE );
-
-
     public static final EnumProperty<PortalCornerState> STATE = MDBlockStateProperties.PORTAL_CORNER_STATE;
+
+    private static final VoxelShape SLAB_SHAPE = makeCuboidShape( 0, 0, 0, 16, 8, 16 );
+    private static final VoxelShape EYE_SHAPE = makeCuboidShape( 5, 8, 5, 11, 10, 11 );
+
+    private static final VoxelShape COMBINED_SHAPE = VoxelShapes.or( SLAB_SHAPE, EYE_SHAPE );
+
 
     public PortalCornerBlock( Properties props ) {
         super( props );
@@ -49,7 +49,7 @@ public class PortalCornerBlock extends Block {
 
     @Override
     public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context ) {
-        return state.get( STATE ).getShape();
+        return state.get( STATE ) == PortalCornerState.INACTIVE ? SLAB_SHAPE : COMBINED_SHAPE;
     }
 
     @Override
