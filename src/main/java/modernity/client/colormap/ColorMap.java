@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 28 - 2020
  * Author: rgsw
  */
 
@@ -111,6 +111,10 @@ public class ColorMap implements ISelectiveResourceReloadListener {
         if( resourcePredicate.test( VanillaResourceType.TEXTURES ) ) {
             reload( resourceManager );
         }
+    }
+
+    public boolean isLoaded() {
+        return loaded;
     }
 
     /**

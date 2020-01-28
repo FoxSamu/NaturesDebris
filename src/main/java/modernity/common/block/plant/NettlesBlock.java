@@ -2,12 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   01 - 28 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
+import modernity.api.util.EntityUtil;
 import modernity.common.entity.MDEntityTags;
 import modernity.common.util.MDDamageSource;
 import net.minecraft.block.BlockState;
@@ -50,6 +51,8 @@ public class NettlesBlock extends SimplePlantBlock implements IDangerousPlant {
     @Override
     public void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity ) {
         super.onEntityCollision( state, world, pos, entity );
-        entity.setMotionMultiplier( state, new Vec3d( 0.75, 1, 0.75 ) );
+        if( ! entity.getType().isContained( MDEntityTags.NETTLES_IMMUNE ) ) {
+            EntityUtil.setSmallerMotionMutliplier( entity, new Vec3d( 0.75, 1, 0.75 ) );
+        }
     }
 }

@@ -1,0 +1,23 @@
+{
+  "textures": {
+    "particle": "#plant"
+  },
+  "elements": [
+    {
+      "from": [ 0, 0, 4 ],
+      "to": [ 8, 16, 4 ],
+      "faces": {
+        "north": { "uv": [ 8, 0, 16, 16 ], "texture": "#plant" },
+        "south": { "uv": [ 16, 0, 8, 16 ], "texture": "#plant" }
+      }
+    },
+    {
+      "from": [ 0, 0, 12 ],
+      "to": [ 8, 16, 12 ],
+      "faces": {
+        "north": { "uv": [ 8, 0, 16, 16 ], "texture": "#plant" },
+        "south": { "uv": [ 16, 0, 8, 16 ], "texture": "#plant" }
+      }
+    }
+  ]
+}

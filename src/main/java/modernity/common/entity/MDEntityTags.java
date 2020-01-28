@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 12 - 2020
+ * Date:   01 - 28 - 2020
  * Author: rgsw
  */
 
@@ -15,6 +15,8 @@ import net.minecraft.util.ResourceLocation;
 
 public final class MDEntityTags {
     public static final Tag<EntityType<?>> NETTLES_IMMUNE = tag( "nettles_immune" );
+    public static final Tag<EntityType<?>> WIREPLANT_IMMUNE = tag( "wireplant_immune" );
+    public static final Tag<EntityType<?>> WATER_WIRE_IMMUNE = tag( "water_wire_immune" );
 
     private MDEntityTags() {
     }

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   01 - 28 - 2020
  * Author: rgsw
  */
 
@@ -99,7 +99,7 @@ public abstract class PlantBlock extends Block implements IBlockProvider {
             world.getPendingFluidTicks().scheduleTick( pos, fluid, fluid.getTickRate( world ) );
         }
 
-        if( isValidPosition( state, world, pos ) ) {
+        if( canRemain( world, pos, state, dir, adjPos, adjState ) ) {
             return state;
         }
         return Blocks.AIR.getDefaultState();

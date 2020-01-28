@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 16 - 2020
+ * Date:   01 - 28 - 2020
  * Author: rgsw
  */
 
@@ -67,6 +67,9 @@ public class ModernityClient extends Modernity {
     private BiomeColoringProfile inverColors;
     private BiomeColoringProfile waterColors;
     private BiomeColoringProfile mossColors;
+    private BiomeColoringProfile fernColors;
+    private BiomeColoringProfile watergrassColors;
+    private BiomeColoringProfile algaeColors;
 
     private ClientWorldAreaManager worldAreaManager;
     private AreaRenderManager areaRenderManager;
@@ -87,6 +90,9 @@ public class ModernityClient extends Modernity {
         addFutureReloadListener( new BiomeColorProfileReloader( "inver", e -> inverColors = e ) );
         addFutureReloadListener( new BiomeColorProfileReloader( "water", e -> waterColors = e ) );
         addFutureReloadListener( new BiomeColorProfileReloader( "moss", e -> mossColors = e ) );
+        addFutureReloadListener( new BiomeColorProfileReloader( "ferns", e -> fernColors = e ) );
+        addFutureReloadListener( new BiomeColorProfileReloader( "watergrass", e -> watergrassColors = e ) );
+        addFutureReloadListener( new BiomeColorProfileReloader( "algae", e -> algaeColors = e ) );
 
         addFutureReloadListener( fluidRenderer );
         addFutureReloadListener( fallenLeafColors );
@@ -207,6 +213,27 @@ public class ModernityClient extends Modernity {
      */
     public BiomeColoringProfile getMossColors() {
         return mossColors;
+    }
+
+    /**
+     * Gets the biome color profile for algae colors
+     */
+    public BiomeColoringProfile getAlgaeColors() {
+        return algaeColors;
+    }
+
+    /**
+     * Gets the biome color profile for watergrass colors
+     */
+    public BiomeColoringProfile getWatergrassColors() {
+        return watergrassColors;
+    }
+
+    /**
+     * Gets the biome color profile for fern colors
+     */
+    public BiomeColoringProfile getFernColors() {
+        return fernColors;
     }
 
     /**

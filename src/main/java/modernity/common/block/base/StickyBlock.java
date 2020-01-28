@@ -2,12 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   01 - 28 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.base;
 
+import modernity.api.util.EntityUtil;
 import modernity.common.block.plant.IPlantSustainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -37,7 +38,7 @@ public class StickyBlock extends Block implements IPlantSustainer {
     @Override
     public void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity ) {
         if( ! entity.isInWater() ) { // Motion multiplier already limits jumping.
-            entity.setMotionMultiplier( state, new Vec3d( 0.25, 0.05, 0.25 ) );
+            EntityUtil.setSmallerMotionMutliplier( entity, new Vec3d( 0.25, 0.25, 0.25 ) );
         }
     }
 

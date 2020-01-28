@@ -2,13 +2,15 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   01 - 28 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
+import modernity.api.util.EntityUtil;
 import modernity.common.block.MDBlockTags;
+import modernity.common.entity.MDEntityTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.BlockItemUseContext;
@@ -24,8 +26,10 @@ public class WireplantBlock extends SimplePlantBlock {
 
     @Override
     public void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity ) {
-        entity.setMotionMultiplier( state, new Vec3d( 0.5, 0.5, 0.5 ) );
-        entity.fallDistance *= 0.5;
+        if( ! entity.getType().isContained( MDEntityTags.WIREPLANT_IMMUNE ) ) {
+            EntityUtil.setSmallerMotionMutliplier( entity, new Vec3d( 0.5, 0.5, 0.5 ) );
+            EntityUtil.suspendFallDistance( entity, 0.5 );
+        }
     }
 
     @Override

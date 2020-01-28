@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   01 - 28 - 2020
  * Author: rgsw
  */
 
@@ -42,13 +42,13 @@ public class TallMurkFernBlock extends DoubleDirectionalPlantBlock implements IC
     @Override
     @OnlyIn( Dist.CLIENT )
     public int colorMultiplier( BlockState state, @Nullable IEnviromentBlockReader reader, @Nullable BlockPos pos, int tintIndex ) {
-        return ModernityClient.get().getGrassColors().getColor( reader, pos );
+        return ModernityClient.get().getFernColors().getColor( reader, pos );
     }
 
     @Override
     @OnlyIn( Dist.CLIENT )
     public int colorMultiplier( ItemStack stack, int tintIndex ) {
-        return ModernityClient.get().getGrassColors().getItemColor();
+        return ModernityClient.get().getFernColors().getItemColor();
     }
 
     @Override

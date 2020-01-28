@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 28 - 2020
  * Author: rgsw
  */
 
@@ -11,6 +11,7 @@ package modernity.api.biome;
 import com.google.gson.*;
 import modernity.api.util.ColorUtil;
 import modernity.client.ModernityClient;
+import modernity.client.colormap.ColorMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IResource;
 import net.minecraft.resources.IResourceManager;
@@ -504,6 +505,15 @@ public class BiomeColoringProfile {
                         throw new ColorFormatException( "'fracopensimplex3d' requires an object" );
                     } else {
                         return parseFractalOpenSimplex3D( random.getAsJsonObject() );
+                    }
+                }
+                // From color map
+                else if( object.has( "colormap" ) ) {
+                    JsonElement random = object.get( "colormap" );
+                    if( ! random.isJsonObject() ) {
+                        throw new ColorFormatException( "'colormap' requires an object" );
+                    } else {
+                        return parseColorMap( random.getAsJsonObject() );
                     }
                 }
                 if( object.size() == 0 ) {
@@ -1176,6 +1186,45 @@ public class BiomeColoringProfile {
         }
     }
 
+    private static IColorProvider parseColorMap( JsonObject object ) throws ColorFormatException {
+        try {
+            if( ! object.has( "texture" ) )
+                throw new ColorFormatException( "Missing required 'texture'" );
+            if( ! object.has( "x" ) )
+                throw new ColorFormatException( "Missing required 'x'" );
+            if( ! object.has( "y" ) )
+                throw new ColorFormatException( "Missing required 'y'" );
+
+            if( ! object.get( "texture" ).isJsonPrimitive() || ! object.getAsJsonPrimitive( "texture" ).isString() )
+                throw new ColorFormatException( "'texture' must be a string" );
+
+            if( ! object.get( "x" ).isJsonPrimitive() || ! object.getAsJsonPrimitive( "x" ).isNumber() )
+                throw new ColorFormatException( "'x' must be a number" );
+
+            if( ! object.get( "y" ).isJsonPrimitive() || ! object.getAsJsonPrimitive( "y" ).isNumber() )
+                throw new ColorFormatException( "'y' must be a number" );
+
+            String texLoc = object.getAsJsonPrimitive( "texture" ).getAsString();
+            ResourceLocation texture = ResourceLocation.tryCreate( texLoc );
+
+            if( texture == null ) {
+                throw new ColorFormatException( "'" + texLoc + "' is not a valid texture name" );
+            }
+
+            float x = object.getAsJsonPrimitive( "x" ).getAsFloat();
+            float y = object.getAsJsonPrimitive( "y" ).getAsFloat();
+
+            IColorProvider fallback = createErrorProvider();
+            if( object.has( "fallback" ) ) {
+                JsonElement fallbackEl = object.get( "fallback" );
+                fallback = parseColorProvider( fallbackEl );
+            }
+            return new FromColorMap( texture, fallback, x, y );
+        } catch( ColorFormatException exc ) {
+            throw exc.addParent( "colormap" );
+        }
+    }
+
     /**
      * Parses a solid color from rgb array using the first three elements, ignoring any additional elements
      */
@@ -1605,6 +1654,30 @@ public class BiomeColoringProfile {
         @Override
         public void initForSeed( long seed ) {
             this.seed = (int) seed;
+        }
+    }
+
+    public static class FromColorMap implements IColorProvider {
+        private final ColorMap colorMap;
+        private final IColorProvider fallback;
+        private final float x;
+        private final float y;
+
+        public FromColorMap( ResourceLocation loc, IColorProvider fallback, float x, float y ) {
+            this.colorMap = new ColorMap( new ResourceLocation( loc.getNamespace(), "textures/" + loc.getPath() + ".png" ) );
+            this.fallback = fallback;
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public int getColor( BlockPos pos ) {
+            return colorMap.get( x, y );
+        }
+
+        @Override
+        public int getColor( BlockPos pos, long seed ) {
+            return colorMap.isLoaded() ? colorMap.get( x, y ) : fallback.getColor( pos, seed );
         }
     }
 

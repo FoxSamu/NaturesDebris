@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 28 - 2020
  * Author: rgsw
  */
 
@@ -37,12 +37,12 @@ public class MurkFernBlock extends SimplePlantBlock implements IColoredBlock {
     @Override
     @OnlyIn( Dist.CLIENT )
     public int colorMultiplier( BlockState state, @Nullable IEnviromentBlockReader reader, @Nullable BlockPos pos, int tintIndex ) {
-        return ModernityClient.get().getGrassColors().getColor( reader, pos );
+        return ModernityClient.get().getFernColors().getColor( reader, pos );
     }
 
     @Override
     @OnlyIn( Dist.CLIENT )
     public int colorMultiplier( ItemStack stack, int tintIndex ) {
-        return ModernityClient.get().getGrassColors().getItemColor();
+        return ModernityClient.get().getFernColors().getItemColor();
     }
 }
