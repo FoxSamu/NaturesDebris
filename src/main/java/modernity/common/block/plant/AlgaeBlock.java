@@ -8,20 +8,27 @@
 
 package modernity.common.block.plant;
 
+import modernity.api.block.IColoredBlock;
+import modernity.client.ModernityClient;
 import modernity.common.block.MDBlockStateProperties;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
-public class AlgaeBlock extends PlantBlock implements IWaterPlant {
+public class AlgaeBlock extends PlantBlock implements IWaterPlant, IColoredBlock {
     public static final IntegerProperty DENSITY = MDBlockStateProperties.DENSITY_1_16;
 
     public AlgaeBlock( Properties properties ) {
@@ -63,5 +70,17 @@ public class AlgaeBlock extends PlantBlock implements IWaterPlant {
         }
         if( density == 0 ) return false;
         return world.setBlockState( pos, getDefaultState().with( DENSITY, density ), 2 );
+    }
+
+    @Override
+    @OnlyIn( Dist.CLIENT )
+    public int colorMultiplier( BlockState state, @Nullable IEnviromentBlockReader reader, @Nullable BlockPos pos, int tintIndex ) {
+        return ModernityClient.get().getAlgaeColors().getColor( reader, pos );
+    }
+
+    @Override
+    @OnlyIn( Dist.CLIENT )
+    public int colorMultiplier( ItemStack stack, int tintIndex ) {
+        return ModernityClient.get().getAlgaeColors().getItemColor();
     }
 }

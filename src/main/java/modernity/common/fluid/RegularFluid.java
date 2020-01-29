@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -147,7 +147,7 @@ public abstract class RegularFluid extends Fluid {
             if( state.get( FALLING ) ) {
                 for( Direction facing : Direction.Plane.HORIZONTAL ) {
                     mpos.setPos( pos ).move( facing );
-                    if( causesVerticalCurrent( world, mpos, facing ) || causesVerticalCurrent( world, mpos.up( fallDirection ), facing ) ) {
+                    if( causesVerticalCurrent( world, mpos, facing ) || causesVerticalCurrent( world, mpos.down( fallDirection ), facing ) ) {
                         flow = flow.normalize().add( 0, - 6 * fallDirection, 0 );
                         break;
                     }
@@ -175,7 +175,7 @@ public abstract class RegularFluid extends Fluid {
         IFluidState ifluidstate = world.getFluidState( pos );
         if( ifluidstate.getFluid().isEquivalentTo( this ) ) {
             return false;
-        } else if( facing == Direction.UP ) {
+        } else if( facing == up ) {
             return true;
         } else {
             return blockstate.getMaterial() != Material.ICE && blockstate.func_224755_d( world, pos, facing );
