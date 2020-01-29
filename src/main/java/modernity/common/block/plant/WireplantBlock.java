@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 28 - 2020
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -39,6 +39,6 @@ public class WireplantBlock extends SimplePlantBlock {
 
     @Override
     public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
-        return state.isIn( MDBlockTags.SOIL );
+        return state.isIn( MDBlockTags.DIRTLIKE );
     }
 }

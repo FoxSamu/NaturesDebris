@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -16,6 +16,8 @@ import modernity.common.block.fluid.IMurkyWaterloggedBlock;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
+import net.minecraft.entity.Entity;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.IntegerProperty;
@@ -31,6 +33,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 @SuppressWarnings( "deprecation" )
@@ -43,6 +46,10 @@ public class ReedsBlock extends TallDirectionalPlantBlock implements IMurkyWater
         super( properties, Direction.UP );
     }
 
+    @Override
+    public SoundType getSoundType( BlockState state, IWorldReader world, BlockPos pos, @Nullable Entity entity ) {
+        return state.get( WATERLOGGED ) ? SoundType.WET_GRASS : SoundType.PLANT;
+    }
 
     @Override
     protected void fillStateContainer( StateContainer.Builder<Block, BlockState> builder ) {

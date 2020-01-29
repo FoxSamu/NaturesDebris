@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/cross_3d",
+  "textures": {
+    "cross": "modernity:block/algae_density_15"
+  }
+}

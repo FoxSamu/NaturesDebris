@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -22,6 +22,7 @@ public class SimplePlantBlock extends SingleDirectionalPlantBlock {
     public static final VoxelShape MELION_SHAPE = makeCuboidShape( 2, 0, 2, 14, 12, 14 );
     public static final VoxelShape MILLIUM_SHAPE = makeCuboidShape( 1, 0, 1, 15, 8, 15 );
     public static final VoxelShape MINT_SHAPE = makeCuboidShape( 1, 0, 1, 15, 9, 15 );
+    public static final VoxelShape HORSETAIL_SHAPE = makeCuboidShape( 1, 0, 1, 15, 12, 15 );
 
     protected final VoxelShape shape;
 
@@ -32,7 +33,7 @@ public class SimplePlantBlock extends SingleDirectionalPlantBlock {
 
     @Override
     public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
-        return state.isIn( MDBlockTags.SOIL );
+        return state.isIn( MDBlockTags.DIRTLIKE );
     }
 
     @Override

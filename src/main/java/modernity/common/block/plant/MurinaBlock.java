@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -13,7 +13,6 @@ import modernity.client.ModernityClient;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -21,8 +20,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 
 public class MurinaBlock extends HangingPlantBlock implements IColoredBlock {
-    public static final VoxelShape MURINA_SHAPE = makeCuboidShape( 5, 0, 5, 11, 16, 11 );
-
     public MurinaBlock( Properties properties ) {
         super( properties, MURINA_SHAPE );
     }

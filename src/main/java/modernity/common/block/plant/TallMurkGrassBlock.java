@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -45,7 +45,7 @@ public class TallMurkGrassBlock extends LimitedTallDirectionalPlantBlock impleme
 
     @Override
     public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
-        return state.isIn( MDBlockTags.SOIL );
+        return state.isIn( MDBlockTags.DIRTLIKE );
     }
 
     @Override

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -64,6 +64,8 @@ public final class MDBlockStateProperties {
     public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = EnumProperty.create( "axis", Direction.Axis.class, Direction.Axis::isHorizontal );
 
     public static final EnumProperty<PortalCornerState> PORTAL_CORNER_STATE = EnumProperty.create( "state", PortalCornerState.class );
+
+    public static final IntegerProperty DENSITY_1_16 = IntegerProperty.create( "density", 1, 16 );
 
     private MDBlockStateProperties() {
     }
