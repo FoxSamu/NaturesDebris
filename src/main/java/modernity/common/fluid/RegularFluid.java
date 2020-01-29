@@ -147,7 +147,7 @@ public abstract class RegularFluid extends Fluid {
             if( state.get( FALLING ) ) {
                 for( Direction facing : Direction.Plane.HORIZONTAL ) {
                     mpos.setPos( pos ).move( facing );
-                    if( causesVerticalCurrent( world, mpos, facing ) || causesVerticalCurrent( world, mpos.down( fallDirection ), facing ) ) {
+                    if( causesVerticalCurrent( world, mpos, facing ) || causesVerticalCurrent( world, mpos.up( fallDirection ), facing ) ) {
                         flow = flow.normalize().add( 0, - 6 * fallDirection, 0 );
                         break;
                     }
