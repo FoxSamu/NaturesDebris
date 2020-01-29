@@ -1,7 +1,21 @@
 {
   "variants": {
-    "": {
-      "model": "modernity:block/mud"
-    }
+    "": [
+      {
+        "model": "modernity:block/mud"
+      },
+      {
+        "model": "modernity:block/mud",
+        "y": 90
+      },
+      {
+        "model": "modernity:block/mud",
+        "y": 180
+      },
+      {
+        "model": "modernity:block/mud",
+        "y": 270
+      }
+    ]
   }
 }

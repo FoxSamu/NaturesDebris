@@ -87,6 +87,8 @@ public abstract class RegularFluid extends Fluid {
         this.level = level;
         this.blockLevel = IntegerProperty.create( "level", 0, max );
         this.maxLevel = max;
+
+        setDefaultState( getStateContainer().getBaseState().with( FALLING, false ) );
     }
 
     public RegularFluid() {

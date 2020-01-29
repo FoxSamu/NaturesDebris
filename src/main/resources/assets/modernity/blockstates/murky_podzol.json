@@ -1,7 +1,21 @@
 {
   "variants": {
-    "": {
-      "model": "modernity:block/murky_podzol"
-    }
+    "": [
+      {
+        "model": "modernity:block/murky_podzol"
+      },
+      {
+        "model": "modernity:block/murky_podzol",
+        "y": 90
+      },
+      {
+        "model": "modernity:block/murky_podzol",
+        "y": 180
+      },
+      {
+        "model": "modernity:block/murky_podzol",
+        "y": 270
+      }
+    ]
   }
 }

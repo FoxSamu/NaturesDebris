@@ -24,6 +24,7 @@ public class SimplePlantBlock extends SingleDirectionalPlantBlock {
     public static final VoxelShape MINT_SHAPE = makeCuboidShape( 1, 0, 1, 15, 9, 15 );
     public static final VoxelShape HORSETAIL_SHAPE = makeCuboidShape( 1, 0, 1, 15, 12, 15 );
     public static final VoxelShape LAKEWEED_SHAPE = makeCuboidShape( 1, 0, 1, 15, 10, 15 );
+    public static final VoxelShape HEATH_SHAPE = makeCuboidShape( 0, 0, 0, 16, 7, 16 );
 
     protected final VoxelShape shape;
 
