@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 16 - 2020
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -129,7 +129,7 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.14.4-28.1.115'
 
     compile 'net.rgsw:noise:1.0.3'
-    compile 'net.rgsw:io:1.0'
+    compile 'net.rgsw:io:1.0.1'
 
     // provided 'dep' // May not exist at runtime
     // deobf 'dep' // Remaps a dependency

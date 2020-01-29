@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -21,6 +21,8 @@ public class SimpleAreaReferenceChunk implements IAreaReferenceChunk {
     public final int x;
     public final int z;
     private final LongSet references = new LongOpenHashSet();
+
+    private boolean dirty;
 
     public final WrappingAreaReferenceChunk unmodifiable = new WrappingAreaReferenceChunk( this );
 
@@ -41,10 +43,12 @@ public class SimpleAreaReferenceChunk implements IAreaReferenceChunk {
 
     public void addReference( long ref ) {
         references.add( ref );
+        dirty = true;
     }
 
     public void removeReference( long ref ) {
         references.remove( ref );
+        dirty = true;
     }
 
     @Override
@@ -60,11 +64,20 @@ public class SimpleAreaReferenceChunk implements IAreaReferenceChunk {
         references.clear();
         long[] ls = nbt.getLongArray( "references" );
         for( long l : ls ) addReference( l );
+        dirty = false;
     }
 
 
     @Override
     public ChunkPos getPos() {
         return new ChunkPos( x, z );
+    }
+
+    public boolean isDirty() {
+        return dirty;
+    }
+
+    public void setDirty( boolean dirty ) {
+        this.dirty = dirty;
     }
 }

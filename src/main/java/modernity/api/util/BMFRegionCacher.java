@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -13,13 +13,14 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.util.math.ChunkPos;
 import net.rgsw.io.BMFFile;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public abstract class BMFRegionCacher {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     private final Long2ObjectLinkedOpenHashMap<BMFFile> cache = new Long2ObjectLinkedOpenHashMap<>();
     private final File folder;
 
@@ -76,9 +77,30 @@ public abstract class BMFRegionCacher {
         bmf.removeEntry( key );
     }
 
+    public void saveNBTIfNotEmpty( int x, int z, long key, CompoundNBT nbt ) throws IOException {
+        if( nbt.isEmpty() ) removeNBT( x, z, key );
+        else saveNBT( x, z, key, nbt );
+    }
+
     public void flushAll() throws IOException {
         for( BMFFile file : cache.values() ) {
-            file.flush();
+            try {
+                file.flush();
+            } catch( IOException exc ) {
+                throw exc;
+            } catch( Throwable exc ) {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                PrintStream stream = new PrintStream( baos );
+                file.printDebug( stream );
+
+                String str = baos.toString();
+                String[] lines = str.split( "[\n\r]" );
+                LOGGER.error( "Internal BMF failure, here is a debug dump:" );
+                for( String line : lines ) {
+                    LOGGER.error( line );
+                }
+                throw exc;
+            }
         }
     }
 

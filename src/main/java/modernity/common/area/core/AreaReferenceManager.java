@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -68,6 +68,7 @@ public class AreaReferenceManager extends BMFRegionCacher {
             LOGGER.warn( "Attempted to save unloaded chunk" );
             return;
         }
+        if( ! saving.isDirty() ) return;
         CompoundNBT nbt = new CompoundNBT();
         saving.write( nbt );
         try {
@@ -78,11 +79,12 @@ public class AreaReferenceManager extends BMFRegionCacher {
                   .addDetail( "Chunk pos", new ChunkPos( x, z ) );
             throw new ReportedException( report );
         }
+        saving.setDirty( false );
     }
 
     private void writeChunk( ChunkPos pos, CompoundNBT nbt ) throws IOException {
         long key = pos.asLong();
-        saveNBT( pos.getRegionCoordX(), pos.getRegionCoordZ(), key, nbt );
+        saveNBTIfNotEmpty( pos.getRegionCoordX(), pos.getRegionCoordZ(), key, nbt );
     }
 
     private CompoundNBT readChunk( ChunkPos pos ) throws IOException {
@@ -112,7 +114,7 @@ public class AreaReferenceManager extends BMFRegionCacher {
 
         try {
             flushAll();
-        } catch( IOException exc ) {
+        } catch( Exception exc ) {
             CrashReport report = CrashReport.makeCrashReport( exc, "Flushing world area references to file system" );
             throw new ReportedException( report );
         }
@@ -145,5 +147,10 @@ public class AreaReferenceManager extends BMFRegionCacher {
     @Override
     protected String getFileName( int x, int z ) {
         return "r." + x + "." + z;
+    }
+
+    @Override
+    protected int sectorSize() {
+        return 128;
     }
 }
