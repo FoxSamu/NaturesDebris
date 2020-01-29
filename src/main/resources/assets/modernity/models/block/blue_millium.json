@@ -1,6 +1,6 @@
 {
   "parent": "modernity:block/air",
   "textures": {
-    "particle": "modernity:item/blue_millium"
+    "particle": "modernity:item/millium_blue"
   }
 }

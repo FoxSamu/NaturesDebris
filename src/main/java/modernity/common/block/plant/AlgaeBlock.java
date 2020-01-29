@@ -46,7 +46,10 @@ public class AlgaeBlock extends PlantBlock implements IWaterPlant, IColoredBlock
     @Override
     @SuppressWarnings( "deprecation" )
     public boolean isReplaceable( BlockState state, BlockItemUseContext useContext ) {
-        return state.get( DENSITY ) < 16;
+        if( useContext.getItem().getItem() == asItem() ) {
+            return state.get( DENSITY ) < 16 && ! useContext.isPlacerSneaking();
+        }
+        return true;
     }
 
     @Override
