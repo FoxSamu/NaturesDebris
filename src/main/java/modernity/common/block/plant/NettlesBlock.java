@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 28 - 2020
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -52,7 +52,7 @@ public class NettlesBlock extends SimplePlantBlock implements IDangerousPlant {
     public void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity ) {
         super.onEntityCollision( state, world, pos, entity );
         if( ! entity.getType().isContained( MDEntityTags.NETTLES_IMMUNE ) ) {
-            EntityUtil.setSmallerMotionMutliplier( entity, new Vec3d( 0.75, 1, 0.75 ) );
+            EntityUtil.setSmallerMotionMutliplier( state, entity, new Vec3d( 0.75, 1, 0.75 ) );
         }
     }
 }

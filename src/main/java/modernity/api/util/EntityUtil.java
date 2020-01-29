@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 28 - 2020
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
 package modernity.api.util;
 
 import modernity.api.reflect.FieldAccessor;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;
 
@@ -22,14 +23,16 @@ public final class EntityUtil {
         return motionMultiplierField.get( entity );
     }
 
-    public static void setMotionMultiplier( Entity entity, Vec3d multiplier ) {
-        motionMultiplierField.set( entity, multiplier );
+    public static void setMotionMultiplier( BlockState state, Entity entity, Vec3d multiplier ) {
+        float fall = entity.fallDistance;
+        entity.setMotionMultiplier( state, multiplier );
+        entity.fallDistance = fall;
     }
 
-    public static void setSmallerMotionMutliplier( Entity entity, Vec3d multiplier ) {
+    public static void setSmallerMotionMutliplier( BlockState state, Entity entity, Vec3d multiplier ) {
         Vec3d current = getMotionMultiplier( entity );
-        if( multiplier.lengthSquared() < current.lengthSquared() ) {
-            setMotionMultiplier( entity, multiplier );
+        if( multiplier.lengthSquared() < current.lengthSquared() || current.lengthSquared() < 1E-7 ) {
+            setMotionMultiplier( state, entity, multiplier );
         }
     }
 

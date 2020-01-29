@@ -27,7 +27,7 @@ public class WireplantBlock extends SimplePlantBlock {
     @Override
     public void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity ) {
         if( ! entity.getType().isContained( MDEntityTags.WIREPLANT_IMMUNE ) ) {
-            EntityUtil.setSmallerMotionMutliplier( entity, new Vec3d( 0.5, 0.5, 0.5 ) );
+            EntityUtil.setSmallerMotionMutliplier( state, entity, new Vec3d( 0.65, 0.65, 0.65 ) );
             EntityUtil.suspendFallDistance( entity, 0.5 );
         }
     }

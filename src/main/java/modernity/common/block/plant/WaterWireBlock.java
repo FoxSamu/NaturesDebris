@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 28 - 2020
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -127,7 +127,7 @@ public class WaterWireBlock extends PlantBlock implements IWaterPlant {
     @Override
     public void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity ) {
         if( ! entity.getType().isContained( MDEntityTags.WATER_WIRE_IMMUNE ) ) {
-            EntityUtil.setSmallerMotionMutliplier( entity, new Vec3d( 0.6, 0.6, 0.6 ) );
+            EntityUtil.setSmallerMotionMutliplier( state, entity, new Vec3d( 0.65, 0.65, 0.65 ) );
         }
     }
 

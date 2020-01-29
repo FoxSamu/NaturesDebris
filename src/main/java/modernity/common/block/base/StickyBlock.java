@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 28 - 2020
+ * Date:   01 - 29 - 2020
  * Author: rgsw
  */
 
@@ -38,7 +38,7 @@ public class StickyBlock extends Block implements IPlantSustainer {
     @Override
     public void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity ) {
         if( ! entity.isInWater() ) { // Motion multiplier already limits jumping.
-            EntityUtil.setSmallerMotionMutliplier( entity, new Vec3d( 0.25, 0.25, 0.25 ) );
+            EntityUtil.setSmallerMotionMutliplier( state, entity, new Vec3d( 0.25, 0.25, 0.25 ) );
         }
     }
 
