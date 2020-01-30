@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 31 - 2020
+ * Date:   01 - 30 - 2020
  * Author: rgsw
  */
 
@@ -50,6 +50,16 @@ public final class MDVoxelShapes {
      */
     public static VoxelShape create64( double x1, double y1, double z1, double x2, double y2, double z2 ) {
         return create( x1, y1, z1, x2, y2, z2, 64 );
+    }
+
+    public static VoxelShape plantShape( double width, double height ) {
+        double rad = width / 2;
+        return create16( 8 - rad, 0, 8 - rad, 8 + rad, height, 8 + rad );
+    }
+
+    public static VoxelShape hangPlantShape( double width, double height ) {
+        double rad = width / 2;
+        return create16( 8 - rad, 16 - height, 8 - rad, 8 + rad, 16, 8 + rad );
     }
 
 

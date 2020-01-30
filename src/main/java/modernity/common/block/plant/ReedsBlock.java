@@ -2,13 +2,12 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   01 - 30 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
-import modernity.api.util.MDVoxelShapes;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlockTags;
 import modernity.common.block.MDBlocks;
@@ -38,8 +37,9 @@ import java.util.Random;
 
 @SuppressWarnings( "deprecation" )
 public class ReedsBlock extends TallDirectionalPlantBlock implements IMurkyWaterloggedBlock {
-    public static final VoxelShape REEDS_END_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 14, 14 );
-    public static final VoxelShape REEDS_MIDDLE_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 16, 14 );
+    public static final VoxelShape REEDS_END_SHAPE = makePlantShape( 12, 14 );
+    public static final VoxelShape REEDS_MIDDLE_SHAPE = makePlantShape( 12, 16 );
+
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_15;
 
     public ReedsBlock( Properties properties ) {
@@ -91,7 +91,6 @@ public class ReedsBlock extends TallDirectionalPlantBlock implements IMurkyWater
         if( state.get( AGE ) < 15 ) {
             world.setBlockState( pos, state.with( AGE, state.get( AGE ) + 1 ) );
         } else if( canGrow( world, pos, state ) ) {
-            // Set age to 0 before growing so that the new state receives the grow update...
             world.setBlockState( pos, state.with( AGE, 0 ) );
             world.setBlockState( pos.up(), getDefaultState().with( WATERLOGGED, world.getFluidState( pos.up() ).getFluid() == MDFluids.MURKY_WATER ) );
         }
@@ -185,5 +184,10 @@ public class ReedsBlock extends TallDirectionalPlantBlock implements IMurkyWater
             return m > 0;
         }
         return false;
+    }
+
+    @Override
+    public OffsetType getOffsetType() {
+        return OffsetType.XZ;
     }
 }

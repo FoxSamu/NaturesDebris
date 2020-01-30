@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   01 - 30 - 2020
  * Author: rgsw
  */
 
@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 public class WireplantBlock extends SimplePlantBlock {
     public WireplantBlock( Properties properties ) {
-        super( properties, makeCuboidShape( 0, 0, 0, 16, 10, 16 ) );
+        super( properties, makePlantShape( 16, 10 ) );
     }
 
     @Override
@@ -33,6 +33,7 @@ public class WireplantBlock extends SimplePlantBlock {
     }
 
     @Override
+    @SuppressWarnings( "deprecation" )
     public boolean isReplaceable( BlockState state, BlockItemUseContext useContext ) {
         return false;
     }

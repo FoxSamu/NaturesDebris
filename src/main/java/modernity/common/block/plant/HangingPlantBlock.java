@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   01 - 30 - 2020
  * Author: rgsw
  */
 
@@ -17,9 +17,9 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 
 public class HangingPlantBlock extends TallDirectionalPlantBlock {
-    public static final VoxelShape MURINA_SHAPE = makeCuboidShape( 5, 0, 5, 11, 16, 11 );
-    public static final VoxelShape HANG_MOSS_SHAPE = makeCuboidShape( 1, 0, 1, 15, 16, 15 );
-    public static final VoxelShape HANG_MOSS_END_SHAPE = makeCuboidShape( 1, 0, 1, 15, 14, 15 );
+    public static final VoxelShape MURINA_SHAPE = makeHangPlantShape( 6, 16 );
+    public static final VoxelShape HANG_MOSS_SHAPE = makeHangPlantShape( 14, 16 );
+    public static final VoxelShape HANG_MOSS_END_SHAPE = makeHangPlantShape( 14, 14 );
 
     private final VoxelShape[] shapes;
 
@@ -32,7 +32,7 @@ public class HangingPlantBlock extends TallDirectionalPlantBlock {
 
     @Override
     @SuppressWarnings( "deprecation" )
-    public VoxelShape getShape( BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context ) {
+    public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context ) {
         return shapes[ state.get( END ) ? 1 : 0 ];
     }
 

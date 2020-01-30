@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   01 - 30 - 2020
  * Author: rgsw
  */
 
@@ -21,7 +21,7 @@ import net.minecraft.world.IWorldReader;
 import java.util.Random;
 
 public class FlyFlowerStalkBlock extends PlantBlock implements IWaterPlant {
-    private static final VoxelShape SHAPE = makeCuboidShape( 6, 0, 6, 10, 16, 10 );
+    private static final VoxelShape SHAPE = makePlantShape( 4, 16 );
 
     public FlyFlowerStalkBlock( Properties properties ) {
         super( properties );
@@ -42,8 +42,7 @@ public class FlyFlowerStalkBlock extends PlantBlock implements IWaterPlant {
     }
 
     @Override
-    @SuppressWarnings( "deprecation" )
-    public VoxelShape getShape( BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context ) {
+    public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context ) {
         return SHAPE;
     }
 

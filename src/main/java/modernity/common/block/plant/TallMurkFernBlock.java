@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   01 - 30 - 2020
  * Author: rgsw
  */
 
@@ -13,12 +13,8 @@ import modernity.client.ModernityClient;
 import modernity.common.block.MDBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraftforge.api.distmarker.Dist;
@@ -26,12 +22,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
-public class TallMurkFernBlock extends DoubleDirectionalPlantBlock implements IColoredBlock {
-    public static final VoxelShape LOWER_SHAPE = makeCuboidShape( 1, 0, 1, 15, 16, 15 );
-    public static final VoxelShape UPPER_SHAPE = makeCuboidShape( 1, 0, 1, 15, 10, 15 );
+public class TallMurkFernBlock extends DoubleStandingPlantBlock implements IColoredBlock {
+    public static final VoxelShape LOWER_SHAPE = makePlantShape( 14, 16 );
+    public static final VoxelShape UPPER_SHAPE = makePlantShape( 14, 10 );
 
     public TallMurkFernBlock( Properties properties ) {
-        super( properties, Direction.UP );
+        super( properties );
     }
 
     @Override
@@ -52,10 +48,7 @@ public class TallMurkFernBlock extends DoubleDirectionalPlantBlock implements IC
     }
 
     @Override
-    @SuppressWarnings( "deprecation" )
-    public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx ) {
-        VoxelShape shape = state.get( TYPE ) == ROOT ? LOWER_SHAPE : UPPER_SHAPE;
-        Vec3d offset = getOffset( state, world, pos );
-        return shape.withOffset( offset.x, offset.y, offset.z );
+    public VoxelShape getShape( BlockState state ) {
+        return state.get( TYPE ) == ROOT ? LOWER_SHAPE : UPPER_SHAPE;
     }
 }

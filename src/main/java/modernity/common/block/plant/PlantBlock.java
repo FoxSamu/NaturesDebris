@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 28 - 2020
+ * Date:   01 - 30 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.api.util.IBlockProvider;
+import modernity.api.util.MDVoxelShapes;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.fluid.IMurkyWaterloggedBlock;
 import modernity.common.block.fluid.IWaterloggedBlock;
@@ -28,6 +29,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -196,5 +198,25 @@ public abstract class PlantBlock extends Block implements IBlockProvider {
         } else {
             return state.isSolid() && state.func_224755_d( world, pos, side );
         }
+    }
+
+    @Override
+    @SuppressWarnings( "deprecation" )
+    public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context ) {
+        VoxelShape shape = getShape( state );
+        Vec3d offset = state.getOffset( world, pos );
+        return shape.withOffset( offset.x, offset.y, offset.z );
+    }
+
+    public VoxelShape getShape( BlockState state ) {
+        return VoxelShapes.fullCube();
+    }
+
+    public static VoxelShape makePlantShape( double width, double height ) {
+        return MDVoxelShapes.plantShape( width, height );
+    }
+
+    public static VoxelShape makeHangPlantShape( double width, double height ) {
+        return MDVoxelShapes.hangPlantShape( width, height );
     }
 }

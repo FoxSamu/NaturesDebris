@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   01 - 30 - 2020
  * Author: rgsw
  */
 
@@ -19,10 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraftforge.api.distmarker.Dist;
@@ -83,8 +80,7 @@ public class TallMurkGrassBlock extends LimitedTallDirectionalPlantBlock impleme
     }
 
     @Override
-    public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx ) {
-        Vec3d off = state.getOffset( world, pos );
-        return ( state.get( END ) ? GRASS_END_SHAPE : GRASS_MIDDLE_SHAPE ).withOffset( off.x, off.y, off.z );
+    public VoxelShape getShape( BlockState state ) {
+        return state.get( END ) ? GRASS_END_SHAPE : GRASS_MIDDLE_SHAPE;
     }
 }

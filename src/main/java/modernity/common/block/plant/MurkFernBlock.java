@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 28 - 2020
+ * Date:   01 - 30 - 2020
  * Author: rgsw
  */
 
@@ -23,7 +23,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 
 public class MurkFernBlock extends SimplePlantBlock implements IColoredBlock {
-    public static final VoxelShape FERN_SHAPE = makeCuboidShape( 1, 0, 1, 15, 14, 15 );
+    public static final VoxelShape FERN_SHAPE = makePlantShape( 14, 14 );
 
     public MurkFernBlock( Properties properties ) {
         super( properties, FERN_SHAPE );

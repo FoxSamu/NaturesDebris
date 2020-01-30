@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   01 - 30 - 2020
  * Author: rgsw
  */
 
@@ -21,7 +21,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.World;
 
 public class NettlesBlock extends SimplePlantBlock implements IDangerousPlant {
-    public static final VoxelShape NETTLES_SHAPE = makeCuboidShape( 1, 0, 1, 15, 14, 15 );
+    public static final VoxelShape NETTLES_SHAPE = makePlantShape( 14, 14 );
 
     public NettlesBlock( Properties properties ) {
         super( properties, NETTLES_SHAPE );

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   01 - 30 - 2020
  * Author: rgsw
  */
 
@@ -12,19 +12,16 @@ import modernity.common.block.MDBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 
 public class SimplePlantBlock extends SingleDirectionalPlantBlock {
-    public static final VoxelShape MELION_SHAPE = makeCuboidShape( 2, 0, 2, 14, 12, 14 );
-    public static final VoxelShape MILLIUM_SHAPE = makeCuboidShape( 1, 0, 1, 15, 8, 15 );
-    public static final VoxelShape MINT_SHAPE = makeCuboidShape( 1, 0, 1, 15, 9, 15 );
-    public static final VoxelShape HORSETAIL_SHAPE = makeCuboidShape( 1, 0, 1, 15, 12, 15 );
-    public static final VoxelShape LAKEWEED_SHAPE = makeCuboidShape( 1, 0, 1, 15, 10, 15 );
-    public static final VoxelShape HEATH_SHAPE = makeCuboidShape( 0, 0, 0, 16, 7, 16 );
+    public static final VoxelShape MELION_SHAPE = makePlantShape( 12, 12 );
+    public static final VoxelShape MILLIUM_SHAPE = makePlantShape( 14, 8 );
+    public static final VoxelShape MINT_SHAPE = makePlantShape( 14, 9 );
+    public static final VoxelShape HORSETAIL_SHAPE = makePlantShape( 14, 12 );
+    public static final VoxelShape LAKEWEED_SHAPE = makePlantShape( 14, 10 );
+    public static final VoxelShape HEATH_SHAPE = makePlantShape( 16, 7 );
 
     protected final VoxelShape shape;
 
@@ -39,10 +36,8 @@ public class SimplePlantBlock extends SingleDirectionalPlantBlock {
     }
 
     @Override
-    @SuppressWarnings( "deprecation" )
-    public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx ) {
-        Vec3d off = state.getOffset( world, pos );
-        return shape.withOffset( off.x, off.y, off.z );
+    public VoxelShape getShape( BlockState state ) {
+        return shape;
     }
 
     @Override
