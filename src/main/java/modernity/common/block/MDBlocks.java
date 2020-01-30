@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   01 - 30 - 2020
  * Author: rgsw
  */
 
@@ -485,6 +485,11 @@ public final class MDBlocks {
     public static final SimpleWaterPlantBlock LAKEWEED = blockItem( "lakeweed", new SimpleWaterPlantBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ), SimplePlantBlock.LAKEWEED_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock HEATH = blockItem( "heath", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.HEATH_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock FLOWERED_HEATH = blockItem( "flowered_heath", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.HEATH_SHAPE ), MDItemGroup.PLANTS );
+
+    // Mushrooms
+    public static final MushroomBlock SEEDLE = blockItem( "seedle", new MushroomBlock( weakPlant( MaterialColor.BROWN_TERRACOTTA, 0 ), MushroomBlock.SEEDLE_SHAPE ), MDItemGroup.PLANTS );
+    public static final MushroomBlock DOTTED_MUSHROOM = blockItem( "dotted_mushroom", new MushroomBlock( weakPlant( MaterialColor.RED_TERRACOTTA, 0 ), MushroomBlock.DOTTED_MUSHROOM_SHAPE ), MDItemGroup.PLANTS );
+    public static final MushroomBlock BLACK_MUSHROOM = blockItem( "black_mushroom", new MushroomBlock( weakPlant( MaterialColor.BLACK_TERRACOTTA, 0 ), MushroomBlock.BLACK_MUSHROOM_SHAPE ), MDItemGroup.PLANTS );
 
     // Melion
     public static final SimplePlantBlock RED_MELION = blockItem( "red_melion", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.MELION_SHAPE ), MDItemGroup.PLANTS, "melion/red" );

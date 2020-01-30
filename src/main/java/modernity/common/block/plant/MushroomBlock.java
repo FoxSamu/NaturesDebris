@@ -17,7 +17,7 @@ import net.minecraft.world.IWorldReader;
 public class MushroomBlock extends SimplePlantBlock {
     public static final VoxelShape SEEDLE_SHAPE = makePlantShape( 6, 6 );
     public static final VoxelShape DOTTED_MUSHROOM_SHAPE = makePlantShape( 6, 6 );
-    public static final VoxelShape RITTLEPIT_SHAPE = makePlantShape( 6, 6 );
+    public static final VoxelShape BLACK_MUSHROOM_SHAPE = makePlantShape( 6, 6 );
 
     public MushroomBlock( Properties properties, VoxelShape shape ) {
         super( properties, shape );
