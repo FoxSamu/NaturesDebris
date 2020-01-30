@@ -486,11 +486,12 @@ public final class MDBlocks {
     public static final SimplePlantBlock HEATH = blockItem( "heath", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.HEATH_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock FLOWERED_HEATH = blockItem( "flowered_heath", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.HEATH_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock SEEPWEED = blockItem( "seepweed", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.SEEPWEED_SHAPE ), MDItemGroup.PLANTS );
+    public static final CavePlantBlock CAVE_GRASS = blockItem( "cave_grass", new CavePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), CavePlantBlock.CAVE_GRASS_SHAPE ), MDItemGroup.PLANTS );
 
     // Mushrooms
-    public static final MushroomBlock SEEDLE = blockItem( "seedle", new MushroomBlock( weakPlant( MaterialColor.BROWN_TERRACOTTA, 0 ), MushroomBlock.SEEDLE_SHAPE ), MDItemGroup.PLANTS );
-    public static final MushroomBlock DOTTED_MUSHROOM = blockItem( "dotted_mushroom", new MushroomBlock( weakPlant( MaterialColor.RED_TERRACOTTA, 0 ), MushroomBlock.DOTTED_MUSHROOM_SHAPE ), MDItemGroup.PLANTS );
-    public static final MushroomBlock BLACK_MUSHROOM = blockItem( "black_mushroom", new MushroomBlock( weakPlant( MaterialColor.BLACK_TERRACOTTA, 0 ), MushroomBlock.BLACK_MUSHROOM_SHAPE ), MDItemGroup.PLANTS );
+    public static final CavePlantBlock SEEDLE = blockItem( "seedle", new CavePlantBlock( weakPlant( MaterialColor.BROWN_TERRACOTTA, 0 ), CavePlantBlock.SEEDLE_SHAPE ), MDItemGroup.PLANTS );
+    public static final CavePlantBlock DOTTED_MUSHROOM = blockItem( "dotted_mushroom", new CavePlantBlock( weakPlant( MaterialColor.RED_TERRACOTTA, 0 ), CavePlantBlock.DOTTED_MUSHROOM_SHAPE ), MDItemGroup.PLANTS );
+    public static final CavePlantBlock BLACK_MUSHROOM = blockItem( "black_mushroom", new CavePlantBlock( weakPlant( MaterialColor.BLACK_TERRACOTTA, 0 ), CavePlantBlock.BLACK_MUSHROOM_SHAPE ), MDItemGroup.PLANTS );
 
     // Melion
     public static final SimplePlantBlock RED_MELION = blockItem( "red_melion", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.MELION_SHAPE ), MDItemGroup.PLANTS, "melion/red" );
