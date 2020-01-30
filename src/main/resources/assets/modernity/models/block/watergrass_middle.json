@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/tinted_square_cross",
+  "textures": {
+    "texture": "modernity:block/watergrass_middle"
+  }
+}

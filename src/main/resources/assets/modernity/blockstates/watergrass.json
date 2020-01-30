@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "root=false,end=false": {
+      "model": "modernity:block/watergrass_middle"
+    },
+    "root=false,end=true": {
+      "model": "modernity:block/watergrass_top"
+    },
+    "root=true,end=true": {
+      "model": "modernity:block/watergrass"
+    },
+    "root=true,end=false": {
+      "model": "modernity:block/watergrass_bottom"
+    }
+  }
+}
