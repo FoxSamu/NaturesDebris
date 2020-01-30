@@ -485,6 +485,7 @@ public final class MDBlocks {
     public static final SimpleWaterPlantBlock LAKEWEED = blockItem( "lakeweed", new SimpleWaterPlantBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ), SimplePlantBlock.LAKEWEED_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock HEATH = blockItem( "heath", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.HEATH_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock FLOWERED_HEATH = blockItem( "flowered_heath", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.HEATH_SHAPE ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock DEAD_HEATH = blockItem( "dead_heath", new SimplePlantBlock( weakPlant( MaterialColor.BROWN_TERRACOTTA, 0 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.HEATH_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock SEEPWEED = blockItem( "seepweed", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.SEEPWEED_SHAPE ), MDItemGroup.PLANTS );
     public static final CavePlantBlock CAVE_GRASS = blockItem( "cave_grass", new CavePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), CavePlantBlock.CAVE_GRASS_SHAPE ), MDItemGroup.PLANTS );
 
