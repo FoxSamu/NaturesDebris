@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   01 - 31 - 2020
  * Author: rgsw
  */
 
@@ -26,22 +26,23 @@ public abstract class BushBlock extends PlantBlock {
     protected boolean canConnect( IEnviromentBlockReader world, MovingBlockPos pos, Direction dir ) {
         pos.move( dir, 1 );
         BlockState state = world.getBlockState( pos );
-        return state.getBlock() == this || connectToSolidBlocks() && state.func_224755_d( world, pos, dir.getOpposite() );
+        return state.getBlock() == this || connectToSolidBlocks() && isBlockSideSustainable( state, world, pos, dir.getOpposite() );
     }
 
     protected boolean canConnectDiagonally( IEnviromentBlockReader world, MovingBlockPos pos, Direction dir1, Direction dir2 ) {
         pos.move( dir1, 1 );
         BlockState state1 = world.getBlockState( pos );
-        boolean solidSide1 = state1.func_224755_d( world, pos, dir1.getOpposite() );
+        boolean solidSide1 = isBlockSideSustainable( state1, world, pos, dir1.getOpposite() );
         pos.move( dir1, - 1 ).move( dir2, 1 );
         BlockState state2 = world.getBlockState( pos );
-        boolean solidSide2 = state2.func_224755_d( world, pos, dir2.getOpposite() );
-        pos.move( dir1, 1 );
-        BlockState state3 = world.getBlockState( pos );
+        boolean solidSide2 = isBlockSideSustainable( state2, world, pos, dir2.getOpposite() );
 
         if( connectToSolidBlocks() ) {
             if( solidSide1 && solidSide2 ) return true;
         }
+
+        pos.move( dir1, 1 );
+        BlockState state3 = world.getBlockState( pos );
 
         return state1.getBlock() == this && state2.getBlock() == this && state3.getBlock() == this;
     }

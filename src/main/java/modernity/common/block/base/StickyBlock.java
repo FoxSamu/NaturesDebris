@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   01 - 31 - 2020
  * Author: rgsw
  */
 
@@ -21,7 +21,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.World;
 
 /**
@@ -64,7 +64,7 @@ public class StickyBlock extends Block implements IPlantSustainer {
     }
 
     @Override
-    public boolean canSustainPlant( IWorldReader world, BlockPos pos, BlockState state, Block plant, Direction side ) {
+    public boolean canSustainPlant( IEnviromentBlockReader world, BlockPos pos, BlockState state, Block plant, Direction side ) {
         return true;
     }
 }

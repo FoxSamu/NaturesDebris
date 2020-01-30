@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 16 - 2020
+ * Date:   01 - 31 - 2020
  * Author: rgsw
  */
 
@@ -80,6 +80,8 @@ public abstract class ModernityJSONModelLoader implements ICustomModelLoader {
             if( ! element.isJsonObject() ) throw new Exception( "Object expected" );
 
             either = Either.left( element.getAsJsonObject() );
+
+            stream.close();
         } catch( Exception exc ) {
             either = Either.right( exc );
         }

@@ -2,12 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 16 - 2020
+ * Date:   01 - 31 - 2020
  * Author: rgsw
  */
 
 package modernity.client.model;
 
+import modernity.client.model.bush.BushModelLoader;
 import modernity.client.model.empty.EmptyModelLoader;
 import modernity.client.model.farmlandctm.FarmlandConnectedTextureModelLoader;
 import modernity.client.model.merged.MergedModelLoader;
@@ -20,6 +21,7 @@ public final class MDModelLoaders {
 
     public static void register() {
         ModelLoaderRegistry.registerLoader( new FarmlandConnectedTextureModelLoader() );
+        ModelLoaderRegistry.registerLoader( new BushModelLoader() );
         ModelLoaderRegistry.registerLoader( new WrappingModelLoader() );
         ModelLoaderRegistry.registerLoader( new MergedModelLoader() );
         ModelLoaderRegistry.registerLoader( new EmptyModelLoader() );

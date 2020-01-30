@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 16 - 2020
+ * Date:   01 - 31 - 2020
  * Author: rgsw
  */
 
@@ -60,7 +60,6 @@ public final class ClientHooks {
     }
 
     public static IUnbakedModel onGetUnbakedModel( ModelBakery bakery, ResourceLocation location ) {
-//        return ModelLoaderRegistry.getModelOrMissing( location );
         return null;
     }
 

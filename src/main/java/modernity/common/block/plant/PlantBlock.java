@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   01 - 31 - 2020
  * Author: rgsw
  */
 
@@ -33,10 +33,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 
@@ -191,7 +188,7 @@ public abstract class PlantBlock extends Block implements IBlockProvider {
         }
     }
 
-    public boolean isBlockSideSustainable( BlockState state, IWorldReader world, BlockPos pos, Direction side ) {
+    public boolean isBlockSideSustainable( BlockState state, IEnviromentBlockReader world, BlockPos pos, Direction side ) {
         Block block = state.getBlock();
         if( block instanceof IPlantSustainer ) {
             return ( (IPlantSustainer) block ).canSustainPlant( world, pos, state, this, side );

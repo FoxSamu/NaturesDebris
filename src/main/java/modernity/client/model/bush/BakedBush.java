@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   01 - 31 - 2020
  * Author: rgsw
  */
 
@@ -123,7 +123,7 @@ public class BakedBush implements IBakedModel {
             int iu = ix + 3;
             int iv = ix + 4;
 
-            this.putVertex( builder1, side, p[ ix ], p[ iy ], p[ iz ], tex.getInterpolatedU( p[ iu ] ), tex.getInterpolatedV( p[ iv ] ) );
+            this.putVertex( builder1, side, p[ ix ], p[ iy ], p[ iz ], tex.getInterpolatedU( fixTexBleeding( p[ iu ] ) ), tex.getInterpolatedV( fixTexBleeding( p[ iv ] ) ) );
         }
 
         return builder1.build();
@@ -146,7 +146,7 @@ public class BakedBush implements IBakedModel {
             int iu = ix + 3;
             int iv = ix + 4;
 
-            this.putVertex( builder1, vec3f.getX(), vec3f.getY(), vec3f.getZ(), p[ ix ], p[ iy ], p[ iz ], tex.getInterpolatedU( p[ iu ] ), tex.getInterpolatedV( p[ iv ] ) );
+            this.putVertex( builder1, vec3f.getX(), vec3f.getY(), vec3f.getZ(), p[ ix ], p[ iy ], p[ iz ], tex.getInterpolatedU( fixTexBleeding( p[ iu ] ) ), tex.getInterpolatedV( fixTexBleeding( p[ iv ] ) ) );
         }
 
         return builder1.build();
@@ -172,7 +172,7 @@ public class BakedBush implements IBakedModel {
             int iu = ix + 3;
             int iv = ix + 4;
 
-            this.putVertex( builder1, vec3f.getX(), vec3f.getY(), vec3f.getZ(), p[ ix ], p[ iy ], p[ iz ], tex.getInterpolatedU( p[ iu ] ), tex.getInterpolatedV( p[ iv ] ) );
+            this.putVertex( builder1, vec3f.getX(), vec3f.getY(), vec3f.getZ(), p[ ix ], p[ iy ], p[ iz ], tex.getInterpolatedU( fixTexBleeding( p[ iu ] ) ), tex.getInterpolatedV( fixTexBleeding( p[ iv ] ) ) );
         }
 
         for( int i = verts - 1; i >= 0; i-- ) {
@@ -182,10 +182,14 @@ public class BakedBush implements IBakedModel {
             int iu = ix + 3;
             int iv = ix + 4;
 
-            this.putVertex( builder2, - vec3f.getX(), - vec3f.getY(), - vec3f.getZ(), p[ ix ], p[ iy ], p[ iz ], tex.getInterpolatedU( p[ iu ] ), tex.getInterpolatedV( p[ iv ] ) );
+            this.putVertex( builder2, - vec3f.getX(), - vec3f.getY(), - vec3f.getZ(), p[ ix ], p[ iy ], p[ iz ], tex.getInterpolatedU( fixTexBleeding( p[ iu ] ) ), tex.getInterpolatedV( fixTexBleeding( p[ iv ] ) ) );
         }
 
         return ImmutableList.of( builder1.build(), builder2.build() );
+    }
+
+    private static float fixTexBleeding( float v ) {
+        return v / 16 * 15.998F + 0.001F;
     }
 
     /**
@@ -214,6 +218,9 @@ public class BakedBush implements IBakedModel {
     private static final float TEX1 = 3;
     private static final float TEX2 = 13;
     private static final float TEX3 = 16;
+
+    private static final float TEXP = 4;//(float) Math.sqrt( TEX1 * TEX1 * 2 );
+    private static final float TEXQ = 16 - TEXP;
 
     private static final float POS0 = 0 / 16F;
     private static final float POS1 = 3 / 16F;
@@ -681,34 +688,34 @@ public class BakedBush implements IBakedModel {
             builder.add( new QuadDef( this.quad(
                 1, 0, - 1,
                 texture,
-                POS3, y0, POS1, TEX2, y0 * TEX3,
-                POS2, y0, POS0, TEX1, y0 * TEX3,
-                POS2, y1, POS0, TEX1, y1 * TEX3,
-                POS3, y1, POS1, TEX2, y1 * TEX3
+                POS3, y0, POS1, TEXP, y0 * TEX3,
+                POS2, y0, POS0, TEX0, y0 * TEX3,
+                POS2, y1, POS0, TEX0, y1 * TEX3,
+                POS3, y1, POS1, TEXP, y1 * TEX3
             ), merge( DOWN, UP, ! down, ! up ) ) );
             builder.add( new QuadDef( this.quad(
                 1, 0, 1,
                 texture,
-                POS3, y1, POS2, TEX2, y1 * TEX3,
-                POS2, y1, POS3, TEX1, y1 * TEX3,
-                POS2, y0, POS3, TEX1, y0 * TEX3,
-                POS3, y0, POS2, TEX2, y0 * TEX3
+                POS3, y1, POS2, TEXP, y1 * TEX3,
+                POS2, y1, POS3, TEX0, y1 * TEX3,
+                POS2, y0, POS3, TEX0, y0 * TEX3,
+                POS3, y0, POS2, TEXP, y0 * TEX3
             ), merge( DOWN, UP, ! down, ! up ) ) );
             builder.add( new QuadDef( this.quad(
                 - 1, 0, 1,
                 texture,
-                POS0, y0, POS2, TEX2, y0 * TEX3,
-                POS1, y0, POS3, TEX1, y0 * TEX3,
-                POS1, y1, POS3, TEX1, y1 * TEX3,
-                POS0, y1, POS2, TEX2, y1 * TEX3
+                POS0, y0, POS2, TEXP, y0 * TEX3,
+                POS1, y0, POS3, TEX0, y0 * TEX3,
+                POS1, y1, POS3, TEX0, y1 * TEX3,
+                POS0, y1, POS2, TEXP, y1 * TEX3
             ), merge( DOWN, UP, ! down, ! up ) ) );
             builder.add( new QuadDef( this.quad(
                 - 1, 0, - 1,
                 texture,
-                POS0, y1, POS1, TEX2, y1 * TEX3,
-                POS1, y1, POS0, TEX1, y1 * TEX3,
-                POS1, y0, POS0, TEX1, y0 * TEX3,
-                POS0, y0, POS1, TEX2, y0 * TEX3
+                POS0, y1, POS1, TEXP, y1 * TEX3,
+                POS1, y1, POS0, TEX0, y1 * TEX3,
+                POS1, y0, POS0, TEX0, y0 * TEX3,
+                POS0, y0, POS1, TEXP, y0 * TEX3
             ), merge( DOWN, UP, ! down, ! up ) ) );
         }
 
@@ -720,34 +727,34 @@ public class BakedBush implements IBakedModel {
             builder.add( new QuadDef( this.quad(
                 - 1, 1, 0,
                 texture,
-                POS1, POS3, z1, z1 * TEX3, TEX2,
-                POS1, POS3, z0, z0 * TEX3, TEX2,
-                POS0, POS2, z0, z0 * TEX3, TEX1,
-                POS0, POS2, z1, z1 * TEX3, TEX1
+                POS1, POS3, z1, z1 * TEX3, TEXP,
+                POS1, POS3, z0, z0 * TEX3, TEXP,
+                POS0, POS2, z0, z0 * TEX3, TEX0,
+                POS0, POS2, z1, z1 * TEX3, TEX0
             ), merge( NORTH, SOUTH, ! north, ! south ) ) );
             builder.add( new QuadDef( this.quad(
                 - 1, - 1, 0,
                 texture,
-                POS0, POS1, z1, z1 * TEX3, TEX1,
-                POS0, POS1, z0, z0 * TEX3, TEX1,
-                POS1, POS0, z0, z0 * TEX3, TEX2,
-                POS1, POS0, z1, z1 * TEX3, TEX2
+                POS0, POS1, z1, z1 * TEX3, TEX0,
+                POS0, POS1, z0, z0 * TEX3, TEX0,
+                POS1, POS0, z0, z0 * TEX3, TEXP,
+                POS1, POS0, z1, z1 * TEX3, TEXP
             ), merge( NORTH, SOUTH, ! north, ! south ) ) );
             builder.add( new QuadDef( this.quad(
                 1, - 1, 0,
                 texture,
-                POS2, POS0, z1, z1 * TEX3, TEX2,
-                POS2, POS0, z0, z0 * TEX3, TEX2,
-                POS3, POS1, z0, z0 * TEX3, TEX1,
-                POS3, POS1, z1, z1 * TEX3, TEX1
+                POS2, POS0, z1, z1 * TEX3, TEXP,
+                POS2, POS0, z0, z0 * TEX3, TEXP,
+                POS3, POS1, z0, z0 * TEX3, TEX0,
+                POS3, POS1, z1, z1 * TEX3, TEX0
             ), merge( NORTH, SOUTH, ! north, ! south ) ) );
             builder.add( new QuadDef( this.quad(
                 1, 1, 0,
                 texture,
-                POS3, POS2, z1, z1 * TEX3, TEX1,
-                POS3, POS2, z0, z0 * TEX3, TEX1,
-                POS2, POS3, z0, z0 * TEX3, TEX2,
-                POS2, POS3, z1, z1 * TEX3, TEX2
+                POS3, POS2, z1, z1 * TEX3, TEX0,
+                POS3, POS2, z0, z0 * TEX3, TEX0,
+                POS2, POS3, z0, z0 * TEX3, TEXP,
+                POS2, POS3, z1, z1 * TEX3, TEXP
             ), merge( NORTH, SOUTH, ! north, ! south ) ) );
         }
 
@@ -759,34 +766,34 @@ public class BakedBush implements IBakedModel {
             builder.add( new QuadDef( this.quad(
                 0, 1, - 1,
                 texture,
-                x1, POS2, POS0, x1 * TEX3, TEX1,
-                x0, POS2, POS0, x0 * TEX3, TEX1,
-                x0, POS3, POS1, x0 * TEX3, TEX2,
-                x1, POS3, POS1, x1 * TEX3, TEX2
+                x1, POS2, POS0, x1 * TEX3, TEX0,
+                x0, POS2, POS0, x0 * TEX3, TEX0,
+                x0, POS3, POS1, x0 * TEX3, TEXP,
+                x1, POS3, POS1, x1 * TEX3, TEXP
             ), merge( WEST, EAST, ! west, ! east ) ) );
             builder.add( new QuadDef( this.quad(
                 0, 1, 1,
                 texture,
-                x1, POS3, POS2, x1 * TEX3, TEX2,
-                x0, POS3, POS2, x0 * TEX3, TEX2,
-                x0, POS2, POS3, x0 * TEX3, TEX1,
-                x1, POS2, POS3, x1 * TEX3, TEX1
+                x1, POS3, POS2, x1 * TEX3, TEXP,
+                x0, POS3, POS2, x0 * TEX3, TEXP,
+                x0, POS2, POS3, x0 * TEX3, TEX0,
+                x1, POS2, POS3, x1 * TEX3, TEX0
             ), merge( WEST, EAST, ! west, ! east ) ) );
             builder.add( new QuadDef( this.quad(
                 0, - 1, 1,
                 texture,
-                x1, POS1, POS3, x1 * TEX3, TEX1,
-                x0, POS1, POS3, x0 * TEX3, TEX1,
-                x0, POS0, POS2, x0 * TEX3, TEX2,
-                x1, POS0, POS2, x1 * TEX3, TEX2
+                x1, POS1, POS3, x1 * TEX3, TEX0,
+                x0, POS1, POS3, x0 * TEX3, TEX0,
+                x0, POS0, POS2, x0 * TEX3, TEXP,
+                x1, POS0, POS2, x1 * TEX3, TEXP
             ), merge( WEST, EAST, ! west, ! east ) ) );
             builder.add( new QuadDef( this.quad(
                 0, - 1, - 1,
                 texture,
-                x1, POS0, POS1, x1 * TEX3, TEX2,
-                x0, POS0, POS1, x0 * TEX3, TEX2,
-                x0, POS1, POS0, x0 * TEX3, TEX1,
-                x1, POS1, POS0, x1 * TEX3, TEX1
+                x1, POS0, POS1, x1 * TEX3, TEXP,
+                x0, POS0, POS1, x0 * TEX3, TEXP,
+                x0, POS1, POS0, x0 * TEX3, TEX0,
+                x1, POS1, POS0, x1 * TEX3, TEX0
             ), merge( WEST, EAST, ! west, ! east ) ) );
         }
     }
@@ -795,73 +802,73 @@ public class BakedBush implements IBakedModel {
         builder.add( new QuadDef( this.quad(
             1, 1, 1,
             texture,
-            POS3, POS2, POS2, TEX3, TEX2,
-            POS2, POS3, POS2, TEX2, TEX3,
-            POS2, POS2, POS3, TEX2, TEX2,
-            POS2, POS2, POS3, TEX2, TEX2
+            POS3, POS2, POS2, TEX3, TEXQ,
+            POS2, POS3, POS2, TEXQ, TEX3,
+            POS2, POS2, POS3, TEXQ, TEXQ,
+            POS2, POS2, POS3, TEXQ, TEXQ
         ), ALL ) );
 
         builder.add( new QuadDef( this.quad(
             1, 1, - 1,
             texture,
-            POS2, POS2, POS0, TEX2, TEX2,
-            POS2, POS2, POS0, TEX2, TEX2,
-            POS2, POS3, POS1, TEX2, TEX3,
-            POS3, POS2, POS1, TEX3, TEX2
+            POS2, POS2, POS0, TEXQ, TEXQ,
+            POS2, POS2, POS0, TEXQ, TEXQ,
+            POS2, POS3, POS1, TEXQ, TEX3,
+            POS3, POS2, POS1, TEX3, TEXQ
         ), ALL ) );
 
         builder.add( new QuadDef( this.quad(
             1, - 1, - 1,
             texture,
-            POS3, POS1, POS1, TEX3, TEX2,
-            POS2, POS0, POS1, TEX2, TEX3,
-            POS2, POS1, POS0, TEX2, TEX2,
-            POS2, POS1, POS0, TEX2, TEX2
+            POS3, POS1, POS1, TEX3, TEXQ,
+            POS2, POS0, POS1, TEXQ, TEX3,
+            POS2, POS1, POS0, TEXQ, TEXQ,
+            POS2, POS1, POS0, TEXQ, TEXQ
         ), ALL ) );
 
         builder.add( new QuadDef( this.quad(
             1, - 1, 1,
             texture,
-            POS2, POS1, POS3, TEX2, TEX2,
-            POS2, POS1, POS3, TEX2, TEX2,
-            POS2, POS0, POS2, TEX2, TEX3,
-            POS3, POS1, POS2, TEX3, TEX2
+            POS2, POS1, POS3, TEXQ, TEXQ,
+            POS2, POS1, POS3, TEXQ, TEXQ,
+            POS2, POS0, POS2, TEXQ, TEX3,
+            POS3, POS1, POS2, TEX3, TEXQ
         ), ALL ) );
 
         builder.add( new QuadDef( this.quad(
             - 1, 1, 1,
             texture,
-            POS1, POS2, POS3, TEX2, TEX2,
-            POS1, POS2, POS3, TEX2, TEX2,
-            POS1, POS3, POS2, TEX2, TEX3,
-            POS0, POS2, POS2, TEX3, TEX2
+            POS1, POS2, POS3, TEXQ, TEXQ,
+            POS1, POS2, POS3, TEXQ, TEXQ,
+            POS1, POS3, POS2, TEXQ, TEX3,
+            POS0, POS2, POS2, TEX3, TEXQ
         ), ALL ) );
 
         builder.add( new QuadDef( this.quad(
             - 1, 1, - 1,
             texture,
-            POS0, POS2, POS1, TEX3, TEX2,
-            POS1, POS3, POS1, TEX2, TEX3,
-            POS1, POS2, POS0, TEX2, TEX2,
-            POS1, POS2, POS0, TEX2, TEX2
+            POS0, POS2, POS1, TEX3, TEXQ,
+            POS1, POS3, POS1, TEXQ, TEX3,
+            POS1, POS2, POS0, TEXQ, TEXQ,
+            POS1, POS2, POS0, TEXQ, TEXQ
         ), ALL ) );
 
         builder.add( new QuadDef( this.quad(
             - 1, - 1, - 1,
             texture,
-            POS1, POS1, POS0, TEX2, TEX2,
-            POS1, POS1, POS0, TEX2, TEX2,
-            POS1, POS0, POS1, TEX2, TEX3,
-            POS0, POS1, POS1, TEX3, TEX2
+            POS1, POS1, POS0, TEXQ, TEXQ,
+            POS1, POS1, POS0, TEXQ, TEXQ,
+            POS1, POS0, POS1, TEXQ, TEX3,
+            POS0, POS1, POS1, TEX3, TEXQ
         ), ALL ) );
 
         builder.add( new QuadDef( this.quad(
             - 1, - 1, 1,
             texture,
-            POS0, POS1, POS2, TEX3, TEX2,
-            POS1, POS0, POS2, TEX2, TEX3,
-            POS1, POS1, POS3, TEX2, TEX2,
-            POS1, POS1, POS3, TEX2, TEX2
+            POS0, POS1, POS2, TEX3, TEXQ,
+            POS1, POS0, POS2, TEXQ, TEX3,
+            POS1, POS1, POS3, TEXQ, TEXQ,
+            POS1, POS1, POS3, TEXQ, TEXQ
         ), ALL ) );
     }
 
