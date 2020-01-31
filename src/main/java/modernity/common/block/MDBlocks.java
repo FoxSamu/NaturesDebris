@@ -81,9 +81,10 @@ public final class MDBlocks {
     public static final DigableFallBlock MURKY_SAND = blockItem( "murky_sand", new DigableFallBlock( 0x826f52, dust( MaterialColor.SAND, false ) ), MDItemGroup.BLOCKS, "dark_sand" );
     public static final DigableBlock MURKY_CLAY = blockItem( "murky_clay", new DigableBlock( clay( MaterialColor.GRAY_TERRACOTTA ) ), MDItemGroup.BLOCKS, "dark_clay" );
     public static final DigableBlock MURKY_COARSE_DIRT = blockItem( "murky_coarse_dirt", new DigableBlock( dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS, "coarse_dark_dirt" );
+    public static final DigableBlock SALTY_DIRT = blockItem( "salty_dirt", new DigableBlock( dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS );
     public static final DirtlikeBlock HUMUS = blockItem( "humus", new SnowyDirtlikeBlock( MDDirtLogics.HUMUS_LOGIC, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS );
     public static final DirtlikeBlock MURKY_PODZOL = blockItem( "murky_podzol", new LeafyDirtlikeBlock( MDDirtLogics.PODZOL_LOGIC, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS, "dark_podzol" );
-    public static final DirtlikeBlock HEATH_BLOCK = blockItem( "heath_block", new DirtlikeBlock( MDDirtLogics.HEATH_LOGIC, dirt( MaterialColor.FOLIAGE, false ) ), MDItemGroup.BLOCKS );
+    public static final DirtlikeBlock HEATH_BLOCK = blockItem( "heath_block", new DirtlikeBlock( MDDirtLogics.HEATH_LOGIC, dirt( MaterialColor.FOLIAGE, true ) ), MDItemGroup.BLOCKS );
     public static final StickyBlock MUD = blockItem( "mud", new DigableStickyBlock( dirt( MaterialColor.BROWN_TERRACOTTA, false ) ), MDItemGroup.BLOCKS );
     public static final DigableFallBlock REGOLITH = blockItem( "regolith", new DigableFallBlock( 0x737d8c, dust( MaterialColor.STONE, true ) ), MDItemGroup.BLOCKS, "rock_gravel" );
 
