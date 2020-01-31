@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   01 - 31 - 2020
  * Author: rgsw
  */
 
@@ -18,7 +18,9 @@ public class CavePlantBlock extends SimplePlantBlock {
     public static final VoxelShape SEEDLE_SHAPE = makePlantShape( 6, 6 );
     public static final VoxelShape DOTTED_MUSHROOM_SHAPE = makePlantShape( 6, 6 );
     public static final VoxelShape BLACK_MUSHROOM_SHAPE = makePlantShape( 6, 6 );
-    public static final VoxelShape CAVE_GRASS_SHAPE = makePlantShape( 14, 6 );
+    public static final VoxelShape CAVE_GRASS_SHAPE = makePlantShape( 14, 5 );
+    public static final VoxelShape DEAD_GRASS_SHAPE = makePlantShape( 14, 5 );
+    public static final VoxelShape PEBBLES_SHAPE = makePlantShape( 13, 2 );
 
     public CavePlantBlock( Properties properties, VoxelShape shape ) {
         super( properties, shape );
