@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 19 - 2020
+ * Date:   01 - 31 - 2020
  * Author: rgsw
  */
 
@@ -18,6 +18,7 @@ import java.util.function.Supplier;
 public final class MDDirtLogics {
     public static final BasicLogicType DIRT_TYPE = new BasicLogicType();
     public static final GrassLogicType GRASS_TYPE = new GrassLogicType();
+    public static final GrassLogicType HEATH_TYPE = new GrassLogicType();
     public static final PodzolLogicType PODZOL_TYPE = new PodzolLogicType();
     public static final BasicLogicType HUMUS_TYPE = new BasicLogicType();
 
@@ -32,6 +33,9 @@ public final class MDDirtLogics {
 
     public static final FarmlandableDirtLogic PODZOL_LOGIC = new FarmlandableDirtLogic( supplyBlock( "murky_podzol" ), PODZOL_TYPE, supply( "PODZOL_LOGIC_FL" ) );
     public static final FarmlandDirtLogic PODZOL_LOGIC_FL = new FarmlandDirtLogic( supplyBlock( "murky_podzol_farmland" ), PODZOL_TYPE, supply( "PODZOL_LOGIC" ) );
+
+    public static final FarmlandableDirtLogic HEATH_LOGIC = new FarmlandableDirtLogic( supplyBlock( "heath_block" ), HEATH_TYPE, supply( "HEATH_LOGIC_FL" ) );
+    public static final FarmlandDirtLogic HEATH_LOGIC_FL = new FarmlandDirtLogic( supplyBlock( "heath_farmland" ), HEATH_TYPE, supply( "HEATH_LOGIC" ) );
 
 
     @SuppressWarnings( "unchecked" )
