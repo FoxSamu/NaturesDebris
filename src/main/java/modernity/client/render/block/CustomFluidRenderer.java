@@ -33,19 +33,18 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.resource.IResourceType;
 import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.resource.VanillaResourceType;
 
 import java.util.HashMap;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * Renders fluids that implement {@link ICustomRenderFluid}. This renders gaseous fluids upside down and handles custom
@@ -85,8 +84,7 @@ public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
         this.overlaySprite = map.getSprite( LOCATION_WATER_OVERLAY );
 
         // Collect sprites of custom fluids
-        Registry<Fluid> fluids = Registry.FLUID;
-        for( Fluid fluid : fluids.stream().collect( Collectors.toSet() ) ) {
+        for( Fluid fluid : ForgeRegistries.FLUIDS ) {
             if( fluid instanceof ICustomRenderFluid ) {
                 ICustomRenderFluid crFluid = (ICustomRenderFluid) fluid;
 
