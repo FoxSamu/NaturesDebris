@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   01 - 31 - 2020
  * Author: rgsw
  */
 
@@ -148,6 +148,10 @@ public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
         }
     }
 
+    private static double fixTexBleeding( double v ) {
+        return v / 16 * 15.998 + 0.001;
+    }
+
     /**
      * Renders the specified fluid in the buffer builder
      */
@@ -255,11 +259,11 @@ public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
                 if( flowDirection.x == 0.0D && flowDirection.z == 0.0D ) {
                     // Not flowing, use still texture
                     TextureAtlasSprite texture = fluidTex[ 0 ];
-                    texU1 = texture.getInterpolatedU( 0.0D );
-                    texV1 = texture.getInterpolatedV( 0.0D );
+                    texU1 = texture.getInterpolatedU( fixTexBleeding( 0.0D ) );
+                    texV1 = texture.getInterpolatedV( fixTexBleeding( 0.0D ) );
                     texU2 = texU1;
-                    texV2 = texture.getInterpolatedV( 16.0D );
-                    texU3 = texture.getInterpolatedU( 16.0D );
+                    texV2 = texture.getInterpolatedV( fixTexBleeding( 16.0D ) );
+                    texU3 = texture.getInterpolatedU( fixTexBleeding( 16.0D ) );
                     texV3 = texV2;
                     texU4 = texU3;
                     texV4 = texV1;
@@ -269,14 +273,14 @@ public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
                     float dir = (float) MathHelper.atan2( flowDirection.z, flowDirection.x ) - (float) Math.PI / 2F;
                     float sine = MathHelper.sin( dir ) * 0.25F;
                     float cosine = MathHelper.cos( dir ) * 0.25F;
-                    texU1 = texture.getInterpolatedU( 8.0F + ( - cosine - sine ) * 16.0F );
-                    texV1 = texture.getInterpolatedV( 8.0F + ( - cosine + sine ) * 16.0F );
-                    texU2 = texture.getInterpolatedU( 8.0F + ( - cosine + sine ) * 16.0F );
-                    texV2 = texture.getInterpolatedV( 8.0F + ( cosine + sine ) * 16.0F );
-                    texU3 = texture.getInterpolatedU( 8.0F + ( cosine + sine ) * 16.0F );
-                    texV3 = texture.getInterpolatedV( 8.0F + ( cosine - sine ) * 16.0F );
-                    texU4 = texture.getInterpolatedU( 8.0F + ( cosine - sine ) * 16.0F );
-                    texV4 = texture.getInterpolatedV( 8.0F + ( - cosine - sine ) * 16.0F );
+                    texU1 = texture.getInterpolatedU( fixTexBleeding( 8.0F + ( - cosine - sine ) * 16.0F ) );
+                    texV1 = texture.getInterpolatedV( fixTexBleeding( 8.0F + ( - cosine + sine ) * 16.0F ) );
+                    texU2 = texture.getInterpolatedU( fixTexBleeding( 8.0F + ( - cosine + sine ) * 16.0F ) );
+                    texV2 = texture.getInterpolatedV( fixTexBleeding( 8.0F + ( cosine + sine ) * 16.0F ) );
+                    texU3 = texture.getInterpolatedU( fixTexBleeding( 8.0F + ( cosine + sine ) * 16.0F ) );
+                    texV3 = texture.getInterpolatedV( fixTexBleeding( 8.0F + ( cosine - sine ) * 16.0F ) );
+                    texU4 = texture.getInterpolatedU( fixTexBleeding( 8.0F + ( cosine - sine ) * 16.0F ) );
+                    texV4 = texture.getInterpolatedV( fixTexBleeding( 8.0F + ( - cosine - sine ) * 16.0F ) );
                 }
 
                 // Compute light
@@ -415,11 +419,11 @@ public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
                     }
 
                     // Compute UV coords
-                    float minU = texture.getInterpolatedU( 0.0D );
-                    float maxU = texture.getInterpolatedU( 8.0D );
-                    float leftV = texture.getInterpolatedV( ( 1.0F - leftHeight ) * 16.0F * 0.5F );
-                    float rightV = texture.getInterpolatedV( ( 1.0F - rightHeight ) * 16.0F * 0.5F );
-                    float maxV = texture.getInterpolatedV( 8.0D );
+                    float minU = texture.getInterpolatedU( fixTexBleeding( 0.0D ) );
+                    float maxU = texture.getInterpolatedU( fixTexBleeding( 8.0D ) );
+                    float leftV = texture.getInterpolatedV( fixTexBleeding( ( 1.0F - leftHeight ) * 16.0F * 0.5F ) );
+                    float rightV = texture.getInterpolatedV( fixTexBleeding( ( 1.0F - rightHeight ) * 16.0F * 0.5F ) );
+                    float maxV = texture.getInterpolatedV( fixTexBleeding( 8.0D ) );
 
                     // Compute light
                     int light = this.getCombinedLightUpMax( world, offsetPos );
@@ -471,7 +475,7 @@ public class CustomFluidRenderer implements ISelectiveResourceReloadListener {
         int upLightU = uplight & 255;
         int myLightV = myLight >> 16 & 255;
         int upLightV = uplight >> 16 & 255;
-        return ( myLightU > upLightU ? myLightU : upLightU ) | ( myLightV > upLightV ? myLightV : upLightV ) << 16;
+        return Math.max( myLightU, upLightU ) | Math.max( myLightV, upLightV ) << 16;
     }
 
     /**
