@@ -28,6 +28,7 @@ import net.minecraft.world.World;
  * Describes a sticky block, which is a block that heavily limits the movement of entities and prevents them from
  * jumping.
  */
+@SuppressWarnings( "deprecation" )
 public class StickyBlock extends Block implements IPlantSustainer {
     public static final VoxelShape COLLISION_SHAPE = makeCuboidShape( 0, 0, 0, 16, 15, 16 );
 
