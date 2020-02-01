@@ -1,22 +1,22 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.decorate.plants;
 
-import modernity.api.util.IBlockProvider;
+import modernity.common.generator.blocks.IBlockGenerator;
 
 public class PlantLayer {
-    private final IBlockProvider[] plants = new IBlockProvider[ 256 ];
+    private final IBlockGenerator[] plants = new IBlockGenerator[ 256 ];
 
     private int x;
     private int z;
 
-    public IBlockProvider getPlant( int x, int z ) {
+    public IBlockGenerator getPlant( int x, int z ) {
         x -= this.x;
         z -= this.z;
         if( x < 0 || x >= 16 || z < 0 || z >= 16 ) {
@@ -26,7 +26,7 @@ public class PlantLayer {
         return plants[ x * 16 + z ];
     }
 
-    public void setPlant( int x, int z, IBlockProvider plant ) {
+    public void setPlant( int x, int z, IBlockGenerator plant ) {
         x -= this.x;
         z -= this.z;
         if( x < 0 || x >= 16 || z < 0 || z >= 16 ) {

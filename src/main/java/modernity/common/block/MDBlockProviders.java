@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
@@ -13,25 +13,26 @@ import modernity.api.util.IBlockProvider;
 import java.util.Random;
 import java.util.function.Function;
 
+@Deprecated
 public final class MDBlockProviders {
     public static final IBlockProvider RANDOM_MILLIUM = new IBlockProvider.ChooseRandom(
-        MDBlocks.BLUE_MILLIUM,
-        MDBlocks.CYAN_MILLIUM,
-        MDBlocks.GREEN_MILLIUM,
-        MDBlocks.YELLOW_MILLIUM,
-        MDBlocks.MAGENTA_MILLIUM,
-        MDBlocks.RED_MILLIUM,
-        MDBlocks.WHITE_MILLIUM
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.BLUE_MILLIUM.getDefaultState(), 2 ),
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.CYAN_MILLIUM.getDefaultState(), 2 ),
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.GREEN_MILLIUM.getDefaultState(), 2 ),
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.YELLOW_MILLIUM.getDefaultState(), 2 ),
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.MAGENTA_MILLIUM.getDefaultState(), 2 ),
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.RED_MILLIUM.getDefaultState(), 2 ),
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.WHITE_MILLIUM.getDefaultState(), 2 )
     );
 
     public static final IBlockProvider RANDOM_MELION = new IBlockProvider.ChooseRandom(
-        MDBlocks.BLUE_MELION,
-        MDBlocks.ORANGE_MELION,
-        MDBlocks.INDIGO_MELION,
-        MDBlocks.YELLOW_MELION,
-        MDBlocks.MAGENTA_MELION,
-        MDBlocks.RED_MELION,
-        MDBlocks.WHITE_MELION
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.BLUE_MELION.getDefaultState(), 2 ),
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.ORANGE_MELION.getDefaultState(), 2 ),
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.INDIGO_MELION.getDefaultState(), 2 ),
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.YELLOW_MELION.getDefaultState(), 2 ),
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.MAGENTA_MELION.getDefaultState(), 2 ),
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.RED_MELION.getDefaultState(), 2 ),
+        ( world, pos, rand ) -> world.setBlockState( pos, MDBlocks.WHITE_MELION.getDefaultState(), 2 )
     );
 
     public static final IBlockProvider MURK_FERN_RAND_HEIGHT = ( world, pos, rand ) -> {

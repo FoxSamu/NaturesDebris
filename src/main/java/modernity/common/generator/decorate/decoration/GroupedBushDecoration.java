@@ -2,14 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 15 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.decorate.decoration;
 
-import modernity.api.util.IBlockProvider;
 import modernity.api.util.MovingBlockPos;
+import modernity.common.generator.blocks.IBlockGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -20,20 +20,20 @@ public class GroupedBushDecoration implements IDecoration {
     private final int iterations;
     private final int radius;
     private final double chance;
-    private final IBlockProvider provider;
+    private final IBlockGenerator gen;
 
-    public GroupedBushDecoration( int iterations, int radius, int chance, IBlockProvider provider ) {
+    public GroupedBushDecoration( int iterations, int radius, int chance, IBlockGenerator gen ) {
         this.iterations = iterations;
         this.radius = radius;
         this.chance = 1D / chance;
-        this.provider = provider;
+        this.gen = gen;
     }
 
-    public GroupedBushDecoration( int iterations, int radius, double chance, IBlockProvider provider ) {
+    public GroupedBushDecoration( int iterations, int radius, double chance, IBlockGenerator gen ) {
         this.iterations = iterations;
         this.radius = radius;
         this.chance = chance;
-        this.provider = provider;
+        this.gen = gen;
     }
 
     public int getIterations() {
@@ -48,8 +48,8 @@ public class GroupedBushDecoration implements IDecoration {
         return chance;
     }
 
-    public IBlockProvider getProvider() {
-        return provider;
+    public IBlockGenerator getGen() {
+        return gen;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class GroupedBushDecoration implements IDecoration {
                             rpos.setPos( posx, posy, posz );
 
                             if( rand.nextDouble() < chance ) {
-                                provider.provide( world, rpos, rand );
+                                gen.generateBlock( world, rpos, rand );
                             }
                         }
                     }

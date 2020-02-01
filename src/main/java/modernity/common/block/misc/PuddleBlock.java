@@ -2,14 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.misc;
 
 import modernity.api.block.IColoredBlock;
-import modernity.api.util.IBlockProvider;
 import modernity.api.util.MovingBlockPos;
 import modernity.client.ModernityClient;
 import modernity.common.block.MDBlockStateProperties;
@@ -38,7 +37,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class PuddleBlock extends Block implements IColoredBlock, IBlockProvider {
+public class PuddleBlock extends Block implements IColoredBlock {
     public static final SignedIntegerProperty DISTANCE = MDBlockStateProperties.DISTANCE_N1_3;
     private static final VoxelShape SHAPE = VoxelShapes.empty();
 
@@ -213,7 +212,6 @@ public class PuddleBlock extends Block implements IColoredBlock, IBlockProvider 
         return ModernityClient.get().getWaterColors().getColor( reader, pos );
     }
 
-    @Override
     public boolean provide( IWorld world, BlockPos pos, Random rand ) {
         if( world.isAirBlock( pos ) && canRemain( world, pos ) ) {
             world.setBlockState( pos, getDefaultState().with( DISTANCE, - 1 ), 2 | 16 );

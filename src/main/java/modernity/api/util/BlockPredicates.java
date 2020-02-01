@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
@@ -34,6 +34,8 @@ public final class BlockPredicates {
     public static final Predicate<BlockState> ROCKS_OR_LIMESTONE = ROCK_TYPES.or( block( MDBlocks.LIMESTONE ) );
 
     public static final Predicate<BlockState> ROCK_ONLY = block( MDBlocks.ROCK );
+
+    public static final Predicate<BlockState> SUMESTONE = block( MDBlocks.SUMESTONE );
 
     /**
      * Matches everything

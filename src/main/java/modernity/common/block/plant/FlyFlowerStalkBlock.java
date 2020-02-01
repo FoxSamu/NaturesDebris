@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
@@ -15,10 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-
-import java.util.Random;
 
 public class FlyFlowerStalkBlock extends PlantBlock implements IWaterPlant {
     private static final VoxelShape SHAPE = makePlantShape( 4, 16 );
@@ -34,11 +31,6 @@ public class FlyFlowerStalkBlock extends PlantBlock implements IWaterPlant {
     @Override
     public boolean canRemain( IWorldReader world, BlockPos pos, BlockState state, Direction dir, BlockPos adj, BlockState adjState ) {
         return dir != Direction.DOWN || canBlockSustain( world, adj, adjState );
-    }
-
-    @Override
-    public boolean provide( IWorld world, BlockPos pos, Random rand ) {
-        return false;
     }
 
     @Override

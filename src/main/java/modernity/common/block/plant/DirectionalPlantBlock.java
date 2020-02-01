@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
@@ -35,5 +35,9 @@ public abstract class DirectionalPlantBlock extends PlantBlock {
             return canRemainOn( world, adj, adjState, state );
         }
         return true;
+    }
+
+    public Direction getGrowDirection() {
+        return growDir;
     }
 }

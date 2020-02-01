@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
@@ -53,7 +53,7 @@ public class AlgaeBlock extends PlantBlock implements IWaterPlant, IColoredBlock
     }
 
     @Override
-    protected BlockState computeStateForPos( IWorldReader world, BlockPos pos, BlockState state ) {
+    public BlockState computeStateForPos( IWorldReader world, BlockPos pos, BlockState state ) {
         BlockState current = world.getBlockState( pos );
         if( current.getBlock() == this ) {
             state = state.with( DENSITY, Math.min( 16, current.get( DENSITY ) + 1 ) );

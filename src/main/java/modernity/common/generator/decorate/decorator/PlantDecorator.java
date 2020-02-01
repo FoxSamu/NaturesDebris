@@ -1,15 +1,15 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.decorate.decorator;
 
-import modernity.api.util.IBlockProvider;
 import modernity.api.util.MovingBlockPos;
+import modernity.common.generator.blocks.IBlockGenerator;
 import modernity.common.generator.decorate.plants.IVegetation;
 import modernity.common.generator.decorate.plants.PlantLayer;
 import net.minecraft.world.IWorld;
@@ -50,10 +50,10 @@ public class PlantDecorator implements IDecorator {
             for( int z = 0; z < 16; z++ ) {
                 int gx = cx * 16 + x;
                 int gz = cz * 16 + z;
-                IBlockProvider provider = layer.getPlant( gx, gz );
+                IBlockGenerator provider = layer.getPlant( gx, gz );
                 if( provider != null ) {
                     int height = world.getHeight( heigtmapType, gx, gz );
-                    provider.provide( world, mpos.setPos( gx, height, gz ), rand );
+                    provider.generateBlock( world, mpos.setPos( gx, height, gz ), rand );
                 }
             }
         }

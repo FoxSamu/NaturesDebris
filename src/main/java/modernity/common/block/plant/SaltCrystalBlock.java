@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
@@ -25,10 +25,8 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -220,8 +218,13 @@ public class SaltCrystalBlock extends SingleDirectionalPlantBlock implements IMu
     }
 
     @Override
-    protected BlockState computeStateForPos( IWorldReader world, BlockPos pos, BlockState state ) {
+    public BlockState computeStateForPos( IWorldReader world, BlockPos pos, BlockState state ) {
         return state.with( WATERLOGGED, world.getFluidState( pos ).getFluid() == MDFluids.MURKY_WATER );
+    }
+
+    @Override
+    public BlockState computeStateForGeneration( IWorldReader world, BlockPos pos, Random rand ) {
+        return computeStateForPos( world, pos, getGenerationStage( rand ) );
     }
 
     private boolean canReachLocation( World world, BlockPos pos, int x, int y, int z, MovingBlockPos mpos ) {
@@ -272,7 +275,7 @@ public class SaltCrystalBlock extends SingleDirectionalPlantBlock implements IMu
         return state.isIn( MDBlockTags.SALT_SOURCE );
     }
 
-    private BlockState getGenerationStage( Random rand ) {
+    public BlockState getGenerationStage( Random rand ) {
         int randAge = rand.nextInt( 6 );
         if( rand.nextBoolean() ) {
             randAge += rand.nextInt( 7 );
@@ -290,8 +293,7 @@ public class SaltCrystalBlock extends SingleDirectionalPlantBlock implements IMu
     }
 
     @Override
-    @SuppressWarnings( "deprecation" )
-    public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx ) {
+    public VoxelShape getShape( BlockState state ) {
         return STATE_SHAPES[ state.get( AGE ) ];
     }
 
@@ -323,5 +325,10 @@ public class SaltCrystalBlock extends SingleDirectionalPlantBlock implements IMu
     @Override
     public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
         return isBlockSideSustainable( state, world, pos, Direction.UP );
+    }
+
+    @Override
+    public OffsetType getOffsetType() {
+        return OffsetType.XZ;
     }
 }

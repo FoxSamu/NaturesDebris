@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
@@ -36,13 +36,13 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 @SuppressWarnings( "deprecation" )
-public class ReedsBlock extends TallDirectionalPlantBlock implements IMurkyWaterloggedBlock {
-    public static final VoxelShape REEDS_END_SHAPE = makePlantShape( 12, 14 );
-    public static final VoxelShape REEDS_MIDDLE_SHAPE = makePlantShape( 12, 16 );
+public class MurkReedBlock extends TallDirectionalPlantBlock implements IMurkyWaterloggedBlock {
+    public static final VoxelShape REED_END_SHAPE = makePlantShape( 12, 14 );
+    public static final VoxelShape REED_MIDDLE_SHAPE = makePlantShape( 12, 16 );
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_15;
 
-    public ReedsBlock( Properties properties ) {
+    public MurkReedBlock( Properties properties ) {
         super( properties, Direction.UP );
     }
 
@@ -77,7 +77,7 @@ public class ReedsBlock extends TallDirectionalPlantBlock implements IMurkyWater
     @Override
     public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx ) {
         Vec3d off = state.getOffset( world, pos );
-        return ( state.get( END ) ? REEDS_END_SHAPE : REEDS_MIDDLE_SHAPE ).withOffset( off.x, off.y, off.z );
+        return ( state.get( END ) ? REED_END_SHAPE : REED_MIDDLE_SHAPE ).withOffset( off.x, off.y, off.z );
     }
 
     @Override

@@ -1,15 +1,15 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.decorate.decoration;
 
-import modernity.api.util.IBlockProvider;
 import modernity.api.util.MovingBlockPos;
+import modernity.common.generator.blocks.IBlockGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -19,12 +19,12 @@ import java.util.Random;
 public class ClusterBushDecoration implements IDecoration {
     private final int iterations;
     private final int radius;
-    private final IBlockProvider provider;
+    private final IBlockGenerator gen;
 
-    public ClusterBushDecoration( int iterations, int radius, IBlockProvider provider ) {
+    public ClusterBushDecoration( int iterations, int radius, IBlockGenerator gen ) {
         this.iterations = iterations;
         this.radius = radius;
-        this.provider = provider;
+        this.gen = gen;
     }
 
     public int getIterations() {
@@ -35,8 +35,8 @@ public class ClusterBushDecoration implements IDecoration {
         return radius;
     }
 
-    public IBlockProvider getProvider() {
-        return provider;
+    public IBlockGenerator getGen() {
+        return gen;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ClusterBushDecoration implements IDecoration {
 
             rpos.setPos( rx, ry, rz );
 
-            provider.provide( world, rpos, rand );
+            gen.generateBlock( world, rpos, rand );
         }
     }
 }

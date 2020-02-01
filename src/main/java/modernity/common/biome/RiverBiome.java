@@ -2,15 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.biome;
 
-import modernity.common.block.MDBlockProviders;
-import modernity.common.block.MDBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
+import modernity.common.generator.blocks.MDBlockGenerators;
 import modernity.common.generator.decorate.DefaultDecoration;
 import modernity.common.generator.decorate.count.Chance;
 import modernity.common.generator.decorate.count.Fixed;
@@ -37,10 +36,10 @@ public class RiverBiome extends ModernityBiome {
 
         DefaultDecoration.setupDefaultDecoration( this );
 
-        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlocks.REEDS ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new One() ) );
+        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlockGenerators.MURK_REED ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new One() ) );
 
-        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlocks.MURK_GRASS ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Fixed( 5 ) ) );
-        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlockProviders.RANDOM_MILLIUM ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Chance( 1 / 6D ) ) );
+        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlockGenerators.MURK_GRASS_BASIC ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Fixed( 5 ) ) );
+        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlockGenerators.RANDOM_MILLIUM ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Chance( 1 / 6D ) ) );
     }
 
 }

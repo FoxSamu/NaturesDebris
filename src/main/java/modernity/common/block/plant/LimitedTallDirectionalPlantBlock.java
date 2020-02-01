@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
@@ -63,7 +63,7 @@ public abstract class LimitedTallDirectionalPlantBlock extends TallDirectionalPl
     }
 
     @Override
-    protected BlockState computeStateForPos( IWorldReader world, BlockPos pos, BlockState state ) {
+    public BlockState computeStateForPos( IWorldReader world, BlockPos pos, BlockState state ) {
         state = super.computeStateForPos( world, pos, state );
 
         BlockPos backward = pos.offset( growDir, - 1 );
@@ -78,7 +78,7 @@ public abstract class LimitedTallDirectionalPlantBlock extends TallDirectionalPl
     }
 
     @Override
-    protected int deformGenerationHeight( int h, Random rand ) {
+    public int deformGenerationHeight( int h, Random rand ) {
         return Math.min( h, maxLength );
     }
 }

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
@@ -72,7 +72,7 @@ public abstract class TallDirectionalPlantBlock extends DirectionalPlantBlock {
     }
 
     @Override
-    protected BlockState computeStateForPos( IWorldReader world, BlockPos pos, BlockState state ) {
+    public BlockState computeStateForPos( IWorldReader world, BlockPos pos, BlockState state ) {
         state = super.computeStateForPos( world, pos, state );
         BlockPos forward = pos.offset( growDir );
         BlockPos backward = pos.offset( growDir, - 1 );
@@ -88,7 +88,7 @@ public abstract class TallDirectionalPlantBlock extends DirectionalPlantBlock {
         return provide( world, pos, rand, this::getDefaultGenerationHeight );
     }
 
-    protected int deformGenerationHeight( int h, Random rand ) {
+    public int deformGenerationHeight( int h, Random rand ) {
         return h;
     }
 

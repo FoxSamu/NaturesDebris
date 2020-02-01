@@ -2,13 +2,12 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 31 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
-import modernity.api.util.IBlockProvider;
 import modernity.api.util.MDVoxelShapes;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.fluid.IMurkyWaterloggedBlock;
@@ -36,8 +35,9 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
-public abstract class PlantBlock extends Block implements IBlockProvider {
+public abstract class PlantBlock extends Block {
 
     public PlantBlock( Properties properties ) {
         super( properties );
@@ -150,8 +150,16 @@ public abstract class PlantBlock extends Block implements IBlockProvider {
         return state;
     }
 
-    protected BlockState computeStateForPos( IWorldReader world, BlockPos pos, BlockState state ) {
+    public BlockState computeStateForPos( IWorldReader world, BlockPos pos, BlockState state ) {
         return state;
+    }
+
+    public BlockState computeStateForPos( IWorldReader world, BlockPos pos ) {
+        return computeStateForPos( world, pos, getDefaultState() );
+    }
+
+    public BlockState computeStateForGeneration( IWorldReader world, BlockPos pos, Random rand ) {
+        return computeStateForPos( world, pos );
     }
 
     @Override
@@ -215,5 +223,10 @@ public abstract class PlantBlock extends Block implements IBlockProvider {
 
     public static VoxelShape makeHangPlantShape( double width, double height ) {
         return MDVoxelShapes.hangPlantShape( width, height );
+    }
+
+    @Deprecated
+    public boolean provide( IWorld world, BlockPos pos, Random rand ) {
+        return false;
     }
 }
