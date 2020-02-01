@@ -2,18 +2,16 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator;
 
 import com.google.common.reflect.TypeToken;
-import modernity.common.generator.map.surface.SurfaceGenerator;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.world.gen.ChunkGeneratorType;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraftforge.registries.ObjectHolder;
 
 /**
@@ -23,7 +21,6 @@ import net.minecraftforge.registries.ObjectHolder;
 public final class MDChunkGeneratorTypes {
     private static final RegistryHandler<ChunkGeneratorType<?, ?>> ENTRIES = new RegistryHandler<>( "modernity", true );
 
-    public static final ChunkGeneratorType<GenerationSettings, SurfaceGenerator> SURFACE = register( "surface", new ChunkGeneratorType<>( new SurfaceGenerator.Factory(), false, GenerationSettings::new ) );
     public static final ChunkGeneratorType<MapGenSettings<?>, MapChunkGenerator> MAPGEN = register( "mapgen", new ChunkGeneratorType<>( MapChunkGenerator::new, false, MapGenSettings::new ) );
 
     private static <T extends ChunkGeneratorType<?, ?>> T register( String id, T type ) {

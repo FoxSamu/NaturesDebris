@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
@@ -49,8 +49,9 @@ public final class SurfaceGeneration {
                 .dataSupplier( SurfaceGenData::new )
                 .addDecorator( SurfaceGeneration::decorate )
                 .addGenerator( new TerrainGenerator( world, biomeGen ) )
-                .addGenerator( new SurfaceBuilder( world ) )
+                .addGenerator( new SurfaceGenerator( world ) )
                 .addGenerator( new CaveGenerator( world ) )
+                .addGenerator( new SumestoneGenerator( world ) )
                 .addGenerator( new DarkrockGenerator( world ) )
                 .addGenerator( new CanyonGenerator( world ) )
                 .addGenerator( new BedrockGenerator( world, 0, 4, false, IIntScrambler.lgc( 52839319, 294282 ), MDBlocks.UNBREAKABLE_STONE ) )
