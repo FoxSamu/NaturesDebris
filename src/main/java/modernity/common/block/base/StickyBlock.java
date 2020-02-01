@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 31 - 2020
+ * Date:   02 - 01 - 2020
  * Author: rgsw
  */
 
@@ -37,8 +37,8 @@ public class StickyBlock extends Block implements IPlantSustainer {
 
     @Override
     public void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity ) {
-        if( ! entity.isInWater() ) { // Motion multiplier already limits jumping.
-            EntityUtil.setSmallerMotionMutliplier( state, entity, new Vec3d( 0.25, 0.25, 0.25 ) );
+        if( ! entity.isInWater() ) {
+            EntityUtil.setSmallerMotionMutliplier( state, entity, new Vec3d( 0.25, 0.1, 0.25 ) );
         }
     }
 
@@ -49,17 +49,17 @@ public class StickyBlock extends Block implements IPlantSustainer {
 
 
     @Override
-    public boolean isNormalCube( BlockState state, IBlockReader worldIn, BlockPos pos ) {
+    public boolean isNormalCube( BlockState state, IBlockReader world, BlockPos pos ) {
         return true;
     }
 
     @Override
-    public boolean allowsMovement( BlockState state, IBlockReader worldIn, BlockPos pos, PathType type ) {
+    public boolean allowsMovement( BlockState state, IBlockReader world, BlockPos pos, PathType type ) {
         return false;
     }
 
     @Override
-    public boolean canEntitySpawn( BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type ) {
+    public boolean canEntitySpawn( BlockState state, IBlockReader world, BlockPos pos, EntityType<?> type ) {
         return true;
     }
 
