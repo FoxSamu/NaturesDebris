@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   02 - 02 - 2020
  * Author: rgsw
  */
 
@@ -29,13 +29,8 @@ import net.minecraft.world.gen.Heightmap;
  * The 'Forest' or 'modernity:forest' biome.
  */
 public class ForestBiome extends ModernityBiome {
-    protected ForestBiome() {
-        super(
-            new Builder()
-                .depth( 4 ).variation( 6 ).scale( 3 )
-                .surfaceGen( new ForestSurfaceGenerator() )
-                .precipitation( IPrecipitationFunction.standard() )
-        );
+    protected ForestBiome( Type type ) {
+        super( type.builder );
 
         DefaultDecoration.setupDefaultDecoration( this );
 
@@ -59,5 +54,19 @@ public class ForestBiome extends ModernityBiome {
 
         addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.INVER ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Fixed( 5 ) ) );
         addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Fixed( 6 ) ) );
+    }
+
+    public enum Type {
+        FOREST(
+            new Builder()
+                .depth( 4 ).variation( 6 ).scale( 3 )
+                .surfaceGen( new ForestSurfaceGenerator() )
+                .precipitation( IPrecipitationFunction.standard() )
+        );
+        private final Builder builder;
+
+        Type( Builder builder ) {
+            this.builder = builder;
+        }
     }
 }

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   02 - 02 - 2020
  * Author: rgsw
  */
 
@@ -98,7 +98,7 @@ public abstract class PlantBlock extends Block {
             world.getPendingFluidTicks().scheduleTick( pos, fluid, fluid.getTickRate( world ) );
         }
 
-        if( canRemain( world, pos, state, dir, adjPos, adjState ) ) {
+        if( state.isValidPosition( world, pos ) ) {
             return state;
         }
         return Blocks.AIR.getDefaultState();

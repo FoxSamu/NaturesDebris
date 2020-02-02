@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   02 - 02 - 2020
  * Author: rgsw
  */
 
@@ -25,14 +25,8 @@ import net.minecraft.world.gen.Heightmap;
  * The 'River' or 'modernity:river' biome.
  */
 public class RiverBiome extends ModernityBiome {
-    protected RiverBiome() {
-        super(
-            new Builder()
-                .depth( - 6 ).variation( 0 ).scale( 2 )
-                .blendWeight( 2 )
-                .surfaceGen( new GrassSurfaceGenerator() )
-                .precipitation( IPrecipitationFunction.standard() )
-        );
+    protected RiverBiome( Type type ) {
+        super( type.builder );
 
         DefaultDecoration.setupDefaultDecoration( this );
 
@@ -42,4 +36,19 @@ public class RiverBiome extends ModernityBiome {
         addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlockGenerators.RANDOM_MILLIUM ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Chance( 1 / 6D ) ) );
     }
 
+    public enum Type {
+        RIVER(
+            new Builder()
+                .depth( - 6 ).variation( 0 ).scale( 2 )
+                .blendWeight( 2 )
+                .surfaceGen( new GrassSurfaceGenerator() )
+                .precipitation( IPrecipitationFunction.standard() )
+        );
+
+        private final Builder builder;
+
+        Type( Builder builder ) {
+            this.builder = builder;
+        }
+    }
 }

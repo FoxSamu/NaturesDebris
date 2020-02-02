@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   02 - 02 - 2020
  * Author: rgsw
  */
 
@@ -30,13 +30,8 @@ import net.minecraft.world.gen.Heightmap;
  * The 'Lush Meadow' or 'modernity:lush_meadow' biome.
  */
 public class LushMeadowBiome extends ModernityBiome {
-    protected LushMeadowBiome() {
-        super(
-            new Builder()
-                .depth( 2 ).variation( 3 ).scale( 2 )
-                .surfaceGen( new GrassSurfaceGenerator() )
-                .precipitation( IPrecipitationFunction.standard() )
-        );
+    protected LushMeadowBiome( Type type ) {
+        super( type.builder );
 
         DefaultDecoration.setupDefaultDecoration( this );
 
@@ -52,5 +47,20 @@ public class LushMeadowBiome extends ModernityBiome {
         addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockGenerators.RANDOM_MELION ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new One() ) );
 
         addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 1 / 30D ) ) );
+    }
+
+    public enum Type {
+        LUSH_MEADOW(
+            new Builder()
+                .depth( 2 ).variation( 3 ).scale( 2 )
+                .surfaceGen( new GrassSurfaceGenerator() )
+                .precipitation( IPrecipitationFunction.standard() )
+        );
+
+        private final Builder builder;
+
+        Type( Builder builder ) {
+            this.builder = builder;
+        }
     }
 }

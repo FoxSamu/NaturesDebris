@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   02 - 02 - 2020
  * Author: rgsw
  */
 
@@ -16,10 +16,7 @@ import modernity.common.generator.biome.LayerBiomeProvider;
 import modernity.common.generator.biome.LayerBiomeProviderSettings;
 import modernity.common.generator.biome.core.BiomeGenerator;
 import modernity.common.generator.biome.core.CachingRegionContext;
-import modernity.common.generator.biome.layer.BiomeGenerationLayer;
-import modernity.common.generator.biome.layer.RiverFieldLayer;
-import modernity.common.generator.biome.layer.RiverLayer;
-import modernity.common.generator.biome.layer.RiverMixLayer;
+import modernity.common.generator.biome.layer.*;
 import modernity.common.generator.map.BedrockGenerator;
 import modernity.common.generator.map.surface.*;
 import net.minecraft.crash.CrashReport;
@@ -72,7 +69,9 @@ public final class SurfaceGeneration {
 
         CachingRegionContext context = new CachingRegionContext( 25, seed );
         context.generate( new BiomeGenerationLayer( MDDimension.MURK_SURFACE ), 4538L )
-               .zoom( 6 )
+               .zoom( 2 )
+               .transform( new MeadowTypeLayer() )
+               .zoom( 4 )
                .merge(
                    RiverMixLayer.INSTANCE,
                    context.generate( RiverFieldLayer.INSTANCE, 5728L )

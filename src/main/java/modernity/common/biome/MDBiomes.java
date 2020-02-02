@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 02 - 2020
  * Author: rgsw
  */
 
@@ -29,12 +29,14 @@ public final class MDBiomes {
     private static final EnumMap<MDDimension, ArrayList<Entry>> BIOME_LISTS = new EnumMap<>( MDDimension.class );
 
 
-    public static final MeadowBiome MEADOW = register( "meadow", new MeadowBiome(), MDDimension.MURK_SURFACE, 1000 );
-    public static final LushMeadowBiome LUSH_MEADOW = register( "lush_meadow", new LushMeadowBiome(), MDDimension.MURK_SURFACE, 1000 );
-    public static final ForestBiome FOREST = register( "forest", new ForestBiome(), MDDimension.MURK_SURFACE, 1000 );
-    public static final RiverBiome RIVER = register( "river", new RiverBiome(), MDDimension.MURK_SURFACE, 0 );
-    public static final SwampBiome SWAMP = register( "swamp", new SwampBiome(), MDDimension.MURK_SURFACE, 1000 );
-    public static final WaterlandsBiome WATERLANDS = register( "waterlands", new WaterlandsBiome(), MDDimension.MURK_SURFACE, 1000 );
+    public static final MeadowBiome MEADOW = register( "meadow", new MeadowBiome( MeadowBiome.Type.MEADOW ), MDDimension.MURK_SURFACE, 1000 );
+    public static final MeadowBiome FLOWER_MEADOW = register( "flower_meadow", new MeadowBiome( MeadowBiome.Type.FLOWER_MEADOW ), MDDimension.MURK_SURFACE, 0 );
+    public static final MeadowBiome MEADOW_NO_TREES = register( "meadow_no_trees", new MeadowBiome( MeadowBiome.Type.FLOWER_MEADOW ), MDDimension.MURK_SURFACE, 0 );
+    public static final LushMeadowBiome LUSH_MEADOW = register( "lush_meadow", new LushMeadowBiome( LushMeadowBiome.Type.LUSH_MEADOW ), MDDimension.MURK_SURFACE, 1000 );
+    public static final ForestBiome FOREST = register( "forest", new ForestBiome( ForestBiome.Type.FOREST ), MDDimension.MURK_SURFACE, 1000 );
+    public static final RiverBiome RIVER = register( "river", new RiverBiome( RiverBiome.Type.RIVER ), MDDimension.MURK_SURFACE, 0 );
+    public static final SwampBiome SWAMP = register( "swamp", new SwampBiome( SwampBiome.Type.SWAMP ), MDDimension.MURK_SURFACE, 1000 );
+    public static final WaterlandsBiome WATERLANDS = register( "waterlands", new WaterlandsBiome( WaterlandsBiome.Type.WATERLANDS ), MDDimension.MURK_SURFACE, 1000 );
 
     public static final ModernityBiome DEFAULT = MEADOW;
 

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   02 - 02 - 2020
  * Author: rgsw
  */
 
@@ -29,13 +29,8 @@ import net.minecraft.world.gen.Heightmap;
  * The 'Swamp' or 'modernity:swamp' biome.
  */
 public class SwampBiome extends ModernityBiome {
-    protected SwampBiome() {
-        super(
-            new Builder()
-                .depth( - 1 ).variation( 4 ).scale( 1 )
-                .surfaceGen( new SwampSurfaceGenerator() )
-                .precipitation( IPrecipitationFunction.swampy() )
-        );
+    protected SwampBiome( Type type ) {
+        super( type.builder );
 
         DefaultDecoration.setupDefaultDecoration( this );
 
@@ -51,4 +46,18 @@ public class SwampBiome extends ModernityBiome {
         addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 1 / 2D ) ) );
     }
 
+    public enum Type {
+        SWAMP(
+            new Builder()
+                .depth( - 1 ).variation( 4 ).scale( 1 )
+                .surfaceGen( new SwampSurfaceGenerator() )
+                .precipitation( IPrecipitationFunction.swampy() )
+        );
+
+        private final Builder builder;
+
+        Type( Builder builder ) {
+            this.builder = builder;
+        }
+    }
 }
