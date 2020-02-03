@@ -1,0 +1,17 @@
+{
+  "biomes": {
+    "modernity:forest": [ 0, 109, 58 ],
+    "modernity:meadow|modernity:lush_meadow": [ 0, 109, 38 ],
+    "modernity:river": [ 4, 122, 59 ],
+    "modernity:swamp": {
+      "perlin2d": {
+        "a": [ 38, 51, 28 ],
+        "b": [ 12, 57, 18 ],
+        "size": 10.26618249
+      }
+    },
+    "modernity:waterlands": [ 12, 109, 0 ],
+    "item": [ 0, 109, 38 ],
+    "default": [ 0, 109, 38 ]
+  }
+}

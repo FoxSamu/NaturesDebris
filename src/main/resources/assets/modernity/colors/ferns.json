@@ -1,0 +1,12 @@
+{
+  "biomes": {
+    "modernity:forest": [ 0, 109, 6 ],
+    "modernity:lush_meadow": [ 45, 136, 42 ],
+    "modernity:meadow": [ 45, 136, 42 ],
+    "modernity:river": [ 45, 136, 42 ],
+    "modernity:swamp": [ 27, 83, 25 ],
+    "modernity:waterlands": [ 58, 105, 47 ],
+    "item": [ 0, 109, 38 ],
+    "default": [ 0, 109, 38 ]
+  }
+}

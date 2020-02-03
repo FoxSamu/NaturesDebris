@@ -2,15 +2,15 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 19 - 2020
+ * Date:   02 - 03 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.dirt;
 
-import modernity.api.biome.BiomeColoringProfile;
 import modernity.api.block.IColoredBlock;
 import modernity.client.ModernityClient;
+import modernity.client.colors.ColorProfile;
 import modernity.common.block.dirt.logic.DirtLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -28,7 +28,7 @@ public class GrassBlock extends SnowyDirtlikeBlock implements IColoredBlock {
     }
 
     @OnlyIn( Dist.CLIENT )
-    protected BiomeColoringProfile getColorMap() {
+    protected ColorProfile getColorMap() {
         return ModernityClient.get().getGrassColors();
     }
 

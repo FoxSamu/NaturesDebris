@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 03 - 2020
  * Author: rgsw
  */
 
@@ -19,21 +19,29 @@ public final class ColorUtil {
     }
 
     /**
-     * Creates an {@code int}-color from RGB values (0-255)
+     * Creates a packed color from RGB values (0-255)
      */
     public static int rgb( int r, int g, int b ) {
         return r << 16 | g << 8 | b;
     }
 
     /**
-     * Creates an {@code int}-color from RGB values (0-1)
+     * Creates a packed color from RGB values (0-1)
      */
     public static int rgb( double r, double g, double b ) {
         return rgb( (int) ( r * 255 ), (int) ( g * 255 ), (int) ( b * 255 ) );
     }
 
     /**
+     * Creates a packed color from RGB values (0-1)
+     */
+    public static int rgb( float r, float g, float b ) {
+        return rgb( (int) ( r * 255 ), (int) ( g * 255 ), (int) ( b * 255 ) );
+    }
+
+    /**
      * Creates an {@code int}-color from HSV values
+     *
      * @param h Hue (0-360)
      * @param s Saturation (0-1)
      * @param v Value (0-1)

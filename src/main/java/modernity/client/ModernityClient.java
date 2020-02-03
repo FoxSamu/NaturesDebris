@@ -2,21 +2,22 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 28 - 2020
+ * Date:   02 - 03 - 2020
  * Author: rgsw
  */
 
 package modernity.client;
 
-import modernity.api.biome.BiomeColoringProfile;
 import modernity.api.dimension.IClientTickingDimension;
 import modernity.client.colormap.ColorMap;
+import modernity.client.colors.ColorProfile;
+import modernity.client.colors.ColorProfileManager;
+import modernity.client.colors.ColorProviderRegistry;
 import modernity.client.handler.FogHandler;
 import modernity.client.handler.ParticleRegistryHandler;
 import modernity.client.handler.TextureStitchHandler;
 import modernity.client.handler.WorldRenderHandler;
 import modernity.client.model.MDModelLoaders;
-import modernity.client.reloader.BiomeColorProfileReloader;
 import modernity.client.render.area.AreaRenderManager;
 import modernity.client.render.block.CustomFluidRenderer;
 import modernity.client.render.environment.SurfaceCloudRenderer;
@@ -62,14 +63,16 @@ public class ModernityClient extends Modernity {
     /** The {@link Minecraft} instance. */
     public final Minecraft mc = Minecraft.getInstance();
 
-    private BiomeColoringProfile grassColors;
-    private BiomeColoringProfile blackwoodColors;
-    private BiomeColoringProfile inverColors;
-    private BiomeColoringProfile waterColors;
-    private BiomeColoringProfile mossColors;
-    private BiomeColoringProfile fernColors;
-    private BiomeColoringProfile watergrassColors;
-    private BiomeColoringProfile algaeColors;
+    private ColorProfileManager colorProfileManager;
+
+    private ColorProfile grassColors;
+    private ColorProfile blackwoodColors;
+    private ColorProfile inverColors;
+    private ColorProfile waterColors;
+    private ColorProfile mossColors;
+    private ColorProfile fernColors;
+    private ColorProfile watergrassColors;
+    private ColorProfile algaeColors;
 
     private ClientWorldAreaManager worldAreaManager;
     private AreaRenderManager areaRenderManager;
@@ -85,20 +88,25 @@ public class ModernityClient extends Modernity {
     @Override
     public void preInit() {
         super.preInit();
-        addFutureReloadListener( new BiomeColorProfileReloader( "grass", e -> grassColors = e ) );
-        addFutureReloadListener( new BiomeColorProfileReloader( "blackwood", e -> blackwoodColors = e ) );
-        addFutureReloadListener( new BiomeColorProfileReloader( "inver", e -> inverColors = e ) );
-        addFutureReloadListener( new BiomeColorProfileReloader( "water", e -> waterColors = e ) );
-        addFutureReloadListener( new BiomeColorProfileReloader( "moss", e -> mossColors = e ) );
-        addFutureReloadListener( new BiomeColorProfileReloader( "ferns", e -> fernColors = e ) );
-        addFutureReloadListener( new BiomeColorProfileReloader( "watergrass", e -> watergrassColors = e ) );
-        addFutureReloadListener( new BiomeColorProfileReloader( "algae", e -> algaeColors = e ) );
+
+        colorProfileManager = new ColorProfileManager( Minecraft.getInstance().getResourceManager(), manager -> {
+            grassColors = manager.load( new ResourceLocation( "modernity:grass" ) );
+            blackwoodColors = manager.load( new ResourceLocation( "modernity:blackwood" ) );
+            inverColors = manager.load( new ResourceLocation( "modernity:inver" ) );
+            waterColors = manager.load( new ResourceLocation( "modernity:water" ) );
+            mossColors = manager.load( new ResourceLocation( "modernity:moss" ) );
+            fernColors = manager.load( new ResourceLocation( "modernity:ferns" ) );
+            watergrassColors = manager.load( new ResourceLocation( "modernity:watergrass" ) );
+            algaeColors = manager.load( new ResourceLocation( "modernity:algae" ) );
+        } );
 
         addFutureReloadListener( fluidRenderer );
         addFutureReloadListener( fallenLeafColors );
+        addFutureReloadListener( colorProfileManager );
 
         areaRenderManager = new AreaRenderManager();
         MDAreas.setupClient( areaRenderManager );
+        ColorProviderRegistry.setup();
     }
 
     @Override
@@ -183,57 +191,61 @@ public class ModernityClient extends Modernity {
     /**
      * Gets the biome color profile for grass colors
      */
-    public BiomeColoringProfile getGrassColors() {
+    public ColorProfile getGrassColors() {
         return grassColors;
     }
 
     /**
      * Gets the biome color profile for blackwood colors
      */
-    public BiomeColoringProfile getBlackwoodColors() {
+    public ColorProfile getBlackwoodColors() {
         return blackwoodColors;
     }
 
     /**
      * Gets the biome color profile for inver colors
      */
-    public BiomeColoringProfile getInverColors() {
+    public ColorProfile getInverColors() {
         return inverColors;
     }
 
     /**
      * Gets the biome color profile for water colors
      */
-    public BiomeColoringProfile getWaterColors() {
+    public ColorProfile getWaterColors() {
         return waterColors;
     }
 
     /**
      * Gets the biome color profile for moss colors
      */
-    public BiomeColoringProfile getMossColors() {
+    public ColorProfile getMossColors() {
         return mossColors;
     }
 
     /**
      * Gets the biome color profile for algae colors
      */
-    public BiomeColoringProfile getAlgaeColors() {
+    public ColorProfile getAlgaeColors() {
         return algaeColors;
     }
 
     /**
      * Gets the biome color profile for watergrass colors
      */
-    public BiomeColoringProfile getWatergrassColors() {
+    public ColorProfile getWatergrassColors() {
         return watergrassColors;
     }
 
     /**
      * Gets the biome color profile for fern colors
      */
-    public BiomeColoringProfile getFernColors() {
+    public ColorProfile getFernColors() {
         return fernColors;
+    }
+
+    public ColorProfileManager getColorProfileManager() {
+        return colorProfileManager;
     }
 
     /**
@@ -242,6 +254,7 @@ public class ModernityClient extends Modernity {
     public CustomFluidRenderer getFluidRenderer() {
         return fluidRenderer;
     }
+
 
     /**
      * Returns the Humus color map, used to give color to humus particles
