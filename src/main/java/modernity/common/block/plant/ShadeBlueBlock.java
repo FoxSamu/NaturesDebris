@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 04 - 2020
+ * Date:   02 - 05 - 2020
  * Author: rgsw
  */
 
@@ -12,7 +12,8 @@ import modernity.api.util.BlockUpdates;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlockStateProperties;
 import modernity.common.entity.MDEntityTags;
-import modernity.common.sound.MDSoundEvents;
+import modernity.common.event.MDBlockEvents;
+import modernity.common.particle.MDParticleTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -22,7 +23,6 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -106,9 +106,25 @@ public class ShadeBlueBlock extends SimplePlantBlock {
                 entity.setPositionAndUpdate( mpos.getX() + 0.5, mpos.getY(), mpos.getZ() + 0.5 );
                 entity.setMotion( 0, 0, 0 );
 
-                world.playSound( null, mpos, MDSoundEvents.BLOCK_SHADE_BLUE_TELEPORT, SoundCategory.BLOCKS, 1, world.rand.nextFloat() * 0.3F - 0.15F + 1 );
+                MDBlockEvents.SHADE_BLUE_TELEPORT.play( world, mpos );
                 break;
             }
+        }
+    }
+
+    @Override
+    public void animateTick( BlockState state, World world, BlockPos pos, Random rand ) {
+        super.animateTick( state, world, pos, rand );
+        if( rand.nextDouble() < 0.4 ) {
+            world.addParticle(
+                MDParticleTypes.SHADE,
+                pos.getX() + world.rand.nextDouble(),
+                pos.getY() + world.rand.nextDouble() * 0.6,
+                pos.getZ() + world.rand.nextDouble(),
+                ( world.rand.nextDouble() - world.rand.nextDouble() ) * 0.005,
+                ( world.rand.nextDouble() - world.rand.nextDouble() ) * 0.005,
+                ( world.rand.nextDouble() - world.rand.nextDouble() ) * 0.005
+            );
         }
     }
 

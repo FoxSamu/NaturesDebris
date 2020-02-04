@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 13 - 2020
+ * Date:   02 - 05 - 2020
  * Author: rgsw
  */
 
@@ -31,6 +31,7 @@ public final class MDParticleTypes {
     public static final BasicParticleType HAIL = register( "hail", new BasicParticleType( false ) );
     public static final ParticleType<SoulLightParticleData> SOUL_LIGHT = register( "soul_light", new ParticleType<>( true, SoulLightParticleData.DESERIALIZER ) );
     public static final ParticleType<SoulLightParticleData> SOUL_LIGHT_CLOUD = register( "soul_light_cloud", new ParticleType<>( true, SoulLightParticleData.DESERIALIZER ) );
+    public static final BasicParticleType SHADE = register( "shade", new BasicParticleType( false ) );
 
     private static <T extends ParticleType<?>> T register( String id, T type, String... aliases ) {
         return ENTRIES.register( id, type, aliases );
@@ -52,6 +53,7 @@ public final class MDParticleTypes {
         manager.registerFactory( HAIL, PrecipitationParticle.HailFactory::new );
         manager.registerFactory( SOUL_LIGHT, new SoulLightParticle.BaseFactory() );
         manager.registerFactory( SOUL_LIGHT_CLOUD, new SoulLightParticle.CloudFactory() );
+        manager.registerFactory( SHADE, ShadeParticle.Factory::new );
     }
 
     private MDParticleTypes() {
