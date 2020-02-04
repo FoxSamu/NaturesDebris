@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 04 - 2020
  * Author: rgsw
  */
 
@@ -26,6 +26,7 @@ import modernity.common.generator.MDChunkGeneratorTypes;
 import modernity.common.item.MDItems;
 import modernity.common.particle.MDParticleTypes;
 import modernity.common.recipes.MDRecipeSerializers;
+import modernity.common.sound.MDSoundEvents;
 import modernity.common.tileentity.MDTileEntitiyTypes;
 import modernity.common.world.dimen.MDDimensions;
 import modernity.common.generator.structure.MDStructures;
@@ -65,6 +66,7 @@ public enum RegistryEventHandler {
         MDAreas.setup( this );
         MDParticleTypes.setup( this );
         MDRecipeSerializers.setup( this );
+        MDSoundEvents.setup( this );
     }
 
     private <T extends IForgeRegistryEntry<T>> void register( Class<T> entryClass, IForgeRegistry<T> registry ) {

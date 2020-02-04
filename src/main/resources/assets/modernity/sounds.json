@@ -1,0 +1,112 @@
+{
+  "block.shade_blue.break": {
+    "sounds": [
+      {
+        "name": "modernity:block/shade_blue/break1",
+        "pitch": 0.9
+      },
+      {
+        "name": "modernity:block/shade_blue/break1",
+        "pitch": 1
+      },
+      {
+        "name": "modernity:block/shade_blue/break1",
+        "pitch": 1.1
+      },
+      {
+        "name": "modernity:block/shade_blue/break2",
+        "pitch": 0.9
+      },
+      {
+        "name": "modernity:block/shade_blue/break2",
+        "pitch": 1
+      },
+      {
+        "name": "modernity:block/shade_blue/break2",
+        "pitch": 1.1
+      },
+      {
+        "name": "modernity:block/shade_blue/break3",
+        "pitch": 0.9
+      },
+      {
+        "name": "modernity:block/shade_blue/break3",
+        "pitch": 1
+      },
+      {
+        "name": "modernity:block/shade_blue/break3",
+        "pitch": 1.1
+      },
+      {
+        "name": "modernity:block/shade_blue/break4",
+        "pitch": 0.9
+      },
+      {
+        "name": "modernity:block/shade_blue/break4",
+        "pitch": 1
+      },
+      {
+        "name": "modernity:block/shade_blue/break4",
+        "pitch": 1.1
+      }
+    ]
+  },
+  "block.shade_blue.place": {
+    "sounds": [
+      {
+        "name": "modernity:block/shade_blue/break1",
+        "pitch": 0.9
+      },
+      {
+        "name": "modernity:block/shade_blue/break1",
+        "pitch": 1
+      },
+      {
+        "name": "modernity:block/shade_blue/break1",
+        "pitch": 1.1
+      },
+      {
+        "name": "modernity:block/shade_blue/break2",
+        "pitch": 0.9
+      },
+      {
+        "name": "modernity:block/shade_blue/break2",
+        "pitch": 1
+      },
+      {
+        "name": "modernity:block/shade_blue/break2",
+        "pitch": 1.1
+      },
+      {
+        "name": "modernity:block/shade_blue/break3",
+        "pitch": 0.9
+      },
+      {
+        "name": "modernity:block/shade_blue/break3",
+        "pitch": 1
+      },
+      {
+        "name": "modernity:block/shade_blue/break3",
+        "pitch": 1.1
+      },
+      {
+        "name": "modernity:block/shade_blue/break4",
+        "pitch": 0.9
+      },
+      {
+        "name": "modernity:block/shade_blue/break4",
+        "pitch": 1
+      },
+      {
+        "name": "modernity:block/shade_blue/break4",
+        "pitch": 1.1
+      }
+    ]
+  },
+  "block.shade_blue.teleport": {
+    "sounds": [
+      "modernity:block/shade_blue/teleport1",
+      "modernity:block/shade_blue/teleport2"
+    ]
+  }
+}

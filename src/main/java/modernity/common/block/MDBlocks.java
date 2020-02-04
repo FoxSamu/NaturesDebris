@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   02 - 04 - 2020
  * Author: rgsw
  */
 
@@ -496,6 +496,7 @@ public final class MDBlocks {
     public static final MuxusBushBlock MUXUS_BUSH = blockItem( "muxus_bush", new MuxusBushBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock COTTONSEDGE = blockItem( "cottonsedge", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.NUDWART_SHAPE ), MDItemGroup.PLANTS );
     public static final CavePlantBlock DEAD_GRASS = blockItem( "dead_grass", new CavePlantBlock( weakPlant( MaterialColor.AIR, 0 ), CavePlantBlock.DEAD_GRASS_SHAPE ), MDItemGroup.PLANTS );
+    public static final ShadeBlueBlock SHADE_BLUE = blockItem( "shade_blue", new ShadeBlueBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( MDSoundTypes.SHADE_BLUE ) ), MDItemGroup.PLANTS );
     public static final PebblesBlock PEBBLES = blockItem( "pebbles", new PebblesBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( SoundType.STONE ) ), MDItemGroup.PLANTS );
 
     // Mushrooms
