@@ -159,7 +159,11 @@ public class ShadeBlueBlock extends SimplePlantBlock {
                     mpos.setPos( x, y, z );
 
                     BlockState state = world.getBlockState( mpos );
-                    if( ! state.isAir( world, mpos ) ) {
+                    if( ! state.getCollisionShape( world, mpos ).isEmpty() ) {
+                        return false;
+                    }
+
+                    if( ! state.getFluidState().isEmpty() ) {
                         return false;
                     }
                 }
