@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 04 - 2020
+ * Date:   02 - 05 - 2020
  * Author: rgsw
  */
 
@@ -479,8 +479,6 @@ public final class MDBlocks {
     public static final WireplantBlock WIREPLANT = blockItem( "wireplant", new WireplantBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.PLANTS );
     public static final WireplantBlock FLOWERED_WIREPLANT = blockItem( "flowered_wireplant", new WireplantBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.PLANTS );
     public static final WaterWireBlock WATER_WIRE = blockItem( "water_wire", new WaterWireBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
-    public static final FlyFlowerStalkBlock FLY_FLOWER_STALK = blockItem( "fly_flower_stalk", new FlyFlowerStalkBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
-    public static final FlyFlowerBlock FLY_FLOWER = blockItem( "fly_flower", new FlyFlowerBlock( strongPlant( MaterialColor.GRASS, 0.5 ) ), MDItemGroup.PLANTS );
     public static final AlgaeBlock ALGAE = blockItem( "algae", new AlgaeBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
     public static final HangingPlantBlock HANGING_MOSS = blockItem( "hanging_moss", new HangingPlantBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ), HangingPlantBlock.HANG_MOSS_SHAPE, HangingPlantBlock.HANG_MOSS_END_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock HORSETAIL = blockItem( "horsetail", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ), SimplePlantBlock.HORSETAIL_SHAPE ), MDItemGroup.PLANTS );
@@ -496,8 +494,12 @@ public final class MDBlocks {
     public static final MuxusBushBlock MUXUS_BUSH = blockItem( "muxus_bush", new MuxusBushBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock COTTONSEDGE = blockItem( "cottonsedge", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.NUDWART_SHAPE ), MDItemGroup.PLANTS );
     public static final CavePlantBlock DEAD_GRASS = blockItem( "dead_grass", new CavePlantBlock( weakPlant( MaterialColor.AIR, 0 ), CavePlantBlock.DEAD_GRASS_SHAPE ), MDItemGroup.PLANTS );
-    public static final ShadeBlueBlock SHADE_BLUE = blockItem( "shade_blue", new ShadeBlueBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( MDSoundTypes.SHADE_BLUE ) ), MDItemGroup.PLANTS );
     public static final PebblesBlock PEBBLES = blockItem( "pebbles", new PebblesBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( SoundType.STONE ) ), MDItemGroup.PLANTS );
+
+    // Flowers
+    public static final FlyFlowerStalkBlock FLY_FLOWER_STALK = blockItem( "fly_flower_stalk", new FlyFlowerStalkBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
+    public static final FlyFlowerBlock FLY_FLOWER = blockItem( "fly_flower", new FlyFlowerBlock( strongPlant( MaterialColor.GRASS, 0.5 ) ), MDItemGroup.PLANTS );
+    public static final ShadeBlueBlock SHADE_BLUE = blockItem( "shade_blue", new ShadeBlueBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( MDSoundTypes.SHADE_BLUE ) ), MDItemGroup.PLANTS );
 
     // Mushrooms
     public static final CavePlantBlock SEEDLE = blockItem( "seedle", new CavePlantBlock( weakPlant( MaterialColor.BROWN_TERRACOTTA, 0 ), CavePlantBlock.SEEDLE_SHAPE ), MDItemGroup.PLANTS );
