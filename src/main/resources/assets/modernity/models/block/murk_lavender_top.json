@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "modernity:block/murk_lavender_top"
+  }
+}
