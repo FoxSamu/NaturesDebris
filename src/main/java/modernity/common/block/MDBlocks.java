@@ -493,6 +493,7 @@ public final class MDBlocks {
     public static final WatergrassBlock WATERGRASS = blockItem( "watergrass", new WatergrassBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
     public static final MuxusBushBlock MUXUS_BUSH = blockItem( "muxus_bush", new MuxusBushBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock COTTONSEDGE = blockItem( "cottonsedge", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.NUDWART_SHAPE ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock RED_GRASS = blockItem( "red_grass", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.RED_GRASS_SHAPE ), MDItemGroup.PLANTS );
     public static final CavePlantBlock DEAD_GRASS = blockItem( "dead_grass", new CavePlantBlock( weakPlant( MaterialColor.AIR, 0 ), CavePlantBlock.DEAD_GRASS_SHAPE ), MDItemGroup.PLANTS );
     public static final PebblesBlock PEBBLES = blockItem( "pebbles", new PebblesBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( SoundType.STONE ) ), MDItemGroup.PLANTS );
 
