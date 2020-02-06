@@ -26,6 +26,7 @@ public class SimplePlantBlock extends SingleDirectionalPlantBlock {
     public static final VoxelShape NUDWART_SHAPE = makePlantShape( 14, 9 );
     public static final VoxelShape MURK_FLOWERS_SHAPE = makePlantShape( 14, 12 );
     public static final VoxelShape MILK_EYE_SHAPE = makePlantShape( 14, 8 );
+    public static final VoxelShape BULBFLOWER_SHAPE = makePlantShape( 9, 11 );
 
     protected final VoxelShape shape;
 

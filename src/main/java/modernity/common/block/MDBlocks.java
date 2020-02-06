@@ -85,6 +85,7 @@ public final class MDBlocks {
     public static final DirtlikeBlock HUMUS = blockItem( "humus", new SnowyDirtlikeBlock( MDDirtLogics.HUMUS_LOGIC, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS );
     public static final DirtlikeBlock MURKY_PODZOL = blockItem( "murky_podzol", new LeafyDirtlikeBlock( MDDirtLogics.PODZOL_LOGIC, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS, "dark_podzol" );
     public static final DirtlikeBlock HEATH_BLOCK = blockItem( "heath_block", new DirtlikeBlock( MDDirtLogics.HEATH_LOGIC, dirt( MaterialColor.FOLIAGE, true ) ), MDItemGroup.BLOCKS );
+    public static final DigableBlock ACID_DIRT = blockItem( "acid_dirt", new DigableBlock( dirt( MaterialColor.DIRT, true ) ), MDItemGroup.BLOCKS );
     public static final StickyBlock MUD = blockItem( "mud", new DigableStickyBlock( dirt( MaterialColor.BROWN_TERRACOTTA, false ) ), MDItemGroup.BLOCKS );
     public static final DigableFallBlock REGOLITH = blockItem( "regolith", new DigableFallBlock( 0x737d8c, dust( MaterialColor.STONE, true ) ), MDItemGroup.BLOCKS, "rock_gravel" );
 
@@ -502,6 +503,9 @@ public final class MDBlocks {
     public static final SimplePlantBlock MURK_FLOWERS = blockItem( "murk_flower", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.MURK_FLOWERS_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock MILK_EYE = blockItem( "milk_eye", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.MILK_EYE_SHAPE ), MDItemGroup.PLANTS );
     public static final ShadeBlueBlock SHADE_BLUE = blockItem( "shade_blue", new ShadeBlueBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( MDSoundTypes.SHADE_BLUE ) ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock BLUE_BULBFLOWER = blockItem( "blue_bulbflower", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.BULBFLOWER_SHAPE ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock YELLOW_BULBFLOWER = blockItem( "yellow_bulbflower", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.BULBFLOWER_SHAPE ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock RED_BULBFLOWER = blockItem( "red_bulbflower", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.BULBFLOWER_SHAPE ), MDItemGroup.PLANTS );
 
     // Mushrooms
     public static final CavePlantBlock SEEDLE = blockItem( "seedle", new CavePlantBlock( weakPlant( MaterialColor.BROWN_TERRACOTTA, 0 ), CavePlantBlock.SEEDLE_SHAPE ), MDItemGroup.PLANTS );
