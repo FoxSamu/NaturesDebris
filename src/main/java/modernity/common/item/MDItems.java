@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   02 - 06 - 2020
  * Author: rgsw
  */
 
@@ -36,6 +36,7 @@ public final class MDItems {
 
     public static final Item SALT_DUST = item( "salt_dust", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item SALT_NUGGET = item( "salt_nugget", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item PINCH_OF_SALT = item( "pinch_of_salt", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item ALUMINIUM_INGOT = item( "aluminium_ingot", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item ALUMINIUM_NUGGET = item( "aluminium_nugget", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item ANTHRACITE = item( "anthracite", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
