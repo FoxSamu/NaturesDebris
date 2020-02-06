@@ -509,6 +509,7 @@ public final class MDBlocks {
     public static final SimplePlantBlock CREEP_OF_THE_MOOR = blockItem( "creep_of_the_moor", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.MOOR_CREEP_SHAPE ), MDItemGroup.PLANTS );
     public static final DoubleStandingPlantBlock MURK_LAVENDER = blockItem( "murk_lavender", new DoubleStandingPlantBlock( weakPlant( MaterialColor.AIR, 0 ), DoubleStandingPlantBlock.REGULAR_SHAPE ), MDItemGroup.PLANTS );
     public static final FoxgloveBlock FOXGLOVE = blockItem( "foxglove", new FoxgloveBlock( weakPlant( MaterialColor.AIR, 0 ) ), MDItemGroup.PLANTS );
+    public static final DoubleStandingPlantBlock GLOBE_THISTLE = blockItem( "globe_thistle", new DoubleStandingPlantBlock( weakPlant( MaterialColor.AIR, 0 ), DoubleStandingPlantBlock.REGULAR_SHAPE ), MDItemGroup.PLANTS );
 
     // Mushrooms
     public static final CavePlantBlock SEEDLE = blockItem( "seedle", new CavePlantBlock( weakPlant( MaterialColor.BROWN_TERRACOTTA, 0 ), CavePlantBlock.SEEDLE_SHAPE ), MDItemGroup.PLANTS );
