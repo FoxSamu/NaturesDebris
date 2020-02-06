@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   02 - 06 - 2020
  * Author: rgsw
  */
 
@@ -219,6 +219,7 @@ public abstract class Modernity {
         FORGE_EVENT_BUS.register( WorldAreaHandler.INSTANCE );
         FORGE_EVENT_BUS.register( FuelHandler.INSTANCE );
         FORGE_EVENT_BUS.register( ContainerHandler.INSTANCE );
+        FORGE_EVENT_BUS.register( LootTableHandler.INSTANCE );
     }
 
     /**
