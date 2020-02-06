@@ -19,6 +19,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 public class MDDamageSource extends DamageSource {
     public static final MDDamageSource NETTLES = new MDDamageSource( "nettles" );
     public static final MDDamageSource TURUPT = new MDDamageSource( "turupt" );
+    public static final MDDamageSource FOXGLOVE = new MDDamageSource( "foxglove" );
 
     public MDDamageSource( String damageType ) {
         super( damageType );

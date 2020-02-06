@@ -14,7 +14,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 
 public class DoubleStandingPlantBlock extends DoubleDirectionalPlantBlock {
-    public static final VoxelShape MURK_LAVENDER_SHAPE = makePlantShape( 15, 16 );
+    public static final VoxelShape REGULAR_SHAPE = makePlantShape( 15, 16 );
 
     private final VoxelShape bottom;
     private final VoxelShape top;
