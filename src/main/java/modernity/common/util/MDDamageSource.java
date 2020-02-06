@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   02 - 06 - 2020
  * Author: rgsw
  */
 
@@ -18,6 +18,7 @@ import net.minecraft.util.text.TranslationTextComponent;
  */
 public class MDDamageSource extends DamageSource {
     public static final MDDamageSource NETTLES = new MDDamageSource( "nettles" );
+    public static final MDDamageSource TURUPT = new MDDamageSource( "turupt" );
 
     public MDDamageSource( String damageType ) {
         super( damageType );

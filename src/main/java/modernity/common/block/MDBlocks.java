@@ -506,6 +506,8 @@ public final class MDBlocks {
     public static final SimplePlantBlock BLUE_BULBFLOWER = blockItem( "blue_bulbflower", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.BULBFLOWER_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock YELLOW_BULBFLOWER = blockItem( "yellow_bulbflower", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.BULBFLOWER_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock RED_BULBFLOWER = blockItem( "red_bulbflower", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.BULBFLOWER_SHAPE ), MDItemGroup.PLANTS );
+    public static final TuruptBlock TURUPT = blockItem( "turupt", new TuruptBlock( weakPlant( MaterialColor.AIR, 0 ) ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock CREEP_OF_THE_MOOR = blockItem( "creep_of_the_moor", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.MOOR_CREEP_SHAPE ), MDItemGroup.PLANTS );
 
     // Mushrooms
     public static final CavePlantBlock SEEDLE = blockItem( "seedle", new CavePlantBlock( weakPlant( MaterialColor.BROWN_TERRACOTTA, 0 ), CavePlantBlock.SEEDLE_SHAPE ), MDItemGroup.PLANTS );
