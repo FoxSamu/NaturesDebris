@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   02 - 06 - 2020
  * Author: rgsw
  */
 
@@ -23,7 +23,8 @@ public class SimplePlantBlock extends SingleDirectionalPlantBlock {
     public static final VoxelShape LAKEWEED_SHAPE = makePlantShape( 14, 10 );
     public static final VoxelShape HEATH_SHAPE = makePlantShape( 16, 7 );
     public static final VoxelShape SEEPWEED_SHAPE = makePlantShape( 15, 16 );
-    public static final VoxelShape NUDWART_SHAPE = makePlantShape( 14, 10 );
+    public static final VoxelShape NUDWART_SHAPE = makePlantShape( 14, 9 );
+    public static final VoxelShape MURK_FLOWERS_SHAPE = makePlantShape( 14, 12 );
 
     protected final VoxelShape shape;
 
