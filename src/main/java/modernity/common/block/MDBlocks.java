@@ -499,7 +499,8 @@ public final class MDBlocks {
     // Flowers
     public static final FlyFlowerStalkBlock FLY_FLOWER_STALK = blockItem( "fly_flower_stalk", new FlyFlowerStalkBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
     public static final FlyFlowerBlock FLY_FLOWER = blockItem( "fly_flower", new FlyFlowerBlock( strongPlant( MaterialColor.GRASS, 0.5 ) ), MDItemGroup.PLANTS );
-    public static final SimplePlantBlock MURK_FLOWERS = blockItem( "murk_flower", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( MDSoundTypes.SHADE_BLUE ), SimplePlantBlock.MURK_FLOWERS_SHAPE ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock MURK_FLOWERS = blockItem( "murk_flower", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.MURK_FLOWERS_SHAPE ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock MILK_EYE = blockItem( "milk_eye", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.MILK_EYE_SHAPE ), MDItemGroup.PLANTS );
     public static final ShadeBlueBlock SHADE_BLUE = blockItem( "shade_blue", new ShadeBlueBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( MDSoundTypes.SHADE_BLUE ) ), MDItemGroup.PLANTS );
 
     // Mushrooms
