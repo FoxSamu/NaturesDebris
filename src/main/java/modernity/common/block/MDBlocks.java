@@ -465,10 +465,10 @@ public final class MDBlocks {
 
     // Basic
     public static final TallMurkGrassBlock MURK_GRASS = blockItem( "murk_grass", new TallMurkGrassBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS, "dark_tall_grass" );
-    public static final MurkReedBlock MURK_REED = blockItem( "murk_reed", new MurkReedBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
-    public static final SimplePlantBlock MINT_PLANT = blockItem( "mint_plant", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ), SimplePlantBlock.MINT_SHAPE ), MDItemGroup.PLANTS );
+    public static final MurkReedBlock MURK_REED = blockItem( "murk_reed", new MurkReedBlock( strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock MINT_PLANT = blockItem( "mint_plant", new SimplePlantBlock( strongPlant( MaterialColor.GRASS, 0.2 ), SimplePlantBlock.MINT_SHAPE ), MDItemGroup.PLANTS );
     public static final RedwoldBlock REDWOLD = blockItem( "redwold", new RedwoldBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
-    public static final NettlesBlock NETTLES = blockItem( "nettles", new NettlesBlock( weakPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.PLANTS );
+    public static final NettlesBlock NETTLES = blockItem( "nettles", new NettlesBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.PLANTS );
     public static final SaltCrystalBlock SALT_CRYSTAL = blockItem( "salt_crystal", new SaltCrystalBlock( crystal( MaterialColor.SNOW, 0.2 ) ), MDItemGroup.PLANTS );
     public static final MurinaBlock MURINA = blockItem( "murina", new MurinaBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final MossBlock MOSS = blockItem( "moss", new MossBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.PLANTS );
@@ -481,15 +481,15 @@ public final class MDBlocks {
     public static final WaterWireBlock WATER_WIRE = blockItem( "water_wire", new WaterWireBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
     public static final AlgaeBlock ALGAE = blockItem( "algae", new AlgaeBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
     public static final HangingPlantBlock HANGING_MOSS = blockItem( "hanging_moss", new HangingPlantBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ), HangingPlantBlock.HANG_MOSS_SHAPE, HangingPlantBlock.HANG_MOSS_END_SHAPE ), MDItemGroup.PLANTS );
-    public static final SimplePlantBlock HORSETAIL = blockItem( "horsetail", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ), SimplePlantBlock.HORSETAIL_SHAPE ), MDItemGroup.PLANTS );
-    public static final CattailBlock CATTAIL = blockItem( "cattail", new CattailBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock HORSETAIL = blockItem( "horsetail", new SimplePlantBlock( strongPlant( MaterialColor.GRASS, 0.2 ), SimplePlantBlock.HORSETAIL_SHAPE ), MDItemGroup.PLANTS );
+    public static final CattailBlock CATTAIL = blockItem( "cattail", new CattailBlock( strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final SimpleWaterPlantBlock LAKEWEED = blockItem( "lakeweed", new SimpleWaterPlantBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ), SimplePlantBlock.LAKEWEED_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock HEATH = blockItem( "heath", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.HEATH_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock FLOWERED_HEATH = blockItem( "flowered_heath", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.HEATH_SHAPE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock DEAD_HEATH = blockItem( "dead_heath", new SimplePlantBlock( weakPlant( MaterialColor.BROWN_TERRACOTTA, 0 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.HEATH_SHAPE ), MDItemGroup.PLANTS );
-    public static final SimplePlantBlock SEEPWEED = blockItem( "seepweed", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0.2 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.SEEPWEED_SHAPE ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock SEEPWEED = blockItem( "seepweed", new SimplePlantBlock( strongPlant( MaterialColor.GRASS, 0.2 ).sound( SoundType.SWEET_BERRY_BUSH ), SimplePlantBlock.SEEPWEED_SHAPE ), MDItemGroup.PLANTS );
     public static final CavePlantBlock CAVE_GRASS = blockItem( "cave_grass", new CavePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), CavePlantBlock.CAVE_GRASS_SHAPE ), MDItemGroup.PLANTS );
-    public static final SimplePlantBlock NUDWART = blockItem( "nudwart", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.NUDWART_SHAPE ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock NUDWART = blockItem( "nudwart", new SimplePlantBlock( strongPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.NUDWART_SHAPE ), MDItemGroup.PLANTS );
     public static final WatergrassBlock WATERGRASS = blockItem( "watergrass", new WatergrassBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
     public static final MuxusBushBlock MUXUS_BUSH = blockItem( "muxus_bush", new MuxusBushBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock COTTONSEDGE = blockItem( "cottonsedge", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.NUDWART_SHAPE ), MDItemGroup.PLANTS );
@@ -500,18 +500,18 @@ public final class MDBlocks {
     // Flowers
     public static final FlyFlowerStalkBlock FLY_FLOWER_STALK = blockItem( "fly_flower_stalk", new FlyFlowerStalkBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
     public static final FlyFlowerBlock FLY_FLOWER = blockItem( "fly_flower", new FlyFlowerBlock( strongPlant( MaterialColor.GRASS, 0.5 ) ), MDItemGroup.PLANTS );
-    public static final SimplePlantBlock MURK_FLOWERS = blockItem( "murk_flower", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.MURK_FLOWERS_SHAPE ), MDItemGroup.PLANTS );
-    public static final SimplePlantBlock MILK_EYE = blockItem( "milk_eye", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.MILK_EYE_SHAPE ), MDItemGroup.PLANTS );
-    public static final SimplePlantBlock EGIUM = blockItem( "egium", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.EGIUM_SHAPE ), MDItemGroup.PLANTS );
-    public static final ShadeBlueBlock SHADE_BLUE = blockItem( "shade_blue", new ShadeBlueBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( MDSoundTypes.SHADE_BLUE ) ), MDItemGroup.PLANTS );
-    public static final SimplePlantBlock BLUE_BULBFLOWER = blockItem( "blue_bulbflower", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.BULBFLOWER_SHAPE ), MDItemGroup.PLANTS );
-    public static final SimplePlantBlock YELLOW_BULBFLOWER = blockItem( "yellow_bulbflower", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.BULBFLOWER_SHAPE ), MDItemGroup.PLANTS );
-    public static final SimplePlantBlock RED_BULBFLOWER = blockItem( "red_bulbflower", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.BULBFLOWER_SHAPE ), MDItemGroup.PLANTS );
-    public static final TuruptBlock TURUPT = blockItem( "turupt", new TuruptBlock( weakPlant( MaterialColor.AIR, 0 ) ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock MURK_FLOWERS = blockItem( "murk_flower", new SimplePlantBlock( strongPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.MURK_FLOWERS_SHAPE ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock MILK_EYE = blockItem( "milk_eye", new SimplePlantBlock( strongPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.MILK_EYE_SHAPE ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock EGIUM = blockItem( "egium", new SimplePlantBlock( strongPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.EGIUM_SHAPE ), MDItemGroup.PLANTS );
+    public static final ShadeBlueBlock SHADE_BLUE = blockItem( "shade_blue", new ShadeBlueBlock( strongPlant( MaterialColor.AIR, 0.1 ).sound( MDSoundTypes.SHADE_BLUE ) ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock BLUE_BULBFLOWER = blockItem( "blue_bulbflower", new SimplePlantBlock( strongPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.BULBFLOWER_SHAPE ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock YELLOW_BULBFLOWER = blockItem( "yellow_bulbflower", new SimplePlantBlock( strongPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.BULBFLOWER_SHAPE ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock RED_BULBFLOWER = blockItem( "red_bulbflower", new SimplePlantBlock( strongPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.BULBFLOWER_SHAPE ), MDItemGroup.PLANTS );
+    public static final TuruptBlock TURUPT = blockItem( "turupt", new TuruptBlock( strongPlant( MaterialColor.AIR, 0.1 ) ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock CREEP_OF_THE_MOOR = blockItem( "creep_of_the_moor", new SimplePlantBlock( weakPlant( MaterialColor.AIR, 0 ), SimplePlantBlock.MOOR_CREEP_SHAPE ), MDItemGroup.PLANTS );
-    public static final DoubleStandingPlantBlock MURK_LAVENDER = blockItem( "murk_lavender", new DoubleStandingPlantBlock( weakPlant( MaterialColor.AIR, 0 ), DoubleStandingPlantBlock.REGULAR_SHAPE ), MDItemGroup.PLANTS );
-    public static final FoxgloveBlock FOXGLOVE = blockItem( "foxglove", new FoxgloveBlock( weakPlant( MaterialColor.AIR, 0 ) ), MDItemGroup.PLANTS );
-    public static final DoubleStandingPlantBlock GLOBE_THISTLE = blockItem( "globe_thistle", new DoubleStandingPlantBlock( weakPlant( MaterialColor.AIR, 0 ), DoubleStandingPlantBlock.REGULAR_SHAPE ), MDItemGroup.PLANTS );
+    public static final DoubleStandingPlantBlock MURK_LAVENDER = blockItem( "murk_lavender", new DoubleStandingPlantBlock( strongPlant( MaterialColor.AIR, 0 ), DoubleStandingPlantBlock.REGULAR_SHAPE ), MDItemGroup.PLANTS );
+    public static final FoxgloveBlock FOXGLOVE = blockItem( "foxglove", new FoxgloveBlock( strongPlant( MaterialColor.AIR, 0 ) ), MDItemGroup.PLANTS );
+    public static final DoubleStandingPlantBlock GLOBE_THISTLE = blockItem( "globe_thistle", new DoubleStandingPlantBlock( strongPlant( MaterialColor.AIR, 0 ), DoubleStandingPlantBlock.REGULAR_SHAPE ), MDItemGroup.PLANTS );
 
     // Mushrooms
     public static final CavePlantBlock SEEDLE = blockItem( "seedle", new CavePlantBlock( weakPlant( MaterialColor.BROWN_TERRACOTTA, 0 ), CavePlantBlock.SEEDLE_SHAPE ), MDItemGroup.PLANTS );
@@ -601,9 +601,9 @@ public final class MDBlocks {
     public static final HorizontalFacingBlock DARK_STONE_BRICKS_PORTAL = blockItem( "dark_stone_bricks_portal", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroup.DECORATIVES );
     public static final HorizontalFacingBlock DARK_STONE_BRICKS_RGSW = blockItem( "dark_stone_bricks_rgsw", new HorizontalFacingBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroup.DECORATIVES );
 
-    public static final HorizontalPortalFrameBlock HORIZONTAL_PORTAL_FRAME = blockItem( "horizontal_portal_frame", new HorizontalPortalFrameBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroup.DECORATIVES );
-    public static final VerticalPortalFrameBlock VERTICAL_PORTAL_FRAME = blockItem( "vertical_portal_frame", new VerticalPortalFrameBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroup.DECORATIVES );
-    public static final PortalCornerBlock PORTAL_CORNER = blockItem( "portal_corner", new PortalCornerBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), MDItemGroup.DECORATIVES, "portal_corner_block" );
+    public static final HorizontalPortalFrameBlock HORIZONTAL_PORTAL_FRAME = blockItem( "horizontal_portal_frame", new HorizontalPortalFrameBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ) );
+    public static final VerticalPortalFrameBlock VERTICAL_PORTAL_FRAME = blockItem( "vertical_portal_frame", new VerticalPortalFrameBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ) );
+    public static final PortalCornerBlock PORTAL_CORNER = blockItem( "portal_corner", new PortalCornerBlock( Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 2, 6 ) ), "portal_corner_block" );
 
 
 
