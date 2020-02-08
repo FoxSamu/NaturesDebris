@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 02 - 2020
+ * Date:   02 - 08 - 2020
  * Author: rgsw
  */
 
@@ -54,14 +54,14 @@ public final class DefaultDecoration {
 
         biome.addDecorator( new DecorationDecorator( new SpringDecoration( MDFluids.MURKY_WATER, SpringDecoration.STILL | SpringDecoration.FLOWING ), new InCave(), new Fixed( 10 ) ) );
 
-        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDBlocks.MURKY_SAND.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 24 ), new IsBelowHeight( SurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
+        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDBlocks.MURKY_SAND.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 12 ), new IsBelowHeight( SurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
         biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDBlocks.MURKY_CLAY.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.25 ), new IsBelowHeight( SurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
 
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 50, 5, MDBlockGenerators.SALT_CRYSTAL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 1 / 35D ), new IsBelowHeight( SurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 50, 5, MDBlockGenerators.SALT_CRYSTAL ), new InCave(), new Fixed( 4 ) ) );
-        biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlockGenerators.MURINA ), new InCave(), new Fixed( 10 ) ) );
+        biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlockGenerators.MURINA ), new InCave(), new Fixed( 8 ) ) );
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 120, 8, MDBlockGenerators.CAVE_GRASS ), new InCave(), new Fixed( 9 ) ) );
-        biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlockGenerators.HANGING_MOSS ), new BetweenHeight( 0, 60 ), new Fixed( 4 ) ) );
+        biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlockGenerators.HANGING_MOSS ), new BetweenHeight( 0, 60 ), new Fixed( 3 ) ) );
 
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlockGenerators.SEEDLE ), new InCave() ) );
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlockGenerators.BLACK_MUSHROOM ), new InCave() ) );
@@ -70,10 +70,14 @@ public final class DefaultDecoration {
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 30, 8, MDBlockGenerators.PEBBLES ), new InCave(), new Fixed( 10 ) ) );
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 30, 8, MDBlockGenerators.PEBBLES ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 2 ) ) );
 
-        biome.addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 3, 0.8, MDBlockGenerators.MOSS ), new InCave(), new Fixed( 3 ) ) );
-        biome.addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 3, 0.8, MDBlockGenerators.DEAD_MOSS ), new InCave(), new Fixed( 1 ) ) );
-        biome.addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 3, 0.8, MDBlockGenerators.LICHEN ), new InCave(), new Fixed( 2 ) ) );
+        biome.addDecorator( new DecorationDecorator(
+            new SelectiveDecoration()
+                .add( new GroupedBushDecoration( 3, 3, 0.8, MDBlockGenerators.MOSS ), 3 )
+                .add( new GroupedBushDecoration( 3, 3, 0.8, MDBlockGenerators.DEAD_MOSS ), 1 )
+                .add( new GroupedBushDecoration( 3, 3, 0.8, MDBlockGenerators.LICHEN ), 2 ),
+            new InCave(), new Fixed( 3 )
+        ) );
 
-        biome.addDecorator( new DecorationDecorator( new GroupedBushDecoration( 4, 5, 4, MDBlockGenerators.PUDDLE ), new InCave(), new Fixed( 7 ) ) );
+        biome.addDecorator( new DecorationDecorator( new GroupedBushDecoration( 4, 5, 4, MDBlockGenerators.PUDDLE ), new InCave(), new Fixed( 3 ) ) );
     }
 }

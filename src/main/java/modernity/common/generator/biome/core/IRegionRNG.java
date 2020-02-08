@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 08 - 2020
  * Author: rgsw
  */
 
@@ -41,8 +41,18 @@ public interface IRegionRNG {
     }
 
     /**
+     * Generates a pseudorandom double between 0 and 1.
+     *
+     * @return The generated double.
+     */
+    default double randomDouble() {
+        return random( Integer.MAX_VALUE ) / (double) Integer.MAX_VALUE;
+    }
+
+    /**
      * Recomputes the seed of this RNG from the specified coordinates using {@link #setPosition} and returns this
      * instance for convenience.
+     *
      * @return This instance for convenience
      */
     default IRegionRNG position( int x, int z ) {

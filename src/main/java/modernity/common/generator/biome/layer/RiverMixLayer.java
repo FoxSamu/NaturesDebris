@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 08 - 2020
  * Author: rgsw
  */
 
@@ -17,7 +17,7 @@ public class RiverMixLayer implements IFilterMergerLayer {
     protected RiverMixLayer() {
     }
 
-    private final int river = biomeID( MDBiomes.RIVER );
+    private final int river = id( MDBiomes.RIVER );
 
     @Override
     public int generate( IRegionRNG rng, int a, int b ) {

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   02 - 08 - 2020
  * Author: rgsw
  */
 
@@ -17,6 +17,10 @@ public class Chance implements IDecorCount {
 
     public Chance( double chance ) {
         this.chance = chance;
+    }
+
+    public Chance( double chance, double max ) {
+        this.chance = chance / max;
     }
 
     @Override

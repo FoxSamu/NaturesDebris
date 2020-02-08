@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   02 - 08 - 2020
  * Author: rgsw
  */
 
@@ -83,8 +83,26 @@ public final class MDBlockGenerators {
     public static final IBlockGenerator CAVE_GRASS = forSinglePlant( MDBlocks.CAVE_GRASS );
     public static final IBlockGenerator NUDWART = forSinglePlant( MDBlocks.NUDWART );
     public static final IBlockGenerator COTTONSEDGE = forSinglePlant( MDBlocks.COTTONSEDGE );
+    public static final IBlockGenerator RED_GRASS = forSinglePlant( MDBlocks.RED_GRASS );
     public static final IBlockGenerator DEAD_GRASS = forSinglePlant( MDBlocks.DEAD_GRASS );
     public static final IBlockGenerator PEBBLES = forSinglePlant( MDBlocks.PEBBLES );
+
+    public static final IBlockGenerator MURK_FLOWERS = forSinglePlant( MDBlocks.MURK_FLOWERS );
+    public static final IBlockGenerator MILKY_EYE = forSinglePlant( MDBlocks.MILKY_EYE );
+    public static final IBlockGenerator EGIUM = forSinglePlant( MDBlocks.EGIUM );
+    public static final IBlockGenerator SHADE_BLUE = forSinglePlant( MDBlocks.SHADE_BLUE );
+    public static final IBlockGenerator TURUPT = forSinglePlant( MDBlocks.TURUPT );
+    public static final IBlockGenerator CREEP_OF_THE_MOOR = forSinglePlant( MDBlocks.CREEP_OF_THE_MOOR );
+
+    public static final IBlockGenerator RED_BULBFLOWER = forSinglePlant( MDBlocks.RED_BULBFLOWER );
+    public static final IBlockGenerator YELLOW_BULBFLOWER = forSinglePlant( MDBlocks.YELLOW_BULBFLOWER );
+    public static final IBlockGenerator BLUE_BULBFLOWER = forSinglePlant( MDBlocks.BLUE_BULBFLOWER );
+
+    public static final IBlockGenerator RANDOM_BULBFLOWER = random(
+        RED_BULBFLOWER,
+        YELLOW_BULBFLOWER,
+        BLUE_BULBFLOWER
+    );
 
     public static final IBlockGenerator SEEDLE = forSinglePlant( MDBlocks.SEEDLE );
     public static final IBlockGenerator DOTTED_MUSHROOM = forSinglePlant( MDBlocks.DOTTED_MUSHROOM );
@@ -100,6 +118,9 @@ public final class MDBlockGenerators {
                                                            .build();
 
     public static final IBlockGenerator CATTAIL = forDoublePlant( MDBlocks.CATTAIL );
+    public static final IBlockGenerator MURK_LAVENDER = forDoublePlant( MDBlocks.MURK_LAVENDER );
+    public static final IBlockGenerator FOXGLOVE = forDoublePlant( MDBlocks.FOXGLOVE );
+    public static final IBlockGenerator GLOBE_THISTLE = forDoublePlant( MDBlocks.GLOBE_THISTLE );
 
     public static final IBlockGenerator WIREPLANT = forSinglePlant( MDBlocks.WIREPLANT );
     public static final IBlockGenerator FLOWERED_WIREPLANT = forSinglePlant( MDBlocks.FLOWERED_WIREPLANT );
@@ -125,6 +146,7 @@ public final class MDBlockGenerators {
     public static final IBlockGenerator PUDDLE = new PuddleBlockGenerator();
     public static final IBlockGenerator FLY_FLOWER = new FlyFlowerBlockGenerator();
     public static final IBlockGenerator ALGAE = new AlgaeBlockGenerator();
+    public static final IBlockGenerator SOUL_LIGHT = new SoulLightBlockGenerator();
 
     private MDBlockGenerators() {
     }

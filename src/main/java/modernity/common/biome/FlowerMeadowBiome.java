@@ -26,8 +26,8 @@ import net.minecraft.world.gen.Heightmap;
 /**
  * The 'Meadow' or 'modernity:meadow' biome.
  */
-public class MeadowBiome extends ModernityBiome {
-    protected MeadowBiome( Type type ) {
+public class FlowerMeadowBiome extends ModernityBiome {
+    protected FlowerMeadowBiome( Type type ) {
         super( type.builder );
 
         DefaultDecoration.setupDefaultDecoration( this );
@@ -78,8 +78,9 @@ public class MeadowBiome extends ModernityBiome {
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MURK_LAVENDER ), 20 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.REDWOLD ), 20 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.RED_GRASS ), 20 )
-                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.NETTLES ), 30 ),
-            new Surface( Heightmap.Type.MOTION_BLOCKING )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.NETTLES ), 2 ),
+            new Surface( Heightmap.Type.MOTION_BLOCKING ),
+            new Fixed( 10 )
         ) );
 
         addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockGenerators.WATERGRASS_SMALL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 9 ) ) );
@@ -87,25 +88,27 @@ public class MeadowBiome extends ModernityBiome {
 
         addDecorator( new DecorationDecorator( new ClusterBushDecoration( 120, 6, MDBlockGenerators.CAVE_GRASS ), new InCave(), new Fixed( 12 ) ) );
 
-        if( type != Type.MEADOW_NO_TREES ) {
+        addDecorator( new DecorationDecorator( new SingleBushDecoration( MDBlockGenerators.SHADE_BLUE ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Chance( 0.03 ) ) );
+
+        if( type != Type.FLOWER_MEADOW_NO_TREES ) {
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 1, 30 ) ) );
         }
     }
 
     public enum Type {
-        MEADOW(
+        FLOWER_MEADOW(
             new Builder()
                 .depth( 2 ).variation( 3 ).scale( 2 )
                 .surfaceGen( new GrassSurfaceGenerator() )
                 .precipitation( IPrecipitationFunction.standard() )
         ),
-        HIGH_MEADOW(
+        HIGH_FLOWER_MEADOW(
             new Builder()
                 .depth( 4 ).variation( 4 ).scale( 3 )
                 .surfaceGen( new GrassSurfaceGenerator() )
                 .precipitation( IPrecipitationFunction.standard() )
         ),
-        MEADOW_NO_TREES(
+        FLOWER_MEADOW_NO_TREES(
             new Builder()
                 .depth( 2 ).variation( 3 ).scale( 2 )
                 .surfaceGen( new GrassSurfaceGenerator() )

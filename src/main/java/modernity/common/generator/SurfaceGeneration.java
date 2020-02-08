@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 02 - 2020
+ * Date:   02 - 08 - 2020
  * Author: rgsw
  */
 
@@ -17,6 +17,9 @@ import modernity.common.generator.biome.LayerBiomeProviderSettings;
 import modernity.common.generator.biome.core.BiomeGenerator;
 import modernity.common.generator.biome.core.CachingRegionContext;
 import modernity.common.generator.biome.layer.*;
+import modernity.common.generator.biome.profile.BiomeMutationProfile;
+import modernity.common.generator.biome.profile.BiomeProfile;
+import modernity.common.generator.biome.profile.DefaultBiomeRarity;
 import modernity.common.generator.map.BedrockGenerator;
 import modernity.common.generator.map.surface.*;
 import net.minecraft.crash.CrashReport;
@@ -67,11 +70,18 @@ public final class SurfaceGeneration {
     public static BiomeGenerator[] buildLayerProcedure( long seed ) {
         BiomeGenerator[] generators = new BiomeGenerator[ 2 ];
 
+        BiomeProfile profile = buildBiomeProfile();
+
         CachingRegionContext context = new CachingRegionContext( 25, seed );
-        context.generate( new BiomeGenerationLayer( MDDimension.MURK_SURFACE ), 4538L )
-               .zoom( 2 )
-               .transform( new MeadowTypeLayer() )
-               .zoom( 4 )
+        context.generate( new BiomeBaseLayer( profile ), 4538L )
+               .transform( new LargeBiomeLayer( profile ) )
+               .zoom( 1 )
+               .transform( new BiomeMutationLayer( buildLargeMutationProfile() ) )
+               .zoom( 1 )
+               .transform( new BiomeMutationLayer( buildMutationProfile() ) )
+               .zoom( 3 )
+               .transform( new BiomeMutationLayer( buildSmallMutationProfile() ) )
+               .zoom( 1 )
                .merge(
                    RiverMixLayer.INSTANCE,
                    context.generate( RiverFieldLayer.INSTANCE, 5728L )
@@ -84,6 +94,44 @@ public final class SurfaceGeneration {
                .export( generators, 1 );
 
         return generators;
+    }
+
+    public static BiomeProfile buildBiomeProfile() {
+        BiomeProfile profile = new BiomeProfile();
+
+        profile.put( MDBiomes.MEADOW, DefaultBiomeRarity.VERY_COMMON, 0.4, 0.3 );
+        profile.put( MDBiomes.FLOWER_MEADOW, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 1, 0 );
+        profile.put( MDBiomes.LUSH_MEADOW, DefaultBiomeRarity.UNCOMMON, 0, 0.8 );
+        profile.put( MDBiomes.FOREST, DefaultBiomeRarity.COMMON, 0.4, 0.2 );
+        profile.put( MDBiomes.SWAMP, DefaultBiomeRarity.RELATIVELY_COMMON, 1, 0 );
+        profile.put( MDBiomes.WATERLANDS, DefaultBiomeRarity.RELATIVELY_COMMON, 0.9, 0.1 );
+
+        return profile;
+    }
+
+    public static BiomeMutationProfile buildLargeMutationProfile() {
+        BiomeMutationProfile profile = new BiomeMutationProfile();
+
+        return profile;
+    }
+
+    public static BiomeMutationProfile buildMutationProfile() {
+        BiomeMutationProfile profile = new BiomeMutationProfile();
+
+        profile.putDefault( MDBiomes.MEADOW, 10 )
+               .put( MDBiomes.MEADOW, MDBiomes.HIGH_MEADOW, 7 )
+               .put( MDBiomes.MEADOW, MDBiomes.MEADOW_NO_TREES, 5 );
+
+        profile.putDefault( MDBiomes.FLOWER_MEADOW, 10 )
+               .put( MDBiomes.FLOWER_MEADOW, MDBiomes.HIGH_FLOWER_MEADOW, 7 )
+               .put( MDBiomes.FLOWER_MEADOW, MDBiomes.FLOWER_MEADOW_NO_TREES, 5 );
+        return profile;
+    }
+
+    public static BiomeMutationProfile buildSmallMutationProfile() {
+        BiomeMutationProfile profile = new BiomeMutationProfile();
+
+        return profile;
     }
 
     public static void decorate( WorldGenRegion region, ChunkGenerator<?> chunkGen ) {

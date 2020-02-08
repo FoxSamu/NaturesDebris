@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 08 - 2020
  * Author: rgsw
  */
 
@@ -12,7 +12,7 @@ import modernity.common.generator.biome.core.IRegion;
 import modernity.common.generator.biome.core.IRegionRNG;
 
 @FunctionalInterface
-public interface IBisshopTransformerLayer extends ITransformerLayer {
+public interface IBishopTransformerLayer extends ITransformerLayer {
     @Override
     default int generate( IRegionRNG rng, IRegion region, int x, int z ) {
         return generate(
