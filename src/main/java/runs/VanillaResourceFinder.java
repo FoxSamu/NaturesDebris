@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 04 - 2020
+ * Date:   02 - 08 - 2020
  * Author: rgsw
  */
 
@@ -77,11 +77,13 @@ public class VanillaResourceFinder {
             } );
         }
 
-        for( int i = 0; i < 4; i++ ) {
+        for( int i = 0; i < 8; i++ ) {
             WorkThread thr = new WorkThread( i );
             thr.start();
         }
     }
+
+    private final ThreadLocal<byte[]> buffers = ThreadLocal.withInitial( () -> new byte[ 512 ] );
 
     private void copyFile( String hash, String path, int counter, int size ) throws IOException {
         File hashFile = new File( objects, hash.substring( 0, 2 ) + "/" + hash );
@@ -94,16 +96,18 @@ public class VanillaResourceFinder {
         FileInputStream fis = new FileInputStream( hashFile );
         FileOutputStream fos = new FileOutputStream( outFile );
 
+        byte[] buf = buffers.get();
+
         int i;
-        while( ( i = fis.read() ) >= 0 ) {
-            fos.write( i );
+        while( ( i = fis.read( buf ) ) >= 0 ) {
+            fos.write( buf, 0, i );
         }
     }
 
     public static void main( String[] args ) throws IOException {
         VanillaResourceFinder instance = new VanillaResourceFinder(
-            new File( ".../assets/objects" ),
-            new File( ".../indexes/1.14.json" ),
+            new File( ".../objects" ),
+            new File( ".../indexes/1.16.json" ),
             new File( ".../assets" )
         );
 
