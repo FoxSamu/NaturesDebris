@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -25,6 +25,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.IRenderHandler;
 import org.lwjgl.opengl.GL11;
 
@@ -111,7 +112,9 @@ public class SurfaceWeatherRenderer implements IRenderHandler {
                     float rainZ = rainZCoords[ rainCoordsIndex ];
 
                     mpos.setPos( x, 0, z );
-                    ModernityBiome biome = (ModernityBiome) world.getBiome( mpos );
+                    Biome vbiome = world.getBiome( mpos );
+                    if( ! ( vbiome instanceof ModernityBiome ) ) return;
+                    ModernityBiome biome = (ModernityBiome) vbiome;
                     IPrecipitationFunction func = biome.getPrecipitationFunction();
 
                     IPrecipitation prec = func.computePrecipitation( level );

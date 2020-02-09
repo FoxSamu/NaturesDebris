@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -10,6 +10,7 @@ package modernity.common.world.dimen;
 
 import modernity.api.dimension.*;
 import modernity.client.environment.*;
+import modernity.common.biome.MDBiomes;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.environment.event.EnvironmentEventManager;
 import modernity.common.environment.event.MDEnvEvents;
@@ -25,6 +26,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.AbstractChunkProvider;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
@@ -422,5 +424,19 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
     public double getRainAmount() {
         PrecipitationEnvEvent precEv = envEventManager.getByType( MDEnvEvents.PRECIPITATION );
         return precEv.getEffect();
+    }
+
+    @Override
+    @SuppressWarnings( "ConstantConditions" )
+    // Direct inheritance from world that uses modernity default biome in unloaded regions
+    public Biome getBiome( BlockPos pos ) {
+        AbstractChunkProvider provider = world.getChunkProvider();
+        Chunk chunk = provider.getChunk( pos.getX() >> 4, pos.getZ() >> 4, false );
+        if( chunk != null ) {
+            return chunk.getBiome( pos );
+        } else {
+            ChunkGenerator<?> gen = world.getChunkProvider().getChunkGenerator();
+            return gen == null ? MDBiomes.DEFAULT : gen.getBiomeProvider().getBiome( pos );
+        }
     }
 }
