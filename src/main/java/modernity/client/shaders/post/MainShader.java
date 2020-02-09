@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -71,6 +71,7 @@ public class MainShader extends PostProcessingEffect {
     private Program.Uniform depthSamplerUniform;
     private Program.Uniform handDepthSamplerUniform;
     private Program.Uniform inverseMVPUniform;
+    private Program.Uniform depthRangeUniform;
 
     private Program.Uniform fogModeUniform;
 
@@ -137,6 +138,7 @@ public class MainShader extends PostProcessingEffect {
         depthSamplerUniform = program.uniform( "depth" );
         handDepthSamplerUniform = program.uniform( "handDepth" );
         inverseMVPUniform = program.uniform( "inverseMVP" );
+        depthRangeUniform = program.uniform( "depthRange" );
         lightCountUniform = program.uniform( "lightCount" );
         fogModeUniform = program.uniform( "fogMode" );
 
@@ -157,6 +159,9 @@ public class MainShader extends PostProcessingEffect {
         depthSamplerUniform.set( 1 );
         handDepthSamplerUniform.set( 2 );
         inverseMVPUniform.setMatrix( inverseMVPBuff );
+        float[] dr = new float[ 2 ];
+        glGetFloatv( GL_DEPTH_RANGE, dr );
+        depthRangeUniform.set( dr[ 1 ] );
         fogModeUniform.set( glGetInteger( GL_FOG_MODE ) );
 
         lights.sort( LIGHT_SOURCE_SORTER );
