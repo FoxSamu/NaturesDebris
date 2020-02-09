@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 08 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -142,22 +142,16 @@ public abstract class PlantBlock extends Block {
     @Nullable
     @Override
     public BlockState getStateForPlacement( BlockItemUseContext ctx ) {
-        BlockState state = computeStateForPos( ctx.getWorld(), ctx.getPos(), getDefaultState() );
-
-        if( this instanceof IMurkyWaterloggedBlock ) {
-            IFluidState fluid = ctx.getWorld().getFluidState( ctx.getPos() );
-            state = state.with( IMurkyWaterloggedBlock.WATERLOGGED, fluid.getFluid() == MDFluids.MURKY_WATER );
-        }
-
-        if( this instanceof IWaterloggedBlock ) {
-            IFluidState fluid = ctx.getWorld().getFluidState( ctx.getPos() );
-            return getDefaultState().with( IWaterloggedBlock.WATERLOGGED, WaterlogType.getType( fluid ) );
-        }
-
-        return state;
+        return computeStateForPos( ctx.getWorld(), ctx.getPos(), getDefaultState() );
     }
 
     public BlockState computeStateForPos( IWorldReader world, BlockPos pos, BlockState state ) {
+        if( this instanceof IMurkyWaterloggedBlock ) {
+            state = state.with( IMurkyWaterloggedBlock.WATERLOGGED, world.getFluidState( pos ).getFluid() == MDFluids.MURKY_WATER );
+        }
+        if( this instanceof IWaterloggedBlock ) {
+            state = state.with( IWaterloggedBlock.WATERLOGGED, WaterlogType.getType( world.getFluidState( pos ) ) );
+        }
         return state;
     }
 

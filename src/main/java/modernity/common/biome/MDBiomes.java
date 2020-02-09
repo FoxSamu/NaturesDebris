@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 08 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -29,23 +29,27 @@ public final class MDBiomes {
     private static final EnumMap<MDDimension, ArrayList<Entry>> BIOME_LISTS = new EnumMap<>( MDDimension.class );
 
 
-    public static final MeadowBiome MEADOW = register( "meadow", new MeadowBiome( MeadowBiome.Type.MEADOW ), MDDimension.MURK_SURFACE, 1000 );
-    public static final MeadowBiome HIGH_MEADOW = register( "high_meadow", new MeadowBiome( MeadowBiome.Type.HIGH_MEADOW ), MDDimension.MURK_SURFACE, 0 );
-    public static final MeadowBiome MEADOW_NO_TREES = register( "meadow_no_trees", new MeadowBiome( MeadowBiome.Type.MEADOW_NO_TREES ), MDDimension.MURK_SURFACE, 0 );
+    public static final MeadowBiome MEADOW = register( "meadow", new MeadowBiome( MeadowBiome.Type.MEADOW ), MDDimension.MURK_SURFACE );
+    public static final MeadowBiome HIGH_MEADOW = register( "high_meadow", new MeadowBiome( MeadowBiome.Type.HIGH_MEADOW ), MDDimension.MURK_SURFACE );
+    public static final MeadowBiome MEADOW_NO_TREES = register( "meadow_no_trees", new MeadowBiome( MeadowBiome.Type.MEADOW_NO_TREES ), MDDimension.MURK_SURFACE );
 
-    public static final FlowerMeadowBiome FLOWER_MEADOW = register( "flower_meadow", new FlowerMeadowBiome( FlowerMeadowBiome.Type.FLOWER_MEADOW ), MDDimension.MURK_SURFACE, 1000 );
-    public static final FlowerMeadowBiome HIGH_FLOWER_MEADOW = register( "high_flower_meadow", new FlowerMeadowBiome( FlowerMeadowBiome.Type.HIGH_FLOWER_MEADOW ), MDDimension.MURK_SURFACE, 0 );
-    public static final FlowerMeadowBiome FLOWER_MEADOW_NO_TREES = register( "flower_meadow_no_trees", new FlowerMeadowBiome( FlowerMeadowBiome.Type.FLOWER_MEADOW_NO_TREES ), MDDimension.MURK_SURFACE, 0 );
+    public static final FlowerMeadowBiome FLOWER_MEADOW = register( "flower_meadow", new FlowerMeadowBiome( FlowerMeadowBiome.Type.FLOWER_MEADOW ), MDDimension.MURK_SURFACE );
+    public static final FlowerMeadowBiome HIGH_FLOWER_MEADOW = register( "high_flower_meadow", new FlowerMeadowBiome( FlowerMeadowBiome.Type.HIGH_FLOWER_MEADOW ), MDDimension.MURK_SURFACE );
+    public static final FlowerMeadowBiome FLOWER_MEADOW_NO_TREES = register( "flower_meadow_no_trees", new FlowerMeadowBiome( FlowerMeadowBiome.Type.FLOWER_MEADOW_NO_TREES ), MDDimension.MURK_SURFACE );
 
-    public static final LushMeadowBiome LUSH_MEADOW = register( "lush_meadow", new LushMeadowBiome( LushMeadowBiome.Type.LUSH_MEADOW ), MDDimension.MURK_SURFACE, 400 );
+    public static final LushGrasslandBiome LUSH_GRASSLAND = register( "lush_grassland", new LushGrasslandBiome( LushGrasslandBiome.Type.LUSH_GRASSLAND ), MDDimension.MURK_SURFACE );
+    public static final LushGrasslandBiome LUSH_GRASSLAND_EDGE = register( "lush_grassland_edge", new LushGrasslandBiome( LushGrasslandBiome.Type.LUSH_GRASSLAND_EDGE ), MDDimension.MURK_SURFACE );
+    public static final LushGrasslandBiome LUSH_GRASSLAND_OPEN = register( "lush_grassland_open", new LushGrasslandBiome( LushGrasslandBiome.Type.LUSH_GRASSLAND_OPEN ), MDDimension.MURK_SURFACE );
+    public static final LushGrasslandBiome HIGH_LUSH_GRASSLAND = register( "high_lush_grassland", new LushGrasslandBiome( LushGrasslandBiome.Type.HIGH_LUSH_GRASSLAND ), MDDimension.MURK_SURFACE );
+    public static final LushGrasslandBiome HIGH_LUSH_GRASSLAND_OPEN = register( "high_lush_grassland_open", new LushGrasslandBiome( LushGrasslandBiome.Type.HIGH_LUSH_GRASSLAND_OPEN ), MDDimension.MURK_SURFACE );
 
-    public static final ForestBiome FOREST = register( "forest", new ForestBiome( ForestBiome.Type.FOREST ), MDDimension.MURK_SURFACE, 800 );
+    public static final ForestBiome FOREST = register( "forest", new ForestBiome( ForestBiome.Type.FOREST ), MDDimension.MURK_SURFACE );
 
-    public static final RiverBiome RIVER = register( "river", new RiverBiome( RiverBiome.Type.RIVER ), MDDimension.MURK_SURFACE, 0 );
+    public static final RiverBiome RIVER = register( "river", new RiverBiome( RiverBiome.Type.RIVER ), MDDimension.MURK_SURFACE );
 
-    public static final SwampBiome SWAMP = register( "swamp", new SwampBiome( SwampBiome.Type.SWAMP ), MDDimension.MURK_SURFACE, 600 );
+    public static final SwampBiome SWAMP = register( "swamp", new SwampBiome( SwampBiome.Type.SWAMP ), MDDimension.MURK_SURFACE );
 
-    public static final WaterlandsBiome WATERLANDS = register( "waterlands", new WaterlandsBiome( WaterlandsBiome.Type.WATERLANDS ), MDDimension.MURK_SURFACE, 600 );
+    public static final WaterlandsBiome WATERLANDS = register( "waterlands", new WaterlandsBiome( WaterlandsBiome.Type.WATERLANDS ), MDDimension.MURK_SURFACE );
 
 
 
@@ -56,6 +60,12 @@ public final class MDBiomes {
     private static <T extends ModernityBiome> T register( String id, T biome, MDDimension dimension, int weight, String... aliases ) {
         BIOME_LISTS.computeIfAbsent( dimension, d -> new ArrayList<>() )
                    .add( new Entry( dimension, biome, weight ) );
+        return ENTRIES.register( id, biome, aliases );
+    }
+
+    private static <T extends ModernityBiome> T register( String id, T biome, MDDimension dimension, String... aliases ) {
+        BIOME_LISTS.computeIfAbsent( dimension, d -> new ArrayList<>() )
+                   .add( new Entry( dimension, biome, 0 ) );
         return ENTRIES.register( id, biome, aliases );
     }
 

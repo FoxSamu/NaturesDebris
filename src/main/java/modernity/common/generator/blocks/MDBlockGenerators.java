@@ -2,19 +2,22 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 08 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.blocks;
 
+import modernity.common.biome.MDBiomes;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.plant.DoubleDirectionalPlantBlock;
 import modernity.common.block.plant.FacingPlantBlock;
 import modernity.common.block.plant.SingleDirectionalPlantBlock;
 import modernity.common.block.plant.TallDirectionalPlantBlock;
+import modernity.common.generator.blocks.condition.IBlockGenCondition;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.world.biome.Biome;
 
 import java.util.Random;
 import java.util.function.Function;
@@ -72,6 +75,14 @@ public final class MDBlockGenerators {
                                                                                                      ? 2
                                                                                                      : 1 );
     public static final IBlockGenerator MURK_GRASS_LUSH = forTallPlant( MDBlocks.MURK_GRASS, rng -> Math.min( 4, rng.nextInt( 4 ) + rng.nextInt( 2 ) + 1 ) );
+
+    public static final IBlockGenerator LUSH_GRASSLAND_GRASS = alternatives(
+        conditional( MURK_GRASS_LUSH, ( world, pos, rand ) -> {
+            Biome biome = world.getBiome( pos );
+            return biome == MDBiomes.LUSH_GRASSLAND || biome == MDBiomes.HIGH_LUSH_GRASSLAND;
+        } ),
+        conditional( MURK_GRASS_BASIC, ( world, pos, rand ) -> rand.nextBoolean() )
+    );
 
     public static final IBlockGenerator NETTLES = forSinglePlant( MDBlocks.NETTLES );
     public static final IBlockGenerator MINT_PLANT = forSinglePlant( MDBlocks.MINT_PLANT );
@@ -181,6 +192,10 @@ public final class MDBlockGenerators {
 
     public static IBlockGenerator alternatives( IBlockGenerator first, IBlockGenerator... rest ) {
         return new AlternativeBlockGenerator( first, rest );
+    }
+
+    public static IBlockGenerator conditional( IBlockGenerator gen, IBlockGenCondition cond ) {
+        return new ConditionalBlockGenerator( cond, gen );
     }
 
     public static WeightedBlockGenerator.Builder weighted( IBlockGenerator first, double wgt ) {

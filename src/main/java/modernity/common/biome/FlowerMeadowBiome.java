@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 08 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -10,8 +10,8 @@ package modernity.common.biome;
 
 import modernity.common.block.MDBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
+import modernity.common.generator.SurfaceGeneration;
 import modernity.common.generator.blocks.MDBlockGenerators;
-import modernity.common.generator.decorate.DefaultDecoration;
 import modernity.common.generator.decorate.count.Chance;
 import modernity.common.generator.decorate.count.Fixed;
 import modernity.common.generator.decorate.decoration.*;
@@ -30,7 +30,12 @@ public class FlowerMeadowBiome extends ModernityBiome {
     protected FlowerMeadowBiome( Type type ) {
         super( type.builder );
 
-        DefaultDecoration.setupDefaultDecoration( this );
+        SurfaceGeneration.addCaveDeposits( this );
+        SurfaceGeneration.addCaveOres( this );
+        SurfaceGeneration.addCavePlants( this );
+        SurfaceGeneration.addCaveSprings( this );
+        SurfaceGeneration.addClaySand( this );
+        SurfaceGeneration.addPebbles( this );
 
         addDecorator( new DecorationDecorator( new LakeDecoration( MDBlocks.MURKY_WATER, null, null, MDBlocks.MURKY_GRASS_BLOCK ), new FixedHeight( 128 ), new Chance( 0.1 ) ) );
 
