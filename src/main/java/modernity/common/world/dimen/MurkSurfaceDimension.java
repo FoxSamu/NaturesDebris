@@ -18,7 +18,7 @@ import modernity.common.environment.event.impl.*;
 import modernity.common.environment.precipitation.IPrecipitation;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.environment.satellite.SatelliteData;
-import modernity.common.generator.SurfaceGeneration;
+import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.handler.WorldTickHandler;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
@@ -41,12 +41,12 @@ import javax.annotation.Nullable;
 /**
  * The surface dimension of the Modernity.
  */
-public class MDSurfaceDimension extends Dimension implements IEnvironmentDimension, ISatelliteDimension, IEnvEventsDimension, IClientTickingDimension, IInitializeDimension, IPrecipitationDimension, IShaderDimension {
+public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimension, ISatelliteDimension, IEnvEventsDimension, IClientTickingDimension, IInitializeDimension, IPrecipitationDimension, IShaderDimension {
 
     private SatelliteData satelliteData;
     private EnvironmentEventManager envEventManager;
 
-    public MDSurfaceDimension( World world, DimensionType type ) {
+    public MurkSurfaceDimension( World world, DimensionType type ) {
         super( world, type );
     }
 
@@ -64,15 +64,7 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
 
     @Override
     public ChunkGenerator<?> createChunkGenerator() {
-//        MDSurfaceBiomeProvider biomeGen = new MDSurfaceBiomeProvider( world.getWorldInfo() );
-//        LayerBiomeProvider biomeGen = MDBiomeProviders.LAYERED.create(
-//            MDBiomeProviders.LAYERED
-//                .createSettings()
-//                .setBiomes( MDDimension.MURK_SURFACE )
-//                .setGenerators( Layers.buildSurfaceGenerator( world.getSeed() ) )
-//        );
-//        return new SurfaceGenerator( world, biomeGen );
-        return SurfaceGeneration.buildChunkGenerator( world );
+        return MurkSurfaceGeneration.buildChunkGenerator( world );
     }
 
     @Nullable
@@ -114,7 +106,7 @@ public class MDSurfaceDimension extends Dimension implements IEnvironmentDimensi
 
     @Override
     public DimensionType getType() {
-        return MDDimensions.MODERNITY.getType();
+        return MDDimensions.MURK_SURFACE.getType();
     }
 
     @Override

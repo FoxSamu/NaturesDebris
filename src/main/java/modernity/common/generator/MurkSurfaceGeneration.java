@@ -51,7 +51,7 @@ import net.redgalaxy.exc.InstanceOfUtilityClassException;
 
 import static modernity.api.util.BlockPredicates.*;
 
-public final class SurfaceGeneration {
+public final class MurkSurfaceGeneration {
     public static final int BIOME_MIX_RADIUS = 3;
     public static final int BIOME_MIX_DIAMETER = BIOME_MIX_RADIUS * 2 + 1;
     public static final int MAIN_HEIGHT = 72;
@@ -64,7 +64,7 @@ public final class SurfaceGeneration {
             biomeGen,
             new MapGenSettings<SurfaceGenData>()
                 .dataSupplier( SurfaceGenData::new )
-                .addDecorator( SurfaceGeneration::decorate )
+                .addDecorator( MurkSurfaceGeneration::decorate )
                 .addGenerator( new TerrainGenerator( world, biomeGen ) )
                 .addGenerator( new SurfaceGenerator( world ) )
                 .addGenerator( new CaveGenerator( world ) )
@@ -217,8 +217,8 @@ public final class SurfaceGeneration {
     }
 
     public static void addClaySand( ModernityBiome biome ) {
-        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDBlocks.MURKY_SAND.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 12 ), new IsBelowHeight( SurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
-        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDBlocks.MURKY_CLAY.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.25 ), new IsBelowHeight( SurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
+        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDBlocks.MURKY_SAND.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 12 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
+        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDBlocks.MURKY_CLAY.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.25 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
     }
 
     public static void addCavePlants( ModernityBiome biome ) {
@@ -274,7 +274,7 @@ public final class SurfaceGeneration {
         }
     }
 
-    private SurfaceGeneration() {
+    private MurkSurfaceGeneration() {
         throw new InstanceOfUtilityClassException();
     }
 }

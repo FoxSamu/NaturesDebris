@@ -7,7 +7,7 @@
         {
           "model": "modernity:block/abstract_farmland_base",
           "textures": {
-            "side": "modernity:block/murky_podzol_side",
+            "side": "modernity:block/leafy_humus_side",
             "bottom": "modernity:block/murky_dirt",
             "top": "@texture"
           }
@@ -25,11 +25,11 @@
         {
           "model": "modernity:block/farmland_ctm",
           "textures": {
-            "all": "modernity:block/farmland/podzol_layer_full",
-            "center": "modernity:block/farmland/podzol_layer_center",
-            "cross": "modernity:block/farmland/podzol_layer_cross",
-            "x": "modernity:block/farmland/podzol_layer_horizontal",
-            "z": "modernity:block/farmland/podzol_layer_vertical"
+            "all": "modernity:block/farmland/leafy_humus_layer_full",
+            "center": "modernity:block/farmland/leafy_humus_layer_center",
+            "cross": "modernity:block/farmland/leafy_humus_layer_cross",
+            "x": "modernity:block/farmland/leafy_humus_layer_horizontal",
+            "z": "modernity:block/farmland/leafy_humus_layer_vertical"
           }
         }
       ]

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -79,7 +79,7 @@ public final class TPDimCommand {
 
         DimensionType goTo = DimensionType.OVERWORLD;
         if( goTo == dimen ) {
-            goTo = MDDimensions.MODERNITY.getType();
+            goTo = MDDimensions.MURK_SURFACE.getType();
         }
 
         return teleport( src, goTo );

@@ -1,7 +1,7 @@
 {
   "parent": "modernity:item/farmland_item",
   "textures": {
-    "side": "modernity:block/humus_side",
+    "side": "modernity:block/murky_humus_side",
     "bottom": "modernity:block/murky_dirt",
     "side_overlay": "modernity:block/air",
     "top_overlay": "modernity:block/farmland/humus_layer_center",

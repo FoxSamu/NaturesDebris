@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -106,14 +106,14 @@ public class LeavesBlock extends Block implements IShearable {
         for( int i = 0; i < 17; i++ ) {
             BlockState belowState = world.getBlockState( mpos );
 
-            if( ! belowState.func_224755_d( world, pos, Direction.UP ) && ! belowState.getMaterial().isLiquid() && belowState.getBlock() != this ) {
+            if( ! belowState.getMaterial().blocksMovement() && ! belowState.getMaterial().isLiquid() && belowState.getBlock() != this ) {
                 mpos.moveDown();
                 continue;
             }
 
             // TODO: Tag
             if( belowState.getBlock() == MDBlocks.MURKY_DIRT ) {
-                world.setBlockState( mpos, MDBlocks.HUMUS.getDefaultState() );
+                world.setBlockState( mpos, MDBlocks.MURKY_HUMUS.getDefaultState() );
             }
             break;
         }

@@ -10,7 +10,7 @@ package modernity.common.biome;
 
 import modernity.common.block.MDBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
-import modernity.common.generator.SurfaceGeneration;
+import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.blocks.MDBlockGenerators;
 import modernity.common.generator.decorate.count.Chance;
 import modernity.common.generator.decorate.count.Fixed;
@@ -31,12 +31,12 @@ public class LushGrasslandBiome extends ModernityBiome {
 
         boolean open = type == Type.LUSH_GRASSLAND_EDGE || type == Type.LUSH_GRASSLAND_OPEN || type == Type.HIGH_LUSH_GRASSLAND_OPEN;
 
-        SurfaceGeneration.addCaveDeposits( this );
-        SurfaceGeneration.addCaveOres( this );
-        SurfaceGeneration.addCavePlants( this );
-        SurfaceGeneration.addCaveSprings( this );
-        SurfaceGeneration.addClaySand( this );
-        SurfaceGeneration.addPebbles( this );
+        MurkSurfaceGeneration.addCaveDeposits( this );
+        MurkSurfaceGeneration.addCaveOres( this );
+        MurkSurfaceGeneration.addCavePlants( this );
+        MurkSurfaceGeneration.addCaveSprings( this );
+        MurkSurfaceGeneration.addClaySand( this );
+        MurkSurfaceGeneration.addPebbles( this );
 
         addDecorator( new DecorationDecorator( new LakeDecoration( MDBlocks.MURKY_WATER, null, null, MDBlocks.MURKY_GRASS_BLOCK ), new FixedHeight( 128 ), new Chance( 0.05 ) ) );
 

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 12 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -11,7 +11,7 @@ package modernity.common.generator.map.surface;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlocks;
 import modernity.common.fluid.MDFluids;
-import modernity.common.generator.SurfaceGeneration;
+import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.map.RangeMapGenerator;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -234,9 +234,9 @@ public class CanyonGenerator extends RangeMapGenerator<SurfaceGenData> {
             BlockState bstate = world.getBlockState( pos );
             IFluidState fstate = bstate.getFluidState();
 
-            if( y > SurfaceGeneration.CAVE_WATER_LEVEL && ! ( dir == Direction.DOWN || fstate.isEmpty() ) ) {
+            if( y > MurkSurfaceGeneration.CAVE_WATER_LEVEL && ! ( dir == Direction.DOWN || fstate.isEmpty() ) ) {
                 return false;
-            } else if( y <= SurfaceGeneration.CAVE_WATER_LEVEL && ! ( dir == Direction.UP || fstate.getFluid() == MDFluids.MURKY_WATER || bstate.getMaterial().blocksMovement() ) ) {
+            } else if( y <= MurkSurfaceGeneration.CAVE_WATER_LEVEL && ! ( dir == Direction.UP || fstate.getFluid() == MDFluids.MURKY_WATER || bstate.getMaterial().blocksMovement() ) ) {
                 return false;
             }
 
@@ -249,7 +249,7 @@ public class CanyonGenerator extends RangeMapGenerator<SurfaceGenData> {
         if( world.getBlockState( pos ).getBlockHardness( world, pos ) > 1000 ) {
             return;
         }
-        if( pos.getY() <= SurfaceGeneration.CAVE_WATER_LEVEL ) {
+        if( pos.getY() <= MurkSurfaceGeneration.CAVE_WATER_LEVEL ) {
             world.setBlockState( pos, MDBlocks.MURKY_WATER.getDefaultState(), 2 );
         } else {
             world.setBlockState( pos, Blocks.CAVE_AIR.getDefaultState(), 2 );

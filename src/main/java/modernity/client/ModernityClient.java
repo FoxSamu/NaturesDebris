@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 03 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -36,7 +36,7 @@ import modernity.common.item.MDItems;
 import modernity.common.net.SSeedPacket;
 import modernity.common.tileentity.MDTileEntitiyTypes;
 import modernity.common.util.ISidedTickable;
-import modernity.common.world.dimen.MDSurfaceDimension;
+import modernity.common.world.dimen.MurkSurfaceDimension;
 import modul.module.ModuleType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
@@ -78,7 +78,7 @@ public class ModernityClient extends Modernity {
     private AreaRenderManager areaRenderManager;
 
     // Used to give color to fallen leaf particles
-    private final ColorMap fallenLeafColors = new ColorMap( new ResourceLocation( "modernity:textures/block/murky_podzol_top.png" ), 0xffffff );
+    private final ColorMap fallenLeafColors = new ColorMap( new ResourceLocation( "modernity:textures/block/leafy_humus_top.png" ), 0xffffff );
 
     private final CustomFluidRenderer fluidRenderer = new CustomFluidRenderer();
 
@@ -166,7 +166,7 @@ public class ModernityClient extends Modernity {
     public void onWorldLoad( WorldEvent.Load event ) {
         if( event.getWorld().isRemote() ) {
             Dimension dimen = event.getWorld().getDimension();
-            if( dimen instanceof MDSurfaceDimension ) {
+            if( dimen instanceof MurkSurfaceDimension ) {
                 dimen.setSkyRenderer( new SurfaceSkyRenderer( lastWorldSeed ) );
                 dimen.setCloudRenderer( new SurfaceCloudRenderer() );
                 dimen.setWeatherRenderer( new SurfaceWeatherRenderer() );

@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "modernity:humus"
+              "name": "modernity:leafy_humus"
             },
             {
               "type": "minecraft:item",
@@ -37,7 +37,6 @@
             }
           ]
         }
-
       ]
     }
   ]

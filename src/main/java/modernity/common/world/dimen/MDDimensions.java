@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -34,7 +34,7 @@ import java.util.function.BiFunction;
 @ObjectHolder( "modernity" )
 public final class MDDimensions {
     private static final RegistryHandler<ModDimension> ENTRIES = new RegistryHandler<>( "modernity" );
-    public static final ModernityDim MODERNITY = register( "modernity", new ModernityDim( MDSurfaceDimension::new ) );
+    public static final ModernityDim MURK_SURFACE = register( "murk_surface", new ModernityDim( MurkSurfaceDimension::new ) );
 
     private static ImmutableSet<ResourceLocation> dimensionResLocs;
 
@@ -60,8 +60,8 @@ public final class MDDimensions {
 
     public static void restore( Set<ResourceLocation> missingNames ) {
         for( ResourceLocation loc : missingNames ) {
-            if( loc.equals( MODERNITY.getRegistryName() ) ) {
-                register( new ResourceLocation( "modernity:modernity" ), MODERNITY, true );
+            if( loc.equals( MURK_SURFACE.getRegistryName() ) ) {
+                register( MURK_SURFACE.getRegistryName(), MURK_SURFACE, true );
             }
         }
     }
@@ -76,7 +76,7 @@ public final class MDDimensions {
      * Registers the dimensions to the {@link DimensionManager}.
      */
     public static void init() {
-        register( new ResourceLocation( "modernity:modernity" ), MODERNITY, true );
+        register( MURK_SURFACE.getRegistryName(), MURK_SURFACE, true );
     }
 
     public static class ModernityDim extends ModDimension {

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 02 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -11,8 +11,8 @@ package modernity.common.biome;
 import modernity.api.util.BlockPredicates;
 import modernity.common.block.MDBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
+import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.blocks.MDBlockGenerators;
-import modernity.common.generator.decorate.DefaultDecoration;
 import modernity.common.generator.decorate.count.Chance;
 import modernity.common.generator.decorate.count.Fixed;
 import modernity.common.generator.decorate.count.One;
@@ -32,7 +32,12 @@ public class ForestBiome extends ModernityBiome {
     protected ForestBiome( Type type ) {
         super( type.builder );
 
-        DefaultDecoration.setupDefaultDecoration( this );
+        MurkSurfaceGeneration.addCaveDeposits( this );
+        MurkSurfaceGeneration.addCaveOres( this );
+        MurkSurfaceGeneration.addCavePlants( this );
+        MurkSurfaceGeneration.addCaveSprings( this );
+        MurkSurfaceGeneration.addClaySand( this );
+        MurkSurfaceGeneration.addPebbles( this );
 
         addDecorator( new DecorationDecorator( new LakeDecoration( MDBlocks.MURKY_WATER, null, null, MDBlocks.MURKY_GRASS_BLOCK ), new FixedHeight( 128 ), new Chance( 0.2 ) ) );
 

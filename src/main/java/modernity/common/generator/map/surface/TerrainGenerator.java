@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -27,7 +27,7 @@ import net.rgsw.noise.INoise2D;
 import net.rgsw.noise.INoise3D;
 import net.rgsw.noise.InverseFractalPerlin3D;
 
-import static modernity.common.generator.SurfaceGeneration.*;
+import static modernity.common.generator.MurkSurfaceGeneration.*;
 
 /**
  * Generates the main terrain shapes of the Modernity's surface dimension using only rock.

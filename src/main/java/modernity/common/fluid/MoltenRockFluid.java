@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -253,7 +253,7 @@ public abstract class MoltenRockFluid extends RegularFluid implements ICustomRen
         if( shouldReact ) {
             IFluidState fstate = world.getFluidState( pos );
             if( fstate.isSource() ) {
-                world.setBlockState( pos, MDBlocks.BASALT.getDefaultState() );
+                world.setBlockState( pos, MDBlocks.HARDENED_ROCK.getDefaultState() );
                 triggerMixEffects( world, pos );
                 return false;
             }

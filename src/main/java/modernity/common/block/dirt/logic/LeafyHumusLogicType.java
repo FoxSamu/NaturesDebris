@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 19 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -12,7 +12,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class PodzolLogicType implements IDecayingLogicType {
+public class LeafyHumusLogicType implements IDecayingLogicType {
     @Override
     public IDirtLogicType getDecayed( World world, BlockPos pos, BlockState state ) {
         return MDDirtLogics.HUMUS_TYPE;

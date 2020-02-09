@@ -7,7 +7,7 @@
         {
           "model": "modernity:block/abstract_farmland_base",
           "textures": {
-            "side": "modernity:block/humus_side",
+            "side": "modernity:block/murky_humus_side",
             "bottom": "modernity:block/murky_dirt",
             "top": "@texture"
           }

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -11,7 +11,7 @@ package modernity.common.generator.surface;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.block.MDBlocks;
-import modernity.common.generator.SurfaceGeneration;
+import modernity.common.generator.MurkSurfaceGeneration;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.chunk.IChunk;
 import net.rgsw.noise.FractalPerlin3D;
@@ -24,21 +24,21 @@ import java.util.Random;
  */
 public class ForestSurfaceGenerator implements ISurfaceGenerator {
 
-    private static final BlockState HUMUS = MDBlocks.HUMUS.getDefaultState();
-    private static final BlockState PODZOL = MDBlocks.MURKY_PODZOL.getDefaultState();
+    private static final BlockState HUMUS = MDBlocks.MURKY_HUMUS.getDefaultState();
+    private static final BlockState LEAFY_HUMUS = MDBlocks.LEAFY_HUMUS.getDefaultState();
     private static final BlockState GRASS = MDBlocks.MURKY_GRASS_BLOCK.getDefaultState();
     private static final BlockState DIRT = MDBlocks.MURKY_DIRT.getDefaultState();
     private static final BlockState MUD = MDBlocks.MUD.getDefaultState();
 
     private INoise3D humusNoise;
-    private INoise3D podzolNoise;
+    private INoise3D leafyNoise;
     private INoise3D grassNoise;
     private INoise3D mudNoise;
 
     @Override
     public void init( Random rand ) {
         humusNoise = new FractalPerlin3D( rand.nextInt(), 13.125792, 5 );
-        podzolNoise = new FractalPerlin3D( rand.nextInt(), 13.125792, 5 );
+        leafyNoise = new FractalPerlin3D( rand.nextInt(), 13.125792, 5 );
         grassNoise = new FractalPerlin3D( rand.nextInt(), 13.125792, 5 );
         mudNoise = new FractalPerlin3D( rand.nextInt(), 13.125792, 5 );
     }
@@ -61,15 +61,15 @@ public class ForestSurfaceGenerator implements ISurfaceGenerator {
     }
 
     private BlockState computeBlockState( int x, int y, int z ) {
-        if( y >= SurfaceGeneration.MAIN_HEIGHT - 1 ) {
+        if( y >= MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) {
             double humus = humusNoise.generateMultiplied( x, y, z, 10 ) + 10;
-            double podzol = podzolNoise.generateMultiplied( x, y, z, 10 ) + 10;
+            double leafy = leafyNoise.generateMultiplied( x, y, z, 10 ) + 10;
             double grass = grassNoise.generateMultiplied( x, y, z, 9 ) + 9;
-            if( humus > podzol && humus > grass ) {
+            if( humus > leafy && humus > grass ) {
                 return HUMUS;
             }
-            if( podzol > grass ) {
-                return PODZOL;
+            if( leafy > grass ) {
+                return LEAFY_HUMUS;
             }
             return GRASS;
         } else {

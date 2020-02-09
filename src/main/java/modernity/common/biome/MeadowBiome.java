@@ -10,7 +10,7 @@ package modernity.common.biome;
 
 import modernity.common.block.MDBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
-import modernity.common.generator.SurfaceGeneration;
+import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.blocks.MDBlockGenerators;
 import modernity.common.generator.decorate.count.Chance;
 import modernity.common.generator.decorate.count.Fixed;
@@ -30,12 +30,12 @@ public class MeadowBiome extends ModernityBiome {
     protected MeadowBiome( Type type ) {
         super( type.builder );
 
-        SurfaceGeneration.addCaveDeposits( this );
-        SurfaceGeneration.addCaveOres( this );
-        SurfaceGeneration.addCavePlants( this );
-        SurfaceGeneration.addCaveSprings( this );
-        SurfaceGeneration.addClaySand( this );
-        SurfaceGeneration.addPebbles( this );
+        MurkSurfaceGeneration.addCaveDeposits( this );
+        MurkSurfaceGeneration.addCaveOres( this );
+        MurkSurfaceGeneration.addCavePlants( this );
+        MurkSurfaceGeneration.addCaveSprings( this );
+        MurkSurfaceGeneration.addClaySand( this );
+        MurkSurfaceGeneration.addPebbles( this );
 
         addDecorator( new DecorationDecorator( new LakeDecoration( MDBlocks.MURKY_WATER, null, null, MDBlocks.MURKY_GRASS_BLOCK ), new FixedHeight( 128 ), new Chance( 0.1 ) ) );
 

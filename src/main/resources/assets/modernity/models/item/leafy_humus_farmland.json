@@ -1,10 +1,10 @@
 {
   "parent": "modernity:item/farmland_item",
   "textures": {
-    "side": "modernity:block/murky_podzol_side",
+    "side": "modernity:block/leafy_humus_side",
     "bottom": "modernity:block/murky_dirt",
     "side_overlay": "modernity:block/air",
-    "top_overlay": "modernity:block/farmland/podzol_layer_center",
+    "top_overlay": "modernity:block/farmland/leafy_humus_layer_center",
     "top_base": "modernity:block/farmland/murky_base_layer_center",
     "farmland": "modernity:block/farmland/dry"
   }

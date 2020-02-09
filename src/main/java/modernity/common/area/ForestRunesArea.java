@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -311,11 +311,11 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
 
             if( ! entities.isEmpty() ) {
                 DimensionType type = null;
-                if( world.dimension.getType() == MDDimensions.MODERNITY.getType() ) {
+                if( world.dimension.getType() == MDDimensions.MURK_SURFACE.getType() ) {
                     type = DimensionType.OVERWORLD;
                 }
                 if( world.dimension.getType() == DimensionType.OVERWORLD ) {
-                    type = MDDimensions.MODERNITY.getType();
+                    type = MDDimensions.MURK_SURFACE.getType();
                 }
                 if( type != null ) {
                     MinecraftServer server = world.getServer();

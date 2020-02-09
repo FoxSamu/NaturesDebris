@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "modernity:block/basalt"
+    "all": "modernity:block/hardened_rock"
   }
 }

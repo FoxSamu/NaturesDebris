@@ -9,7 +9,7 @@
 package modernity.common.generator.decorate;
 
 import modernity.common.biome.ModernityBiome;
-import modernity.common.generator.SurfaceGeneration;
+import modernity.common.generator.MurkSurfaceGeneration;
 
 public final class DefaultDecoration {
     private DefaultDecoration() {
@@ -17,11 +17,11 @@ public final class DefaultDecoration {
 
     @Deprecated
     public static void setupDefaultDecoration( ModernityBiome biome ) {
-        SurfaceGeneration.addCaveDeposits( biome );
-        SurfaceGeneration.addCaveOres( biome );
-        SurfaceGeneration.addCavePlants( biome );
-        SurfaceGeneration.addCaveSprings( biome );
-        SurfaceGeneration.addClaySand( biome );
-        SurfaceGeneration.addPebbles( biome );
+        MurkSurfaceGeneration.addCaveDeposits( biome );
+        MurkSurfaceGeneration.addCaveOres( biome );
+        MurkSurfaceGeneration.addCavePlants( biome );
+        MurkSurfaceGeneration.addCaveSprings( biome );
+        MurkSurfaceGeneration.addClaySand( biome );
+        MurkSurfaceGeneration.addPebbles( biome );
     }
 }

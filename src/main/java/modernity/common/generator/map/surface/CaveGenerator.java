@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 09 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.common.generator.map.surface;
 
 import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlocks;
-import modernity.common.generator.SurfaceGeneration;
+import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.map.MapGenerator;
 import modernity.common.generator.util.NoiseBuffer;
 import net.minecraft.block.BlockState;
@@ -187,7 +187,7 @@ public class CaveGenerator extends MapGenerator<SurfaceGenData> {
         BlockState state = region.getBlockState( rpos );
         if( noise < 0 && state.getBlock() != MDBlocks.UNBREAKABLE_STONE ) {
             state = AIR;
-            if( rpos.getY() <= SurfaceGeneration.CAVE_WATER_LEVEL ) {
+            if( rpos.getY() <= MurkSurfaceGeneration.CAVE_WATER_LEVEL ) {
                 state = WATER;
             }
 
