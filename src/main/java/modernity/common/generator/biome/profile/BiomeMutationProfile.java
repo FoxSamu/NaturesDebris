@@ -2,21 +2,20 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 12 - 2020
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.biome.profile;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenCustomHashMap;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistry;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class BiomeMutationProfile {
-    private final Map<Integer, BiomeProfile> subbiomeProfiles = new HashMap<>();
+    private final Int2ObjectMap<BiomeProfile> subbiomeProfiles = new Int2ObjectOpenCustomHashMap<>( BiomeHashStrategy.INSTANCE );
 
     public BiomeProfile getProfile( Biome biome ) {
         return subbiomeProfiles.get( idForBiome( biome ) );

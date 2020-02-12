@@ -2,22 +2,23 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 12 - 2020
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.biome.profile;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenCustomHashMap;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistry;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 public class BiomeProfile {
-    private final Map<Integer, Entry> entries = new HashMap<>();
+    private final Int2ObjectMap<Entry> entries = new Int2ObjectOpenCustomHashMap<>( BiomeHashStrategy.INSTANCE );
     private final Map<Integer, Entry> entriesUnmodifiable = Collections.unmodifiableMap( entries );
     private int totalWeight = - 1;
 
