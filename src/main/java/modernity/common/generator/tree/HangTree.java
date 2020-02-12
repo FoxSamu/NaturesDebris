@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 12 - 2020
  * Author: rgsw
  */
 
@@ -70,10 +70,10 @@ public class HangTree extends Tree {
         // Check for space
         MovingBlockPos tpos = new MovingBlockPos();
 
-        for( int i = 0; i < height + 4; i++ ) {
+        for( int i = 0; i < height; i++ ) {
             if( i > 4 ) {
-                for( int x = - 3; x <= 3; x++ ) {
-                    for( int z = - 3; z <= 3; z++ ) {
+                for( int x = - 1; x <= 1; x++ ) {
+                    for( int z = - 1; z <= 1; z++ ) {
                         tpos.setPos( rpos );
                         tpos.addPos( x, 0, z );
                         if( world.getBlockState( tpos ).getMaterial().blocksMovement() )
@@ -196,7 +196,7 @@ public class HangTree extends Tree {
         if( hanger.getBlock() == MDBlocks.MURINA ) {
             return rand.nextInt( 8 ) + 1;
         }
-        return rand.nextInt( 5 ) + 1;
+        return rand.nextInt( 4 ) + 1;
     }
 
 

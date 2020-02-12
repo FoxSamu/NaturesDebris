@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   02 - 12 - 2020
  * Author: rgsw
  */
 
@@ -98,7 +98,7 @@ public final class MDBlockGenerators {
     public static final IBlockGenerator DEAD_GRASS = forSinglePlant( MDBlocks.DEAD_GRASS );
     public static final IBlockGenerator PEBBLES = forSinglePlant( MDBlocks.PEBBLES );
 
-    public static final IBlockGenerator MURK_FLOWERS = forSinglePlant( MDBlocks.MURK_FLOWERS );
+    public static final IBlockGenerator MURK_FLOWERS = forSinglePlant( MDBlocks.MURK_FLOWER );
     public static final IBlockGenerator MILKY_EYE = forSinglePlant( MDBlocks.MILKY_EYE );
     public static final IBlockGenerator EGIUM = forSinglePlant( MDBlocks.EGIUM );
     public static final IBlockGenerator SHADE_BLUE = forSinglePlant( MDBlocks.SHADE_BLUE );

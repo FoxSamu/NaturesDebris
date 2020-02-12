@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "modernity:murky_dirt_farmland",
+    "modernity:murky_grass_block_farmland",
+    "modernity:murky_humus_farmland",
+    "modernity:leafy_humus_farmland",
+    "modernity:heath_farmland"
+  ]
+}

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   02 - 12 - 2020
  * Author: rgsw
  */
 
@@ -21,11 +21,11 @@ public final class MDTrees {
         MDBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z )
     );
 
-    public static final SphericalTree INVER = new SphericalTree(
-        MDBlocks.INVER_LEAVES.getDefaultState(),
+    public static final SphereTree INVER = new SphereTree(
         MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X ),
         MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Y ),
-        MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z )
+        MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z ),
+        MDBlocks.INVER_LEAVES.getDefaultState()
     );
 
     private MDTrees() {
