@@ -2,25 +2,27 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 08 - 2020
+ * Date:   02 - 12 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.biome.profile;
 
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.ForgeRegistry;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BiomeProfile {
-    private final Map<Biome, Entry> entries = new HashMap<>();
-    private final Map<Biome, Entry> entriesUnmodifiable = Collections.unmodifiableMap( entries );
+    private final Map<Integer, Entry> entries = new HashMap<>();
+    private final Map<Integer, Entry> entriesUnmodifiable = Collections.unmodifiableMap( entries );
     private int totalWeight = - 1;
 
     public BiomeProfile put( Biome biome, int weight, double dominance, double largeChance ) {
-        entries.put( biome, new Entry( weight, dominance, largeChance, biome ) );
+        entries.put( idForBiome( biome ), new Entry( weight, dominance, largeChance, biome ) );
         totalWeight = - 1;
         return this;
     }
@@ -37,7 +39,7 @@ public class BiomeProfile {
         return put( biome, rarity.weight(), dominance, 0 );
     }
 
-    public Map<Biome, Entry> getEntries() {
+    public Map<Integer, Entry> getEntries() {
         return entriesUnmodifiable;
     }
 
@@ -56,7 +58,11 @@ public class BiomeProfile {
     }
 
     public Entry getEntry( Biome biome ) {
-        return entries.get( biome );
+        return entries.get( idForBiome( biome ) );
+    }
+
+    public Entry getEntry( int id ) {
+        return entries.get( id );
     }
 
     public Entry random( int random ) {
@@ -78,17 +84,23 @@ public class BiomeProfile {
         return null;
     }
 
+    private static int idForBiome( Biome biome ) {
+        return ( (ForgeRegistry<Biome>) ForgeRegistries.BIOMES ).getID( biome );
+    }
+
     public static final class Entry {
         private final int weight;
         private final double dominance;
         private final double largeChance;
         private final Biome biome;
+        private final int biomeID;
 
         public Entry( int weight, double dominance, double largeChance, Biome biome ) {
             this.weight = weight;
             this.dominance = dominance;
             this.largeChance = largeChance;
             this.biome = biome;
+            this.biomeID = idForBiome( biome );
         }
 
         public int getWeight() {
@@ -105,6 +117,10 @@ public class BiomeProfile {
 
         public Biome getBiome() {
             return biome;
+        }
+
+        public int getBiomeID() {
+            return biomeID;
         }
     }
 }

@@ -11,7 +11,6 @@ package modernity.common.generator.biome.layer;
 import modernity.common.generator.biome.core.IRegion;
 import modernity.common.generator.biome.core.IRegionRNG;
 import modernity.common.generator.biome.profile.BiomeProfile;
-import net.minecraft.world.biome.Biome;
 
 public class LargeBiomeLayer implements ITransformerLayer {
     private final BiomeProfile profile;
@@ -26,34 +25,33 @@ public class LargeBiomeLayer implements ITransformerLayer {
         int zval = region.getValue( x, z - 1 );
         int xzval = region.getValue( x - 1, z - 1 );
 
-        Biome xbiome = biome( xval );
-        Biome zbiome = biome( zval );
-        Biome xzbiome = biome( xzval );
-
-        Biome out = biome( region.getValue( x, z ) );
+        int out = region.getValue( x, z );
 
         rng.setPosition( x - 1, z );
-        if( isLarge( rng, xbiome ) ) {
+        if( isLarge( rng, xval ) ) {
             rng.setPosition( x, z );
-            out = applyDominance( rng, out, xbiome );
+            out = applyDominance( rng, out, xval );
         }
 
         rng.setPosition( x, z - 1 );
-        if( isLarge( rng, zbiome ) ) {
+        if( isLarge( rng, zval ) ) {
             rng.setPosition( x, z );
-            out = applyDominance( rng, out, zbiome );
+            rng.random( 5 );
+            out = applyDominance( rng, out, zval );
         }
 
         rng.setPosition( x - 1, z - 1 );
-        if( isLarge( rng, xzbiome ) ) {
+        if( isLarge( rng, xzval ) ) {
             rng.setPosition( x, z );
-            out = applyDominance( rng, out, xzbiome );
+            rng.random( 5 );
+            rng.random( 5 );
+            out = applyDominance( rng, out, xzval );
         }
 
-        return id( out );
+        return out;
     }
 
-    private Biome applyDominance( IRegionRNG rng, Biome biome1, Biome biome2 ) {
+    private int applyDominance( IRegionRNG rng, int biome1, int biome2 ) {
         double dominance1 = profile.getEntry( biome1 ).getDominance();
         double dominance2 = profile.getEntry( biome2 ).getDominance();
 
@@ -64,8 +62,8 @@ public class LargeBiomeLayer implements ITransformerLayer {
         }
     }
 
-    private boolean isLarge( IRegionRNG rng, Biome biome ) {
+    private boolean isLarge( IRegionRNG rng, int biome ) {
         double chance = profile.getEntry( biome ).getLargeChance();
-        return chance != 0 && rng.randomDouble() < chance;
+        return rng.randomDouble() < chance;
     }
 }
