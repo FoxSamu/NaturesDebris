@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 08 - 2020
+ * Date:   02 - 12 - 2020
  * Author: rgsw
  */
 
@@ -33,13 +33,22 @@ public class LargeBiomeLayer implements ITransformerLayer {
         Biome out = biome( region.getValue( x, z ) );
 
         rng.setPosition( x - 1, z );
-        if( isLarge( rng, xbiome ) ) out = applyDominance( rng, out, xbiome );
+        if( isLarge( rng, xbiome ) ) {
+            rng.setPosition( x, z );
+            out = applyDominance( rng, out, xbiome );
+        }
 
         rng.setPosition( x, z - 1 );
-        if( isLarge( rng, zbiome ) ) out = applyDominance( rng, out, zbiome );
+        if( isLarge( rng, zbiome ) ) {
+            rng.setPosition( x, z );
+            out = applyDominance( rng, out, zbiome );
+        }
 
         rng.setPosition( x - 1, z - 1 );
-        if( isLarge( rng, xzbiome ) ) out = applyDominance( rng, out, xzbiome );
+        if( isLarge( rng, xzbiome ) ) {
+            rng.setPosition( x, z );
+            out = applyDominance( rng, out, xzbiome );
+        }
 
         return id( out );
     }

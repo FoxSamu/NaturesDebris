@@ -15,7 +15,7 @@ import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.blocks.MDBlockGenerators;
 import modernity.common.generator.decorate.count.Chance;
 import modernity.common.generator.decorate.count.Fixed;
-import modernity.common.generator.decorate.count.One;
+import modernity.common.generator.decorate.count.MinMax;
 import modernity.common.generator.decorate.decoration.*;
 import modernity.common.generator.decorate.decorator.DecorationDecorator;
 import modernity.common.generator.decorate.position.FixedHeight;
@@ -41,28 +41,83 @@ public class ForestBiome extends ModernityBiome {
 
         addDecorator( new DecorationDecorator( new LakeDecoration( MDBlocks.MURKY_WATER, null, null, MDBlocks.MURKY_GRASS_BLOCK ), new FixedHeight( 128 ), new Chance( 0.2 ) ) );
 
-        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlockGenerators.MURK_GRASS_BASIC ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Fixed( 3 ) ) );
-        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockGenerators.NETTLES ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Chance( 0.5 ) ) );
-        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockGenerators.MINT_PLANT ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Chance( 0.5 ) ) );
-        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockGenerators.RANDOM_MILLIUM ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new One() ) );
-        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockGenerators.RANDOM_MELION ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new One() ) );
-
-        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlockGenerators.RANDOM_MURK_FERN ), new Surface( Heightmap.Type.MOTION_BLOCKING ), new Chance( 0.7 ) ) );
-        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlockGenerators.MURK_REED ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 1 / 3D ) ) );
-        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlockGenerators.REDWOLD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 1 / 6D ) ) );
-        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 4, 0.6, MDBlockGenerators.MOSS ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 1 / 3D ) ) );
-
-        addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.TRUE, MDBlocks.ROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.125 ) ) );
-        addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.TRUE, MDBlocks.DARKROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.0625 ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 2, BlockPredicates.TRUE, MDBlocks.ROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.125 ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 2, BlockPredicates.TRUE, MDBlocks.DARKROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.0625 ) ) );
         addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDBlocks.MURKY_COARSE_DIRT.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.3 ) ) );
         addDecorator( new DecorationDecorator( new DepositDecoration( 3, BlockState::isSolid, MDBlocks.MUD.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.2 ) ) );
 
         addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.INVER ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Fixed( 6 ) ) );
         addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Fixed( 8 ) ) );
+
+        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlockGenerators.MURK_GRASS_BASIC ), new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ), new Fixed( 6 ) ) );
+        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlockGenerators.PEBBLES ), new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ), new Fixed( 6 ) ) );
+        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlockGenerators.DEAD_GRASS ), new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ) ) );
+
+        addDecorator( new DecorationDecorator(
+            new SelectiveDecoration()
+                .add(
+                    new SelectiveDecoration()
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.RED_MILLIUM ), 1 )
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MAGENTA_MILLIUM ), 1 )
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.BLUE_MILLIUM ), 1 )
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.YELLOW_MILLIUM ), 1 )
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.GREEN_MILLIUM ), 1 )
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.CYAN_MILLIUM ), 1 )
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.WHITE_MILLIUM ), 1 ),
+                    40
+                )
+                .add(
+                    new SelectiveDecoration()
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.RED_MELION ), 1 )
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MAGENTA_MELION ), 1 )
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.BLUE_MELION ), 1 )
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.YELLOW_MELION ), 1 )
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.ORANGE_MELION ), 1 )
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.INDIGO_MELION ), 1 )
+                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.WHITE_MELION ), 1 ),
+                    30
+                )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MURK_FLOWERS ), 30 )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MINT_PLANT ), 5 )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.FOXGLOVE ), 5 )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.REDWOLD ), 20 )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MINT_PLANT ), 15 )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.SEEDLE ), 10 )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.DOTTED_MUSHROOM ), 10 )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.BLACK_MUSHROOM ), 10 )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.NETTLES ), 40 )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.TURUPT ), 14 )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.HORSETAIL ), 8 )
+                .add( new GroupedBushDecoration( 3, 4, 0.6, MDBlockGenerators.RANDOM_WIREPLANT ), 14 ),
+            new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ),
+            new MinMax( 1, 2 )
+        ) );
+
+        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockGenerators.WATERGRASS_SMALL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 5 ) ) );
+        addDecorator( new DecorationDecorator( new ClusterBushDecoration( 125, 7, MDBlockGenerators.LAKEWEED ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ) ) );
+
+        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 2, 3, 1, MDBlockGenerators.MUXUS_BUSH ), new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ), new Chance( 0.5 ) ) );
+        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 2, 3, 1, MDBlockGenerators.WATER_WIRE ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.3 ) ) );
+
+        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlockGenerators.RANDOM_MURK_FERN ), new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ), new Chance( 0.7 ) ) );
+        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlockGenerators.MURK_REED ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 1 / 3D ) ) );
+        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 4, 0.6, MDBlockGenerators.MOSS ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 1 / 3D ) ) );
     }
 
     public enum Type {
         FOREST(
+            new Builder()
+                .depth( 4 ).variation( 6 ).scale( 3 )
+                .surfaceGen( new ForestSurfaceGenerator() )
+                .precipitation( IPrecipitationFunction.standard() )
+        ),
+        OPEN_FOREST(
+            new Builder()
+                .depth( 4 ).variation( 6 ).scale( 3 )
+                .surfaceGen( new ForestSurfaceGenerator() )
+                .precipitation( IPrecipitationFunction.standard() )
+        ),
+        BUSH_FOREST(
             new Builder()
                 .depth( 4 ).variation( 6 ).scale( 3 )
                 .surfaceGen( new ForestSurfaceGenerator() )

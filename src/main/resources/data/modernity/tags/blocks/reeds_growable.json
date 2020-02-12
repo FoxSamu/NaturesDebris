@@ -1,12 +1,6 @@
 {
   "replace": false,
   "values": [
-    "modernity:murky_dirt",
-    "modernity:murky_coarse_dirt",
-    "modernity:humus",
-    "modernity:murky_grass_block",
-    "modernity:murky_sand",
-    "modernity:murky_clay",
-    "modernity:mud"
+    "#modernity:soil"
   ]
 }

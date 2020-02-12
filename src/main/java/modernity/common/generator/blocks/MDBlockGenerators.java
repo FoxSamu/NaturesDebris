@@ -146,7 +146,7 @@ public final class MDBlockGenerators {
     public static final IBlockGenerator WATERGRASS_SMALL = forTallPlant( MDBlocks.WATERGRASS, rng -> rng.nextInt( 3 ) + 1 );
     public static final IBlockGenerator WATERGRASS_LARGE = forTallPlant( MDBlocks.WATERGRASS, rng -> rng.nextInt( 10 ) + 1 );
 
-    public static final IBlockGenerator MUXUS_BUSH = forBlock( MDBlocks.MUXUS_BUSH );
+    public static final IBlockGenerator MUXUS_BUSH = new BushBlockGenerator( MDBlocks.MUXUS_BUSH );
     public static final IBlockGenerator WATER_WIRE = forBlock( MDBlocks.WATER_WIRE );
 
     public static final IBlockGenerator MOSS = forFacingPlant( MDBlocks.MOSS );

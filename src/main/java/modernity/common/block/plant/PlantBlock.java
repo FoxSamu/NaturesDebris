@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   02 - 12 - 2020
  * Author: rgsw
  */
 
@@ -113,6 +113,10 @@ public abstract class PlantBlock extends Block {
     public boolean isValidPosition( BlockState state, IWorldReader world, BlockPos pos ) {
         if( this instanceof IWaterPlant ) {
             if( world.getFluidState( pos ).getFluid() != MDFluids.MURKY_WATER ) {
+                return false;
+            }
+        } else if( ! ( this instanceof IMurkyWaterloggedBlock ) && ! ( this instanceof IWaterloggedBlock ) ) {
+            if( world.getFluidState( pos ).getFluid() != Fluids.EMPTY ) {
                 return false;
             }
         }
