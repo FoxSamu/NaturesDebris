@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 29 - 2019
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
 package modernity.client.util;
 
-import modernity.api.reflect.EnumUtil;
+import modernity.api.util.EnumUtil;
 import modernity.common.block.MDBlocks;
 import net.minecraft.client.util.RecipeBookCategories;
 import net.minecraft.item.ItemStack;

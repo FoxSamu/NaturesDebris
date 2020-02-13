@@ -1,12 +1,12 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 29 - 2019
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
-package modernity.api.reflect;
+package modernity.api.util;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -143,5 +143,12 @@ public final class EnumUtil {
         } catch( Exception e ) {
             throw new RuntimeException( "Can't add enum", e );
         }
+    }
+
+
+    @SafeVarargs
+    public static <D, T extends Enum<T>> D enumSelect( T value, D... items ) {
+        if( value == null ) throw new NullPointerException();
+        return items[ value.ordinal() ];
     }
 }
