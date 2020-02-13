@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 12 - 2020
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
@@ -38,7 +38,7 @@ public class SphereTree extends Tree {
     private final double maxCanopySize;
 
     public SphereTree( BlockState logX, BlockState logY, BlockState logZ, BlockState leaves ) {
-        this( logX, logY, logZ, leaves, 6, 9, 4, 6 );
+        this( logX, logY, logZ, leaves, 6, 9, 3, 4 );
     }
 
     public SphereTree( BlockState logX, BlockState logY, BlockState logZ, BlockState leaves, int minHeight, int maxHeight, double minCanopySize, double maxCanopySize ) {

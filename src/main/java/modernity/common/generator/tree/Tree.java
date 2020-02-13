@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 13 - 2020
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
@@ -113,6 +113,11 @@ public abstract class Tree implements IFeatureConfig {
 
     protected void setBlockState( IWorld world, BlockPos pos, BlockState state ) {
         world.setBlockState( pos, state, BlockUpdates.NOTIFY_CLIENTS | BlockUpdates.NO_NEIGHBOR_REACTIONS | BlockUpdates.NO_RENDER );
+    }
+
+    protected void setLogState( IWorld world, BlockPos pos, BlockState state, Consumer<BlockPos> logs ) {
+        setBlockState( world, pos, state );
+        logs.accept( pos.toImmutable() );
     }
 
     public boolean isSustainable( IWorldReader world, BlockPos pos, BlockState state ) {
