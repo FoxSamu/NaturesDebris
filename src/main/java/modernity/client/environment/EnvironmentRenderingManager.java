@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 22 - 2019
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
@@ -16,6 +16,16 @@ public final class EnvironmentRenderingManager {
     public static final Sky SKY = new Sky();
     public static final Precipitation PRECIPITATION = new Precipitation();
     public static final Light LIGHT = new Light();
+
+    private static float caveFactor;
+
+    public static float getCaveFactor() {
+        return caveFactor;
+    }
+
+    public static void setCaveFactor( float caveFactor ) {
+        EnvironmentRenderingManager.caveFactor = caveFactor;
+    }
 
     private EnvironmentRenderingManager() {
     }

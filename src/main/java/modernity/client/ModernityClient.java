@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
@@ -13,10 +13,7 @@ import modernity.client.colormap.ColorMap;
 import modernity.client.colors.ColorProfile;
 import modernity.client.colors.ColorProfileManager;
 import modernity.client.colors.ColorProviderRegistry;
-import modernity.client.handler.FogHandler;
-import modernity.client.handler.ParticleRegistryHandler;
-import modernity.client.handler.TextureStitchHandler;
-import modernity.client.handler.WorldRenderHandler;
+import modernity.client.handler.*;
 import modernity.client.model.MDModelLoaders;
 import modernity.client.render.area.AreaRenderManager;
 import modernity.client.render.block.CustomFluidRenderer;
@@ -134,6 +131,7 @@ public class ModernityClient extends Modernity {
         MOD_EVENT_BUS.register( ParticleRegistryHandler.INSTANCE );
         FORGE_EVENT_BUS.register( FogHandler.INSTANCE );
         FORGE_EVENT_BUS.register( WorldRenderHandler.INSTANCE );
+        FORGE_EVENT_BUS.register( PlayerInCaveHandler.INSTANCE );
     }
 
     @Override

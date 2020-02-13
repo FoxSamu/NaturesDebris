@@ -1,14 +1,13 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 24 - 2019
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
 package modernity.common.net;
 
-import it.unimi.dsi.fastutil.longs.LongSet;
 import modernity.common.generator.structure.CaveStructure;
 import modernity.network.Packet;
 import modernity.network.ProcessContext;
@@ -67,14 +66,15 @@ public class SCaveHeightsPacket implements Packet {
     public void process( ProcessContext ctx ) {
         ctx.ensureMainThread();
 
+        System.out.println( "Received cave packet" );
+
         ClientWorld world = Minecraft.getInstance().world;
         StructureStart start = new CaveStructure.Start( x, z, world.getBiome( new BlockPos( x * 16, 0, z * 16 ) ) );
 
         IChunk chunk = world.getChunk( x, z );
         chunk.putStructureStart( CaveStructure.NAME, start );
 
-        LongSet refs = chunk.getStructureReferences( CaveStructure.NAME );
-        refs.add( ChunkPos.asLong( x, z ) );
+        chunk.addStructureReference( CaveStructure.NAME, ChunkPos.asLong( x, z ) );
     }
 
     @Override

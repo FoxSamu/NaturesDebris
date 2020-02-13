@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 21 - 2020
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
@@ -15,9 +15,7 @@ import modernity.api.util.ColorUtil;
 import modernity.client.gui.recipebook.CleanerBookGui;
 import modernity.client.gui.recipebook.CleanerBookType;
 import modernity.client.gui.recipebook.RecipeBookGui;
-import modernity.common.Modernity;
 import modernity.common.container.CleanerContainer;
-import modernity.common.net.CDrainCleanerPacket;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.ImageButton;
@@ -99,7 +97,6 @@ public class CleanerScreen extends ContainerScreen<CleanerContainer> implements 
     private void drain() {
         if( ! canDrain() ) return;
         assert minecraft != null;
-        Modernity.network().sendToServer( new CDrainCleanerPacket( container.windowId ) );
     }
 
     private boolean canDrain() {

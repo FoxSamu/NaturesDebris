@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 21 - 2020
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
@@ -28,7 +28,5 @@ public final class MDPackets {
         channel.register( ESide.SERVER, SAreaUntrackPacket.class );
         channel.register( ESide.SERVER, SAreaUpdatePacket.class );
         channel.register( ESide.SERVER, SAreaMessagePacket.class );
-
-        channel.register( ESide.CLIENT, CDrainCleanerPacket.class );
     }
 }

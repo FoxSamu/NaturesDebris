@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
@@ -239,6 +239,14 @@ public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimen
             fog.color[ 1 ] = MathUtil.lerp( fog.color[ 1 ], color.g, skylightFac * 0.1F * fogFac );
             fog.color[ 2 ] = MathUtil.lerp( fog.color[ 2 ], color.b, skylightFac * 0.1F * fogFac );
         }
+
+        float caveFac = EnvironmentRenderingManager.getCaveFactor();
+        if( caveFac > 0 ) {
+            fog.color[ 0 ] = MathUtil.lerp( fog.color[ 0 ], 0, caveFac );
+            fog.color[ 1 ] = MathUtil.lerp( fog.color[ 1 ], 0, caveFac );
+            fog.color[ 2 ] = MathUtil.lerp( fog.color[ 2 ], 0, caveFac );
+            fog.density = MathUtil.lerp( fog.density, 0.07F, fogFac );
+        }
     }
 
     @Override
@@ -339,6 +347,16 @@ public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimen
             sky.backlightColor[ 1 ] = MathUtil.lerp( sky.backlightColor[ 1 ], 1, 0.5F );
             sky.backlightColor[ 2 ] = MathUtil.lerp( sky.backlightColor[ 2 ], 1, 0.5F );
         }
+
+        float caveFac = EnvironmentRenderingManager.getCaveFactor();
+        if( caveFac > 0 ) {
+            sky.moonBrightness = MathUtil.lerp( sky.moonBrightness, 0, caveFac );
+            sky.starBrightness = MathUtil.lerp( sky.starBrightness, 0, caveFac );
+            sky.twilightBrightness = MathUtil.lerp( sky.twilightBrightness, 0, caveFac );
+            sky.cloudBrightness = MathUtil.lerp( sky.cloudBrightness, 0, caveFac );
+            sky.backlightBrightness = MathUtil.lerp( sky.backlightBrightness, 0, caveFac );
+            sky.skylightBrightness = MathUtil.lerp( sky.skylightBrightness, 0, caveFac );
+        }
     }
 
     @Override
@@ -360,7 +378,7 @@ public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimen
     @OnlyIn( Dist.CLIENT )
     public void updateLight( Light light ) {
         light.setSky( 0.07, 0.08, 0.1 );
-        light.setAmbient( 0, 0, 0 );
+        light.setAmbient( 0.02, 0.02, 0.02 );
         light.setBlock( 0xfef0de );
 
         SkyLightEnvEvent skylightEv = getEnvEventManager().getByType( MDEnvEvents.SKYLIGHT );
@@ -374,6 +392,13 @@ public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimen
 
         if( world.getLastLightningBolt() > 0 ) {
             light.setSky( 0.7, 0.7, 0.7 );
+        }
+
+        float caveFac = EnvironmentRenderingManager.getCaveFactor();
+        if( caveFac > 0 ) {
+            light.ambient[ 0 ] = MathUtil.lerp( light.ambient[ 0 ], 0, caveFac );
+            light.ambient[ 1 ] = MathUtil.lerp( light.ambient[ 1 ], 0, caveFac );
+            light.ambient[ 2 ] = MathUtil.lerp( light.ambient[ 2 ], 0, caveFac );
         }
     }
 

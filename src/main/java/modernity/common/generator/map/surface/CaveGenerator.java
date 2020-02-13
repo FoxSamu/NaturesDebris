@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
@@ -168,7 +168,7 @@ public class CaveGenerator extends MapGenerator<SurfaceGenData> {
             noise += add * add * add * 3;
         }
 
-        int upperbnd = height - 4;
+        int upperbnd = height - 12;
         if( y > upperbnd - 10 ) {
             double add = MathUtil.unlerp( upperbnd - 10, upperbnd, y );
             noise += add * add * add * 3;

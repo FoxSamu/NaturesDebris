@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 24 - 2019
+ * Date:   02 - 13 - 2020
  * Author: rgsw
  */
 
@@ -59,7 +59,7 @@ public final class CaveUtil {
         IChunk chunk = world.getChunk( cx, cz );
         StructureStart start = chunk.getStructureStart( CaveStructure.NAME );
         if( ! ( start instanceof CaveStructure.Start ) ) {
-            throw new RuntimeException( "No caves found in chunk " + cx + ", " + cz + "..." );
+            return - 1;
         }
         return ( (CaveStructure.Start) start ).getLimit( x % 16, z % 16 );
     }
