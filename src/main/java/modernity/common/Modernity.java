@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 06 - 2020
+ * Date:   02 - 14 - 2020
  * Author: rgsw
  */
 
@@ -12,6 +12,7 @@ import modernity.MDInfo;
 import modernity.MDModules;
 import modernity.ModernityBootstrap;
 import modernity.api.dimension.IInitializeDimension;
+import modernity.api.util.SimpleAsyncExecutor;
 import modernity.common.area.core.IWorldAreaManager;
 import modernity.common.area.core.ServerWorldAreaManager;
 import modernity.common.capability.MDCapabilities;
@@ -86,6 +87,10 @@ public abstract class Modernity {
     private final PacketChannel networkChannel = new PacketChannel( new ResourceLocation( "modernity:connection" ), 0 );
 
     private final ModuleManager<Modernity> modules = new ModuleManager<>( this, MDModules.MODERNITY );
+
+    private final SimpleAsyncExecutor executor = new SimpleAsyncExecutor( Runtime.getRuntime().availableProcessors(), "ModernityAsyncThread-%d", thr -> {
+        LOGGER.error( "Failed to execute task", thr );
+    }, true );
 
     public Modernity() {
         if( instance != null ) {
@@ -316,6 +321,14 @@ public abstract class Modernity {
         if( dimen instanceof IInitializeDimension ) {
             ( (IInitializeDimension) dimen ).init();
         }
+    }
+
+    public SimpleAsyncExecutor getExecutor() {
+        return executor;
+    }
+
+    public static SimpleAsyncExecutor executor() {
+        return get().getExecutor();
     }
 
     public static ModuleManager<Modernity> modules() {
