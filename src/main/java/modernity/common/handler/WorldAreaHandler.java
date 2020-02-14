@@ -1,16 +1,18 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   02 - 14 - 2020
  * Author: rgsw
  */
 
 package modernity.common.handler;
 
 import modernity.common.area.core.ServerWorldAreaManager;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -35,5 +37,12 @@ public enum WorldAreaHandler {
     @SubscribeEvent
     public void worldUnload( WorldEvent.Unload event ) {
         ServerWorldAreaManager.get( (World) event.getWorld() ).ifPresent( ServerWorldAreaManager::saveAll );
+    }
+
+    @SubscribeEvent
+    public void playerJoin( EntityJoinWorldEvent event ) {
+        if( event.getEntity() instanceof PlayerEntity ) {
+            ServerWorldAreaManager.get( event.getWorld() ).ifPresent( ServerWorldAreaManager::playerJoin );
+        }
     }
 }

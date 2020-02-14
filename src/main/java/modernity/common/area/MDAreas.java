@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   02 - 14 - 2020
  * Author: rgsw
  */
 
@@ -28,6 +28,7 @@ public final class MDAreas {
     private static final RegistryHandler<AreaType<?>> ENTRIES = new RegistryHandler<>( "modernity" );
 
     public static final AreaType<ForestRunesArea> FOREST_RUNES = register( "forest_runes", ForestRunesArea::new, 20 );
+    public static final AreaType<HeightmapsArea> HEIGHTMAPS = register( "heightmaps", HeightmapsArea::new, 20 );
 
     private static <T extends Area> AreaType<T> register( String id, BiFunction<World, AreaBox, T> factory, int updateInterval, String... aliases ) {
         return ENTRIES.register( id, new AreaType<>( factory, updateInterval ), aliases );

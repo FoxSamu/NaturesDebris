@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 15 - 2019
+ * Date:   02 - 14 - 2020
  * Author: rgsw
  */
 
@@ -79,6 +79,10 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
             updateUnloading();
             unloadTimer = 0;
         }
+    }
+
+    public synchronized void playerJoin() {
+        updateTrackers();
     }
 
     public synchronized void init() {

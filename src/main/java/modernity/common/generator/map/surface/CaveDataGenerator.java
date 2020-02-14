@@ -2,17 +2,18 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 14 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.map.surface;
 
 import modernity.api.util.IntArrays;
+import modernity.common.area.HeightmapsArea;
+import modernity.common.area.core.AreaBox;
+import modernity.common.area.core.ServerWorldAreaManager;
 import modernity.common.generator.map.MapGenerator;
-import modernity.common.generator.structure.MDStructures;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.WorldGenRegion;
 
 public class CaveDataGenerator extends MapGenerator<SurfaceGenData> {
@@ -26,10 +27,14 @@ public class CaveDataGenerator extends MapGenerator<SurfaceGenData> {
 
         int cx = region.getMainChunkX();
         int cz = region.getMainChunkZ();
-        IChunk chunk = region.getChunk( cx, cz );
 
         IntArrays.add( heightmap, - 8 );
 
-        MDStructures.CAVE.addCaves( data.getGenerator(), chunk, cx, cz, heightmap, world.getSeed() );
+        ServerWorldAreaManager.get( region.getWorld() ).ifPresent( manager -> {
+            manager.addArea( new HeightmapsArea(
+                manager.getWorld(),
+                new AreaBox( cx * 16, 0, cz * 16, cx * 16 + 16, 256, cz * 16 + 16 )
+            ) );
+        } );
     }
 }
