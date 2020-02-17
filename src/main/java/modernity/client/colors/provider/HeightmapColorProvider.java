@@ -8,6 +8,7 @@
 
 package modernity.client.colors.provider;
 
+import modernity.api.util.ColorUtil;
 import modernity.client.colors.IColorProvider;
 import modernity.common.util.CaveUtil;
 import net.minecraft.client.Minecraft;
@@ -49,7 +50,11 @@ public class HeightmapColorProvider implements IColorProvider {
         if( interp == 1 ) return above.getColor( world, pos );
         if( interp == 0 ) return below.getColor( world, pos );
 
-        return 0;
+        return ColorUtil.interpolate(
+            below.getColor( world, pos ),
+            above.getColor( world, pos ),
+            interp
+        );
     }
 
 
