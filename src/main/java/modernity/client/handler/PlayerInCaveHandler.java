@@ -21,8 +21,6 @@ import net.redgalaxy.util.MathUtil;
 public enum PlayerInCaveHandler {
     INSTANCE;
 
-    private long lastHeightLog;
-
     @SubscribeEvent
     public void onRenderTick( TickEvent.RenderTickEvent event ) {
         if( event.phase == TickEvent.Phase.START ) {
@@ -44,12 +42,6 @@ public enum PlayerInCaveHandler {
                     float h0 = MathUtil.lerp( h00, h01, MathUtil.positiveModulo( (float) eyes.z, 1 ) );
                     float h1 = MathUtil.lerp( h10, h11, MathUtil.positiveModulo( (float) eyes.z, 1 ) );
                     float h = MathUtil.lerp( h0, h1, MathUtil.positiveModulo( (float) eyes.x, 1 ) );
-
-                    long nanoTime = System.nanoTime();
-                    if( nanoTime - lastHeightLog > 1000000000L ) {
-                        lastHeightLog = nanoTime;
-                        System.out.println( "HEIGHT " + h );
-                    }
 
                     float off = (float) eyes.y - h;
 
