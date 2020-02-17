@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 14 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -23,6 +23,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -40,9 +41,9 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
 
     private final Long2ObjectLinkedOpenHashMap<AreaHolder> loadedAreas = new Long2ObjectLinkedOpenHashMap<>();
 
-    private final HashSet<ServerPlayerEntity> trackers = new HashSet<>();
-    private final HashSet<ServerPlayerEntity> untrackers = new HashSet<>();
-    private final HashSet<ChunkPos> unloading = new HashSet<>();
+    private final Set<ServerPlayerEntity> trackers = Collections.synchronizedSet( new HashSet<>() );
+    private final Set<ServerPlayerEntity> untrackers = Collections.synchronizedSet( new HashSet<>() );
+    private final Set<ChunkPos> unloading = Collections.synchronizedSet( new HashSet<>() );
 
     private int trackingTimer = 0;
     private int unloadTimer = 0;
@@ -190,7 +191,7 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
         referenceManager.unload( chunk.x, chunk.z );
     }
 
-    private void unloadRef( long ref ) {
+    private synchronized void unloadRef( long ref ) {
         if( loadedAreas.containsKey( ref ) ) {
             AreaHolder holder = loadedAreas.get( ref );
             holder.unreference();

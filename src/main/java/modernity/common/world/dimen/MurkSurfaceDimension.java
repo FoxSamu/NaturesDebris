@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 13 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -245,7 +245,7 @@ public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimen
             fog.color[ 0 ] = MathUtil.lerp( fog.color[ 0 ], 0, caveFac );
             fog.color[ 1 ] = MathUtil.lerp( fog.color[ 1 ], 0, caveFac );
             fog.color[ 2 ] = MathUtil.lerp( fog.color[ 2 ], 0, caveFac );
-            fog.density = MathUtil.lerp( fog.density, 0.07F, fogFac );
+            fog.density = MathUtil.lerp( fog.density, 0.07F, caveFac );
         }
     }
 

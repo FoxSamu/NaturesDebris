@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 14 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -66,6 +66,6 @@ public final class CaveUtil {
     public static int caveHeight( int x, int z, IWorld world ) {
         HeightmapsArea area = getHeightmapsArea( world, new BlockPos( x, 0, z ) );
         if( area == null ) return - 1;
-        return area.getCaveHeightmap().getHeight( x % 16, z % 16 );
+        return area.getCaveHeightmap().getHeight( x, z );
     }
 }

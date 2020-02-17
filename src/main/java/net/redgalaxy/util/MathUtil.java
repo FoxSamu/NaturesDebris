@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -138,6 +138,7 @@ public final class MathUtil {
 
     /**
      * Interpolates between a and b and clamps the value to a and b
+     *
      * @param x The interpolator
      * @see #lerp(double, double, double)
      * @see #clamp(double, double, double)
@@ -148,11 +149,29 @@ public final class MathUtil {
 
     /**
      * Interpolates between a and b and clamps the value to a and b
+     *
      * @param x The interpolator
      * @see #lerp(float, float, float)
      * @see #clamp(float, float, float)
      */
     public static float clampLerp( float a, float b, float x ) {
         return lerp( a, b, clamp( x, 0, 1 ) );
+    }
+
+
+    public static double positiveModulo( double d, double mod ) {
+        return d % mod + ( d < 0 ? mod : 0 );
+    }
+
+    public static float positiveModulo( float f, float mod ) {
+        return f % mod + ( f < 0 ? mod : 0 );
+    }
+
+    public static int positiveModulo( int i, int mod ) {
+        return i % mod + ( i < 0 ? mod : 0 );
+    }
+
+    public static long positiveModulo( long l, long mod ) {
+        return l % mod + ( l < 0 ? mod : 0 );
     }
 }

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 14 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -38,12 +38,13 @@ public class HeightmapsArea extends Area {
         caveHeightmap.applyLongArray( nbt.getLongArray( "caveHeightmap" ) );
     }
 
-    public void applyCaveHeights( int[] hm ) {
+    public HeightmapsArea applyCaveHeights( int[] hm ) {
         for( int x = 0; x < 16; x++ ) {
             for( int z = 0; z < 16; z++ ) {
                 caveHeightmap.setHeight( x, z, hm[ x + z * 16 ] );
             }
         }
+        return this;
     }
 
     /**

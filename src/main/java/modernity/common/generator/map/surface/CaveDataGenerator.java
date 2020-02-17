@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 14 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -30,11 +30,9 @@ public class CaveDataGenerator extends MapGenerator<SurfaceGenData> {
 
         IntArrays.add( heightmap, - 8 );
 
-        ServerWorldAreaManager.get( region.getWorld() ).ifPresent( manager -> {
-            manager.addArea( new HeightmapsArea(
-                manager.getWorld(),
-                new AreaBox( cx * 16, 0, cz * 16, cx * 16 + 16, 256, cz * 16 + 16 )
-            ) );
-        } );
+        ServerWorldAreaManager.get( region.getWorld() ).ifPresent( manager -> manager.addArea( new HeightmapsArea(
+            manager.getWorld(),
+            new AreaBox( cx * 16, 0, cz * 16, cx * 16 + 16, 256, cz * 16 + 16 )
+        ).applyCaveHeights( heightmap ) ) );
     }
 }
