@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -26,9 +26,7 @@ public final class BlockPredicates {
      */
     public static final Predicate<BlockState> ROCK_TYPES = blocks(
         MDBlocks.ROCK,
-        MDBlocks.DARKROCK,
-        MDBlocks.LIGHTROCK,
-        MDBlocks.REDROCK
+        MDBlocks.DARKROCK
     );
 
     public static final Predicate<BlockState> ROCKS_OR_LIMESTONE = ROCK_TYPES.or( block( MDBlocks.LIMESTONE ) );

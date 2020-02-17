@@ -1,0 +1,23 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    [
+      {
+        "item": "modernity:inver_wood"
+      },
+      {
+        "item": "modernity:inver_log"
+      },
+      {
+        "item": "modernity:stripped_inver_wood"
+      },
+      {
+        "item": "modernity:stripped_inver_log"
+      }
+    ]
+  ],
+  "result": {
+    "item": "modernity:inver_planks",
+    "count": 4
+  }
+}

@@ -2,8 +2,6 @@
   "replace": false,
   "values": [
     "modernity:rock",
-    "modernity:darkrock",
-    "modernity:lightrock",
-    "modernity:redrock"
+    "modernity:darkrock"
   ]
 }

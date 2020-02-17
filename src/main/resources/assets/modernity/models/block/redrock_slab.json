@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "side": "modernity:block/redrock",
-    "top": "modernity:block/redrock",
-    "bottom": "modernity:block/redrock"
-  }
-}

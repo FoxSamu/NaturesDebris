@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:anthracite"
+    }
+  },
+  "result": {
+    "item": "modernity:anthracite_block"
+  }
+}

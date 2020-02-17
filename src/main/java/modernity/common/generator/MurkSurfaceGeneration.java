@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -195,8 +195,6 @@ public final class MurkSurfaceGeneration {
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCKS_OR_LIMESTONE, MDBlocks.REGOLITH.getDefaultState(), 50 ), new BelowHeight( 128 ) ) );
 
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_TYPES, MDBlocks.DARKROCK.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 3 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_TYPES, MDBlocks.LIGHTROCK.getDefaultState(), 30 ), new BelowHeight( 128 ), new Chance( 0.5 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_TYPES, MDBlocks.REDROCK.getDefaultState(), 40 ), new BelowHeight( 128 ) ) );
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_TYPES, MDBlocks.LIMESTONE.getDefaultState(), 40 ), new BelowHeight( 128 ) ) );
 
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( SUMESTONE, MDBlocks.DARK_SUMESTONE.getDefaultState(), 40 ), new BetweenHeight( 0, 26 ) ) );

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 06 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -32,7 +32,7 @@ public class MDItemGroup extends ItemGroup {
                                                  .build();
 
     public static final MDItemGroup DECORATIVES = builder( "modernity.decoratives" )
-                                                      .iconItem( () -> MDBlocks.LIGHTROCK_TORCH )
+                                                      .iconItem( () -> MDBlocks.PEBBLES )
                                                       .build();
 
     public static final MDItemGroup MISC = builder( "modernity.misc" )
