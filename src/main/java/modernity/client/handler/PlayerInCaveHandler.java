@@ -30,7 +30,7 @@ public enum PlayerInCaveHandler {
                     int x0 = MathHelper.floor( mc.player.posX );
                     int z0 = MathHelper.floor( mc.player.posZ );
                     int x1 = x0 + 1;
-                    int z1 = x0 + 1;
+                    int z1 = z0 + 1;
 
                     int h00 = CaveUtil.caveHeight( x0, z0, mc.world ) - 16;
                     int h01 = CaveUtil.caveHeight( x0, z1, mc.world ) - 16;
