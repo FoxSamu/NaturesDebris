@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -18,22 +18,21 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.HashMap;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 public class AreaReferenceManager extends BMFRegionCacher {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private final HashMap<ChunkPos, TrackableAreaReferenceChunk> loadedReferenceChunks = new HashMap<>();
-    private final ArrayDeque<ChunkPos> unloadQueue = new ArrayDeque<>();
+    private final Map<ChunkPos, TrackableAreaReferenceChunk> loadedReferenceChunks = Collections.synchronizedMap( new HashMap<>() );
+    private final Queue<ChunkPos> unloadQueue = new ArrayDeque<>();
 
     protected AreaReferenceManager( File dir ) {
         super( dir );
     }
 
-    public TrackableAreaReferenceChunk getLoadedChunk( int x, int z ) {
+    public synchronized TrackableAreaReferenceChunk getLoadedChunk( int x, int z ) {
         return loadedReferenceChunks.get( new ChunkPos( x, z ) );
     }
 
@@ -138,7 +137,7 @@ public class AreaReferenceManager extends BMFRegionCacher {
             }
         }
         while( ! unloadQueue.isEmpty() ) {
-            ChunkPos pos = unloadQueue.removeFirst();
+            ChunkPos pos = unloadQueue.poll();
             doBeforeUnload.accept( pos );
             unload( pos.x, pos.z );
         }

@@ -63,8 +63,10 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
 
     @Override
     public synchronized void tick() {
-        for( AreaHolder holder : loadedAreas.values() ) {
-            holder.tick();
+        synchronized( loadedAreas ) {
+            for( AreaHolder holder : loadedAreas.values() ) {
+                holder.tick();
+            }
         }
 
         trackingTimer++;
@@ -110,39 +112,45 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
     }
 
     private void updateUnloading() {
-        unloading.clear();
-        referenceManager.loadedChunksStream()
-                        .filter( TrackableAreaReferenceChunk::isNotTracked )
-                        .map( IAreaReferenceChunk::getPos )
-                        .collect( Collectors.toCollection( () -> unloading ) )
-                        .forEach( this::unloadChunk );
+        synchronized( unloading ) {
+            unloading.clear();
+            referenceManager.loadedChunksStream()
+                            .filter( TrackableAreaReferenceChunk::isNotTracked )
+                            .map( IAreaReferenceChunk::getPos )
+                            .collect( Collectors.toCollection( () -> unloading ) )
+                            .forEach( this::unloadChunk );
+        }
     }
 
     private void checkTrackers( TrackableAreaReferenceChunk chunk ) {
-        ChunkPos pos = chunk.getPos();
+        synchronized( trackers ) {
+            synchronized( untrackers ) {
+                ChunkPos pos = chunk.getPos();
 
-        untrackers.clear();
-        trackers.clear();
+                untrackers.clear();
+                trackers.clear();
 
-        Set<ServerPlayerEntity> players
-            = world.getServer()
-                   .getPlayerList()
-                   .getPlayers()
-                   .stream()
-                   .filter(
-                       player -> player.world.getDimension().getType()
-                                     == world.dimension.getType()
-                   )
-                   .collect( Collectors.toCollection( () -> trackers ) );
+                Set<ServerPlayerEntity> players
+                    = world.getServer()
+                           .getPlayerList()
+                           .getPlayers()
+                           .stream()
+                           .filter(
+                               player -> player.world.getDimension().getType()
+                                             == world.dimension.getType()
+                           )
+                           .collect( Collectors.toCollection( () -> trackers ) );
 
 
-        chunk.trackerStream()
-             .collect( Collectors.toCollection( () -> untrackers ) )
-             .forEach( player -> {
-                 if( ! players.contains( player ) || ! isCloseEnough( player, pos, TRACK_RANGE ) ) {
-                     untrackChunk( pos, player );
-                 }
-             } );
+                chunk.trackerStream()
+                     .collect( Collectors.toCollection( () -> untrackers ) )
+                     .forEach( player -> {
+                         if( ! players.contains( player ) || ! isCloseEnough( player, pos, TRACK_RANGE ) ) {
+                             untrackChunk( pos, player );
+                         }
+                     } );
+            }
+        }
     }
 
     private boolean isCloseEnough( ServerPlayerEntity entity, ChunkPos pos, int dist ) {
@@ -154,7 +162,9 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
     }
 
     private void putArea( AreaHolder holder ) {
-        loadedAreas.putAndMoveToFirst( holder.area.getReferenceID(), holder );
+        synchronized( loadedAreas ) {
+            loadedAreas.putAndMoveToFirst( holder.area.getReferenceID(), holder );
+        }
     }
 
 
@@ -168,15 +178,17 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
     }
 
     private void loadRef( long ref ) {
-        if( loadedAreas.containsKey( ref ) ) {
-            AreaHolder holder = loadedAreas.get( ref );
-            holder.reference();
-        } else {
-            Area area = ioManager.loadArea( ref );
-            if( area == null ) return;
-            AreaHolder holder = new AreaHolder( area );
-            holder.reference();
-            putArea( holder );
+        synchronized( loadedAreas ) {
+            if( loadedAreas.containsKey( ref ) ) {
+                AreaHolder holder = loadedAreas.get( ref );
+                holder.reference();
+            } else {
+                Area area = ioManager.loadArea( ref );
+                if( area == null ) return;
+                AreaHolder holder = new AreaHolder( area );
+                holder.reference();
+                putArea( holder );
+            }
         }
     }
 
@@ -192,19 +204,21 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
     }
 
     private synchronized void unloadRef( long ref ) {
-        if( loadedAreas.containsKey( ref ) ) {
-            AreaHolder holder = loadedAreas.get( ref );
-            holder.unreference();
-            if( holder.refCounter <= 0 ) {
-                if( holder.refCounter < 0 ) {
-                    LOGGER.error( "Area reference count was negative?! Did someone hack the area system? Unloading anyways..." );
+        synchronized( loadedAreas ) {
+            if( loadedAreas.containsKey( ref ) ) {
+                AreaHolder holder = loadedAreas.get( ref );
+                holder.unreference();
+                if( holder.refCounter <= 0 ) {
+                    if( holder.refCounter < 0 ) {
+                        LOGGER.error( "Area reference count was negative?! Did someone hack the area system? Unloading anyways..." );
+                    }
+
+                    holder.unload();
+
+                    loadedAreas.remove( ref );
+
+                    ioManager.saveArea( holder.area.getReferenceID(), holder.area );
                 }
-
-                holder.unload();
-
-                loadedAreas.remove( ref );
-
-                ioManager.saveArea( holder.area.getReferenceID(), holder.area );
             }
         }
     }
@@ -220,12 +234,14 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
     }
 
     private void trackRef( long ref, ServerPlayerEntity entity ) {
-        AreaHolder holder = loadedAreas.get( ref );
-        if( holder == null ) {
-            LOGGER.error( "Player tries to track a not-loaded area?! Did someone hack the area system?" );
-            return;
+        synchronized( loadedAreas ) {
+            AreaHolder holder = loadedAreas.get( ref );
+            if( holder == null ) {
+                LOGGER.error( "Player tries to track a not-loaded area?! Did someone hack the area system?" );
+                return;
+            }
+            holder.track( entity );
         }
-        holder.track( entity );
     }
 
 
@@ -241,23 +257,27 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
     }
 
     private void untrackRef( long ref, ServerPlayerEntity entity ) {
-        AreaHolder holder = loadedAreas.get( ref );
-        if( holder == null ) {
-            LOGGER.error( "Player tries to untrack a not-loaded area?! Did someone hack the area system?" );
-            return;
+        synchronized( loadedAreas ) {
+            AreaHolder holder = loadedAreas.get( ref );
+            if( holder == null ) {
+                LOGGER.error( "Player tries to untrack a not-loaded area?! Did someone hack the area system?" );
+                return;
+            }
+            holder.untrack( entity );
         }
-        holder.untrack( entity );
     }
 
 
 
     public synchronized void saveAll() {
-        for( AreaHolder holder : loadedAreas.values() ) {
-            ioManager.saveArea( holder.area.getReferenceID(), holder.area );
+        synchronized( loadedAreas ) {
+            for( AreaHolder holder : loadedAreas.values() ) {
+                ioManager.saveArea( holder.area.getReferenceID(), holder.area );
+            }
+            ioManager.saveAll();
+            LOGGER.info( "All world area's are saved" );
+            referenceManager.saveAll();
         }
-        ioManager.saveAll();
-        LOGGER.info( "All world area's are saved" );
-        referenceManager.saveAll();
     }
 
 
@@ -290,11 +310,13 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
 
     public synchronized void removeArea( Area area ) {
         long refID = area.getReferenceID();
-        if( ! loadedAreas.containsKey( refID ) ) return;
+        synchronized( loadedAreas ) {
+            if( ! loadedAreas.containsKey( refID ) ) return;
 
-        AreaHolder holder = loadedAreas.remove( refID );
+            AreaHolder holder = loadedAreas.remove( refID );
 
-        holder.unload(); // Notify clients of removal
+            holder.unload(); // Notify clients of removal
+        }
 
         AreaBox box = area.getBox();
         int minX = box.getMinChunkX();
@@ -315,18 +337,24 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
 
     @Override
     public Area getLoadedArea( long reference ) {
-        AreaHolder area = loadedAreas.get( reference );
-        return area == null ? null : area.area;
+        synchronized( loadedAreas ) {
+            AreaHolder area = loadedAreas.get( reference );
+            return area == null ? null : area.area;
+        }
     }
 
     @Override
     public boolean isAreaLoaded( long reference ) {
-        return loadedAreas.containsKey( reference );
+        synchronized( loadedAreas ) {
+            return loadedAreas.containsKey( reference );
+        }
     }
 
     @Override
     public Stream<Area> streamAreas() {
-        return loadedAreas.values().stream().map( holder -> holder.area );
+        synchronized( loadedAreas ) {
+            return loadedAreas.values().stream().map( holder -> holder.area );
+        }
     }
 
     @Override
@@ -354,9 +382,11 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
     }
 
     public Stream<ServerPlayerEntity> getTrackingPlayers( long refID ) {
-        AreaHolder holder = loadedAreas.get( refID );
-        if( holder == null ) return Stream.empty();
-        return holder.trackers.keySet().stream();
+        synchronized( loadedAreas ) {
+            AreaHolder holder = loadedAreas.get( refID );
+            if( holder == null ) return Stream.empty();
+            return holder.trackers.keySet().stream();
+        }
     }
 
     private static File getAreaFolder( ServerWorld world ) {
