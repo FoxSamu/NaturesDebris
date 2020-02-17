@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 06 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -43,6 +43,7 @@ public final class MDItems {
     public static final Item FINNERITE = item( "finnerite", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item IVERITE = item( "iverite", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item SAGERITE = item( "sagerite", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item LUMINOSITE_SHARDS = item( "luminosite_shards", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
 
 
 
@@ -51,6 +52,22 @@ public final class MDItems {
     public static final Item ASH = item( "ash", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item BLACKWOOD_STICK = item( "blackwood_stick", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item INVER_STICK = item( "inver_stick", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+
+    public static final Item GOO_BALL = item( "goo_ball", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item GLAZED_GOO_BALL = item( "glazed_goo_ball", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item POISONOUS_GOO_BALL = item( "poisonous_goo_ball", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item SHADE_BALL = item( "shade_ball", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+
+    public static final Item BLACKBONE = item( "blackbone", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+
+
+
+    /* ==== PLANTS ==== */
+
+    public static final Item SHADE_BLUE_FLOWER = item( "shade_blue_flower", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item NUDWART_PETALS = item( "nudwart_petals", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item FOXGLOVE_PETALS = item( "foxglove_petals", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item SEEPWEED_LEAVES = item( "seepweed_leaves", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
 
 
 
