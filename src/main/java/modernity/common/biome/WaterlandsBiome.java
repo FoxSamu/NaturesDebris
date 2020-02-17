@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 02 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -31,6 +31,7 @@ import net.minecraft.world.gen.Heightmap;
 public class WaterlandsBiome extends ModernityBiome {
     protected WaterlandsBiome( Type type ) {
         super( type.builder );
+        BiomeGroups.registerBiomeToGroup( "waterlands", this );
 
         DefaultDecoration.setupDefaultDecoration( this );
 

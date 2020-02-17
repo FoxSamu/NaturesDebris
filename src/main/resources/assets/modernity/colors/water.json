@@ -1,12 +1,17 @@
 {
-  "biomes": {
-    "modernity:forest": [ 45, 61, 163 ],
-    "modernity:lush_meadow": [ 21, 31, 150 ],
-    "modernity:meadow": [ 21, 31, 150 ],
-    "modernity:river": [ 26, 43, 155 ],
-    "modernity:swamp": [ 57, 68, 60 ],
-    "modernity:waterlands": [ 17, 49, 91 ],
-    "item": [ 21, 31, 150 ],
-    "default": [ 21, 31, 150 ]
+  "heightmap": {
+    "type": "cave",
+    "above": {
+      "biomes": {
+        "#modernity:forest": [ 45, 61, 163 ],
+        "#modernity:meadow_like": [ 21, 31, 150 ],
+        "#modernity:river": [ 26, 43, 155 ],
+        "#modernity:swamp": [ 57, 68, 60 ],
+        "#modernity:waterlands": [ 17, 49, 91 ],
+        "item": [ 21, 31, 150 ],
+        "default": [ 21, 31, 150 ]
+      }
+    },
+    "below": [ 19, 22, 69 ]
   }
 }

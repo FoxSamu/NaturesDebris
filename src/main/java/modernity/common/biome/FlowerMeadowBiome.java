@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -29,6 +29,8 @@ import net.minecraft.world.gen.Heightmap;
 public class FlowerMeadowBiome extends ModernityBiome {
     protected FlowerMeadowBiome( Type type ) {
         super( type.builder );
+        BiomeGroups.registerBiomeToGroup( "flower_meadow", this );
+        BiomeGroups.registerBiomeToGroup( "meadow_like", this );
 
         MurkSurfaceGeneration.addCaveDeposits( this );
         MurkSurfaceGeneration.addCaveOres( this );

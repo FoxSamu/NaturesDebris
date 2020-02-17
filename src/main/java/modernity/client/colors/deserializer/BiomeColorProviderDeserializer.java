@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 03 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -17,11 +17,13 @@ import modernity.client.colors.IColorProvider;
 import modernity.client.colors.IColorProviderDeserializer;
 import modernity.client.colors.provider.BiomeSpecificColorProvider;
 import modernity.client.colors.provider.ErrorColorProvider;
+import modernity.common.biome.BiomeGroups;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
 
 public class BiomeColorProviderDeserializer implements IColorProviderDeserializer {
@@ -99,6 +101,11 @@ public class BiomeColorProviderDeserializer implements IColorProviderDeserialize
             Predicate<String> a = biomeSelector( selector.substring( 0, or ), ctx );
             Predicate<String> b = biomeSelector( selector.substring( or + 1 ), ctx );
             return str -> a.test( str ) || b.test( str );
+        }
+
+        if( selector.startsWith( "#" ) ) {
+            Set<String> group = BiomeGroups.getBiomeGroup( sel.substring( 1 ) );
+            return str -> ! group.contains( str );
         }
 
         return str -> str.equals( selector );

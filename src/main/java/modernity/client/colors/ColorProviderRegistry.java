@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 03 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -45,6 +45,7 @@ public final class ColorProviderRegistry {
         register( new ResourceLocation( "colormap" ), new ColorMapColorProviderDeserializer() );
         register( new ResourceLocation( "expression" ), new ExpressionColorProviderDeserializer() );
         register( new ResourceLocation( "ref" ), new ReferencedColorProviderDeserializer() );
+        register( new ResourceLocation( "heightmap" ), new HeightmapProviderDeserializer() );
     }
 
     public static IColorProviderDeserializer deserializer( ResourceLocation loc ) {

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -28,6 +28,8 @@ import net.minecraft.world.gen.Heightmap;
 public class LushGrasslandBiome extends ModernityBiome {
     protected LushGrasslandBiome( Type type ) {
         super( type.builder );
+        BiomeGroups.registerBiomeToGroup( "lush_grassland", this );
+        BiomeGroups.registerBiomeToGroup( "meadow_like", this );
 
         boolean open = type == Type.LUSH_GRASSLAND_EDGE || type == Type.LUSH_GRASSLAND_OPEN || type == Type.HIGH_LUSH_GRASSLAND_OPEN;
 

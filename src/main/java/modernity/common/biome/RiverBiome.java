@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 02 - 2020
+ * Date:   02 - 17 - 2020
  * Author: rgsw
  */
 
@@ -27,6 +27,7 @@ import net.minecraft.world.gen.Heightmap;
 public class RiverBiome extends ModernityBiome {
     protected RiverBiome( Type type ) {
         super( type.builder );
+        BiomeGroups.registerBiomeToGroup( "river", this );
 
         DefaultDecoration.setupDefaultDecoration( this );
 
