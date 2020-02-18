@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   02 - 18 - 2020
  * Author: rgsw
  */
 
@@ -57,6 +57,11 @@ public class HeightmapColorProvider implements IColorProvider {
         );
     }
 
+    @Override
+    public void initForSeed( long seed ) {
+        above.initForSeed( seed );
+        below.initForSeed( seed );
+    }
 
     public enum HeightProvider {
         WORLD_SURFACE {
