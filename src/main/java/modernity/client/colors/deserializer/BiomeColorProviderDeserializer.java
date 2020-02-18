@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   02 - 18 - 2020
  * Author: rgsw
  */
 
@@ -105,7 +105,7 @@ public class BiomeColorProviderDeserializer implements IColorProviderDeserialize
 
         if( selector.startsWith( "#" ) ) {
             Set<String> group = BiomeGroups.getBiomeGroup( sel.substring( 1 ) );
-            return str -> ! group.contains( str );
+            return group::contains;
         }
 
         return str -> str.equals( selector );
