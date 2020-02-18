@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 18 - 2020
  * Author: rgsw
  */
 
@@ -15,6 +15,7 @@ import modernity.common.block.base.StickyBlock;
 import modernity.common.block.fluid.WaterloggedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.DirectionProperty;
@@ -106,19 +107,12 @@ public class TorchBlock extends WaterloggedBlock {
     }
 
     @Override
-    public void tick( BlockState state, World world, BlockPos pos, Random random ) {
-        spawnDrops( state, world, pos );
-        world.removeBlock( pos, false );
-    }
-
-    @Override
     public BlockState updatePostPlacement( BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos ) {
         super.updatePostPlacement( state, facing, facingState, world, currentPos, facingPos );
         if( facing == UP ) return state;
         if( facing == state.get( FACING ) ) {
             if( ! canRemainForFacing( world, currentPos, facing ) ) {
-                world.getPendingBlockTicks().scheduleTick( currentPos, this, 0 );
-                return state;
+                return Blocks.AIR.getDefaultState();
             }
         }
         return state;

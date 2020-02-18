@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   02 - 18 - 2020
  * Author: rgsw
  */
 
@@ -15,7 +15,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BreakEyeBlockEvent extends SimpleBlockEvent {
+public class BreakEyeEvent extends SimpleBlockEvent {
     @Override
     public void playEvent( World world, BlockPos pos, Void data ) {
         world.playSound(

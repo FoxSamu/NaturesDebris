@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 18 - 2020
  * Author: rgsw
  */
 
@@ -20,7 +20,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 /**
  * Event cast when leaves decay. This spawns a bunch of leaf particles.
  */
-public class LeavesDecayBlockEvent extends StateBlockEvent {
+public class LeavesDecayEvent extends StateBlockEvent {
     @Override
     @OnlyIn( Dist.CLIENT )
     public void playEvent( World world, BlockPos pos, BlockState state ) {
