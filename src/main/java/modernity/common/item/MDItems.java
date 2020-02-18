@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   02 - 18 - 2020
  * Author: rgsw
  */
 
@@ -68,6 +68,7 @@ public final class MDItems {
     public static final Item NUDWART_PETALS = item( "nudwart_petals", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item FOXGLOVE_PETALS = item( "foxglove_petals", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item SEEPWEED_LEAVES = item( "seepweed_leaves", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item PLANT_WIRE = item( "plant_wire", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
 
 
 
