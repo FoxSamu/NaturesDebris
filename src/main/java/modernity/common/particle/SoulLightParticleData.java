@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 18 - 2020
  * Author: rgsw
  */
 
@@ -50,9 +50,9 @@ public class SoulLightParticleData implements IParticleData {
 
             reader.expect( ' ' );
 
-            boolean f = false;
-            boolean fade = false;
-            do {
+            Boolean fade = null;
+            for( int i = 0; i < 2; i++ ) {
+                boolean f = i == 1;
                 String name = f + "";
                 int len = name.length();
                 if( reader.canRead( len ) ) {
@@ -64,12 +64,13 @@ public class SoulLightParticleData implements IParticleData {
                         break;
                     }
                 }
-            } while( ! f && ( f = true ) );
+            }
 
-            if( fade != f ) {
+            if( fade == null ) {
                 reader.setCursor( start );
                 throw fadeError.createWithContext( reader );
             }
+
             return new SoulLightParticleData( type, color, fade );
         }
 

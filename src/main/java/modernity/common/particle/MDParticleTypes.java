@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 05 - 2020
+ * Date:   02 - 18 - 2020
  * Author: rgsw
  */
 
@@ -15,6 +15,7 @@ import modernity.common.registry.RegistryHandler;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -54,6 +55,9 @@ public final class MDParticleTypes {
         manager.registerFactory( SOUL_LIGHT, new SoulLightParticle.BaseFactory() );
         manager.registerFactory( SOUL_LIGHT_CLOUD, new SoulLightParticle.CloudFactory() );
         manager.registerFactory( SHADE, ShadeParticle.Factory::new );
+
+        // Vanilla overrides
+        manager.registerFactory( ParticleTypes.BLOCK, new ExtendedDiggingParticle.Factory() );
     }
 
     private MDParticleTypes() {

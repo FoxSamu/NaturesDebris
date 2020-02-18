@@ -2,13 +2,15 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 18 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.farmland;
 
+import modernity.api.block.ICustomColoredParticlesBlock;
 import modernity.api.util.MovingBlockPos;
+import modernity.client.particle.ExtendedDiggingParticle;
 import modernity.common.block.MDBlockStateProperties;
 import modernity.common.block.dirt.DirtlikeBlock;
 import modernity.common.block.dirt.logic.FarmlandDirtLogic;
@@ -16,6 +18,7 @@ import modernity.common.item.MDItemTags;
 import modernity.common.tileentity.FarmlandTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
@@ -26,15 +29,18 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectionBlock {
+public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectionBlock, ICustomColoredParticlesBlock {
     public static final EnumProperty<Fertility> FERTILITY = MDBlockStateProperties.FERTILITY;
     public static final EnumProperty<Wetness> WETNESS = MDBlockStateProperties.WETNESS;
 
@@ -148,5 +154,25 @@ public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectio
             player.setHeldItem( hand, stack.getCount() == 0 ? ItemStack.EMPTY : stack );
         }
         return true;
+    }
+
+    @Override
+    @OnlyIn( Dist.CLIENT )
+    public boolean addHitEffects( BlockState state, World world, RayTraceResult target, ParticleManager manager ) {
+        BlockRayTraceResult brtr = (BlockRayTraceResult) target;
+        ExtendedDiggingParticle.addBlockHitEffects( manager, world, brtr.getPos(), brtr.getFace() );
+        return true;
+    }
+
+    @Override
+    @OnlyIn( Dist.CLIENT )
+    public boolean addDestroyEffects( BlockState state, World world, BlockPos pos, ParticleManager manager ) {
+        ExtendedDiggingParticle.addBlockDestroyEffects( manager, world, pos, state );
+        return true;
+    }
+
+    @Override
+    public int getColor( World world, @Nullable BlockPos pos, BlockState state ) {
+        return 0xffffff;
     }
 }

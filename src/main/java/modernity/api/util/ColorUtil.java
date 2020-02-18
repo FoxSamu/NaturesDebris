@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 03 - 2020
+ * Date:   02 - 18 - 2020
  * Author: rgsw
  */
 
@@ -11,6 +11,7 @@ package modernity.api.util;
 import net.minecraft.util.math.MathHelper;
 import net.redgalaxy.util.MathUtil;
 
+// TODO: Move to net.redgalaxy.util package
 /**
  * Utility class for processing {@code int}-formatted colors.
  */
