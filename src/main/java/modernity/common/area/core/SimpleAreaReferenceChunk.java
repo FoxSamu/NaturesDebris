@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   02 - 18 - 2020
  * Author: rgsw
  */
 
@@ -33,7 +33,7 @@ public class SimpleAreaReferenceChunk implements IAreaReferenceChunk {
 
     @Override
     public LongStream referenceStream() {
-        return StreamUtil.streamLongs( references, true );
+        return StreamUtil.streamLongs( references, false );
     }
 
     @Override

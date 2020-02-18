@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   02 - 18 - 2020
  * Author: rgsw
  */
 
@@ -378,7 +378,7 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
     }
 
     public Stream<ServerPlayerEntity> getTrackingPlayers( Area area ) {
-        return area == null ? Stream.empty() : getTrackingPlayers( area.getReferenceID() );
+        return area == null ? Stream.empty() : getTrackingPlayers( area.getReferenceID() ).sequential();
     }
 
     public Stream<ServerPlayerEntity> getTrackingPlayers( long refID ) {
