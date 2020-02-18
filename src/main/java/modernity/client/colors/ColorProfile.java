@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 03 - 2020
+ * Date:   02 - 18 - 2020
  * Author: rgsw
  */
 
@@ -44,6 +44,7 @@ public class ColorProfile {
     private final ThreadLocal<BlockPos> cachedPos = new ThreadLocal<>();
     private final ThreadLocal<Long> cachedSeed = new ThreadLocal<>();
     private final ThreadLocal<Integer> cachedColor = new ThreadLocal<>();
+    private final ThreadLocal<Boolean> cachedWorldNull = new ThreadLocal<>();
 
     public ColorProfile( IColorProvider provider ) {
         this.provider = provider;
@@ -57,7 +58,7 @@ public class ColorProfile {
         if( pos == null ) pos = BlockPos.ZERO;
 
         int color;
-        if( cachedSeed.get() != null && seed == cachedSeed.get() && pos.equals( cachedPos.get() ) ) {
+        if( cachedSeed.get() != null && seed == cachedSeed.get() && pos.equals( cachedPos.get() ) && cachedWorldNull.get() == ( world == null ) ) {
             return cachedColor.get();
         } else {
             color = provider.getColor( world, pos );
@@ -66,6 +67,7 @@ public class ColorProfile {
         cachedColor.set( color );
         cachedPos.set( pos.toImmutable() );
         cachedSeed.set( seed );
+        cachedWorldNull.set( world == null );
 
         return color;
     }
