@@ -1,14 +1,15 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   02 - 19 - 2020
  * Author: rgsw
  */
 
 package modernity.common.net;
 
 import modernity.common.entity.FallBlockEntity;
+import modernity.common.entity.GooBallEntity;
 import modernity.common.entity.MDEntityTypes;
 import modernity.network.Packet;
 import modernity.network.ProcessContext;
@@ -116,6 +117,8 @@ public class SSpawnEntityPacket implements Packet {
         Entity entity;
         if( type == MDEntityTypes.FALL_BLOCK ) {
             entity = new FallBlockEntity( mc.world, x, y, z, Block.getStateById( data ) );
+        } else if( type == MDEntityTypes.GOO_BALL ) {
+            entity = new GooBallEntity( x, y, z, mc.world );
         } else {
             entity = null;
         }

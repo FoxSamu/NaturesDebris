@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 14 - 2020
+ * Date:   02 - 19 - 2020
  * Author: rgsw
  */
 
@@ -17,6 +17,7 @@ import modernity.common.area.core.IWorldAreaManager;
 import modernity.common.area.core.ServerWorldAreaManager;
 import modernity.common.capability.MDCapabilities;
 import modernity.common.command.MDCommands;
+import modernity.common.block.dispensing.MDDispenseBehaviors;
 import modernity.common.generator.structure.MDStructurePieceTypes;
 import modernity.common.generator.structure.MDStructures;
 import modernity.common.handler.*;
@@ -192,6 +193,8 @@ public abstract class Modernity {
         for( Biome biome : biomes ) {
             biome.addFeature( GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature( MDStructures.FOREST_RUNES, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG ) );
         }
+
+        MDDispenseBehaviors.init();
     }
 
     /**

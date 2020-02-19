@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   02 - 19 - 2020
  * Author: rgsw
  */
 
@@ -12,6 +12,8 @@ import com.google.common.reflect.TypeToken;
 import modernity.client.render.entity.FallBlockRender;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -28,6 +30,7 @@ public final class MDEntityTypes {
     private static final RegistryHandler<EntityType<?>> ENTRIES = new RegistryHandler<>( "modernity" );
 
     public static final EntityType<FallBlockEntity> FALL_BLOCK = register( "fall_block", EntityType.Builder.create( FallBlockEntity::new, EntityClassification.MISC ).setTrackingRange( 10 ).setUpdateInterval( 20 ).setShouldReceiveVelocityUpdates( true ).size( 0.98F, 0.98F ) );
+    public static final EntityType<GooBallEntity> GOO_BALL = register( "goo_ball", EntityType.Builder.create( GooBallEntity::new, EntityClassification.MISC ).setTrackingRange( 4 ).setUpdateInterval( 10 ).setShouldReceiveVelocityUpdates( true ).size( 0.25F, 0.25F ) );
 
     private MDEntityTypes() {
     }
@@ -55,5 +58,6 @@ public final class MDEntityTypes {
     @OnlyIn( Dist.CLIENT )
     public static void initEntityRenderers() {
         RenderingRegistry.registerEntityRenderingHandler( FallBlockEntity.class, new FallBlockRender.Factory() );
+        RenderingRegistry.registerEntityRenderingHandler( GooBallEntity.class, manager -> new SpriteRenderer<>( manager, Minecraft.getInstance().getItemRenderer() ) );
     }
 }
