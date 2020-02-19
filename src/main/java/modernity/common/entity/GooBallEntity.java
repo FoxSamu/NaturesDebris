@@ -51,6 +51,8 @@ public class GooBallEntity extends ThrownItemEntity {
 
     private boolean poisonous;
 
+    private ItemStack renderStack = new ItemStack( MDItems.GOO_BALL );
+
     @SuppressWarnings( "unchecked" )
     public GooBallEntity( EntityType type, World world ) {
         super( type, world );
@@ -89,6 +91,7 @@ public class GooBallEntity extends ThrownItemEntity {
 
     public GooBallEntity setPoisonous() {
         poisonous = true;
+        renderStack = new ItemStack( MDItems.POISONOUS_GOO_BALL );
         return this;
     }
 
@@ -103,6 +106,12 @@ public class GooBallEntity extends ThrownItemEntity {
     @Override
     protected Item getThrownItem() {
         return poisonous ? MDItems.POISONOUS_GOO_BALL : MDItems.GOO_BALL;
+    }
+
+    @Override
+    @OnlyIn( Dist.CLIENT )
+    public ItemStack getItem() {
+        return renderStack;
     }
 
     @OnlyIn( Dist.CLIENT )
@@ -167,7 +176,7 @@ public class GooBallEntity extends ThrownItemEntity {
         super.tick();
 
 
-        if( world.isRemote && rand.nextInt( 3 ) == 0 ) {
+        if( poisonous && world.isRemote && rand.nextInt( 3 ) == 0 ) {
             world.addParticle(
                 ParticleTypes.ENTITY_EFFECT,
                 posX + ( rand.nextDouble() - rand.nextDouble() ) * 0.1,
@@ -199,9 +208,8 @@ public class GooBallEntity extends ThrownItemEntity {
                 if( entity instanceof LivingEntity ) {
                     ( (LivingEntity) entity ).addPotionEffect( new EffectInstance( Effects.POISON, 50 ) );
                 }
+                world.setEntityState( this, (byte) 4 );
             }
-
-            world.setEntityState( this, (byte) 4 );
 
             if( bounce() ) {
                 Vec3d norm = result.getHitVec().subtract( entity.getPositionVec() );
@@ -223,9 +231,8 @@ public class GooBallEntity extends ThrownItemEntity {
                 for( Entity e : entities ) {
                     ( (LivingEntity) e ).addPotionEffect( new EffectInstance( Effects.POISON, 50 ) );
                 }
+                world.setEntityState( this, (byte) 4 );
             }
-
-            world.setEntityState( this, (byte) 4 );
 
             if( bounce() ) {
                 BlockRayTraceResult rtr = (BlockRayTraceResult) result;
@@ -281,6 +288,6 @@ public class GooBallEntity extends ThrownItemEntity {
 
     @Override
     public IPacket<?> createSpawnPacket() {
-        return Modernity.network().toPlayClientPacket( new SSpawnEntityPacket( this, 0 ) );
+        return Modernity.network().toPlayClientPacket( new SSpawnEntityPacket( this, poisonous ? 1 : 0 ) );
     }
 }

@@ -118,7 +118,8 @@ public class SSpawnEntityPacket implements Packet {
         if( type == MDEntityTypes.FALL_BLOCK ) {
             entity = new FallBlockEntity( mc.world, x, y, z, Block.getStateById( data ) );
         } else if( type == MDEntityTypes.GOO_BALL ) {
-            entity = new GooBallEntity( x, y, z, mc.world );
+            if( data == 0 ) entity = new GooBallEntity( x, y, z, mc.world );
+            else entity = new GooBallEntity( x, y, z, mc.world ).setPoisonous();
         } else {
             entity = null;
         }
