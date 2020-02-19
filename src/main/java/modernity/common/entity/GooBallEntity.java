@@ -273,6 +273,7 @@ public class GooBallEntity extends ThrownItemEntity {
         compound.putInt( "maxBounces", maxBounces );
         compound.putInt( "hangingTime", hangingTime );
         compound.putBoolean( "poisonous", poisonous );
+        compound.putBoolean( "bounced", bounces > 0 );
     }
 
     @Override
