@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "modernity:block/finnerite_block"
+      }
+    ]
+  }
+}

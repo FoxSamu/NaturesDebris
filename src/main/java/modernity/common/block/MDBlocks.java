@@ -396,11 +396,17 @@ public final class MDBlocks {
     public static final OreBlock IVERITE_ORE = blockItem( "iverite_ore", new OreBlock( 2, 5, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
     public static final OreBlock SAGERITE_ORE = blockItem( "sagerite_ore", new OreBlock( 2, 5, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
     public static final OreBlock LUMINOSITE_ORE = blockItem( "luminosite_ore", new OreBlock( 0, 4, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).lightValue( 3 ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
+    public static final OreBlock GOO_ORE = blockItem( "goo_ore", new OreBlock( 0, 2, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
 
     // Blocks
     public static final TranslucentBlock SALT_BLOCK = blockItem( "salt_block", new SaltBlock( Block.Properties.create( Material.GLASS, MaterialColor.SNOW ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ) ), MDItemGroup.BLOCKS );
     public static final Block ALUMINIUM_BLOCK = blockItem( "aluminium_block", new Block( Block.Properties.create( Material.IRON, MaterialColor.IRON ).hardnessAndResistance( 5F, 6F ).sound( SoundType.METAL ) ), MDItemGroup.BLOCKS );
     public static final Block ANTHRACITE_BLOCK = blockItem( "anthracite_block", new Block( Block.Properties.create( Material.ROCK, MaterialColor.BLACK ).hardnessAndResistance( 3F, 6F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
+    public static final Block FINNERITE_BLOCK = blockItem( "finnerite_block", new Block( Block.Properties.create( Material.IRON, MaterialColor.BLUE ).hardnessAndResistance( 5F, 6F ).sound( SoundType.METAL ) ), MDItemGroup.BLOCKS );
+    public static final Block IVERITE_BLOCK = blockItem( "iverite_block", new Block( Block.Properties.create( Material.IRON, MaterialColor.GREEN ).hardnessAndResistance( 5F, 6F ).sound( SoundType.METAL ) ), MDItemGroup.BLOCKS );
+    public static final Block SAGERITE_BLOCK = blockItem( "sagerite_block", new Block( Block.Properties.create( Material.IRON, MaterialColor.RED ).hardnessAndResistance( 5F, 6F ).sound( SoundType.METAL ) ), MDItemGroup.BLOCKS );
+    public static final Block LUMINOSITE_BLOCK = blockItem( "luminosite_block", new Block( Block.Properties.create( Material.IRON, MaterialColor.SNOW ).hardnessAndResistance( 5F, 6F ).lightValue( 15 ).sound( SoundType.METAL ) ), MDItemGroup.BLOCKS );
+    public static final ExtSlimeBlock GOO_BLOCK = blockItem( "goo_block", new ExtSlimeBlock( Block.Properties.create( Material.CLAY, MaterialColor.DIRT ).slipperiness( 0.8F ).sound( SoundType.SLIME ) ), MDItemGroup.BLOCKS );
 
 
 
@@ -409,6 +415,7 @@ public final class MDBlocks {
     // Torches
     public static final TorchBlock EXTINGUISHED_ANTHRACITE_TORCH = blockItem( "extinguished_anthracite_torch", new TorchBlock( false, Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ).hardnessAndResistance( 0 ).doesNotBlockMovement().sound( SoundType.WOOD ) ), MDItemGroup.DECORATIVES );
     public static final ExtinguishableTorchBlock ANTHRACITE_TORCH = blockItem( "anthracite_torch", new ExtinguishableTorchBlock( true, EXTINGUISHED_ANTHRACITE_TORCH, Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ).doesNotBlockMovement().hardnessAndResistance( 0 ).lightValue( 15 ).sound( SoundType.WOOD ) ), MDItemGroup.DECORATIVES );
+    public static final TorchBlock LUMINOSITE_TORCH = blockItem( "luminosite_torch", new TorchBlock( false, Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ).hardnessAndResistance( 0 ).doesNotBlockMovement().lightValue( 15 ).sound( SoundType.METAL ) ), MDItemGroup.DECORATIVES );
 
     // Utilities
     public static final WorkbenchBlock BLACKWOOD_WORKBENCH = blockItem( "blackwood_workbench", new WorkbenchBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
