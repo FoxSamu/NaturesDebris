@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 19 - 2020
+ * Date:   02 - 22 - 2020
  * Author: rgsw
  */
 
@@ -33,6 +33,7 @@ public final class MDDispenseBehaviors {
     public static void init() {
         DispenserBlock.registerDispenseBehavior( MDItems.GOO_BALL, new ThrownEntityDispenseBehavior( MDItems.GOO_BALL ) );
         DispenserBlock.registerDispenseBehavior( MDItems.POISONOUS_GOO_BALL, new ThrownEntityDispenseBehavior( MDItems.POISONOUS_GOO_BALL ) );
+        DispenserBlock.registerDispenseBehavior( MDItems.SHADE_BALL, new ThrownEntityDispenseBehavior( MDItems.SHADE_BALL ) );
 
         IDispenseItemBehavior fluidDispenseBehavior = new DefaultDispenseItemBehavior() {
             private final DefaultDispenseItemBehavior def = new DefaultDispenseItemBehavior();

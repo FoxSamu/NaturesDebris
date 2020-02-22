@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 19 - 2020
+ * Date:   02 - 22 - 2020
  * Author: rgsw
  */
 
@@ -31,6 +31,7 @@ public final class MDEntityTypes {
 
     public static final EntityType<FallBlockEntity> FALL_BLOCK = register( "fall_block", EntityType.Builder.create( FallBlockEntity::new, EntityClassification.MISC ).setTrackingRange( 10 ).setUpdateInterval( 20 ).setShouldReceiveVelocityUpdates( true ).size( 0.98F, 0.98F ) );
     public static final EntityType<GooBallEntity> GOO_BALL = register( "goo_ball", EntityType.Builder.create( GooBallEntity::new, EntityClassification.MISC ).setTrackingRange( 4 ).setUpdateInterval( 10 ).setShouldReceiveVelocityUpdates( true ).size( 0.25F, 0.25F ) );
+    public static final EntityType<ShadeBallEntity> SHADE_BALL = register( "shade_ball", EntityType.Builder.create( ShadeBallEntity::new, EntityClassification.MISC ).setTrackingRange( 4 ).setUpdateInterval( 10 ).setShouldReceiveVelocityUpdates( true ).size( 0.25F, 0.25F ) );
 
     private MDEntityTypes() {
     }
@@ -59,5 +60,6 @@ public final class MDEntityTypes {
     public static void initEntityRenderers() {
         RenderingRegistry.registerEntityRenderingHandler( FallBlockEntity.class, new FallBlockRender.Factory() );
         RenderingRegistry.registerEntityRenderingHandler( GooBallEntity.class, manager -> new SpriteRenderer<>( manager, Minecraft.getInstance().getItemRenderer() ) );
+        RenderingRegistry.registerEntityRenderingHandler( ShadeBallEntity.class, manager -> new SpriteRenderer<>( manager, Minecraft.getInstance().getItemRenderer() ) );
     }
 }

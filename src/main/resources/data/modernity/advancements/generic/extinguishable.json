@@ -1,13 +1,14 @@
 {
+  "parent": "modernity:generic/murky_world",
   "display": {
     "icon": {
       "item": "modernity:extinguished_anthracite_torch"
     },
     "title": {
-      "translate": "modernity.advancements.extinguish_torch"
+      "translate": "modernity.advancements.generic.extinguishable"
     },
     "description": {
-      "translate": "modernity.advancements.extinguish_torch.desc"
+      "translate": "modernity.advancements.generic.extinguishable.desc"
     },
     "frame": "task",
     "show_toast": true,

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 19 - 2020
+ * Date:   02 - 22 - 2020
  * Author: rgsw
  */
 
@@ -10,10 +10,7 @@ package modernity.common.item;
 
 import modernity.api.item.IColoredItem;
 import modernity.common.fluid.MDFluids;
-import modernity.common.item.base.AluminiumBucketItem;
-import modernity.common.item.base.BaseBucketItem;
-import modernity.common.item.base.GooBallItem;
-import modernity.common.item.base.PoisonousGooBallItem;
+import modernity.common.item.base.*;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.client.Minecraft;
@@ -58,7 +55,7 @@ public final class MDItems {
     public static final GooBallItem GOO_BALL = item( "goo_ball", new GooBallItem( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item GLAZED_GOO_BALL = item( "glazed_goo_ball", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final PoisonousGooBallItem POISONOUS_GOO_BALL = item( "poisonous_goo_ball", new PoisonousGooBallItem( new Item.Properties().group( MDItemGroup.MISC ) ) );
-    public static final Item SHADE_BALL = item( "shade_ball", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final ShadeBallItem SHADE_BALL = item( "shade_ball", new ShadeBallItem( new Item.Properties().group( MDItemGroup.MISC ) ) );
 
     public static final Item BLACKBONE = item( "blackbone", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
 

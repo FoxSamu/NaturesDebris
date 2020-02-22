@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "modernity:salt_crystal"
+    },
+    "title": {
+      "translate": "modernity.advancements.farming.salty_business"
+    },
+    "description": {
+      "translate": "modernity.advancements.farming.salty_business.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "place": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "modernity:salt_crystal"
+      }
+    }
+  },
+  "requirements": [
+    [ "place" ]
+  ]
+}
