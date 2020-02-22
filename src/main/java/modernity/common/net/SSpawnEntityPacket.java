@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 19 - 2020
+ * Date:   02 - 22 - 2020
  * Author: rgsw
  */
 
@@ -11,6 +11,7 @@ package modernity.common.net;
 import modernity.common.entity.FallBlockEntity;
 import modernity.common.entity.GooBallEntity;
 import modernity.common.entity.MDEntityTypes;
+import modernity.common.entity.ShadeBallEntity;
 import modernity.network.Packet;
 import modernity.network.ProcessContext;
 import net.minecraft.block.Block;
@@ -120,8 +121,14 @@ public class SSpawnEntityPacket implements Packet {
         } else if( type == MDEntityTypes.GOO_BALL ) {
             if( data == 0 ) entity = new GooBallEntity( x, y, z, mc.world );
             else entity = new GooBallEntity( x, y, z, mc.world ).setPoisonous();
+        } else if( type == MDEntityTypes.SHADE_BALL ) {
+            entity = new ShadeBallEntity( x, y, z, mc.world );
         } else {
-            entity = null;
+            entity = type.create( mc.world );
+            if( entity != null ) {
+                entity.setPosition( x, y, z );
+                entity.setMotion( speedX, speedY, speedZ );
+            }
         }
 
         if( entity != null ) {
