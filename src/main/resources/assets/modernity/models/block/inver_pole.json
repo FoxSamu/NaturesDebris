@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/abstract_pole",
+  "textures": {
+    "texture": "modernity:block/inver_planks"
+  }
+}

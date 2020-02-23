@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 23 - 2020
  * Author: rgsw
  */
 
@@ -27,14 +27,19 @@ import javax.annotation.Nonnull;
 public class PillarBlock extends WaterloggedBlock {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
 
-    private static final VoxelShape X_SHAPE = makeCuboidShape( 0, 1, 1, 16, 15, 15 );
-    private static final VoxelShape Y_SHAPE = makeCuboidShape( 1, 0, 1, 15, 16, 15 );
-    private static final VoxelShape Z_SHAPE = makeCuboidShape( 1, 1, 0, 15, 15, 16 );
+    private final VoxelShape[] shapes;
 
-    private static final VoxelShape[] SHAPES = { X_SHAPE, Y_SHAPE, Z_SHAPE };
-
-    public PillarBlock( Properties properties ) {
+    public PillarBlock( Properties properties, int width ) {
         super( properties );
+
+        int r = width / 2;
+        int n = 8 - r;
+        int p = 8 + r;
+
+        VoxelShape xshape = makeCuboidShape( 0, n, n, 16, p, p );
+        VoxelShape yshape = makeCuboidShape( n, 0, n, p, 16, p );
+        VoxelShape zshape = makeCuboidShape( n, n, 0, p, p, 16 );
+        shapes = new VoxelShape[] { xshape, yshape, zshape };
 
         setDefaultState( stateContainer.getBaseState().with( AXIS, Direction.Axis.Y ) );
     }
@@ -42,7 +47,7 @@ public class PillarBlock extends WaterloggedBlock {
     @Override
     public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context ) {
         Direction.Axis axis = state.get( AXIS );
-        return SHAPES[ axis.ordinal() ];
+        return shapes[ axis.ordinal() ];
     }
 
     @Override

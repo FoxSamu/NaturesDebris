@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 22 - 2020
+ * Date:   02 - 23 - 2020
  * Author: rgsw
  */
 
@@ -294,8 +294,11 @@ public final class MDBlocks {
     public static final TranslucentBlock MURKY_GLASS = blockItem( "murky_glass", new TranslucentBlock( glass() ), MDItemGroup.BLOCKS, "dark_glass" );
     public static final PanelBlock MURKY_GLASS_PANE = blockItem( "murky_glass_pane", new TranslucentPanelBlock( glass() ), MDItemGroup.DECORATIVES, "dark_glass_pane" );
 
-    public static final PillarBlock ROCK_PILLAR = blockItem( "rock_pillar", new PillarBlock( rock( MaterialColor.STONE, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
-    public static final PillarBlock DARKROCK_PILLAR = blockItem( "darkrock_pillar", new PillarBlock( rock( MaterialColor.BLACK, 1.5, 6 ) ), MDItemGroup.DECORATIVES );
+    public static final PillarBlock ROCK_PILLAR = blockItem( "rock_pillar", new PillarBlock( rock( MaterialColor.STONE, 1.5, 6 ), 14 ), MDItemGroup.DECORATIVES );
+    public static final PillarBlock DARKROCK_PILLAR = blockItem( "darkrock_pillar", new PillarBlock( rock( MaterialColor.BLACK, 1.5, 6 ), 14 ), MDItemGroup.DECORATIVES );
+
+    public static final PillarBlock BLACKWOOD_POLE = blockItem( "blackwood_pole", new PillarBlock( wood( MaterialColor.BLACK_TERRACOTTA ), 4 ), MDItemGroup.DECORATIVES );
+    public static final PillarBlock INVER_POLE = blockItem( "inver_pole", new PillarBlock( wood( MaterialColor.WOOD ), 4 ), MDItemGroup.DECORATIVES );
 
 
 
