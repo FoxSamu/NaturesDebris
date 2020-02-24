@@ -108,5 +108,47 @@
       "modernity:block/shade_blue/teleport1",
       "modernity:block/shade_blue/teleport2"
     ]
+  },
+  "block.mud.break": {
+    "sounds": [
+      "modernity:block/mud/break1",
+      "modernity:block/mud/break2",
+      "modernity:block/mud/break3",
+      "modernity:block/mud/break4",
+      "modernity:block/mud/break5"
+    ]
+  },
+  "block.mud.place": {
+    "sounds": [
+      "modernity:block/mud/break1",
+      "modernity:block/mud/break2",
+      "modernity:block/mud/break3",
+      "modernity:block/mud/break4",
+      "modernity:block/mud/break5"
+    ]
+  },
+  "block.mud.step": {
+    "sounds": [
+      "modernity:block/mud/step1",
+      "modernity:block/mud/step2",
+      "modernity:block/mud/step3",
+      "modernity:block/mud/step4"
+    ]
+  },
+  "block.mud.hit": {
+    "sounds": [
+      "modernity:block/mud/step1",
+      "modernity:block/mud/step2",
+      "modernity:block/mud/step3",
+      "modernity:block/mud/step4"
+    ]
+  },
+  "block.mud.fall": {
+    "sounds": [
+      "modernity:block/mud/step1",
+      "modernity:block/mud/step2",
+      "modernity:block/mud/step3",
+      "modernity:block/mud/step4"
+    ]
   }
 }
