@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "modernity:block/murky_terracotta"
+      },
+      {
+        "model": "modernity:block/murky_terracotta",
+        "y": 90
+      },
+      {
+        "model": "modernity:block/murky_terracotta",
+        "y": 180
+      },
+      {
+        "model": "modernity:block/murky_terracotta",
+        "y": 270
+      }
+    ]
+  }
+}

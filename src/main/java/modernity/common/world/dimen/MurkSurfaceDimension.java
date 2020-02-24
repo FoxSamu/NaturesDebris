@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   02 - 24 - 2020
  * Author: rgsw
  */
 
@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 /**
  * The surface dimension of the Modernity.
  */
-public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimension, ISatelliteDimension, IEnvEventsDimension, IClientTickingDimension, IInitializeDimension, IPrecipitationDimension, IShaderDimension {
+public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimension, ISatelliteDimension, IEnvEventsDimension, IClientTickingDimension, IInitializeDimension, IPrecipitationDimension, IShaderDimension, IReverbDimension {
 
     private SatelliteData satelliteData;
     private EnvironmentEventManager envEventManager;
@@ -455,5 +455,10 @@ public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimen
             ChunkGenerator<?> gen = world.getChunkProvider().getChunkGenerator();
             return gen == null ? MDBiomes.DEFAULT : gen.getBiomeProvider().getBiome( pos );
         }
+    }
+
+    @Override
+    public boolean hasReverb( Vec3d pos ) {
+        return true;
     }
 }

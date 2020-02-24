@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/stairs",
+  "textures": {
+    "stairs": "modernity:block/murk_tiles"
+  }
+}
