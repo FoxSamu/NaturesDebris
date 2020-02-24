@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 13 - 2020
+ * Date:   02 - 24 - 2020
  * Author: rgsw
  */
 
@@ -21,6 +21,7 @@ import modernity.client.render.environment.SurfaceCloudRenderer;
 import modernity.client.render.environment.SurfaceSkyRenderer;
 import modernity.client.render.environment.SurfaceWeatherRenderer;
 import modernity.client.shaders.ShaderManager;
+import modernity.client.sound.effects.SoundEffectManager;
 import modernity.client.util.MDRecipeBookCategories;
 import modernity.common.Modernity;
 import modernity.common.area.MDAreas;
@@ -82,6 +83,8 @@ public class ModernityClient extends Modernity {
     // Last world seed, which is sent by server worlds when the player joins.
     private long lastWorldSeed;
 
+    private final SoundEffectManager effectManager = new SoundEffectManager();
+
     @Override
     public void preInit() {
         super.preInit();
@@ -114,6 +117,7 @@ public class ModernityClient extends Modernity {
 
         MDRecipeBookCategories.init();
         MDModelLoaders.register();
+        SoundEventHandler.INSTANCE.init();
     }
 
     @Override
@@ -132,6 +136,7 @@ public class ModernityClient extends Modernity {
         FORGE_EVENT_BUS.register( FogHandler.INSTANCE );
         FORGE_EVENT_BUS.register( WorldRenderHandler.INSTANCE );
         FORGE_EVENT_BUS.register( PlayerInCaveHandler.INSTANCE );
+        FORGE_EVENT_BUS.register( SoundEventHandler.INSTANCE );
     }
 
     @Override
@@ -253,6 +258,10 @@ public class ModernityClient extends Modernity {
         return fluidRenderer;
     }
 
+
+    public SoundEffectManager getSoundEffectManager() {
+        return effectManager;
+    }
 
     /**
      * Returns the Humus color map, used to give color to humus particles

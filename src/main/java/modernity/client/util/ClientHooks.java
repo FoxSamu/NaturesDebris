@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 31 - 2020
+ * Date:   02 - 24 - 2020
  * Author: rgsw
  */
 
@@ -75,6 +75,10 @@ public final class ClientHooks {
         // Return null to ignore render action
         return null;
     }
+
+//    public static void onPlaySound( int source, Vec3d pos ) {
+//        MinecraftForge.EVENT_BUS.post( new PlaySoundSourceEvent( source, pos ) );
+//    }
 
     private enum SpecialEmptyModelData implements IModelData {
         INSTANCE;

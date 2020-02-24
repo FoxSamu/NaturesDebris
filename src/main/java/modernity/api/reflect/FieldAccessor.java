@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   02 - 24 - 2020
  * Author: rgsw
  */
 
@@ -11,6 +11,7 @@ package modernity.api.reflect;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.function.Supplier;
 
 /**
@@ -27,6 +28,15 @@ public class FieldAccessor<T, R> {
      */
     public FieldAccessor( Field field ) {
         this.field = field;
+        try {
+            Field modifiers = field.getClass().getDeclaredField( "modifiers" );
+            modifiers.setAccessible( true );
+            int value = field.getModifiers();
+            value &= ~ Modifier.FINAL;
+            modifiers.set( field, value );
+        } catch( Exception e ) {
+            throw new RuntimeException( e );
+        }
         field.setAccessible( true );
     }
 
@@ -38,6 +48,15 @@ public class FieldAccessor<T, R> {
      */
     public FieldAccessor( Class<? super T> cls, String name ) {
         this.field = ObfuscationReflectionHelper.findField( cls, name );
+        try {
+            Field modifiers = field.getClass().getDeclaredField( "modifiers" );
+            modifiers.setAccessible( true );
+            int value = field.getModifiers();
+            value &= ~ Modifier.FINAL;
+            modifiers.set( field, value );
+        } catch( Exception e ) {
+            throw new RuntimeException( e );
+        }
         field.setAccessible( true );
     }
 
