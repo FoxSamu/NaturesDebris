@@ -1,0 +1,7 @@
+{
+  "parent": "modernity:block/pillar",
+  "textures": {
+    "side": "modernity:block/murk_pillar_side",
+    "end": "modernity:block/murk_pillar_top"
+  }
+}

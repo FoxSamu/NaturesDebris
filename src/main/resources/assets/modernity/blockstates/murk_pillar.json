@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "modernity:block/murk_pillar"
+    },
+    "axis=z": {
+      "model": "modernity:block/murk_pillar", "x": 90
+    },
+    "axis=x": {
+      "model": "modernity:block/murk_pillar", "x": 90, "y": 90
+    }
+  }
+}

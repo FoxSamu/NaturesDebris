@@ -328,6 +328,7 @@ public final class MDBlocks {
 
     public static final PillarBlock ROCK_PILLAR = blockItem( "rock_pillar", new PillarBlock( rock( MaterialColor.STONE, 1.5, 6 ), 14 ), MDItemGroup.DECORATIVES );
     public static final PillarBlock DARKROCK_PILLAR = blockItem( "darkrock_pillar", new PillarBlock( rock( MaterialColor.BLACK, 1.5, 6 ), 14 ), MDItemGroup.DECORATIVES );
+    public static final PillarBlock MURK_PILLAR = blockItem( "murk_pillar", new PillarBlock( rock( MaterialColor.CLAY, 1.5, 6 ), 14 ), MDItemGroup.DECORATIVES );
 
     public static final PillarBlock BLACKWOOD_POLE = blockItem( "blackwood_pole", new PillarBlock( wood( MaterialColor.BLACK_TERRACOTTA ), 4 ), MDItemGroup.DECORATIVES );
     public static final PillarBlock INVER_POLE = blockItem( "inver_pole", new PillarBlock( wood( MaterialColor.WOOD ), 4 ), MDItemGroup.DECORATIVES );
