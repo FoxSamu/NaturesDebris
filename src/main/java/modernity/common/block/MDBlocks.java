@@ -333,6 +333,8 @@ public final class MDBlocks {
     public static final PillarBlock BLACKWOOD_POLE = blockItem( "blackwood_pole", new PillarBlock( wood( MaterialColor.BLACK_TERRACOTTA ), 4 ), MDItemGroup.DECORATIVES );
     public static final PillarBlock INVER_POLE = blockItem( "inver_pole", new PillarBlock( wood( MaterialColor.WOOD ), 4 ), MDItemGroup.DECORATIVES );
 
+    public static final MurkyGrassPathBlock MURKY_GRASS_PATH = blockItem( "murky_grass_path", new MurkyGrassPathBlock( dirt( MaterialColor.YELLOW, true ) ), MDItemGroup.DECORATIVES );
+
 
 
     /* ==== MISCELLANEOUS ==== */
