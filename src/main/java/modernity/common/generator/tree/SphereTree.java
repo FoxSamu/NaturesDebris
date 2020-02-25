@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 13 - 2020
+ * Date:   02 - 25 - 2020
  * Author: rgsw
  */
 
@@ -102,7 +102,7 @@ public class SphereTree extends Tree {
         }
 
         for( Direction dir : Plane.HORIZONTAL ) {
-            createBranch( logs, world, pos, height - 3, dir.getXOffset(), dir.getZOffset(), 2, log( dir.getAxis() ), mpos );
+            createBranch( logs, world, pos, height - 3, dir.getXOffset(), dir.getZOffset(), 1, log( dir.getAxis() ), mpos );
         }
 
         mpos.setPos( pos );

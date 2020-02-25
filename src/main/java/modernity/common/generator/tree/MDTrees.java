@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 13 - 2020
+ * Date:   02 - 25 - 2020
  * Author: rgsw
  */
 
@@ -23,6 +23,13 @@ public final class MDTrees {
         MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Y ),
         MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z ),
         MDBlocks.INVER_LEAVES.getDefaultState()
+    );
+
+    public static final SphereTree RED_INVER = new SphereTree(
+        MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X ),
+        MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Y ),
+        MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z ),
+        MDBlocks.RED_INVER_LEAVES.getDefaultState()
     );
 
     private MDTrees() {
