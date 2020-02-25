@@ -418,6 +418,7 @@ public final class MDBlocks {
     // Misc
     public static final SoulLightBlock SOUL_LIGHT = blockItem( "soul_light", new SoulLightBlock( Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ) ), MDItemGroup.DECORATIVES );
     public static final PebblesBlock PEBBLES = blockItem( "pebbles", new PebblesBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( SoundType.STONE ) ), MDItemGroup.DECORATIVES );
+    public static final GooDripsBlock GOO_DRIPS = blockItem( "goo_drips", new GooDripsBlock( weakPlant( MaterialColor.AIR, 0 ).sound( SoundType.SLIME ) ), MDItemGroup.DECORATIVES );
 
 
 
