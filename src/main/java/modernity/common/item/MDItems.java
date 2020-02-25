@@ -2,15 +2,17 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 22 - 2020
+ * Date:   02 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.common.item;
 
 import modernity.api.item.IColoredItem;
+import modernity.common.block.MDBlocks;
 import modernity.common.fluid.MDFluids;
 import modernity.common.item.base.*;
+import modernity.common.item.util.ItemUtil;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.client.Minecraft;
@@ -128,6 +130,8 @@ public final class MDItems {
      */
     public static void setup( RegistryEventHandler handler ) {
         handler.addHandler( Item.class, ENTRIES );
+
+        ItemUtil.addShovelFlattenBehaviour( MDBlocks.MURKY_GRASS_BLOCK, MDBlocks.MURKY_GRASS_PATH.getDefaultState() );
     }
 
     private MDItems() {
