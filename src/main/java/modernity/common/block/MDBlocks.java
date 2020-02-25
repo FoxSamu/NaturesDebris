@@ -101,16 +101,16 @@ public final class MDBlocks {
     // Blackwood
     public static final AxisBlock STRIPPED_BLACKWOOD_LOG = blockItem( "stripped_blackwood_log", new AxisBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.BLOCKS );
     public static final AxisBlock BLACKWOOD_LOG = blockItem( "blackwood_log", new StripableLogBlock( () -> STRIPPED_BLACKWOOD_LOG, wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.BLOCKS );
-    public static final Block STRIPPED_BLACKWOOD = blockItem( "stripped_blackwood", new Block( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.BLOCKS );
-    public static final Block BLACKWOOD = blockItem( "blackwood", new StripableBlock( () -> STRIPPED_BLACKWOOD, wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.BLOCKS );
+    public static final AxisBlock STRIPPED_BLACKWOOD = blockItem( "stripped_blackwood", new AxisBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.BLOCKS );
+    public static final AxisBlock BLACKWOOD = blockItem( "blackwood", new StripableLogBlock( () -> STRIPPED_BLACKWOOD, wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.BLOCKS );
     public static final SaplingBlock BLACKWOOD_SAPLING = blockItem( "blackwood_sapling", new SaplingBlock( () -> MDTrees.BLACKWOOD, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final HangLeavesBlock BLACKWOOD_LEAVES = blockItem( "blackwood_leaves", new BlackwoodLeavesBlock( MDBlockTags.BLACKWOOD_LOG, leaves( MaterialColor.FOLIAGE, 0.2 ) ), MDItemGroup.PLANTS );
 
     // Inver
     public static final AxisBlock STRIPPED_INVER_LOG = blockItem( "stripped_inver_log", new AxisBlock( wood( MaterialColor.WOOD ) ), MDItemGroup.BLOCKS );
     public static final AxisBlock INVER_LOG = blockItem( "inver_log", new StripableLogBlock( () -> STRIPPED_INVER_LOG, wood( MaterialColor.WOOD ) ), MDItemGroup.BLOCKS );
-    public static final Block STRIPPED_INVER = blockItem( "stripped_inver_wood", new Block( wood( MaterialColor.WOOD ) ), MDItemGroup.BLOCKS );
-    public static final Block INVER_WOOD = blockItem( "inver_wood", new StripableBlock( () -> STRIPPED_INVER, wood( MaterialColor.WOOD ) ), MDItemGroup.BLOCKS );
+    public static final AxisBlock STRIPPED_INVER = blockItem( "stripped_inver_wood", new AxisBlock( wood( MaterialColor.WOOD ) ), MDItemGroup.BLOCKS );
+    public static final AxisBlock INVER_WOOD = blockItem( "inver_wood", new StripableLogBlock( () -> STRIPPED_INVER, wood( MaterialColor.WOOD ) ), MDItemGroup.BLOCKS );
     public static final SaplingBlock INVER_SAPLING = blockItem( "inver_sapling", new SaplingBlock( () -> MDTrees.INVER, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final SaplingBlock RED_INVER_SAPLING = blockItem( "red_inver_sapling", new SaplingBlock( () -> MDTrees.RED_INVER, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final DecayLeavesBlock INVER_LEAVES = blockItem( "inver_leaves", new InverLeavesBlock( MDBlockTags.INVER_LOG, leaves( MaterialColor.FOLIAGE, 0.2 ), false ), MDItemGroup.PLANTS );

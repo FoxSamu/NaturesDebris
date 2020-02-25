@@ -1,7 +1,13 @@
 {
   "variants": {
-    "": {
+    "axis=y": {
       "model": "modernity:block/blackwood"
+    },
+    "axis=z": {
+      "model": "modernity:block/blackwood", "x": 90
+    },
+    "axis=x": {
+      "model": "modernity:block/blackwood", "x": 90, "y": 90
     }
   }
 }
