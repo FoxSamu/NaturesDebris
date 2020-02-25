@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 24 - 2020
+ * Date:   02 - 25 - 2020
  * Author: rgsw
  */
 
@@ -66,6 +66,7 @@ public class ModernityClient extends Modernity {
     private ColorProfile grassColors;
     private ColorProfile blackwoodColors;
     private ColorProfile inverColors;
+    private ColorProfile redInverColors;
     private ColorProfile waterColors;
     private ColorProfile mossColors;
     private ColorProfile fernColors;
@@ -93,6 +94,7 @@ public class ModernityClient extends Modernity {
             grassColors = manager.load( new ResourceLocation( "modernity:grass" ) );
             blackwoodColors = manager.load( new ResourceLocation( "modernity:blackwood" ) );
             inverColors = manager.load( new ResourceLocation( "modernity:inver" ) );
+            redInverColors = manager.load( new ResourceLocation( "modernity:red_inver" ) );
             waterColors = manager.load( new ResourceLocation( "modernity:water" ) );
             mossColors = manager.load( new ResourceLocation( "modernity:moss" ) );
             fernColors = manager.load( new ResourceLocation( "modernity:ferns" ) );
@@ -210,6 +212,13 @@ public class ModernityClient extends Modernity {
      */
     public ColorProfile getInverColors() {
         return inverColors;
+    }
+
+    /**
+     * Gets the biome color profile for red inver colors
+     */
+    public ColorProfile getRedInverColors() {
+        return redInverColors;
     }
 
     /**

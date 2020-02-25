@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 25 - 2020
  * Author: rgsw
  */
 
@@ -10,6 +10,7 @@ package modernity.common.block.tree;
 
 import modernity.api.block.IColoredBlock;
 import modernity.client.ModernityClient;
+import modernity.client.colors.ColorProfile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -24,17 +25,25 @@ import javax.annotation.Nullable;
  */
 public class InverLeavesBlock extends DecayLeavesBlock implements IColoredBlock {
 
-    public InverLeavesBlock( Tag<Block> logTag, Properties properties ) {
+    private final boolean red;
+
+    public InverLeavesBlock( Tag<Block> logTag, Properties properties, boolean red ) {
         super( logTag, properties );
+        this.red = red;
+    }
+
+    private ColorProfile getColorProfile() {
+        return red ? ModernityClient.get().getRedInverColors()
+                   : ModernityClient.get().getInverColors();
     }
 
     @Override
     public int colorMultiplier( BlockState state, @Nullable IEnviromentBlockReader reader, @Nullable BlockPos pos, int tintIndex ) {
-        return ModernityClient.get().getInverColors().getColor( reader, pos );
+        return getColorProfile().getColor( reader, pos );
     }
 
     @Override
     public int colorMultiplier( ItemStack stack, int tintIndex ) {
-        return ModernityClient.get().getInverColors().getItemColor();
+        return getColorProfile().getItemColor();
     }
 }

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 24 - 2020
+ * Date:   02 - 25 - 2020
  * Author: rgsw
  */
 
@@ -112,7 +112,8 @@ public final class MDBlocks {
     public static final Block STRIPPED_INVER = blockItem( "stripped_inver_wood", new Block( wood( MaterialColor.WOOD ) ), MDItemGroup.BLOCKS );
     public static final Block INVER_WOOD = blockItem( "inver_wood", new StripableBlock( () -> STRIPPED_INVER, wood( MaterialColor.WOOD ) ), MDItemGroup.BLOCKS );
     public static final SaplingBlock INVER_SAPLING = blockItem( "inver_sapling", new SaplingBlock( () -> MDTrees.INVER, strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
-    public static final DecayLeavesBlock INVER_LEAVES = blockItem( "inver_leaves", new InverLeavesBlock( MDBlockTags.INVER_LOG, leaves( MaterialColor.FOLIAGE, 0.2 ) ), MDItemGroup.PLANTS );
+    public static final DecayLeavesBlock INVER_LEAVES = blockItem( "inver_leaves", new InverLeavesBlock( MDBlockTags.INVER_LOG, leaves( MaterialColor.FOLIAGE, 0.2 ), false ), MDItemGroup.PLANTS );
+    public static final DecayLeavesBlock RED_INVER_LEAVES = blockItem( "red_inver_leaves", new InverLeavesBlock( MDBlockTags.INVER_LOG, leaves( MaterialColor.FOLIAGE, 0.2 ), true ), MDItemGroup.PLANTS );
 
 
 

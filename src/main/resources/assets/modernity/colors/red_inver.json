@@ -1,0 +1,19 @@
+{
+  "heightmap": {
+    "type": "cave",
+    "low": -24,
+    "high": -8,
+    "above": {
+      "biomes": {
+        "#modernity:forest": [ 135, 55, 39 ],
+        "#modernity:meadow_like": [ 148, 42, 24 ],
+        "#modernity:river": [ 158, 50, 43 ],
+        "#modernity:swamp": [ 135, 31, 3 ],
+        "#modernity:waterlands": [ 148, 56, 41 ],
+        "item": [ 148, 42, 24 ],
+        "default": [ 148, 42, 24 ]
+      }
+    },
+    "below": [ 148, 42, 24 ]
+  }
+}
