@@ -445,7 +445,7 @@ public final class MDBlocks {
     public static final Block SAGERITE_BLOCK = blockItem( "sagerite_block", new Block( Block.Properties.create( Material.IRON, MaterialColor.RED ).hardnessAndResistance( 5F, 6F ).sound( SoundType.METAL ) ), MDItemGroup.BLOCKS );
     public static final Block LUMINOSITE_BLOCK = blockItem( "luminosite_block", new Block( Block.Properties.create( Material.IRON, MaterialColor.SNOW ).hardnessAndResistance( 5F, 6F ).lightValue( 15 ).sound( SoundType.METAL ) ), MDItemGroup.BLOCKS );
     public static final ExtSlimeBlock GOO_BLOCK = blockItem( "goo_block", new ExtSlimeBlock( Block.Properties.create( Material.CLAY, MaterialColor.DIRT ).slipperiness( 0.8F ).sound( SoundType.SLIME ) ), MDItemGroup.BLOCKS );
-
+    public static final AxisBlock BLACKBONE_BLOCK = blockItem( "blackbone_block", new AxisBlock( Block.Properties.create( Material.ROCK, MaterialColor.BLACK ).hardnessAndResistance( 2 ) ), MDItemGroup.BLOCKS );
 
 
     /* ==== DECORATIVES & UTILITIES ==== */
