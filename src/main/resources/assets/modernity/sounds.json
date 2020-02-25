@@ -150,5 +150,50 @@
       "modernity:block/mud/step3",
       "modernity:block/mud/step4"
     ]
+  },
+  "block.asphalt.break": {
+    "sounds": [
+      "modernity:block/asphalt/break1",
+      "modernity:block/asphalt/break2",
+      "modernity:block/asphalt/break3",
+      "modernity:block/asphalt/break4",
+      "modernity:block/asphalt/break5"
+    ]
+  },
+  "block.asphalt.place": {
+    "sounds": [
+      "modernity:block/asphalt/break1",
+      "modernity:block/asphalt/break2",
+      "modernity:block/asphalt/break3",
+      "modernity:block/asphalt/break4",
+      "modernity:block/asphalt/break5"
+    ]
+  },
+  "block.asphalt.step": {
+    "sounds": [
+      "modernity:block/asphalt/step1",
+      "modernity:block/asphalt/step2",
+      "modernity:block/asphalt/step3",
+      "modernity:block/asphalt/step4",
+      "modernity:block/asphalt/step5"
+    ]
+  },
+  "block.asphalt.hit": {
+    "sounds": [
+      "modernity:block/asphalt/step1",
+      "modernity:block/asphalt/step2",
+      "modernity:block/asphalt/step3",
+      "modernity:block/asphalt/step4",
+      "modernity:block/asphalt/step5"
+    ]
+  },
+  "block.asphalt.fall": {
+    "sounds": [
+      "modernity:block/asphalt/step1",
+      "modernity:block/asphalt/step2",
+      "modernity:block/asphalt/step3",
+      "modernity:block/asphalt/step4",
+      "modernity:block/asphalt/step5"
+    ]
   }
 }

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 25 - 2020
+ * Date:   02 - 26 - 2020
  * Author: rgsw
  */
 
@@ -420,7 +420,7 @@ public final class MDBlocks {
 
     // Misc
     public static final SoulLightBlock SOUL_LIGHT = blockItem( "soul_light", new SoulLightBlock( Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ) ), MDItemGroup.DECORATIVES );
-    public static final PebblesBlock PEBBLES = blockItem( "pebbles", new PebblesBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( SoundType.STONE ) ), MDItemGroup.DECORATIVES );
+    public static final PebblesBlock PEBBLES = blockItem( "pebbles", new PebblesBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( MDSoundTypes.ASPHALT ) ), MDItemGroup.DECORATIVES );
     public static final GooDripsBlock GOO_DRIPS = blockItem( "goo_drips", new GooDripsBlock( weakPlant( MaterialColor.AIR, 0 ).sound( SoundType.SLIME ) ), MDItemGroup.DECORATIVES );
 
 
@@ -435,7 +435,7 @@ public final class MDBlocks {
     public static final OreBlock IVERITE_ORE = blockItem( "iverite_ore", new OreBlock( 2, 5, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
     public static final OreBlock SAGERITE_ORE = blockItem( "sagerite_ore", new OreBlock( 2, 5, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
     public static final OreBlock LUMINOSITE_ORE = blockItem( "luminosite_ore", new OreBlock( 0, 4, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).lightValue( 3 ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
-    public static final OreBlock GOO_ORE = blockItem( "goo_ore", new OreBlock( 0, 2, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
+    public static final OreBlock GOO_ORE = blockItem( "goo_ore", new OreBlock( 0, 2, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( MDSoundTypes.ASPHALT ) ), MDItemGroup.BLOCKS );
     public static final OreBlock FOSSIL = blockItem( "fossil", new OreBlock( 0, 2, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 5F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
 
     // Blocks
@@ -558,7 +558,7 @@ public final class MDBlocks {
     private static Block.Properties asphalt() {
         return Block.Properties.create( Material.ROCK, MaterialColor.BLACK )
                                .hardnessAndResistance( 1, 4 )
-                               .sound( SoundType.STONE );
+                               .sound( MDSoundTypes.ASPHALT );
     }
 
     private static Block.Properties glass() {

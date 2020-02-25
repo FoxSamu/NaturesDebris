@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 24 - 2020
+ * Date:   02 - 26 - 2020
  * Author: rgsw
  */
 
@@ -29,6 +29,15 @@ public final class MDSoundTypes {
         MDSoundEvents.BLOCK_MUD_PLACE,
         MDSoundEvents.BLOCK_MUD_HIT,
         MDSoundEvents.BLOCK_MUD_FALL
+    );
+
+    public static final SoundType ASPHALT = new SoundType(
+        1.2F, 1,
+        MDSoundEvents.BLOCK_ASPHALT_BREAK,
+        MDSoundEvents.BLOCK_ASPHALT_STEP,
+        MDSoundEvents.BLOCK_ASPHALT_PLACE,
+        MDSoundEvents.BLOCK_ASPHALT_HIT,
+        MDSoundEvents.BLOCK_ASPHALT_FALL
     );
 
     private MDSoundTypes() {
