@@ -2,13 +2,12 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 13 - 2020
+ * Date:   02 - 25 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.tree;
 
-import modernity.api.util.EnumUtil;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlockTags;
 import modernity.common.block.MDBlocks;
@@ -32,10 +31,9 @@ public class BlackwoodTree extends Tree {
     private static final BlockState LEAVES = MDBlocks.BLACKWOOD_LEAVES.getDefaultState();
     private static final BlockState HANGING_LEAVES = MDBlocks.BLACKWOOD_LEAVES.getDefaultState().with( HangLeavesBlock.DISTANCE, - 1 );
     private static final BlockState MURINA = MDBlocks.MURINA.getDefaultState();
-    private static final BlockState LOG_X = MDBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X );
     private static final BlockState LOG_Y = MDBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Y );
-    private static final BlockState LOG_Z = MDBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z );
-    private static final BlockState WOOD = MDBlocks.BLACKWOOD.getDefaultState();
+    private static final BlockState WOOD_X = MDBlocks.BLACKWOOD.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X );
+    private static final BlockState WOOD_Z = MDBlocks.BLACKWOOD.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z );
     private static final BlockState DIRT = MDBlocks.MURKY_DIRT.getDefaultState();
 
     @Override
@@ -105,14 +103,14 @@ public class BlackwoodTree extends Tree {
 
                 if( xd != zd ) {
                     mpos.setPos( pos ).addPos( x, - 1, z );
-                    setLogState( world, mpos, WOOD, logs );
+                    setLogState( world, mpos, xd ? WOOD_X : WOOD_Z, logs );
                 }
 
                 if( xd || zd ) {
                     boolean random = rand.nextBoolean();
                     if( xd && zd ) random &= rand.nextBoolean();
 
-                    if( rand.nextBoolean() ) {
+                    if( random ) {
                         createExtraLog( world, pos, mpos, logs, x, height - rand.nextInt( 2 ), z, rand );
                     }
                 }
@@ -167,7 +165,7 @@ public class BlackwoodTree extends Tree {
                 if( xd != zd ) {
                     mpos.setPos( pos ).addPos( x, - 1, z );
 
-                    setLogState( world, mpos, WOOD, logs );
+                    setLogState( world, mpos, xd ? WOOD_X : WOOD_Z, logs );
                 }
             }
         }
@@ -183,10 +181,6 @@ public class BlackwoodTree extends Tree {
 
     private void setLogStateRandom( IWorld world, BlockPos pos, BlockState state, Random rand, Consumer<BlockPos> logs ) {
         if( rand.nextBoolean() ) setLogState( world, pos, state, logs );
-    }
-
-    private static BlockState log( Direction.Axis axis ) {
-        return EnumUtil.enumSelect( axis, LOG_X, LOG_Y, LOG_Z );
     }
 
     private static boolean isAirOrLeaves( IWorldReader world, BlockPos pos ) {
