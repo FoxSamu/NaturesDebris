@@ -432,6 +432,7 @@ public final class MDBlocks {
     public static final OreBlock SAGERITE_ORE = blockItem( "sagerite_ore", new OreBlock( 2, 5, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
     public static final OreBlock LUMINOSITE_ORE = blockItem( "luminosite_ore", new OreBlock( 0, 4, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).lightValue( 3 ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
     public static final OreBlock GOO_ORE = blockItem( "goo_ore", new OreBlock( 0, 2, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 3F, 3F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
+    public static final OreBlock FOSSIL = blockItem( "fossil", new OreBlock( 0, 2, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 5F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
 
     // Blocks
     public static final TranslucentBlock SALT_BLOCK = blockItem( "salt_block", new SaltBlock( Block.Properties.create( Material.GLASS, MaterialColor.SNOW ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ) ), MDItemGroup.BLOCKS );

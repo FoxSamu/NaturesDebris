@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "": [
+      { "model": "modernity:block/fossil_bones_1" },
+      { "model": "modernity:block/fossil_bones_2" },
+      { "model": "modernity:block/fossil_bones_3" },
+      { "model": "modernity:block/fossil_bones_4" },
+      { "model": "modernity:block/fossil_fish" },
+      { "model": "modernity:block/fossil_large_bone" },
+      { "model": "modernity:block/fossil_shell" },
+      { "model": "modernity:block/fossil_skull_1" },
+      { "model": "modernity:block/fossil_skull_2" },
+      { "model": "modernity:block/fossil_skull_3" },
+      { "model": "modernity:block/fossil_spine_1" },
+      { "model": "modernity:block/fossil_spine_2" }
+    ]
+  }
+}
