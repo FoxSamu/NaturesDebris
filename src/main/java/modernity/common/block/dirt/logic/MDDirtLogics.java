@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   02 - 26 - 2020
  * Author: rgsw
  */
 
@@ -21,6 +21,7 @@ public final class MDDirtLogics {
     public static final GrassLogicType HEATH_TYPE = new GrassLogicType();
     public static final LeafyHumusLogicType LEAFY_HUMUS_TYPE = new LeafyHumusLogicType();
     public static final BasicLogicType HUMUS_TYPE = new BasicLogicType();
+    public static final BasicLogicType PODZOL_TYPE = new BasicLogicType();
 
     public static final FarmlandableDirtLogic DIRT_LOGIC = new FarmlandableDirtLogic( supplyBlock( "murky_dirt" ), DIRT_TYPE, supply( "DIRT_LOGIC_FL" ) );
     public static final FarmlandDirtLogic DIRT_LOGIC_FL = new FarmlandDirtLogic( supplyBlock( "murky_dirt_farmland" ), DIRT_TYPE, supply( "DIRT_LOGIC" ) );
@@ -36,6 +37,9 @@ public final class MDDirtLogics {
 
     public static final FarmlandableDirtLogic HEATH_LOGIC = new FarmlandableDirtLogic( supplyBlock( "heath_block" ), HEATH_TYPE, supply( "HEATH_LOGIC_FL" ) );
     public static final FarmlandDirtLogic HEATH_LOGIC_FL = new FarmlandDirtLogic( supplyBlock( "heath_farmland" ), HEATH_TYPE, supply( "HEATH_LOGIC" ) );
+
+    public static final FarmlandableDirtLogic PODZOL_LOGIC = new FarmlandableDirtLogic( supplyBlock( "murky_podzol" ), PODZOL_TYPE, supply( "PODZOL_LOGIC_FL" ) );
+    public static final FarmlandDirtLogic PODZOL_LOGIC_FL = new FarmlandDirtLogic( supplyBlock( "murky_podzol_farmland" ), PODZOL_TYPE, supply( "PODZOL_LOGIC" ) );
 
 
     @SuppressWarnings( "unchecked" )

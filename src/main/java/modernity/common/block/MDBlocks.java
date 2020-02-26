@@ -83,6 +83,7 @@ public final class MDBlocks {
     public static final DigableBlock SALTY_DIRT = blockItem( "salty_dirt", new DigableBlock( dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS );
     public static final DirtlikeBlock MURKY_HUMUS = blockItem( "murky_humus", new SnowyDirtlikeBlock( MDDirtLogics.HUMUS_LOGIC, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS );
     public static final DirtlikeBlock LEAFY_HUMUS = blockItem( "leafy_humus", new LeafyDirtlikeBlock( MDDirtLogics.LEAFY_HUMUS_LOGIC, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS, "dark_podzol" );
+    public static final DirtlikeBlock MURKY_PODZOL = blockItem( "murky_podzol", new SnowyDirtlikeBlock( MDDirtLogics.PODZOL_LOGIC, dirt( MaterialColor.DIRT, true ) ), MDItemGroup.BLOCKS );
     public static final DirtlikeBlock HEATH_BLOCK = blockItem( "heath_block", new DirtlikeBlock( MDDirtLogics.HEATH_LOGIC, dirt( MaterialColor.FOLIAGE, true ) ), MDItemGroup.BLOCKS );
     public static final DigableBlock ACID_DIRT = blockItem( "acid_dirt", new DigableBlock( dirt( MaterialColor.DIRT, true ) ), MDItemGroup.BLOCKS );
     public static final StickyBlock MUD = blockItem( "mud", new DigableStickyBlock( dirt( MaterialColor.BROWN_TERRACOTTA, false ).sound( MDSoundTypes.MUD ) ), MDItemGroup.BLOCKS );
@@ -124,6 +125,7 @@ public final class MDBlocks {
     public static final FarmlandBlock MURKY_GRASS_BLOCK_FARMLAND = blockItem( "murky_grass_block_farmland", new GrassFarmlandBlock( MDDirtLogics.GRASS_LOGIC_FL, dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS );
     public static final FarmlandBlock LEAFY_HUMUS_FARMLAND = blockItem( "leafy_humus_farmland", new FarmlandBlock( MDDirtLogics.LEAFY_HUMUS_LOGIC_FL, dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS );
     public static final FarmlandBlock MURKY_HUMUS_FARMLAND = blockItem( "murky_humus_farmland", new FarmlandBlock( MDDirtLogics.HUMUS_LOGIC_FL, dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS );
+    public static final FarmlandBlock MURKY_PODZOL_FARMLAND = blockItem( "murky_podzol_farmland", new FarmlandBlock( MDDirtLogics.PODZOL_LOGIC_FL, dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS );
     public static final FarmlandBlock HEATH_FARMLAND = blockItem( "heath_farmland", new FarmlandBlock( MDDirtLogics.HEATH_LOGIC_FL, dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS );
 
 
