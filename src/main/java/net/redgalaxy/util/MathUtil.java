@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   02 - 26 - 2020
  * Author: rgsw
  */
 
@@ -173,5 +173,89 @@ public final class MathUtil {
 
     public static long positiveModulo( long l, long mod ) {
         return l % mod + ( l < 0 ? mod : 0 );
+    }
+
+    public static double sum( double... values ) {
+        double total = 0;
+        for( double d : values ) total += d;
+        return total;
+    }
+
+    public static double avg( double... values ) {
+        double total = 0;
+        for( double d : values ) total += d;
+        return total / values.length;
+    }
+
+    public static double min( double... values ) {
+        double min = Double.POSITIVE_INFINITY;
+        for( double d : values ) min = Math.min( min, d );
+        return min;
+    }
+
+    public static double max( double... values ) {
+        double max = Double.NEGATIVE_INFINITY;
+        for( double d : values ) max = Math.max( max, d );
+        return max;
+    }
+
+    public static float sum( float... values ) {
+        float total = 0;
+        for( float d : values ) total += d;
+        return total;
+    }
+
+    public static float avg( float... values ) {
+        float total = 0;
+        for( float d : values ) total += d;
+        return total / values.length;
+    }
+
+    public static float min( float... values ) {
+        float min = Float.POSITIVE_INFINITY;
+        for( float d : values ) min = Math.min( min, d );
+        return min;
+    }
+
+    public static float max( float... values ) {
+        float max = Float.NEGATIVE_INFINITY;
+        for( float d : values ) max = Math.max( max, d );
+        return max;
+    }
+
+    public static int sum( int... values ) {
+        int total = 0;
+        for( int d : values ) total += d;
+        return total;
+    }
+
+    public static int min( int... values ) {
+        int min = Integer.MAX_VALUE;
+        for( int d : values ) min = Math.min( min, d );
+        return min;
+    }
+
+    public static int max( int... values ) {
+        int max = Integer.MIN_VALUE;
+        for( int d : values ) max = Math.max( max, d );
+        return max;
+    }
+
+    public static long sum( long... values ) {
+        long total = 0;
+        for( long d : values ) total += d;
+        return total;
+    }
+
+    public static long min( long... values ) {
+        long min = Long.MAX_VALUE;
+        for( long d : values ) min = Math.min( min, d );
+        return min;
+    }
+
+    public static long max( long... values ) {
+        long max = Long.MIN_VALUE;
+        for( long d : values ) max = Math.max( max, d );
+        return max;
     }
 }
