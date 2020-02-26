@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 25 - 2020
+ * Date:   02 - 26 - 2020
  * Author: rgsw
  */
 
@@ -13,6 +13,7 @@ import modernity.client.colormap.ColorMap;
 import modernity.client.colors.ColorProfile;
 import modernity.client.colors.ColorProfileManager;
 import modernity.client.colors.ColorProviderRegistry;
+import modernity.client.environment.EnvironmentParticleManager;
 import modernity.client.handler.*;
 import modernity.client.model.MDModelLoaders;
 import modernity.client.render.area.AreaRenderManager;
@@ -75,6 +76,8 @@ public class ModernityClient extends Modernity {
 
     private ClientWorldAreaManager worldAreaManager;
     private AreaRenderManager areaRenderManager;
+
+    private final EnvironmentParticleManager envParticles = new EnvironmentParticleManager();
 
     // Used to give color to fallen leaf particles
     private final ColorMap fallenLeafColors = new ColorMap( new ResourceLocation( "modernity:textures/block/leafy_humus_top.png" ), 0xffffff );
@@ -191,6 +194,8 @@ public class ModernityClient extends Modernity {
                 getWorldAreaManager().tick();
             }
         }
+
+        envParticles.tick();
     }
 
     /**
@@ -277,6 +282,10 @@ public class ModernityClient extends Modernity {
      */
     public ColorMap getFallenLeafColors() {
         return fallenLeafColors;
+    }
+
+    public EnvironmentParticleManager getEnvParticles() {
+        return envParticles;
     }
 
     public ClientWorldAreaManager getWorldAreaManager() {

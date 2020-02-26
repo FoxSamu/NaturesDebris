@@ -1,5 +1,5 @@
 {
-  "parent": "modernity:block/abstract_hedge_side",
+  "parent": "modernity:block/abstract_hedge_inventory",
   "textures": {
     "hedge": "modernity:block/muxus_leaves"
   }

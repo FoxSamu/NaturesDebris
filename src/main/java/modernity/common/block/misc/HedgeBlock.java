@@ -8,6 +8,7 @@
 
 package modernity.common.block.misc;
 
+import modernity.common.block.MDBlockTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
@@ -15,7 +16,7 @@ import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -138,7 +139,7 @@ public class HedgeBlock extends Block {
 
     private boolean attachesTo( BlockState state, boolean solidSide, Direction dir ) {
         Block block = state.getBlock();
-        boolean wallOrFenceGate = block.isIn( BlockTags.WALLS ) || isFenceGate( block ) && net.minecraft.block.FenceGateBlock.isParallel( state, dir );
+        boolean wallOrFenceGate = block.isIn( MDBlockTags.HEDGES ) || isFenceGate( block ) && net.minecraft.block.FenceGateBlock.isParallel( state, dir );
         return ! cannotAttach( block ) && solidSide || wallOrFenceGate;
     }
 
@@ -155,6 +156,11 @@ public class HedgeBlock extends Block {
     protected void fillStateContainer( StateContainer.Builder<Block, BlockState> builder ) {
         super.fillStateContainer( builder );
         builder.add( NORTH, EAST, SOUTH, WEST );
+    }
+
+    @Override
+    public BlockRenderLayer getRenderLayer() {
+        return BlockRenderLayer.CUTOUT;
     }
 
     /**

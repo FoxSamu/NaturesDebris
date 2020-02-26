@@ -1,5 +1,5 @@
 {
-  "parent": "block/abstract_hedge_noside",
+  "parent": "modernity:block/abstract_hedge_noside",
   "textures": {
     "hedge": "modernity:block/inver_leaves"
   }

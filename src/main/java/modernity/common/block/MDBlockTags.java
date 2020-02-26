@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   02 - 26 - 2020
  * Author: rgsw
  */
 
@@ -31,6 +31,7 @@ public final class MDBlockTags {
 
     public static final Tag<Block> WALLS = tag( "walls" );
     public static final Tag<Block> FENCES = tag( "fences" );
+    public static final Tag<Block> HEDGES = tag( "hedges" );
 
 
     public static final Tag<Block> SALT_SOURCE = tag( "salt_source" );

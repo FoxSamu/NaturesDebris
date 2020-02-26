@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 18 - 2020
+ * Date:   02 - 26 - 2020
  * Author: rgsw
  */
 
@@ -33,6 +33,7 @@ public final class MDParticleTypes {
     public static final ParticleType<SoulLightParticleData> SOUL_LIGHT = register( "soul_light", new ParticleType<>( true, SoulLightParticleData.DESERIALIZER ) );
     public static final ParticleType<SoulLightParticleData> SOUL_LIGHT_CLOUD = register( "soul_light_cloud", new ParticleType<>( true, SoulLightParticleData.DESERIALIZER ) );
     public static final BasicParticleType SHADE = register( "shade", new BasicParticleType( false ) );
+    public static final ParticleType<RgbParticleData> AMBIENT = register( "ambient", new ParticleType<>( false, RgbParticleData.DESERIALIZER ) );
 
     private static <T extends ParticleType<?>> T register( String id, T type, String... aliases ) {
         return ENTRIES.register( id, type, aliases );
@@ -55,6 +56,7 @@ public final class MDParticleTypes {
         manager.registerFactory( SOUL_LIGHT, new SoulLightParticle.BaseFactory() );
         manager.registerFactory( SOUL_LIGHT_CLOUD, new SoulLightParticle.CloudFactory() );
         manager.registerFactory( SHADE, ShadeParticle.Factory::new );
+        manager.registerFactory( AMBIENT, AmbientParticle.Factory::new );
 
         // Vanilla overrides
         manager.registerFactory( ParticleTypes.BLOCK, new ExtendedDiggingParticle.Factory() );

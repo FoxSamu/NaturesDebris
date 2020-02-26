@@ -1,0 +1,87 @@
+/*
+ * Copyright (c) 2020 RedGalaxy
+ * All rights reserved. Do not distribute.
+ *
+ * Date:   02 - 26 - 2020
+ * Author: rgsw
+ */
+
+package modernity.client.particle;
+
+import modernity.common.particle.RgbParticleData;
+import net.minecraft.client.particle.*;
+import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+
+public class AmbientParticle extends SpriteTexturedParticle {
+
+    protected AmbientParticle( World world, double x, double y, double z, double xv, double yv, double zv, double r, double g, double b ) {
+        super( world, x, y, z );
+        motionX = xv + rand.nextGaussian() * 0.06;
+        motionY = yv + rand.nextGaussian() * 0.06;
+        motionZ = zv + rand.nextGaussian() * 0.06;
+
+        particleRed = (float) r;
+        particleGreen = (float) g;
+        particleBlue = (float) b;
+
+        particleScale *= ( rand.nextFloat() * 0.6F + 1.0F ) * 0.3F;
+
+        maxAge = 150;
+
+        setSize( 0.2F, 0.2F );
+    }
+
+    @Override
+    public IParticleRenderType getRenderType() {
+        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    }
+
+    @Override
+    public void tick() {
+        prevPosX = posX;
+        prevPosY = posY;
+        prevPosZ = posZ;
+
+        if( age++ >= maxAge ) {
+            setExpired();
+        } else {
+            move( motionX, motionY, motionZ );
+            motionX *= 0.99;
+            motionY *= 0.99;
+            motionZ *= 0.99;
+        }
+    }
+
+    @Override
+    protected int getBrightnessForRender( float partialTicks ) {
+        int skylight = 13;
+        int blocklight = 2;
+        return skylight << 20 | blocklight << 4;
+    }
+
+    @Override
+    public void move( double x, double y, double z ) {
+        if( x != 0 || y != 0 || z != 0 ) {
+            setBoundingBox( getBoundingBox().offset( x, y, z ) );
+            resetPositionToBB();
+        }
+    }
+
+    public static class Factory implements IParticleFactory<RgbParticleData> {
+        private final IAnimatedSprite sprite;
+
+        public Factory( IAnimatedSprite sprite ) {
+            this.sprite = sprite;
+        }
+
+        @Nullable
+        @Override
+        public Particle makeParticle( RgbParticleData data, World world, double x, double y, double z, double xv, double yv, double zv ) {
+            AmbientParticle p = new AmbientParticle( world, x, y, z, xv, yv, zv, data.red(), data.green(), data.blue() );
+            p.selectSpriteRandomly( sprite );
+            return p;
+        }
+    }
+}
