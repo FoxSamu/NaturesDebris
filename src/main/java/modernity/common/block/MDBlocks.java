@@ -337,6 +337,11 @@ public final class MDBlocks {
 
     public static final MurkyGrassPathBlock MURKY_GRASS_PATH = blockItem( "murky_grass_path", new MurkyGrassPathBlock( dirt( MaterialColor.YELLOW, true ) ), MDItemGroup.DECORATIVES );
 
+    public static final HedgeBlock BLACKWOOD_HEDGE = blockItem( "blackwood_hedge", new ColoredHedgeBlock( leaves( MaterialColor.FOLIAGE, 0.3 ).sound( SoundType.SWEET_BERRY_BUSH ), 0 ), MDItemGroup.DECORATIVES );
+    public static final HedgeBlock INVER_HEDGE = blockItem( "inver_hedge", new ColoredHedgeBlock( leaves( MaterialColor.FOLIAGE, 0.3 ).sound( SoundType.SWEET_BERRY_BUSH ), 1 ), MDItemGroup.DECORATIVES );
+    public static final HedgeBlock RED_INVER_HEDGE = blockItem( "red_inver_hedge", new ColoredHedgeBlock( leaves( MaterialColor.FOLIAGE, 0.3 ).sound( SoundType.SWEET_BERRY_BUSH ), 2 ), MDItemGroup.DECORATIVES );
+    public static final HedgeBlock MUXUS_HEDGE = blockItem( "muxus_hedge", new HedgeBlock( leaves( MaterialColor.FOLIAGE, 0.3 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.DECORATIVES );
+
 
 
     /* ==== MISCELLANEOUS ==== */

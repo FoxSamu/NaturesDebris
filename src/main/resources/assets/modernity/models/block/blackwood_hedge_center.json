@@ -1,0 +1,6 @@
+{
+  "parent": "block/abstract_hedge_center",
+  "textures": {
+    "hedge": "modernity:block/blackwood_leaves"
+  }
+}
