@@ -18,9 +18,9 @@ public class AmbientParticle extends SpriteTexturedParticle {
 
     protected AmbientParticle( World world, double x, double y, double z, double xv, double yv, double zv, double r, double g, double b ) {
         super( world, x, y, z );
-        motionX = xv + rand.nextGaussian() * 0.06;
-        motionY = yv + rand.nextGaussian() * 0.06;
-        motionZ = zv + rand.nextGaussian() * 0.06;
+        motionX = xv + rand.nextGaussian() * 0.04;
+        motionY = yv + rand.nextGaussian() * 0.04;
+        motionZ = zv + rand.nextGaussian() * 0.04;
 
         particleRed = (float) r;
         particleGreen = (float) g;
