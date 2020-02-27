@@ -99,7 +99,7 @@ public class ExtTrapDoorBlock extends WaterloggedBlock {
 
     @Override
     public boolean onBlockActivated( BlockState state, World world, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit ) {
-        if( this.material == Material.IRON ) {
+        if( material == Material.IRON ) {
             return false;
         } else {
             state = state.cycle( OPEN );
