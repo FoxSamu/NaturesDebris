@@ -342,6 +342,17 @@ public final class MDBlocks {
     public static final HedgeBlock RED_INVER_HEDGE = blockItem( "red_inver_hedge", new ColoredHedgeBlock( leaves( MaterialColor.FOLIAGE, 0.3 ).sound( SoundType.SWEET_BERRY_BUSH ), 2 ), MDItemGroup.DECORATIVES );
     public static final HedgeBlock MUXUS_HEDGE = blockItem( "muxus_hedge", new HedgeBlock( leaves( MaterialColor.FOLIAGE, 0.3 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.DECORATIVES );
 
+    public static final TorchBlock EXTINGUISHED_ANTHRACITE_TORCH = blockItem( "extinguished_anthracite_torch", new TorchBlock( false, Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ).hardnessAndResistance( 0 ).doesNotBlockMovement().sound( SoundType.WOOD ) ), MDItemGroup.DECORATIVES );
+    public static final ExtinguishableTorchBlock ANTHRACITE_TORCH = blockItem( "anthracite_torch", new ExtinguishableTorchBlock( true, EXTINGUISHED_ANTHRACITE_TORCH, Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ).doesNotBlockMovement().hardnessAndResistance( 0 ).lightValue( 15 ).sound( SoundType.WOOD ) ), MDItemGroup.DECORATIVES );
+    public static final TorchBlock LUMINOSITE_TORCH = blockItem( "luminosite_torch", new TorchBlock( false, Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ).hardnessAndResistance( 0 ).doesNotBlockMovement().lightValue( 15 ).sound( SoundType.METAL ) ), MDItemGroup.DECORATIVES );
+
+    public static final ExtLadderBlock BLACKWOOD_LADDER = blockItem( "blackwood_ladder", new ExtLadderBlock( Block.Properties.create( Material.MISCELLANEOUS ).hardnessAndResistance( 0.4F ).sound( SoundType.LADDER ) ), MDItemGroup.DECORATIVES );
+    public static final ExtLadderBlock INVER_LADDER = blockItem( "inver_ladder", new ExtLadderBlock( Block.Properties.create( Material.MISCELLANEOUS ).hardnessAndResistance( 0.4F ).sound( SoundType.LADDER ) ), MDItemGroup.DECORATIVES );
+
+    // Utilities
+    public static final WorkbenchBlock BLACKWOOD_WORKBENCH = blockItem( "blackwood_workbench", new WorkbenchBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
+    public static final WorkbenchBlock INVER_WORKBENCH = blockItem( "inver_workbench", new WorkbenchBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
+    public static final RockFurnaceBlock ROCK_FURNACE = blockItem( "rock_furnace", new RockFurnaceBlock( rock( MaterialColor.STONE, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.DECORATIVES );
 
 
     /* ==== MISCELLANEOUS ==== */
@@ -455,19 +466,6 @@ public final class MDBlocks {
     public static final Block LUMINOSITE_BLOCK = blockItem( "luminosite_block", new Block( Block.Properties.create( Material.IRON, MaterialColor.SNOW ).hardnessAndResistance( 5F, 6F ).lightValue( 15 ).sound( SoundType.METAL ) ), MDItemGroup.BLOCKS );
     public static final ExtSlimeBlock GOO_BLOCK = blockItem( "goo_block", new ExtSlimeBlock( Block.Properties.create( Material.CLAY, MaterialColor.DIRT ).slipperiness( 0.8F ).sound( SoundType.SLIME ) ), MDItemGroup.BLOCKS );
     public static final AxisBlock BLACKBONE_BLOCK = blockItem( "blackbone_block", new AxisBlock( Block.Properties.create( Material.ROCK, MaterialColor.BLACK ).hardnessAndResistance( 2 ) ), MDItemGroup.BLOCKS );
-
-
-    /* ==== DECORATIVES & UTILITIES ==== */
-
-    // Torches
-    public static final TorchBlock EXTINGUISHED_ANTHRACITE_TORCH = blockItem( "extinguished_anthracite_torch", new TorchBlock( false, Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ).hardnessAndResistance( 0 ).doesNotBlockMovement().sound( SoundType.WOOD ) ), MDItemGroup.DECORATIVES );
-    public static final ExtinguishableTorchBlock ANTHRACITE_TORCH = blockItem( "anthracite_torch", new ExtinguishableTorchBlock( true, EXTINGUISHED_ANTHRACITE_TORCH, Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ).doesNotBlockMovement().hardnessAndResistance( 0 ).lightValue( 15 ).sound( SoundType.WOOD ) ), MDItemGroup.DECORATIVES );
-    public static final TorchBlock LUMINOSITE_TORCH = blockItem( "luminosite_torch", new TorchBlock( false, Block.Properties.create( Material.MISCELLANEOUS, MaterialColor.SNOW ).hardnessAndResistance( 0 ).doesNotBlockMovement().lightValue( 15 ).sound( SoundType.METAL ) ), MDItemGroup.DECORATIVES );
-
-    // Utilities
-    public static final WorkbenchBlock BLACKWOOD_WORKBENCH = blockItem( "blackwood_workbench", new WorkbenchBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
-    public static final WorkbenchBlock INVER_WORKBENCH = blockItem( "inver_workbench", new WorkbenchBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
-    public static final RockFurnaceBlock ROCK_FURNACE = blockItem( "rock_furnace", new RockFurnaceBlock( rock( MaterialColor.STONE, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.DECORATIVES );
 
 
 

@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/abstract_ladder",
+  "textures": {
+    "texture": "modernity:block/inver_ladder"
+  }
+}
