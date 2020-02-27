@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 25 - 2020
+ * Date:   02 - 27 - 2020
  * Author: rgsw
  */
 
@@ -81,16 +81,22 @@ public final class MDItems {
     public static final BaseBucketItem ALUMINIUM_LAVA_BUCKET = item( "aluminium_lava_bucket", new AluminiumBucketItem( MDFluids.MOLTEN_ROCK, new Item.Properties().group( MDItemGroup.MISC ).containerItem( ALUMINIUM_BUCKET ).maxStackSize( 1 ) ), "aluminium_heatrock_bucket" );
 
     // Blackwood Tools
-    public static final PickaxeItem BLACKWOOD_PICKAXE = item( "blackwood_pickaxe", new PickaxeItem( ItemTier.WOOD, 1, - 2.8F, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
-    public static final AxeItem BLACKWOOD_AXE = item( "blackwood_axe", new AxeItem( ItemTier.WOOD, 6, - 3.2F, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
-    public static final ShovelItem BLACKWOOD_SHOVEL = item( "blackwood_shovel", new ShovelItem( ItemTier.WOOD, 1.5F, - 3.0F, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
-    public static final SwordItem BLACKWOOD_SWORD = item( "blackwood_sword", new SwordItem( ItemTier.WOOD, 3, - 2.4F, new Item.Properties().group( MDItemGroup.COMBAT ) ) );
+    public static final PickaxeItem BLACKWOOD_PICKAXE = item( "blackwood_pickaxe", new PickaxeItem( MDItemTier.BLACKWOOD, 1, - 2.8F, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
+    public static final AxeItem BLACKWOOD_AXE = item( "blackwood_axe", new AxeItem( MDItemTier.BLACKWOOD, 6, - 3.2F, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
+    public static final ShovelItem BLACKWOOD_SHOVEL = item( "blackwood_shovel", new ShovelItem( MDItemTier.BLACKWOOD, 1.5F, - 3, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
+    public static final SwordItem BLACKWOOD_SWORD = item( "blackwood_sword", new SwordItem( MDItemTier.BLACKWOOD, 3, - 2.4F, new Item.Properties().group( MDItemGroup.COMBAT ) ) );
+
+    // Blackwood Tools
+    public static final PickaxeItem DARKROCK_PICKAXE = item( "darkrock_pickaxe", new PickaxeItem( MDItemTier.DARKROCK, 1, - 2.8F, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
+    public static final AxeItem DARKROCK_AXE = item( "darkrock_axe", new AxeItem( MDItemTier.DARKROCK, 7, - 3.2F, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
+    public static final ShovelItem DARKROCK_SHOVEL = item( "darkrock_shovel", new ShovelItem( MDItemTier.DARKROCK, 1.5F, - 3, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
+    public static final SwordItem DARKROCK_SWORD = item( "darkrock_sword", new SwordItem( MDItemTier.DARKROCK, 3, - 2.4F, new Item.Properties().group( MDItemGroup.COMBAT ) ) );
 
     // Aluminium Tools
-    public static final PickaxeItem ALUMINIUM_PICKAXE = item( "aluminium_pickaxe", new PickaxeItem( ItemTier.IRON, 1, - 2.8F, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
-    public static final AxeItem ALUMINIUM_AXE = item( "aluminium_axe", new AxeItem( ItemTier.IRON, 6, - 3.2F, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
-    public static final ShovelItem ALUMINIUM_SHOVEL = item( "aluminium_shovel", new ShovelItem( ItemTier.IRON, 1.5F, - 3.0F, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
-    public static final SwordItem ALUMINIUM_SWORD = item( "aluminium_sword", new SwordItem( ItemTier.IRON, 3, - 2.4F, new Item.Properties().group( MDItemGroup.COMBAT ) ) );
+    public static final PickaxeItem ALUMINIUM_PICKAXE = item( "aluminium_pickaxe", new PickaxeItem( MDItemTier.ALUMINIUM, 1, - 2.8F, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
+    public static final AxeItem ALUMINIUM_AXE = item( "aluminium_axe", new AxeItem( MDItemTier.ALUMINIUM, 6, - 3.1F, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
+    public static final ShovelItem ALUMINIUM_SHOVEL = item( "aluminium_shovel", new ShovelItem( MDItemTier.ALUMINIUM, 1.5F, - 3, new Item.Properties().group( MDItemGroup.TOOLS ) ) );
+    public static final SwordItem ALUMINIUM_SWORD = item( "aluminium_sword", new SwordItem( MDItemTier.ALUMINIUM, 3, - 2.4F, new Item.Properties().group( MDItemGroup.COMBAT ) ) );
 
     // Aluminium Armor
     public static final ArmorItem ALUMINIUM_HELMET = item( "aluminium_helmet", new ArmorItem( MDArmorMaterial.ALUMINIUM, EquipmentSlotType.HEAD, new Item.Properties().group( MDItemGroup.COMBAT ) ) );

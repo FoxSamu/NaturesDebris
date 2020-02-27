@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "modernity:item/darkrock_pickaxe"
+  }
+}

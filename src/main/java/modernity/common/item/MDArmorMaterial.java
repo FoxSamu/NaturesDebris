@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   02 - 27 - 2020
  * Author: rgsw
  */
 
@@ -23,7 +23,7 @@ import java.util.function.Supplier;
  * Types of Modernity armor material
  */
 public enum MDArmorMaterial implements IArmorMaterial {
-    ALUMINIUM( "modernity:aluminium", 15, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> {
+    ALUMINIUM( "modernity:aluminium", 15, new int[] { 2, 5, 6, 2 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, () -> {
         return Ingredient.fromItems( MDItems.ALUMINIUM_INGOT );
     } );
 
