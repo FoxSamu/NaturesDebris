@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 14 - 2020
+ * Date:   02 - 27 - 2020
  * Author: rgsw
  */
 
@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 
 public class MossBlock extends FacingPlantBlock implements IColoredBlock {
     public MossBlock( Properties properties ) {
-        super( properties, 2, 0 );
+        super( properties, 2, 0, true );
     }
 
 

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 26 - 2020
+ * Date:   02 - 27 - 2020
  * Author: rgsw
  */
 
@@ -362,8 +362,8 @@ public final class MDBlocks {
     public static final SaltCrystalBlock SALT_CRYSTAL = blockItem( "salt_crystal", new SaltCrystalBlock( crystal( MaterialColor.SNOW, 0.2 ) ), MDItemGroup.PLANTS );
     public static final MurinaBlock MURINA = blockItem( "murina", new MurinaBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final MossBlock MOSS = blockItem( "moss", new MossBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.PLANTS );
-    public static final FacingPlantBlock DEAD_MOSS = blockItem( "dead_moss", new FacingPlantBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.SWEET_BERRY_BUSH ), 2 ), MDItemGroup.PLANTS );
-    public static final FacingPlantBlock LICHEN = blockItem( "lichen", new FacingPlantBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.SWEET_BERRY_BUSH ), 2 ), MDItemGroup.PLANTS );
+    public static final FacingPlantBlock DEAD_MOSS = blockItem( "dead_moss", new FacingPlantBlock( weakPlant( MaterialColor.DIRT, 0 ).sound( SoundType.SWEET_BERRY_BUSH ), 2, false ), MDItemGroup.PLANTS );
+    public static final FacingPlantBlock LICHEN = blockItem( "lichen", new FacingPlantBlock( weakPlant( MaterialColor.WHITE_TERRACOTTA, 0 ).sound( SoundType.SWEET_BERRY_BUSH ), 2, true ), MDItemGroup.PLANTS );
     public static final MurkFernBlock MURK_FERN = blockItem( "murk_fern", new MurkFernBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final TallMurkFernBlock TALL_MURK_FERN = blockItem( "tall_murk_fern", new TallMurkFernBlock( weakPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final WireplantBlock WIREPLANT = blockItem( "wireplant", new WireplantBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.PLANTS );

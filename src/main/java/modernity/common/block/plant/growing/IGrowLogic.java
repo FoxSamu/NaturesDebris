@@ -13,9 +13,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 @FunctionalInterface
 public interface IGrowLogic {
-    void grow( World world, BlockPos pos, BlockState state, Random rand, IFarmlandLogic farmland );
+    void grow( World world, BlockPos pos, BlockState state, Random rand, @Nullable IFarmlandLogic farmland );
 }
