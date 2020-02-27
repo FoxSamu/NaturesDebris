@@ -45,7 +45,7 @@ public class MossGrowLogic implements IGrowLogic {
             }
         }
 
-        world.setBlockState( pos, plant.getDefaultState().with(
+        world.setBlockState( pos, plant.computeStateForPos( world, pos ).with(
             FacingPlantBlock.FACING,
             possibleDirections.get( rand.nextInt( possibleDirections.size() ) )
         ) );
