@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 12 - 2020
+ * Date:   02 - 27 - 2020
  * Author: rgsw
  */
 
@@ -10,9 +10,11 @@ package modernity.common.block.plant;
 
 import modernity.api.util.MDVoxelShapes;
 import modernity.common.block.MDBlocks;
+import modernity.common.block.farmland.IFarmlandLogic;
 import modernity.common.block.fluid.IMurkyWaterloggedBlock;
 import modernity.common.block.fluid.IWaterloggedBlock;
 import modernity.common.block.fluid.WaterlogType;
+import modernity.common.block.plant.growing.IGrowLogic;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -37,7 +39,10 @@ import net.minecraft.world.*;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+@SuppressWarnings( "deprecation" )
 public abstract class PlantBlock extends Block {
+
+    private IGrowLogic logic;
 
     public PlantBlock( Properties properties ) {
         super( properties );
@@ -50,6 +55,32 @@ public abstract class PlantBlock extends Block {
             def = def.with( IWaterloggedBlock.WATERLOGGED, WaterlogType.NONE );
         }
         setDefaultState( def );
+    }
+
+    protected void setGrowwLogic( IGrowLogic logic ) {
+        this.logic = logic;
+    }
+
+    public IGrowLogic getGrowLogic() {
+        return logic;
+    }
+
+    @Override
+    public boolean ticksRandomly( BlockState state ) {
+        return logic != null || super.ticksRandomly( state );
+    }
+
+    @Override
+    public void randomTick( BlockState state, World world, BlockPos pos, Random rng ) {
+        super.randomTick( state, world, pos, rng );
+        if( logic != null ) {
+            IFarmlandLogic flLogic = getSupportingFarmland( world, pos );
+            logic.grow( world, pos, state, rng, flLogic );
+        }
+    }
+
+    protected IFarmlandLogic getSupportingFarmland( IWorldReader reader, BlockPos pos ) {
+        return IFarmlandLogic.get( reader, pos.down() );
     }
 
     @Override

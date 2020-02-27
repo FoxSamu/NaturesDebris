@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 27 - 2020
  * Author: rgsw
  */
 
@@ -10,8 +10,7 @@ package modernity.common.block.farmland;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.IWorldReader;
 
 import java.util.Optional;
 import java.util.Random;
@@ -56,7 +55,7 @@ public interface IFarmlandLogic {
 
     void randomUpdate( Random rand );
 
-    static IFarmlandLogic get( IWorld world, BlockPos pos ) {
+    static IFarmlandLogic get( IWorldReader world, BlockPos pos ) {
         TileEntity te = world.getTileEntity( pos );
         if( te instanceof IFarmlandLogic ) {
             return (IFarmlandLogic) te;
@@ -64,7 +63,7 @@ public interface IFarmlandLogic {
         return null;
     }
 
-    static Optional<IFarmlandLogic> opt( World world, BlockPos pos ) {
+    static Optional<IFarmlandLogic> opt( IWorldReader world, BlockPos pos ) {
         return Optional.ofNullable( get( world, pos ) );
     }
 }
