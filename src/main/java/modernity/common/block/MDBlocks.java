@@ -319,18 +319,23 @@ public final class MDBlocks {
     public static final FenceGateBlock BLACKWOOD_FENCE_GATE = blockItem( "blackwood_fence_gate", new FenceGateBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
     public static final FenceGateBlock INVER_FENCE_GATE = blockItem( "inver_fence_gate", new FenceGateBlock( wood( MaterialColor.WOOD ) ), MDItemGroup.DECORATIVES );
 
-    // Doors
+    // Doors & Trap Doors
     public static final DoorBlock BLACKWOOD_DOOR = blockItem( "blackwood_door", new DoorBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
     public static final DoorBlock INVER_DOOR = blockItem( "inver_door", new DoorBlock( wood( MaterialColor.WOOD ) ), MDItemGroup.DECORATIVES );
     public static final DoorBlock ALUMINIUM_DOOR = blockItem( "aluminium_door", new DoorBlock( metal( MaterialColor.IRON ) ), MDItemGroup.DECORATIVES );
 
-    // Misc
-    public static final TranslucentBlock MURKY_GLASS = blockItem( "murky_glass", new TranslucentBlock( glass() ), MDItemGroup.BLOCKS, "dark_glass" );
-    public static final PanelBlock MURKY_GLASS_PANE = blockItem( "murky_glass_pane", new TranslucentPanelBlock( glass() ), MDItemGroup.DECORATIVES, "dark_glass_pane" );
+    public static final ExtTrapDoorBlock BLACKWOOD_TRAPDOOR = blockItem( "blackwood_trapdoor", new ExtTrapDoorBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
+    public static final ExtTrapDoorBlock INVER_TRAPDOOR = blockItem( "inver_trapdoor", new ExtTrapDoorBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
+    public static final ExtTrapDoorBlock ALUMINIUM_TRAPDOOR = blockItem( "aluminium_trapdoor", new ExtTrapDoorBlock( metal( MaterialColor.IRON ) ), MDItemGroup.DECORATIVES );
 
+    // Pillars
     public static final PillarBlock ROCK_PILLAR = blockItem( "rock_pillar", new PillarBlock( rock( MaterialColor.STONE, 1.5, 6 ), 14 ), MDItemGroup.DECORATIVES );
     public static final PillarBlock DARKROCK_PILLAR = blockItem( "darkrock_pillar", new PillarBlock( rock( MaterialColor.BLACK, 1.5, 6 ), 14 ), MDItemGroup.DECORATIVES );
     public static final PillarBlock MURK_PILLAR = blockItem( "murk_pillar", new PillarBlock( rock( MaterialColor.CLAY, 1.5, 6 ), 14 ), MDItemGroup.DECORATIVES );
+
+    // Misc
+    public static final TranslucentBlock MURKY_GLASS = blockItem( "murky_glass", new TranslucentBlock( glass() ), MDItemGroup.BLOCKS, "dark_glass" );
+    public static final PanelBlock MURKY_GLASS_PANE = blockItem( "murky_glass_pane", new TranslucentPanelBlock( glass() ), MDItemGroup.DECORATIVES, "dark_glass_pane" );
 
     public static final PillarBlock BLACKWOOD_POLE = blockItem( "blackwood_pole", new PillarBlock( wood( MaterialColor.BLACK_TERRACOTTA ), 4 ), MDItemGroup.DECORATIVES );
     public static final PillarBlock INVER_POLE = blockItem( "inver_pole", new PillarBlock( wood( MaterialColor.WOOD ), 4 ), MDItemGroup.DECORATIVES );
