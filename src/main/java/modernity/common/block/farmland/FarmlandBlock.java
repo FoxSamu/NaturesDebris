@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 18 - 2020
+ * Date:   02 - 28 - 2020
  * Author: rgsw
  */
 
@@ -130,20 +130,16 @@ public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectio
         if( logic == null ) return false;
         ItemStack stack = player.getHeldItem( hand );
         if( stack.getItem().isIn( MDItemTags.LITTLE_SALTY ) ) {
-            if( world.rand.nextInt( 3 ) != 0 ) {
-                if( logic.addSaltiness( 1 ) ) return shrink( stack, player, hand );
-            }
+            if( logic.addSaltiness( world.rand.nextInt( 2 ) + 1 ) ) return shrink( stack, player, hand );
         }
         if( stack.getItem().isIn( MDItemTags.SALTY ) ) {
-            if( logic.addSaltiness( world.rand.nextInt( 4 ) + 2 ) ) return shrink( stack, player, hand );
+            if( logic.addSaltiness( world.rand.nextInt( 4 ) + 4 ) ) return shrink( stack, player, hand );
         }
         if( stack.getItem().isIn( MDItemTags.LITTLE_FERTILIZER ) ) {
-            if( world.rand.nextInt( 3 ) != 0 ) {
-                if( logic.addFertility( 1 ) ) return shrink( stack, player, hand );
-            }
+            if( logic.addFertility( world.rand.nextInt( 2 ) + 1 ) ) return shrink( stack, player, hand );
         }
         if( stack.getItem().isIn( MDItemTags.FERTILIZER ) ) {
-            if( logic.addFertility( world.rand.nextInt( 4 ) + 2 ) ) return shrink( stack, player, hand );
+            if( logic.addFertility( world.rand.nextInt( 4 ) + 4 ) ) return shrink( stack, player, hand );
         }
         return false;
     }

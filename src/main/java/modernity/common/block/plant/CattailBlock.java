@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   02 - 28 - 2020
  * Author: rgsw
  */
 
@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IWorldReader;
 
-public class CattailBlock extends DoubleStandingPlantBlock {
+public class CattailBlock extends DoublePlantBlock {
     private static final VoxelShape SHAPE = makeCuboidShape( 1, 0, 1, 15, 16, 15 );
 
     public CattailBlock( Properties properties ) {

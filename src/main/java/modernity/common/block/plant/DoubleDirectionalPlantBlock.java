@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   02 - 28 - 2020
  * Author: rgsw
  */
 
@@ -11,6 +11,8 @@ package modernity.common.block.plant;
 import modernity.api.util.Events;
 import modernity.common.block.MDBlockStateProperties;
 import modernity.common.block.MDBlocks;
+import modernity.common.block.fluid.IMurkyWaterloggedBlock;
+import modernity.common.block.fluid.IWaterloggedBlock;
 import modernity.common.block.prop.IntEnumProperty;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
@@ -18,6 +20,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateContainer;
@@ -120,12 +123,27 @@ public abstract class DoubleDirectionalPlantBlock extends DirectionalPlantBlock 
     }
 
     @Override
+    public void growAt( World world, BlockPos pos ) {
+        BlockState lower = computeStateForPos( world, pos, getDefaultState().with( TYPE, ROOT ) );
+        BlockState upper = computeStateForPos( world, pos, getDefaultState().with( TYPE, END ) );
+        world.setBlockState( pos, lower, 3 );
+        world.setBlockState( pos.offset( growDir ), upper, 3 );
+    }
+
+    @Override
     public boolean canGenerateAt( IWorld world, BlockPos pos, BlockState state ) {
         BlockPos upPos = pos.offset( growDir );
         BlockState upState = world.getBlockState( upPos );
         boolean upAir = upState.isAir( world, upPos );
         if( this instanceof IWaterPlant ) {
             upAir = upState.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDBlocks.MURKY_WATER;
+        }
+        if( this instanceof IWaterloggedBlock ) {
+            upAir |= upState.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDBlocks.MURKY_WATER;
+            upAir |= upState.getFluidState().getFluid() == Fluids.WATER && state.getBlock() == Blocks.WATER;
+        }
+        if( this instanceof IMurkyWaterloggedBlock ) {
+            upAir |= upState.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDBlocks.MURKY_WATER;
         }
         return upAir && super.canGenerateAt( world, pos, state );
     }

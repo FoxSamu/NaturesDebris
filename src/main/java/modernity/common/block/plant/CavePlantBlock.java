@@ -2,12 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 31 - 2020
+ * Date:   02 - 28 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
+import modernity.common.block.plant.growing.MushroomGrowLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -22,8 +23,29 @@ public class CavePlantBlock extends SimplePlantBlock {
     public static final VoxelShape DEAD_GRASS_SHAPE = makePlantShape( 14, 5 );
     public static final VoxelShape PEBBLES_SHAPE = makePlantShape( 13, 2 );
 
+    public static final Type SEEDLE = plant -> {
+        plant.setGrowLogic( new MushroomGrowLogic( plant ) );
+        return SEEDLE_SHAPE;
+    };
+    public static final Type DOTTED_MUSHROOM = plant -> {
+        plant.setGrowLogic( new MushroomGrowLogic( plant ) );
+        return DOTTED_MUSHROOM_SHAPE;
+    };
+    public static final Type BLACK_MUSHROOM = plant -> {
+        plant.setGrowLogic( new MushroomGrowLogic( plant ) );
+        return BLACK_MUSHROOM_SHAPE;
+    };
+    public static final Type CAVE_GRASS = plant -> CAVE_GRASS_SHAPE;
+    public static final Type DEAD_GRASS = plant -> DEAD_GRASS_SHAPE;
+    public static final Type PEBBLES = plant -> PEBBLES_SHAPE;
+
+    @Deprecated
     public CavePlantBlock( Properties properties, VoxelShape shape ) {
         super( properties, shape );
+    }
+
+    public CavePlantBlock( Properties properties, Type type ) {
+        super( properties, type );
     }
 
     @Override

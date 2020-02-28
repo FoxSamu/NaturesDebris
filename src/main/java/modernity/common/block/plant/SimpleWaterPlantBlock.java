@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   02 - 28 - 2020
  * Author: rgsw
  */
 
@@ -15,8 +15,14 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IWorldReader;
 
 public class SimpleWaterPlantBlock extends SimplePlantBlock implements IWaterPlant {
+
+    @Deprecated
     public SimpleWaterPlantBlock( Properties properties, VoxelShape shape ) {
         super( properties, shape );
+    }
+
+    public SimpleWaterPlantBlock( Properties properties, Type type ) {
+        super( properties, type );
     }
 
     @Override

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 27 - 2020
+ * Date:   02 - 28 - 2020
  * Author: rgsw
  */
 
@@ -54,6 +54,18 @@ public interface IFarmlandLogic {
     int getMaxFloodedUpdates();
 
     void randomUpdate( Random rand );
+
+    default int consumeFertility( int min, int max, Random rand ) {
+        return useFertility( rand.nextInt( max - min + 1 ) + min );
+    }
+
+    default int consumeSaltiness( int min, int max, Random rand ) {
+        return useSaltiness( rand.nextInt( max - min + 1 ) + min );
+    }
+
+    default int consumeDecay( int min, int max, Random rand ) {
+        return undecay( rand.nextInt( max - min + 1 ) + min );
+    }
 
     static IFarmlandLogic get( IWorldReader world, BlockPos pos ) {
         TileEntity te = world.getTileEntity( pos );

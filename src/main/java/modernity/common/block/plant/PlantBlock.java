@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 27 - 2020
+ * Date:   02 - 28 - 2020
  * Author: rgsw
  */
 
@@ -14,22 +14,27 @@ import modernity.common.block.farmland.IFarmlandLogic;
 import modernity.common.block.fluid.IMurkyWaterloggedBlock;
 import modernity.common.block.fluid.IWaterloggedBlock;
 import modernity.common.block.fluid.WaterlogType;
-import modernity.common.block.plant.growing.IGrowLogic;
+import modernity.common.block.plant.growing.*;
+import modernity.common.event.MDBlockEvents;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -38,6 +43,7 @@ import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 import java.util.Random;
+import java.util.function.Predicate;
 
 @SuppressWarnings( "deprecation" )
 public abstract class PlantBlock extends Block {
@@ -57,8 +63,19 @@ public abstract class PlantBlock extends Block {
         setDefaultState( def );
     }
 
-    protected void setGrowwLogic( IGrowLogic logic ) {
+    public PlantBlock setGrowLogic( IGrowLogic logic ) {
         this.logic = logic;
+        return this;
+    }
+
+    public PlantBlock setSpreadingLogic( IResourcePredicate pred, IResourceConsumer cons, Predicate<ItemStack> fert ) {
+        this.logic = new SpreadingGrowLogic( this, pred, cons, fert );
+        return this;
+    }
+
+    public PlantBlock setSpreadingLogic( IPlantResources res ) {
+        this.logic = new SpreadingGrowLogic( this, res );
+        return this;
     }
 
     public IGrowLogic getGrowLogic() {
@@ -74,13 +91,34 @@ public abstract class PlantBlock extends Block {
     public void randomTick( BlockState state, World world, BlockPos pos, Random rng ) {
         super.randomTick( state, world, pos, rng );
         if( logic != null ) {
-            IFarmlandLogic flLogic = getSupportingFarmland( world, pos );
-            logic.grow( world, pos, state, rng, flLogic );
+            BlockPos p = getRootPos( world, pos, state );
+            IFarmlandLogic flLogic = getSupportingFarmland( world, p );
+            logic.grow( world, p, state, rng, flLogic );
         }
+    }
+
+    @Override
+    public boolean onBlockActivated( BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit ) {
+        if( ! world.isRemote && logic != null ) {
+            ItemStack stack = player.getHeldItem( hand );
+            if( logic.grow( world, pos, state, world.rand, stack ) ) {
+                if( ! player.abilities.isCreativeMode ) {
+                    stack.shrink( 1 );
+                    player.setHeldItem( hand, stack.getCount() == 0 ? ItemStack.EMPTY : stack );
+                }
+                MDBlockEvents.PLANT_GROW.play( world, pos );
+                return true;
+            }
+        }
+        return false;
     }
 
     protected IFarmlandLogic getSupportingFarmland( IWorldReader reader, BlockPos pos ) {
         return IFarmlandLogic.get( reader, pos.down() );
+    }
+
+    protected BlockPos getRootPos( World world, BlockPos pos, BlockState state ) {
+        return pos;
     }
 
     @Override
@@ -157,6 +195,10 @@ public abstract class PlantBlock extends Block {
             if( ! canRemain( world, pos, state, dir, off, offState ) ) return false;
         }
         return true;
+    }
+
+    public void growAt( World world, BlockPos pos ) {
+        world.setBlockState( pos, computeStateForPos( world, pos ), 3 );
     }
 
     public boolean canGenerateAt( IWorld world, BlockPos pos, BlockState state ) {

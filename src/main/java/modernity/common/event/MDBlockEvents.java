@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 18 - 2020
+ * Date:   02 - 28 - 2020
  * Author: rgsw
  */
 
@@ -19,13 +19,14 @@ import net.minecraftforge.registries.ObjectHolder;
  */
 @ObjectHolder( "modernity" )
 public final class MDBlockEvents {
-    private static final RegistryHandler<BlockEvent<?>> ENTRIES = new RegistryHandler<>( "modernity" );
+    private static final RegistryHandler<BlockEvent<?>> ENTRIES = new RegistryHandler<>( "modernity", true );
 
     public static final LeavesDecayEvent LEAVES_DECAY = register( "leaves_decay", new LeavesDecayEvent() );
     public static final PlaceEyeEvent PLACE_EYE = register( "place_eye", new PlaceEyeEvent() );
     public static final BreakEyeEvent BREAK_EYE = register( "break_eye", new BreakEyeEvent() );
     public static final ShadeBlueTeleportEvent SHADE_BLUE_TELEPORT = register( "shade_blue_teleport", new ShadeBlueTeleportEvent() );
     public static final TorchExtinguishEvent TORCH_EXTINGUISH = register( "torch_extinguish", new TorchExtinguishEvent() );
+    public static final PlantGrowEvent PLANT_GROW = register( "plant_grow", new PlantGrowEvent() );
 
     private static <T extends BlockEvent<?>> T register( String id, T event ) {
         return ENTRIES.register( id, event );

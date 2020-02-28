@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   02 - 28 - 2020
  * Author: rgsw
  */
 
@@ -22,7 +22,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
-public class TallMurkFernBlock extends DoubleStandingPlantBlock implements IColoredBlock {
+public class TallMurkFernBlock extends DoublePlantBlock implements IColoredBlock {
     public static final VoxelShape LOWER_SHAPE = makePlantShape( 14, 16 );
     public static final VoxelShape UPPER_SHAPE = makePlantShape( 14, 10 );
 

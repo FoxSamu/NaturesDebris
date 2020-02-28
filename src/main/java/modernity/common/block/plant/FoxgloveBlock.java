@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 06 - 2020
+ * Date:   02 - 28 - 2020
  * Author: rgsw
  */
 
@@ -19,7 +19,7 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class FoxgloveBlock extends DoubleStandingPlantBlock {
+public class FoxgloveBlock extends DoublePlantBlock {
     public FoxgloveBlock( Properties properties ) {
         super( properties, REGULAR_SHAPE );
     }

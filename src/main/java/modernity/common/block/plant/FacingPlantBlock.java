@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 27 - 2020
+ * Date:   02 - 28 - 2020
  * Author: rgsw
  */
 
@@ -45,7 +45,7 @@ public class FacingPlantBlock extends PlantBlock {
         setDefaultState( stateContainer.getBaseState().with( FACING, Direction.UP ) );
 
         if( canGrow ) {
-            setGrowwLogic( new MossGrowLogic( this ) );
+            setGrowLogic( new MossGrowLogic( this ) );
         }
     }
 
