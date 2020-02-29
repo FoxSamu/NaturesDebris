@@ -386,7 +386,7 @@ public final class MDBlocks {
     public static final WireplantBlock FLOWERED_WIREPLANT = blockItem( "flowered_wireplant", new WireplantBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.PLANTS );
     public static final WaterWireBlock WATER_WIRE = blockItem( "water_wire", new WaterWireBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
     public static final AlgaeBlock ALGAE = blockItem( "algae", new AlgaeBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
-    public static final HangingPlantBlock HANGING_MOSS = blockItem( "hanging_moss", new HangingPlantBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ), HangingPlantBlock.HANG_MOSS_SHAPE, HangingPlantBlock.HANG_MOSS_END_SHAPE ), MDItemGroup.PLANTS );
+    public static final HangingMossBlock HANGING_MOSS = blockItem( "hanging_moss", new HangingMossBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock HORSETAIL = blockItem( "horsetail", new SimplePlantBlock( strongPlant( MaterialColor.GRASS, 0.2 ), SimplePlantBlock.HORSETAIL ), MDItemGroup.PLANTS );
     public static final CattailBlock CATTAIL = blockItem( "cattail", new CattailBlock( strongPlant( MaterialColor.GRASS, 0 ) ), MDItemGroup.PLANTS );
     public static final SimpleWaterPlantBlock LAKEWEED = blockItem( "lakeweed", new SimpleWaterPlantBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ), SimplePlantBlock.LAKEWEED ), MDItemGroup.PLANTS );
@@ -398,7 +398,7 @@ public final class MDBlocks {
     public static final SimplePlantBlock NUDWART = blockItem( "nudwart", new SimplePlantBlock( strongPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.NUDWART ), MDItemGroup.PLANTS );
     public static final WatergrassBlock WATERGRASS = blockItem( "watergrass", new WatergrassBlock( weakPlant( MaterialColor.GRASS, 0 ).sound( SoundType.WET_GRASS ) ), MDItemGroup.PLANTS );
     public static final MuxusBushBlock MUXUS_BUSH = blockItem( "muxus_bush", new MuxusBushBlock( strongPlant( MaterialColor.GRASS, 0.5 ).sound( SoundType.SWEET_BERRY_BUSH ) ), MDItemGroup.PLANTS );
-    public static final SimplePlantBlock COTTONSEDGE = blockItem( "cottonsedge", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.NUDWART ), MDItemGroup.PLANTS );
+    public static final SimplePlantBlock COTTONSEDGE = blockItem( "cottonsedge", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.COTTONSEDGE ), MDItemGroup.PLANTS );
     public static final SimplePlantBlock RED_GRASS = blockItem( "red_grass", new SimplePlantBlock( weakPlant( MaterialColor.GRASS, 0 ), SimplePlantBlock.RED_GRASS ), MDItemGroup.PLANTS );
     public static final CavePlantBlock DEAD_GRASS = blockItem( "dead_grass", new CavePlantBlock( weakPlant( MaterialColor.AIR, 0 ), CavePlantBlock.DEAD_GRASS ), MDItemGroup.PLANTS );
 

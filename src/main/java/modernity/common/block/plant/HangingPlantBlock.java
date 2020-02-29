@@ -11,6 +11,7 @@ package modernity.common.block.plant;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -32,7 +33,8 @@ public class HangingPlantBlock extends TallDirectionalPlantBlock {
 
     @Override
     public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context ) {
-        return shapes[ state.get( END ) ? 1 : 0 ];
+        Vec3d off = getOffset( state, world, pos );
+        return shapes[ state.get( END ) ? 1 : 0 ].withOffset( off.x, off.y, off.z );
     }
 
     @Override
