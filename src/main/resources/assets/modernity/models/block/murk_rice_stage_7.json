@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/square_cross",
+  "textures": {
+    "texture": "modernity:block/murk_rice_stage_7"
+  }
+}

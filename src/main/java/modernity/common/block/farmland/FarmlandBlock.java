@@ -175,7 +175,7 @@ public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectio
     private int checkResources( World world, BlockPos pos, boolean rain, Fertility fertility ) {
         MovingBlockPos mpos = new MovingBlockPos();
 
-        int type = Math.max( rain ? 2 : 0, fertility.ordinal() );
+        int type = rain ? 2 : 0;
 
         for( int x = - 4; x <= 4; x++ ) {
             for( int z = - 4; z <= 4; z++ ) {

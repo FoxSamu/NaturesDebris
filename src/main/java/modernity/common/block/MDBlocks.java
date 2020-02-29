@@ -446,6 +446,11 @@ public final class MDBlocks {
     public static final PebblesBlock PEBBLES = blockItem( "pebbles", new PebblesBlock( weakPlant( MaterialColor.AIR, 0.1 ).sound( MDSoundTypes.ASPHALT ) ), MDItemGroup.DECORATIVES );
     public static final GooDripsBlock GOO_DRIPS = blockItem( "goo_drips", new GooDripsBlock( weakPlant( MaterialColor.AIR, 0 ).sound( SoundType.SLIME ) ), MDItemGroup.DECORATIVES );
 
+    // Crops
+    public static final NudwartCropBlock NUDWART_CROP = blockOnly( "nudwart_crop", new NudwartCropBlock( weakPlant( MaterialColor.GREEN, 0 ).sound( SoundType.CROP ) ) );
+    public static final SeepweedCropBlock SEEPWEED_CROP = blockOnly( "seepweed_crop", new SeepweedCropBlock( weakPlant( MaterialColor.GREEN, 0 ).sound( SoundType.CROP ) ) );
+    public static final MurkRootsCropBlock MURK_ROOTS = blockOnly( "murk_roots", new MurkRootsCropBlock( weakPlant( MaterialColor.GREEN, 0 ).sound( SoundType.CROP ) ) );
+    public static final MurkRiceCropBlock MURK_RICE = blockOnly( "murk_rice", new MurkRiceCropBlock( weakPlant( MaterialColor.GREEN, 0 ).sound( SoundType.CROP ) ) );
 
 
     /* ==== MINERALS ==== */

@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/square_cross",
+  "textures": {
+    "texture": "modernity:block/seepweed_crop_stage_6"
+  }
+}

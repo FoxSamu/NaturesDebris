@@ -67,6 +67,9 @@ public final class MDBlockStateProperties {
     public static final IntegerProperty LEVEL_0_5 = IntegerProperty.create( "level", 0, 5 );
     public static final IntegerProperty DECAY_0_8 = IntegerProperty.create( "decay", 0, 8 );
 
+    public static final IntegerProperty AGE_1_8 = IntegerProperty.create( "age", 1, 8 );
+    public static final IntegerProperty AGE_1_6 = IntegerProperty.create( "age", 1, 6 );
+
     private MDBlockStateProperties() {
     }
 }
