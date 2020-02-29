@@ -167,8 +167,11 @@ public abstract class TallDirectionalPlantBlock extends DirectionalPlantBlock {
     }
 
     @Override
-    protected BlockPos getRootPos( World world, BlockPos pos, BlockState state ) {
-
-        return super.getRootPos( world, pos, state );
+    public BlockPos getRootPos( World world, BlockPos pos, BlockState state ) {
+        MovingBlockPos mpos = new MovingBlockPos( pos );
+        while( isSelfState( world, mpos, world.getBlockState( mpos ) ) ) {
+            mpos.move( growDir, - 1 );
+        }
+        return mpos.offset( growDir );
     }
 }
