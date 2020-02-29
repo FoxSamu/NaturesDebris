@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -17,20 +17,13 @@ import modernity.common.environment.event.EnvironmentEventType;
 import modernity.common.registry.MDRegistries;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
 
 import java.util.ArrayList;
 
 /**
- * Manages the {@code /modernity tpdim} or {@code /modernity access} command.
+ * Manages the {@code /modernity event} command.
  */
 public final class EventsCommand {
-    private static final String TK_ERROR_INVALID = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:access.invalid" ) );
-    private static final String TK_ERROR_NO_ENTITY = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:access.no_entity" ) );
-    private static final String TK_ALREADY_HERE = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:access.already_here" ) );
-    private static final String TK_CHANGED_DIMEN = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:access.changed_dimen" ) );
-
     private EventsCommand() {
     }
 

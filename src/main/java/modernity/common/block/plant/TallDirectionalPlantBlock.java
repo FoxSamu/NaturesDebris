@@ -165,4 +165,10 @@ public abstract class TallDirectionalPlantBlock extends DirectionalPlantBlock {
         }
         dying.set( false );
     }
+
+    @Override
+    protected BlockPos getRootPos( World world, BlockPos pos, BlockState state ) {
+
+        return super.getRootPos( world, pos, state );
+    }
 }

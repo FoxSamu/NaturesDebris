@@ -10,7 +10,6 @@ package modernity.common.block.plant;
 
 import modernity.api.block.IColoredBlock;
 import modernity.client.ModernityClient;
-import modernity.common.block.plant.growing.MossGrowLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -23,7 +22,6 @@ import javax.annotation.Nullable;
 public class MossBlock extends FacingPlantBlock implements IColoredBlock {
     public MossBlock( Properties properties ) {
         super( properties, 2, 0 );
-        setGrowLogic( new MossGrowLogic( this ) );
     }
 
 
