@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 28 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.common.block.MDBlockTags;
+import modernity.common.block.plant.growing.WetGrowLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -16,10 +17,9 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IWorldReader;
 
 public class CattailBlock extends DoublePlantBlock {
-    private static final VoxelShape SHAPE = makeCuboidShape( 1, 0, 1, 15, 16, 15 );
-
     public CattailBlock( Properties properties ) {
         super( properties );
+        setGrowLogic( new WetGrowLogic( this ) );
     }
 
     @Override
@@ -29,6 +29,6 @@ public class CattailBlock extends DoublePlantBlock {
 
     @Override
     public VoxelShape getShape( BlockState state ) {
-        return SHAPE;
+        return REGULAR_SHAPE;
     }
 }

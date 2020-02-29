@@ -2,12 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 28 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
+import modernity.common.block.plant.growing.WetGrowLogic;
 import modernity.common.entity.MDEntityTags;
 import modernity.common.util.MDDamageSource;
 import net.minecraft.block.BlockState;
@@ -22,6 +23,7 @@ import net.minecraft.world.World;
 public class FoxgloveBlock extends DoublePlantBlock {
     public FoxgloveBlock( Properties properties ) {
         super( properties, REGULAR_SHAPE );
+        setGrowLogic( new WetGrowLogic( this ) );
     }
 
     @Override

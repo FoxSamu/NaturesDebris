@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -13,6 +13,7 @@ import modernity.api.util.MDVoxelShapes;
 import modernity.client.ModernityClient;
 import modernity.common.block.MDBlockStateProperties;
 import modernity.common.block.MDBlockTags;
+import modernity.common.block.plant.growing.TallGrassGrowLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -37,6 +38,7 @@ public class TallMurkGrassBlock extends LimitedTallDirectionalPlantBlock impleme
 
     public TallMurkGrassBlock( Properties properties ) {
         super( properties, Direction.UP );
+        setGrowLogic( new TallGrassGrowLogic( this ) );
     }
 
 

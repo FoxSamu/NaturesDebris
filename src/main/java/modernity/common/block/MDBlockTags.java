@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 26 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -35,6 +35,9 @@ public final class MDBlockTags {
 
 
     public static final Tag<Block> SALT_SOURCE = tag( "salt_source" );
+    public static final Tag<Block> FERTILE = tag( "fertile" );
+    public static final Tag<Block> POISONOUS = tag( "poisonous" );
+
     public static final Tag<Block> REEDS_GROWABLE = tag( "reeds_growable" );
     public static final Tag<Block> DIRTLIKE = tag( "dirtlike" );
     public static final Tag<Block> SOIL = tag( "soil" );

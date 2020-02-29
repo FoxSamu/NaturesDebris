@@ -6,6 +6,6 @@
     "side_overlay": "modernity:block/air",
     "top_overlay": "modernity:block/farmland/heath_layer_center",
     "top_base": "modernity:block/farmland/murky_base_layer_center",
-    "farmland": "modernity:block/farmland/dry"
+    "farmland": "modernity:block/farmland/dry_soil"
   }
 }

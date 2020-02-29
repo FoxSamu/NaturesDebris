@@ -40,17 +40,10 @@
     }
   },
   "variants": {
-    "fertility=not_fertile,wetness=dry": [ { "textures": { "texture": "modernity:block/farmland/dry" } } ],
-    "fertility=not_fertile,wetness=wet": [ { "textures": { "texture": "modernity:block/farmland/wet" } } ],
-    "fertility=not_fertile,wetness=flooded": [ { "textures": { "texture": "modernity:block/farmland/flooded" } } ],
-    "fertility=saline,wetness=dry": [ { "textures": { "texture": "modernity:block/farmland/dry_salty" } } ],
-    "fertility=saline,wetness=wet": [ { "textures": { "texture": "modernity:block/farmland/wet_salty" } } ],
-    "fertility=saline,wetness=flooded": [ { "textures": { "texture": "modernity:block/farmland/flooded_salty" } } ],
-    "fertility=fertile,wetness=dry": [ { "textures": { "texture": "modernity:block/farmland/dry_fertile" } } ],
-    "fertility=fertile,wetness=wet": [ { "textures": { "texture": "modernity:block/farmland/wet_fertile" } } ],
-    "fertility=fertile,wetness=flooded": [ { "textures": { "texture": "modernity:block/farmland/flooded_fertile" } } ],
-    "fertility=decayed,wetness=dry": [ { "textures": { "texture": "modernity:block/farmland/dry_decayed" } } ],
-    "fertility=decayed,wetness=wet": [ { "textures": { "texture": "modernity:block/farmland/wet_decayed" } } ],
-    "fertility=decayed,wetness=flooded": [ { "textures": { "texture": "modernity:block/farmland/flooded_decayed" } } ]
+    "fertility=none": [ { "textures": { "texture": "modernity:block/farmland/dry_soil" } } ],
+    "fertility=wet": [ { "textures": { "texture": "modernity:block/farmland/wet_soil" } } ],
+    "fertility=salty": [ { "textures": { "texture": "modernity:block/farmland/salty_soil" } } ],
+    "fertility=fertile": [ { "textures": { "texture": "modernity:block/farmland/fertile_soil" } } ],
+    "fertility=decayed": [ { "textures": { "texture": "modernity:block/farmland/decayed_soil" } } ]
   }
 }

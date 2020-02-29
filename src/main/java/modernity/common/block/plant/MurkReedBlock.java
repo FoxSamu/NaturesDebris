@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -12,6 +12,7 @@ import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlockTags;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.fluid.IMurkyWaterloggedBlock;
+import modernity.common.block.plant.growing.ReedGrowLogic;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -44,6 +45,7 @@ public class MurkReedBlock extends TallDirectionalPlantBlock implements IMurkyWa
 
     public MurkReedBlock( Properties properties ) {
         super( properties, Direction.UP );
+        setGrowLogic( new ReedGrowLogic() );
     }
 
     @Override
@@ -85,16 +87,16 @@ public class MurkReedBlock extends TallDirectionalPlantBlock implements IMurkyWa
         return false;
     }
 
-
-    @Override
-    public void tick( BlockState state, World world, BlockPos pos, Random random ) {
-        if( state.get( AGE ) < 15 ) {
-            world.setBlockState( pos, state.with( AGE, state.get( AGE ) + 1 ) );
-        } else if( canGrow( world, pos, state ) ) {
-            world.setBlockState( pos, state.with( AGE, 0 ) );
-            world.setBlockState( pos.up(), getDefaultState().with( WATERLOGGED, world.getFluidState( pos.up() ).getFluid() == MDFluids.MURKY_WATER ) );
-        }
-    }
+//
+//    @Override
+//    public void tick( BlockState state, World world, BlockPos pos, Random random ) {
+//        if( state.get( AGE ) < 15 ) {
+//            world.setBlockState( pos, state.with( AGE, state.get( AGE ) + 1 ) );
+//        } else if( canGrow( world, pos, state ) ) {
+//            world.setBlockState( pos, state.with( AGE, 0 ) );
+//            world.setBlockState( pos.up(), getDefaultState().with( WATERLOGGED, world.getFluidState( pos.up() ).getFluid() == MDFluids.MURKY_WATER ) );
+//        }
+//    }
 
     private boolean canGrow( World world, BlockPos pos, BlockState state ) {
         BlockPos upPos = pos.up();

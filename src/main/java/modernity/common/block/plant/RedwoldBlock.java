@@ -2,12 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
+import modernity.common.block.plant.growing.FertilityGrowLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.util.Direction;
@@ -20,6 +21,7 @@ public class RedwoldBlock extends SimplePlantBlock {
 
     public RedwoldBlock( Properties properties ) {
         super( properties, REDWOLD_SHAPE );
+        setGrowLogic( new FertilityGrowLogic( this ) );
     }
 
     @Override

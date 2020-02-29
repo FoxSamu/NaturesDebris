@@ -2,14 +2,17 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 28 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.common.block.MDBlockTags;
-import modernity.common.block.plant.growing.IPlantResources;
+import modernity.common.block.plant.growing.FertilityGrowLogic;
+import modernity.common.block.plant.growing.HeathGrowLogic;
+import modernity.common.block.plant.growing.LakeweedGrowLogic;
+import modernity.common.block.plant.growing.WetGrowLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -34,63 +37,61 @@ public class SimplePlantBlock extends SingleDirectionalPlantBlock {
     public static final VoxelShape MOOR_CREEP_SHAPE = makePlantShape( 14, 5 );
 
     public static final Type MINT = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 1, 3 ).chance( 6, 16 ).requireWet() );
+        plant.setGrowLogic( new FertilityGrowLogic( plant ) );
         return MINT_SHAPE;
     };
     public static final Type MELION = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 1, 2 ).chance( 6, 16 ).requireWet() );
+        plant.setGrowLogic( new WetGrowLogic( plant ) );
         return MELION_SHAPE;
     };
     public static final Type MILLIUM = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 1, 2 ).chance( 6, 16 ).requireWet() );
+        plant.setGrowLogic( new WetGrowLogic( plant ) );
         return MILLIUM_SHAPE;
     };
     public static final Type HORSETAIL = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 2, 3 ).chance( 6, 16 ).requireWet() );
+        plant.setGrowLogic( new WetGrowLogic( plant ) );
         return HORSETAIL_SHAPE;
     };
     public static final Type LAKEWEED = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 1, 2 ).chance( 6, 16 ) );
+        plant.setGrowLogic( new LakeweedGrowLogic( plant ) );
         return LAKEWEED_SHAPE;
     };
     public static final Type HEATH = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 0, 1 ).chance( 6, 16 ).requireWet() );
+        plant.setGrowLogic( new HeathGrowLogic( plant ) );
         return HEATH_SHAPE;
     };
     public static final Type DEAD_HEATH = plant -> HEATH_SHAPE;
-
     public static final Type SEEPWEED = plant -> SEEPWEED_SHAPE;
     public static final Type NUDWART = plant -> NUDWART_SHAPE;
 
     public static final Type RED_GRASS = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 1, 2 ).chance( 6, 16 ).requireWet() );
+        plant.setGrowLogic( new FertilityGrowLogic( plant ) );
         return RED_GRASS_SHAPE;
     };
     public static final Type MURK_FLOWER = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 2, 3 ).chance( 6, 16 ).requireWet() );
+        plant.setGrowLogic( new FertilityGrowLogic( plant ) );
         return MURK_FLOWER_SHAPE;
     };
     public static final Type MILK_EYE = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 1, 3 ).chance( 6, 16 ).requireWet() );
+        plant.setGrowLogic( new FertilityGrowLogic( plant ) );
         return MILK_EYE_SHAPE;
     };
     public static final Type EGIUM = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 1, 2 ).chance( 6, 16 ).requireWet() );
+        plant.setGrowLogic( new WetGrowLogic( plant ) );
         return EGIUM_SHAPE;
     };
     public static final Type BULBFLOWER = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 1, 2 ).chance( 6, 16 ).requireWet() );
+        plant.setGrowLogic( new WetGrowLogic( plant ) );
         return BULBFLOWER_SHAPE;
     };
     public static final Type MOOR_CREEP = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 0, 2 ).chance( 6, 16 ).requireWet() );
+        plant.setGrowLogic( new WetGrowLogic( plant ) );
         return MOOR_CREEP_SHAPE;
     };
 
     protected final VoxelShape shape;
 
-    @Deprecated
-    public SimplePlantBlock( Properties properties, VoxelShape shape ) {
+    protected SimplePlantBlock( Properties properties, VoxelShape shape ) {
         super( properties, Direction.UP );
         this.shape = shape;
     }

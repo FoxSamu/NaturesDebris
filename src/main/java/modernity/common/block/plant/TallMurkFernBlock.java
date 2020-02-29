@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 28 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -11,6 +11,7 @@ package modernity.common.block.plant;
 import modernity.api.block.IColoredBlock;
 import modernity.client.ModernityClient;
 import modernity.common.block.MDBlockTags;
+import modernity.common.block.plant.growing.MurkFernGrowLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -28,6 +29,7 @@ public class TallMurkFernBlock extends DoublePlantBlock implements IColoredBlock
 
     public TallMurkFernBlock( Properties properties ) {
         super( properties );
+        setGrowLogic( new MurkFernGrowLogic() );
     }
 
     @Override

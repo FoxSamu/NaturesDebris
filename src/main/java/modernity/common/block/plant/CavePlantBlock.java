@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 28 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -39,8 +39,7 @@ public class CavePlantBlock extends SimplePlantBlock {
     public static final Type DEAD_GRASS = plant -> DEAD_GRASS_SHAPE;
     public static final Type PEBBLES = plant -> PEBBLES_SHAPE;
 
-    @Deprecated
-    public CavePlantBlock( Properties properties, VoxelShape shape ) {
+    protected CavePlantBlock( Properties properties, VoxelShape shape ) {
         super( properties, shape );
     }
 

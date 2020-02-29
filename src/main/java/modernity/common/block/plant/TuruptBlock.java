@@ -2,12 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 06 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
+import modernity.common.block.plant.growing.FertilityGrowLogic;
 import modernity.common.entity.MDEntityTags;
 import modernity.common.util.MDDamageSource;
 import net.minecraft.block.BlockState;
@@ -19,6 +20,7 @@ import net.minecraft.world.World;
 public class TuruptBlock extends SimplePlantBlock implements IDangerousPlant {
     public TuruptBlock( Properties properties ) {
         super( properties, makePlantShape( 7, 7 ) );
+        setGrowLogic( new FertilityGrowLogic( this ) );
     }
 
     @Override

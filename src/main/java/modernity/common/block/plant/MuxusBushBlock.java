@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 31 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.api.util.EntityUtil;
+import modernity.common.block.plant.growing.BushGrowLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,6 +24,7 @@ import java.util.Random;
 public class MuxusBushBlock extends BushBlock {
     public MuxusBushBlock( Properties properties ) {
         super( properties );
+        setGrowLogic( new BushGrowLogic( this ) );
     }
 
     @Override

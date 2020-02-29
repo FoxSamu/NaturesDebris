@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 05 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -11,6 +11,7 @@ package modernity.common.block.plant;
 import modernity.api.util.BlockUpdates;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlockStateProperties;
+import modernity.common.block.plant.growing.ShadeBlueGrowLogic;
 import modernity.common.entity.MDEntityTags;
 import modernity.common.event.MDBlockEvents;
 import modernity.common.particle.MDParticleTypes;
@@ -38,6 +39,7 @@ public class ShadeBlueBlock extends SimplePlantBlock {
 
     public ShadeBlueBlock( Properties properties ) {
         super( properties, makePlantShape( 15, 10 ) );
+        setGrowLogic( new ShadeBlueGrowLogic( this ) );
 
         setDefaultState( stateContainer.getBaseState().with( ACTIVE, false ) );
     }

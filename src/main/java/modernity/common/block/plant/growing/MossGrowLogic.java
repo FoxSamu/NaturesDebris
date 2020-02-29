@@ -2,13 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 28 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant.growing;
 
-import modernity.common.block.farmland.IFarmlandLogic;
+import modernity.common.block.farmland.IFarmland;
 import modernity.common.block.plant.FacingPlantBlock;
 import modernity.common.item.MDItemTags;
 import net.minecraft.block.BlockState;
@@ -29,10 +29,24 @@ public class MossGrowLogic implements IGrowLogic {
     }
 
     @Override
-    public void grow( World world, BlockPos pos, BlockState state, Random rand, @Nullable IFarmlandLogic farmland ) {
-        for( Direction dir : Direction.values() ) {
-            if( rand.nextInt( 16 ) == 0 ) {
-                addMoss( world, pos.offset( dir ), rand );
+    public void grow( World world, BlockPos pos, BlockState state, Random rand, @Nullable IFarmland farmland ) {
+        if( rand.nextInt( 3 ) != 0 ) return;
+
+        ArrayList<BlockPos> locs = new ArrayList<>();
+        for( int x = - 1; x <= 1; x++ ) {
+            for( int z = - 1; z <= 1; z++ ) {
+                for( int y = - 1; y <= 1; y++ ) {
+                    if( x == 0 && y == 0 && z == 0 ) continue;
+
+                    locs.add( pos.add( x, y, z ) );
+                }
+            }
+        }
+
+        while( ! locs.isEmpty() ) {
+            BlockPos loc = locs.remove( rand.nextInt( locs.size() ) );
+            if( tryGrow( world, loc, rand ) ) {
+                return;
             }
         }
     }
@@ -40,32 +54,47 @@ public class MossGrowLogic implements IGrowLogic {
     @Override
     public boolean grow( World world, BlockPos pos, BlockState state, Random rand, ItemStack item ) {
         if( ! item.getItem().isIn( MDItemTags.FERTILIZER ) ) return false;
-        boolean grown = false;
-        for( Direction dir : Direction.values() ) {
-            if( rand.nextInt( 16 ) == 0 ) {
-                grown |= addMoss( world, pos.offset( dir ), rand );
+
+        ArrayList<BlockPos> locs = new ArrayList<>();
+        for( int x = - 1; x <= 1; x++ ) {
+            for( int z = - 1; z <= 1; z++ ) {
+                for( int y = - 1; y <= 1; y++ ) {
+                    if( x == 0 && y == 0 && z == 0 ) continue;
+
+                    locs.add( pos.add( x, y, z ) );
+                }
             }
         }
-        return grown;
+
+        while( ! locs.isEmpty() ) {
+            BlockPos loc = locs.remove( rand.nextInt( locs.size() ) );
+            if( tryGrow( world, loc, rand ) ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    private boolean addMoss( World world, BlockPos pos, Random rand ) {
-        if( world.isAirBlock( pos ) ) return false;
+    private boolean tryGrow( World world, BlockPos pos, Random rand ) {
+        if( ! world.isAirBlock( pos ) ) return false;
 
-        ArrayList<Direction> possibleDirections = new ArrayList<>();
+        ArrayList<Direction> dirs = new ArrayList<>();
+
         for( Direction dir : Direction.values() ) {
-            BlockPos off = pos.offset( dir, - 1 );
+            BlockPos adj = pos.offset( dir, - 1 );
+            BlockState state = world.getBlockState( adj );
 
-            if( plant.isBlockSideSustainable( world.getBlockState( off ), world, pos, dir ) ) {
-                possibleDirections.add( dir );
+            if( plant.isBlockSideSustainable( state, world, adj, dir ) ) {
+                dirs.add( dir );
             }
         }
 
-        if( possibleDirections.isEmpty() ) return false;
+        if( dirs.isEmpty() ) return false;
 
-        return world.setBlockState( pos, plant.computeStateForPos( world, pos ).with(
-            FacingPlantBlock.FACING,
-            possibleDirections.get( rand.nextInt( possibleDirections.size() ) )
-        ) );
+        Direction dir = dirs.get( rand.nextInt( dirs.size() ) );
+
+        world.setBlockState( pos, plant.computeStateForPos( world, pos ).with( FacingPlantBlock.FACING, dir ) );
+        return true;
     }
 }

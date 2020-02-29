@@ -2,13 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 28 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
-import modernity.common.block.plant.growing.IPlantResources;
+import modernity.common.block.plant.growing.FertilityGrowLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -18,12 +18,11 @@ public class DoublePlantBlock extends DoubleDirectionalPlantBlock {
     public static final VoxelShape REGULAR_SHAPE = makePlantShape( 15, 16 );
 
     public static final Type MURK_LAVENDER = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 1, 2 ).chance( 6, 16 ).requireWet() );
+        plant.setGrowLogic( new FertilityGrowLogic( plant ) );
         return new VoxelShape[] { REGULAR_SHAPE };
     };
-
     public static final Type GLOBE_THISTLE = plant -> {
-        plant.setSpreadingLogic( IPlantResources.fertile( 1, 2 ).chance( 6, 16 ).requireWet() );
+        plant.setGrowLogic( new FertilityGrowLogic( plant ) );
         return new VoxelShape[] { REGULAR_SHAPE };
     };
 
@@ -34,8 +33,7 @@ public class DoublePlantBlock extends DoubleDirectionalPlantBlock {
         this( properties, VoxelShapes.fullCube(), VoxelShapes.fullCube() );
     }
 
-    @Deprecated
-    public DoublePlantBlock( Properties properties, VoxelShape shape ) {
+    protected DoublePlantBlock( Properties properties, VoxelShape shape ) {
         this( properties, shape, shape );
     }
 

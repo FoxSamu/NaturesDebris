@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -31,7 +31,6 @@ public class HangingPlantBlock extends TallDirectionalPlantBlock {
     }
 
     @Override
-    @SuppressWarnings( "deprecation" )
     public VoxelShape getShape( BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context ) {
         return shapes[ state.get( END ) ? 1 : 0 ];
     }

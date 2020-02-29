@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -10,6 +10,7 @@ package modernity.common.block.plant;
 
 import modernity.api.block.IColoredBlock;
 import modernity.client.ModernityClient;
+import modernity.common.block.plant.growing.MurinaGrowLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -22,6 +23,7 @@ import javax.annotation.Nullable;
 public class MurinaBlock extends HangingPlantBlock implements IColoredBlock {
     public MurinaBlock( Properties properties ) {
         super( properties, MURINA_SHAPE );
+        setGrowLogic( new MurinaGrowLogic() );
     }
 
     @Override

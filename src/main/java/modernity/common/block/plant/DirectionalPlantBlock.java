@@ -2,16 +2,17 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 28 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
-import modernity.common.block.farmland.IFarmlandLogic;
+import modernity.common.block.farmland.IFarmland;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
 public abstract class DirectionalPlantBlock extends PlantBlock {
@@ -39,8 +40,8 @@ public abstract class DirectionalPlantBlock extends PlantBlock {
     }
 
     @Override
-    protected IFarmlandLogic getSupportingFarmland( IWorldReader reader, BlockPos pos ) {
-        return IFarmlandLogic.get( reader, pos.offset( growDir, - 1 ) );
+    protected IFarmland getSupportingFarmland( IWorld world, BlockPos pos ) {
+        return IFarmland.get( world, pos.offset( growDir, - 1 ) );
     }
 
     public Direction getGrowDirection() {

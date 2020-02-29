@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 28 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -41,6 +41,10 @@ public abstract class DoubleDirectionalPlantBlock extends DirectionalPlantBlock 
     public static final int END = 1;
     public static final IntEnumProperty TYPE = MDBlockStateProperties.ROOT_END_TYPE;
 
+    // Set to true when the plant is being killed by 'kill(...)', to prevent the world from breaking the other half
+    // automatically before we have removed it (because of 'updatePostPlacement')
+    private final ThreadLocal<Boolean> dying = ThreadLocal.withInitial( () -> false );
+
     public DoubleDirectionalPlantBlock( Properties properties, Direction growDir ) {
         super( properties, growDir );
 
@@ -59,13 +63,15 @@ public abstract class DoubleDirectionalPlantBlock extends DirectionalPlantBlock 
 
     @Override
     public BlockState updatePostPlacement( BlockState state, Direction dir, BlockState adjState, IWorld world, BlockPos pos, BlockPos adjPos ) {
-        state = super.updatePostPlacement( state, dir, adjState, world, pos, adjPos );
-        if( state.getBlock() != this ) return state;
+        if( ! dying.get() ) {
+            state = super.updatePostPlacement( state, dir, adjState, world, pos, adjPos );
+            if( state.getBlock() != this ) return state;
 
-        int type = state.get( TYPE );
-        if( dir == growDir && type == ROOT || dir == growDir.getOpposite() && type == END ) {
-            if( ! isSelfState( world, adjPos, adjState ) || adjState.get( TYPE ) == type ) {
-                return Blocks.AIR.getDefaultState();
+            int type = state.get( TYPE );
+            if( dir == growDir && type == ROOT || dir == growDir.getOpposite() && type == END ) {
+                if( ! isSelfState( world, adjPos, adjState ) || adjState.get( TYPE ) == type ) {
+                    return Blocks.AIR.getDefaultState();
+                }
             }
         }
 
@@ -120,6 +126,23 @@ public abstract class DoubleDirectionalPlantBlock extends DirectionalPlantBlock 
         }
 
         super.onBlockHarvested( world, pos, state, player );
+    }
+
+    @Override
+    protected BlockPos getRootPos( World world, BlockPos pos, BlockState state ) {
+        return state.get( TYPE ) == END ? pos.down() : pos;
+    }
+
+    @Override
+    public void kill( World world, BlockPos pos, BlockState state ) {
+        BlockPos lower = pos;
+        BlockPos upper = pos;
+        if( state.get( TYPE ) == ROOT ) upper = upper.offset( growDir, 1 );
+        if( state.get( TYPE ) == END ) lower = lower.offset( growDir, - 1 );
+        dying.set( true );
+        world.removeBlock( lower, false );
+        world.removeBlock( upper, false );
+        dying.set( false );
     }
 
     @Override

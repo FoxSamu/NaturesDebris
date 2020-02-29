@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.api.util.EntityUtil;
+import modernity.common.block.plant.growing.FertilityGrowLogic;
 import modernity.common.entity.MDEntityTags;
 import modernity.common.util.MDDamageSource;
 import net.minecraft.block.BlockState;
@@ -25,6 +26,7 @@ public class NettlesBlock extends SimplePlantBlock implements IDangerousPlant {
 
     public NettlesBlock( Properties properties ) {
         super( properties, NETTLES_SHAPE );
+        setGrowLogic( new FertilityGrowLogic( this ) );
     }
 
     @Override

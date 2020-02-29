@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -11,6 +11,7 @@ package modernity.common.block.plant;
 import modernity.api.block.IColoredBlock;
 import modernity.client.ModernityClient;
 import modernity.common.block.MDBlockTags;
+import modernity.common.block.plant.growing.WaterGrassGrowLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
@@ -25,6 +26,7 @@ import javax.annotation.Nullable;
 public class WatergrassBlock extends TallDirectionalPlantBlock implements IWaterPlant, IColoredBlock {
     public WatergrassBlock( Properties properties ) {
         super( properties, Direction.UP );
+        setGrowLogic( new WaterGrassGrowLogic( this ) );
     }
 
     @Override

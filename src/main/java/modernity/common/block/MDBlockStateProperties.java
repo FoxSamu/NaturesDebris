@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,6 @@ package modernity.common.block;
 
 import modernity.common.block.base.SlabType;
 import modernity.common.block.farmland.Fertility;
-import modernity.common.block.farmland.Wetness;
 import modernity.common.block.fluid.WaterlogType;
 import modernity.common.block.plant.DoubleDirectionalPlantBlock;
 import modernity.common.block.portal.PortalCornerState;
@@ -37,7 +36,6 @@ public final class MDBlockStateProperties {
     public static final EnumProperty<SlabType> SLAB_TYPE = EnumProperty.create( "type", SlabType.class );
 
     public static final EnumProperty<Fertility> FERTILITY = EnumProperty.create( "fertility", Fertility.class );
-    public static final EnumProperty<Wetness> WETNESS = EnumProperty.create( "wetness", Wetness.class );
 
     public static final SignedIntegerProperty DISTANCE_N1_3 = SignedIntegerProperty.create( "distance", - 1, 3 );
     public static final IntegerProperty DISTANCE_0_10 = IntegerProperty.create( "distance", 0, 10 );
@@ -66,6 +64,8 @@ public final class MDBlockStateProperties {
     public static final EnumProperty<PortalCornerState> PORTAL_CORNER_STATE = EnumProperty.create( "state", PortalCornerState.class );
 
     public static final IntegerProperty DENSITY_1_16 = IntegerProperty.create( "density", 1, 16 );
+    public static final IntegerProperty LEVEL_0_5 = IntegerProperty.create( "level", 0, 5 );
+    public static final IntegerProperty DECAY_0_8 = IntegerProperty.create( "decay", 0, 8 );
 
     private MDBlockStateProperties() {
     }

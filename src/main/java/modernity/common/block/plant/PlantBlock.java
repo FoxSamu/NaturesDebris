@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 28 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -10,11 +10,11 @@ package modernity.common.block.plant;
 
 import modernity.api.util.MDVoxelShapes;
 import modernity.common.block.MDBlocks;
-import modernity.common.block.farmland.IFarmlandLogic;
+import modernity.common.block.farmland.IFarmland;
 import modernity.common.block.fluid.IMurkyWaterloggedBlock;
 import modernity.common.block.fluid.IWaterloggedBlock;
 import modernity.common.block.fluid.WaterlogType;
-import modernity.common.block.plant.growing.*;
+import modernity.common.block.plant.growing.IGrowLogic;
 import modernity.common.event.MDBlockEvents;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
@@ -43,7 +43,6 @@ import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 import java.util.Random;
-import java.util.function.Predicate;
 
 @SuppressWarnings( "deprecation" )
 public abstract class PlantBlock extends Block {
@@ -68,16 +67,6 @@ public abstract class PlantBlock extends Block {
         return this;
     }
 
-    public PlantBlock setSpreadingLogic( IResourcePredicate pred, IResourceConsumer cons, Predicate<ItemStack> fert ) {
-        this.logic = new SpreadingGrowLogic( this, pred, cons, fert );
-        return this;
-    }
-
-    public PlantBlock setSpreadingLogic( IPlantResources res ) {
-        this.logic = new SpreadingGrowLogic( this, res );
-        return this;
-    }
-
     public IGrowLogic getGrowLogic() {
         return logic;
     }
@@ -90,9 +79,9 @@ public abstract class PlantBlock extends Block {
     @Override
     public void randomTick( BlockState state, World world, BlockPos pos, Random rng ) {
         super.randomTick( state, world, pos, rng );
-        if( logic != null ) {
+        if( ! world.isRemote && logic != null ) {
             BlockPos p = getRootPos( world, pos, state );
-            IFarmlandLogic flLogic = getSupportingFarmland( world, p );
+            IFarmland flLogic = getSupportingFarmland( world, pos );
             logic.grow( world, p, state, rng, flLogic );
         }
     }
@@ -100,8 +89,9 @@ public abstract class PlantBlock extends Block {
     @Override
     public boolean onBlockActivated( BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit ) {
         if( ! world.isRemote && logic != null ) {
+            BlockPos p = getRootPos( world, pos, state );
             ItemStack stack = player.getHeldItem( hand );
-            if( logic.grow( world, pos, state, world.rand, stack ) ) {
+            if( logic.grow( world, p, state, world.rand, stack ) ) {
                 if( ! player.abilities.isCreativeMode ) {
                     stack.shrink( 1 );
                     player.setHeldItem( hand, stack.getCount() == 0 ? ItemStack.EMPTY : stack );
@@ -113,8 +103,8 @@ public abstract class PlantBlock extends Block {
         return false;
     }
 
-    protected IFarmlandLogic getSupportingFarmland( IWorldReader reader, BlockPos pos ) {
-        return IFarmlandLogic.get( reader, pos.down() );
+    protected IFarmland getSupportingFarmland( IWorld world, BlockPos pos ) {
+        return IFarmland.get( world, pos.down() );
     }
 
     protected BlockPos getRootPos( World world, BlockPos pos, BlockState state ) {
@@ -195,6 +185,10 @@ public abstract class PlantBlock extends Block {
             if( ! canRemain( world, pos, state, dir, off, offState ) ) return false;
         }
         return true;
+    }
+
+    public void kill( World world, BlockPos pos, BlockState state ) {
+        world.removeBlock( pos, false );
     }
 
     public void growAt( World world, BlockPos pos ) {

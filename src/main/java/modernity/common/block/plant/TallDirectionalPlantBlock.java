@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -20,6 +20,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
 
 import java.util.Random;
 import java.util.function.Function;
@@ -27,6 +28,10 @@ import java.util.function.Function;
 public abstract class TallDirectionalPlantBlock extends DirectionalPlantBlock {
     public static final BooleanProperty ROOT = MDBlockStateProperties.ROOT;
     public static final BooleanProperty END = MDBlockStateProperties.END;
+
+    // Set to true when the plant is being killed by 'kill(...)', to prevent the world from breaking the other blocks
+    // automatically before we have removed it (because of 'updatePostPlacement')
+    private final ThreadLocal<Boolean> dying = ThreadLocal.withInitial( () -> false );
 
     public TallDirectionalPlantBlock( Properties properties, Direction growDir ) {
         super( properties, growDir );
@@ -51,17 +56,19 @@ public abstract class TallDirectionalPlantBlock extends DirectionalPlantBlock {
 
     @Override
     public BlockState updatePostPlacement( BlockState state, Direction dir, BlockState adjState, IWorld world, BlockPos pos, BlockPos adjPos ) {
-        state = super.updatePostPlacement( state, dir, adjState, world, pos, adjPos );
-        if( state.getBlock() != this ) return state;
+        if( ! dying.get() ) {
+            state = super.updatePostPlacement( state, dir, adjState, world, pos, adjPos );
+            if( state.getBlock() != this ) return state;
 
-        if( dir == growDir ) {
-            boolean end = ! isSelfState( world, adjPos, adjState );
-            state = state.with( END, end );
-        }
+            if( dir == growDir ) {
+                boolean end = ! isSelfState( world, adjPos, adjState );
+                state = state.with( END, end );
+            }
 
-        if( dir == growDir.getOpposite() ) {
-            boolean root = ! isSelfState( world, adjPos, adjState );
-            state = state.with( ROOT, root );
+            if( dir == growDir.getOpposite() ) {
+                boolean root = ! isSelfState( world, adjPos, adjState );
+                state = state.with( ROOT, root );
+            }
         }
 
         return state;
@@ -147,5 +154,15 @@ public abstract class TallDirectionalPlantBlock extends DirectionalPlantBlock {
 
             return super.getOffset( state, reader, mpos );
         }
+    }
+
+    @Override
+    public void kill( World world, BlockPos pos, BlockState state ) {
+        dying.set( true );
+        while( isSelfState( world, pos, world.getBlockState( pos ) ) ) {
+            world.removeBlock( pos, false );
+            pos = pos.up();
+        }
+        dying.set( false );
     }
 }

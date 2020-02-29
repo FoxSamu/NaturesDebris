@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 30 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
@@ -10,6 +10,8 @@ package modernity.common.block.plant;
 
 import modernity.api.util.EntityUtil;
 import modernity.common.block.MDBlockTags;
+import modernity.common.block.MDBlocks;
+import modernity.common.block.plant.growing.FertilityGrowLogic;
 import modernity.common.entity.MDEntityTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -22,6 +24,7 @@ import net.minecraft.world.World;
 public class WireplantBlock extends SimplePlantBlock {
     public WireplantBlock( Properties properties ) {
         super( properties, makePlantShape( 16, 10 ) );
+        setGrowLogic( new FertilityGrowLogic( this ) );
     }
 
     @Override
@@ -41,5 +44,14 @@ public class WireplantBlock extends SimplePlantBlock {
     @Override
     public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
         return state.isIn( MDBlockTags.DIRTLIKE );
+    }
+
+    @Override
+    public void growAt( World world, BlockPos pos ) {
+        if( world.rand.nextInt( 5 ) == 0 ) {
+            world.setBlockState( pos, MDBlocks.FLOWERED_WIREPLANT.computeStateForPos( world, pos ), 3 );
+        } else {
+            world.setBlockState( pos, MDBlocks.WIREPLANT.computeStateForPos( world, pos ), 3 );
+        }
     }
 }

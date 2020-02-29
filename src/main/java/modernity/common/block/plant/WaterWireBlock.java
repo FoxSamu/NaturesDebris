@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.api.util.EntityUtil;
+import modernity.common.block.plant.growing.BushGrowLogic;
 import modernity.common.entity.MDEntityTags;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.Block;
@@ -38,6 +39,7 @@ public class WaterWireBlock extends PlantBlock implements IWaterPlant {
 
     public WaterWireBlock( Properties properties ) {
         super( properties );
+        setGrowLogic( new BushGrowLogic( this ) );
 
         setDefaultState(
             stateContainer

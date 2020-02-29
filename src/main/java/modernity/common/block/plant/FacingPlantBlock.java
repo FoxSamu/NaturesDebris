@@ -2,14 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 28 - 2020
+ * Date:   02 - 29 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.common.block.plant.growing.MossGrowLogic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
@@ -35,7 +34,7 @@ public class FacingPlantBlock extends PlantBlock {
     protected final int thickness;
     protected final int marge;
 
-    public FacingPlantBlock( Properties properties, int thickness, int marge, boolean canGrow ) {
+    public FacingPlantBlock( Properties properties, int thickness, int marge ) {
         super( properties );
         this.thickness = thickness;
         this.marge = marge;
@@ -43,14 +42,10 @@ public class FacingPlantBlock extends PlantBlock {
         createShapes();
 
         setDefaultState( stateContainer.getBaseState().with( FACING, Direction.UP ) );
-
-        if( canGrow ) {
-            setGrowLogic( new MossGrowLogic( this ) );
-        }
     }
 
-    public FacingPlantBlock( Properties properties, int thickness, boolean canGrow ) {
-        this( properties, thickness, 0, canGrow );
+    public FacingPlantBlock( Properties properties, int thickness ) {
+        this( properties, thickness, 0 );
     }
 
     protected void createShapes() {
