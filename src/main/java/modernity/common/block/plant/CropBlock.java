@@ -2,17 +2,20 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
+import modernity.common.block.MDBlockTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorldReader;
 
 public abstract class CropBlock extends SingleDirectionalPlantBlock {
     protected final IntegerProperty age;
@@ -33,6 +36,11 @@ public abstract class CropBlock extends SingleDirectionalPlantBlock {
         this.maxAge = maxAge;
 
         setDefaultState( stateContainer.getBaseState().with( age, minAge ) );
+    }
+
+    @Override
+    public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
+        return state.isIn( MDBlockTags.FARMLAND );
     }
 
     @Override
