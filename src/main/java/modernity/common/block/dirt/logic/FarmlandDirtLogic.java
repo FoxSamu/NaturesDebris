@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 19 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -10,11 +10,14 @@ package modernity.common.block.dirt.logic;
 
 import modernity.common.block.farmland.FarmlandBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 import net.redgalaxy.util.Lazy;
 
 import java.util.HashMap;
+import java.util.Random;
 import java.util.function.Supplier;
 
 public class FarmlandDirtLogic extends DirtLogic {
@@ -46,5 +49,14 @@ public class FarmlandDirtLogic extends DirtLogic {
 
     public BlockState makeNormal( IWorld world, BlockPos pos, BlockState state ) {
         return noFarmland.get().switchState( world, pos, state );
+    }
+
+    @Override
+    public void grow( World world, BlockPos pos, BlockState state, Random rand ) {
+    }
+
+    @Override
+    public boolean canGrow( ItemStack stack ) {
+        return false;
     }
 }

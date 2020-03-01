@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -13,6 +13,7 @@ import modernity.common.block.MDBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.blocks.MDBlockGenerators;
+import modernity.common.generator.blocks.WeightedBlockGenerator;
 import modernity.common.generator.decorate.count.Chance;
 import modernity.common.generator.decorate.count.Fixed;
 import modernity.common.generator.decorate.count.MinMax;
@@ -32,6 +33,23 @@ public class ForestBiome extends ModernityBiome {
     protected ForestBiome( Type type ) {
         super( type.builder );
         BiomeGroups.registerBiomeToGroup( "forest", this );
+
+        setGrowingPlants(
+            WeightedBlockGenerator.builder( MDBlockGenerators.MURK_GRASS_1, 900 )
+                                  .add( MDBlockGenerators.RANDOM_MILLIUM, 40 )
+                                  .add( MDBlockGenerators.RANDOM_MELION, 30 )
+                                  .add( MDBlockGenerators.MURK_FLOWERS, 30 )
+                                  .add( MDBlockGenerators.MINT_PLANT, 5 )
+                                  .add( MDBlockGenerators.FOXGLOVE, 5 )
+                                  .add( MDBlockGenerators.REDWOLD, 20 )
+                                  .add( MDBlockGenerators.SEEDLE, 10 )
+                                  .add( MDBlockGenerators.DOTTED_MUSHROOM, 10 )
+                                  .add( MDBlockGenerators.BLACK_MUSHROOM, 10 )
+                                  .add( MDBlockGenerators.NETTLES, 40 )
+                                  .add( MDBlockGenerators.TURUPT, 14 )
+                                  .add( MDBlockGenerators.HORSETAIL, 8 )
+                                  .build()
+        );
 
         MurkSurfaceGeneration.addCaveDeposits( this );
         MurkSurfaceGeneration.addCaveOres( this );

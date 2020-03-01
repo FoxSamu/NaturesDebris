@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.api.block.IColoredBlock;
+import modernity.api.block.IReceiveFertilityFromFloorBlock;
 import modernity.client.ModernityClient;
 import modernity.common.block.MDBlockTags;
 import modernity.common.block.plant.growing.MurkFernGrowLogic;
@@ -18,17 +19,21 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
-public class MurkFernBlock extends SimplePlantBlock implements IColoredBlock {
+public class MurkFernBlock extends SimplePlantBlock implements IColoredBlock, IReceiveFertilityFromFloorBlock {
     public static final VoxelShape FERN_SHAPE = makePlantShape( 14, 14 );
+
+    private final MurkFernGrowLogic logic;
 
     public MurkFernBlock( Properties properties ) {
         super( properties, FERN_SHAPE );
-        setGrowLogic( new MurkFernGrowLogic() );
+        setGrowLogic( logic = new MurkFernGrowLogic() );
     }
 
     @Override
@@ -46,5 +51,10 @@ public class MurkFernBlock extends SimplePlantBlock implements IColoredBlock {
     @OnlyIn( Dist.CLIENT )
     public int colorMultiplier( ItemStack stack, int tintIndex ) {
         return ModernityClient.get().getFernColors().getItemColor();
+    }
+
+    @Override
+    public void receiveFertilityFromFloor( World world, BlockPos pos, BlockState state, Random rand ) {
+        logic.growFromFloor( world, pos, state, rand );
     }
 }

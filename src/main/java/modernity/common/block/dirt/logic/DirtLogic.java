@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 19 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -15,6 +15,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SnowBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
@@ -96,5 +97,13 @@ public abstract class DirtLogic {
 
     public boolean randomTicks() {
         return type.randomTicks();
+    }
+
+    public boolean canGrow( ItemStack stack ) {
+        return type.canGrow( stack );
+    }
+
+    public void grow( World world, BlockPos pos, BlockState state, Random rand ) {
+        type.grow( world, pos, state, rand );
     }
 }

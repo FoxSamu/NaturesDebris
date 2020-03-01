@@ -2,15 +2,17 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant.growing;
 
+import modernity.api.util.MovingBlockPos;
 import modernity.common.block.farmland.IFarmland;
 import modernity.common.block.plant.TallDirectionalPlantBlock;
 import modernity.common.item.MDItemTags;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -20,6 +22,22 @@ import java.util.Random;
 public class TallGrassGrowLogic extends TallPlantGrowLogic {
     public TallGrassGrowLogic( TallDirectionalPlantBlock plant ) {
         super( plant );
+    }
+
+    public boolean growFromFloor( World world, BlockPos pos, BlockState state, Random rand ) {
+        if( world.isRemote ) return true;
+        MovingBlockPos mpos = new MovingBlockPos( pos );
+        int height = 0;
+        while( plant.isSelfState( world, mpos, world.getBlockState( mpos ) ) ) {
+            height++;
+            mpos.move( plant.getGrowDirection() );
+        }
+
+        if( height < 2 ) {
+            return growUp( world, pos, pos.offset( plant.getGrowDirection(), height ), height, rand );
+        } else {
+            return false;
+        }
     }
 
     @Override

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -19,7 +19,7 @@ import java.util.EnumMap;
 import java.util.Random;
 
 public abstract class TallPlantGrowLogic extends SpreadingGrowLogic {
-    private final TallDirectionalPlantBlock plant;
+    protected final TallDirectionalPlantBlock plant;
 
     protected TallPlantGrowLogic( TallDirectionalPlantBlock plant ) {
         super( plant );

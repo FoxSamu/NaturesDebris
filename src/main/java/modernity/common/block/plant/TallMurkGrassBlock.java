@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.api.block.IColoredBlock;
+import modernity.api.block.IReceiveFertilityFromFloorBlock;
 import modernity.api.util.MDVoxelShapes;
 import modernity.client.ModernityClient;
 import modernity.common.block.MDBlockStateProperties;
@@ -23,22 +24,25 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class TallMurkGrassBlock extends LimitedTallDirectionalPlantBlock implements IColoredBlock {
+public class TallMurkGrassBlock extends LimitedTallDirectionalPlantBlock implements IColoredBlock, IReceiveFertilityFromFloorBlock {
 
     public static final VoxelShape GRASS_END_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 10, 14 );
     public static final VoxelShape GRASS_MIDDLE_SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 16, 14 );
 
     public static final IntegerProperty LENGTH = MDBlockStateProperties.LENGTH_1_4;
 
+    private final TallGrassGrowLogic logic;
+
     public TallMurkGrassBlock( Properties properties ) {
         super( properties, Direction.UP );
-        setGrowLogic( new TallGrassGrowLogic( this ) );
+        setGrowLogic( logic = new TallGrassGrowLogic( this ) );
     }
 
 
@@ -84,5 +88,10 @@ public class TallMurkGrassBlock extends LimitedTallDirectionalPlantBlock impleme
     @Override
     public VoxelShape getShape( BlockState state ) {
         return state.get( END ) ? GRASS_END_SHAPE : GRASS_MIDDLE_SHAPE;
+    }
+
+    @Override
+    public void receiveFertilityFromFloor( World world, BlockPos pos, BlockState state, Random rand ) {
+        logic.growFromFloor( world, pos, state, rand );
     }
 }

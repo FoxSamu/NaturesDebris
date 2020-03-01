@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -21,6 +21,11 @@ import java.util.Random;
 public class MurkFernGrowLogic extends SpreadingGrowLogic {
     public MurkFernGrowLogic() {
         super( MDBlocks.MURK_FERN );
+    }
+
+    public boolean growFromFloor( World world, BlockPos pos, BlockState state, Random rand ) {
+        if( world.isRemote ) return true;
+        return grow( world, pos, rand, true );
     }
 
     @Override

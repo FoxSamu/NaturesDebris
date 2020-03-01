@@ -2,16 +2,19 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.biome;
 
 import modernity.common.environment.precipitation.IPrecipitationFunction;
+import modernity.common.generator.blocks.IBlockGenerator;
+import modernity.common.generator.blocks.MDBlockGenerators;
 import modernity.common.generator.decorate.decorator.IDecorator;
 import modernity.common.generator.surface.ISurfaceGenerator;
 import modernity.common.generator.util.BiomeMetrics;
+import net.minecraft.block.BlockState;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -33,6 +36,8 @@ public abstract class ModernityBiome extends Biome {
     private final BiomeMetrics metrics;
 
     private final ArrayList<IDecorator> decorators = new ArrayList<>();
+
+    private IBlockGenerator growingPlants = MDBlockGenerators.MURK_GRASS_1;
 
     protected ModernityBiome( Builder builder ) {
         super( builder.vanilla() );
@@ -88,6 +93,14 @@ public abstract class ModernityBiome extends Biome {
                 decorator.decorate( world, pos.getX() >> 4, pos.getZ() >> 4, this, rand, chunkGenerator );
             }
         }
+    }
+
+    public IBlockGenerator getRandomPlant( BlockState soil ) {
+        return growingPlants;
+    }
+
+    protected void setGrowingPlants( IBlockGenerator growingPlants ) {
+        this.growingPlants = growingPlants;
     }
 
     public static ModernityBiome get( Biome biome, ModernityBiome def ) {

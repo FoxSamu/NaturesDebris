@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 19 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.dirt.logic;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -33,5 +34,13 @@ public interface IDirtLogicType {
         if( spread && this instanceof ISpreadingLogicType ) {
             ( (ISpreadingLogicType) this ).spreadTick( world, pos, state, rand );
         }
+    }
+
+
+    default boolean canGrow( ItemStack stack ) {
+        return false;
+    }
+
+    default void grow( World world, BlockPos pos, BlockState state, Random rand ) {
     }
 }

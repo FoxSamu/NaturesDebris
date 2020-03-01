@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -12,6 +12,7 @@ import modernity.common.block.MDBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.blocks.MDBlockGenerators;
+import modernity.common.generator.blocks.WeightedBlockGenerator;
 import modernity.common.generator.decorate.count.Chance;
 import modernity.common.generator.decorate.count.Fixed;
 import modernity.common.generator.decorate.decoration.*;
@@ -30,6 +31,21 @@ public class LushGrasslandBiome extends ModernityBiome {
         super( type.builder );
         BiomeGroups.registerBiomeToGroup( "lush_grassland", this );
         BiomeGroups.registerBiomeToGroup( "meadow_like", this );
+
+        setGrowingPlants(
+            WeightedBlockGenerator.builder( MDBlockGenerators.MURK_GRASS_LUSH, 1700 )
+                                  .add( MDBlockGenerators.RANDOM_MILLIUM, 70 )
+                                  .add( MDBlockGenerators.RANDOM_MELION, 50 )
+                                  .add( MDBlockGenerators.RANDOM_BULBFLOWER, 50 )
+                                  .add( MDBlockGenerators.MURK_FLOWERS, 30 )
+                                  .add( MDBlockGenerators.GLOBE_THISTLE, 20 )
+                                  .add( MDBlockGenerators.MURK_LAVENDER, 20 )
+                                  .add( MDBlockGenerators.FOXGLOVE, 30 )
+                                  .add( MDBlockGenerators.REDWOLD, 20 )
+                                  .add( MDBlockGenerators.RED_GRASS, 10 )
+                                  .add( MDBlockGenerators.NETTLES, 35 )
+                                  .build()
+        );
 
         boolean open = type == Type.LUSH_GRASSLAND_EDGE || type == Type.LUSH_GRASSLAND_OPEN || type == Type.HIGH_LUSH_GRASSLAND_OPEN;
 
