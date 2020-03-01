@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 28 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -70,6 +70,11 @@ public final class MDItems {
     public static final Item FOXGLOVE_PETALS = item( "foxglove_petals", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item SEEPWEED_LEAVES = item( "seepweed_leaves", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item PLANT_WIRE = item( "plant_wire", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
+
+    public static final Item MURK_ROOTS_SEEDS = item( "murk_roots_seeds", new BlockNamedItem( MDBlocks.MURK_ROOTS, new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item MURK_RICE_SEEDS = item( "murk_rice_seeds", new BlockNamedItem( MDBlocks.MURK_RICE, new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item SEEPWEED_SEEDS = item( "seepweed_seeds", new BlockNamedItem( MDBlocks.SEEPWEED_CROP, new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item NUDWART_SEEDS = item( "nudwart_seeds", new BlockNamedItem( MDBlocks.NUDWART_CROP, new Item.Properties().group( MDItemGroup.MISC ) ) );
 
 
 
