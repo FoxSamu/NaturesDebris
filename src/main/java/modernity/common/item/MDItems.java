@@ -63,14 +63,20 @@ public final class MDItems {
 
 
 
-    /* ==== PLANTS ==== */
+    /* ==== PLANTS & FOOD ==== */
 
+    // Misc
     public static final Item SHADE_BLUE_FLOWER = item( "shade_blue_flower", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item NUDWART_PETALS = item( "nudwart_petals", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item FOXGLOVE_PETALS = item( "foxglove_petals", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item SEEPWEED_LEAVES = item( "seepweed_leaves", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item PLANT_WIRE = item( "plant_wire", new Item( new Item.Properties().group( MDItemGroup.MISC ) ) );
 
+    // Food
+    public static final Item MURK_ROOT = item( "murk_root", new Item( new Item.Properties().group( MDItemGroup.MISC ).food( MDFoods.MURK_ROOTS ) ) );
+    public static final Item MURK_RICE = item( "murk_rice", new Item( new Item.Properties().group( MDItemGroup.MISC ).food( MDFoods.MURK_RICE ) ) );
+
+    // Seeds
     public static final Item MURK_ROOTS_SEEDS = item( "murk_roots_seeds", new BlockNamedItem( MDBlocks.MURK_ROOTS, new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item MURK_RICE_SEEDS = item( "murk_rice_seeds", new BlockNamedItem( MDBlocks.MURK_RICE, new Item.Properties().group( MDItemGroup.MISC ) ) );
     public static final Item SEEPWEED_SEEDS = item( "seepweed_seeds", new BlockNamedItem( MDBlocks.SEEPWEED_CROP, new Item.Properties().group( MDItemGroup.MISC ) ) );
