@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -88,11 +88,11 @@ public abstract class PlantBlock extends Block {
 
     @Override
     public boolean onBlockActivated( BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit ) {
-        if( ! world.isRemote && logic != null ) {
+        if( logic != null ) {
             BlockPos p = getRootPos( world, pos, state );
             ItemStack stack = player.getHeldItem( hand );
             if( logic.grow( world, p, state, world.rand, stack ) ) {
-                if( ! player.abilities.isCreativeMode ) {
+                if( ! player.abilities.isCreativeMode && ! world.isRemote ) {
                     stack.shrink( 1 );
                     player.setHeldItem( hand, stack.getCount() == 0 ? ItemStack.EMPTY : stack );
                 }

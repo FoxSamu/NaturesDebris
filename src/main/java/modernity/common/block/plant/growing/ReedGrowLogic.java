@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -36,6 +36,7 @@ public class ReedGrowLogic implements IGrowLogic {
     @Override
     public boolean grow( World world, BlockPos pos, BlockState state, Random rand, ItemStack item ) {
         if( ! item.getItem().isIn( MDItemTags.FERTILIZER ) ) return false;
+        if( world.isRemote ) return true;
         MovingBlockPos mpos = new MovingBlockPos( pos );
         int i = 0;
         while( world.getBlockState( mpos ).getBlock() == MDBlocks.MURK_REED && i < 12 ) {

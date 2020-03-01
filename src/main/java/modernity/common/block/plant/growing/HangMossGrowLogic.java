@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -41,6 +41,7 @@ public class HangMossGrowLogic implements IGrowLogic {
     @Override
     public boolean grow( World world, BlockPos pos, BlockState state, Random rand, ItemStack item ) {
         if( ! item.getItem().isIn( MDItemTags.FERTILIZER ) ) return false;
+        if( world.isRemote ) return true;
         pos = MDBlocks.HANGING_MOSS.getRootPos( world, pos, state );
 
         MovingBlockPos mpos = new MovingBlockPos( pos );

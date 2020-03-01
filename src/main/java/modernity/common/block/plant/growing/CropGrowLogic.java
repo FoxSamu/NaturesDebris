@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -50,6 +50,7 @@ public abstract class CropGrowLogic implements IGrowLogic {
     @Override
     public boolean grow( World world, BlockPos pos, BlockState state, Random rand, ItemStack item ) {
         if( isFertilizer( item, rand ) ) {
+            if( world.isRemote ) return true;
             int grow = getItemGrow( item, rand );
             if( grow > 0 ) {
                 if( state.get( age ) < maxAge ) {
