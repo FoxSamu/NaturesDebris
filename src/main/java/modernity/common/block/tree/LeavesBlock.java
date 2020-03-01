@@ -2,35 +2,30 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.tree;
 
-import modernity.api.block.IColoredBlock;
 import modernity.api.util.ColorUtil;
 import modernity.api.util.MovingBlockPos;
-import modernity.client.ModernityClient;
 import modernity.common.block.MDBlocks;
 import modernity.common.particle.MDParticleTypes;
 import modernity.common.particle.RgbParticleData;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IShearable;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 /**
@@ -112,8 +107,8 @@ public class LeavesBlock extends Block implements IShearable {
             }
 
             // TODO: Tag
-            if( belowState.getBlock() == MDBlocks.MURKY_DIRT ) {
-                world.setBlockState( mpos, MDBlocks.MURKY_HUMUS.getDefaultState() );
+            if( belowState.getBlock() == MDBlocks.MURKY_HUMUS ) {
+                world.setBlockState( mpos, MDBlocks.LEAFY_HUMUS.getDefaultState() );
             }
             break;
         }
@@ -139,25 +134,5 @@ public class LeavesBlock extends Block implements IShearable {
     @Override
     public boolean causesSuffocation( BlockState state, IBlockReader worldIn, BlockPos pos ) {
         return false;
-    }
-
-    /**
-     * Blackwood-colored leaves.
-     */
-    public static class ColoredBlackwood extends LeavesBlock implements IColoredBlock {
-
-        public ColoredBlackwood( String id, Properties properties ) {
-            super( properties );
-        }
-
-        @Override
-        public int colorMultiplier( BlockState state, @Nullable IEnviromentBlockReader reader, @Nullable BlockPos pos, int tintIndex ) {
-            return ModernityClient.get().getBlackwoodColors().getColor( reader, pos );
-        }
-
-        @Override
-        public int colorMultiplier( ItemStack stack, int tintIndex ) {
-            return ModernityClient.get().getBlackwoodColors().getItemColor();
-        }
     }
 }
