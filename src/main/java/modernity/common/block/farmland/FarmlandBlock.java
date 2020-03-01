@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -19,6 +19,7 @@ import modernity.common.block.dirt.DirtlikeBlock;
 import modernity.common.block.dirt.logic.FarmlandDirtLogic;
 import modernity.common.environment.precipitation.IPrecipitation;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
+import modernity.common.fluid.MDFluidTags;
 import modernity.common.item.MDItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -123,7 +124,10 @@ public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectio
         }
 
         boolean rain = checkRain( world, pos );
-        int resources = checkResources( world, pos, rain, fertility );
+        int resources = checkResources( world, pos, rain );
+
+        boolean cleaning = resources < 0;
+        if( cleaning ) resources = - resources;
 
         if( resources == 1 ) {
             if( fertility == Fertility.NONE ) {
@@ -145,11 +149,19 @@ public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectio
             }
         }
 
-        if( resources == 4 ) {
+        if( resources == 4 && ! cleaning ) {
             if( fertility != Fertility.DECAYED ) {
                 fertility = Fertility.DECAYED;
                 level = rand.nextInt( 3 ) + 3;
             }
+        }
+
+        if( cleaning ) {
+            if( fertility == Fertility.DECAYED ) {
+                fertility = Fertility.WET;
+                level = 0;
+            }
+            decay = 0;
         }
 
 
@@ -172,10 +184,11 @@ public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectio
         }
     }
 
-    private int checkResources( World world, BlockPos pos, boolean rain, Fertility fertility ) {
+    private int checkResources( World world, BlockPos pos, boolean rain ) {
         MovingBlockPos mpos = new MovingBlockPos();
 
         int type = rain ? 2 : 0;
+        boolean cleaning = false;
 
         for( int x = - 4; x <= 4; x++ ) {
             for( int z = - 4; z <= 4; z++ ) {
@@ -193,8 +206,13 @@ public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectio
                         type = 3;
                     }
 
-                    if( fstate.isTagged( FluidTags.WATER ) && type < 2 ) {
-                        type = 2;
+                    if( fstate.isTagged( FluidTags.WATER ) ) {
+                        if( fstate.isTagged( MDFluidTags.CLEANING ) ) {
+                            cleaning = true;
+                        }
+                        if( type < 2 ) {
+                            type = 2;
+                        }
                     }
 
                     if( bstate.isIn( MDBlockTags.SALT_SOURCE ) && type < 1 ) {
@@ -204,7 +222,7 @@ public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectio
             }
         }
 
-        return type;
+        return cleaning ? - type : type;
     }
 
     private boolean checkRain( World world, BlockPos pos ) {

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -91,6 +91,7 @@ public final class MDBlocks {
 
     // Fluids
     public static final RegularFluidBlock MURKY_WATER = blockOnly( "murky_water", new RegularFluidBlock( MDFluids.MURKY_WATER, fluid( Material.WATER, MaterialColor.WATER ) ), "modernized_water" );
+    public static final RegularFluidBlock CLEAN_WATER = blockOnly( "clean_water", new RegularFluidBlock( MDFluids.CLEAN_WATER, fluid( Material.WATER, MaterialColor.WATER ) ) );
     public static final RegularFluidBlock MOLTEN_ROCK = blockOnly( "molten_rock", new RegularFluidBlock( MDFluids.MOLTEN_ROCK, fluid( Material.LAVA, MaterialColor.TNT ).lightValue( 15 ) ), "heatrock" );
 
     public static final PuddleBlock PUDDLE = blockOnly( "puddle", new PuddleBlock( Block.Properties.create( Material.WATER, MaterialColor.WATER ) ) );

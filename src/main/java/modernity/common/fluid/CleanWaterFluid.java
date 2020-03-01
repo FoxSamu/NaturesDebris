@@ -10,7 +10,6 @@ package modernity.common.fluid;
 
 import modernity.api.block.fluid.IAluminiumBucketTakeable;
 import modernity.api.block.fluid.ICustomRenderFluid;
-import modernity.client.ModernityClient;
 import modernity.common.block.MDBlocks;
 import modernity.common.item.MDItems;
 import net.minecraft.block.Block;
@@ -38,15 +37,15 @@ import java.util.Random;
 /**
  * The Modernity variant on water. Murky water generates almost everywhere in the Modernity.
  */
-public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRenderFluid, IAluminiumBucketTakeable {
+public abstract class CleanWaterFluid extends RegularFluid implements ICustomRenderFluid, IAluminiumBucketTakeable {
     @Override
     public Fluid getFlowingFluid() {
-        return MDFluids.FLOWING_MURKY_WATER;
+        return MDFluids.FLOWING_CLEAN_WATER;
     }
 
     @Override
     public Fluid getStillFluid() {
-        return MDFluids.MURKY_WATER;
+        return MDFluids.CLEAN_WATER;
     }
 
     @Override
@@ -63,7 +62,7 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
     @Override
     public Item getFilledAluminiumBucket() {
 //        return Items.WATER_BUCKET;
-        return MDItems.ALUMINIUM_WATER_BUCKET;
+        return MDItems.ALUMINIUM_CLEAN_WATER_BUCKET;
     }
 
     @Override
@@ -88,7 +87,7 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
 
     @Override
     protected boolean canSourcesMultiply() {
-        return true;
+        return false;
     }
 
     @Override
@@ -106,7 +105,7 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
 
     @Override
     public BlockState getBlockState( IFluidState state ) {
-        return MDBlocks.MURKY_WATER.getDefaultState().with( blockLevel, getLevelFromState( state ) );
+        return MDBlocks.CLEAN_WATER.getDefaultState().with( blockLevel, getLevelFromState( state ) );
     }
 
     @Override
@@ -155,12 +154,12 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
 
     @Override
     public int getColor( IFluidState state, BlockPos pos, IEnviromentBlockReader world ) {
-        return ModernityClient.get().getWaterColors().getColor( world, pos );
+        return 0x556ba1;
     }
 
     @Override
     public int getDefaultColor() {
-        return ModernityClient.get().getWaterColors().getItemColor();
+        return 0x556ba1;
     }
 
     @Override
@@ -168,7 +167,7 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
         return facing == Direction.DOWN && ! fluid.isIn( FluidTags.WATER );
     }
 
-    public static class Flowing extends MurkyWaterFluid {
+    public static class Flowing extends CleanWaterFluid {
         @Override
         protected void fillStateContainer( StateContainer.Builder<Fluid, IFluidState> builder ) {
             super.fillStateContainer( builder );
@@ -186,7 +185,7 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
         }
     }
 
-    public static class Source extends MurkyWaterFluid {
+    public static class Source extends CleanWaterFluid {
         @Override
         public int getLevel( IFluidState state ) {
             return 8;

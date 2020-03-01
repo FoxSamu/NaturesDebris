@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "modernity:murky_water",
-    "minecraft:water"
+    "modernity:clean_water"
   ]
 }

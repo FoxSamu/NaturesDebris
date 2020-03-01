@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 22 - 2020
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -53,6 +53,7 @@ public final class MDDispenseBehaviors {
         };
 
         DispenserBlock.registerDispenseBehavior( MDItems.ALUMINIUM_WATER_BUCKET, fluidDispenseBehavior );
+        DispenserBlock.registerDispenseBehavior( MDItems.ALUMINIUM_CLEAN_WATER_BUCKET, fluidDispenseBehavior );
         DispenserBlock.registerDispenseBehavior( MDItems.ALUMINIUM_LAVA_BUCKET, fluidDispenseBehavior );
         DispenserBlock.registerDispenseBehavior( MDItems.ALUMINIUM_BUCKET, new DefaultDispenseItemBehavior() {
             private final DefaultDispenseItemBehavior def = new DefaultDispenseItemBehavior();

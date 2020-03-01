@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 23 - 2019
+ * Date:   03 - 01 - 2020
  * Author: rgsw
  */
 
@@ -28,9 +28,11 @@ import net.minecraftforge.registries.ObjectHolder;
 public final class MDFluids {
     private static final RegistryHandler<Fluid> ENTRIES = new RegistryHandler<>( "modernity" );
 
-    // V I0.2.0
     public static final MurkyWaterFluid MURKY_WATER = register( "murky_water", new MurkyWaterFluid.Source(), "modernized_water" );
     public static final MurkyWaterFluid FLOWING_MURKY_WATER = register( "flowing_murky_water", new MurkyWaterFluid.Flowing(), "flowing_modernized_water" );
+
+    public static final CleanWaterFluid CLEAN_WATER = register( "clean_water", new CleanWaterFluid.Source() );
+    public static final CleanWaterFluid FLOWING_CLEAN_WATER = register( "flowing_clean_water", new CleanWaterFluid.Flowing() );
 
     public static final MoltenRockFluid MOLTEN_ROCK = register( "molten_rock", new MoltenRockFluid.Source(), "heatrock" );
     public static final MoltenRockFluid FLOWING_MOLTEN_ROCK = register( "flowing_molten_rock", new MoltenRockFluid.Flowing(), "flowing_heatrock" );
@@ -48,13 +50,15 @@ public final class MDFluids {
      * Checks if two fluids are equivalent.
      */
     public static boolean areEquivalent( Fluid fluidA, Fluid fluidB ) {
-        if( fluidA instanceof WaterFluid && fluidB instanceof MurkyWaterFluid ) {
-            return true;
-        } else if( fluidB instanceof WaterFluid && fluidA instanceof MurkyWaterFluid ) {
+        if( isWater( fluidA ) && isWater( fluidB ) ) {
             return true;
         } else {
             return fluidA.isEquivalentTo( fluidB );
         }
+    }
+
+    public static boolean isWater( Fluid fluid ) {
+        return fluid instanceof WaterFluid || fluid instanceof MurkyWaterFluid || fluid instanceof CleanWaterFluid;
     }
 
     @OnlyIn( Dist.CLIENT )
