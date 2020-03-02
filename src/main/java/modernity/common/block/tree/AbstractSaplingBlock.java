@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   03 - 02 - 2020
  * Author: rgsw
  */
 
@@ -33,27 +33,21 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 import java.util.Random;
-import java.util.function.Supplier;
 
 /**
  * Describes a sapling.
  */
-public class SaplingBlock extends SimplePlantBlock {
+public abstract class AbstractSaplingBlock extends SimplePlantBlock {
     public static final VoxelShape SHAPE = MDVoxelShapes.create16( 2, 0, 2, 14, 12, 14 );
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_5;
 
-    private final Supplier<Tree> tree;
-
     /**
      * Creates a sapling block.
-     *
-     * @param tree The tree feature to generate when this sapling is full grown.
      */
-    public SaplingBlock( Supplier<Tree> tree, Properties properties ) {
+    public AbstractSaplingBlock( Properties properties ) {
         super( properties, SHAPE );
         setDefaultState( stateContainer.getBaseState().with( AGE, 0 ) );
-        this.tree = tree;
     }
 
     @Override
@@ -63,7 +57,11 @@ public class SaplingBlock extends SimplePlantBlock {
     }
 
     @Override
-    @SuppressWarnings( "deprecation" )
+    public boolean ticksRandomly( BlockState state ) {
+        return true;
+    }
+
+    @Override
     public void randomTick( BlockState state, World world, BlockPos pos, Random rand ) {
         growOlder( state, world, pos, rand );
         super.randomTick( state, world, pos, rand );
@@ -76,12 +74,18 @@ public class SaplingBlock extends SimplePlantBlock {
         if( ! world.isRemote() ) {
             if( state.get( AGE ) == 5 ) {
                 long seed = rand.nextLong();
-                Random local = new Random( seed );
-                if( tree.get().canGenerate( world, local, pos ) ) {
-                    world.removeBlock( pos, false );
+                Random local = new Random();
+                local.setSeed( seed );
+
+                int growState = findGrowState( world, pos );
+                BlockPos growPos = getGrowPos( world, pos, growState );
+                Tree tree = getTree( world, pos, growState );
+
+                if( tree != null && tree.canGenerate( world, local, growPos ) ) {
+                    removeSaplings( world, pos, growState );
 
                     local.setSeed( seed );
-                    tree.get().generate( world, local, pos );
+                    tree.generate( world, local, growPos );
                 }
             } else {
                 world.setBlockState( pos, state.with( AGE, state.get( AGE ) + 1 ), 3 );
@@ -90,7 +94,6 @@ public class SaplingBlock extends SimplePlantBlock {
     }
 
     @Override
-    @SuppressWarnings( "deprecation" )
     public boolean onBlockActivated( BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result ) {
         if( player.getHeldItem( hand ).getItem().isIn( MDItemTags.FERTILIZER ) ) {
             growOlder( state, world, pos, world.rand );
@@ -119,4 +122,10 @@ public class SaplingBlock extends SimplePlantBlock {
     public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
         return state.isIn( MDBlockTags.DIRTLIKE );
     }
+
+    protected abstract int findGrowState( IWorld world, BlockPos pos );
+
+    protected abstract BlockPos getGrowPos( IWorld world, BlockPos pos, int growState );
+    protected abstract Tree getTree( IWorld world, BlockPos pos, int growState );
+    protected abstract void removeSaplings( IWorld world, BlockPos pos, int growState );
 }

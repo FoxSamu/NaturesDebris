@@ -108,6 +108,21 @@ public class BlackwoodTree extends Tree {
                 if( xd != zd ) {
                     mpos.setPos( pos ).addPos( x, - 1, z );
                     setLogState( world, mpos, xd ? WOOD_X : WOOD_Z, logs );
+
+                    if( moss ) {
+                        if( x == - 2 ) {
+                            createMoss( world, pos, mpos, x, z, mossHeight, rand, Direction.WEST );
+                        }
+                        if( x == 1 ) {
+                            createMoss( world, pos, mpos, x, z, mossHeight, rand, Direction.EAST );
+                        }
+                        if( z == - 2 ) {
+                            createMoss( world, pos, mpos, x, z, mossHeight, rand, Direction.NORTH );
+                        }
+                        if( z == 1 ) {
+                            createMoss( world, pos, mpos, x, z, mossHeight, rand, Direction.SOUTH );
+                        }
+                    }
                 }
 
                 if( xd || zd ) {
@@ -116,21 +131,6 @@ public class BlackwoodTree extends Tree {
 
                     if( random ) {
                         createExtraLog( world, pos, mpos, logs, x, height - rand.nextInt( 2 ), z, rand );
-                    }
-                }
-
-                if( moss ) {
-                    if( x == - 2 && ! zd ) {
-                        createMoss( world, pos, mpos, x, z, mossHeight, rand, Direction.WEST );
-                    }
-                    if( x == 1 && ! zd ) {
-                        createMoss( world, pos, mpos, x, z, mossHeight, rand, Direction.EAST );
-                    }
-                    if( z == - 2 && ! xd ) {
-                        createMoss( world, pos, mpos, x, z, mossHeight, rand, Direction.NORTH );
-                    }
-                    if( z == 1 && ! xd ) {
-                        createMoss( world, pos, mpos, x, z, mossHeight, rand, Direction.SOUTH );
                     }
                 }
             }
@@ -180,7 +180,7 @@ public class BlackwoodTree extends Tree {
         int h = height + rand.nextInt( 3 ) - 1;
         for( int y = 0; y < h; y++ ) {
             mpos.setPos( pos ).addPos( x, y, z );
-            if( world.isAirBlock( mpos ) ) {
+            if( isAir( world, mpos ) ) {
                 setBlockState( world, mpos, MDBlocks.MOSS.getDefaultState().with( FacingPlantBlock.FACING, dir ) );
             }
         }

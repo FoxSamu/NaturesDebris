@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 02 - 2020
  * Author: rgsw
  */
 
@@ -13,8 +13,10 @@ import modernity.client.ModernityClient;
 import modernity.common.block.plant.growing.MurinaGrowLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IEnviromentBlockReader;
+import net.minecraft.world.IWorldReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -41,5 +43,10 @@ public class MurinaBlock extends HangingPlantBlock implements IColoredBlock {
     @Override
     public OffsetType getOffsetType() {
         return OffsetType.XZ;
+    }
+
+    @Override
+    public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
+        return state.isIn( BlockTags.LEAVES ) || super.canBlockSustain( world, pos, state );
     }
 }

@@ -2,15 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 01 - 2020
+ * Date:   03 - 02 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.tree;
 
 import modernity.api.util.ColorUtil;
-import modernity.api.util.MovingBlockPos;
-import modernity.common.block.MDBlocks;
 import modernity.common.particle.MDParticleTypes;
 import modernity.common.particle.RgbParticleData;
 import net.minecraft.block.Block;
@@ -86,44 +84,8 @@ public class LeavesBlock extends Block implements IShearable {
         return rand.nextInt( 256 ) == 1;
     }
 
-    /**
-     * Do these leaves generate humus.
-     */
-    protected boolean generatesHumus( BlockState state ) {
-        return true;
-    }
-
-    /**
-     * Generates humus.
-     */
-    protected void generateHumus( BlockState state, World world, BlockPos pos ) {
-        MovingBlockPos mpos = new MovingBlockPos( pos.down() );
-        for( int i = 0; i < 17; i++ ) {
-            BlockState belowState = world.getBlockState( mpos );
-
-            if( ! belowState.getMaterial().blocksMovement() && ! belowState.getMaterial().isLiquid() && belowState.getBlock() != this ) {
-                mpos.moveDown();
-                continue;
-            }
-
-            // TODO: Tag
-            if( belowState.getBlock() == MDBlocks.MURKY_HUMUS ) {
-                world.setBlockState( mpos, MDBlocks.LEAFY_HUMUS.getDefaultState() );
-            }
-            break;
-        }
-    }
-
-    @Override
-    public boolean ticksRandomly( BlockState state ) {
-        return generatesHumus( state );
-    }
-
     @Override
     public void randomTick( BlockState state, World world, BlockPos pos, Random rand ) {
-        if( generatesHumus( state ) ) {
-            generateHumus( state, world, pos );
-        }
     }
 
     @Override
