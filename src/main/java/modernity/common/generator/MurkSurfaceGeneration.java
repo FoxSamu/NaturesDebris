@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   03 - 02 - 2020
  * Author: rgsw
  */
 
@@ -51,6 +51,9 @@ import net.redgalaxy.exc.InstanceOfUtilityClassException;
 
 import static modernity.api.util.BlockPredicates.*;
 
+/**
+ * General utility class for generating the Murk Surface dimension.
+ */
 public final class MurkSurfaceGeneration {
     public static final int BIOME_MIX_RADIUS = 3;
     public static final int BIOME_MIX_DIAMETER = BIOME_MIX_RADIUS * 2 + 1;
