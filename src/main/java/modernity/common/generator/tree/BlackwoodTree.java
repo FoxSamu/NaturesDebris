@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 25 - 2020
+ * Date:   03 - 02 - 2020
  * Author: rgsw
  */
 
@@ -12,6 +12,7 @@ import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlockTags;
 import modernity.common.block.MDBlocks;
 import modernity.common.block.base.AxisBlock;
+import modernity.common.block.plant.FacingPlantBlock;
 import modernity.common.block.prop.SignedIntegerProperty;
 import modernity.common.block.tree.HangLeavesBlock;
 import net.minecraft.block.BlockState;
@@ -70,7 +71,7 @@ public class BlackwoodTree extends Tree {
         MovingBlockPos mpos = new MovingBlockPos( pos );
 
 
-        int height = rand.nextInt( 7 ) + 5;
+        int height = rand.nextInt( 5 ) + 7;
 
         // Log
         for( int y = - 2; y <= height; y++ ) {
@@ -96,6 +97,9 @@ public class BlackwoodTree extends Tree {
 
         createRoots( world, pos, mpos, logs );
 
+        boolean moss = rand.nextInt( 6 ) == 0;
+        int mossHeight = rand.nextInt( 4 ) + 1;
+
         for( int x = - 2; x <= 1; x++ ) {
             for( int z = - 2; z <= 1; z++ ) {
                 boolean xd = x == - 2 || x == 1;
@@ -112,6 +116,21 @@ public class BlackwoodTree extends Tree {
 
                     if( random ) {
                         createExtraLog( world, pos, mpos, logs, x, height - rand.nextInt( 2 ), z, rand );
+                    }
+                }
+
+                if( moss ) {
+                    if( x == - 2 && ! zd ) {
+                        createMoss( world, pos, mpos, x, z, mossHeight, rand, Direction.WEST );
+                    }
+                    if( x == 1 && ! zd ) {
+                        createMoss( world, pos, mpos, x, z, mossHeight, rand, Direction.EAST );
+                    }
+                    if( z == - 2 && ! xd ) {
+                        createMoss( world, pos, mpos, x, z, mossHeight, rand, Direction.NORTH );
+                    }
+                    if( z == 1 && ! xd ) {
+                        createMoss( world, pos, mpos, x, z, mossHeight, rand, Direction.SOUTH );
                     }
                 }
             }
@@ -153,6 +172,16 @@ public class BlackwoodTree extends Tree {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private void createMoss( IWorld world, BlockPos pos, MovingBlockPos mpos, int x, int z, int height, Random rand, Direction dir ) {
+        int h = height + rand.nextInt( 3 ) - 1;
+        for( int y = 0; y < h; y++ ) {
+            mpos.setPos( pos ).addPos( x, y, z );
+            if( world.isAirBlock( mpos ) ) {
+                setBlockState( world, mpos, MDBlocks.MOSS.getDefaultState().with( FacingPlantBlock.FACING, dir ) );
             }
         }
     }
