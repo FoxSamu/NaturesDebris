@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/air",
+  "textures": {
+    "particle": "modernity:block/inver_planks"
+  }
+}

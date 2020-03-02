@@ -24,8 +24,7 @@ import modernity.common.block.portal.HorizontalPortalFrameBlock;
 import modernity.common.block.portal.PortalCornerBlock;
 import modernity.common.block.portal.VerticalPortalFrameBlock;
 import modernity.common.block.tree.*;
-import modernity.common.block.utils.RockFurnaceBlock;
-import modernity.common.block.utils.WorkbenchBlock;
+import modernity.common.block.utils.*;
 import modernity.common.fluid.MDFluids;
 import modernity.common.generator.tree.MDTrees;
 import modernity.common.item.MDItemGroup;
@@ -357,8 +356,10 @@ public final class MDBlocks {
 
     // Utilities
     public static final WorkbenchBlock BLACKWOOD_WORKBENCH = blockItem( "blackwood_workbench", new WorkbenchBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
-    public static final WorkbenchBlock INVER_WORKBENCH = blockItem( "inver_workbench", new WorkbenchBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
+    public static final WorkbenchBlock INVER_WORKBENCH = blockItem( "inver_workbench", new WorkbenchBlock( wood( MaterialColor.WOOD ) ), MDItemGroup.DECORATIVES );
     public static final RockFurnaceBlock ROCK_FURNACE = blockItem( "rock_furnace", new RockFurnaceBlock( rock( MaterialColor.STONE, 1.5, 6 ).lightValue( 15 ) ), MDItemGroup.DECORATIVES );
+    public static final ExtChestBlock BLACKWOOD_CHEST = blockItem( "blackwood_chest", new BlackwoodChestBlock( wood( MaterialColor.BLACK_TERRACOTTA ) ), MDItemGroup.DECORATIVES );
+    public static final ExtChestBlock INVER_CHEST = blockItem( "inver_chest", new InverChestBlock( wood( MaterialColor.WOOD ) ), MDItemGroup.DECORATIVES );
 
 
     /* ==== MISCELLANEOUS ==== */

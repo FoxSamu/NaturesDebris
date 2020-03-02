@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 18 - 2020
+ * Date:   03 - 02 - 2020
  * Author: rgsw
  */
 
@@ -39,6 +39,7 @@ public class HeightmapColorProvider implements IColorProvider {
     @Override
     public int getColor( @Nullable IEnviromentBlockReader world, BlockPos pos ) {
         if( world == null ) return above.getColor( null, pos );
+        if( Minecraft.getInstance().world == null ) return above.getColor( null, pos );
 
         double y = pos.getY();
         int h = heightmap.getHeight( Minecraft.getInstance().world, pos.getX(), pos.getZ() );
