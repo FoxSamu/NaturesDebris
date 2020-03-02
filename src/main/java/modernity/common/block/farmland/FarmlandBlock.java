@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 01 - 2020
+ * Date:   03 - 02 - 2020
  * Author: rgsw
  */
 
@@ -207,7 +207,7 @@ public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectio
                     }
 
                     if( fstate.isTagged( FluidTags.WATER ) ) {
-                        if( fstate.isTagged( MDFluidTags.CLEANING ) ) {
+                        if( fstate.isTagged( MDFluidTags.CLEAN_WATER ) ) {
                             cleaning = true;
                         }
                         if( type < 2 ) {

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 01 - 2020
+ * Date:   03 - 02 - 2020
  * Author: rgsw
  */
 
@@ -24,7 +24,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.Tag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -126,11 +125,6 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
 
     public boolean canOtherFlowInto( IFluidState state, Fluid fluid, Direction direction ) {
         return direction == Direction.DOWN && ! fluid.isIn( FluidTags.WATER );
-    }
-
-    @Override
-    public boolean isIn( Tag<Fluid> tag ) {
-        return tag == FluidTags.WATER || tag.contains( this );
     }
 
     @Override

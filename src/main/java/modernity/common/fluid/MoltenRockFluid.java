@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   03 - 02 - 2020
  * Author: rgsw
  */
 
@@ -24,7 +24,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.Tag;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
@@ -175,11 +174,6 @@ public abstract class MoltenRockFluid extends RegularFluid implements ICustomRen
     @Override
     public int getTickRate( IWorldReader world ) {
         return 30; // TODO: 10 in hell
-    }
-
-    @Override
-    public boolean isIn( Tag<Fluid> tag ) {
-        return tag == FluidTags.LAVA || tag.contains( this );
     }
 
     @Override

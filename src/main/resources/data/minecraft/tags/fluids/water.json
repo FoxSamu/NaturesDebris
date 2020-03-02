@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "modernity:murky_water",
-    "modernity:flowing_murky_water"
+    "modernity:flowing_murky_water",
+    "modernity:clean_water",
+    "modernity:flowing_clean_water"
   ]
 }
