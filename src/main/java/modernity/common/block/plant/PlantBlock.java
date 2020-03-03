@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 01 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
@@ -81,8 +81,10 @@ public abstract class PlantBlock extends Block {
         super.randomTick( state, world, pos, rng );
         if( ! world.isRemote && logic != null ) {
             BlockPos p = getRootPos( world, pos, state );
-            IFarmland flLogic = getSupportingFarmland( world, pos );
-            logic.grow( world, p, state, rng, flLogic );
+            if( p.equals( pos ) ) {
+                IFarmland flLogic = getSupportingFarmland( world, pos );
+                logic.grow( world, pos, state, rng, flLogic );
+            }
         }
     }
 
