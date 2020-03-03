@@ -2,17 +2,20 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
+import modernity.common.block.MDBlockTags;
 import modernity.common.block.plant.growing.FertilityGrowLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.IWorldReader;
 
 public class DoublePlantBlock extends DoubleDirectionalPlantBlock {
     public static final VoxelShape REGULAR_SHAPE = makePlantShape( 15, 16 );
@@ -67,6 +70,11 @@ public class DoublePlantBlock extends DoubleDirectionalPlantBlock {
     @Override
     public VoxelShape getShape( BlockState state ) {
         return state.get( TYPE ) == ROOT ? bottom : top;
+    }
+
+    @Override
+    public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
+        return state.isIn( MDBlockTags.DIRTLIKE );
     }
 
     @FunctionalInterface
