@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
@@ -27,6 +27,10 @@ public class MovingBlockPos extends BlockPos.MutableBlockPos {
 
     public MovingBlockPos( int x, int y, int z ) {
         super( x, y, z );
+    }
+
+    public MovingBlockPos origin() {
+        return setPos( 0, 0, 0 );
     }
 
     /**
