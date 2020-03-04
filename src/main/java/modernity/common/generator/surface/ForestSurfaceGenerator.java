@@ -37,14 +37,24 @@ public class ForestSurfaceGenerator implements ISurfaceGenerator {
     private INoise3D podzolNoise;
     private INoise3D mudNoise;
 
+    private final double humusFactor;
+    private final double grassFactor;
+    private final double podzolFactor;
+
+    public ForestSurfaceGenerator( double humusFactor, double grassFactor, double podzolFactor ) {
+        this.humusFactor = humusFactor;
+        this.grassFactor = grassFactor;
+        this.podzolFactor = podzolFactor;
+    }
+
     @Override
     public void init( Random rand ) {
-        humusNoise = new FractalPerlin3D( rand.nextInt(), 17.8147112, 5 );
-        grassNoise = new FractalPerlin3D( rand.nextInt(), 11.1751214, 5 );
-        podzolNoise = new FractalPerlin3D( rand.nextInt(), 13.125792, 5 );
-        mudNoise = new FractalPerlin3D( rand.nextInt(), 16.4192371, 5 );
+        humusNoise = new FractalPerlin3D( rand.nextInt(), 31.15, 5 );
+        grassNoise = new FractalPerlin3D( rand.nextInt(), 21.73, 5 );
+        podzolNoise = new FractalPerlin3D( rand.nextInt(), 17.81, 5 );
+        mudNoise = new FractalPerlin3D( rand.nextInt(), 28.24, 5 );
 
-        leafyNoise = new FractalPerlin3D( rand.nextInt(), 10.88189247, 5 );
+        leafyNoise = new FractalPerlin3D( rand.nextInt(), 25.88, 5 );
     }
 
     @Override
@@ -66,9 +76,9 @@ public class ForestSurfaceGenerator implements ISurfaceGenerator {
 
     private BlockState computeBlockState( int x, int y, int z ) {
         if( y >= MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) {
-            double humus = humusNoise.generateMultiplied( x, y, z, 11 ) + 11;
-            double podzol = podzolNoise.generateMultiplied( x, y, z, 10 ) + 10;
-            double grass = grassNoise.generateMultiplied( x, y, z, 10 ) + 10;
+            double humus = humusNoise.generateMultiplied( x, y, z, humusFactor ) + humusFactor;
+            double podzol = podzolNoise.generateMultiplied( x, y, z, podzolFactor ) + podzolFactor;
+            double grass = grassNoise.generateMultiplied( x, y, z, grassFactor ) + grassFactor;
             if( humus > podzol && humus > grass ) {
                 double leafy = leafyNoise.generate( x, y, z ) + 0.15;
                 return leafy > 0 ? LEAFY_HUMUS : HUMUS;

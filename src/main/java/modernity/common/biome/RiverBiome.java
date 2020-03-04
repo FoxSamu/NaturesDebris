@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
@@ -41,7 +41,7 @@ public class RiverBiome extends ModernityBiome {
         RIVER(
             new Builder()
                 .depth( - 6 ).variation( 0 ).scale( 2 )
-                .blendWeight( 2 )
+                .blendWeight( 5 )
                 .surfaceGen( new GrassSurfaceGenerator() )
                 .precipitation( IPrecipitationFunction.standard() )
         );

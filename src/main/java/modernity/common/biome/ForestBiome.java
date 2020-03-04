@@ -152,31 +152,31 @@ public class ForestBiome extends ModernityBiome {
         FOREST(
             new Builder()
                 .depth( 4 ).variation( 6 ).scale( 3 )
-                .surfaceGen( new ForestSurfaceGenerator() )
+                .surfaceGen( new ForestSurfaceGenerator( 11, 10, 10 ) )
                 .precipitation( IPrecipitationFunction.standard() )
         ),
         OPEN_FOREST(
             new Builder()
                 .depth( 4 ).variation( 6 ).scale( 3 )
-                .surfaceGen( new ForestSurfaceGenerator() )
+                .surfaceGen( new ForestSurfaceGenerator( 4, 12, 7.8 ) )
                 .precipitation( IPrecipitationFunction.standard() )
         ),
         BUSH_FOREST(
             new Builder()
                 .depth( 4 ).variation( 6 ).scale( 3 )
-                .surfaceGen( new ForestSurfaceGenerator() )
+                .surfaceGen( new ForestSurfaceGenerator( 11, 10, 10 ) )
                 .precipitation( IPrecipitationFunction.standard() )
         ),
         HIGH_FOREST(
             new Builder()
                 .depth( 9 ).variation( 6 ).scale( 4 )
-                .surfaceGen( new ForestSurfaceGenerator() )
+                .surfaceGen( new ForestSurfaceGenerator( 11, 10, 10 ) )
                 .precipitation( IPrecipitationFunction.standard() )
         ),
         HIGH_OPEN_FOREST(
             new Builder()
                 .depth( 9 ).variation( 6 ).scale( 4 )
-                .surfaceGen( new ForestSurfaceGenerator() )
+                .surfaceGen( new ForestSurfaceGenerator( 4, 12, 7.8 ) )
                 .precipitation( IPrecipitationFunction.standard() )
         );
         private final Builder builder;

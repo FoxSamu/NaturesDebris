@@ -98,11 +98,14 @@ public final class MurkSurfaceGeneration {
                .transform( new LargeBiomeLayer( profile ) )
                .zoomFuzzy()
                .transform( new BiomeMutationLayer( buildLargeMutationProfile() ) )
-               .zoom()
+               .zoomFuzzy()
                .transform( new BiomeMutationLayer( buildMutationProfile() ) )
+               .zoom()
                .transform( new LushGrasslandEdgeLayer() )
-               .zoom( 3 )
+               .zoom()
                .transform( new BiomeMutationLayer( buildSmallMutationProfile() ) )
+               .zoom()
+               .transform( new BiomeMutationLayer( buildTinyMutationProfile() ) )
                .zoom()
                .smooth()
                .merge(
@@ -135,9 +138,6 @@ public final class MurkSurfaceGeneration {
     public static BiomeMutationProfile buildLargeMutationProfile() {
         BiomeMutationProfile profile = new BiomeMutationProfile();
 
-        profile.putDefault( MDBiomes.FOREST, 10 )
-               .put( MDBiomes.FOREST, MDBiomes.HIGH_FOREST, 7 );
-
         return profile;
     }
 
@@ -156,16 +156,26 @@ public final class MurkSurfaceGeneration {
                .put( MDBiomes.LUSH_GRASSLAND, MDBiomes.HIGH_LUSH_GRASSLAND, 7 );
 
         profile.putDefault( MDBiomes.FOREST, 10 )
-               .put( MDBiomes.FOREST, MDBiomes.OPEN_FOREST, 7 )
+               .put( MDBiomes.FOREST, MDBiomes.HIGH_FOREST, 7 )
                .put( MDBiomes.FOREST, MDBiomes.BUSH_FOREST, 5 );
-
-        profile.putDefault( MDBiomes.HIGH_FOREST, 15 )
-               .put( MDBiomes.HIGH_FOREST, MDBiomes.HIGH_OPEN_FOREST, 7 );
 
         return profile;
     }
 
+
     public static BiomeMutationProfile buildSmallMutationProfile() {
+        BiomeMutationProfile profile = new BiomeMutationProfile();
+
+        profile.putDefault( MDBiomes.FOREST, 14 )
+               .put( MDBiomes.FOREST, MDBiomes.OPEN_FOREST, 6 );
+
+        profile.putDefault( MDBiomes.HIGH_FOREST, 14 )
+               .put( MDBiomes.HIGH_FOREST, MDBiomes.OPEN_FOREST, 6 );
+
+        return profile;
+    }
+
+    public static BiomeMutationProfile buildTinyMutationProfile() {
         BiomeMutationProfile profile = new BiomeMutationProfile();
 
         profile.putDefault( MDBiomes.LUSH_GRASSLAND, 30 )
@@ -235,7 +245,7 @@ public final class MurkSurfaceGeneration {
     }
 
     public static void addCavePlants( ModernityBiome biome ) {
-        biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 50, 5, MDBlockGenerators.SALT_CRYSTAL ), new InCave(), new Fixed( 4 ) ) );
+        biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 50, 5, MDBlockGenerators.SALT_CRYSTAL ), new InCave(), new Fixed( 2 ) ) );
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlockGenerators.MURINA ), new InCave(), new Fixed( 8 ) ) );
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 120, 6, MDBlockGenerators.CAVE_GRASS ), new InCave(), new Fixed( 7 ) ) );
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlockGenerators.HANGING_MOSS ), new BetweenHeight( 0, 60 ), new Fixed( 3 ) ) );
@@ -254,14 +264,14 @@ public final class MurkSurfaceGeneration {
             new InCave(), new Fixed( 3 )
         ) );
 
-        biome.addDecorator( new DecorationDecorator( new GroupedBushDecoration( 4, 5, 4, MDBlockGenerators.PUDDLE ), new InCave(), new Fixed( 3 ) ) );
+        biome.addDecorator( new DecorationDecorator( new GroupedBushDecoration( 4, 5, 3, MDBlockGenerators.PUDDLE ), new InCave(), new Fixed( 3 ) ) );
     }
 
     public static void addPebbles( ModernityBiome biome ) {
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 30, 8, MDBlockGenerators.PEBBLES ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 2 ) ) );
     }
 
-    private static class LushGrasslandEdgeLayer implements IEdgeTransformerLayer {
+    private static class LushGrasslandEdgeLayer implements IEdgeTransformerLayer, IBiomeLayer {
 
         private final int[] ids = {
             id( MDBiomes.LUSH_GRASSLAND ),
