@@ -126,10 +126,9 @@ public class ForestBiome extends ModernityBiome {
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.BLACK_MUSHROOM ), 10 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.NETTLES ), 40 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.TURUPT ), 14 )
-                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.HORSETAIL ), 8 )
-                .add( new GroupedBushDecoration( 3, 4, 0.6, MDBlockGenerators.RANDOM_WIREPLANT ), 14 ),
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.HORSETAIL ), 8 ),
             new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ),
-            new MinMax( 1, 2 )
+            new MinMax( 2, 3 )
         ) );
 
         addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockGenerators.WATERGRASS_SMALL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 5 ) ) );
@@ -141,6 +140,8 @@ public class ForestBiome extends ModernityBiome {
             addDecorator( new DecorationDecorator( new GroupedBushDecoration( 2, 3, 1, MDBlockGenerators.MUXUS_BUSH ), new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ), new Chance( 0.5 ) ) );
         }
         addDecorator( new DecorationDecorator( new GroupedBushDecoration( 2, 3, 1, MDBlockGenerators.WATER_WIRE ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.3 ) ) );
+
+        addDecorator( new DecorationDecorator( new GroupedBushDecoration( 2, 3, 1, MDBlockGenerators.RANDOM_WIREPLANT ), new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ), new Chance( 0.5 ) ) );
 
         addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlockGenerators.RANDOM_MURK_FERN ), new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ), new Chance( 0.7 ) ) );
         addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlockGenerators.MURK_REED ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 1 / 3D ) ) );
