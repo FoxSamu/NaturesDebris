@@ -2,14 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.biome;
 
 import com.google.common.collect.Sets;
-import modernity.common.generator.biome.core.BiomeGenerator;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;

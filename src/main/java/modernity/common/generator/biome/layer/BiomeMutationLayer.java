@@ -2,17 +2,18 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 12 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.biome.layer;
 
-import modernity.common.generator.biome.core.IRegionRNG;
+import modernity.common.generator.region.layer.IFilterTransformerLayer;
+import modernity.common.generator.region.IRegionRNG;
 import modernity.common.generator.biome.profile.BiomeMutationProfile;
 import modernity.common.generator.biome.profile.BiomeProfile;
 
-public class BiomeMutationLayer implements IFilterTransformerLayer {
+public class BiomeMutationLayer implements IFilterTransformerLayer, IBiomeLayer {
     private final BiomeMutationProfile profile;
 
     public BiomeMutationLayer( BiomeMutationProfile profile ) {

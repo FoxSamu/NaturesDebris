@@ -2,11 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
-package modernity.common.generator.biome.core;
+package modernity.common.generator.region;
+
+import modernity.common.generator.biome.BiomeGenerator;
 
 /**
  * A region factory builds {@link IRegion} instances. These factories are usually wrapped by other factories that apply

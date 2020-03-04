@@ -2,15 +2,16 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
-package modernity.common.generator.biome.core;
+package modernity.common.generator.region;
 
-import modernity.common.generator.biome.layer.IGeneratorLayer;
-import modernity.common.generator.biome.layer.IMergerLayer;
-import modernity.common.generator.biome.layer.ITransformerLayer;
+import modernity.common.generator.region.layer.IGeneratorLayer;
+import modernity.common.generator.region.layer.IMergerLayer;
+import modernity.common.generator.region.layer.ITransformerLayer;
+import modernity.common.generator.region.layer.RandomLayer;
 
 /**
  * A generic region building context.
@@ -164,5 +165,37 @@ public interface IRegionContext<R extends IRegion> {
      */
     default IRegionBuilder<R, ?> merge( IMergerLayer layer, IRegionFactory<R> factoryA, IRegionFactory<R> factoryB ) {
         return merge( layer, factoryA, factoryB, worldSeed() & 0xFFFF );
+    }
+
+    default IRegionBuilder<R, ?> random( RandomLayer.RandomFunction func, long seed ) {
+        return generate( new RandomLayer( func ), seed );
+    }
+
+    default IRegionBuilder<R, ?> random( RandomLayer.RandomFunction func ) {
+        return generate( new RandomLayer( func ) );
+    }
+
+    default IRegionBuilder<R, ?> random( int min, int max, long seed ) {
+        return generate( new RandomLayer( min, max ), seed );
+    }
+
+    default IRegionBuilder<R, ?> random( int min, int max ) {
+        return generate( new RandomLayer( min, max ) );
+    }
+
+    default IRegionBuilder<R, ?> binary( double oneChance, long seed ) {
+        return generate( new RandomLayer( oneChance ), seed );
+    }
+
+    default IRegionBuilder<R, ?> binary( double oneChance ) {
+        return generate( new RandomLayer( oneChance ) );
+    }
+
+    default IRegionBuilder<R, ?> pick( int[] ints, long seed ) {
+        return generate( new RandomLayer( ints ), seed );
+    }
+
+    default IRegionBuilder<R, ?> pick( int[] ints ) {
+        return generate( new RandomLayer( ints ) );
     }
 }

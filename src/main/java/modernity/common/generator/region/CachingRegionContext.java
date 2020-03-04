@@ -2,15 +2,15 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
-package modernity.common.generator.biome.core;
+package modernity.common.generator.region;
 
-import modernity.common.generator.biome.layer.IGeneratorLayer;
-import modernity.common.generator.biome.layer.IMergerLayer;
-import modernity.common.generator.biome.layer.ITransformerLayer;
+import modernity.common.generator.region.layer.IGeneratorLayer;
+import modernity.common.generator.region.layer.IMergerLayer;
+import modernity.common.generator.region.layer.ITransformerLayer;
 
 /**
  * A {@link IRegionContext} implementation that uses {@link IRegion}s that cache their values: {@link CachingRegion}s.

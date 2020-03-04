@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
@@ -10,9 +10,10 @@ package modernity.common.generator.biome.layer;
 
 import modernity.api.util.MDDimension;
 import modernity.common.biome.MDBiomes;
-import modernity.common.generator.biome.core.IRegionRNG;
+import modernity.common.generator.region.layer.IGeneratorLayer;
+import modernity.common.generator.region.IRegionRNG;
 
-public class BiomeGenerationLayer implements IGeneratorLayer {
+public class BiomeGenerationLayer implements IGeneratorLayer, IBiomeLayer {
 
     private final MDBiomes.GenProfile profile;
 

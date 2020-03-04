@@ -2,16 +2,19 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
-package modernity.common.generator.biome.layer;
+package modernity.common.generator.region.layer;
 
-import modernity.common.generator.biome.core.*;
+import modernity.common.generator.region.IRegion;
+import modernity.common.generator.region.IRegionContext;
+import modernity.common.generator.region.IRegionFactory;
+import modernity.common.generator.region.IRegionRNG;
 
 @FunctionalInterface
-public interface IMergerLayer extends IBiomeLayer {
+public interface IMergerLayer {
     int generate( IRegionRNG rng, IRegion regionA, IRegion regionB, int x, int z );
 
     default <R extends IRegion> IRegionFactory<R> factory( IRegionContext<R> ctx, long seed, IRegionFactory<R> regionFactoryA, IRegionFactory<R> regionFactoryB ) {
@@ -20,7 +23,7 @@ public interface IMergerLayer extends IBiomeLayer {
             R regionA = regionFactoryA.buildRegion();
             R regionB = regionFactoryB.buildRegion();
             return ctx.create(
-                (x, z) -> generate( rng.position( x, z ), regionA, regionB, x, z ),
+                ( x, z ) -> generate( rng.position( x, z ), regionA, regionB, x, z ),
                 regionA, regionB
             );
         };

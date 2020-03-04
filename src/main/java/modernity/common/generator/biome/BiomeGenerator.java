@@ -2,12 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
-package modernity.common.generator.biome.core;
+package modernity.common.generator.biome;
 
+import modernity.common.generator.region.IRegion;
+import modernity.common.generator.region.IRegionFactory;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistry;

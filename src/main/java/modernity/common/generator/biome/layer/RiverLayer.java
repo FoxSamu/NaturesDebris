@@ -2,15 +2,16 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.biome.layer;
 
-import modernity.common.generator.biome.core.IRegionRNG;
+import modernity.common.generator.region.layer.ICastleTransformerLayer;
+import modernity.common.generator.region.IRegionRNG;
 
-public class RiverLayer implements ICastleTransformerLayer {
+public class RiverLayer implements ICastleTransformerLayer, IBiomeLayer {
     public static final RiverLayer INSTANCE = new RiverLayer();
 
     protected RiverLayer() {

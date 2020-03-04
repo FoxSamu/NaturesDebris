@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,6 @@ package modernity.common.generator.biome;
 
 import modernity.api.util.MDDimension;
 import modernity.common.biome.MDBiomes;
-import modernity.common.generator.biome.core.BiomeGenerator;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.IBiomeProviderSettings;
 
