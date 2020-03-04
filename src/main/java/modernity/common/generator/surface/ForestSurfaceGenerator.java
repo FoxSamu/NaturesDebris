@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
@@ -26,6 +26,7 @@ public class ForestSurfaceGenerator implements ISurfaceGenerator {
 
     private static final BlockState HUMUS = MDBlocks.MURKY_HUMUS.getDefaultState();
     private static final BlockState LEAFY_HUMUS = MDBlocks.LEAFY_HUMUS.getDefaultState();
+    private static final BlockState PODZOL = MDBlocks.MURKY_PODZOL.getDefaultState();
     private static final BlockState GRASS = MDBlocks.MURKY_GRASS_BLOCK.getDefaultState();
     private static final BlockState DIRT = MDBlocks.MURKY_DIRT.getDefaultState();
     private static final BlockState MUD = MDBlocks.MUD.getDefaultState();
@@ -33,14 +34,17 @@ public class ForestSurfaceGenerator implements ISurfaceGenerator {
     private INoise3D humusNoise;
     private INoise3D leafyNoise;
     private INoise3D grassNoise;
+    private INoise3D podzolNoise;
     private INoise3D mudNoise;
 
     @Override
     public void init( Random rand ) {
-        humusNoise = new FractalPerlin3D( rand.nextInt(), 13.125792, 5 );
-        leafyNoise = new FractalPerlin3D( rand.nextInt(), 13.125792, 5 );
-        grassNoise = new FractalPerlin3D( rand.nextInt(), 13.125792, 5 );
-        mudNoise = new FractalPerlin3D( rand.nextInt(), 13.125792, 5 );
+        humusNoise = new FractalPerlin3D( rand.nextInt(), 17.8147112, 5 );
+        grassNoise = new FractalPerlin3D( rand.nextInt(), 11.1751214, 5 );
+        podzolNoise = new FractalPerlin3D( rand.nextInt(), 13.125792, 5 );
+        mudNoise = new FractalPerlin3D( rand.nextInt(), 16.4192371, 5 );
+
+        leafyNoise = new FractalPerlin3D( rand.nextInt(), 10.88189247, 5 );
     }
 
     @Override
@@ -62,14 +66,15 @@ public class ForestSurfaceGenerator implements ISurfaceGenerator {
 
     private BlockState computeBlockState( int x, int y, int z ) {
         if( y >= MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) {
-            double humus = humusNoise.generateMultiplied( x, y, z, 10 ) + 10;
-            double leafy = leafyNoise.generateMultiplied( x, y, z, 10 ) + 10;
-            double grass = grassNoise.generateMultiplied( x, y, z, 9 ) + 9;
-            if( humus > leafy && humus > grass ) {
-                return HUMUS;
+            double humus = humusNoise.generateMultiplied( x, y, z, 11 ) + 11;
+            double podzol = podzolNoise.generateMultiplied( x, y, z, 10 ) + 10;
+            double grass = grassNoise.generateMultiplied( x, y, z, 10 ) + 10;
+            if( humus > podzol && humus > grass ) {
+                double leafy = leafyNoise.generate( x, y, z ) + 0.15;
+                return leafy > 0 ? LEAFY_HUMUS : HUMUS;
             }
-            if( leafy > grass ) {
-                return LEAFY_HUMUS;
+            if( podzol > grass ) {
+                return PODZOL;
             }
             return GRASS;
         } else {

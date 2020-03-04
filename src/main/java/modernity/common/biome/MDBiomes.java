@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
@@ -44,6 +44,10 @@ public final class MDBiomes {
     public static final LushGrasslandBiome HIGH_LUSH_GRASSLAND_OPEN = register( "high_lush_grassland_open", new LushGrasslandBiome( LushGrasslandBiome.Type.HIGH_LUSH_GRASSLAND_OPEN ), MDDimension.MURK_SURFACE );
 
     public static final ForestBiome FOREST = register( "forest", new ForestBiome( ForestBiome.Type.FOREST ), MDDimension.MURK_SURFACE );
+    public static final ForestBiome OPEN_FOREST = register( "open_forest", new ForestBiome( ForestBiome.Type.OPEN_FOREST ), MDDimension.MURK_SURFACE );
+    public static final ForestBiome BUSH_FOREST = register( "bush_forest", new ForestBiome( ForestBiome.Type.BUSH_FOREST ), MDDimension.MURK_SURFACE );
+    public static final ForestBiome HIGH_FOREST = register( "high_forest", new ForestBiome( ForestBiome.Type.HIGH_FOREST ), MDDimension.MURK_SURFACE );
+    public static final ForestBiome HIGH_OPEN_FOREST = register( "high_open_forest", new ForestBiome( ForestBiome.Type.HIGH_OPEN_FOREST ), MDDimension.MURK_SURFACE );
 
     public static final RiverBiome RIVER = register( "river", new RiverBiome( RiverBiome.Type.RIVER ), MDDimension.MURK_SURFACE );
 

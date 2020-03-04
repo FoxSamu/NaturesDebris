@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 12 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
@@ -127,6 +127,10 @@ public final class MDBlockGenerators {
                                                            .add( FLOWERED_HEATH, 1 )
                                                            .add( DEAD_HEATH, 0.1 )
                                                            .build();
+
+    public static final IBlockGenerator RANDOM_LIVING_HEATH = weighted( HEATH, 6 )
+                                                                  .add( FLOWERED_HEATH, 1 )
+                                                                  .build();
 
     public static final IBlockGenerator CATTAIL = forDoublePlant( MDBlocks.CATTAIL );
     public static final IBlockGenerator MURK_LAVENDER = forDoublePlant( MDBlocks.MURK_LAVENDER );

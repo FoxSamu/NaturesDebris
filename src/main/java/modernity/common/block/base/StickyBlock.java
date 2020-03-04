@@ -2,12 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.base;
 
+import modernity.api.block.ISolidBlock;
 import modernity.api.util.EntityUtil;
 import modernity.common.block.plant.IPlantSustainer;
 import net.minecraft.block.Block;
@@ -29,7 +30,7 @@ import net.minecraft.world.World;
  * jumping.
  */
 @SuppressWarnings( "deprecation" )
-public class StickyBlock extends Block implements IPlantSustainer {
+public class StickyBlock extends Block implements IPlantSustainer, ISolidBlock {
     public static final VoxelShape COLLISION_SHAPE = makeCuboidShape( 0, 0, 0, 16, 15, 16 );
 
     public StickyBlock( Properties properties ) {

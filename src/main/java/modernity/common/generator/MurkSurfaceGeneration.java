@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 02 - 2020
+ * Date:   03 - 04 - 2020
  * Author: rgsw
  */
 
@@ -134,6 +134,9 @@ public final class MurkSurfaceGeneration {
     public static BiomeMutationProfile buildLargeMutationProfile() {
         BiomeMutationProfile profile = new BiomeMutationProfile();
 
+        profile.putDefault( MDBiomes.FOREST, 10 )
+               .put( MDBiomes.FOREST, MDBiomes.HIGH_FOREST, 7 );
+
         return profile;
     }
 
@@ -150,6 +153,14 @@ public final class MurkSurfaceGeneration {
 
         profile.putDefault( MDBiomes.LUSH_GRASSLAND, 15 )
                .put( MDBiomes.LUSH_GRASSLAND, MDBiomes.HIGH_LUSH_GRASSLAND, 7 );
+
+        profile.putDefault( MDBiomes.FOREST, 10 )
+               .put( MDBiomes.FOREST, MDBiomes.OPEN_FOREST, 7 )
+               .put( MDBiomes.FOREST, MDBiomes.BUSH_FOREST, 5 );
+
+        profile.putDefault( MDBiomes.HIGH_FOREST, 15 )
+               .put( MDBiomes.HIGH_FOREST, MDBiomes.HIGH_OPEN_FOREST, 7 );
+
         return profile;
     }
 
