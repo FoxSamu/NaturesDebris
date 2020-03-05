@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 04 - 2020
+ * Date:   03 - 05 - 2020
  * Author: rgsw
  */
 
@@ -117,10 +117,9 @@ public class ForestBiome extends ModernityBiome {
                     30
                 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MURK_FLOWERS ), 30 )
-                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MINT_PLANT ), 5 )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MINT_PLANT ), 20 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.FOXGLOVE ), 5 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.REDWOLD ), 20 )
-                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MINT_PLANT ), 15 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.SEEDLE ), 10 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.DOTTED_MUSHROOM ), 10 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.BLACK_MUSHROOM ), 10 )
