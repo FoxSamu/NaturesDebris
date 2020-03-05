@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 04 - 2020
+ * Date:   03 - 05 - 2020
  * Author: rgsw
  */
 
@@ -52,6 +52,10 @@ public final class MDBiomes {
     public static final RiverBiome RIVER = register( "river", new RiverBiome( RiverBiome.Type.RIVER ), MDDimension.MURK_SURFACE );
 
     public static final SwampBiome SWAMP = register( "swamp", new SwampBiome( SwampBiome.Type.SWAMP ), MDDimension.MURK_SURFACE );
+    public static final SwampBiome SWAMP_HILLS = register( "swamp_hills", new SwampBiome( SwampBiome.Type.SWAMP_HILLS ), MDDimension.MURK_SURFACE );
+    public static final SwampBiome SWAMP_WATER = register( "swamp_water", new SwampBiome( SwampBiome.Type.SWAMP_WATER ), MDDimension.MURK_SURFACE );
+    public static final SwampBiome SWAMP_MARSHES = register( "swamp_marshes", new SwampBiome( SwampBiome.Type.SWAMP_MARSHES ), MDDimension.MURK_SURFACE );
+    public static final SwampBiome SWAMP_LAND = register( "swamp_land", new SwampBiome( SwampBiome.Type.SWAMP_LAND ), MDDimension.MURK_SURFACE );
 
     public static final WaterlandsBiome WATERLANDS = register( "waterlands", new WaterlandsBiome( WaterlandsBiome.Type.WATERLANDS ), MDDimension.MURK_SURFACE );
 

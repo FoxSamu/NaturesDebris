@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 05 - 2020
  * Author: rgsw
  */
 
@@ -30,6 +30,12 @@ public class SwampSurfaceGenerator implements ISurfaceGenerator {
     private FractalOpenSimplex2D marshNoise;
     private FractalOpenSimplex2D marshGroupNoise;
 
+    private final boolean marshes;
+
+    public SwampSurfaceGenerator( boolean marshes ) {
+        this.marshes = marshes;
+    }
+
     @Override
     public void init( Random rand ) {
         marshNoise = new FractalOpenSimplex2D( rand.nextInt(), 3.26224, 3 );
@@ -50,7 +56,7 @@ public class SwampSurfaceGenerator implements ISurfaceGenerator {
                 boolean underwater = y < 71;
                 boolean marsh = false;
                 secondLayers = underwater ? MUD : DIRT;
-                if( y == 70 ) {
+                if( y == 70 && marshes ) {
                     double groupNoise = marshGroupNoise.generateMultiplied( cx * 16 + x, cz * 16 + z, 8 ) + 1;
                     if( groupNoise > 0 ) {
                         double noise = marshNoise.generateMultiplied( cx * 16 + x, cz * 16 + z, 8 );
