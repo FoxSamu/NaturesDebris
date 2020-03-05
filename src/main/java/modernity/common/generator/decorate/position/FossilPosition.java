@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 04 - 2020
+ * Date:   03 - 05 - 2020
  * Author: rgsw
  */
 
@@ -16,6 +16,6 @@ import java.util.Random;
 public class FossilPosition implements IDecorPosition {
     @Override
     public BlockPos findPosition( IWorld world, int cx, int cz, Random rand ) {
-        return new BlockPos( cx * 16 + 7 + rand.nextInt( 2 ), 30 + rand.nextInt( 15 ), cz * 16 + 7 + rand.nextInt( 2 ) );
+        return new BlockPos( cx * 16 + 7 + rand.nextInt( 2 ), 20 + rand.nextInt( 25 ), cz * 16 + 7 + rand.nextInt( 2 ) );
     }
 }

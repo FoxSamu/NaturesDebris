@@ -11,9 +11,11 @@ package modernity.common.generator.surface;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.block.MDBlocks;
+import modernity.common.generator.MurkSurfaceGeneration;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.chunk.IChunk;
 import net.rgsw.noise.FractalOpenSimplex2D;
+import net.rgsw.noise.FractalPerlin3D;
 import net.rgsw.noise.INoise3D;
 
 import java.util.Random;
@@ -26,20 +28,35 @@ public class SwampSurfaceGenerator implements ISurfaceGenerator {
     private static final BlockState GRASS = MDBlocks.MURKY_GRASS_BLOCK.getDefaultState();
     private static final BlockState DIRT = MDBlocks.MURKY_DIRT.getDefaultState();
     private static final BlockState MUD = MDBlocks.MUD.getDefaultState();
+    private static final BlockState PODZOL = MDBlocks.MURKY_PODZOL.getDefaultState();
 
     private FractalOpenSimplex2D marshNoise;
     private FractalOpenSimplex2D marshGroupNoise;
 
-    private final boolean marshes;
+    private INoise3D podzolNoise;
+    private INoise3D grassNoise;
+    private INoise3D mudNoise;
 
-    public SwampSurfaceGenerator( boolean marshes ) {
+    private final boolean marshes;
+    private final double podzolFactor;
+    private final double grassFactor;
+    private final double mudFactor;
+
+    public SwampSurfaceGenerator( boolean marshes, double podzolFactor, double grassFactor, double mudFactor ) {
         this.marshes = marshes;
+        this.podzolFactor = podzolFactor;
+        this.grassFactor = grassFactor;
+        this.mudFactor = mudFactor;
     }
 
     @Override
     public void init( Random rand ) {
         marshNoise = new FractalOpenSimplex2D( rand.nextInt(), 3.26224, 3 );
         marshGroupNoise = new FractalOpenSimplex2D( rand.nextInt(), 31.46233, 3 );
+
+        grassNoise = new FractalPerlin3D( rand.nextInt(), 21.73, 5 );
+        podzolNoise = new FractalPerlin3D( rand.nextInt(), 17.81, 5 );
+        mudNoise = new FractalPerlin3D( rand.nextInt(), 26.81, 5 );
     }
 
     @Override
@@ -51,33 +68,48 @@ public class SwampSurfaceGenerator implements ISurfaceGenerator {
             if( ctrl >= 0 && ! chunk.getBlockState( rpos ).getMaterial().blocksMovement() ) {
                 ctrl = - 1;
             } else if( ctrl == - 1 && chunk.getBlockState( rpos ).getMaterial().blocksMovement() ) {
-                ctrl = (int) ( 3 + 2 * surfaceNoise.generate( x + cx * 16, y, z + cz * 16 ) );
+                ctrl = (int) ( 5 + 2 * surfaceNoise.generate( x + cx * 16, y, z + cz * 16 ) );
 
-                boolean underwater = y < 71;
+                BlockState top = computeBlockState( cx * 16 + x, y, cz * 16 + z );
                 boolean marsh = false;
-                secondLayers = underwater ? MUD : DIRT;
                 if( y == 70 && marshes ) {
                     double groupNoise = marshGroupNoise.generateMultiplied( cx * 16 + x, cz * 16 + z, 8 ) + 1;
                     if( groupNoise > 0 ) {
                         double noise = marshNoise.generateMultiplied( cx * 16 + x, cz * 16 + z, 8 );
                         if( noise > 0 ) {
+                            top = computeBlockState( x, y + 1, z );
                             rpos.moveUp();
-                            chunk.setBlockState( rpos, GRASS, false );
+                            chunk.setBlockState( rpos, top, false );
                             rpos.moveDown();
-                            secondLayers = DIRT;
                             marsh = true;
                         }
                     }
                 }
-                if( marsh ) {
-                    chunk.setBlockState( rpos, secondLayers, false );
-                } else {
-                    chunk.setBlockState( rpos, underwater ? MUD : GRASS, false );
-                }
+                secondLayers = top == MUD ? MUD : DIRT;
+
+                if( marsh ) top = secondLayers;
+                chunk.setBlockState( rpos, top, false );
             } else if( ctrl > 0 ) {
                 ctrl--;
                 chunk.setBlockState( rpos, secondLayers, false );
             }
+        }
+    }
+
+    private BlockState computeBlockState( int x, int y, int z ) {
+        if( y >= MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) {
+            double podzol = podzolNoise.generateMultiplied( x, y, z, podzolFactor ) + podzolFactor;
+            double grass = grassNoise.generateMultiplied( x, y, z, grassFactor ) + grassFactor;
+            double mud = mudNoise.generateMultiplied( x, y, z, mudFactor ) + mudFactor;
+            if( mud > podzol && mud > grass ) {
+                return MUD;
+            }
+            if( podzol > grass ) {
+                return PODZOL;
+            }
+            return GRASS;
+        } else {
+            return MUD;
         }
     }
 }
