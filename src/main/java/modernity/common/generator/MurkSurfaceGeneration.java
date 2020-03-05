@@ -14,12 +14,9 @@ import modernity.common.biome.MDBiomes;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.block.MDBlocks;
 import modernity.common.fluid.MDFluids;
+import modernity.common.generator.biome.BiomeGenerator;
 import modernity.common.generator.biome.LayerBiomeProvider;
 import modernity.common.generator.biome.LayerBiomeProviderSettings;
-import modernity.common.generator.biome.BiomeGenerator;
-import modernity.common.generator.region.CachingRegionContext;
-import modernity.common.generator.region.layer.IEdgeTransformerLayer;
-import modernity.common.generator.region.IRegionRNG;
 import modernity.common.generator.biome.layer.*;
 import modernity.common.generator.biome.profile.BiomeMutationProfile;
 import modernity.common.generator.biome.profile.BiomeProfile;
@@ -36,6 +33,9 @@ import modernity.common.generator.decorate.position.InCave;
 import modernity.common.generator.decorate.position.Surface;
 import modernity.common.generator.map.BedrockGenerator;
 import modernity.common.generator.map.surface.*;
+import modernity.common.generator.region.CachingRegionContext;
+import modernity.common.generator.region.IRegionRNG;
+import modernity.common.generator.region.layer.IEdgeTransformerLayer;
 import net.minecraft.block.BlockState;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.ReportedException;
@@ -106,7 +106,7 @@ public final class MurkSurfaceGeneration {
                .transform( new BiomeMutationLayer( buildSmallMutationProfile() ) )
                .zoom()
                .transform( new BiomeMutationLayer( buildTinyMutationProfile() ) )
-               .zoom()
+               .zoomFuzzy()
                .smooth()
                .merge(
                    RiverMixLayer.INSTANCE,
@@ -176,7 +176,7 @@ public final class MurkSurfaceGeneration {
                .put( MDBiomes.FOREST, MDBiomes.OPEN_FOREST, 3 );
 
         profile.putDefault( MDBiomes.HIGH_FOREST, 14 )
-               .put( MDBiomes.HIGH_FOREST, MDBiomes.OPEN_FOREST, 6 );
+               .put( MDBiomes.HIGH_FOREST, MDBiomes.HIGH_OPEN_FOREST, 3 );
 
         return profile;
     }
