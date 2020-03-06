@@ -14,6 +14,7 @@ import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.blocks.IBlockGenerator;
 import modernity.common.generator.blocks.MDBlockGenerators;
 import modernity.common.generator.blocks.RandomBlockGenerator;
+import modernity.common.generator.blocks.WeightedBlockGenerator;
 import modernity.common.generator.decorate.count.Chance;
 import modernity.common.generator.decorate.count.Fixed;
 import modernity.common.generator.decorate.count.MinMax;
@@ -33,6 +34,25 @@ public class SwampBiome extends ModernityBiome {
     protected SwampBiome( Type type ) {
         super( type.builder );
         BiomeGroups.registerBiomeToGroup( "swamp", this );
+
+        setGrowingPlants(
+            WeightedBlockGenerator.builder( MDBlockGenerators.MURK_GRASS_1, 900 )
+                                  .add( MDBlockGenerators.RANDOM_MILLIUM, 40 )
+                                  .add( MDBlockGenerators.MURK_FLOWERS, 30 )
+                                  .add( MDBlockGenerators.FOXGLOVE, 5 )
+                                  .add( MDBlockGenerators.REDWOLD, 20 )
+                                  .add( MDBlockGenerators.SEEDLE, 34 )
+                                  .add( MDBlockGenerators.DOTTED_MUSHROOM, 34 )
+                                  .add( MDBlockGenerators.BLACK_MUSHROOM, 34 )
+                                  .add( MDBlockGenerators.NETTLES, 30 )
+                                  .add( MDBlockGenerators.TURUPT, 4 )
+                                  .add( MDBlockGenerators.EGIUM, 19 )
+                                  .add( MDBlockGenerators.MURK_LAVENDER, 17 )
+                                  .add( MDBlockGenerators.CATTAIL, 28 )
+                                  .add( MDBlockGenerators.HORSETAIL, 13 )
+                                  .add( MDBlockGenerators.MILKY_EYE, 7 )
+                                  .build()
+        );
 
         MurkSurfaceGeneration.addCaveDeposits( this );
         MurkSurfaceGeneration.addCaveOres( this );
@@ -87,7 +107,7 @@ public class SwampBiome extends ModernityBiome {
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.TURUPT ), 4 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.EGIUM ), 19 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MURK_LAVENDER ), 17 )
-                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.CATTAIL ), 17 )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.CATTAIL ), 28 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.HORSETAIL ), 13 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.DEAD_GRASS ), 24 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MILKY_EYE ), 7 ),
