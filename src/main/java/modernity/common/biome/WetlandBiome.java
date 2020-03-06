@@ -28,10 +28,10 @@ import net.minecraft.world.gen.Heightmap;
 /**
  * The 'Waterlands' or 'modernity:waterlands' biome.
  */
-public class WaterlandsBiome extends ModernityBiome {
-    protected WaterlandsBiome( Type type ) {
+public class WetlandBiome extends ModernityBiome {
+    protected WetlandBiome( Type type ) {
         super( type.builder );
-        BiomeGroups.registerBiomeToGroup( "waterlands", this );
+        BiomeGroups.registerBiomeToGroup( "wetland", this );
 
         MurkSurfaceGeneration.addCaveDeposits( this );
         MurkSurfaceGeneration.addCaveOres( this );
@@ -53,19 +53,19 @@ public class WaterlandsBiome extends ModernityBiome {
     }
 
     public enum Type {
-        WATERLANDS(
+        WETLAND(
             new Builder()
                 .depth( - 1 ).variation( 0 ).scale( 1 )
                 .surfaceGen( new GrassSurfaceGenerator() )
                 .precipitation( IPrecipitationFunction.swampy() )
         ),
-        TREE_WATERLANDS(
+        WETLAND_FOREST(
             new Builder()
                 .depth( - 1 ).variation( 1 ).scale( 2 )
                 .surfaceGen( new GrassSurfaceGenerator() )
                 .precipitation( IPrecipitationFunction.swampy() )
         ),
-        REED_WATERLANDS(
+        REED_WETLAND(
             new Builder()
                 .depth( - 1 ).variation( 0 ).scale( 1 )
                 .surfaceGen( new GrassSurfaceGenerator() )

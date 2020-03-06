@@ -15,7 +15,7 @@
             "size": 10.26618249
           }
         },
-        "#modernity:waterlands": [ 12, 109, 0 ],
+        "#modernity:wetland": [ 12, 109, 0 ],
         "item": [ 0, 109, 38 ],
         "default": [ 0, 109, 38 ]
       }

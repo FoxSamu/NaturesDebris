@@ -9,7 +9,7 @@
         "#modernity:meadow_like": [ 33, 107, 44 ],
         "#modernity:river": [ 34, 110, 47 ],
         "#modernity:swamp": [ 7, 82, 40 ],
-        "#modernity:waterlands": [ 13, 97, 45 ],
+        "#modernity:wetland": [ 13, 97, 45 ],
         "item": [ 33, 107, 44 ],
         "default": [ 33, 107, 44 ]
       }

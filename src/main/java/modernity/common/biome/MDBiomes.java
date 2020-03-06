@@ -57,9 +57,9 @@ public final class MDBiomes {
     public static final SwampBiome SWAMP_MARSHES = register( "swamp_marshes", new SwampBiome( SwampBiome.Type.SWAMP_MARSHES ), MDDimension.MURK_SURFACE );
     public static final SwampBiome SWAMP_LAND = register( "swamp_land", new SwampBiome( SwampBiome.Type.SWAMP_LAND ), MDDimension.MURK_SURFACE );
 
-    public static final WaterlandsBiome WATERLANDS = register( "waterlands", new WaterlandsBiome( WaterlandsBiome.Type.WATERLANDS ), MDDimension.MURK_SURFACE );
-    public static final WaterlandsBiome TREE_WATERLANDS = register( "tree_waterlands", new WaterlandsBiome( WaterlandsBiome.Type.TREE_WATERLANDS ), MDDimension.MURK_SURFACE );
-    public static final WaterlandsBiome REED_WATERLANDS = register( "reed_waterlands", new WaterlandsBiome( WaterlandsBiome.Type.REED_WATERLANDS ), MDDimension.MURK_SURFACE );
+    public static final WetlandBiome WETLAND = register( "wetland", new WetlandBiome( WetlandBiome.Type.WETLAND ), MDDimension.MURK_SURFACE );
+    public static final WetlandBiome WETLAND_FOREST = register( "wetland_forest", new WetlandBiome( WetlandBiome.Type.WETLAND_FOREST ), MDDimension.MURK_SURFACE );
+    public static final WetlandBiome REED_WETLAND = register( "reed_wetland", new WetlandBiome( WetlandBiome.Type.REED_WETLAND ), MDDimension.MURK_SURFACE );
 
 
 
