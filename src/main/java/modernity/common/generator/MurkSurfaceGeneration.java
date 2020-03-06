@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 05 - 2020
+ * Date:   03 - 06 - 2020
  * Author: rgsw
  */
 
@@ -164,6 +164,10 @@ public final class MurkSurfaceGeneration {
                .put( MDBiomes.SWAMP, MDBiomes.SWAMP_MARSHES, 5 )
                .put( MDBiomes.SWAMP, MDBiomes.SWAMP_WATER, 8 )
                .put( MDBiomes.SWAMP, MDBiomes.SWAMP_LAND, 9 );
+
+        profile.putDefault( MDBiomes.WATERLANDS, 10 )
+               .put( MDBiomes.WATERLANDS, MDBiomes.TREE_WATERLANDS, 9 )
+               .put( MDBiomes.WATERLANDS, MDBiomes.REED_WATERLANDS, 8 );
 
         return profile;
     }

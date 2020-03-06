@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   03 - 06 - 2020
  * Author: rgsw
  */
 
@@ -10,8 +10,8 @@ package modernity.common.biome;
 
 import modernity.common.block.MDBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
+import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.blocks.MDBlockGenerators;
-import modernity.common.generator.decorate.DefaultDecoration;
 import modernity.common.generator.decorate.count.Chance;
 import modernity.common.generator.decorate.count.Fixed;
 import modernity.common.generator.decorate.decoration.ClusterBushDecoration;
@@ -33,7 +33,12 @@ public class WaterlandsBiome extends ModernityBiome {
         super( type.builder );
         BiomeGroups.registerBiomeToGroup( "waterlands", this );
 
-        DefaultDecoration.setupDefaultDecoration( this );
+        MurkSurfaceGeneration.addCaveDeposits( this );
+        MurkSurfaceGeneration.addCaveOres( this );
+        MurkSurfaceGeneration.addCavePlants( this );
+        MurkSurfaceGeneration.addCaveSprings( this );
+        MurkSurfaceGeneration.addClaySand( this );
+        MurkSurfaceGeneration.addPebbles( this );
 
         addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlockGenerators.MURK_REED ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ) ) );
         addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlockGenerators.REDWOLD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 1 / 3D ) ) );
@@ -50,7 +55,19 @@ public class WaterlandsBiome extends ModernityBiome {
     public enum Type {
         WATERLANDS(
             new Builder()
-                .depth( 0 ).variation( 0 ).scale( 2 )
+                .depth( - 1 ).variation( 0 ).scale( 1 )
+                .surfaceGen( new GrassSurfaceGenerator() )
+                .precipitation( IPrecipitationFunction.swampy() )
+        ),
+        TREE_WATERLANDS(
+            new Builder()
+                .depth( - 1 ).variation( 1 ).scale( 2 )
+                .surfaceGen( new GrassSurfaceGenerator() )
+                .precipitation( IPrecipitationFunction.swampy() )
+        ),
+        REED_WATERLANDS(
+            new Builder()
+                .depth( - 1 ).variation( 0 ).scale( 1 )
                 .surfaceGen( new GrassSurfaceGenerator() )
                 .precipitation( IPrecipitationFunction.swampy() )
         );
