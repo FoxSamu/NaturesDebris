@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 05 - 2020
+ * Date:   03 - 06 - 2020
  * Author: rgsw
  */
 
@@ -77,17 +77,6 @@ public class SwampBiome extends ModernityBiome {
                         .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.WHITE_MILLIUM ), 1 ),
                     40
                 )
-                .add(
-                    new SelectiveDecoration()
-                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.RED_MELION ), 1 )
-                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MAGENTA_MELION ), 1 )
-                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.BLUE_MELION ), 1 )
-                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.YELLOW_MELION ), 1 )
-                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.ORANGE_MELION ), 1 )
-                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.INDIGO_MELION ), 1 )
-                        .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.WHITE_MELION ), 1 ),
-                    10
-                )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MURK_FLOWERS ), 30 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.FOXGLOVE ), 5 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.REDWOLD ), 20 )
@@ -96,14 +85,14 @@ public class SwampBiome extends ModernityBiome {
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.BLACK_MUSHROOM ), 34 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.NETTLES ), 30 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.TURUPT ), 4 )
-                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.EGIUM ), 10 )
+                .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.EGIUM ), 19 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MURK_LAVENDER ), 17 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.CATTAIL ), 17 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.HORSETAIL ), 13 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.DEAD_GRASS ), 24 )
                 .add( new ClusterBushDecoration( 81, 5, MDBlockGenerators.MILKY_EYE ), 7 ),
             new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ),
-            new MinMax( 2, 3 )
+            new MinMax( 3, 5 )
         ) );
 
         if( type == Type.SWAMP_LAND ) {
