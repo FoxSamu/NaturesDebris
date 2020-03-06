@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 26 - 2020
+ * Date:   03 - 06 - 2020
  * Author: rgsw
  */
 
@@ -31,6 +31,12 @@ public final class MDSoundEvents {
     public static final SoundEvent BLOCK_ASPHALT_STEP = register( "block.asphalt.step" );
     public static final SoundEvent BLOCK_ASPHALT_HIT = register( "block.asphalt.hit" );
     public static final SoundEvent BLOCK_ASPHALT_FALL = register( "block.asphalt.fall" );
+
+    public static final SoundEvent BLOCK_CRYSTAL_BREAK = register( "block.crystal.break" );
+    public static final SoundEvent BLOCK_CRYSTAL_PLACE = register( "block.crystal.place" );
+    public static final SoundEvent BLOCK_CRYSTAL_STEP = register( "block.crystal.step" );
+    public static final SoundEvent BLOCK_CRYSTAL_HIT = register( "block.crystal.hit" );
+    public static final SoundEvent BLOCK_CRYSTAL_FALL = register( "block.crystal.fall" );
 
     private static SoundEvent register( String name ) {
         SoundEvent event = new SoundEvent( new ResourceLocation( "modernity", name ) );

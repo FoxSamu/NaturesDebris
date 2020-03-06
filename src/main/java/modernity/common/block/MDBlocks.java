@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 02 - 2020
+ * Date:   03 - 06 - 2020
  * Author: rgsw
  */
 
@@ -469,7 +469,7 @@ public final class MDBlocks {
     public static final OreBlock FOSSIL = blockItem( "fossil", new OreBlock( 0, 2, Block.Properties.create( Material.ROCK, MaterialColor.STONE ).hardnessAndResistance( 1.5F, 5F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
 
     // Blocks
-    public static final TranslucentBlock SALT_BLOCK = blockItem( "salt_block", new SaltBlock( Block.Properties.create( Material.GLASS, MaterialColor.SNOW ).hardnessAndResistance( 0.3F ).sound( SoundType.GLASS ) ), MDItemGroup.BLOCKS );
+    public static final TranslucentBlock SALT_BLOCK = blockItem( "salt_block", new SaltBlock( Block.Properties.create( Material.GLASS, MaterialColor.SNOW ).hardnessAndResistance( 0.3F ).sound( MDSoundTypes.CRYSTAL ) ), MDItemGroup.BLOCKS );
     public static final Block ALUMINIUM_BLOCK = blockItem( "aluminium_block", new Block( Block.Properties.create( Material.IRON, MaterialColor.IRON ).hardnessAndResistance( 5F, 6F ).sound( SoundType.METAL ) ), MDItemGroup.BLOCKS );
     public static final Block ANTHRACITE_BLOCK = blockItem( "anthracite_block", new Block( Block.Properties.create( Material.ROCK, MaterialColor.BLACK ).hardnessAndResistance( 3F, 6F ).sound( SoundType.STONE ) ), MDItemGroup.BLOCKS );
     public static final Block FINNERITE_BLOCK = blockItem( "finnerite_block", new Block( Block.Properties.create( Material.IRON, MaterialColor.BLUE ).hardnessAndResistance( 5F, 6F ).sound( SoundType.METAL ) ), MDItemGroup.BLOCKS );
@@ -644,7 +644,7 @@ public final class MDBlocks {
         return Block.Properties.create( MDMaterial.CRYSTAL, color )
                                .hardnessAndResistance( (float) hardness )
                                .doesNotBlockMovement()
-                               .sound( SoundType.GLASS );
+                               .sound( MDSoundTypes.CRYSTAL );
     }
 
     private static Block.Properties leaves( MaterialColor color, double hardness ) {

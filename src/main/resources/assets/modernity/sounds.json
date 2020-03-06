@@ -195,5 +195,50 @@
       "modernity:block/asphalt/step4",
       "modernity:block/asphalt/step5"
     ]
+  },
+  "block.crystal.break": {
+    "sounds": [
+      "modernity:block/crystal/break1",
+      "modernity:block/crystal/break2",
+      "modernity:block/crystal/break3",
+      "modernity:block/crystal/break4",
+      "modernity:block/crystal/break5"
+    ]
+  },
+  "block.crystal.place": {
+    "sounds": [
+      "modernity:block/crystal/place1",
+      "modernity:block/crystal/place2",
+      "modernity:block/crystal/place3",
+      "modernity:block/crystal/place4",
+      "modernity:block/crystal/place5"
+    ]
+  },
+  "block.crystal.step": {
+    "sounds": [
+      "modernity:block/crystal/step1",
+      "modernity:block/crystal/step2",
+      "modernity:block/crystal/step3",
+      "modernity:block/crystal/step4",
+      "modernity:block/crystal/step5"
+    ]
+  },
+  "block.crystal.hit": {
+    "sounds": [
+      "modernity:block/crystal/crack1",
+      "modernity:block/crystal/crack2",
+      "modernity:block/crystal/crack3",
+      "modernity:block/crystal/crack4",
+      "modernity:block/crystal/crack5"
+    ]
+  },
+  "block.crystal.fall": {
+    "sounds": [
+      "modernity:block/crystal/step1",
+      "modernity:block/crystal/step2",
+      "modernity:block/crystal/step3",
+      "modernity:block/crystal/step4",
+      "modernity:block/crystal/step5"
+    ]
   }
 }

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 26 - 2020
+ * Date:   03 - 06 - 2020
  * Author: rgsw
  */
 
@@ -38,6 +38,15 @@ public final class MDSoundTypes {
         MDSoundEvents.BLOCK_ASPHALT_PLACE,
         MDSoundEvents.BLOCK_ASPHALT_HIT,
         MDSoundEvents.BLOCK_ASPHALT_FALL
+    );
+
+    public static final SoundType CRYSTAL = new SoundType(
+        1.2F, 1,
+        MDSoundEvents.BLOCK_CRYSTAL_BREAK,
+        MDSoundEvents.BLOCK_CRYSTAL_STEP,
+        MDSoundEvents.BLOCK_CRYSTAL_PLACE,
+        MDSoundEvents.BLOCK_CRYSTAL_HIT,
+        MDSoundEvents.BLOCK_CRYSTAL_FALL
     );
 
     private MDSoundTypes() {
