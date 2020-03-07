@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 06 - 2020
+ * Date:   03 - 07 - 2020
  * Author: rgsw
  */
 
@@ -59,7 +59,7 @@ public final class MDBiomes {
 
     public static final WetlandBiome WETLAND = register( "wetland", new WetlandBiome( WetlandBiome.Type.WETLAND ), MDDimension.MURK_SURFACE );
     public static final WetlandBiome WETLAND_FOREST = register( "wetland_forest", new WetlandBiome( WetlandBiome.Type.WETLAND_FOREST ), MDDimension.MURK_SURFACE );
-    public static final WetlandBiome REED_WETLAND = register( "reed_wetland", new WetlandBiome( WetlandBiome.Type.REED_WETLAND ), MDDimension.MURK_SURFACE );
+    public static final WetlandBiome WETLAND_MARSH = register( "wetland_marsh", new WetlandBiome( WetlandBiome.Type.WETLAND_MARSH ), MDDimension.MURK_SURFACE );
 
 
 

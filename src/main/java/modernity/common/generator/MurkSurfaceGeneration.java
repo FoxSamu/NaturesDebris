@@ -2,16 +2,18 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 06 - 2020
+ * Date:   03 - 07 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator;
 
+import modernity.api.util.BlockPredicates;
 import modernity.api.util.IIntScrambler;
 import modernity.api.util.MDDimension;
 import modernity.common.biome.MDBiomes;
 import modernity.common.biome.ModernityBiome;
+import modernity.common.block.MDBlockTags;
 import modernity.common.block.MDBlocks;
 import modernity.common.fluid.MDFluids;
 import modernity.common.generator.biome.BiomeGenerator;
@@ -36,7 +38,6 @@ import modernity.common.generator.map.surface.*;
 import modernity.common.generator.region.CachingRegionContext;
 import modernity.common.generator.region.IRegionRNG;
 import modernity.common.generator.region.layer.IEdgeTransformerLayer;
-import net.minecraft.block.BlockState;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.ReportedException;
 import net.minecraft.util.SharedSeedRandom;
@@ -167,7 +168,7 @@ public final class MurkSurfaceGeneration {
 
         profile.putDefault( MDBiomes.WETLAND, 10 )
                .put( MDBiomes.WETLAND, MDBiomes.WETLAND_FOREST, 9 )
-               .put( MDBiomes.WETLAND, MDBiomes.REED_WETLAND, 8 );
+               .put( MDBiomes.WETLAND, MDBiomes.WETLAND_MARSH, 8 );
 
         return profile;
     }
@@ -250,8 +251,8 @@ public final class MurkSurfaceGeneration {
     }
 
     public static void addClaySand( ModernityBiome biome ) {
-        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDBlocks.MURKY_SAND.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 12 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
-        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDBlocks.MURKY_CLAY.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.25 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
+        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.tag( MDBlockTags.SOIL ), MDBlocks.MURKY_SAND.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 12 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
+        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.tag( MDBlockTags.SOIL ), MDBlocks.MURKY_CLAY.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.25 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
     }
 
     public static void addCavePlants( ModernityBiome biome ) {

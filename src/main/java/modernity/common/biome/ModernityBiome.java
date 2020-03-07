@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 01 - 2020
+ * Date:   03 - 07 - 2020
  * Author: rgsw
  */
 
@@ -139,28 +139,28 @@ public abstract class ModernityBiome extends Biome {
             vanillaBuilder.waterFogColor( 0x1A2A5C );
         }
 
-        public Builder depth( float value ) {
-            this.depth = value;
+        public Builder depth( double value ) {
+            this.depth = (float) value;
             return this;
         }
 
-        public Builder variation( float value ) {
-            this.variation = value;
+        public Builder variation( double value ) {
+            this.variation = (float) value;
             return this;
         }
 
-        public Builder scale( float value ) {
-            this.scale = value;
+        public Builder scale( double value ) {
+            this.scale = (float) value;
             return this;
         }
 
-        public Builder blendWeight( float value ) {
-            this.blendWeight = value;
+        public Builder blendWeight( double value ) {
+            this.blendWeight = (float) value;
             return this;
         }
 
-        public Builder waterFogDensity( float value ) {
-            this.waterFogDensity = value;
+        public Builder waterFogDensity( double value ) {
+            this.waterFogDensity = (float) value;
             return this;
         }
 

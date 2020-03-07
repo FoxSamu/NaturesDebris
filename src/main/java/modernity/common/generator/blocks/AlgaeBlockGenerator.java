@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   03 - 07 - 2020
  * Author: rgsw
  */
 
@@ -27,8 +27,7 @@ public class AlgaeBlockGenerator implements IBlockGenerator {
         if( state.getBlock() == ALGAE ) {
             dens = state.get( AlgaeBlock.DENSITY ) + 1;
             if( dens > 16 ) dens = 0;
-        }
-        if( state.getBlock() == MDBlocks.MURKY_WATER && state.getFluidState().getFluid() == MDFluids.MURKY_WATER ) {
+        } else if( state.getBlock() == MDBlocks.MURKY_WATER && state.getFluidState().getFluid() == MDFluids.MURKY_WATER ) {
             dens = 1;
         }
         if( dens > 0 ) {

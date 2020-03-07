@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 02 - 2020
+ * Date:   03 - 07 - 2020
  * Author: rgsw
  */
 
@@ -17,6 +17,7 @@ import modernity.common.block.prop.SignedIntegerProperty;
 import modernity.common.block.tree.HangLeavesBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.fluid.IFluidState;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -215,7 +216,8 @@ public class BlackwoodTree extends Tree {
     private static boolean isAirOrLeaves( IWorldReader world, BlockPos pos ) {
         BlockState state = world.getBlockState( pos );
         Material mat = state.getMaterial();
-        if( ! mat.blocksMovement() && ! mat.isLiquid() ) return true;
+        IFluidState fluid = state.getFluidState();
+        if( ! mat.blocksMovement() && fluid.isEmpty() ) return true;
         if( mat == Material.LEAVES ) return true;
         if( state.isIn( BlockTags.LEAVES ) ) return true;
         return state.isAir( world, pos );
@@ -224,7 +226,8 @@ public class BlackwoodTree extends Tree {
     private static boolean isAir( IWorldReader world, BlockPos pos ) {
         BlockState state = world.getBlockState( pos );
         Material mat = state.getMaterial();
-        return ! mat.blocksMovement() && ! mat.isLiquid();
+        IFluidState fluid = state.getFluidState();
+        return ! mat.blocksMovement() && fluid.isEmpty();
     }
 
 

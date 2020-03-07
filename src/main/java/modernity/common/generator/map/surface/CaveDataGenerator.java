@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   03 - 07 - 2020
  * Author: rgsw
  */
 
@@ -29,6 +29,7 @@ public class CaveDataGenerator extends MapGenerator<SurfaceGenData> {
         int cz = region.getMainChunkZ();
 
         IntArrays.add( heightmap, - 8 );
+        IntArrays.max( heightmap, 0 );
 
         ServerWorldAreaManager.get( region.getWorld() ).ifPresent( manager -> manager.addArea( new HeightmapsArea(
             manager.getWorld(),

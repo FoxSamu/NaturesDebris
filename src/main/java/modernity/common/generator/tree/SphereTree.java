@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 25 - 2020
+ * Date:   03 - 07 - 2020
  * Author: rgsw
  */
 
@@ -13,7 +13,9 @@ import modernity.common.block.MDBlockTags;
 import modernity.common.block.tree.DecayLeavesBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.fluid.IFluidState;
 import net.minecraft.state.IntegerProperty;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -75,12 +77,12 @@ public class SphereTree extends Tree {
                     for( int z = - 1; z <= 1; z++ ) {
                         tpos.setPos( rpos );
                         tpos.addPos( x, 0, z );
-                        if( world.getBlockState( tpos ).getMaterial().blocksMovement() )
+                        if( ! isAirOrLeaves( world, tpos ) )
                             return false;
                     }
                 }
             } else {
-                if( world.getBlockState( rpos ).getMaterial().blocksMovement() )
+                if( ! isAirOrLeaves( world, tpos ) )
                     return false;
             }
             rpos.moveUp();
@@ -115,9 +117,8 @@ public class SphereTree extends Tree {
         mpos.setPos( pos ).moveUp( height );
         for( int i = 0; i < length; i++ ) {
             mpos.move( xOff, 1, zOff );
-            BlockState state = world.getBlockState( mpos );
 
-            if( state.getMaterial() != Material.LEAVES && state.getMaterial().blocksMovement() ) {
+            if( ! isAirOrLeaves( world, mpos ) ) {
                 break;
             }
 
@@ -142,9 +143,7 @@ public class SphereTree extends Tree {
                     if( p < radius * radius ) {
                         mpos.setPos( pos ).move( x, y, z );
 
-                        BlockState state = world.getBlockState( mpos );
-
-                        if( ! state.getMaterial().blocksMovement() ) {
+                        if( isAir( world, mpos ) ) {
                             BlockState place = leaves;
                             if( y >= 0 && p < logRad * logRad ) {
                                 if( rand.nextInt( 16 ) == 0 ) {
@@ -169,6 +168,24 @@ public class SphereTree extends Tree {
             case Z: return logZ;
             default: throw new UnexpectedCaseException( "4D Minecraft! Wait...what?!" );
         }
+    }
+
+
+    private static boolean isAirOrLeaves( IWorldReader world, BlockPos pos ) {
+        BlockState state = world.getBlockState( pos );
+        Material mat = state.getMaterial();
+        IFluidState fluid = state.getFluidState();
+        if( ! mat.blocksMovement() && fluid.isEmpty() ) return true;
+        if( mat == Material.LEAVES ) return true;
+        if( state.isIn( BlockTags.LEAVES ) ) return true;
+        return state.isAir( world, pos );
+    }
+
+    private static boolean isAir( IWorldReader world, BlockPos pos ) {
+        BlockState state = world.getBlockState( pos );
+        Material mat = state.getMaterial();
+        IFluidState fluid = state.getFluidState();
+        return ! mat.blocksMovement() && fluid.isEmpty();
     }
 
 
