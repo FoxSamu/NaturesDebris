@@ -124,10 +124,10 @@ public class WetlandBiome extends ModernityBiome {
         addDecorator( new DecorationDecorator( new GroupedBushDecoration( 7, 5, 0.9, MDBlockGenerators.ALGAE ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new MinMax( 0, 4 ) ) );
 
         if( type == Type.WETLAND_MARSH ) {
-            addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlockGenerators.CATTAIL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new MinMax( 7, 20 ) ) );
+            addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockGenerators.CATTAIL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new MinMax( 7, 20 ) ) );
         } else {
             addDecorator( new DecorationDecorator( new GroupedBushDecoration( 2, 3, 1, MDBlockGenerators.MUXUS_BUSH ), new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ), new Chance( 0.3 ) ) );
-            addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlockGenerators.CATTAIL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new MinMax( 2, 5 ) ) );
+            addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockGenerators.CATTAIL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new MinMax( 2, 5 ) ) );
         }
     }
 
