@@ -7,6 +7,7 @@
       "biomes": {
         "#modernity:forest": [ 27, 91, 54 ],
         "#modernity:meadow_like": [ 32, 86, 49 ],
+        "#modernity:moorland": [ 15, 87, 37 ],
         "#modernity:river": [ 27, 107, 51 ],
         "#modernity:swamp": [ 0, 57, 25 ],
         "#modernity:wetland": [ 0, 86, 5 ],

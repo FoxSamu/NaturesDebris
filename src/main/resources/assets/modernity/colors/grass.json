@@ -15,6 +15,13 @@
             "size": 10.26618249
           }
         },
+        "#modernity:moorland": {
+          "perlin2d": {
+            "a": [ 34, 64, 43 ],
+            "b": [ 15, 71, 36 ],
+            "size": 13.41751292
+          }
+        },
         "#modernity:wetland": [ 12, 109, 0 ],
         "#modernity:lake": [ 8, 84, 37 ],
         "item": [ 0, 109, 38 ],

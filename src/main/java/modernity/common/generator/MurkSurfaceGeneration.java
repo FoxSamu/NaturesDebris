@@ -134,6 +134,7 @@ public final class MurkSurfaceGeneration {
         profile.put( MDBiomes.SWAMP, DefaultBiomeRarity.RELATIVELY_COMMON, 1, 0 );
         profile.put( MDBiomes.WETLAND, DefaultBiomeRarity.RELATIVELY_COMMON, 0.8, 0.1 );
         profile.put( MDBiomes.LAKE, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 0.9, 0.3 );
+        profile.put( MDBiomes.MOORLAND, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 0.4, 0.5 );
 
         return profile;
     }
@@ -177,6 +178,10 @@ public final class MurkSurfaceGeneration {
                .put( MDBiomes.LAKE, MDBiomes.UNDEEP_LAKE, 9 )
                .put( MDBiomes.LAKE, MDBiomes.GRASS_LAKE, 4 )
                .put( MDBiomes.LAKE, MDBiomes.DEEP_GRASS_LAKE, 4 );
+
+        profile.putDefault( MDBiomes.MOORLAND, 10 )
+               .put( MDBiomes.MOORLAND, MDBiomes.HIGH_MOORLAND, 7 )
+               .put( MDBiomes.MOORLAND, MDBiomes.MOORLAND_NO_TREES, 5 );
 
         return profile;
     }

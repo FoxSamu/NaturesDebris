@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 06 - 2020
+ * Date:   03 - 08 - 2020
  * Author: rgsw
  */
 
@@ -84,7 +84,7 @@ public final class MDBlocks {
     public static final DirtlikeBlock LEAFY_HUMUS = blockItem( "leafy_humus", new LeafyDirtlikeBlock( MDDirtLogics.LEAFY_HUMUS_LOGIC, dirt( MaterialColor.ORANGE_TERRACOTTA, true ) ), MDItemGroup.BLOCKS, "dark_podzol" );
     public static final DirtlikeBlock MURKY_PODZOL = blockItem( "murky_podzol", new SnowyDirtlikeBlock( MDDirtLogics.PODZOL_LOGIC, dirt( MaterialColor.DIRT, true ) ), MDItemGroup.BLOCKS );
     public static final DirtlikeBlock HEATH_BLOCK = blockItem( "heath_block", new DirtlikeBlock( MDDirtLogics.HEATH_LOGIC, dirt( MaterialColor.FOLIAGE, true ) ), MDItemGroup.BLOCKS );
-    public static final DigableBlock ACID_DIRT = blockItem( "acid_dirt", new DigableBlock( dirt( MaterialColor.DIRT, true ) ), MDItemGroup.BLOCKS );
+    public static final DigableBlock ACID_DIRT = blockItem( "acid_dirt", new DigableBlock( dirt( MaterialColor.DIRT, false ) ), MDItemGroup.BLOCKS );
     public static final StickyBlock MUD = blockItem( "mud", new DigableStickyBlock( dirt( MaterialColor.BROWN_TERRACOTTA, false ).sound( MDSoundTypes.MUD ) ), MDItemGroup.BLOCKS );
     public static final DigableFallBlock REGOLITH = blockItem( "regolith", new DigableFallBlock( 0x737d8c, dust( MaterialColor.STONE, true ) ), MDItemGroup.BLOCKS, "rock_gravel" );
 

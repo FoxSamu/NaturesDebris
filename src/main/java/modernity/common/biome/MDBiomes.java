@@ -68,6 +68,10 @@ public final class MDBiomes {
     public static final LakeBiome DEEP_GRASS_LAKE = register( "deep_grass_lake", new LakeBiome( LakeBiome.Type.DEEP_GRASS_LAKE ), MDDimension.MURK_SURFACE );
     public static final LakeBiome LAKE_SHORE = register( "lake_shore", new LakeBiome( LakeBiome.Type.LAKE_SHORE ), MDDimension.MURK_SURFACE );
 
+    public static final MoorlandBiome MOORLAND = register( "moorland", new MoorlandBiome( MoorlandBiome.Type.MOORLAND ), MDDimension.MURK_SURFACE );
+    public static final MoorlandBiome HIGH_MOORLAND = register( "high_moorland", new MoorlandBiome( MoorlandBiome.Type.HIGH_MOORLAND ), MDDimension.MURK_SURFACE );
+    public static final MoorlandBiome MOORLAND_NO_TREES = register( "moorland_no_trees", new MoorlandBiome( MoorlandBiome.Type.MOORLAND_NO_TREES ), MDDimension.MURK_SURFACE );
+
 
 
 

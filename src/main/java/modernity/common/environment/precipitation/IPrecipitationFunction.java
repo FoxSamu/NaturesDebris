@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 08 - 2020
  * Author: rgsw
  */
 
@@ -29,6 +29,16 @@ public interface IPrecipitationFunction {
             EDefaultPrecipitation.SHOWERS,
             EDefaultPrecipitation.RAIN,
             EDefaultPrecipitation.HAIL
+        );
+    }
+
+    static IPrecipitationFunction dryish() {
+        return selectFrom(
+            EDefaultPrecipitation.NONE,
+            EDefaultPrecipitation.NONE,
+            EDefaultPrecipitation.DRIZZLE,
+            EDefaultPrecipitation.SHOWERS,
+            EDefaultPrecipitation.RAIN
         );
     }
 
