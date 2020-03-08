@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 04 - 2020
+ * Date:   03 - 08 - 2020
  * Author: rgsw
  */
 
@@ -19,13 +19,24 @@ public class RiverMixLayer implements IFilterMergerLayer, IBiomeLayer {
     }
 
     private final int river = id( MDBiomes.RIVER );
+    private final int lake = id( MDBiomes.LAKE );
+    private final int deepLake = id( MDBiomes.DEEP_LAKE );
+    private final int undeepLake = id( MDBiomes.UNDEEP_LAKE );
+    private final int grassLake = id( MDBiomes.GRASS_LAKE );
+    private final int deepGrassLake = id( MDBiomes.DEEP_GRASS_LAKE );
 
     @Override
-    public int generate( IRegionRNG rng, int a, int b ) {
-        if( b > 0 ) {
+    public int generate( IRegionRNG rng, int original, int riverData ) {
+        if( original == lake ) return original;
+        if( original == deepLake ) return original;
+        if( original == undeepLake ) return original;
+        if( original == grassLake ) return original;
+        if( original == deepGrassLake ) return original;
+
+        if( riverData > 0 ) {
             return river;
         } else {
-            return a;
+            return original;
         }
     }
 }

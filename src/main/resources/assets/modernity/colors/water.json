@@ -10,6 +10,7 @@
         "#modernity:river": [ 26, 43, 155 ],
         "#modernity:swamp": [ 57, 68, 60 ],
         "#modernity:wetland": [ 17, 49, 91 ],
+        "#modernity:lake": [ 13, 29, 64 ],
         "item": [ 21, 31, 150 ],
         "default": [ 21, 31, 150 ]
       }

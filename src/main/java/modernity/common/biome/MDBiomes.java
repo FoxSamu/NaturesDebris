@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 07 - 2020
+ * Date:   03 - 08 - 2020
  * Author: rgsw
  */
 
@@ -60,6 +60,13 @@ public final class MDBiomes {
     public static final WetlandBiome WETLAND = register( "wetland", new WetlandBiome( WetlandBiome.Type.WETLAND ), MDDimension.MURK_SURFACE );
     public static final WetlandBiome WETLAND_FOREST = register( "wetland_forest", new WetlandBiome( WetlandBiome.Type.WETLAND_FOREST ), MDDimension.MURK_SURFACE );
     public static final WetlandBiome WETLAND_MARSH = register( "wetland_marsh", new WetlandBiome( WetlandBiome.Type.WETLAND_MARSH ), MDDimension.MURK_SURFACE );
+
+    public static final LakeBiome LAKE = register( "lake", new LakeBiome( LakeBiome.Type.LAKE ), MDDimension.MURK_SURFACE );
+    public static final LakeBiome DEEP_LAKE = register( "deep_lake", new LakeBiome( LakeBiome.Type.DEEP_LAKE ), MDDimension.MURK_SURFACE );
+    public static final LakeBiome UNDEEP_LAKE = register( "undeep_lake", new LakeBiome( LakeBiome.Type.UNDEEP_LAKE ), MDDimension.MURK_SURFACE );
+    public static final LakeBiome GRASS_LAKE = register( "grass_lake", new LakeBiome( LakeBiome.Type.GRASS_LAKE ), MDDimension.MURK_SURFACE );
+    public static final LakeBiome DEEP_GRASS_LAKE = register( "deep_grass_lake", new LakeBiome( LakeBiome.Type.DEEP_GRASS_LAKE ), MDDimension.MURK_SURFACE );
+    public static final LakeBiome LAKE_SHORE = register( "lake_shore", new LakeBiome( LakeBiome.Type.LAKE_SHORE ), MDDimension.MURK_SURFACE );
 
 
 

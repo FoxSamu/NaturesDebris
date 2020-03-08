@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 04 - 2020
+ * Date:   03 - 08 - 2020
  * Author: rgsw
  */
 
@@ -328,9 +328,6 @@ public class FossilDecoration implements IDecoration {
             boolean place = true;
             if( ( flags & 128 ) == 0 ) {
                 if( intactness >= 0 && rand.nextInt( 100 ) >= intactness ) {
-                    place = false;
-                }
-                if( ! getBlockState( pos ).getMaterial().blocksMovement() ) {
                     place = false;
                 }
             }

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   03 - 08 - 2020
  * Author: rgsw
  */
 
@@ -50,16 +50,16 @@ public class FlyFlowerBlockGenerator implements IBlockGenerator {
 
             if( air ) {
                 height = i + 1;
+                break;
             }
         }
 
         if( height > 0 ) {
             mpos.setPos( pos );
             for( int i = 0; i < height; i++ ) {
-                mpos.moveUp();
                 world.setBlockState( mpos, STALK.getDefaultState(), 2 );
+                mpos.moveUp();
             }
-            mpos.moveUp();
             world.setBlockState( mpos, FLOWER.getDefaultState(), 2 );
             return true;
         }

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 08 - 2020
  * Author: rgsw
  */
 
@@ -22,6 +22,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -50,6 +51,11 @@ public class WaterWireBlock extends PlantBlock implements IWaterPlant {
                 .with( SOUTH, false )
                 .with( WEST, false )
         );
+    }
+
+    @Override
+    public boolean needsPostProcessing( BlockState state, IBlockReader worldIn, BlockPos pos ) {
+        return true;
     }
 
     @Override

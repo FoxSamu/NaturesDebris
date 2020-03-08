@@ -16,6 +16,7 @@
           }
         },
         "#modernity:wetland": [ 12, 109, 0 ],
+        "#modernity:lake": [ 8, 84, 37 ],
         "item": [ 0, 109, 38 ],
         "default": [ 0, 109, 38 ]
       }

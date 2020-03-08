@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 07 - 2020
+ * Date:   03 - 08 - 2020
  * Author: rgsw
  */
 
@@ -82,7 +82,7 @@ public class SphereTree extends Tree {
                     }
                 }
             } else {
-                if( ! isAirOrLeaves( world, tpos ) )
+                if( ! isAirOrLeaves( world, rpos ) )
                     return false;
             }
             rpos.moveUp();

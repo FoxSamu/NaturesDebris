@@ -2,14 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 26 - 2020
+ * Date:   03 - 08 - 2020
  * Author: rgsw
  */
 
 package modernity.client.environment;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.client.environment.particles.GeneralAmbientEffect;
 import modernity.client.environment.particles.IEnvironmentParticleEffect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
@@ -31,7 +30,7 @@ public class EnvironmentParticleManager {
     private final HashSet<IEnvironmentParticleEffect> particleEffects = new HashSet<>();
 
     public EnvironmentParticleManager() {
-        registerEffect( new GeneralAmbientEffect() );
+//        registerEffect( new GeneralAmbientEffect() );
     }
 
     private int computeRadius() {

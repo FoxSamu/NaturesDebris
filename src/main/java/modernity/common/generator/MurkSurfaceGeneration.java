@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 07 - 2020
+ * Date:   03 - 08 - 2020
  * Author: rgsw
  */
 
@@ -103,6 +103,7 @@ public final class MurkSurfaceGeneration {
                .transform( new BiomeMutationLayer( buildMutationProfile() ) )
                .zoom()
                .transform( new LushGrasslandEdgeLayer() )
+               .transform( new LakeEdgeLayer() )
                .zoom()
                .transform( new BiomeMutationLayer( buildSmallMutationProfile() ) )
                .zoom()
@@ -131,7 +132,8 @@ public final class MurkSurfaceGeneration {
         profile.put( MDBiomes.LUSH_GRASSLAND, DefaultBiomeRarity.UNCOMMON, 0.3, 0.8 );
         profile.put( MDBiomes.FOREST, DefaultBiomeRarity.COMMON, 0.3, 0.2 );
         profile.put( MDBiomes.SWAMP, DefaultBiomeRarity.RELATIVELY_COMMON, 1, 0 );
-        profile.put( MDBiomes.WETLAND, DefaultBiomeRarity.RELATIVELY_COMMON, 0.9, 0.1 );
+        profile.put( MDBiomes.WETLAND, DefaultBiomeRarity.RELATIVELY_COMMON, 0.8, 0.1 );
+        profile.put( MDBiomes.LAKE, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 0.9, 0.3 );
 
         return profile;
     }
@@ -162,13 +164,19 @@ public final class MurkSurfaceGeneration {
 
         profile.putDefault( MDBiomes.SWAMP, 10 )
                .put( MDBiomes.SWAMP, MDBiomes.SWAMP_HILLS, 7 )
-               .put( MDBiomes.SWAMP, MDBiomes.SWAMP_MARSHES, 5 )
+               .put( MDBiomes.SWAMP, MDBiomes.SWAMP_MARSHES, 8 )
                .put( MDBiomes.SWAMP, MDBiomes.SWAMP_WATER, 8 )
                .put( MDBiomes.SWAMP, MDBiomes.SWAMP_LAND, 9 );
 
         profile.putDefault( MDBiomes.WETLAND, 10 )
                .put( MDBiomes.WETLAND, MDBiomes.WETLAND_FOREST, 9 )
                .put( MDBiomes.WETLAND, MDBiomes.WETLAND_MARSH, 8 );
+
+        profile.putDefault( MDBiomes.LAKE, 14 )
+               .put( MDBiomes.LAKE, MDBiomes.DEEP_LAKE, 9 )
+               .put( MDBiomes.LAKE, MDBiomes.UNDEEP_LAKE, 9 )
+               .put( MDBiomes.LAKE, MDBiomes.GRASS_LAKE, 4 )
+               .put( MDBiomes.LAKE, MDBiomes.DEEP_GRASS_LAKE, 4 );
 
         return profile;
     }
@@ -300,6 +308,33 @@ public final class MurkSurfaceGeneration {
         @Override
         public boolean isEdge( IRegionRNG rng, int center, int neighbor ) {
             return isGrassland( center ) && ! isGrassland( neighbor );
+        }
+
+        @Override
+        public int getEdge( IRegionRNG rng, int center, int neighbor ) {
+            return ids[ 1 ];
+        }
+    }
+
+    private static class LakeEdgeLayer implements IEdgeTransformerLayer, IBiomeLayer {
+
+        private final int[] ids = {
+            id( MDBiomes.LAKE ),
+            id( MDBiomes.LAKE_SHORE ),
+            id( MDBiomes.DEEP_LAKE ),
+            id( MDBiomes.UNDEEP_LAKE ),
+            id( MDBiomes.GRASS_LAKE ),
+            id( MDBiomes.DEEP_GRASS_LAKE ),
+        };
+
+        private boolean isLake( int id ) {
+            for( int i : ids ) if( i == id ) return true;
+            return false;
+        }
+
+        @Override
+        public boolean isEdge( IRegionRNG rng, int center, int neighbor ) {
+            return isLake( center ) && ! isLake( neighbor );
         }
 
         @Override
