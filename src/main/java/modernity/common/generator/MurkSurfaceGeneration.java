@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 08 - 2020
+ * Date:   03 - 09 - 2020
  * Author: rgsw
  */
 
@@ -127,14 +127,15 @@ public final class MurkSurfaceGeneration {
     public static BiomeProfile buildBiomeProfile() {
         BiomeProfile profile = new BiomeProfile();
 
-        profile.put( MDBiomes.MEADOW, DefaultBiomeRarity.VERY_COMMON, 0.3, 0.3 );
-        profile.put( MDBiomes.FLOWER_MEADOW, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 1, 0 );
-        profile.put( MDBiomes.LUSH_GRASSLAND, DefaultBiomeRarity.UNCOMMON, 0.3, 0.8 );
-        profile.put( MDBiomes.FOREST, DefaultBiomeRarity.COMMON, 0.3, 0.2 );
-        profile.put( MDBiomes.SWAMP, DefaultBiomeRarity.RELATIVELY_COMMON, 1, 0 );
-        profile.put( MDBiomes.WETLAND, DefaultBiomeRarity.RELATIVELY_COMMON, 0.8, 0.1 );
-        profile.put( MDBiomes.LAKE, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 0.9, 0.3 );
-        profile.put( MDBiomes.MOORLAND, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 0.4, 0.5 );
+//        profile.put( MDBiomes.MEADOW, DefaultBiomeRarity.VERY_COMMON, 0.3, 0.3 );
+//        profile.put( MDBiomes.FLOWER_MEADOW, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 1, 0 );
+//        profile.put( MDBiomes.LUSH_GRASSLAND, DefaultBiomeRarity.UNCOMMON, 0.3, 0.8 );
+//        profile.put( MDBiomes.FOREST, DefaultBiomeRarity.COMMON, 0.3, 0.2 );
+        profile.put( MDBiomes.TALL_FOREST, DefaultBiomeRarity.VERY_COMMON, 1, 0 );
+//        profile.put( MDBiomes.SWAMP, DefaultBiomeRarity.RELATIVELY_COMMON, 1, 0 );
+//        profile.put( MDBiomes.WETLAND, DefaultBiomeRarity.RELATIVELY_COMMON, 0.8, 0.1 );
+//        profile.put( MDBiomes.LAKE, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 0.9, 0.3 );
+//        profile.put( MDBiomes.MOORLAND, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 0.4, 0.5 );
 
         return profile;
     }
@@ -162,6 +163,10 @@ public final class MurkSurfaceGeneration {
         profile.putDefault( MDBiomes.FOREST, 10 )
                .put( MDBiomes.FOREST, MDBiomes.HIGH_FOREST, 7 )
                .put( MDBiomes.FOREST, MDBiomes.BUSH_FOREST, 5 );
+
+        profile.putDefault( MDBiomes.TALL_FOREST, 10 )
+               .put( MDBiomes.TALL_FOREST, MDBiomes.HIGH_TALL_FOREST, 7 )
+               .put( MDBiomes.TALL_FOREST, MDBiomes.TALL_BUSH_FOREST, 5 );
 
         profile.putDefault( MDBiomes.SWAMP, 10 )
                .put( MDBiomes.SWAMP, MDBiomes.SWAMP_HILLS, 7 )
@@ -195,6 +200,12 @@ public final class MurkSurfaceGeneration {
 
         profile.putDefault( MDBiomes.HIGH_FOREST, 14 )
                .put( MDBiomes.HIGH_FOREST, MDBiomes.HIGH_OPEN_FOREST, 3 );
+
+        profile.putDefault( MDBiomes.TALL_FOREST, 14 )
+               .put( MDBiomes.TALL_FOREST, MDBiomes.OPEN_TALL_FOREST, 3 );
+
+        profile.putDefault( MDBiomes.HIGH_TALL_FOREST, 14 )
+               .put( MDBiomes.HIGH_TALL_FOREST, MDBiomes.HIGH_OPEN_TALL_FOREST, 3 );
 
         return profile;
     }

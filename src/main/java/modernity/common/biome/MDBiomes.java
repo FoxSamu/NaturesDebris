@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 08 - 2020
+ * Date:   03 - 09 - 2020
  * Author: rgsw
  */
 
@@ -71,6 +71,12 @@ public final class MDBiomes {
     public static final MoorlandBiome MOORLAND = register( "moorland", new MoorlandBiome( MoorlandBiome.Type.MOORLAND ), MDDimension.MURK_SURFACE );
     public static final MoorlandBiome HIGH_MOORLAND = register( "high_moorland", new MoorlandBiome( MoorlandBiome.Type.HIGH_MOORLAND ), MDDimension.MURK_SURFACE );
     public static final MoorlandBiome MOORLAND_NO_TREES = register( "moorland_no_trees", new MoorlandBiome( MoorlandBiome.Type.MOORLAND_NO_TREES ), MDDimension.MURK_SURFACE );
+
+    public static final TallForestBiome TALL_FOREST = register( "tall_forest", new TallForestBiome( TallForestBiome.Type.TALL_FOREST ), MDDimension.MURK_SURFACE );
+    public static final TallForestBiome OPEN_TALL_FOREST = register( "open_tall_forest", new TallForestBiome( TallForestBiome.Type.OPEN_TALL_FOREST ), MDDimension.MURK_SURFACE );
+    public static final TallForestBiome TALL_BUSH_FOREST = register( "tall_bush_forest", new TallForestBiome( TallForestBiome.Type.TALL_BUSH_FOREST ), MDDimension.MURK_SURFACE );
+    public static final TallForestBiome HIGH_TALL_FOREST = register( "high_tall_forest", new TallForestBiome( TallForestBiome.Type.HIGH_TALL_FOREST ), MDDimension.MURK_SURFACE );
+    public static final TallForestBiome HIGH_OPEN_TALL_FOREST = register( "high_open_tall_forest", new TallForestBiome( TallForestBiome.Type.HIGH_OPEN_TALL_FOREST ), MDDimension.MURK_SURFACE );
 
 
 

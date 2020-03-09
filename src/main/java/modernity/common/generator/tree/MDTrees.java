@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 25 - 2020
+ * Date:   03 - 09 - 2020
  * Author: rgsw
  */
 
@@ -17,6 +17,8 @@ public final class MDTrees {
     public static final TinyBlackwoodTree BLACKWOOD_TINY = new TinyBlackwoodTree();
 
     public static final BlackwoodTree BLACKWOOD = new BlackwoodTree();
+
+    public static final TallBlackwoodTree BLACKWOOD_TALL = new TallBlackwoodTree();
 
     public static final SphereTree INVER = new SphereTree(
         MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X ),
