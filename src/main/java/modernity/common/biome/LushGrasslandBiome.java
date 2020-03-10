@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 01 - 2020
+ * Date:   03 - 10 - 2020
  * Author: rgsw
  */
 
@@ -47,7 +47,7 @@ public class LushGrasslandBiome extends ModernityBiome {
                                   .build()
         );
 
-        boolean open = type == Type.LUSH_GRASSLAND_EDGE || type == Type.LUSH_GRASSLAND_OPEN || type == Type.HIGH_LUSH_GRASSLAND_OPEN;
+        boolean open = type == Type.LUSH_GRASSLAND_EDGE || type == Type.LUSH_GRASSLAND_OPEN || type == Type.HIGH_LUSH_GRASSLAND_OPEN || type == Type.LUSH_GRASSLAND_RIVER;
 
         MurkSurfaceGeneration.addCaveDeposits( this );
         MurkSurfaceGeneration.addCaveOres( this );
@@ -145,6 +145,13 @@ public class LushGrasslandBiome extends ModernityBiome {
         HIGH_LUSH_GRASSLAND_OPEN(
             new Builder()
                 .depth( 4 ).variation( 4 ).scale( 3 )
+                .surfaceGen( new GrassSurfaceGenerator() )
+                .precipitation( IPrecipitationFunction.standard() )
+        ),
+        LUSH_GRASSLAND_RIVER(
+            new Builder()
+                .depth( - 6 ).variation( 0 ).scale( 2 )
+                .blendWeight( 10 )
                 .surfaceGen( new GrassSurfaceGenerator() )
                 .precipitation( IPrecipitationFunction.standard() )
         );

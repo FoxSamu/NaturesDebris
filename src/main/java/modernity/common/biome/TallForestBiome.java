@@ -75,7 +75,7 @@ public class TallForestBiome extends ModernityBiome {
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.RED_INVER ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.2 ) ) );
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.INVER ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.8 ) ) );
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Fixed( 1 ) ) );
-            addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD_TALL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new MinMax( 4, 5 ) ) );
+            addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD_TALL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 6 ) ) );
         }
 
         IBlockGenerator mushrooms = new RandomBlockGenerator(
@@ -174,6 +174,13 @@ public class TallForestBiome extends ModernityBiome {
         HIGH_OPEN_TALL_FOREST(
             new Builder()
                 .depth( 9 ).variation( 6 ).scale( 4 )
+                .surfaceGen( new ForestSurfaceGenerator( 4, 12, 7.8 ) )
+                .precipitation( IPrecipitationFunction.standard() )
+        ),
+        TALL_FOREST_RIVER(
+            new Builder()
+                .depth( - 8 ).variation( 0 ).scale( 2 )
+                .blendWeight( 10 )
                 .surfaceGen( new ForestSurfaceGenerator( 4, 12, 7.8 ) )
                 .precipitation( IPrecipitationFunction.standard() )
         );

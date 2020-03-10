@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 13 - 2020
+ * Date:   03 - 10 - 2020
  * Author: rgsw
  */
 
@@ -22,7 +22,7 @@ public class BiomeMutationProfile {
     }
 
     public BiomeProfile getProfile( int id ) {
-        return subbiomeProfiles.get( id );
+        return subbiomeProfiles.getOrDefault( id, null );
     }
 
     public BiomeMutationProfile putDefault( Biome biome, int weight ) {

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 04 - 2020
+ * Date:   03 - 10 - 2020
  * Author: rgsw
  */
 
@@ -24,6 +24,7 @@ import net.minecraft.world.gen.Heightmap;
 /**
  * The 'River' or 'modernity:river' biome.
  */
+@Deprecated
 public class RiverBiome extends ModernityBiome {
     protected RiverBiome( Type type ) {
         super( type.builder );

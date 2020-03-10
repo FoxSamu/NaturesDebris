@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 07 - 2020
+ * Date:   03 - 10 - 2020
  * Author: rgsw
  */
 
@@ -177,6 +177,13 @@ public class SwampBiome extends ModernityBiome {
                 .depth( 2 ).variation( 2 ).scale( 1 )
                 .surfaceGen( new SwampSurfaceGenerator( true, 8, 10, 0 ) )
                 .precipitation( IPrecipitationFunction.swampy() )
+        ),
+        SWAMP_RIVER(
+            new Builder()
+                .depth( - 6 ).variation( 0 ).scale( 2 )
+                .blendWeight( 10 )
+                .surfaceGen( new SwampSurfaceGenerator( false, 8, 8, 9 ) )
+                .precipitation( IPrecipitationFunction.standard() )
         );
 
         private final Builder builder;

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 01 - 2020
+ * Date:   03 - 10 - 2020
  * Author: rgsw
  */
 
@@ -110,7 +110,7 @@ public class MeadowBiome extends ModernityBiome {
 
         addDecorator( new DecorationDecorator( new ClusterBushDecoration( 120, 6, MDBlockGenerators.CAVE_GRASS ), new InCave(), new Fixed( 12 ) ) );
 
-        if( type != Type.MEADOW_NO_TREES ) {
+        if( type != Type.MEADOW_NO_TREES && type != Type.MEADOW_RIVER ) {
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 1, 30 ) ) );
         }
     }
@@ -131,6 +131,13 @@ public class MeadowBiome extends ModernityBiome {
         MEADOW_NO_TREES(
             new Builder()
                 .depth( 2 ).variation( 3 ).scale( 2 )
+                .surfaceGen( new GrassSurfaceGenerator() )
+                .precipitation( IPrecipitationFunction.standard() )
+        ),
+        MEADOW_RIVER(
+            new Builder()
+                .depth( - 6 ).variation( 0 ).scale( 2 )
+                .blendWeight( 10 )
                 .surfaceGen( new GrassSurfaceGenerator() )
                 .precipitation( IPrecipitationFunction.standard() )
         );

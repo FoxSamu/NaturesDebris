@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 05 - 2020
+ * Date:   03 - 10 - 2020
  * Author: rgsw
  */
 
@@ -67,7 +67,7 @@ public class ForestBiome extends ModernityBiome {
         addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDBlocks.MURKY_COARSE_DIRT.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.3 ) ) );
         addDecorator( new DecorationDecorator( new DepositDecoration( 3, BlockState::isSolid, MDBlocks.MUD.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.2 ) ) );
 
-        if( type == Type.OPEN_FOREST || type == Type.HIGH_OPEN_FOREST ) {
+        if( type == Type.OPEN_FOREST || type == Type.HIGH_OPEN_FOREST || type == Type.FOREST_RIVER ) {
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.RED_INVER ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.02 ) ) );
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.INVER ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.2 ) ) );
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.07 ) ) );
@@ -175,6 +175,13 @@ public class ForestBiome extends ModernityBiome {
         HIGH_OPEN_FOREST(
             new Builder()
                 .depth( 9 ).variation( 6 ).scale( 4 )
+                .surfaceGen( new ForestSurfaceGenerator( 4, 12, 7.8 ) )
+                .precipitation( IPrecipitationFunction.standard() )
+        ),
+        FOREST_RIVER(
+            new Builder()
+                .depth( - 6 ).variation( 0 ).scale( 2 )
+                .blendWeight( 10 )
                 .surfaceGen( new ForestSurfaceGenerator( 4, 12, 7.8 ) )
                 .precipitation( IPrecipitationFunction.standard() )
         );

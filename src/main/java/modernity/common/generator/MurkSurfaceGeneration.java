@@ -111,7 +111,7 @@ public final class MurkSurfaceGeneration {
                .zoomFuzzy()
                .smooth()
                .merge(
-                   RiverMixLayer.INSTANCE,
+                   new RiverMixLayer( buildRiverMutationProfile() ),
                    context.generate( RiverFieldLayer.INSTANCE, 5728L )
                           .zoom( 6 )
                           .transform( RiverLayer.INSTANCE )
@@ -131,7 +131,7 @@ public final class MurkSurfaceGeneration {
         profile.put( MDBiomes.FLOWER_MEADOW, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 1, 0 );
         profile.put( MDBiomes.LUSH_GRASSLAND, DefaultBiomeRarity.UNCOMMON, 0.3, 0.8 );
         profile.put( MDBiomes.FOREST, DefaultBiomeRarity.COMMON, 0.3, 0.2 );
-        profile.put( MDBiomes.TALL_FOREST, DefaultBiomeRarity.RELATIVELY_RARE, 1, 0 );
+        profile.put( MDBiomes.TALL_FOREST, DefaultBiomeRarity.RELATIVELY_RARE, 1, 1 );
         profile.put( MDBiomes.SWAMP, DefaultBiomeRarity.RELATIVELY_COMMON, 1, 0 );
         profile.put( MDBiomes.WETLAND, DefaultBiomeRarity.RELATIVELY_COMMON, 0.8, 0.1 );
         profile.put( MDBiomes.LAKE, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 0.9, 0.3 );
@@ -142,6 +142,59 @@ public final class MurkSurfaceGeneration {
 
     public static BiomeMutationProfile buildLargeMutationProfile() {
         BiomeMutationProfile profile = new BiomeMutationProfile();
+
+        return profile;
+    }
+
+    public static BiomeMutationProfile buildRiverMutationProfile() {
+        BiomeMutationProfile profile = new BiomeMutationProfile();
+
+        profile.put( MDBiomes.MEADOW, MDBiomes.MEADOW_RIVER, 1 )
+               .put( MDBiomes.HIGH_MEADOW, MDBiomes.MEADOW_RIVER, 1 )
+               .put( MDBiomes.MEADOW_NO_TREES, MDBiomes.MEADOW_RIVER, 1 );
+
+        profile.put( MDBiomes.FLOWER_MEADOW, MDBiomes.FLOWER_MEADOW_RIVER, 1 )
+               .put( MDBiomes.HIGH_FLOWER_MEADOW, MDBiomes.FLOWER_MEADOW_RIVER, 1 )
+               .put( MDBiomes.FLOWER_MEADOW_NO_TREES, MDBiomes.FLOWER_MEADOW_RIVER, 1 );
+
+        profile.put( MDBiomes.MOORLAND, MDBiomes.MOORLAND_RIVER, 1 )
+               .put( MDBiomes.HIGH_MOORLAND, MDBiomes.MOORLAND_RIVER, 1 )
+               .put( MDBiomes.MOORLAND_NO_TREES, MDBiomes.MOORLAND_RIVER, 1 );
+
+        profile.put( MDBiomes.LUSH_GRASSLAND, MDBiomes.LUSH_GRASSLAND_RIVER, 1 )
+               .put( MDBiomes.HIGH_LUSH_GRASSLAND, MDBiomes.LUSH_GRASSLAND_RIVER, 1 )
+               .put( MDBiomes.LUSH_GRASSLAND_OPEN, MDBiomes.LUSH_GRASSLAND_RIVER, 1 )
+               .put( MDBiomes.HIGH_LUSH_GRASSLAND_OPEN, MDBiomes.LUSH_GRASSLAND_RIVER, 1 )
+               .put( MDBiomes.LUSH_GRASSLAND_EDGE, MDBiomes.LUSH_GRASSLAND_RIVER, 1 );
+
+        profile.put( MDBiomes.FOREST, MDBiomes.FOREST_RIVER, 1 )
+               .put( MDBiomes.HIGH_FOREST, MDBiomes.FOREST_RIVER, 1 )
+               .put( MDBiomes.BUSH_FOREST, MDBiomes.FOREST_RIVER, 1 )
+               .put( MDBiomes.HIGH_OPEN_FOREST, MDBiomes.FOREST_RIVER, 1 )
+               .put( MDBiomes.OPEN_FOREST, MDBiomes.FOREST_RIVER, 1 );
+
+        profile.put( MDBiomes.TALL_FOREST, MDBiomes.TALL_FOREST_RIVER, 1 )
+               .put( MDBiomes.HIGH_TALL_FOREST, MDBiomes.TALL_FOREST_RIVER, 1 )
+               .put( MDBiomes.TALL_BUSH_FOREST, MDBiomes.TALL_FOREST_RIVER, 1 )
+               .put( MDBiomes.HIGH_OPEN_TALL_FOREST, MDBiomes.TALL_FOREST_RIVER, 1 )
+               .put( MDBiomes.OPEN_TALL_FOREST, MDBiomes.TALL_FOREST_RIVER, 1 );
+
+        profile.put( MDBiomes.SWAMP, MDBiomes.SWAMP_RIVER, 1 )
+               .put( MDBiomes.SWAMP_HILLS, MDBiomes.SWAMP_RIVER, 1 )
+               .put( MDBiomes.SWAMP_LAND, MDBiomes.SWAMP_RIVER, 1 )
+               .put( MDBiomes.SWAMP_MARSHES, MDBiomes.SWAMP_RIVER, 1 )
+               .put( MDBiomes.SWAMP_WATER, MDBiomes.SWAMP_RIVER, 1 );
+
+        profile.put( MDBiomes.WETLAND, MDBiomes.WETLAND_RIVER, 1 )
+               .put( MDBiomes.WETLAND_FOREST, MDBiomes.WETLAND_RIVER, 1 )
+               .put( MDBiomes.WETLAND_MARSH, MDBiomes.WETLAND_RIVER, 1 );
+
+        profile.put( MDBiomes.LAKE, MDBiomes.LAKE, 1 )
+               .put( MDBiomes.UNDEEP_LAKE, MDBiomes.LAKE, 1 )
+               .put( MDBiomes.LAKE_SHORE, MDBiomes.LAKE, 1 )
+               .put( MDBiomes.DEEP_LAKE, MDBiomes.DEEP_LAKE, 1 )
+               .put( MDBiomes.GRASS_LAKE, MDBiomes.GRASS_LAKE, 1 )
+               .put( MDBiomes.DEEP_GRASS_LAKE, MDBiomes.DEEP_GRASS_LAKE, 1 );
 
         return profile;
     }
@@ -200,12 +253,6 @@ public final class MurkSurfaceGeneration {
 
         profile.putDefault( MDBiomes.HIGH_FOREST, 14 )
                .put( MDBiomes.HIGH_FOREST, MDBiomes.HIGH_OPEN_FOREST, 3 );
-
-        profile.putDefault( MDBiomes.TALL_FOREST, 14 )
-               .put( MDBiomes.TALL_FOREST, MDBiomes.OPEN_TALL_FOREST, 3 );
-
-        profile.putDefault( MDBiomes.HIGH_TALL_FOREST, 14 )
-               .put( MDBiomes.HIGH_TALL_FOREST, MDBiomes.HIGH_OPEN_TALL_FOREST, 3 );
 
         return profile;
     }

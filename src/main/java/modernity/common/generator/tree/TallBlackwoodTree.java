@@ -48,7 +48,7 @@ public class TallBlackwoodTree extends Tree {
     }
 
     private int generateHeight( Random rand ) {
-        return rand.nextInt( 10 ) + 22;
+        return rand.nextInt( 10 ) + 27;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class TallBlackwoodTree extends Tree {
         int height = generateHeight( rand );
 
         MovingBlockPos rpos = new MovingBlockPos( pos );
-        for( int y = 3; y <= height; y++ ) {
+        for( int y = 10; y <= height; y++ ) {
             for( int x = - 3; x <= 2; x++ ) {
                 for( int z = - 3; z <= 2; z++ ) {
                     rpos.setPos( pos ).addPos( x, y, z );
@@ -159,17 +159,7 @@ public class TallBlackwoodTree extends Tree {
                     }
                 }
 
-                if( xd || zd ) {
-                    boolean random = rand.nextBoolean();
-                    if( xd && zd ) random &= rand.nextBoolean();
-
-                    if( random ) {
-                        createExtraLog( world, pos, mpos, logs, x, height - rand.nextInt( 2 ), z, rand );
-                    }
-                }
-
                 if( moss ) {
-
                     if( x == - 2 && z == - 2 ) {
                         createMoss( world, pos, mpos, x, z, mossHeight, rand, Direction8.NORTH_WEST );
                     }

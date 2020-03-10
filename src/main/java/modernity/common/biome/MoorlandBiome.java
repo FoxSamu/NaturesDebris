@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 08 - 2020
+ * Date:   03 - 10 - 2020
  * Author: rgsw
  */
 
@@ -116,6 +116,13 @@ public class MoorlandBiome extends ModernityBiome {
             new Builder()
                 .depth( 2 ).variation( 3 ).scale( 2 )
                 .surfaceGen( new MoorlandSurfaceGenerator( 12, 7, 8 ) )
+                .precipitation( IPrecipitationFunction.standard() )
+        ),
+        MOORLAND_RIVER(
+            new Builder()
+                .depth( - 6 ).variation( 0 ).scale( 2 )
+                .blendWeight( 10 )
+                .surfaceGen( new MoorlandSurfaceGenerator( 7, 12, 8 ) )
                 .precipitation( IPrecipitationFunction.standard() )
         );
 

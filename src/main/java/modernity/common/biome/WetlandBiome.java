@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 07 - 2020
+ * Date:   03 - 10 - 2020
  * Author: rgsw
  */
 
@@ -123,7 +123,7 @@ public class WetlandBiome extends ModernityBiome {
 
         addDecorator( new DecorationDecorator( new GroupedBushDecoration( 7, 5, 0.9, MDBlockGenerators.ALGAE ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new MinMax( 0, 4 ) ) );
 
-        if( type == Type.WETLAND_MARSH ) {
+        if( type == Type.WETLAND_MARSH || type == Type.WETLAND_RIVER ) {
             addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockGenerators.CATTAIL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new MinMax( 7, 20 ) ) );
         } else {
             addDecorator( new DecorationDecorator( new GroupedBushDecoration( 2, 3, 1, MDBlockGenerators.MUXUS_BUSH ), new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ), new Chance( 0.3 ) ) );
@@ -149,6 +149,13 @@ public class WetlandBiome extends ModernityBiome {
                 .depth( - 1.2 ).variation( 0.1 ).scale( 0.5 )
                 .surfaceGen( new SwampSurfaceGenerator( true, 2, 10, 8 ) )
                 .precipitation( IPrecipitationFunction.swampy() )
+        ),
+        WETLAND_RIVER(
+            new Builder()
+                .depth( - 6 ).variation( 0 ).scale( 2 )
+                .blendWeight( 10 )
+                .surfaceGen( new SwampSurfaceGenerator( false, 2, 10, 8 ) )
+                .precipitation( IPrecipitationFunction.standard() )
         );
 
         private final Builder builder;
