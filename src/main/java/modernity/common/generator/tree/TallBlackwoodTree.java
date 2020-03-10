@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 09 - 2020
+ * Date:   03 - 10 - 2020
  * Author: rgsw
  */
 
@@ -47,6 +47,10 @@ public class TallBlackwoodTree extends Tree {
         return state.isIn( MDBlockTags.DIRTLIKE );
     }
 
+    private int generateHeight( Random rand ) {
+        return rand.nextInt( 10 ) + 22;
+    }
+
     @Override
     public boolean canGenerate( IWorldReader world, Random rand, BlockPos pos ) {
         if( world.getBlockState( pos.up() ).getMaterial().blocksMovement() || world.getBlockState( pos.up() ).getMaterial().isLiquid() ) {
@@ -54,7 +58,7 @@ public class TallBlackwoodTree extends Tree {
         }
 
 
-        int height = rand.nextInt( 17 ) + 15;
+        int height = generateHeight( rand );
 
         MovingBlockPos rpos = new MovingBlockPos( pos );
         for( int y = 3; y <= height; y++ ) {
@@ -76,12 +80,12 @@ public class TallBlackwoodTree extends Tree {
         MovingBlockPos mpos = new MovingBlockPos( pos );
 
 
-        int height = rand.nextInt( 17 ) + 15;
+        int height = generateHeight( rand );
         int rad = rand.nextInt( 5 ) + 9;
 
-        createLog( world, pos, mpos, rand, height, logs );
+        createLog( world, pos, mpos, rand, height + 2, logs );
         createRoots( world, pos, mpos, rand, logs );
-        createAuxiliaries( world, pos, mpos, rand, height, logs );
+        createAuxiliaries( world, pos, mpos, rand, height + 2, logs );
         createRandomBranches( world, pos, mpos, rand, logs, height, rad - 2 );
         createLeaves( world, pos, mpos, rand, height, rad );
     }
@@ -111,33 +115,6 @@ public class TallBlackwoodTree extends Tree {
         setBlockState( world, mpos, DIRT );
     }
 
-    private void createMoss( IWorld world, BlockPos pos, MovingBlockPos mpos, int x, int z, int height, Random rand, Direction8 dir ) {
-        int h = height + rand.nextInt( 5 ) - 2;
-        if( h > 0 ) {
-            for( int y = 0; y < h; y++ ) {
-                mpos.setPos( pos ).addPos( x, y, z );
-                if( isAir( world, mpos ) ) {
-                    setBlockState( world, mpos, MDBlocks.MOSS.getDefaultState().with( FacingPlantBlock.FACING, dirFrom8( dir, rand ) ) );
-                }
-            }
-        }
-    }
-
-    private Direction dirFrom8( Direction8 dir8, Random rand ) {
-        switch( dir8 ) {
-            case NORTH: return Direction.NORTH;
-            case EAST: return Direction.EAST;
-            case SOUTH: return Direction.SOUTH;
-            case WEST: return Direction.WEST;
-            case NORTH_EAST: return rand.nextBoolean() ? Direction.NORTH : Direction.EAST;
-            case NORTH_WEST: return rand.nextBoolean() ? Direction.NORTH : Direction.WEST;
-            case SOUTH_EAST: return rand.nextBoolean() ? Direction.SOUTH : Direction.EAST;
-            case SOUTH_WEST: return rand.nextBoolean() ? Direction.SOUTH : Direction.WEST;
-            default:
-                throw new UnexpectedCaseException( "What happened to our universe?" );
-        }
-    }
-
     private void createRoots( IWorld world, BlockPos pos, MovingBlockPos mpos, Random rand, Consumer<BlockPos> logs ) {
         for( int x = - 3; x <= 2; x++ ) {
             for( int z = - 3; z <= 2; z++ ) {
@@ -160,14 +137,6 @@ public class TallBlackwoodTree extends Tree {
                     if( xs ) setLogState( world, mpos, WOOD_Z, logs );
                 }
             }
-        }
-    }
-
-    private void createExtraLog( IWorld world, BlockPos pos, MovingBlockPos mpos, Consumer<BlockPos> logs, int x, int y, int z, Random rand ) {
-        int len = rand.nextInt( 4 ) + 1;
-        for( int i = 0; i < len; i++ ) {
-            mpos.setPos( pos ).addPos( x, y, z ).moveDown( i );
-            setLogState( world, mpos, LOG_Y, logs );
         }
     }
 
@@ -231,6 +200,41 @@ public class TallBlackwoodTree extends Tree {
         }
     }
 
+    private void createExtraLog( IWorld world, BlockPos pos, MovingBlockPos mpos, Consumer<BlockPos> logs, int x, int y, int z, Random rand ) {
+        int len = rand.nextInt( 4 ) + 1;
+        for( int i = 0; i < len; i++ ) {
+            mpos.setPos( pos ).addPos( x, y, z ).moveDown( i );
+            setLogState( world, mpos, LOG_Y, logs );
+        }
+    }
+
+    private void createMoss( IWorld world, BlockPos pos, MovingBlockPos mpos, int x, int z, int height, Random rand, Direction8 dir ) {
+        int h = height + rand.nextInt( 5 ) - 2;
+        if( h > 0 ) {
+            for( int y = 0; y < h; y++ ) {
+                mpos.setPos( pos ).addPos( x, y, z );
+                if( isAir( world, mpos ) ) {
+                    setBlockState( world, mpos, MDBlocks.MOSS.getDefaultState().with( FacingPlantBlock.FACING, dirFrom8( dir, rand ) ) );
+                }
+            }
+        }
+    }
+
+    private Direction dirFrom8( Direction8 dir8, Random rand ) {
+        switch( dir8 ) {
+            case NORTH: return Direction.NORTH;
+            case EAST: return Direction.EAST;
+            case SOUTH: return Direction.SOUTH;
+            case WEST: return Direction.WEST;
+            case NORTH_EAST: return rand.nextBoolean() ? Direction.NORTH : Direction.EAST;
+            case NORTH_WEST: return rand.nextBoolean() ? Direction.NORTH : Direction.WEST;
+            case SOUTH_EAST: return rand.nextBoolean() ? Direction.SOUTH : Direction.EAST;
+            case SOUTH_WEST: return rand.nextBoolean() ? Direction.SOUTH : Direction.WEST;
+            default:
+                throw new UnexpectedCaseException( "What happened to our universe?" );
+        }
+    }
+
     private void createRandomBranches( IWorld world, BlockPos pos, MovingBlockPos mpos, Random rand, Consumer<BlockPos> logs, int height, int branchRad ) {
         double branchR = branchRad - 0.6;
         for( int x = - branchRad; x <= branchRad; x++ ) {
@@ -240,7 +244,7 @@ public class TallBlackwoodTree extends Tree {
 
                 if( dx * dx + dz * dz < branchR * branchR ) {
                     if( rand.nextInt( 12 ) == 0 ) {
-                        mpos.setPos( pos ).addPos( x, height, z );
+                        mpos.setPos( pos ).addPos( x, height + rand.nextInt( 2 ), z );
                         if( isAirOrLeaves( world, mpos ) ) {
                             setLogState( world, mpos, rand.nextBoolean() ? LOG_X : LOG_Z, logs );
                         }
