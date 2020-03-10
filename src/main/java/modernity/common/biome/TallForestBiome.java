@@ -34,7 +34,11 @@ import net.minecraft.world.gen.Heightmap;
 public class TallForestBiome extends ModernityBiome {
     protected TallForestBiome( Type type ) {
         super( type.builder );
-        BiomeGroups.registerBiomeToGroup( "forest", this );
+        BiomeGroups.registerBiomeToGroup( "forest_like", this );
+        BiomeGroups.registerBiomeToGroup( "tall_forest", this );
+        if( type == Type.TALL_FOREST_RIVER ) {
+            BiomeGroups.registerBiomeToGroup( "rivers", this );
+        }
 
         setGrowingPlants(
             WeightedBlockGenerator.builder( MDBlockGenerators.MURK_GRASS_1, 900 )

@@ -32,6 +32,9 @@ public class MoorlandBiome extends ModernityBiome {
     protected MoorlandBiome( Type type ) {
         super( type.builder );
         BiomeGroups.registerBiomeToGroup( "moorland", this );
+        if( type == Type.MOORLAND_RIVER ) {
+            BiomeGroups.registerBiomeToGroup( "rivers", this );
+        }
 
         setGrowingPlants(
             WeightedBlockGenerator.builder( MDBlockGenerators.MURK_GRASS_1, 900 )

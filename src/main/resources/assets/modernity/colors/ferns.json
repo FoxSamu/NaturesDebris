@@ -5,10 +5,9 @@
     "high": -8,
     "above": {
       "biomes": {
-        "#modernity:forest": [ 0, 109, 6 ],
+        "#modernity:forest_like": [ 0, 109, 6 ],
         "#modernity:moorland": [ 0, 87, 30 ],
         "#modernity:meadow_like": [ 45, 136, 42 ],
-        "#modernity:river": [ 45, 136, 42 ],
         "#modernity:swamp": [ 27, 83, 25 ],
         "#modernity:wetland": [ 58, 105, 47 ],
         "#modernity:lake": [ 37, 89, 37 ],

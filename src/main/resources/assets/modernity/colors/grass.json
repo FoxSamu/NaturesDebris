@@ -5,9 +5,8 @@
     "high": -8,
     "above": {
       "biomes": {
-        "#modernity:forest": [ 0, 109, 58 ],
+        "#modernity:forest_like": [ 0, 109, 58 ],
         "#modernity:meadow_like": [ 0, 109, 38 ],
-        "#modernity:river": [ 4, 122, 59 ],
         "#modernity:swamp": {
           "perlin2d": {
             "a": [ 38, 51, 28 ],

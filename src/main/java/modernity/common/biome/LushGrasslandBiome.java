@@ -31,6 +31,9 @@ public class LushGrasslandBiome extends ModernityBiome {
         super( type.builder );
         BiomeGroups.registerBiomeToGroup( "lush_grassland", this );
         BiomeGroups.registerBiomeToGroup( "meadow_like", this );
+        if( type == Type.LUSH_GRASSLAND_RIVER ) {
+            BiomeGroups.registerBiomeToGroup( "rivers", this );
+        }
 
         setGrowingPlants(
             WeightedBlockGenerator.builder( MDBlockGenerators.MURK_GRASS_LUSH, 1700 )

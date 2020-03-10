@@ -32,6 +32,9 @@ public class FlowerMeadowBiome extends ModernityBiome {
         super( type.builder );
         BiomeGroups.registerBiomeToGroup( "flower_meadow", this );
         BiomeGroups.registerBiomeToGroup( "meadow_like", this );
+        if( type == Type.FLOWER_MEADOW_RIVER ) {
+            BiomeGroups.registerBiomeToGroup( "rivers", this );
+        }
 
         setGrowingPlants(
             WeightedBlockGenerator.builder( MDBlockGenerators.MURK_GRASS_1, 300 )

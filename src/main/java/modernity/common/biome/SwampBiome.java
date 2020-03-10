@@ -34,6 +34,9 @@ public class SwampBiome extends ModernityBiome {
     protected SwampBiome( Type type ) {
         super( type.builder );
         BiomeGroups.registerBiomeToGroup( "swamp", this );
+        if( type == Type.SWAMP_RIVER ) {
+            BiomeGroups.registerBiomeToGroup( "rivers", this );
+        }
 
         setGrowingPlants(
             WeightedBlockGenerator.builder( MDBlockGenerators.MURK_GRASS_1, 900 )

@@ -35,6 +35,9 @@ public class WetlandBiome extends ModernityBiome {
     protected WetlandBiome( Type type ) {
         super( type.builder );
         BiomeGroups.registerBiomeToGroup( "wetland", this );
+        if( type == Type.WETLAND_RIVER ) {
+            BiomeGroups.registerBiomeToGroup( "rivers", this );
+        }
 
 
         setGrowingPlants(

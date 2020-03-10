@@ -34,6 +34,7 @@ import net.minecraft.world.gen.Heightmap;
 public class ForestBiome extends ModernityBiome {
     protected ForestBiome( Type type ) {
         super( type.builder );
+        BiomeGroups.registerBiomeToGroup( "forest_like", this );
         BiomeGroups.registerBiomeToGroup( "forest", this );
 
         setGrowingPlants(
