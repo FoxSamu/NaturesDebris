@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 09 - 2020
+ * Date:   03 - 10 - 2020
  * Author: rgsw
  */
 
@@ -71,12 +71,11 @@ public class TallForestBiome extends ModernityBiome {
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.RED_INVER ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.02 ) ) );
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.INVER ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.2 ) ) );
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.07 ) ) );
-            addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD_TINY ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.3 ) ) );
         } else {
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.RED_INVER ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.2 ) ) );
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.INVER ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.8 ) ) );
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Fixed( 1 ) ) );
-            addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD_TALL ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new MinMax( 4, 5 ) ) );
+            addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD_TALL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new MinMax( 4, 5 ) ) );
         }
 
         IBlockGenerator mushrooms = new RandomBlockGenerator(

@@ -44,7 +44,7 @@ public class TallBlackwoodTree extends Tree {
 
     @Override
     public boolean isSustainable( IWorldReader world, BlockPos pos, BlockState state ) {
-        return state.isIn( MDBlockTags.DIRTLIKE );
+        return state.isIn( MDBlockTags.SOIL );
     }
 
     private int generateHeight( Random rand ) {
@@ -276,7 +276,7 @@ public class TallBlackwoodTree extends Tree {
                             if( y == 0 && rand.nextInt( 3 ) == 0 ) {
                                 boolean murina = rand.nextBoolean();
                                 BlockState hanger = murina ? MURINA : HANGING_LEAVES;
-                                int len = rand.nextInt( murina ? 8 : 4 ) + 1;
+                                int len = rand.nextInt( murina ? 12 : 4 ) + 1;
 
                                 for( int i = 0; i < len; i++ ) {
                                     mpos.moveDown();
