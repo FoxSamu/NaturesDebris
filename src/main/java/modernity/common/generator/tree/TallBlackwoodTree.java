@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 10 - 2020
+ * Date:   03 - 11 - 2020
  * Author: rgsw
  */
 
@@ -32,8 +32,8 @@ import java.util.function.Consumer;
 
 public class TallBlackwoodTree extends Tree {
 
-    private static final BlockState LEAVES = MDBlocks.BLACKWOOD_LEAVES.getDefaultState();
-    private static final BlockState HANGING_LEAVES = MDBlocks.BLACKWOOD_LEAVES.getDefaultState().with( HangLeavesBlock.DISTANCE, - 1 );
+    private static final BlockState LEAVES = MDBlocks.BLACKWOOD_LEAVES.getDefaultState().with( HangLeavesBlock.DISTANCE, 0 );
+    private static final BlockState HANGING_LEAVES = LEAVES;
     private static final BlockState MURINA = MDBlocks.MURINA.getDefaultState();
     private static final BlockState LOG_Y = MDBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Y );
     private static final BlockState LOG_X = MDBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X );
@@ -61,7 +61,7 @@ public class TallBlackwoodTree extends Tree {
         int height = generateHeight( rand );
 
         MovingBlockPos rpos = new MovingBlockPos( pos );
-        for( int y = 10; y <= height; y++ ) {
+        for( int y = 5; y <= height; y++ ) {
             for( int x = - 3; x <= 2; x++ ) {
                 for( int z = - 3; z <= 2; z++ ) {
                     rpos.setPos( pos ).addPos( x, y, z );
