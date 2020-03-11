@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 01 - 2020
+ * Date:   03 - 11 - 2020
  * Author: rgsw
  */
 
@@ -40,6 +40,7 @@ public final class MDBlockTags {
 
     public static final Tag<Block> REEDS_GROWABLE = tag( "reeds_growable" );
     public static final Tag<Block> DIRTLIKE = tag( "dirtlike" );
+    public static final Tag<Block> DIRT = tag( "dirt" );
     public static final Tag<Block> SOIL = tag( "soil" );
     public static final Tag<Block> FARMLAND = tag( "farmland" );
     public static final Tag<Block> PODZOL_SOURCE = tag( "podzol_source" );

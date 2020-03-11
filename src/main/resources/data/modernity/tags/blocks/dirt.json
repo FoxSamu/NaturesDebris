@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "modernity:murky_dirt",
+    "modernity:murky_grass_block",
+    "modernity:murky_coarse_dirt",
+    "modernity:murky_humus",
+    "modernity:murky_podzol",
+    "modernity:leafy_humus",
+    "modernity:heath_block",
+    "#modernity:farmland",
+    "modernity:acid_dirt"
+  ]
+}
