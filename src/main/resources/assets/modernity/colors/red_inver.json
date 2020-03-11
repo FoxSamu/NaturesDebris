@@ -1,20 +1,20 @@
 {
   "heightmap": {
     "type": "cave",
-    "low": -24,
-    "high": -8,
+    "low": -12,
+    "high": 0,
     "above": {
       "biomes": {
-        "#modernity:forest_like": [ 135, 55, 39 ],
-        "#modernity:meadow_like": [ 148, 42, 24 ],
-        "#modernity:moorland": [ 130, 20, 34 ],
-        "#modernity:swamp": [ 135, 31, 3 ],
-        "#modernity:wetland": [ 148, 56, 41 ],
-        "#modernity:lake": [ 148, 41, 52 ],
-        "item": [ 148, 42, 24 ],
-        "default": [ 148, 42, 24 ]
+        "#modernity:forest_like": [ 99, 22, 25 ],
+        "#modernity:meadow_like": [ 112, 17, 26 ],
+        "#modernity:moorland": [ 107, 14, 26 ],
+        "#modernity:swamp": [ 87, 24, 23 ],
+        "#modernity:wetland": [ 105, 28, 30 ],
+        "#modernity:lake": [ 102, 19, 28 ],
+        "item": [ 112, 17, 26 ],
+        "default": [ 112, 17, 26 ]
       }
     },
-    "below": [ 148, 42, 24 ]
+    "below": [ 77, 30, 26 ]
   }
 }

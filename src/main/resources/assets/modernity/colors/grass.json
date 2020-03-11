@@ -1,32 +1,74 @@
 {
   "heightmap": {
     "type": "cave",
-    "low": -24,
-    "high": -8,
+    "low": -12,
+    "high": 0,
     "above": {
       "biomes": {
-        "#modernity:forest_like": [ 0, 109, 58 ],
-        "#modernity:meadow_like": [ 0, 109, 38 ],
+        "#modernity:forest_like": {
+          "perlin2d": {
+            "a": [ 0, 109, 58 ],
+            "b": [ 2, 94, 36 ],
+            "size": 17.32
+          }
+        },
+        "#modernity:meadow_like&!#modernity:flower_meadow": {
+          "perlin2d": {
+            "a": [ 0, 109, 38 ],
+            "b": [ 4, 97, 44 ],
+            "size": 21.32
+          }
+        },
+        "#modernity:flower_meadow": {
+          "perlin2d": {
+            "a": [ 5, 117, 33 ],
+            "b": [ 39, 107, 43 ],
+            "size": 21.32
+          }
+        },
         "#modernity:swamp": {
           "perlin2d": {
             "a": [ 38, 51, 28 ],
             "b": [ 12, 57, 18 ],
-            "size": 10.26618249
+            "size": 10.26
           }
         },
         "#modernity:moorland": {
           "perlin2d": {
             "a": [ 34, 64, 43 ],
             "b": [ 15, 71, 36 ],
-            "size": 13.41751292
+            "size": 13.41
           }
         },
-        "#modernity:wetland": [ 12, 109, 0 ],
-        "#modernity:lake": [ 8, 84, 37 ],
-        "item": [ 0, 109, 38 ],
-        "default": [ 0, 109, 38 ]
+        "#modernity:wetland": {
+          "perlin2d": {
+            "a": [ 12, 109, 0 ],
+            "b": [ 0, 87, 31 ],
+            "size": 18.82
+          }
+        },
+        "#modernity:lake": {
+          "perlin2d": {
+            "a": [ 8, 84, 37 ],
+            "b": [ 24, 97, 0 ],
+            "size": 19.12
+          }
+        },
+        "default|item": {
+          "perlin2d": {
+            "a": [ 0, 109, 38 ],
+            "b": [ 4, 97, 44 ],
+            "size": 21.32
+          }
+        }
       }
     },
-    "below": [ 22, 61, 36 ]
+    "below": {
+      "perlin2d": {
+        "a": [ 22, 61, 36 ],
+        "b": [ 1, 51, 25 ],
+        "size": 21.32
+      }
+    }
   }
 }

@@ -1,20 +1,59 @@
 {
   "heightmap": {
     "type": "cave",
-    "low": -24,
-    "high": -8,
+    "low": -12,
+    "high": 0,
     "above": {
       "biomes": {
-        "#modernity:forest_like": [ 45, 69, 22 ],
-        "#modernity:meadow_like": [ 65, 100, 32 ],
-        "#modernity:moorland": [ 32, 100, 42 ],
-        "#modernity:swamp": [ 54, 71, 0 ],
-        "#modernity:wetland": [ 78, 102, 0 ],
-        "#modernity:lake": [ 44, 74, 0 ],
-        "item": [ 65, 100, 32 ],
-        "default": [ 65, 100, 32 ]
+        "#modernity:forest_like": {
+          "cellnoise": {
+            "a": [ 45, 69, 22 ],
+            "b": [ 22, 82, 44 ]
+          }
+        },
+        "#modernity:meadow_like": {
+          "cellnoise": {
+            "a": [ 65, 100, 32 ],
+            "b": [ 25, 110, 33 ]
+          }
+        },
+        "#modernity:moorland": {
+          "cellnoise": {
+            "a": [ 32, 100, 42 ],
+            "b": [ 85, 99, 44 ]
+          }
+        },
+        "#modernity:swamp": {
+          "cellnoise": {
+            "a": [ 54, 71, 0 ],
+            "b": [ 25, 56, 2 ]
+          }
+        },
+        "#modernity:wetland": {
+          "cellnoise": {
+            "a": [ 78, 102, 0 ],
+            "b": [ 39, 87, 20 ]
+          }
+        },
+        "#modernity:lake": {
+          "cellnoise": {
+            "a": [ 44, 74, 0 ],
+            "b": [ 4, 46, 11 ]
+          }
+        },
+        "default|item": {
+          "cellnoise": {
+            "a": [ 65, 100, 32 ],
+            "b": [ 25, 110, 33 ]
+          }
+        }
       }
     },
-    "below": [ 54, 71, 0 ]
+    "below": {
+      "cellnoise": {
+        "a": [ 54, 71, 0 ],
+        "b": [ 6, 46, 29 ]
+      }
+    }
   }
 }

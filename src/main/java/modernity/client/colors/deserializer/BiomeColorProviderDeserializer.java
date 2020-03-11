@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 18 - 2020
+ * Date:   03 - 11 - 2020
  * Author: rgsw
  */
 
@@ -87,8 +87,18 @@ public class BiomeColorProviderDeserializer implements IColorProviderDeserialize
         String selector = sel.trim().toLowerCase();
         if( selector.isEmpty() ) throw ctx.exception( "Empty selector" );
 
-        if( selector.equals( "*" ) ) {
-            return str -> true;
+        int or = selector.indexOf( '|' );
+        if( or >= 0 ) {
+            Predicate<String> a = biomeSelector( selector.substring( 0, or ), ctx );
+            Predicate<String> b = biomeSelector( selector.substring( or + 1 ), ctx );
+            return str -> a.test( str ) || b.test( str );
+        }
+
+        int and = selector.indexOf( '&' );
+        if( and >= 0 ) {
+            Predicate<String> a = biomeSelector( selector.substring( 0, and ), ctx );
+            Predicate<String> b = biomeSelector( selector.substring( and + 1 ), ctx );
+            return str -> a.test( str ) && b.test( str );
         }
 
         if( selector.startsWith( "!" ) ) {
@@ -96,11 +106,12 @@ public class BiomeColorProviderDeserializer implements IColorProviderDeserialize
             return str -> ! a.test( str );
         }
 
-        int or = selector.indexOf( '|' );
-        if( or >= 0 ) {
-            Predicate<String> a = biomeSelector( selector.substring( 0, or ), ctx );
-            Predicate<String> b = biomeSelector( selector.substring( or + 1 ), ctx );
-            return str -> a.test( str ) || b.test( str );
+        if( selector.equals( "*" ) ) {
+            return str -> true;
+        }
+
+        if( selector.equals( "~" ) ) {
+            return str -> false;
         }
 
         if( selector.startsWith( "#" ) ) {

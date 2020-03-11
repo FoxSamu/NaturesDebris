@@ -1,8 +1,8 @@
 {
   "heightmap": {
     "type": "cave",
-    "low": -24,
-    "high": -8,
+    "low": -12,
+    "high": 0,
     "above": {
       "biomes": {
         "#modernity:forest_like": [ 17, 138, 17 ],

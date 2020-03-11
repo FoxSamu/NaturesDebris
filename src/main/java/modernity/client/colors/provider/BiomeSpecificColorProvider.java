@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 03 - 2020
+ * Date:   03 - 11 - 2020
  * Author: rgsw
  */
 
@@ -75,5 +75,7 @@ public class BiomeSpecificColorProvider implements IColorProvider {
         for( IColorProvider provider : colors.values() ) {
             provider.initForSeed( seed );
         }
+        defaultColor.initForSeed( seed );
+        itemColor.initForSeed( seed );
     }
 }
