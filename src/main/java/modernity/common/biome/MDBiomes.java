@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 10 - 2020
+ * Date:   03 - 11 - 2020
  * Author: rgsw
  */
 
@@ -83,6 +83,14 @@ public final class MDBiomes {
     public static final TallForestBiome HIGH_TALL_FOREST = register( "high_tall_forest", new TallForestBiome( TallForestBiome.Type.HIGH_TALL_FOREST ), MDDimension.MURK_SURFACE );
     public static final TallForestBiome HIGH_OPEN_TALL_FOREST = register( "high_open_tall_forest", new TallForestBiome( TallForestBiome.Type.HIGH_OPEN_TALL_FOREST ), MDDimension.MURK_SURFACE );
     public static final TallForestBiome TALL_FOREST_RIVER = register( "tall_forest_river", new TallForestBiome( TallForestBiome.Type.TALL_FOREST_RIVER ), MDDimension.MURK_SURFACE );
+
+    public static final ShrublandBiome SHRUBLAND = register( "shrubland", new ShrublandBiome( ShrublandBiome.Type.SHRUBLAND ), MDDimension.MURK_SURFACE );
+    public static final ShrublandBiome SHRUBLAND_HEATH = register( "shrubland_heath", new ShrublandBiome( ShrublandBiome.Type.SHRUBLAND_HEATH ), MDDimension.MURK_SURFACE );
+    public static final ShrublandBiome SHRUBLAND_GRASS = register( "shrubland_grass", new ShrublandBiome( ShrublandBiome.Type.SHRUBLAND_GRASS ), MDDimension.MURK_SURFACE );
+    public static final ShrublandBiome SHRUBLAND_TREES = register( "shrubland_trees", new ShrublandBiome( ShrublandBiome.Type.SHRUBLAND_TREES ), MDDimension.MURK_SURFACE );
+    public static final ShrublandBiome SHRUBLAND_SAND = register( "shrubland_sand", new ShrublandBiome( ShrublandBiome.Type.SHRUBLAND_SAND ), MDDimension.MURK_SURFACE );
+    public static final ShrublandBiome SHRUBLAND_REEDS = register( "shrubland_reeds", new ShrublandBiome( ShrublandBiome.Type.SHRUBLAND_REEDS ), MDDimension.MURK_SURFACE );
+    public static final ShrublandBiome SHRUBLAND_RIVER = register( "shrubland_river", new ShrublandBiome( ShrublandBiome.Type.SHRUBLAND_RIVER ), MDDimension.MURK_SURFACE );
 
 
 

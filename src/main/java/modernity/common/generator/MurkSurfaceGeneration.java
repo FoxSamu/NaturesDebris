@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 10 - 2020
+ * Date:   03 - 11 - 2020
  * Author: rgsw
  */
 
@@ -136,6 +136,7 @@ public final class MurkSurfaceGeneration {
         profile.put( MDBiomes.WETLAND, DefaultBiomeRarity.RELATIVELY_COMMON, 0.8, 0.1 );
         profile.put( MDBiomes.LAKE, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 0.9, 0.3 );
         profile.put( MDBiomes.MOORLAND, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 0.4, 0.5 );
+        profile.put( MDBiomes.SHRUBLAND, DefaultBiomeRarity.RELATIVELY_UNCOMMON, 0.4, 0.5 );
 
         return profile;
     }
@@ -160,6 +161,13 @@ public final class MurkSurfaceGeneration {
         profile.put( MDBiomes.MOORLAND, MDBiomes.MOORLAND_RIVER, 1 )
                .put( MDBiomes.HIGH_MOORLAND, MDBiomes.MOORLAND_RIVER, 1 )
                .put( MDBiomes.MOORLAND_NO_TREES, MDBiomes.MOORLAND_RIVER, 1 );
+
+        profile.put( MDBiomes.SHRUBLAND, MDBiomes.SHRUBLAND_RIVER, 1 )
+               .put( MDBiomes.SHRUBLAND_HEATH, MDBiomes.SHRUBLAND_RIVER, 1 )
+               .put( MDBiomes.SHRUBLAND_GRASS, MDBiomes.SHRUBLAND_RIVER, 1 )
+               .put( MDBiomes.SHRUBLAND_SAND, MDBiomes.SHRUBLAND_RIVER, 1 )
+               .put( MDBiomes.SHRUBLAND_TREES, MDBiomes.SHRUBLAND_RIVER, 1 )
+               .put( MDBiomes.SHRUBLAND_REEDS, MDBiomes.SHRUBLAND_RIVER, 1 );
 
         profile.put( MDBiomes.LUSH_GRASSLAND, MDBiomes.LUSH_GRASSLAND_RIVER, 1 )
                .put( MDBiomes.HIGH_LUSH_GRASSLAND, MDBiomes.LUSH_GRASSLAND_RIVER, 1 )
@@ -253,6 +261,13 @@ public final class MurkSurfaceGeneration {
 
         profile.putDefault( MDBiomes.HIGH_FOREST, 14 )
                .put( MDBiomes.HIGH_FOREST, MDBiomes.HIGH_OPEN_FOREST, 3 );
+
+        profile.putDefault( MDBiomes.SHRUBLAND, 11 )
+               .put( MDBiomes.SHRUBLAND, MDBiomes.SHRUBLAND_HEATH, 10 )
+               .put( MDBiomes.SHRUBLAND, MDBiomes.SHRUBLAND_GRASS, 11 )
+               .put( MDBiomes.SHRUBLAND, MDBiomes.SHRUBLAND_SAND, 8 )
+               .put( MDBiomes.SHRUBLAND, MDBiomes.SHRUBLAND_TREES, 9 )
+               .put( MDBiomes.SHRUBLAND, MDBiomes.SHRUBLAND_REEDS, 8 );
 
         return profile;
     }

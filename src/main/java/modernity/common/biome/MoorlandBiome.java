@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 10 - 2020
+ * Date:   03 - 11 - 2020
  * Author: rgsw
  */
 
@@ -32,6 +32,7 @@ public class MoorlandBiome extends ModernityBiome {
     protected MoorlandBiome( Type type ) {
         super( type.builder );
         BiomeGroups.registerBiomeToGroup( "moorland", this );
+        BiomeGroups.registerBiomeToGroup( "moor_like", this );
         if( type == Type.MOORLAND_RIVER ) {
             BiomeGroups.registerBiomeToGroup( "rivers", this );
         }

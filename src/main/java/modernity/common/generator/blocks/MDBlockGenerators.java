@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 04 - 2020
+ * Date:   03 - 11 - 2020
  * Author: rgsw
  */
 
@@ -150,6 +150,7 @@ public final class MDBlockGenerators {
     public static final IBlockGenerator WATERGRASS_SMALL = forTallPlant( MDBlocks.WATERGRASS, rng -> rng.nextInt( 3 ) + 1 );
     public static final IBlockGenerator WATERGRASS_LARGE = forTallPlant( MDBlocks.WATERGRASS, rng -> rng.nextInt( 10 ) + 1 );
 
+    public static final IBlockGenerator MUXUS_BUSH_SINGLE = new SimpleBushBlockGenerator( MDBlocks.MUXUS_BUSH );
     public static final IBlockGenerator MUXUS_BUSH = new BushBlockGenerator( MDBlocks.MUXUS_BUSH );
     public static final IBlockGenerator WATER_WIRE = forBlock( MDBlocks.WATER_WIRE );
 

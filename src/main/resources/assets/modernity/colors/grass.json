@@ -33,7 +33,7 @@
             "size": 10.26
           }
         },
-        "#modernity:moorland": {
+        "#modernity:moor_like": {
           "perlin2d": {
             "a": [ 34, 64, 43 ],
             "b": [ 15, 71, 36 ],

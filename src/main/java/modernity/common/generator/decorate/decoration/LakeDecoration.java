@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 22 - 2019
+ * Date:   03 - 11 - 2020
  * Author: rgsw
  */
 
@@ -116,7 +116,7 @@ public class LakeDecoration implements IDecoration {
                                 return;
                             }
 
-                            if( y < 4 && ! mat.isSolid() && world.getBlockState( rpos ).getBlock() != fluid ) {
+                            if( y < 4 && ! mat.isSolid() && mat != Material.LEAVES && world.getBlockState( rpos ).getBlock() != fluid ) {
                                 return;
                             }
                         }
