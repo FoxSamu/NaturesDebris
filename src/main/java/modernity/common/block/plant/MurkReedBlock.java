@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 12 - 2020
  * Author: rgsw
  */
 
@@ -87,7 +87,7 @@ public class MurkReedBlock extends TallDirectionalPlantBlock implements IMurkyWa
         return false;
     }
 
-//
+
 //    @Override
 //    public void tick( BlockState state, World world, BlockPos pos, Random random ) {
 //        if( state.get( AGE ) < 15 ) {
@@ -191,5 +191,10 @@ public class MurkReedBlock extends TallDirectionalPlantBlock implements IMurkyWa
     @Override
     public OffsetType getOffsetType() {
         return OffsetType.XZ;
+    }
+
+    @Override
+    public BlockPos getRootPos( World world, BlockPos pos, BlockState state ) {
+        return pos;
     }
 }

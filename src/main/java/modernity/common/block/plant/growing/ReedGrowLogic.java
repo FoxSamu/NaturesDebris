@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 01 - 2020
+ * Date:   03 - 12 - 2020
  * Author: rgsw
  */
 
@@ -29,7 +29,7 @@ public class ReedGrowLogic implements IGrowLogic {
             world.setBlockState( pos, state.with( MurkReedBlock.AGE, state.get( MurkReedBlock.AGE ) + 1 ) );
         } else if( canGrow( world, pos, state ) ) {
             world.setBlockState( pos, state.with( MurkReedBlock.AGE, 0 ) );
-            world.setBlockState( pos.up(), MDBlocks.MURK_REED.computeStateForPos( world, pos ).with( MurkReedBlock.WATERLOGGED, world.getFluidState( pos.up() ).getFluid() == MDFluids.MURKY_WATER ) );
+            world.setBlockState( pos.up(), MDBlocks.MURK_REED.computeStateForPos( world, pos.up() ).with( MurkReedBlock.WATERLOGGED, world.getFluidState( pos.up() ).getFluid() == MDFluids.MURKY_WATER ) );
         }
     }
 
@@ -38,16 +38,14 @@ public class ReedGrowLogic implements IGrowLogic {
         if( ! item.getItem().isIn( MDItemTags.FERTILIZER ) ) return false;
         if( world.isRemote ) return true;
         MovingBlockPos mpos = new MovingBlockPos( pos );
-        int i = 0;
-        while( world.getBlockState( mpos ).getBlock() == MDBlocks.MURK_REED && i < 12 ) {
+        while( world.getBlockState( mpos ).getBlock() == MDBlocks.MURK_REED ) {
             mpos.moveUp();
-            i++;
         }
         mpos.moveDown();
         if( canGrow( world, mpos, state ) ) {
-            world.setBlockState( mpos, state.with( MurkReedBlock.AGE, 0 ) );
+            world.setBlockState( mpos, world.getBlockState( mpos ).with( MurkReedBlock.AGE, 0 ) );
             mpos.moveUp();
-            world.setBlockState( mpos, MDBlocks.MURK_REED.computeStateForPos( world, pos ).with( MurkReedBlock.WATERLOGGED, world.getFluidState( mpos ).getFluid() == MDFluids.MURKY_WATER ) );
+            world.setBlockState( mpos, MDBlocks.MURK_REED.computeStateForPos( world, mpos ).with( MurkReedBlock.WATERLOGGED, world.getFluidState( mpos ).getFluid() == MDFluids.MURKY_WATER ) );
             return true;
         }
         return false;
@@ -56,7 +54,7 @@ public class ReedGrowLogic implements IGrowLogic {
     private boolean canGrow( World world, BlockPos pos, BlockState state ) {
         BlockPos upPos = pos.up();
         BlockState upState = world.getBlockState( upPos );
-        if( ! upState.isAir( world, upPos ) && upState.getBlock() != MDBlocks.MURKY_WATER ) {
+        if( upPos.getY() > 255 || ! upState.isAir( world, upPos ) && upState.getBlock() != MDBlocks.MURKY_WATER ) {
             return false;
         }
         int owHeight = 0, totHeight = 0;
