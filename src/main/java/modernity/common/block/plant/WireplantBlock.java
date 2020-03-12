@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 12 - 2020
  * Author: rgsw
  */
 
@@ -53,5 +53,10 @@ public class WireplantBlock extends SimplePlantBlock {
         } else {
             world.setBlockState( pos, MDBlocks.WIREPLANT.computeStateForPos( world, pos ), 3 );
         }
+    }
+
+    @Override
+    public OffsetType getOffsetType() {
+        return OffsetType.NONE;
     }
 }
