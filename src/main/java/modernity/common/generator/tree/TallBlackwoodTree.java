@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 11 - 2020
+ * Date:   03 - 12 - 2020
  * Author: rgsw
  */
 
@@ -304,7 +304,7 @@ public class TallBlackwoodTree extends Tree {
 
     @Override
     protected boolean isDecayableLeaf( BlockState state ) {
-        return state.has( HangLeavesBlock.DISTANCE ) && state.get( HangLeavesBlock.DISTANCE ) > 0;
+        return false;
     }
 
     @Override
@@ -314,6 +314,6 @@ public class TallBlackwoodTree extends Tree {
 
     @Override
     protected int getLeafDistanceMax() {
-        return 10;
+        return 2;
     }
 }
