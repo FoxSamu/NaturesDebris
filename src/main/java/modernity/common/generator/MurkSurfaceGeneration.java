@@ -331,7 +331,6 @@ public final class MurkSurfaceGeneration {
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.ALUMINIUM_ORE.getDefaultState(), 9 ), new BetweenHeight( 18, 128 ), new Fixed( 11 ) ) );
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.ANTHRACITE_ORE.getDefaultState(), 15 ), new BetweenHeight( 18, 128 ), new Fixed( 20 ) ) );
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.LUMINOSITE_ORE.getDefaultState(), 12 ), new BetweenHeight( 18, 128 ), new Fixed( 17 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.LUMINOSITE_ORE.getDefaultState(), 12 ), new BetweenHeight( 18, 128 ), new Fixed( 17 ) ) );
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.GOO_ORE.getDefaultState(), 6 ), new BetweenHeight( 40, 80 ), new Fixed( 4 ) ) );
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.FOSSIL.getDefaultState(), 6 ), new BetweenHeight( 30, 60 ), new Fixed( 3 ) ) );
 
