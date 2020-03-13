@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 11 - 2020
+ * Date:   03 - 13 - 2020
  * Author: rgsw
  */
 
@@ -320,6 +320,9 @@ public final class MurkSurfaceGeneration {
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_TYPES, MDBlocks.LIMESTONE.getDefaultState(), 40 ), new BelowHeight( 128 ) ) );
 
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( SUMESTONE, MDBlocks.DARK_SUMESTONE.getDefaultState(), 40 ), new BetweenHeight( 0, 26 ) ) );
+
+        biome.addDecorator( new DecorationDecorator( new LakeDecoration( MDBlocks.MOLTEN_ROCK, MDBlocks.ROCK, null, null ), new BetweenHeight( 16, 32 ), new Chance( 0.4 ) ) );
+        biome.addDecorator( new DecorationDecorator( new LakeDecoration( MDBlocks.CLEAN_WATER, MDBlocks.ROCK, null, null ), new BetweenHeight( 16, 32 ), new Chance( 0.01 ) ) );
     }
 
     public static void addCaveOres( ModernityBiome biome ) {
