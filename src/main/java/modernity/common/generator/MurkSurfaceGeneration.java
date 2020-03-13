@@ -27,6 +27,7 @@ import modernity.common.generator.blocks.MDBlockGenerators;
 import modernity.common.generator.decorate.condition.IsBelowHeight;
 import modernity.common.generator.decorate.count.Chance;
 import modernity.common.generator.decorate.count.Fixed;
+import modernity.common.generator.decorate.count.One;
 import modernity.common.generator.decorate.decoration.*;
 import modernity.common.generator.decorate.decorator.DecorationDecorator;
 import modernity.common.generator.decorate.position.BelowHeight;
@@ -329,6 +330,10 @@ public final class MurkSurfaceGeneration {
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.SALT_ORE.getDefaultState(), 15 ), new BetweenHeight( 18, 128 ), new Fixed( 17 ) ) );
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.ALUMINIUM_ORE.getDefaultState(), 9 ), new BetweenHeight( 18, 128 ), new Fixed( 11 ) ) );
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.ANTHRACITE_ORE.getDefaultState(), 15 ), new BetweenHeight( 18, 128 ), new Fixed( 20 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.LUMINOSITE_ORE.getDefaultState(), 12 ), new BetweenHeight( 18, 128 ), new Fixed( 17 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.LUMINOSITE_ORE.getDefaultState(), 12 ), new BetweenHeight( 18, 128 ), new Fixed( 17 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.GOO_ORE.getDefaultState(), 6 ), new BetweenHeight( 40, 80 ), new Fixed( 4 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.FOSSIL.getDefaultState(), 6 ), new BetweenHeight( 30, 60 ), new Fixed( 3 ) ) );
 
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( SUMESTONE, MDBlocks.FINNERITE_ORE.getDefaultState(), 3 ), new BetweenHeight( 0, 26 ), new Chance( 1 / 3D ) ) );
         biome.addDecorator( new DecorationDecorator( new MineableDecoration( SUMESTONE, MDBlocks.IVERITE_ORE.getDefaultState(), 3 ), new BetweenHeight( 0, 26 ), new Chance( 1 / 3D ) ) );
@@ -349,6 +354,7 @@ public final class MurkSurfaceGeneration {
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlockGenerators.MURINA ), new InCave(), new Fixed( 8 ) ) );
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 120, 6, MDBlockGenerators.CAVE_GRASS ), new InCave(), new Fixed( 7 ) ) );
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlockGenerators.HANGING_MOSS ), new BetweenHeight( 0, 60 ), new Fixed( 3 ) ) );
+        biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlockGenerators.GOO_DRIPS ), new BetweenHeight( 0, 60 ), new One() ) );
 
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlockGenerators.SEEDLE ), new InCave() ) );
         biome.addDecorator( new DecorationDecorator( new ClusterBushDecoration( 80, 8, MDBlockGenerators.BLACK_MUSHROOM ), new InCave() ) );

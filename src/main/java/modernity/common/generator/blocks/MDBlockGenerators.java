@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 11 - 2020
+ * Date:   03 - 13 - 2020
  * Author: rgsw
  */
 
@@ -157,6 +157,8 @@ public final class MDBlockGenerators {
     public static final IBlockGenerator MOSS = forFacingPlant( MDBlocks.MOSS );
     public static final IBlockGenerator DEAD_MOSS = forFacingPlant( MDBlocks.DEAD_MOSS );
     public static final IBlockGenerator LICHEN = forFacingPlant( MDBlocks.LICHEN );
+
+    public static final IBlockGenerator GOO_DRIPS = forSinglePlant( MDBlocks.GOO_DRIPS );
 
     public static final IBlockGenerator MURK_REED = new MurkReedBlockGenerator();
     public static final IBlockGenerator PUDDLE = new PuddleBlockGenerator();
