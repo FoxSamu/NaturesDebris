@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 26 - 2020
+ * Date:   03 - 14 - 2020
  * Author: rgsw
  */
 
@@ -28,7 +28,7 @@ public class AmbientParticle extends SpriteTexturedParticle {
 
         particleScale *= ( rand.nextFloat() * 0.6F + 1.0F ) * 0.3F;
 
-        maxAge = 150;
+        maxAge = 90 + rand.nextInt( 11 );
 
         setSize( 0.2F, 0.2F );
     }
@@ -52,13 +52,6 @@ public class AmbientParticle extends SpriteTexturedParticle {
             motionY *= 0.99;
             motionZ *= 0.99;
         }
-    }
-
-    @Override
-    protected int getBrightnessForRender( float partialTicks ) {
-        int skylight = 13;
-        int blocklight = 2;
-        return skylight << 20 | blocklight << 4;
     }
 
     @Override

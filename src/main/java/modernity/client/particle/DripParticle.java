@@ -1,22 +1,24 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 23 - 2019
+ * Date:   03 - 14 - 2020
  * Author: rgsw
  */
 
 package modernity.client.particle;
 
 import modernity.api.util.ColorUtil;
-import net.minecraft.client.particle.IParticleRenderType;
-import net.minecraft.client.particle.SpriteTexturedParticle;
+import modernity.common.particle.MDParticleTypes;
+import net.minecraft.client.particle.*;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
+import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 /**
@@ -99,7 +101,10 @@ public class DripParticle extends SpriteTexturedParticle {
         protected void updateAge() {
             if( age++ > maxAge ) {
                 setExpired();
-                world.addParticle( type.falling(), posX, posY, posZ, motionX, motionY, motionZ );
+                IParticleData data = type.falling();
+                if( data != null ) {
+                    world.addParticle( data, posX, posY, posZ, motionX, motionY, motionZ );
+                }
             }
 
         }
@@ -128,7 +133,10 @@ public class DripParticle extends SpriteTexturedParticle {
         protected void updateMotion() {
             if( onGround ) {
                 setExpired();
-                world.addParticle( type.landing(), posX, posY, posZ, 0, 0, 0 );
+                IParticleData data = type.landing();
+                if( data != null ) {
+                    world.addParticle( data, posX, posY, posZ, 0, 0, 0 );
+                }
             }
         }
     }
@@ -157,89 +165,158 @@ public class DripParticle extends SpriteTexturedParticle {
             return 40;
         }
     }
-//
-//    public static class Oil implements Type {
-//        private static final Oil INST = new Oil();
-//
-//        private Oil() {
-//        }
-//
-//        @Override
-//        public boolean dissolvesIn( Fluid fluid ) {
-//            return fluid == MDFluids.OIL || fluid == MDFluids.FLOWING_OIL;
-//        }
-//
-//        @Override
-//        public int brightness( int localBrightness, double lifetime ) {
-//            return localBrightness;
-//        }
-//
-//        @Override
-//        public int color( double lifetime ) {
-//            return 0x222222;
-//        }
-//
-//        @Override
-//        public IParticleData falling() {
-//            return MDParticleTypes.OIL_FALLING;
-//        }
-//
-//        @Override
-//        public IParticleData landing() {
-//            return MDParticleTypes.OIL_LANDING;
-//        }
-//
-//        @Override
-//        public int hangTime( Random rand ) {
-//            return 80 + rand.nextInt( 20 );
-//        }
-//
-//        public static class DrippingFactory implements IParticleFactory<BasicParticleType> {
-//            private final IAnimatedSprite sprite;
-//
-//            public DrippingFactory( IAnimatedSprite sprite ) {
-//                this.sprite = sprite;
-//            }
-//
-//            @Nullable
-//            @Override
-//            public Particle makeParticle( BasicParticleType type, World world, double x, double y, double z, double xv, double yv, double zv ) {
-//                Dripping particle = new Dripping( world, x, y, z, INST );
-//                particle.selectSpriteRandomly( sprite );
-//                return particle;
-//            }
-//        }
-//
-//        public static class FallingFactory implements IParticleFactory<BasicParticleType> {
-//            private final IAnimatedSprite sprite;
-//
-//            public FallingFactory( IAnimatedSprite sprite ) {
-//                this.sprite = sprite;
-//            }
-//
-//            @Nullable
-//            @Override
-//            public Particle makeParticle( BasicParticleType type, World world, double x, double y, double z, double xv, double yv, double zv ) {
-//                Falling particle = new Falling( world, x, y, z, INST );
-//                particle.selectSpriteRandomly( sprite );
-//                return particle;
-//            }
-//        }
-//
-//        public static class LandingFactory implements IParticleFactory<BasicParticleType> {
-//            private final IAnimatedSprite sprite;
-//
-//            public LandingFactory( IAnimatedSprite sprite ) {
-//                this.sprite = sprite;
-//            }
-//
-//            @Nullable
-//            @Override
-//            public Particle makeParticle( BasicParticleType type, World world, double x, double y, double z, double xv, double yv, double zv ) {
-//                Landing particle = new Landing( world, x, y, z, INST );
-//                particle.selectSpriteRandomly( sprite );
-//                return particle;
-//            }
-//        }
-//    }
+
+    public static class Goo implements Type {
+        private static final Goo INST = new Goo();
+
+        private Goo() {
+        }
+
+        @Override
+        public boolean dissolvesIn( Fluid fluid ) {
+            return false;
+        }
+
+        @Override
+        public int brightness( int localBrightness, double lifetime ) {
+            return localBrightness;
+        }
+
+        @Override
+        public int color( double lifetime ) {
+            return 0x40372f;
+        }
+
+        @Override
+        public IParticleData falling() {
+            return MDParticleTypes.GOO_FALLING;
+        }
+
+        @Override
+        public IParticleData landing() {
+            return MDParticleTypes.GOO_LANDING;
+        }
+
+        @Override
+        public int hangTime( Random rand ) {
+            return 80 + rand.nextInt( 20 );
+        }
+
+        public static class HangingFactory implements IParticleFactory<BasicParticleType> {
+            private final IAnimatedSprite sprite;
+
+            public HangingFactory( IAnimatedSprite sprite ) {
+                this.sprite = sprite;
+            }
+
+            @Nullable
+            @Override
+            public Particle makeParticle( BasicParticleType type, World world, double x, double y, double z, double xv, double yv, double zv ) {
+                Dripping particle = new Dripping( world, x, y, z, INST );
+                particle.selectSpriteRandomly( sprite );
+                return particle;
+            }
+        }
+
+        public static class FallingFactory implements IParticleFactory<BasicParticleType> {
+            private final IAnimatedSprite sprite;
+
+            public FallingFactory( IAnimatedSprite sprite ) {
+                this.sprite = sprite;
+            }
+
+            @Nullable
+            @Override
+            public Particle makeParticle( BasicParticleType type, World world, double x, double y, double z, double xv, double yv, double zv ) {
+                Falling particle = new Falling( world, x, y, z, INST );
+                particle.selectSpriteRandomly( sprite );
+                return particle;
+            }
+        }
+
+        public static class LandingFactory implements IParticleFactory<BasicParticleType> {
+            private final IAnimatedSprite sprite;
+
+            public LandingFactory( IAnimatedSprite sprite ) {
+                this.sprite = sprite;
+            }
+
+            @Nullable
+            @Override
+            public Particle makeParticle( BasicParticleType type, World world, double x, double y, double z, double xv, double yv, double zv ) {
+                Landing particle = new Landing( world, x, y, z, INST );
+                particle.selectSpriteRandomly( sprite );
+                return particle;
+            }
+        }
+    }
+
+    public static class HangingMossDrip implements Type {
+        private static final HangingMossDrip INST = new HangingMossDrip();
+
+        private HangingMossDrip() {
+        }
+
+        @Override
+        public boolean dissolvesIn( Fluid fluid ) {
+            return false;
+        }
+
+        @Override
+        public int brightness( int localBrightness, double lifetime ) {
+            return localBrightness;
+        }
+
+        @Override
+        public int color( double lifetime ) {
+            return 0xe3e6d1;
+        }
+
+        @Override
+        public IParticleData falling() {
+            return MDParticleTypes.MOSS_DRIP_FALLING;
+        }
+
+        @Override
+        public IParticleData landing() {
+            return null;
+        }
+
+        @Override
+        public int hangTime( Random rand ) {
+            return 40 + rand.nextInt( 10 );
+        }
+
+        public static class HangingFactory implements IParticleFactory<BasicParticleType> {
+            private final IAnimatedSprite sprite;
+
+            public HangingFactory( IAnimatedSprite sprite ) {
+                this.sprite = sprite;
+            }
+
+            @Nullable
+            @Override
+            public Particle makeParticle( BasicParticleType type, World world, double x, double y, double z, double xv, double yv, double zv ) {
+                Dripping particle = new Dripping( world, x, y, z, INST );
+                particle.selectSpriteRandomly( sprite );
+                return particle;
+            }
+        }
+
+        public static class FallingFactory implements IParticleFactory<BasicParticleType> {
+            private final IAnimatedSprite sprite;
+
+            public FallingFactory( IAnimatedSprite sprite ) {
+                this.sprite = sprite;
+            }
+
+            @Nullable
+            @Override
+            public Particle makeParticle( BasicParticleType type, World world, double x, double y, double z, double xv, double yv, double zv ) {
+                Falling particle = new Falling( world, x, y, z, INST );
+                particle.selectSpriteRandomly( sprite );
+                return particle;
+            }
+        }
+    }
 }
