@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   03 - 14 - 2020
  * Author: rgsw
  */
 
@@ -43,7 +43,10 @@ public class FogEnvEvent extends EffectingEnvEvent {
 
     @Override
     protected void onStart() {
-        density = rand.nextFloat() * 0.06F + 0.02F;
+        density = rand.nextFloat() * 0.03F + 0.005F;
+        if( rand.nextInt( 6 ) == 0 ) {
+            density += rand.nextFloat() * 0.02F;
+        }
     }
 
     @Override

@@ -234,9 +234,9 @@ public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimen
             float fogDens = fogEv.getDensity();
             float density = MathUtil.lerp( fog.density, fogDens, fogFac );
             if( density > fog.density ) fog.density = density;
-            fog.color[ 0 ] = MathUtil.lerp( fog.color[ 0 ], 0.3F, fogFac );
-            fog.color[ 1 ] = MathUtil.lerp( fog.color[ 1 ], 0.3F, fogFac );
-            fog.color[ 2 ] = MathUtil.lerp( fog.color[ 2 ], 0.3F, fogFac );
+            fog.color[ 0 ] = MathUtil.lerp( fog.color[ 0 ], 0.15F, fogFac );
+            fog.color[ 1 ] = MathUtil.lerp( fog.color[ 1 ], 0.15F, fogFac );
+            fog.color[ 2 ] = MathUtil.lerp( fog.color[ 2 ], 0.15F, fogFac );
         }
 
         SkyLightEnvEvent skylightEv = getEnvEventManager().getByType( MDEnvEvents.SKYLIGHT );
