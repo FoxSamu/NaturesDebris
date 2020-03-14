@@ -39,16 +39,7 @@ public class SurfaceSkyRenderer implements IRenderHandler {
     private static final ResourceLocation STAR = new ResourceLocation( "modernity:textures/environment/stars.png" );
     private static final ResourceLocation METEORITE = new ResourceLocation( "modernity:textures/environment/meteorite.png" );
 
-    private static final ResourceLocation[] FOG = {
-        new ResourceLocation( "modernity:textures/environment/fog1.png" ),
-        new ResourceLocation( "modernity:textures/environment/fog2.png" ),
-        new ResourceLocation( "modernity:textures/environment/fog3.png" ),
-        new ResourceLocation( "modernity:textures/environment/fog4.png" ),
-        new ResourceLocation( "modernity:textures/environment/fog5.png" ),
-        new ResourceLocation( "modernity:textures/environment/fog6.png" ),
-        new ResourceLocation( "modernity:textures/environment/fog7.png" ),
-        new ResourceLocation( "modernity:textures/environment/fog8.png" )
-    };
+    private static final ResourceLocation FOG = new ResourceLocation( "modernity:textures/environment/fog.png" );
 
     private static final ResourceLocation[] MOONS = {
         new ResourceLocation( "modernity:textures/environment/moon0.png" ),
@@ -704,6 +695,9 @@ public class SurfaceSkyRenderer implements IRenderHandler {
         Tessellator tess = Tessellator.getInstance();
         BufferBuilder buff = tess.getBuffer();
 
+        buff.begin( GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR );
+        mc.getTextureManager().bindTexture( FOG );
+
         for( Cloud cld : clouds ) {
             double x = cld.x;
             double y = cld.y;
@@ -716,9 +710,6 @@ public class SurfaceSkyRenderer implements IRenderHandler {
             double distance = x * x + y * y + z * z;
 
             if( distance > 0.01 && cld.age >= 0 ) {
-
-                // TODO: Merge fogs into one texture and skip a lot of draw operations
-                mc.getTextureManager().bindTexture( FOG[ cld.type ] );
 
                 double alpha = 1;
                 if( cld.age < 70 ) {
@@ -748,13 +739,18 @@ public class SurfaceSkyRenderer implements IRenderHandler {
                 float cloudGreen = EnvironmentRenderingManager.SKY.cloudColor[ 1 ];
                 float cloudBlue = EnvironmentRenderingManager.SKY.cloudColor[ 2 ];
 
-                buff.begin( GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR );
                 for( int vtx = 0; vtx < 4; ++ vtx ) {
                     double locU = ( vtx & 2 ) - 1;
                     double locV = ( vtx + 1 & 2 ) - 1;
 
-                    double texU = ( locU + 1 ) / 2;
-                    double texV = ( locV + 1 ) / 2;
+                    int spriteU = cld.type & 3;
+                    int spriteV = cld.type / 4;
+
+                    double sprU = spriteU / 4D;
+                    double sprV = spriteV / 2D;
+
+                    double texU = sprU + ( locU + 1 ) / 8;
+                    double texV = sprV + ( locV + 1 ) / 4;
 
                     double posU = locU * size;
                     double posV = locV * size;
@@ -774,9 +770,10 @@ public class SurfaceSkyRenderer implements IRenderHandler {
                         .endVertex();
                 }
 
-                tess.draw();
             }
         }
+
+        tess.draw();
     }
 
     private void renderSkylight() {
@@ -787,6 +784,9 @@ public class SurfaceSkyRenderer implements IRenderHandler {
         Tessellator tess = Tessellator.getInstance();
         BufferBuilder buff = tess.getBuffer();
 
+        Minecraft.getInstance().getTextureManager().bindTexture( FOG );
+
+        buff.begin( GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR );
 
         for( Light lgt : lights ) {
             double x = lgt.x;
@@ -830,16 +830,18 @@ public class SurfaceSkyRenderer implements IRenderHandler {
 
                 double dirXmultiplier = Math.cos( theta );
 
-                Minecraft.getInstance().getTextureManager().bindTexture( FOG[ lgt.type ] );
-
-                buff.begin( GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR );
-
                 for( int vtx = 0; vtx < 4; ++ vtx ) {
                     double locU = ( vtx & 2 ) - 1;
                     double locV = ( vtx + 1 & 2 ) - 1;
 
-                    double texU = ( locU + 1 ) / 2;
-                    double texV = ( locV + 1 ) / 2;
+                    int spriteU = lgt.type & 3;
+                    int spriteV = lgt.type / 4;
+
+                    double sprU = spriteU / 4D;
+                    double sprV = spriteV / 2D;
+
+                    double texU = sprU + ( locU + 1 ) / 8;
+                    double texV = sprV + ( locV + 1 ) / 4;
 
                     double posU = locU * size;
                     double posV = locV * size;
@@ -858,10 +860,10 @@ public class SurfaceSkyRenderer implements IRenderHandler {
                         )
                         .endVertex();
                 }
-
-                tess.draw();
             }
         }
+
+        tess.draw();
     }
 
     private void renderSatellite() {
