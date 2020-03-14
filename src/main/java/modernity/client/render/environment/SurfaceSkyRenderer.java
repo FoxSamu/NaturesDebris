@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 14 - 2020
  * Author: rgsw
  */
 
@@ -80,11 +80,17 @@ public class SurfaceSkyRenderer implements IRenderHandler {
     private ClientWorld world;
     private Minecraft mc = Minecraft.getInstance();
 
+    private final int moonStarRotationShift;
+    private final int moonStarRotationAngle;
+
     private final Supplier<FogRenderer> fogRenderer = fogRendererField.forInstance( mc.gameRenderer );
 
     public SurfaceSkyRenderer( long seed ) {
         Random rand = new Random( seed * 372775239494235L );
         twilightNoise = new FractalPerlin3D( rand.nextInt(), 3 );
+
+        moonStarRotationShift = rand.nextInt( 101 ) - 50;
+        moonStarRotationAngle = rand.nextInt( 360 );
 
         generateStars( rand );
     }
@@ -431,12 +437,15 @@ public class SurfaceSkyRenderer implements IRenderHandler {
 
         if( brightness > 0 ) {
             Minecraft.getInstance().getTextureManager().bindTexture( STAR );
-            float mstime = System.nanoTime() / 3500000000F;
+            float moonRot = EnvironmentRenderingManager.SKY.moonRotation;
+
             GlStateManager.pushMatrix();
-            GlStateManager.rotatef( mstime, 1, 0, 0 );
+            GlStateManager.rotatef( moonStarRotationAngle, 0, 1, 0 );
+            GlStateManager.rotatef( moonStarRotationShift, 0, 0, 1 );
+            GlStateManager.rotatef( moonRot * 360, 1, 0, 0 );
             GlStateManager.color4f( 1, 1, 1, brightness );
 
-            GlStateManager.callList( this.starList );
+            GlStateManager.callList( starList );
 
             GlStateManager.color4f( 1, 1, 1, 1 );
             GlStateManager.popMatrix();
@@ -866,6 +875,8 @@ public class SurfaceSkyRenderer implements IRenderHandler {
             Minecraft.getInstance().getTextureManager().bindTexture( MOONS[ moonPhase ] );
 
             GlStateManager.pushMatrix();
+            GlStateManager.rotatef( moonStarRotationAngle, 0, 1, 0 );
+            GlStateManager.rotatef( moonStarRotationShift, 0, 0, 1 );
             GlStateManager.rotatef( moonRot * 360, 1, 0, 0 );
 
             float mr = EnvironmentRenderingManager.SKY.moonColor[ 0 ];
