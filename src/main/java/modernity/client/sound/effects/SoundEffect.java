@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 24 - 2020
+ * Date:   03 - 14 - 2020
  * Author: rgsw
  */
 
@@ -52,6 +52,14 @@ public class SoundEffect implements ISoundEffectLayer {
     public void delete() {
         alDeleteEffects( effectID );
         alDeleteAuxiliaryEffectSlots( slotID );
+    }
+
+    public void setGain( float gain ) {
+        alAuxiliaryEffectSlotf(
+            slotID,
+            AL_EFFECTSLOT_GAIN,
+            gain
+        );
     }
 
     @Override

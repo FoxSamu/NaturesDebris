@@ -2,14 +2,17 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 24 - 2020
+ * Date:   03 - 14 - 2020
  * Author: rgsw
  */
 
 package modernity.common.world.dimen;
 
 import modernity.api.dimension.*;
+import modernity.api.event.SoundEffectEvent;
 import modernity.client.environment.*;
+import modernity.client.sound.effects.LayeredSourceEffect;
+import modernity.client.sound.effects.SoundEffect;
 import modernity.common.biome.MDBiomes;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.environment.event.EnvironmentEventManager;
@@ -21,6 +24,7 @@ import modernity.common.environment.satellite.SatelliteData;
 import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.handler.WorldTickHandler;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
@@ -35,16 +39,20 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.redgalaxy.util.MathUtil;
+import org.lwjgl.openal.EXTEfx;
 
 import javax.annotation.Nullable;
 
 /**
  * The surface dimension of the Modernity.
  */
-public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimension, ISatelliteDimension, IEnvEventsDimension, IClientTickingDimension, IInitializeDimension, IPrecipitationDimension, IShaderDimension, IReverbDimension {
+public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimension, ISatelliteDimension, IEnvEventsDimension, IClientTickingDimension, IInitializeDimension, IPrecipitationDimension, IShaderDimension, ISoundEffectDimension {
 
     private SatelliteData satelliteData;
     private EnvironmentEventManager envEventManager;
+
+    @OnlyIn( Dist.CLIENT )
+    private SoundManager sounds;
 
     public MurkSurfaceDimension( World world, DimensionType type ) {
         super( world, type );
@@ -458,7 +466,34 @@ public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimen
     }
 
     @Override
-    public boolean hasReverb( Vec3d pos ) {
-        return true;
+    @OnlyIn( Dist.CLIENT )
+    public void handleSoundEffect( SoundEffectEvent event ) {
+        SoundCategory cgr = event.getSound().getCategory();
+        if( cgr != SoundCategory.MUSIC ) {
+            float caveFactor = EnvironmentRenderingManager.getCaveFactor();
+
+            if( sounds == null ) {
+                sounds = new SoundManager();
+            }
+
+            sounds.setCaveEffect( caveFactor );
+
+            event.setEffect( sounds.effect );
+        }
+    }
+
+    @OnlyIn( Dist.CLIENT )
+    private static class SoundManager {
+        public final LayeredSourceEffect effect = new LayeredSourceEffect();
+        public final SoundEffect reverb = new SoundEffect( EXTEfx.AL_EFFECT_EAXREVERB );
+
+        SoundManager() {
+            effect.addLayer( reverb );
+            reverb.setParamF( EXTEfx.AL_EAXREVERB_DECAY_TIME, 6F );
+        }
+
+        void setCaveEffect( float eff ) {
+            reverb.setGain( eff );
+        }
     }
 }

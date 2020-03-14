@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 24 - 2020
+ * Date:   03 - 14 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.client.sound.system;
 
 import modernity.api.reflect.FieldAccessor;
 import modernity.api.reflect.MethodAccessor;
-import modernity.client.handler.UpdateSoundSourceEvent;
+import modernity.api.event.UpdateSoundSourceEvent;
 import modernity.client.sound.effects.ISoundSourceEffect;
 import net.minecraft.client.audio.AudioStreamBuffer;
 import net.minecraft.client.audio.IAudioStream;

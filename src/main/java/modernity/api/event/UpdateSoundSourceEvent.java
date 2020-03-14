@@ -2,11 +2,11 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 24 - 2020
+ * Date:   03 - 14 - 2020
  * Author: rgsw
  */
 
-package modernity.client.handler;
+package modernity.api.event;
 
 import modernity.client.sound.system.EFXSoundSource;
 import net.minecraft.client.audio.SoundSource;
