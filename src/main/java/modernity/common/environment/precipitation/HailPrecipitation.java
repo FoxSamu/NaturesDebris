@@ -2,14 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.environment.precipitation;
 
 import modernity.client.render.environment.SurfaceWeatherRenderer;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.block.misc.PuddleBlock;
 import modernity.common.particle.MDParticleTypes;
 import net.minecraft.block.BlockState;
@@ -93,9 +93,9 @@ public class HailPrecipitation implements IPrecipitation {
         if( pos.getY() == height && doesPuddleGenerate( world, pos ) ) {
             BlockState state = world.getBlockState( pos );
             if( state.isAir( world, pos ) ) {
-                world.setBlockState( pos, MDBlocks.PUDDLE.getDefaultState().with( PuddleBlock.DISTANCE, 0 ), 7 );
+                world.setBlockState( pos, MDNatureBlocks.PUDDLE.getDefaultState().with( PuddleBlock.DISTANCE, 0 ), 7 );
             } else {
-                MDBlocks.PUDDLE.rainTick( world, pos, state, 0.5 );
+                MDNatureBlocks.PUDDLE.rainTick( world, pos, state, 0.5 );
             }
         }
     }
@@ -103,7 +103,7 @@ public class HailPrecipitation implements IPrecipitation {
     private boolean doesPuddleGenerate( World world, BlockPos pos ) {
         if( pos.getY() >= 0 && pos.getY() < 256 ) {
             BlockState state = world.getBlockState( pos );
-            return ( state.isAir( world, pos ) || state.getBlock() == MDBlocks.PUDDLE ) && MDBlocks.PUDDLE.getDefaultState().isValidPosition( world, pos );
+            return ( state.isAir( world, pos ) || state.getBlock() == MDNatureBlocks.PUDDLE ) && MDNatureBlocks.PUDDLE.getDefaultState().isValidPosition( world, pos );
         }
 
         return false;

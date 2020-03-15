@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 27 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.item;
 
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDBuildingBlocks;
+import modernity.common.block.MDNatureBlocks;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyLoadBase;
@@ -17,10 +18,10 @@ import java.util.function.Supplier;
 
 public enum MDItemTier implements IItemTier {
     BLACKWOOD( 0, 64, 2, 0, 2, () -> {
-        return Ingredient.fromItems( MDBlocks.BLACKWOOD_PLANKS );
+        return Ingredient.fromItems( MDBuildingBlocks.BLACKWOOD_PLANKS );
     } ),
     DARKROCK( 1, 125, 4, 1, 7, () -> {
-        return Ingredient.fromItems( MDBlocks.DARKROCK );
+        return Ingredient.fromItems( MDNatureBlocks.DARKROCK );
     } ),
     ALUMINIUM( 2, 284, 6, 2, 13, () -> {
         return Ingredient.fromItems( MDItems.ALUMINIUM_INGOT );

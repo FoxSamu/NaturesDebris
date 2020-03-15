@@ -2,15 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 12 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.tree;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.common.block.MDBlockTags;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.*;
 import modernity.common.block.base.AxisBlock;
 import modernity.common.block.plant.FacingPlantBlock;
 import modernity.common.block.prop.SignedIntegerProperty;
@@ -32,15 +31,15 @@ import java.util.function.Consumer;
 
 public class TallBlackwoodTree extends Tree {
 
-    private static final BlockState LEAVES = MDBlocks.BLACKWOOD_LEAVES.getDefaultState().with( HangLeavesBlock.DISTANCE, 0 );
+    private static final BlockState LEAVES = MDTreeBlocks.BLACKWOOD_LEAVES.getDefaultState().with( HangLeavesBlock.DISTANCE, 0 );
     private static final BlockState HANGING_LEAVES = LEAVES;
-    private static final BlockState MURINA = MDBlocks.MURINA.getDefaultState();
-    private static final BlockState LOG_Y = MDBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Y );
-    private static final BlockState LOG_X = MDBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X );
-    private static final BlockState LOG_Z = MDBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z );
-    private static final BlockState WOOD_X = MDBlocks.BLACKWOOD.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X );
-    private static final BlockState WOOD_Z = MDBlocks.BLACKWOOD.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z );
-    private static final BlockState DIRT = MDBlocks.MURKY_DIRT.getDefaultState();
+    private static final BlockState MURINA = MDPlantBlocks.MURINA.getDefaultState();
+    private static final BlockState LOG_Y = MDTreeBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Y );
+    private static final BlockState LOG_X = MDTreeBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X );
+    private static final BlockState LOG_Z = MDTreeBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z );
+    private static final BlockState WOOD_X = MDTreeBlocks.BLACKWOOD.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X );
+    private static final BlockState WOOD_Z = MDTreeBlocks.BLACKWOOD.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z );
+    private static final BlockState DIRT = MDNatureBlocks.MURKY_DIRT.getDefaultState();
 
     @Override
     public boolean isSustainable( IWorldReader world, BlockPos pos, BlockState state ) {
@@ -204,7 +203,7 @@ public class TallBlackwoodTree extends Tree {
             for( int y = 0; y < h; y++ ) {
                 mpos.setPos( pos ).addPos( x, y, z );
                 if( isAir( world, mpos ) ) {
-                    setBlockState( world, mpos, MDBlocks.MOSS.getDefaultState().with( FacingPlantBlock.FACING, dirFrom8( dir, rand ) ) );
+                    setBlockState( world, mpos, MDPlantBlocks.MOSS.getDefaultState().with( FacingPlantBlock.FACING, dirFrom8( dir, rand ) ) );
                 }
             }
         }

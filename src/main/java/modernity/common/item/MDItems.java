@@ -2,14 +2,15 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 01 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.item;
 
 import modernity.api.item.IColoredItem;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
+import modernity.common.block.MDPlantBlocks;
 import modernity.common.fluid.MDFluids;
 import modernity.common.item.base.*;
 import modernity.common.item.util.ItemUtil;
@@ -77,10 +78,10 @@ public final class MDItems {
     public static final Item MURK_RICE = item( "murk_rice", new Item( new Item.Properties().group( MDItemGroup.MISC ).food( MDFoods.MURK_RICE ) ) );
 
     // Seeds
-    public static final Item MURK_ROOTS_SEEDS = item( "murk_roots_seeds", new BlockNamedItem( MDBlocks.MURK_ROOTS, new Item.Properties().group( MDItemGroup.MISC ) ) );
-    public static final Item MURK_RICE_SEEDS = item( "murk_rice_seeds", new BlockNamedItem( MDBlocks.MURK_RICE, new Item.Properties().group( MDItemGroup.MISC ) ) );
-    public static final Item SEEPWEED_SEEDS = item( "seepweed_seeds", new BlockNamedItem( MDBlocks.SEEPWEED_CROP, new Item.Properties().group( MDItemGroup.MISC ) ) );
-    public static final Item NUDWART_SEEDS = item( "nudwart_seeds", new BlockNamedItem( MDBlocks.NUDWART_CROP, new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item MURK_ROOTS_SEEDS = item( "murk_roots_seeds", new BlockNamedItem( MDPlantBlocks.MURK_ROOTS, new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item MURK_RICE_SEEDS = item( "murk_rice_seeds", new BlockNamedItem( MDPlantBlocks.MURK_RICE, new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item SEEPWEED_SEEDS = item( "seepweed_seeds", new BlockNamedItem( MDPlantBlocks.SEEPWEED_CROP, new Item.Properties().group( MDItemGroup.MISC ) ) );
+    public static final Item NUDWART_SEEDS = item( "nudwart_seeds", new BlockNamedItem( MDPlantBlocks.NUDWART_CROP, new Item.Properties().group( MDItemGroup.MISC ) ) );
 
 
 
@@ -152,14 +153,14 @@ public final class MDItems {
     public static void setup( RegistryEventHandler handler ) {
         handler.addHandler( Item.class, ENTRIES );
 
-        ItemUtil.addShovelFlattenBehaviour( MDBlocks.MURKY_GRASS_BLOCK, MDBlocks.MURKY_GRASS_PATH.getDefaultState() );
+        ItemUtil.addShovelFlattenBehaviour( MDNatureBlocks.MURKY_GRASS_BLOCK, MDNatureBlocks.MURKY_GRASS_PATH.getDefaultState() );
 
-        ItemUtil.addHoeTillBehaviour( MDBlocks.MURKY_DIRT, MDBlocks.MURKY_DIRT_FARMLAND.getDefaultState() );
-        ItemUtil.addHoeTillBehaviour( MDBlocks.MURKY_GRASS_BLOCK, MDBlocks.MURKY_GRASS_BLOCK_FARMLAND.getDefaultState() );
-        ItemUtil.addHoeTillBehaviour( MDBlocks.MURKY_HUMUS, MDBlocks.MURKY_HUMUS_FARMLAND.getDefaultState() );
-        ItemUtil.addHoeTillBehaviour( MDBlocks.LEAFY_HUMUS, MDBlocks.LEAFY_HUMUS_FARMLAND.getDefaultState() );
-        ItemUtil.addHoeTillBehaviour( MDBlocks.MURKY_PODZOL, MDBlocks.MURKY_PODZOL_FARMLAND.getDefaultState() );
-        ItemUtil.addHoeTillBehaviour( MDBlocks.HEATH_BLOCK, MDBlocks.HEATH_FARMLAND.getDefaultState() );
+        ItemUtil.addHoeTillBehaviour( MDNatureBlocks.MURKY_DIRT, MDNatureBlocks.MURKY_DIRT_FARMLAND.getDefaultState() );
+        ItemUtil.addHoeTillBehaviour( MDNatureBlocks.MURKY_GRASS_BLOCK, MDNatureBlocks.MURKY_GRASS_BLOCK_FARMLAND.getDefaultState() );
+        ItemUtil.addHoeTillBehaviour( MDNatureBlocks.MURKY_HUMUS, MDNatureBlocks.MURKY_HUMUS_FARMLAND.getDefaultState() );
+        ItemUtil.addHoeTillBehaviour( MDNatureBlocks.LEAFY_HUMUS, MDNatureBlocks.LEAFY_HUMUS_FARMLAND.getDefaultState() );
+        ItemUtil.addHoeTillBehaviour( MDNatureBlocks.MURKY_PODZOL, MDNatureBlocks.MURKY_PODZOL_FARMLAND.getDefaultState() );
+        ItemUtil.addHoeTillBehaviour( MDNatureBlocks.HEATH_BLOCK, MDNatureBlocks.HEATH_FARMLAND.getDefaultState() );
     }
 
     private MDItems() {

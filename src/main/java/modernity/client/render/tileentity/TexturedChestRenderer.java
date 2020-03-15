@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 02 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.client.render.tileentity;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import modernity.api.block.ITexturedChest;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDBuildingBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
@@ -38,7 +38,7 @@ public class TexturedChestRenderer<T extends TileEntity & IChestLid & ITexturedC
         GlStateManager.enableDepthTest();
         GlStateManager.depthFunc( GL11.GL_LEQUAL );
         GlStateManager.depthMask( true );
-        BlockState state = chest.hasWorld() ? chest.getBlockState() : MDBlocks.BLACKWOOD_CHEST.getDefaultState().with( ChestBlock.FACING, Direction.SOUTH );
+        BlockState state = chest.hasWorld() ? chest.getBlockState() : MDBuildingBlocks.BLACKWOOD_CHEST.getDefaultState().with( ChestBlock.FACING, Direction.SOUTH );
         ChestType type = state.has( ChestBlock.TYPE ) ? state.get( ChestBlock.TYPE ) : ChestType.SINGLE;
 
         if( type != ChestType.LEFT ) {

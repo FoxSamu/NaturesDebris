@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 05 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.common.generator.surface;
 
 import modernity.api.util.MovingBlockPos;
 import modernity.common.biome.ModernityBiome;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.generator.MurkSurfaceGeneration;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.chunk.IChunk;
@@ -25,10 +25,10 @@ import java.util.Random;
  */
 public class SwampSurfaceGenerator implements ISurfaceGenerator {
 
-    private static final BlockState GRASS = MDBlocks.MURKY_GRASS_BLOCK.getDefaultState();
-    private static final BlockState DIRT = MDBlocks.MURKY_DIRT.getDefaultState();
-    private static final BlockState MUD = MDBlocks.MUD.getDefaultState();
-    private static final BlockState PODZOL = MDBlocks.MURKY_PODZOL.getDefaultState();
+    private static final BlockState GRASS = MDNatureBlocks.MURKY_GRASS_BLOCK.getDefaultState();
+    private static final BlockState DIRT = MDNatureBlocks.MURKY_DIRT.getDefaultState();
+    private static final BlockState MUD = MDNatureBlocks.MUD.getDefaultState();
+    private static final BlockState PODZOL = MDNatureBlocks.MURKY_PODZOL.getDefaultState();
 
     private FractalOpenSimplex2D marshNoise;
     private FractalOpenSimplex2D marshGroupNoise;

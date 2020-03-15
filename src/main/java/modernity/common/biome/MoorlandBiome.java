@@ -2,13 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 11 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.biome;
 
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.blocks.MDBlockGenerators;
@@ -59,7 +59,7 @@ public class MoorlandBiome extends ModernityBiome {
         MurkSurfaceGeneration.addClaySand( this );
         MurkSurfaceGeneration.addPebbles( this );
 
-        addDecorator( new DecorationDecorator( new LakeDecoration( MDBlocks.MURKY_WATER, null, null, MDBlocks.HEATH_BLOCK ), new FixedHeight( 128 ), new Chance( 0.1 ) ) );
+        addDecorator( new DecorationDecorator( new LakeDecoration( MDNatureBlocks.MURKY_WATER, null, null, MDNatureBlocks.HEATH_BLOCK ), new FixedHeight( 128 ), new Chance( 0.1 ) ) );
 
         addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 5, 4, MDBlockGenerators.MURK_REED ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 1, 3 ) ) );
         addDecorator( new DecorationDecorator( new GroupedBushDecoration( 3, 4, 0.6, MDBlockGenerators.MOSS ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 1, 3 ) ) );

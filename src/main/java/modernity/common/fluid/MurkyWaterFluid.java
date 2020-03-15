@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 02 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -11,7 +11,7 @@ package modernity.common.fluid;
 import modernity.api.block.fluid.IAluminiumBucketTakeable;
 import modernity.api.block.fluid.ICustomRenderFluid;
 import modernity.client.ModernityClient;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.item.MDItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -105,7 +105,7 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
 
     @Override
     public BlockState getBlockState( IFluidState state ) {
-        return MDBlocks.MURKY_WATER.getDefaultState().with( blockLevel, getLevelFromState( state ) );
+        return MDNatureBlocks.MURKY_WATER.getDefaultState().with( blockLevel, getLevelFromState( state ) );
     }
 
     @Override

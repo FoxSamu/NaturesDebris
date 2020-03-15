@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 29 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.common.block.plant;
 
 import modernity.api.util.Events;
 import modernity.common.block.MDBlockStateProperties;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.block.fluid.IMurkyWaterloggedBlock;
 import modernity.common.block.fluid.IWaterloggedBlock;
 import modernity.common.block.prop.IntEnumProperty;
@@ -159,14 +159,14 @@ public abstract class DoubleDirectionalPlantBlock extends DirectionalPlantBlock 
         BlockState upState = world.getBlockState( upPos );
         boolean upAir = upState.isAir( world, upPos );
         if( this instanceof IWaterPlant ) {
-            upAir = upState.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDBlocks.MURKY_WATER;
+            upAir = upState.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDNatureBlocks.MURKY_WATER;
         }
         if( this instanceof IWaterloggedBlock ) {
-            upAir |= upState.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDBlocks.MURKY_WATER;
+            upAir |= upState.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDNatureBlocks.MURKY_WATER;
             upAir |= upState.getFluidState().getFluid() == Fluids.WATER && state.getBlock() == Blocks.WATER;
         }
         if( this instanceof IMurkyWaterloggedBlock ) {
-            upAir |= upState.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDBlocks.MURKY_WATER;
+            upAir |= upState.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDNatureBlocks.MURKY_WATER;
         }
         return upAir && super.canGenerateAt( world, pos, state );
     }

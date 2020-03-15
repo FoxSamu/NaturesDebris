@@ -2,13 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 08 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.blocks;
 
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDPlantBlocks;
 import modernity.common.block.plant.IPlantSustainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -31,14 +31,14 @@ public class SoulLightBlockGenerator implements IBlockGenerator {
         if( ! world.getBlockState( pos ).isAir( world, pos ) ) {
             return false;
         }
-        return world.setBlockState( pos, MDBlocks.SOUL_LIGHT.getDefaultState(), 2 );
+        return world.setBlockState( pos, MDPlantBlocks.SOUL_LIGHT.getDefaultState(), 2 );
     }
 
 
     private static boolean isBlockSideSustainable( BlockState state, IEnviromentBlockReader world, BlockPos pos, Direction side ) {
         Block block = state.getBlock();
         if( block instanceof IPlantSustainer ) {
-            return ( (IPlantSustainer) block ).canSustainPlant( world, pos, state, MDBlocks.SOUL_LIGHT, side );
+            return ( (IPlantSustainer) block ).canSustainPlant( world, pos, state, MDPlantBlocks.SOUL_LIGHT, side );
         } else {
             return state.isSolid() && state.func_224755_d( world, pos, side );
         }

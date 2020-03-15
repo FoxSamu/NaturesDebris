@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.common.generator.map.surface;
 
 import modernity.api.util.MovingBlockPos;
 import modernity.common.biome.ModernityBiome;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.generator.map.MapGenerator;
 import modernity.common.generator.util.BiomeBuffer;
 import modernity.common.generator.util.BiomeMetrics;
@@ -34,8 +34,8 @@ import static modernity.common.generator.MurkSurfaceGeneration.*;
  */
 public class TerrainGenerator extends MapGenerator<SurfaceGenData> {
     private static final BlockState AIR = Blocks.AIR.getDefaultState();
-    private static final BlockState WATER = MDBlocks.MURKY_WATER.getDefaultState();
-    private static final BlockState ROCK = MDBlocks.ROCK.getDefaultState();
+    private static final BlockState WATER = MDNatureBlocks.MURKY_WATER.getDefaultState();
+    private static final BlockState ROCK = MDNatureBlocks.ROCK.getDefaultState();
 
     private static final int SEGMENTS_X = 4;                                    // Amount of segments along x-axis
     private static final int SEGMENTS_Y = 32;                                   // Amount of segments along y-axis

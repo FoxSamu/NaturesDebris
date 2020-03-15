@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 12 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.common.block.plant;
 
 import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlockTags;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.block.fluid.IMurkyWaterloggedBlock;
 import modernity.common.block.plant.growing.ReedGrowLogic;
 import modernity.common.fluid.MDFluids;
@@ -101,7 +101,7 @@ public class MurkReedBlock extends TallDirectionalPlantBlock implements IMurkyWa
     private boolean canGrow( World world, BlockPos pos, BlockState state ) {
         BlockPos upPos = pos.up();
         BlockState upState = world.getBlockState( upPos );
-        if( ! upState.isAir( world, upPos ) && upState.getBlock() != MDBlocks.MURKY_WATER ) {
+        if( ! upState.isAir( world, upPos ) && upState.getBlock() != MDNatureBlocks.MURKY_WATER ) {
             return false;
         }
         int owHeight = 0, totHeight = 0;
@@ -127,7 +127,7 @@ public class MurkReedBlock extends TallDirectionalPlantBlock implements IMurkyWa
 
     @Override
     public boolean canGenerateAt( IWorld world, BlockPos pos, BlockState state ) {
-        boolean air = state.isAir( world, pos ) || state.getBlock() == MDBlocks.MURKY_WATER;
+        boolean air = state.isAir( world, pos ) || state.getBlock() == MDNatureBlocks.MURKY_WATER;
         return air && isValidPosition( state, world, pos ) && canBlockSustain( world, pos.down(), world.getBlockState( pos.down() ) );
     }
 

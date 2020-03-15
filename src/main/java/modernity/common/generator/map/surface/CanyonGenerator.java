@@ -2,14 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.map.surface;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.fluid.MDFluids;
 import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.map.RangeMapGenerator;
@@ -250,7 +250,7 @@ public class CanyonGenerator extends RangeMapGenerator<SurfaceGenData> {
             return;
         }
         if( pos.getY() <= MurkSurfaceGeneration.CAVE_WATER_LEVEL ) {
-            world.setBlockState( pos, MDBlocks.MURKY_WATER.getDefaultState(), 2 );
+            world.setBlockState( pos, MDNatureBlocks.MURKY_WATER.getDefaultState(), 2 );
         } else {
             world.setBlockState( pos, Blocks.CAVE_AIR.getDefaultState(), 2 );
         }

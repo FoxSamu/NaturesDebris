@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 02 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.common.fluid;
 
 import modernity.api.block.fluid.IAluminiumBucketTakeable;
 import modernity.api.block.fluid.ICustomRenderFluid;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.block.fluid.RegularFluidBlock;
 import modernity.common.item.MDItems;
 import net.minecraft.block.BlockState;
@@ -158,7 +158,7 @@ public abstract class MoltenRockFluid extends RegularFluid implements ICustomRen
 
     @Override
     public BlockState getBlockState( IFluidState state ) {
-        return MDBlocks.MOLTEN_ROCK.getDefaultState().with( blockLevel, getLevelFromState( state ) );
+        return MDNatureBlocks.MOLTEN_ROCK.getDefaultState().with( blockLevel, getLevelFromState( state ) );
     }
 
     @Override
@@ -222,7 +222,7 @@ public abstract class MoltenRockFluid extends RegularFluid implements ICustomRen
             IFluidState downState = world.getFluidState( pos );
             if( isIn( FluidTags.LAVA ) && downState.isTagged( FluidTags.WATER ) ) {
                 if( bstate.getBlock() instanceof RegularFluidBlock ) {
-                    world.setBlockState( pos, MDBlocks.ROCK.getDefaultState(), 3 );
+                    world.setBlockState( pos, MDNatureBlocks.ROCK.getDefaultState(), 3 );
                 }
 
                 triggerEffects( world, pos );
@@ -247,13 +247,13 @@ public abstract class MoltenRockFluid extends RegularFluid implements ICustomRen
         if( shouldReact ) {
             IFluidState fstate = world.getFluidState( pos );
             if( fstate.isSource() ) {
-                world.setBlockState( pos, MDBlocks.HARDENED_ROCK.getDefaultState() );
+                world.setBlockState( pos, MDNatureBlocks.HARDENED_ROCK.getDefaultState() );
                 triggerMixEffects( world, pos );
                 return false;
             }
 
             if( fstate.func_223408_f() >= 0.4444444F ) {
-                world.setBlockState( pos, MDBlocks.DARKROCK.getDefaultState() );
+                world.setBlockState( pos, MDNatureBlocks.DARKROCK.getDefaultState() );
                 triggerMixEffects( world, pos );
                 return false;
             }

@@ -2,13 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDPlantBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
@@ -20,7 +20,7 @@ public class FlyFlowerBlock extends SimplePlantBlock {
 
     @Override
     public boolean canBlockSustain( IWorldReader world, BlockPos pos, BlockState state ) {
-        return state.getBlock() == MDBlocks.FLY_FLOWER_STALK;
+        return state.getBlock() == MDPlantBlocks.FLY_FLOWER_STALK;
     }
 
     @Override

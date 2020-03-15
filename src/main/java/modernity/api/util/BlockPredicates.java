@@ -2,13 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.api.util;
 
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluid;
@@ -25,15 +25,15 @@ public final class BlockPredicates {
      * Matches any of the rock types (rock, darkrock, lightrock and redrock)
      */
     public static final Predicate<BlockState> ROCK_TYPES = blocks(
-        MDBlocks.ROCK,
-        MDBlocks.DARKROCK
+        MDNatureBlocks.ROCK,
+        MDNatureBlocks.DARKROCK
     );
 
-    public static final Predicate<BlockState> ROCKS_OR_LIMESTONE = ROCK_TYPES.or( block( MDBlocks.LIMESTONE ) );
+    public static final Predicate<BlockState> ROCKS_OR_LIMESTONE = ROCK_TYPES.or( block( MDNatureBlocks.LIMESTONE ) );
 
-    public static final Predicate<BlockState> ROCK_ONLY = block( MDBlocks.ROCK );
+    public static final Predicate<BlockState> ROCK_ONLY = block( MDNatureBlocks.ROCK );
 
-    public static final Predicate<BlockState> SUMESTONE = block( MDBlocks.SUMESTONE );
+    public static final Predicate<BlockState> SUMESTONE = block( MDNatureBlocks.SUMESTONE );
 
     /**
      * Matches everything

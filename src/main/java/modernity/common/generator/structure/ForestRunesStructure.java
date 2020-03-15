@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.common.generator.structure;
 
 import modernity.common.area.ForestRunesArea;
 import modernity.common.area.core.AreaBox;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDBuildingBlocks;
 import modernity.common.block.base.HorizontalFacingBlock;
 import modernity.common.block.portal.HorizontalPortalFrameBlock;
 import modernity.common.block.portal.PortalCornerBlock;
@@ -40,8 +40,8 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import java.util.Random;
 
 public class ForestRunesStructure extends Structure<NoFeatureConfig> {
-    private static final BlockState BRICKS = MDBlocks.DARK_STONE_BRICKS.getDefaultState();
-    private static final BlockState INSCRIBED_BRICKS = MDBlocks.INSCRIBED_DARK_STONE_BRICKS.getDefaultState();
+    private static final BlockState BRICKS = MDBuildingBlocks.DARK_STONE_BRICKS.getDefaultState();
+    private static final BlockState INSCRIBED_BRICKS = MDBuildingBlocks.INSCRIBED_DARK_STONE_BRICKS.getDefaultState();
     private static final BlockState LOG_X = Blocks.DARK_OAK_LOG.getDefaultState().with( BlockStateProperties.AXIS, Direction.Axis.X );
     private static final BlockState LOG_Y = Blocks.DARK_OAK_LOG.getDefaultState().with( BlockStateProperties.AXIS, Direction.Axis.Y );
     private static final BlockState LOG_Z = Blocks.DARK_OAK_LOG.getDefaultState().with( BlockStateProperties.AXIS, Direction.Axis.Z );
@@ -57,19 +57,19 @@ public class ForestRunesStructure extends Structure<NoFeatureConfig> {
     private static final BlockState PLANKS = Blocks.DARK_OAK_PLANKS.getDefaultState();
     private static final BlockState FENCE = Blocks.DARK_OAK_FENCE.getDefaultState();
     private static final BlockState LANTERN = Blocks.LANTERN.getDefaultState();
-    private static final BlockState FRAME_X = MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X );
-    private static final BlockState FRAME_Z = MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z );
-    private static final BlockState FRAME_Y = MDBlocks.VERTICAL_PORTAL_FRAME.getDefaultState();
-    private static final BlockState CORNER = MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EXHAUSTED );
+    private static final BlockState FRAME_X = MDBuildingBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X );
+    private static final BlockState FRAME_Z = MDBuildingBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z );
+    private static final BlockState FRAME_Y = MDBuildingBlocks.VERTICAL_PORTAL_FRAME.getDefaultState();
+    private static final BlockState CORNER = MDBuildingBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EXHAUSTED );
 
     private static final BlockState[] GOLD_BRICKS = {
-        MDBlocks.DARK_STONE_BRICKS_CURSE.getDefaultState(),
-        MDBlocks.DARK_STONE_BRICKS_CYEN.getDefaultState(),
-        MDBlocks.DARK_STONE_BRICKS_FYREN.getDefaultState(),
-        MDBlocks.DARK_STONE_BRICKS_TIMEN.getDefaultState(),
-        MDBlocks.DARK_STONE_BRICKS_RGSW.getDefaultState(),
-        MDBlocks.DARK_STONE_BRICKS_PORTAL.getDefaultState(),
-        MDBlocks.DARK_STONE_BRICKS_NATURE.getDefaultState()
+        MDBuildingBlocks.DARK_STONE_BRICKS_CURSE.getDefaultState(),
+        MDBuildingBlocks.DARK_STONE_BRICKS_CYEN.getDefaultState(),
+        MDBuildingBlocks.DARK_STONE_BRICKS_FYREN.getDefaultState(),
+        MDBuildingBlocks.DARK_STONE_BRICKS_TIMEN.getDefaultState(),
+        MDBuildingBlocks.DARK_STONE_BRICKS_RGSW.getDefaultState(),
+        MDBuildingBlocks.DARK_STONE_BRICKS_PORTAL.getDefaultState(),
+        MDBuildingBlocks.DARK_STONE_BRICKS_NATURE.getDefaultState()
     };
 
     public static final String NAME = "MDForRun";

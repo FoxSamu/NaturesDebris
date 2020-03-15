@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -11,7 +11,9 @@ package modernity;
 import modernity.api.event.ModernityReadyEvent;
 import modernity.client.ModernityClient;
 import modernity.common.Modernity;
+import modernity.common.loot.MDLootTables;
 import modernity.common.registry.RegistryEventHandler;
+import modernity.data.ModernityDataGenerator;
 import modernity.server.ModernityServer;
 import modul.Modul;
 import modul.core.MListFile;
@@ -25,6 +27,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.versions.forge.ForgeVersion;
 import net.redgalaxy.util.Version;
 import org.apache.logging.log4j.LogManager;
@@ -39,10 +42,16 @@ public class ModernityBootstrap implements ModulRoot {
     private static final Logger LOGGER = LogManager.getLogger( "ModernityBootstrap" );
 
     public ModernityBootstrap() {
-        ModulCore.start( this );
-        MDModules.load();
-        FMLJavaModLoadingContext.get().getModEventBus().addListener( this::setup );
-        FMLJavaModLoadingContext.get().getModEventBus().addListener( this::loadComplete );
+        if( FMLLoader.launcherHandlerName().equals( "fmluserdevdata" ) ) {
+            LOGGER.info( "Modernity is running in DataGen mode" );
+            FMLJavaModLoadingContext.get().getModEventBus().addListener( ModernityDataGenerator::gather );
+            MDLootTables.register();
+        } else {
+            ModulCore.start( this );
+            MDModules.load();
+            FMLJavaModLoadingContext.get().getModEventBus().addListener( this::setup );
+            FMLJavaModLoadingContext.get().getModEventBus().addListener( this::loadComplete );
+        }
         FMLJavaModLoadingContext.get().getModEventBus().register( RegistryEventHandler.INSTANCE );
         MinecraftForge.EVENT_BUS.register( RegistryEventHandler.INSTANCE );
     }

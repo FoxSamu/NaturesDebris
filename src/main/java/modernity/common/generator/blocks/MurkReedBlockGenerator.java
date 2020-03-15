@@ -2,14 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.blocks;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDPlantBlocks;
 import modernity.common.block.plant.MurkReedBlock;
 import modernity.common.fluid.MDFluids;
 import net.minecraft.block.BlockState;
@@ -29,7 +29,7 @@ public class MurkReedBlockGenerator implements IBlockGenerator {
     }
 
     public MurkReedBlockGenerator() {
-        this( MDBlocks.MURK_REED );
+        this( MDPlantBlocks.MURK_REED );
     }
 
 

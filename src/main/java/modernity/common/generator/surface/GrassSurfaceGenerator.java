@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 11 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.common.generator.surface;
 
 import modernity.api.util.MovingBlockPos;
 import modernity.common.biome.ModernityBiome;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.chunk.IChunk;
 import net.rgsw.noise.INoise3D;
@@ -22,9 +22,9 @@ import java.util.Random;
  */
 public class GrassSurfaceGenerator implements ISurfaceGenerator {
 
-    private static final BlockState GRASS = MDBlocks.MURKY_GRASS_BLOCK.getDefaultState();
-    private static final BlockState DIRT = MDBlocks.MURKY_DIRT.getDefaultState();
-    private static final BlockState MUD = MDBlocks.MUD.getDefaultState();
+    private static final BlockState GRASS = MDNatureBlocks.MURKY_GRASS_BLOCK.getDefaultState();
+    private static final BlockState DIRT = MDNatureBlocks.MURKY_DIRT.getDefaultState();
+    private static final BlockState MUD = MDNatureBlocks.MUD.getDefaultState();
 
     @Override
     public void buildSurface( IChunk chunk, int cx, int cz, int x, int z, Random rand, ModernityBiome biome, INoise3D surfaceNoise, MovingBlockPos rpos ) {

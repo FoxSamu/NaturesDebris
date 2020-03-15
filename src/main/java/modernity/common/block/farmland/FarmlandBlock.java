@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 02 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -279,6 +279,11 @@ public class FarmlandBlock extends DirtlikeBlock implements ITopTextureConnectio
             player.setHeldItem( hand, stack.getCount() == 0 ? ItemStack.EMPTY : stack );
         }
         return true;
+    }
+
+    @Override
+    public FarmlandDirtLogic getLogic() {
+        return farmlandLogic;
     }
 
     @Override

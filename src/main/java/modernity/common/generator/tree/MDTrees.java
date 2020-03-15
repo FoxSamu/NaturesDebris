@@ -2,13 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 09 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.tree;
 
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDTreeBlocks;
 import modernity.common.block.base.AxisBlock;
 import net.minecraft.util.Direction;
 
@@ -21,17 +21,17 @@ public final class MDTrees {
     public static final TallBlackwoodTree BLACKWOOD_TALL = new TallBlackwoodTree();
 
     public static final SphereTree INVER = new SphereTree(
-        MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X ),
-        MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Y ),
-        MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z ),
-        MDBlocks.INVER_LEAVES.getDefaultState()
+        MDTreeBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X ),
+        MDTreeBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Y ),
+        MDTreeBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z ),
+        MDTreeBlocks.INVER_LEAVES.getDefaultState()
     );
 
     public static final SphereTree RED_INVER = new SphereTree(
-        MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X ),
-        MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Y ),
-        MDBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z ),
-        MDBlocks.RED_INVER_LEAVES.getDefaultState()
+        MDTreeBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X ),
+        MDTreeBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Y ),
+        MDTreeBlocks.INVER_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z ),
+        MDTreeBlocks.RED_INVER_LEAVES.getDefaultState()
     );
 
     private MDTrees() {

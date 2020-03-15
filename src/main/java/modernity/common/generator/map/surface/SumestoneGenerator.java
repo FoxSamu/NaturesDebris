@@ -2,14 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.map.surface;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.generator.map.LayerDepositGenerator;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.WorldGenRegion;
@@ -22,7 +22,7 @@ public class SumestoneGenerator extends LayerDepositGenerator<SurfaceGenData> {
     @Override
     protected void place( WorldGenRegion region, MovingBlockPos pos, SurfaceGenData data ) {
         if( region.getBlockState( pos ).getMaterial().blocksMovement() ) {
-            region.setBlockState( pos, MDBlocks.SUMESTONE.getDefaultState(), 2 );
+            region.setBlockState( pos, MDNatureBlocks.SUMESTONE.getDefaultState(), 2 );
         }
     }
 }

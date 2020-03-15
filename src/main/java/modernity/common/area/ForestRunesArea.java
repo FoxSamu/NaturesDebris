@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.common.area;
 
 import modernity.api.util.MovingBlockPos;
 import modernity.common.area.core.*;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDBuildingBlocks;
 import modernity.common.block.portal.AbstractPortalFrameBlock;
 import modernity.common.block.portal.HorizontalPortalFrameBlock;
 import modernity.common.block.portal.PortalCornerBlock;
@@ -144,29 +144,29 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
                 for( int y = 2; y <= 6; y++ ) {
                     setBlockState( new BlockPos( x, y, z ), Blocks.AIR.getDefaultState() );
                 }
-                setBlockState( new BlockPos( x, 1, z ), MDBlocks.DARK_STONE_BRICKS.getDefaultState() );
+                setBlockState( new BlockPos( x, 1, z ), MDBuildingBlocks.DARK_STONE_BRICKS.getDefaultState() );
             }
         }
 
-        setBlockState( new BlockPos( 4, 2, 4 ), MDBlocks.VERTICAL_PORTAL_FRAME.getDefaultState() );
-        setBlockState( new BlockPos( 4, 2, 7 ), MDBlocks.VERTICAL_PORTAL_FRAME.getDefaultState() );
-        setBlockState( new BlockPos( 7, 2, 7 ), MDBlocks.VERTICAL_PORTAL_FRAME.getDefaultState() );
-        setBlockState( new BlockPos( 7, 2, 4 ), MDBlocks.VERTICAL_PORTAL_FRAME.getDefaultState() );
+        setBlockState( new BlockPos( 4, 2, 4 ), MDBuildingBlocks.VERTICAL_PORTAL_FRAME.getDefaultState() );
+        setBlockState( new BlockPos( 4, 2, 7 ), MDBuildingBlocks.VERTICAL_PORTAL_FRAME.getDefaultState() );
+        setBlockState( new BlockPos( 7, 2, 7 ), MDBuildingBlocks.VERTICAL_PORTAL_FRAME.getDefaultState() );
+        setBlockState( new BlockPos( 7, 2, 4 ), MDBuildingBlocks.VERTICAL_PORTAL_FRAME.getDefaultState() );
 
-        setBlockState( new BlockPos( 4, 2, 5 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z ) );
-        setBlockState( new BlockPos( 4, 2, 6 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z ) );
-        setBlockState( new BlockPos( 7, 2, 5 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z ) );
-        setBlockState( new BlockPos( 7, 2, 6 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z ) );
-        setBlockState( new BlockPos( 5, 2, 4 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X ) );
-        setBlockState( new BlockPos( 6, 2, 4 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X ) );
-        setBlockState( new BlockPos( 5, 2, 7 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X ) );
-        setBlockState( new BlockPos( 6, 2, 7 ), MDBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X ) );
+        setBlockState( new BlockPos( 4, 2, 5 ), MDBuildingBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z ) );
+        setBlockState( new BlockPos( 4, 2, 6 ), MDBuildingBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z ) );
+        setBlockState( new BlockPos( 7, 2, 5 ), MDBuildingBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z ) );
+        setBlockState( new BlockPos( 7, 2, 6 ), MDBuildingBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.Z ) );
+        setBlockState( new BlockPos( 5, 2, 4 ), MDBuildingBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X ) );
+        setBlockState( new BlockPos( 6, 2, 4 ), MDBuildingBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X ) );
+        setBlockState( new BlockPos( 5, 2, 7 ), MDBuildingBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X ) );
+        setBlockState( new BlockPos( 6, 2, 7 ), MDBuildingBlocks.HORIZONTAL_PORTAL_FRAME.getDefaultState().with( HorizontalPortalFrameBlock.DIRECTION, Direction.Axis.X ) );
 
         // Set tot EYE state because these block changes still cause the portal to activate
-        setBlockState( new BlockPos( 4, 3, 4 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EYE ) );
-        setBlockState( new BlockPos( 4, 3, 7 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EYE ) );
-        setBlockState( new BlockPos( 7, 3, 7 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EYE ) );
-        setBlockState( new BlockPos( 7, 3, 4 ), MDBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EYE ) );
+        setBlockState( new BlockPos( 4, 3, 4 ), MDBuildingBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EYE ) );
+        setBlockState( new BlockPos( 4, 3, 7 ), MDBuildingBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EYE ) );
+        setBlockState( new BlockPos( 7, 3, 7 ), MDBuildingBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EYE ) );
+        setBlockState( new BlockPos( 7, 3, 4 ), MDBuildingBlocks.PORTAL_CORNER.getDefaultState().with( PortalCornerBlock.STATE, PortalCornerState.EYE ) );
 
     }
 
@@ -284,7 +284,7 @@ public class ForestRunesArea extends MessagingArea<ForestRunesArea> implements I
             for( int i = 0; i < 4; i++ ) {
                 BlockPos pos = CORNERS[ i ];
                 BlockState state = getBlockState( pos );
-                if( state.getBlock() == MDBlocks.PORTAL_CORNER ) {
+                if( state.getBlock() == MDBuildingBlocks.PORTAL_CORNER ) {
                     PortalCornerState s = state.get( PortalCornerBlock.STATE );
                     if( s != states[ i ] ) {
                         states[ i ] = s;

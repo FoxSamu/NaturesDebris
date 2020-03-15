@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 10 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.biome;
 
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
+import modernity.common.block.MDTreeBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.blocks.IBlockGenerator;
@@ -65,7 +66,7 @@ public class SwampBiome extends ModernityBiome {
         MurkSurfaceGeneration.addPebbles( this );
 
         double mudChance = type == Type.SWAMP_MARSHES ? 0.9 : 0.3;
-        addDecorator( new DecorationDecorator( new DepositDecoration( 3, BlockState::isSolid, MDBlocks.MUD.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( mudChance ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 3, BlockState::isSolid, MDNatureBlocks.MUD.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( mudChance ) ) );
 
         addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlockGenerators.DEAD_GRASS ), new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ) ) );
 
@@ -128,7 +129,7 @@ public class SwampBiome extends ModernityBiome {
                 MDBlockGenerators.DOTTED_MUSHROOM
             );
 
-            addDecorator( new DecorationDecorator( new DeadLogDecoration( 5, 8, mushrooms, MDBlocks.BLACKWOOD_LOG.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.08 ) ) );
+            addDecorator( new DecorationDecorator( new DeadLogDecoration( 5, 8, mushrooms, MDTreeBlocks.BLACKWOOD_LOG.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.08 ) ) );
         }
 
         addDecorator( new DecorationDecorator( new ClusterBushDecoration( 81, 7, MDBlockGenerators.WATERGRASS_SMALL ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 8 ) ) );

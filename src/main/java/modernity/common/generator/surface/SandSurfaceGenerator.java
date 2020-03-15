@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 11 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -10,7 +10,7 @@ package modernity.common.generator.surface;
 
 import modernity.api.util.MovingBlockPos;
 import modernity.common.biome.ModernityBiome;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.chunk.IChunk;
 import net.rgsw.noise.INoise3D;
@@ -22,7 +22,7 @@ import java.util.Random;
  */
 public class SandSurfaceGenerator implements ISurfaceGenerator {
 
-    private static final BlockState SAND = MDBlocks.MURKY_SAND.getDefaultState();
+    private static final BlockState SAND = MDNatureBlocks.MURKY_SAND.getDefaultState();
 
     @Override
     public void buildSurface( IChunk chunk, int cx, int cz, int x, int z, Random rand, ModernityBiome biome, INoise3D surfaceNoise, MovingBlockPos rpos ) {

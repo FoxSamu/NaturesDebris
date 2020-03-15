@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 01 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -11,7 +11,7 @@ package modernity.common.block.plant;
 import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDBlockStateProperties;
 import modernity.common.block.MDBlockTags;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.block.fluid.IMurkyWaterloggedBlock;
 import modernity.common.fluid.MDFluids;
 import modernity.common.particle.MDParticleTypes;
@@ -178,7 +178,7 @@ public class SaltCrystalBlock extends SingleDirectionalPlantBlock implements IMu
                                     // Check if block at location is empty
                                     BlockState bstate = world.getBlockState( mpos );
                                     IFluidState fstate = bstate.getFluidState();
-                                    if( ! bstate.isAir( world, mpos ) && ! ( fstate.getFluid() == MDFluids.MURKY_WATER && bstate.getBlock() == MDBlocks.MURKY_WATER ) ) {
+                                    if( ! bstate.isAir( world, mpos ) && ! ( fstate.getFluid() == MDFluids.MURKY_WATER && bstate.getBlock() == MDNatureBlocks.MURKY_WATER ) ) {
                                         continue;
                                     }
 

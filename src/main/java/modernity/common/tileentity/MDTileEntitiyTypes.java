@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 02 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -13,7 +13,8 @@ import com.google.common.reflect.TypeToken;
 import modernity.client.render.tileentity.SoulLightRenderer;
 import modernity.client.render.tileentity.TexturedChestRenderer;
 import modernity.client.render.tileentity.WorkbenchRenderer;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDBuildingBlocks;
+import modernity.common.block.MDPlantBlocks;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.block.Block;
@@ -36,10 +37,10 @@ public final class MDTileEntitiyTypes {
 
     private static final RegistryHandler<TileEntityType<?>> ENTRIES = new RegistryHandler<>( "modernity" );
 
-    public static final TileEntityType<SoulLightTileEntity> SOUL_LIGHT = register( "soul_light", create( SoulLightTileEntity::new, MDBlocks.SOUL_LIGHT ) );
-    public static final TileEntityType<RockFurnaceTileEntity> ROCK_FURNACE = register( "rock_furnace", create( RockFurnaceTileEntity::new, MDBlocks.ROCK_FURNACE ) );
-    public static final TileEntityType<WorkbenchTileEntity> WORKBENCH = register( "workbench", create( WorkbenchTileEntity::new, MDBlocks.BLACKWOOD_WORKBENCH, MDBlocks.INVER_WORKBENCH ) );
-    public static final TileEntityType<TexturedChestTileEntity> CHEST = register( "chest", create( TexturedChestTileEntity::new, MDBlocks.BLACKWOOD_CHEST, MDBlocks.INVER_CHEST ) );
+    public static final TileEntityType<SoulLightTileEntity> SOUL_LIGHT = register( "soul_light", create( SoulLightTileEntity::new, MDPlantBlocks.SOUL_LIGHT ) );
+    public static final TileEntityType<RockFurnaceTileEntity> ROCK_FURNACE = register( "rock_furnace", create( RockFurnaceTileEntity::new, MDBuildingBlocks.ROCK_FURNACE ) );
+    public static final TileEntityType<WorkbenchTileEntity> WORKBENCH = register( "workbench", create( WorkbenchTileEntity::new, MDBuildingBlocks.BLACKWOOD_WORKBENCH, MDBuildingBlocks.INVER_WORKBENCH ) );
+    public static final TileEntityType<TexturedChestTileEntity> CHEST = register( "chest", create( TexturedChestTileEntity::new, MDBuildingBlocks.BLACKWOOD_CHEST, MDBuildingBlocks.INVER_CHEST ) );
 
     private static <T extends TileEntity> TileEntityType.Builder<T> create( Supplier<? extends T> factory, Block... validBlocks ) {
         return TileEntityType.Builder.create( factory, validBlocks );

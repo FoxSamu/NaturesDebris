@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -47,6 +47,10 @@ public class MulCornerCount extends LootFunction {
             stack.setCount( stack.getCount() * quantity );
         }
         return stack;
+    }
+
+    public static Builder builder() {
+        return builder( MulCornerCount::new );
     }
 
     public static class Serializer extends LootFunction.Serializer<MulCornerCount> {

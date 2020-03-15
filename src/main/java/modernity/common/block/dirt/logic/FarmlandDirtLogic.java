@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 01 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -35,6 +35,10 @@ public class FarmlandDirtLogic extends DirtLogic {
         }
         TYPE_MAP.put( type, this );
         this.noFarmland = Lazy.of( noFarmland );
+    }
+
+    public NormalDirtLogic getDirtVariant() {
+        return noFarmland.get();
     }
 
     @Override

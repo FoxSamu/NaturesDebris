@@ -2,14 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 11 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.decorate.decoration;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -148,7 +148,7 @@ public class LakeDecoration implements IDecoration {
                                     rpos.addPos( x, y, z );
                                     tpos.setPos( rpos );
                                     tpos.moveDown();
-                                    if( world.getBlockState( tpos ).getBlock() == MDBlocks.MURKY_DIRT && world.getLightFor( LightType.SKY, rpos ) > 0 ) {
+                                    if( world.getBlockState( tpos ).getBlock() == MDNatureBlocks.MURKY_DIRT && world.getLightFor( LightType.SKY, rpos ) > 0 ) {
                                         world.setBlockState( tpos, replaceDirt.getDefaultState(), 2 );
                                     }
                                 }

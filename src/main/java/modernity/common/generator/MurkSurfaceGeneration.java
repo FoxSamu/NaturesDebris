@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 13 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
@@ -14,7 +14,8 @@ import modernity.api.util.MDDimension;
 import modernity.common.biome.MDBiomes;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.block.MDBlockTags;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDMineralBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.fluid.MDFluids;
 import modernity.common.generator.biome.BiomeGenerator;
 import modernity.common.generator.biome.LayerBiomeProvider;
@@ -76,7 +77,7 @@ public final class MurkSurfaceGeneration {
                 .addGenerator( new SumestoneGenerator( world ) )
                 .addGenerator( new DarkrockGenerator( world ) )
                 .addGenerator( new CanyonGenerator( world ) )
-                .addGenerator( new BedrockGenerator( world, 0, 4, false, IIntScrambler.lgc( 52839319, 294282 ), MDBlocks.UNBREAKABLE_STONE ) )
+                .addGenerator( new BedrockGenerator( world, 0, 4, false, IIntScrambler.lgc( 52839319, 294282 ), MDNatureBlocks.UNBREAKABLE_STONE ) )
                 .addGenerator( new CaveDataGenerator( world ) )
         );
     }
@@ -311,31 +312,31 @@ public final class MurkSurfaceGeneration {
     }
 
     public static void addCaveDeposits( ModernityBiome biome ) {
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCKS_OR_LIMESTONE, MDBlocks.MURKY_DIRT.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 3 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCKS_OR_LIMESTONE, MDBlocks.MURKY_SAND.getDefaultState(), 50 ), new BelowHeight( 128 ), new Chance( 0.4 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCKS_OR_LIMESTONE, MDBlocks.MURKY_COARSE_DIRT.getDefaultState(), 50 ), new BelowHeight( 128 ), new Chance( 0.4 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCKS_OR_LIMESTONE, MDBlocks.REGOLITH.getDefaultState(), 50 ), new BelowHeight( 128 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCKS_OR_LIMESTONE, MDNatureBlocks.MURKY_DIRT.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 3 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCKS_OR_LIMESTONE, MDNatureBlocks.MURKY_SAND.getDefaultState(), 50 ), new BelowHeight( 128 ), new Chance( 0.4 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCKS_OR_LIMESTONE, MDNatureBlocks.MURKY_COARSE_DIRT.getDefaultState(), 50 ), new BelowHeight( 128 ), new Chance( 0.4 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCKS_OR_LIMESTONE, MDNatureBlocks.REGOLITH.getDefaultState(), 50 ), new BelowHeight( 128 ) ) );
 
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_TYPES, MDBlocks.DARKROCK.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 3 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_TYPES, MDBlocks.LIMESTONE.getDefaultState(), 40 ), new BelowHeight( 128 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_TYPES, MDNatureBlocks.DARKROCK.getDefaultState(), 50 ), new BelowHeight( 128 ), new Fixed( 3 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_TYPES, MDNatureBlocks.LIMESTONE.getDefaultState(), 40 ), new BelowHeight( 128 ) ) );
 
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( SUMESTONE, MDBlocks.DARK_SUMESTONE.getDefaultState(), 40 ), new BetweenHeight( 0, 26 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( SUMESTONE, MDNatureBlocks.DARK_SUMESTONE.getDefaultState(), 40 ), new BetweenHeight( 0, 26 ) ) );
 
-        biome.addDecorator( new DecorationDecorator( new LakeDecoration( MDBlocks.MOLTEN_ROCK, MDBlocks.ROCK, null, null ), new BetweenHeight( 16, 32 ), new Chance( 0.2 ) ) );
-        biome.addDecorator( new DecorationDecorator( new LakeDecoration( MDBlocks.CLEAN_WATER, MDBlocks.ROCK, null, null ), new BetweenHeight( 16, 32 ), new Chance( 0.2 ) ) );
+        biome.addDecorator( new DecorationDecorator( new LakeDecoration( MDNatureBlocks.MOLTEN_ROCK, MDNatureBlocks.ROCK, null, null ), new BetweenHeight( 16, 32 ), new Chance( 0.2 ) ) );
+        biome.addDecorator( new DecorationDecorator( new LakeDecoration( MDNatureBlocks.CLEAN_WATER, MDNatureBlocks.ROCK, null, null ), new BetweenHeight( 16, 32 ), new Chance( 0.2 ) ) );
     }
 
     public static void addCaveOres( ModernityBiome biome ) {
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.SALT_ORE.getDefaultState(), 15 ), new BetweenHeight( 18, 128 ), new Fixed( 17 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.ALUMINIUM_ORE.getDefaultState(), 9 ), new BetweenHeight( 18, 128 ), new Fixed( 10 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.ANTHRACITE_ORE.getDefaultState(), 15 ), new BetweenHeight( 18, 128 ), new Fixed( 20 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.LUMINOSITE_ORE.getDefaultState(), 12 ), new BetweenHeight( 18, 128 ), new Fixed( 10 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.GOO_ORE.getDefaultState(), 15 ), new BetweenHeight( 40, 80 ), new Fixed( 9 ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDBlocks.FOSSIL.getDefaultState(), 12 ), new BetweenHeight( 20, 100 ), new Fixed( 12 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDMineralBlocks.SALT_ORE.getDefaultState(), 15 ), new BetweenHeight( 18, 128 ), new Fixed( 17 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDMineralBlocks.ALUMINIUM_ORE.getDefaultState(), 9 ), new BetweenHeight( 18, 128 ), new Fixed( 10 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDMineralBlocks.ANTHRACITE_ORE.getDefaultState(), 15 ), new BetweenHeight( 18, 128 ), new Fixed( 20 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDMineralBlocks.LUMINOSITE_ORE.getDefaultState(), 12 ), new BetweenHeight( 18, 128 ), new Fixed( 10 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDMineralBlocks.GOO_ORE.getDefaultState(), 15 ), new BetweenHeight( 40, 80 ), new Fixed( 9 ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( ROCK_ONLY, MDMineralBlocks.FOSSIL.getDefaultState(), 12 ), new BetweenHeight( 20, 100 ), new Fixed( 12 ) ) );
 
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( SUMESTONE, MDBlocks.FINNERITE_ORE.getDefaultState(), 3 ), new BetweenHeight( 0, 26 ), new Chance( 1 / 3D ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( SUMESTONE, MDBlocks.IVERITE_ORE.getDefaultState(), 3 ), new BetweenHeight( 0, 26 ), new Chance( 1 / 3D ) ) );
-        biome.addDecorator( new DecorationDecorator( new MineableDecoration( SUMESTONE, MDBlocks.SAGERITE_ORE.getDefaultState(), 3 ), new BetweenHeight( 0, 26 ), new Chance( 1 / 3D ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( SUMESTONE, MDMineralBlocks.FINNERITE_ORE.getDefaultState(), 3 ), new BetweenHeight( 0, 26 ), new Chance( 1 / 3D ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( SUMESTONE, MDMineralBlocks.IVERITE_ORE.getDefaultState(), 3 ), new BetweenHeight( 0, 26 ), new Chance( 1 / 3D ) ) );
+        biome.addDecorator( new DecorationDecorator( new MineableDecoration( SUMESTONE, MDMineralBlocks.SAGERITE_ORE.getDefaultState(), 3 ), new BetweenHeight( 0, 26 ), new Chance( 1 / 3D ) ) );
     }
 
     public static void addCaveSprings( ModernityBiome biome ) {
@@ -343,8 +344,8 @@ public final class MurkSurfaceGeneration {
     }
 
     public static void addClaySand( ModernityBiome biome ) {
-        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.tag( MDBlockTags.SOIL ), MDBlocks.MURKY_SAND.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 12 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
-        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.tag( MDBlockTags.SOIL ), MDBlocks.MURKY_CLAY.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.25 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
+        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.tag( MDBlockTags.SOIL ), MDNatureBlocks.MURKY_SAND.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 12 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
+        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.tag( MDBlockTags.SOIL ), MDNatureBlocks.MURKY_CLAY.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.25 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
     }
 
     public static void addCavePlants( ModernityBiome biome ) {

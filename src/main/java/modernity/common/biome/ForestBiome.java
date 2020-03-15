@@ -2,14 +2,15 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 10 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.biome;
 
 import modernity.api.util.BlockPredicates;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
+import modernity.common.block.MDTreeBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
 import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.blocks.IBlockGenerator;
@@ -61,12 +62,12 @@ public class ForestBiome extends ModernityBiome {
         MurkSurfaceGeneration.addClaySand( this );
         MurkSurfaceGeneration.addPebbles( this );
 
-        addDecorator( new DecorationDecorator( new LakeDecoration( MDBlocks.MURKY_WATER, null, null, MDBlocks.MURKY_GRASS_BLOCK ), new FixedHeight( 128 ), new Chance( 0.1 ) ) );
+        addDecorator( new DecorationDecorator( new LakeDecoration( MDNatureBlocks.MURKY_WATER, null, null, MDNatureBlocks.MURKY_GRASS_BLOCK ), new FixedHeight( 128 ), new Chance( 0.1 ) ) );
 
-        addDecorator( new DecorationDecorator( new DepositDecoration( 2, BlockPredicates.TRUE, MDBlocks.ROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.025 ) ) );
-        addDecorator( new DecorationDecorator( new DepositDecoration( 2, BlockPredicates.TRUE, MDBlocks.DARKROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.0125 ) ) );
-        addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDBlocks.MURKY_COARSE_DIRT.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.3 ) ) );
-        addDecorator( new DecorationDecorator( new DepositDecoration( 3, BlockState::isSolid, MDBlocks.MUD.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.2 ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 2, BlockPredicates.TRUE, MDNatureBlocks.ROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.025 ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 2, BlockPredicates.TRUE, MDNatureBlocks.DARKROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.0125 ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDNatureBlocks.MURKY_COARSE_DIRT.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.3 ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 3, BlockState::isSolid, MDNatureBlocks.MUD.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.2 ) ) );
 
         if( type == Type.OPEN_FOREST || type == Type.HIGH_OPEN_FOREST || type == Type.FOREST_RIVER ) {
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.RED_INVER ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new Chance( 0.02 ) ) );
@@ -86,8 +87,8 @@ public class ForestBiome extends ModernityBiome {
             MDBlockGenerators.DOTTED_MUSHROOM
         );
 
-        addDecorator( new DecorationDecorator( new DeadLogDecoration( 5, 8, mushrooms, MDBlocks.BLACKWOOD_LOG.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.3 ) ) );
-        addDecorator( new DecorationDecorator( new DeadLogDecoration( 5, 8, mushrooms, MDBlocks.INVER_LOG.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.3 ) ) );
+        addDecorator( new DecorationDecorator( new DeadLogDecoration( 5, 8, mushrooms, MDTreeBlocks.BLACKWOOD_LOG.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.3 ) ) );
+        addDecorator( new DecorationDecorator( new DeadLogDecoration( 5, 8, mushrooms, MDTreeBlocks.INVER_LOG.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.3 ) ) );
 
         addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlockGenerators.MURK_GRASS_BASIC ), new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ), new Fixed( 6 ) ) );
         addDecorator( new DecorationDecorator( new ClusterBushDecoration( 100, 6, MDBlockGenerators.PEBBLES ), new Surface( Heightmap.Type.MOTION_BLOCKING_NO_LEAVES ), new Fixed( 6 ) ) );

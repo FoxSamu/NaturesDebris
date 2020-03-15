@@ -2,14 +2,15 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 08 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.blocks;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
+import modernity.common.block.MDPlantBlocks;
 import modernity.common.block.plant.FlyFlowerBlock;
 import modernity.common.block.plant.FlyFlowerStalkBlock;
 import modernity.common.fluid.MDFluids;
@@ -20,8 +21,8 @@ import net.minecraft.world.IWorld;
 import java.util.Random;
 
 public class FlyFlowerBlockGenerator implements IBlockGenerator {
-    private static final FlyFlowerStalkBlock STALK = MDBlocks.FLY_FLOWER_STALK;
-    private static final FlyFlowerBlock FLOWER = MDBlocks.FLY_FLOWER;
+    private static final FlyFlowerStalkBlock STALK = MDPlantBlocks.FLY_FLOWER_STALK;
+    private static final FlyFlowerBlock FLOWER = MDPlantBlocks.FLY_FLOWER;
 
     @Override
     public boolean generateBlock( IWorld world, BlockPos pos, Random rand ) {
@@ -67,6 +68,6 @@ public class FlyFlowerBlockGenerator implements IBlockGenerator {
     }
 
     private boolean isMurkyWater( BlockState state ) {
-        return state.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDBlocks.MURKY_WATER;
+        return state.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDNatureBlocks.MURKY_WATER;
     }
 }

@@ -2,14 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 04 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant;
 
 import modernity.api.util.MDVoxelShapes;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.block.farmland.IFarmland;
 import modernity.common.block.fluid.IMurkyWaterloggedBlock;
 import modernity.common.block.fluid.IWaterloggedBlock;
@@ -200,13 +200,13 @@ public abstract class PlantBlock extends Block {
     public boolean canGenerateAt( IWorld world, BlockPos pos, BlockState state ) {
         boolean air = state.isAir( world, pos );
         if( this instanceof IWaterPlant ) {
-            air = state.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDBlocks.MURKY_WATER;
+            air = state.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDNatureBlocks.MURKY_WATER;
         }
         if( this instanceof IMurkyWaterloggedBlock ) {
-            air |= state.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDBlocks.MURKY_WATER;
+            air |= state.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDNatureBlocks.MURKY_WATER;
         }
         if( this instanceof IWaterloggedBlock ) {
-            air |= state.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDBlocks.MURKY_WATER;
+            air |= state.getFluidState().getFluid() == MDFluids.MURKY_WATER && state.getBlock() == MDNatureBlocks.MURKY_WATER;
             air |= state.getFluidState().getFluid() == Fluids.WATER && state.getBlock() == Blocks.WATER;
         }
         return air && isValidPosition( state, world, pos );

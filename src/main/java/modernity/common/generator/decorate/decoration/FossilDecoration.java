@@ -2,14 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 08 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.decorate.decoration;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDMineralBlocks;
 import modernity.common.block.base.AxisBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.IFluidState;
@@ -182,7 +182,7 @@ public class FossilDecoration implements IDecoration {
     }
 
     private static BlockState bone( Axis axis ) {
-        return MDBlocks.BLACKBONE_BLOCK.getDefaultState().with( AxisBlock.AXIS, axis );
+        return MDMineralBlocks.BLACKBONE_BLOCK.getDefaultState().with( AxisBlock.AXIS, axis );
     }
 
     private static Direction[] randomTransform( Random rand ) {

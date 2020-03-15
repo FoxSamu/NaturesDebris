@@ -2,13 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 01 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block.plant.growing;
 
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDPlantBlocks;
 import modernity.common.block.farmland.IFarmland;
 import modernity.common.item.MDItemTags;
 import net.minecraft.block.BlockState;
@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class MurkFernGrowLogic extends SpreadingGrowLogic {
     public MurkFernGrowLogic() {
-        super( MDBlocks.MURK_FERN );
+        super( MDPlantBlocks.MURK_FERN );
     }
 
     public boolean growFromFloor( World world, BlockPos pos, BlockState state, Random rand ) {
@@ -53,14 +53,14 @@ public class MurkFernGrowLogic extends SpreadingGrowLogic {
 
     @Override
     protected boolean grow( World world, BlockPos pos, Random rand, boolean isItem ) {
-        boolean isTall = world.getBlockState( pos ).getBlock() == MDBlocks.TALL_MURK_FERN;
+        boolean isTall = world.getBlockState( pos ).getBlock() == MDPlantBlocks.TALL_MURK_FERN;
         if( isTall ) {
             if( isItem ) return false;
             return super.grow( world, pos, rand, false );
         } else {
             if( isItem || rand.nextInt( 3 ) == 0 ) {
                 if( canGrowLarge( world, pos ) ) {
-                    MDBlocks.TALL_MURK_FERN.growAt( world, pos );
+                    MDPlantBlocks.TALL_MURK_FERN.growAt( world, pos );
                     return true;
                 }
                 return false;
@@ -71,26 +71,26 @@ public class MurkFernGrowLogic extends SpreadingGrowLogic {
     }
 
     private boolean canGrowLarge( World world, BlockPos pos ) {
-        return MDBlocks.TALL_MURK_FERN.isValidPosition( world.getBlockState( pos ), world, pos ) && world.isAirBlock( pos.up() );
+        return MDPlantBlocks.TALL_MURK_FERN.isValidPosition( world.getBlockState( pos ), world, pos ) && world.isAirBlock( pos.up() );
     }
 
     @Override
     protected boolean canPlacePlant( World world, BlockPos pos, Random rand ) {
-        return MDBlocks.MURK_FERN.canGenerateAt( world, pos, world.getBlockState( pos ) );
+        return MDPlantBlocks.MURK_FERN.canGenerateAt( world, pos, world.getBlockState( pos ) );
     }
 
     @Override
     protected void placePlant( World world, BlockPos pos, Random rand ) {
-        MDBlocks.MURK_FERN.growAt( world, pos );
+        MDPlantBlocks.MURK_FERN.growAt( world, pos );
     }
 
     @Override
     protected void killPlant( World world, BlockPos pos, Random rand ) {
         BlockState state = world.getBlockState( pos );
-        if( state.getBlock() == MDBlocks.TALL_MURK_FERN ) {
-            MDBlocks.TALL_MURK_FERN.kill( world, pos, state );
+        if( state.getBlock() == MDPlantBlocks.TALL_MURK_FERN ) {
+            MDPlantBlocks.TALL_MURK_FERN.kill( world, pos, state );
         } else {
-            MDBlocks.MURK_FERN.kill( world, pos, state );
+            MDPlantBlocks.MURK_FERN.kill( world, pos, state );
         }
     }
 }

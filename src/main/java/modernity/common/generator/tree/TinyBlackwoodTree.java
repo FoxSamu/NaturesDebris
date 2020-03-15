@@ -2,14 +2,15 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 07 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.tree;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDPlantBlocks;
+import modernity.common.block.MDTreeBlocks;
 import modernity.common.block.base.AxisBlock;
 import modernity.common.block.tree.HangLeavesBlock;
 import net.minecraft.block.BlockState;
@@ -26,13 +27,13 @@ import java.util.Random;
 import java.util.function.Consumer;
 
 public class TinyBlackwoodTree extends Tree {
-    private static final BlockState LEAVES = MDBlocks.BLACKWOOD_LEAVES.getDefaultState();
-    private static final BlockState HANGING_LEAVES = MDBlocks.BLACKWOOD_LEAVES.getDefaultState().with( HangLeavesBlock.DISTANCE, - 1 );
-    private static final BlockState MURINA = MDBlocks.MURINA.getDefaultState();
-    private static final BlockState LOG_X = MDBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X );
-    private static final BlockState LOG_Y = MDBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Y );
-    private static final BlockState LOG_Z = MDBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z );
-    private static final BlockState WOOD = MDBlocks.BLACKWOOD.getDefaultState();
+    private static final BlockState LEAVES = MDTreeBlocks.BLACKWOOD_LEAVES.getDefaultState();
+    private static final BlockState HANGING_LEAVES = MDTreeBlocks.BLACKWOOD_LEAVES.getDefaultState().with( HangLeavesBlock.DISTANCE, - 1 );
+    private static final BlockState MURINA = MDPlantBlocks.MURINA.getDefaultState();
+    private static final BlockState LOG_X = MDTreeBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.X );
+    private static final BlockState LOG_Y = MDTreeBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Y );
+    private static final BlockState LOG_Z = MDTreeBlocks.BLACKWOOD_LOG.getDefaultState().with( AxisBlock.AXIS, Direction.Axis.Z );
+    private static final BlockState WOOD = MDTreeBlocks.BLACKWOOD.getDefaultState();
 
     @Override
     public boolean canGenerate( IWorldReader world, Random rand, BlockPos pos ) {

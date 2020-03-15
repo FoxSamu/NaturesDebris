@@ -2,13 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 17 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.item;
 
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
+import modernity.common.block.MDPlantBlocks;
 import modernity.common.item.sorting.AllSortingBlock;
 import modernity.common.item.sorting.ItemSortingBlock;
 import net.minecraft.enchantment.EnchantmentType;
@@ -28,11 +29,11 @@ import java.util.function.Supplier;
  */
 public class MDItemGroup extends ItemGroup {
     public static final MDItemGroup BLOCKS = builder( "modernity.blocks" )
-                                                 .iconItem( () -> MDBlocks.MURKY_GRASS_BLOCK )
+                                                 .iconItem( () -> MDNatureBlocks.MURKY_GRASS_BLOCK )
                                                  .build();
 
     public static final MDItemGroup DECORATIVES = builder( "modernity.decoratives" )
-                                                      .iconItem( () -> MDBlocks.PEBBLES )
+                                                      .iconItem( () -> MDPlantBlocks.PEBBLES )
                                                       .build();
 
     public static final MDItemGroup MISC = builder( "modernity.misc" )
@@ -40,7 +41,7 @@ public class MDItemGroup extends ItemGroup {
                                                .build();
 
     public static final MDItemGroup PLANTS = builder( "modernity.plants" )
-                                                 .iconItem( () -> MDBlocks.MINT_PLANT )
+                                                 .iconItem( () -> MDPlantBlocks.MINT_PLANT )
                                                  .build();
 
     public static final MDItemGroup COMBAT = builder( "modernity.combat" )
@@ -124,7 +125,7 @@ public class MDItemGroup extends ItemGroup {
         }
         NonNullList<ItemStack> itemStacks = NonNullList.create();
         for( Item item : ForgeRegistries.ITEMS ) {
-            if( item == MDBlocks.MURKY_DIRT.asItem() ) {
+            if( item == MDNatureBlocks.MURKY_DIRT.asItem() ) {
 
             }
             item.fillItemGroup( this, itemStacks );

@@ -2,14 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 13 - 2020
+ * Date:   03 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator.map.surface;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.common.block.MDBlocks;
+import modernity.common.block.MDNatureBlocks;
 import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.map.MapGenerator;
 import modernity.common.generator.util.NoiseBuffer;
@@ -26,7 +26,7 @@ import net.rgsw.noise.OpenSimplex3D;
  */
 public class CaveGenerator extends MapGenerator<SurfaceGenData> {
     private static final BlockState AIR = Blocks.CAVE_AIR.getDefaultState();
-    private static final BlockState WATER = MDBlocks.MURKY_WATER.getDefaultState();
+    private static final BlockState WATER = MDNatureBlocks.MURKY_WATER.getDefaultState();
 
     private static final int SEG_SIZE_X = 2;                                    // The size of a segment along x-axis
     private static final int SEG_SIZE_Y = 2;                                    // The size of a segment along y-axis
@@ -185,7 +185,7 @@ public class CaveGenerator extends MapGenerator<SurfaceGenData> {
      */
     private void placeBlock( WorldGenRegion region, MovingBlockPos rpos, double noise ) {
         BlockState state = region.getBlockState( rpos );
-        if( noise < 0 && state.getBlock() != MDBlocks.UNBREAKABLE_STONE ) {
+        if( noise < 0 && state.getBlock() != MDNatureBlocks.UNBREAKABLE_STONE ) {
             state = AIR;
             if( rpos.getY() <= MurkSurfaceGeneration.CAVE_WATER_LEVEL ) {
                 state = WATER;
