@@ -21,12 +21,12 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder( "modernity" )
-public interface MDPlantBlocks {
-    static void init() {
+public final class MDPlantBlocks {
+    public static void init() {
     }
 
     // Basic
-    TallMurkGrassBlock MURK_GRASS
+    public static final TallMurkGrassBlock MURK_GRASS
         = MDBlocks.function( "murk_grass", TallMurkGrassBlock::new )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
@@ -34,28 +34,28 @@ public interface MDPlantBlocks {
                   .alias( "dark_tall_grass" )
                   .create();
 
-    MurkReedBlock MURK_REED
+    public static final MurkReedBlock MURK_REED
         = MDBlocks.function( "murk_reed", MurkReedBlock::new )
                   .strongPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
                   .dropSelf()
                   .create();
 
-    SimplePlantBlock MINT_PLANT
+    public static final SimplePlantBlock MINT_PLANT
         = MDBlocks.function( "mint_plant", props -> new SimplePlantBlock( props, SimplePlantBlock.MINT ) )
                   .strongPlant( MaterialColor.GRASS, 0.2 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    RedwoldBlock REDWOLD
+    public static final RedwoldBlock REDWOLD
         = MDBlocks.function( "redwold", RedwoldBlock::new )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    NettlesBlock NETTLES
+    public static final NettlesBlock NETTLES
         = MDBlocks.function( "nettles", NettlesBlock::new )
                   .strongPlant( MaterialColor.GRASS, 0.5 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -63,28 +63,28 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    SaltCrystalBlock SALT_CRYSTAL
+    public static final SaltCrystalBlock SALT_CRYSTAL
         = MDBlocks.function( "salt_crystal", SaltCrystalBlock::new )
                   .crystal( MaterialColor.SNOW, 0.2 )
                   .item( MDItemGroup.PLANTS )
                   .drops( new SaltCrystalBlockDrops() )
                   .create();
 
-    MurinaBlock MURINA
+    public static final MurinaBlock MURINA
         = MDBlocks.function( "murina", MurinaBlock::new )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    MossBlock MOSS
+    public static final MossBlock MOSS
         = MDBlocks.function( "moss", MossBlock::new ).weakPlant( MaterialColor.GRASS, 0 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    FacingPlantBlock DEAD_MOSS
+    public static final FacingPlantBlock DEAD_MOSS
         = MDBlocks.function( "dead_moss", props -> new FacingPlantBlock( props, 2 ) )
                   .weakPlant( MaterialColor.DIRT, 0 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -92,7 +92,7 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    LichenBlock LICHEN
+    public static final LichenBlock LICHEN
         = MDBlocks.function( "lichen", LichenBlock::new )
                   .weakPlant( MaterialColor.WHITE_TERRACOTTA, 0 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -100,21 +100,21 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    MurkFernBlock MURK_FERN
+    public static final MurkFernBlock MURK_FERN
         = MDBlocks.function( "murk_fern", MurkFernBlock::new )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    TallMurkFernBlock TALL_MURK_FERN
+    public static final TallMurkFernBlock TALL_MURK_FERN
         = MDBlocks.function( "tall_murk_fern", TallMurkFernBlock::new )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    WireplantBlock WIREPLANT
+    public static final WireplantBlock WIREPLANT
         = MDBlocks.function( "wireplant", WireplantBlock::new )
                   .strongPlant( MaterialColor.GRASS, 0.5 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -122,7 +122,7 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self(), BlockLoot.item( () -> MDItems.PLANT_WIRE ) ) )
                   .create();
 
-    WireplantBlock FLOWERED_WIREPLANT
+    public static final WireplantBlock FLOWERED_WIREPLANT
         = MDBlocks.function( "flowered_wireplant", WireplantBlock::new )
                   .strongPlant( MaterialColor.GRASS, 0.5 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -130,7 +130,7 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self(), BlockLoot.item( () -> MDItems.PLANT_WIRE ) ) )
                   .create();
 
-    WaterWireBlock WATER_WIRE
+    public static final WaterWireBlock WATER_WIRE
         = MDBlocks.function( "water_wire", WaterWireBlock::new )
                   .strongPlant( MaterialColor.GRASS, 0.5 )
                   .sound( SoundType.WET_GRASS )
@@ -138,14 +138,14 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self(), BlockLoot.item( () -> MDItems.PLANT_WIRE ) ) )
                   .create();
 
-    AlgaeBlock ALGAE
+    public static final AlgaeBlock ALGAE
         = MDBlocks.function( "algae", AlgaeBlock::new )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .sound( SoundType.WET_GRASS )
                   .item( MDItemGroup.PLANTS )
                   .create();
 
-    HangingMossBlock HANGING_MOSS
+    public static final HangingMossBlock HANGING_MOSS
         = MDBlocks.function( "hanging_moss", HangingMossBlock::new )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .sound( SoundType.WET_GRASS )
@@ -153,21 +153,21 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    SimplePlantBlock HORSETAIL
+    public static final SimplePlantBlock HORSETAIL
         = MDBlocks.function( "horsetail", props -> new SimplePlantBlock( props, SimplePlantBlock.HORSETAIL ) )
                   .strongPlant( MaterialColor.GRASS, 0.2 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    CattailBlock CATTAIL
+    public static final CattailBlock CATTAIL
         = MDBlocks.function( "cattail", CattailBlock::new )
                   .strongPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    SimpleWaterPlantBlock LAKEWEED
+    public static final SimpleWaterPlantBlock LAKEWEED
         = MDBlocks.function( "lakeweed", props -> new SimpleWaterPlantBlock( props, SimplePlantBlock.LAKEWEED ) )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .sound( SoundType.WET_GRASS )
@@ -175,7 +175,7 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    HeathBlock HEATH
+    public static final HeathBlock HEATH
         = MDBlocks.function( "heath", HeathBlock::new )
                   .weakPlant( MaterialColor.GRASS, 0.2 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -183,7 +183,7 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    HeathBlock FLOWERED_HEATH
+    public static final HeathBlock FLOWERED_HEATH
         = MDBlocks.function( "flowered_heath", HeathBlock::new )
                   .weakPlant( MaterialColor.GRASS, 0.2 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -191,7 +191,7 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    SimplePlantBlock DEAD_HEATH
+    public static final SimplePlantBlock DEAD_HEATH
         = MDBlocks.function( "dead_heath", props -> new SimplePlantBlock( props, SimplePlantBlock.DEAD_HEATH ) )
                   .weakPlant( MaterialColor.BROWN_TERRACOTTA, 0 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -199,7 +199,7 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    SimplePlantBlock SEEPWEED
+    public static final SimplePlantBlock SEEPWEED
         = MDBlocks.function( "seepweed", props -> new SimplePlantBlock( props, SimplePlantBlock.SEEPWEED ) )
                   .strongPlant( MaterialColor.GRASS, 0.2 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -207,21 +207,21 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self(), BlockLoot.item( () -> MDItems.SEEPWEED_SEEDS ) ) )
                   .create();
 
-    CavePlantBlock CAVE_GRASS
+    public static final CavePlantBlock CAVE_GRASS
         = MDBlocks.function( "cave_grass", props -> new CavePlantBlock( props, CavePlantBlock.CAVE_GRASS ) )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    SimplePlantBlock NUDWART
+    public static final SimplePlantBlock NUDWART
         = MDBlocks.function( "nudwart", props -> new SimplePlantBlock( props, SimplePlantBlock.NUDWART ) )
                   .strongPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self(), BlockLoot.item( () -> MDItems.NUDWART_SEEDS ) ) )
                   .create();
 
-    WatergrassBlock WATERGRASS
+    public static final WatergrassBlock WATERGRASS
         = MDBlocks.function( "watergrass", WatergrassBlock::new )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .sound( SoundType.WET_GRASS )
@@ -229,7 +229,7 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    MuxusBushBlock MUXUS_BUSH
+    public static final MuxusBushBlock MUXUS_BUSH
         = MDBlocks.function( "muxus_bush", MuxusBushBlock::new )
                   .strongPlant( MaterialColor.GRASS, 0.5 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -237,21 +237,21 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self(), BlockLoot.item( () -> MDItems.MURK_ROOTS_SEEDS, 0.16F ) ) )
                   .create();
 
-    SimplePlantBlock COTTONSEDGE
+    public static final SimplePlantBlock COTTONSEDGE
         = MDBlocks.function( "cottonsedge", props -> new SimplePlantBlock( props, SimplePlantBlock.COTTONSEDGE ) )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    SimplePlantBlock RED_GRASS
+    public static final SimplePlantBlock RED_GRASS
         = MDBlocks.function( "red_grass", props -> new SimplePlantBlock( props, SimplePlantBlock.RED_GRASS ) )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    CavePlantBlock DEAD_GRASS
+    public static final CavePlantBlock DEAD_GRASS
         = MDBlocks.function( "dead_grass", props -> new CavePlantBlock( props, CavePlantBlock.DEAD_GRASS ) )
                   .weakPlant( MaterialColor.AIR, 0 )
                   .item( MDItemGroup.PLANTS )
@@ -260,7 +260,7 @@ public interface MDPlantBlocks {
 
 
     // Flowers
-    FlyFlowerStalkBlock FLY_FLOWER_STALK
+    public static final FlyFlowerStalkBlock FLY_FLOWER_STALK
         = MDBlocks.function( "fly_flower_stalk", FlyFlowerStalkBlock::new )
                   .strongPlant( MaterialColor.GRASS, 0.5 )
                   .sound( SoundType.WET_GRASS )
@@ -268,35 +268,35 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    FlyFlowerBlock FLY_FLOWER
+    public static final FlyFlowerBlock FLY_FLOWER
         = MDBlocks.function( "fly_flower", FlyFlowerBlock::new )
                   .strongPlant( MaterialColor.GRASS, 0.5 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    SimplePlantBlock MURK_FLOWER
+    public static final SimplePlantBlock MURK_FLOWER
         = MDBlocks.function( "murk_flower", props -> new SimplePlantBlock( props, SimplePlantBlock.MURK_FLOWER ) )
                   .strongPlant( MaterialColor.AIR, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    SimplePlantBlock MILKY_EYE
+    public static final SimplePlantBlock MILKY_EYE
         = MDBlocks.function( "milky_eye", props -> new SimplePlantBlock( props, SimplePlantBlock.MILK_EYE ) )
                   .strongPlant( MaterialColor.AIR, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    SimplePlantBlock EGIUM
+    public static final SimplePlantBlock EGIUM
         = MDBlocks.function( "egium", props -> new SimplePlantBlock( props, SimplePlantBlock.EGIUM ) )
                   .strongPlant( MaterialColor.AIR, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    ShadeBlueBlock SHADE_BLUE
+    public static final ShadeBlueBlock SHADE_BLUE
         = MDBlocks.function( "shade_blue", ShadeBlueBlock::new )
                   .strongPlant( MaterialColor.AIR, 0.1 )
                   .sound( MDSoundTypes.SHADE_BLUE )
@@ -304,56 +304,56 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.shears( BlockLoot.self(), BlockLoot.item( () -> MDItems.SHADE_BLUE_FLOWER ) ) )
                   .create();
 
-    SimplePlantBlock BLUE_BULBFLOWER
+    public static final SimplePlantBlock BLUE_BULBFLOWER
         = MDBlocks.function( "blue_bulbflower", props -> new SimplePlantBlock( props, SimplePlantBlock.BULBFLOWER ) )
                   .strongPlant( MaterialColor.AIR, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    SimplePlantBlock YELLOW_BULBFLOWER
+    public static final SimplePlantBlock YELLOW_BULBFLOWER
         = MDBlocks.function( "yellow_bulbflower", props -> new SimplePlantBlock( props, SimplePlantBlock.BULBFLOWER ) )
                   .strongPlant( MaterialColor.AIR, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    SimplePlantBlock RED_BULBFLOWER
+    public static final SimplePlantBlock RED_BULBFLOWER
         = MDBlocks.function( "red_bulbflower", props -> new SimplePlantBlock( props, SimplePlantBlock.BULBFLOWER ) )
                   .strongPlant( MaterialColor.AIR, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    TuruptBlock TURUPT
+    public static final TuruptBlock TURUPT
         = MDBlocks.function( "turupt", TuruptBlock::new )
                   .strongPlant( MaterialColor.AIR, 0.1 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    SimplePlantBlock CREEP_OF_THE_MOOR
+    public static final SimplePlantBlock CREEP_OF_THE_MOOR
         = MDBlocks.function( "creep_of_the_moor", props -> new SimplePlantBlock( props, SimplePlantBlock.MOOR_CREEP ) )
                   .weakPlant( MaterialColor.AIR, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    DoublePlantBlock MURK_LAVENDER
+    public static final DoublePlantBlock MURK_LAVENDER
         = MDBlocks.function( "murk_lavender", props -> new DoublePlantBlock( props, DoublePlantBlock.MURK_LAVENDER ) )
                   .strongPlant( MaterialColor.AIR, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self() ) )
                   .create();
 
-    FoxgloveBlock FOXGLOVE
+    public static final FoxgloveBlock FOXGLOVE
         = MDBlocks.function( "foxglove", FoxgloveBlock::new )
                   .strongPlant( MaterialColor.AIR, 0 )
                   .item( MDItemGroup.PLANTS )
                   .drops( BlockLoot.shears( BlockLoot.self(), BlockLoot.item( () -> MDItems.FOXGLOVE_PETALS ) ) )
                   .create();
 
-    DoublePlantBlock GLOBE_THISTLE
+    public static final DoublePlantBlock GLOBE_THISTLE
         = MDBlocks.function( "globe_thistle", props -> new DoublePlantBlock( props, DoublePlantBlock.GLOBE_THISTLE ) )
                   .strongPlant( MaterialColor.AIR, 0 )
                   .item( MDItemGroup.PLANTS )
@@ -362,21 +362,21 @@ public interface MDPlantBlocks {
 
 
     // Mushrooms
-    CavePlantBlock SEEDLE
+    public static final CavePlantBlock SEEDLE
         = MDBlocks.function( "seedle", props -> new CavePlantBlock( props, CavePlantBlock.SEEDLE ) )
                   .weakPlant( MaterialColor.BROWN_TERRACOTTA, 0 )
                   .item( MDItemGroup.PLANTS )
                   .dropSelf()
                   .create();
 
-    CavePlantBlock DOTTED_MUSHROOM
+    public static final CavePlantBlock DOTTED_MUSHROOM
         = MDBlocks.function( "dotted_mushroom", props -> new CavePlantBlock( props, CavePlantBlock.DOTTED_MUSHROOM ) )
                   .weakPlant( MaterialColor.RED_TERRACOTTA, 0 )
                   .item( MDItemGroup.PLANTS )
                   .dropSelf()
                   .create();
 
-    CavePlantBlock BLACK_MUSHROOM
+    public static final CavePlantBlock BLACK_MUSHROOM
         = MDBlocks.function( "black_mushroom", props -> new CavePlantBlock( props, CavePlantBlock.BLACK_MUSHROOM ) )
                   .weakPlant( MaterialColor.BLACK_TERRACOTTA, 0 )
                   .item( MDItemGroup.PLANTS )
@@ -385,7 +385,7 @@ public interface MDPlantBlocks {
 
 
     // Melion
-    SimplePlantBlock RED_MELION
+    public static final SimplePlantBlock RED_MELION
         = MDBlocks.function( "red_melion", props -> new SimplePlantBlock( props, SimplePlantBlock.MELION ) )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
@@ -393,7 +393,7 @@ public interface MDPlantBlocks {
                   .alias( "melion/red" )
                   .create();
 
-    SimplePlantBlock ORANGE_MELION
+    public static final SimplePlantBlock ORANGE_MELION
         = MDBlocks.function( "orange_melion", props -> new SimplePlantBlock( props, SimplePlantBlock.MELION ) )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
@@ -401,7 +401,7 @@ public interface MDPlantBlocks {
                   .alias( "melion/orange" )
                   .create();
 
-    SimplePlantBlock YELLOW_MELION
+    public static final SimplePlantBlock YELLOW_MELION
         = MDBlocks.function( "yellow_melion", props -> new SimplePlantBlock( props, SimplePlantBlock.MELION ) )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
@@ -409,7 +409,7 @@ public interface MDPlantBlocks {
                   .alias( "melion/yellow" )
                   .create();
 
-    SimplePlantBlock WHITE_MELION
+    public static final SimplePlantBlock WHITE_MELION
         = MDBlocks.function( "white_melion", props -> new SimplePlantBlock( props, SimplePlantBlock.MELION ) )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
@@ -417,7 +417,7 @@ public interface MDPlantBlocks {
                   .alias( "melion/white" )
                   .create();
 
-    SimplePlantBlock BLUE_MELION
+    public static final SimplePlantBlock BLUE_MELION
         = MDBlocks.function( "blue_melion", props -> new SimplePlantBlock( props, SimplePlantBlock.MELION ) )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
@@ -425,7 +425,7 @@ public interface MDPlantBlocks {
                   .alias( "melion/blue" )
                   .create();
 
-    SimplePlantBlock INDIGO_MELION
+    public static final SimplePlantBlock INDIGO_MELION
         = MDBlocks.function( "indigo_melion", props -> new SimplePlantBlock( props, SimplePlantBlock.MELION ) )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
@@ -433,7 +433,7 @@ public interface MDPlantBlocks {
                   .alias( "melion/indigo" )
                   .create();
 
-    SimplePlantBlock MAGENTA_MELION
+    public static final SimplePlantBlock MAGENTA_MELION
         = MDBlocks.function( "magenta_melion", props -> new SimplePlantBlock( props, SimplePlantBlock.MELION ) )
                   .weakPlant( MaterialColor.GRASS, 0 )
                   .item( MDItemGroup.PLANTS )
@@ -443,7 +443,7 @@ public interface MDPlantBlocks {
 
 
     // Millium
-    SimplePlantBlock RED_MILLIUM
+    public static final SimplePlantBlock RED_MILLIUM
         = MDBlocks.function( "red_millium", props -> new SimplePlantBlock( props, SimplePlantBlock.MILLIUM ) )
                   .weakPlant( MaterialColor.GRASS, 0 ).light( 5 )
                   .item( MDItemGroup.PLANTS )
@@ -451,7 +451,7 @@ public interface MDPlantBlocks {
                   .alias( "millium/red" )
                   .create();
 
-    SimplePlantBlock YELLOW_MILLIUM
+    public static final SimplePlantBlock YELLOW_MILLIUM
         = MDBlocks.function( "yellow_millium", props -> new SimplePlantBlock( props, SimplePlantBlock.MILLIUM ) )
                   .weakPlant( MaterialColor.GRASS, 0 ).light( 5 )
                   .item( MDItemGroup.PLANTS )
@@ -459,7 +459,7 @@ public interface MDPlantBlocks {
                   .alias( "millium/yellow" )
                   .create();
 
-    SimplePlantBlock WHITE_MILLIUM
+    public static final SimplePlantBlock WHITE_MILLIUM
         = MDBlocks.function( "white_millium", props -> new SimplePlantBlock( props, SimplePlantBlock.MILLIUM ) )
                   .weakPlant( MaterialColor.GRASS, 0 ).light( 5 )
                   .item( MDItemGroup.PLANTS )
@@ -467,7 +467,7 @@ public interface MDPlantBlocks {
                   .alias( "millium/white" )
                   .create();
 
-    SimplePlantBlock CYAN_MILLIUM
+    public static final SimplePlantBlock CYAN_MILLIUM
         = MDBlocks.function( "cyan_millium", props -> new SimplePlantBlock( props, SimplePlantBlock.MILLIUM ) )
                   .weakPlant( MaterialColor.GRASS, 0 ).light( 5 )
                   .item( MDItemGroup.PLANTS )
@@ -475,7 +475,7 @@ public interface MDPlantBlocks {
                   .alias( "millium/cyan" )
                   .create();
 
-    SimplePlantBlock GREEN_MILLIUM
+    public static final SimplePlantBlock GREEN_MILLIUM
         = MDBlocks.function( "green_millium", props -> new SimplePlantBlock( props, SimplePlantBlock.MILLIUM ) )
                   .weakPlant( MaterialColor.GRASS, 0 ).light( 5 )
                   .item( MDItemGroup.PLANTS )
@@ -483,7 +483,7 @@ public interface MDPlantBlocks {
                   .alias( "millium/green" )
                   .create();
 
-    SimplePlantBlock MAGENTA_MILLIUM
+    public static final SimplePlantBlock MAGENTA_MILLIUM
         = MDBlocks.function( "magenta_millium", props -> new SimplePlantBlock( props, SimplePlantBlock.MILLIUM ) )
                   .weakPlant( MaterialColor.GRASS, 0 ).light( 5 )
                   .item( MDItemGroup.PLANTS )
@@ -491,7 +491,7 @@ public interface MDPlantBlocks {
                   .alias( "millium/magenta" )
                   .create();
 
-    SimplePlantBlock BLUE_MILLIUM
+    public static final SimplePlantBlock BLUE_MILLIUM
         = MDBlocks.function( "blue_millium", props -> new SimplePlantBlock( props, SimplePlantBlock.MILLIUM ) )
                   .weakPlant( MaterialColor.GRASS, 0 ).light( 5 )
                   .item( MDItemGroup.PLANTS )
@@ -501,14 +501,14 @@ public interface MDPlantBlocks {
 
 
     // Misc
-    SoulLightBlock SOUL_LIGHT
+    public static final SoulLightBlock SOUL_LIGHT
         = MDBlocks.function( "soul_light", SoulLightBlock::new )
                   .props( Material.MISCELLANEOUS, MaterialColor.SNOW )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    PebblesBlock PEBBLES
+    public static final PebblesBlock PEBBLES
         = MDBlocks.function( "pebbles", PebblesBlock::new )
                   .weakPlant( MaterialColor.AIR, 0.1 )
                   .sound( MDSoundTypes.ASPHALT )
@@ -516,7 +516,7 @@ public interface MDPlantBlocks {
                   .drops( BlockLoot.silkTouch( BlockLoot.self() ) )
                   .create();
 
-    GooDripsBlock GOO_DRIPS
+    public static final GooDripsBlock GOO_DRIPS
         = MDBlocks.function( "goo_drips", GooDripsBlock::new )
                   .weakPlant( MaterialColor.AIR, 0 )
                   .sound( SoundType.SLIME )
@@ -525,28 +525,28 @@ public interface MDPlantBlocks {
                   .create();
 
     // Crops
-    NudwartCropBlock NUDWART_CROP
+    public static final NudwartCropBlock NUDWART_CROP
         = MDBlocks.function( "nudwart_crop", NudwartCropBlock::new )
                   .weakPlant( MaterialColor.GREEN, 0 )
                   .sound( SoundType.CROP )
                   .drops( new CropBlockDrops<>( () -> MDItems.NUDWART_PETALS, () -> MDItems.NUDWART_SEEDS, MDBlockStateProperties.AGE_1_6, 6 ) )
                   .create();
 
-    SeepweedCropBlock SEEPWEED_CROP
+    public static final SeepweedCropBlock SEEPWEED_CROP
         = MDBlocks.function( "seepweed_crop", SeepweedCropBlock::new )
                   .weakPlant( MaterialColor.GREEN, 0 )
                   .sound( SoundType.CROP )
                   .drops( new CropBlockDrops<>( () -> MDItems.SEEPWEED_LEAVES, () -> MDItems.SEEPWEED_SEEDS, MDBlockStateProperties.AGE_1_6, 6 ) )
                   .create();
 
-    MurkRootsCropBlock MURK_ROOTS
+    public static final MurkRootsCropBlock MURK_ROOTS
         = MDBlocks.function( "murk_roots", MurkRootsCropBlock::new )
                   .weakPlant( MaterialColor.GREEN, 0 )
                   .sound( SoundType.CROP )
                   .drops( new CropBlockDrops<>( () -> MDItems.MURK_ROOT, () -> MDItems.MURK_ROOTS_SEEDS, MDBlockStateProperties.AGE_1_8, 8 ) )
                   .create();
 
-    MurkRiceCropBlock MURK_RICE
+    public static final MurkRiceCropBlock MURK_RICE
         = MDBlocks.function( "murk_rice", MurkRiceCropBlock::new )
                   .weakPlant( MaterialColor.GREEN, 0 )
                   .sound( SoundType.CROP )

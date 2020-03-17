@@ -40,7 +40,7 @@ import java.util.function.Supplier;
 /**
  * Object holder for modernity blocks.
  */
-public final class MDBlocks implements MDNatureBlocks, MDPlantBlocks, MDTreeBlocks, MDMineralBlocks, MDBuildingBlocks {
+public final class MDBlocks {
     private static final ArrayList<Block> ITEM_BLOCKS = new ArrayList<>();
     private static final RegistryHandler<Block> BLOCKS = new RegistryHandler<>( "modernity" );
     private static final RegistryHandler<Item> ITEMS = new RegistryHandler<>( "modernity" );
