@@ -1,0 +1,14 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:rock_tiles"
+    },
+    {
+      "item": "modernity:moss"
+    }
+  ],
+  "result": {
+    "item": "modernity:mossy_rock_tiles"
+  }
+}

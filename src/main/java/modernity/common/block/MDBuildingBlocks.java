@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 17 - 2020
  * Author: rgsw
  */
 
@@ -23,79 +23,76 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder( "modernity" )
-public final class MDBuildingBlocks {
+public interface MDBuildingBlocks {
 
-    private MDBuildingBlocks() {
-    }
-
-    public static void init() {
+    static void init() {
     }
 
     // Rock Blocks
-    public static final Block ROCK_BRICKS
+    Block ROCK_BRICKS
         = MDBlocks.simple( "rock_bricks" )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block SMOOTH_ROCK
+    Block SMOOTH_ROCK
         = MDBlocks.simple( "smooth_rock" )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block ROCK_TILES
+    Block ROCK_TILES
         = MDBlocks.simple( "rock_tiles" )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block MOSSY_ROCK
+    Block MOSSY_ROCK
         = MDBlocks.simple( "mossy_rock" )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block MOSSY_ROCK_BRICKS
+    Block MOSSY_ROCK_BRICKS
         = MDBlocks.simple( "mossy_rock_bricks" )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block MOSSY_ROCK_TILES
+    Block MOSSY_ROCK_TILES
         = MDBlocks.simple( "mossy_rock_tiles" )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block CRACKED_ROCK_BRICKS
+    Block CRACKED_ROCK_BRICKS
         = MDBlocks.simple( "cracked_rock_bricks" )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block CRACKED_ROCK_TILES
+    Block CRACKED_ROCK_TILES
         = MDBlocks.simple( "cracked_rock_tiles" )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block POLISHED_ROCK
+    Block POLISHED_ROCK
         = MDBlocks.simple( "polished_rock" )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block CHISELED_ROCK
+    Block CHISELED_ROCK
         = MDBlocks.simple( "chiseled_rock" )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -103,70 +100,70 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Darkrock Blocks
-    public static final Block DARKROCK_BRICKS
+    Block DARKROCK_BRICKS
         = MDBlocks.simple( "darkrock_bricks" )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block SMOOTH_DARKROCK
+    Block SMOOTH_DARKROCK
         = MDBlocks.simple( "smooth_darkrock" )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block DARKROCK_TILES
+    Block DARKROCK_TILES
         = MDBlocks.simple( "darkrock_tiles" )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block MOSSY_DARKROCK
+    Block MOSSY_DARKROCK
         = MDBlocks.simple( "mossy_darkrock" )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block MOSSY_DARKROCK_BRICKS
+    Block MOSSY_DARKROCK_BRICKS
         = MDBlocks.simple( "mossy_darkrock_bricks" )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block MOSSY_DARKROCK_TILES
+    Block MOSSY_DARKROCK_TILES
         = MDBlocks.simple( "mossy_darkrock_tiles" )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block CRACKED_DARKROCK_BRICKS
+    Block CRACKED_DARKROCK_BRICKS
         = MDBlocks.simple( "cracked_darkrock_bricks" )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block CRACKED_DARKROCK_TILES
+    Block CRACKED_DARKROCK_TILES
         = MDBlocks.simple( "cracked_darkrock_tiles" )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block POLISHED_DARKROCK
+    Block POLISHED_DARKROCK
         = MDBlocks.simple( "polished_darkrock" )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block CHISELED_DARKROCK
+    Block CHISELED_DARKROCK
         = MDBlocks.simple( "chiseled_darkrock" )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -174,28 +171,28 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Murk Bricks Blocks
-    public static final Block MURK_BRICKS
+    Block MURK_BRICKS
         = MDBlocks.simple( "murk_bricks" )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block MURK_TILES
+    Block MURK_TILES
         = MDBlocks.simple( "murk_tiles" )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block CRACKED_MURK_BRICKS
+    Block CRACKED_MURK_BRICKS
         = MDBlocks.simple( "cracked_murk_bricks" )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block CRACKED_MURK_TILES
+    Block CRACKED_MURK_TILES
         = MDBlocks.simple( "cracked_murk_tiles" )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -203,14 +200,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Wooden Blocks
-    public static final Block BLACKWOOD_PLANKS
+    Block BLACKWOOD_PLANKS
         = MDBlocks.simple( "blackwood_planks" )
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final Block INVER_PLANKS
+    Block INVER_PLANKS
         = MDBlocks.simple( "inver_planks" )
                   .wood( MaterialColor.WOOD )
                   .item( MDItemGroup.BLOCKS )
@@ -218,63 +215,63 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Rock Slabs
-    public static final VerticalSlabBlock ROCK_SLAB
+    VerticalSlabBlock ROCK_SLAB
         = MDBlocks.function( "rock_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock ROCK_BRICKS_SLAB
+    VerticalSlabBlock ROCK_BRICKS_SLAB
         = MDBlocks.function( "rock_bricks_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock SMOOTH_ROCK_SLAB
+    VerticalSlabBlock SMOOTH_ROCK_SLAB
         = MDBlocks.function( "smooth_rock_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock ROCK_TILES_SLAB
+    VerticalSlabBlock ROCK_TILES_SLAB
         = MDBlocks.function( "rock_tiles_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock MOSSY_ROCK_SLAB
+    VerticalSlabBlock MOSSY_ROCK_SLAB
         = MDBlocks.function( "mossy_rock_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock MOSSY_ROCK_BRICKS_SLAB
+    VerticalSlabBlock MOSSY_ROCK_BRICKS_SLAB
         = MDBlocks.function( "mossy_rock_bricks_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock MOSSY_ROCK_TILES_SLAB
+    VerticalSlabBlock MOSSY_ROCK_TILES_SLAB
         = MDBlocks.function( "mossy_rock_tiles_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock CRACKED_ROCK_BRICKS_SLAB
+    VerticalSlabBlock CRACKED_ROCK_BRICKS_SLAB
         = MDBlocks.function( "cracked_rock_bricks_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock CRACKED_ROCK_TILES_SLAB
+    VerticalSlabBlock CRACKED_ROCK_TILES_SLAB
         = MDBlocks.function( "cracked_rock_tiles_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -282,63 +279,63 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Darkrock Slabs
-    public static final VerticalSlabBlock DARKROCK_SLAB
+    VerticalSlabBlock DARKROCK_SLAB
         = MDBlocks.function( "darkrock_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock DARKROCK_BRICKS_SLAB
+    VerticalSlabBlock DARKROCK_BRICKS_SLAB
         = MDBlocks.function( "darkrock_bricks_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock SMOOTH_DARKROCK_SLAB
+    VerticalSlabBlock SMOOTH_DARKROCK_SLAB
         = MDBlocks.function( "smooth_darkrock_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock DARKROCK_TILES_SLAB
+    VerticalSlabBlock DARKROCK_TILES_SLAB
         = MDBlocks.function( "darkrock_tiles_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock MOSSY_DARKROCK_SLAB
+    VerticalSlabBlock MOSSY_DARKROCK_SLAB
         = MDBlocks.function( "mossy_darkrock_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock MOSSY_DARKROCK_BRICKS_SLAB
+    VerticalSlabBlock MOSSY_DARKROCK_BRICKS_SLAB
         = MDBlocks.function( "mossy_darkrock_bricks_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock MOSSY_DARKROCK_TILES_SLAB
+    VerticalSlabBlock MOSSY_DARKROCK_TILES_SLAB
         = MDBlocks.function( "mossy_darkrock_tiles_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock CRACKED_DARKROCK_BRICKS_SLAB
+    VerticalSlabBlock CRACKED_DARKROCK_BRICKS_SLAB
         = MDBlocks.function( "cracked_darkrock_bricks_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock CRACKED_DARKROCK_TILES_SLAB
+    VerticalSlabBlock CRACKED_DARKROCK_TILES_SLAB
         = MDBlocks.function( "cracked_darkrock_tiles_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -346,28 +343,28 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Murk Bricks Slabs
-    public static final VerticalSlabBlock MURK_BRICKS_SLAB
+    VerticalSlabBlock MURK_BRICKS_SLAB
         = MDBlocks.function( "murk_bricks_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock MURK_TILES_SLAB
+    VerticalSlabBlock MURK_TILES_SLAB
         = MDBlocks.function( "murk_tiles_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock CRACKED_MURK_BRICKS_SLAB
+    VerticalSlabBlock CRACKED_MURK_BRICKS_SLAB
         = MDBlocks.function( "cracked_murk_bricks_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock CRACKED_MURK_TILES_SLAB
+    VerticalSlabBlock CRACKED_MURK_TILES_SLAB
         = MDBlocks.function( "cracked_murk_tiles_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -375,14 +372,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Misc Slabs
-    public static final VerticalSlabBlock ASPHALT_CONCRETE_SLAB
+    VerticalSlabBlock ASPHALT_CONCRETE_SLAB
         = MDBlocks.function( "asphalt_concrete_slab", VerticalSlabBlock::new )
                   .asphalt()
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock LIMESTONE_SLAB
+    VerticalSlabBlock LIMESTONE_SLAB
         = MDBlocks.function( "limestone_slab", VerticalSlabBlock::new )
                   .rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 )
                   .item( MDItemGroup.BLOCKS )
@@ -390,14 +387,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Wooden Slabs
-    public static final VerticalSlabBlock BLACKWOOD_SLAB
+    VerticalSlabBlock BLACKWOOD_SLAB
         = MDBlocks.function( "blackwood_slab", VerticalSlabBlock::new )
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.slab() )
                   .create();
 
-    public static final VerticalSlabBlock INVER_SLAB
+    VerticalSlabBlock INVER_SLAB
         = MDBlocks.function( "inver_slab", VerticalSlabBlock::new )
                   .wood( MaterialColor.WOOD )
                   .item( MDItemGroup.BLOCKS )
@@ -406,63 +403,63 @@ public final class MDBuildingBlocks {
 
 
     // Rock Stairs
-    public static final StairsBlock ROCK_STAIRS
+    StairsBlock ROCK_STAIRS
         = MDBlocks.function( "rock_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock ROCK_BRICKS_STAIRS
+    StairsBlock ROCK_BRICKS_STAIRS
         = MDBlocks.function( "rock_bricks_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock SMOOTH_ROCK_STAIRS
+    StairsBlock SMOOTH_ROCK_STAIRS
         = MDBlocks.function( "smooth_rock_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock ROCK_TILES_STAIRS
+    StairsBlock ROCK_TILES_STAIRS
         = MDBlocks.function( "rock_tiles_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MOSSY_ROCK_STAIRS
+    StairsBlock MOSSY_ROCK_STAIRS
         = MDBlocks.function( "mossy_rock_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MOSSY_ROCK_BRICKS_STAIRS
+    StairsBlock MOSSY_ROCK_BRICKS_STAIRS
         = MDBlocks.function( "mossy_rock_bricks_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MOSSY_ROCK_TILES_STAIRS
+    StairsBlock MOSSY_ROCK_TILES_STAIRS
         = MDBlocks.function( "mossy_rock_tiles_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock CRACKED_ROCK_BRICKS_STAIRS
+    StairsBlock CRACKED_ROCK_BRICKS_STAIRS
         = MDBlocks.function( "cracked_rock_bricks_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock CRACKED_ROCK_TILES_STAIRS
+    StairsBlock CRACKED_ROCK_TILES_STAIRS
         = MDBlocks.function( "cracked_rock_tiles_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -470,63 +467,63 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Darkrock Stairs
-    public static final StairsBlock DARKROCK_STAIRS
+    StairsBlock DARKROCK_STAIRS
         = MDBlocks.function( "darkrock_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock DARKROCK_BRICKS_STAIRS
+    StairsBlock DARKROCK_BRICKS_STAIRS
         = MDBlocks.function( "darkrock_bricks_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock SMOOTH_DARKROCK_STAIRS
+    StairsBlock SMOOTH_DARKROCK_STAIRS
         = MDBlocks.function( "smooth_darkrock_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock DARKROCK_TILES_STAIRS
+    StairsBlock DARKROCK_TILES_STAIRS
         = MDBlocks.function( "darkrock_tiles_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MOSSY_DARKROCK_STAIRS
+    StairsBlock MOSSY_DARKROCK_STAIRS
         = MDBlocks.function( "mossy_darkrock_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MOSSY_DARKROCK_BRICKS_STAIRS
+    StairsBlock MOSSY_DARKROCK_BRICKS_STAIRS
         = MDBlocks.function( "mossy_darkrock_bricks_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MOSSY_DARKROCK_TILES_STAIRS
+    StairsBlock MOSSY_DARKROCK_TILES_STAIRS
         = MDBlocks.function( "mossy_darkrock_tiles_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock CRACKED_DARKROCK_BRICKS_STAIRS
+    StairsBlock CRACKED_DARKROCK_BRICKS_STAIRS
         = MDBlocks.function( "cracked_darkrock_bricks_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock CRACKED_DARKROCK_TILES_STAIRS
+    StairsBlock CRACKED_DARKROCK_TILES_STAIRS
         = MDBlocks.function( "cracked_darkrock_tiles_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -534,28 +531,28 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Murk Bricks Stairs
-    public static final StairsBlock MURK_BRICKS_STAIRS
+    StairsBlock MURK_BRICKS_STAIRS
         = MDBlocks.function( "murk_bricks_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MURK_TILES_STAIRS
+    StairsBlock MURK_TILES_STAIRS
         = MDBlocks.function( "murk_tiles_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock CRACKED_MURK_BRICKS_STAIRS
+    StairsBlock CRACKED_MURK_BRICKS_STAIRS
         = MDBlocks.function( "cracked_murk_bricks_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock CRACKED_MURK_TILES_STAIRS
+    StairsBlock CRACKED_MURK_TILES_STAIRS
         = MDBlocks.function( "cracked_murk_tiles_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -563,14 +560,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Misc Stairs
-    public static final StairsBlock ASPHALT_CONCRETE_STAIRS
+    StairsBlock ASPHALT_CONCRETE_STAIRS
         = MDBlocks.function( "asphalt_concrete_stairs", props -> new StairsBlock( false, props ) )
                   .asphalt()
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock LIMESTONE_STAIRS
+    StairsBlock LIMESTONE_STAIRS
         = MDBlocks.function( "limestone_stairs", props -> new StairsBlock( false, props ) )
                   .rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 )
                   .item( MDItemGroup.BLOCKS )
@@ -578,14 +575,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Wooden Stairs
-    public static final StairsBlock BLACKWOOD_STAIRS
+    StairsBlock BLACKWOOD_STAIRS
         = MDBlocks.function( "blackwood_stairs", props -> new StairsBlock( false, props ) )
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock INVER_STAIRS
+    StairsBlock INVER_STAIRS
         = MDBlocks.function( "inver_stairs", props -> new StairsBlock( false, props ) )
                   .wood( MaterialColor.WOOD )
                   .item( MDItemGroup.BLOCKS )
@@ -594,63 +591,63 @@ public final class MDBuildingBlocks {
 
 
     // Rock Steps
-    public static final StairsBlock ROCK_STEP
+    StairsBlock ROCK_STEP
         = MDBlocks.function( "rock_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock ROCK_BRICKS_STEP
+    StairsBlock ROCK_BRICKS_STEP
         = MDBlocks.function( "rock_bricks_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock SMOOTH_ROCK_STEP
+    StairsBlock SMOOTH_ROCK_STEP
         = MDBlocks.function( "smooth_rock_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock ROCK_TILES_STEP
+    StairsBlock ROCK_TILES_STEP
         = MDBlocks.function( "rock_tiles_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MOSSY_ROCK_STEP
+    StairsBlock MOSSY_ROCK_STEP
         = MDBlocks.function( "mossy_rock_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MOSSY_ROCK_BRICKS_STEP
+    StairsBlock MOSSY_ROCK_BRICKS_STEP
         = MDBlocks.function( "mossy_rock_bricks_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MOSSY_ROCK_TILES_STEP
+    StairsBlock MOSSY_ROCK_TILES_STEP
         = MDBlocks.function( "mossy_rock_tiles_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock CRACKED_ROCK_BRICKS_STEP
+    StairsBlock CRACKED_ROCK_BRICKS_STEP
         = MDBlocks.function( "cracked_rock_bricks_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock CRACKED_ROCK_TILES_STEP
+    StairsBlock CRACKED_ROCK_TILES_STEP
         = MDBlocks.function( "cracked_rock_tiles_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -658,63 +655,63 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Darkrock Steps
-    public static final StairsBlock DARKROCK_STEP
+    StairsBlock DARKROCK_STEP
         = MDBlocks.function( "darkrock_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock DARKROCK_BRICKS_STEP
+    StairsBlock DARKROCK_BRICKS_STEP
         = MDBlocks.function( "darkrock_bricks_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock SMOOTH_DARKROCK_STEP
+    StairsBlock SMOOTH_DARKROCK_STEP
         = MDBlocks.function( "smooth_darkrock_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock DARKROCK_TILES_STEP
+    StairsBlock DARKROCK_TILES_STEP
         = MDBlocks.function( "darkrock_tiles_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MOSSY_DARKROCK_STEP
+    StairsBlock MOSSY_DARKROCK_STEP
         = MDBlocks.function( "mossy_darkrock_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MOSSY_DARKROCK_BRICKS_STEP
+    StairsBlock MOSSY_DARKROCK_BRICKS_STEP
         = MDBlocks.function( "mossy_darkrock_bricks_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MOSSY_DARKROCK_TILES_STEP
+    StairsBlock MOSSY_DARKROCK_TILES_STEP
         = MDBlocks.function( "mossy_darkrock_tiles_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock CRACKED_DARKROCK_BRICKS_STEP
+    StairsBlock CRACKED_DARKROCK_BRICKS_STEP
         = MDBlocks.function( "cracked_darkrock_bricks_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock CRACKED_DARKROCK_TILES_STEP
+    StairsBlock CRACKED_DARKROCK_TILES_STEP
         = MDBlocks.function( "cracked_darkrock_tiles_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -722,28 +719,28 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Murk Bricks Steps
-    public static final StairsBlock MURK_BRICKS_STEP
+    StairsBlock MURK_BRICKS_STEP
         = MDBlocks.function( "murk_bricks_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock MURK_TILES_STEP
+    StairsBlock MURK_TILES_STEP
         = MDBlocks.function( "murk_tiles_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock CRACKED_MURK_BRICKS_STEP
+    StairsBlock CRACKED_MURK_BRICKS_STEP
         = MDBlocks.function( "cracked_murk_bricks_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock CRACKED_MURK_TILES_STEP
+    StairsBlock CRACKED_MURK_TILES_STEP
         = MDBlocks.function( "cracked_murk_tiles_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -751,14 +748,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Misc Steps
-    public static final StairsBlock ASPHALT_CONCRETE_STEP
+    StairsBlock ASPHALT_CONCRETE_STEP
         = MDBlocks.function( "asphalt_concrete_step", props -> new StairsBlock( true, props ) )
                   .asphalt()
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock LIMESTONE_STEP
+    StairsBlock LIMESTONE_STEP
         = MDBlocks.function( "limestone_step", props -> new StairsBlock( true, props ) )
                   .rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 )
                   .item( MDItemGroup.BLOCKS )
@@ -766,14 +763,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Blackwood Steps
-    public static final StairsBlock BLACKWOOD_STEP
+    StairsBlock BLACKWOOD_STEP
         = MDBlocks.function( "blackwood_step", props -> new StairsBlock( true, props ) )
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final StairsBlock INVER_STEP
+    StairsBlock INVER_STEP
         = MDBlocks.function( "inver_step", props -> new StairsBlock( true, props ) )
                   .wood( MaterialColor.WOOD )
                   .item( MDItemGroup.BLOCKS )
@@ -781,63 +778,63 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Rock Corners
-    public static final CornerBlock ROCK_CORNER
+    CornerBlock ROCK_CORNER
         = MDBlocks.function( "rock_corner", CornerBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock ROCK_BRICKS_CORNER
+    CornerBlock ROCK_BRICKS_CORNER
         = MDBlocks.function( "rock_bricks_corner", CornerBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock SMOOTH_ROCK_CORNER
+    CornerBlock SMOOTH_ROCK_CORNER
         = MDBlocks.function( "smooth_rock_corner", CornerBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock ROCK_TILES_CORNER
+    CornerBlock ROCK_TILES_CORNER
         = MDBlocks.function( "rock_tiles_corner", CornerBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock MOSSY_ROCK_CORNER
+    CornerBlock MOSSY_ROCK_CORNER
         = MDBlocks.function( "mossy_rock_corner", CornerBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock MOSSY_ROCK_BRICKS_CORNER
+    CornerBlock MOSSY_ROCK_BRICKS_CORNER
         = MDBlocks.function( "mossy_rock_bricks_corner", CornerBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock MOSSY_ROCK_TILES_CORNER
+    CornerBlock MOSSY_ROCK_TILES_CORNER
         = MDBlocks.function( "mossy_rock_tiles_corner", CornerBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock CRACKED_ROCK_BRICKS_CORNER
+    CornerBlock CRACKED_ROCK_BRICKS_CORNER
         = MDBlocks.function( "cracked_rock_bricks_corner", CornerBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock CRACKED_ROCK_TILES_CORNER
+    CornerBlock CRACKED_ROCK_TILES_CORNER
         = MDBlocks.function( "cracked_rock_tiles_corner", CornerBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -845,63 +842,63 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Darkrock Corners
-    public static final CornerBlock DARKROCK_CORNER
+    CornerBlock DARKROCK_CORNER
         = MDBlocks.function( "darkrock_corner", CornerBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock DARKROCK_BRICKS_CORNER
+    CornerBlock DARKROCK_BRICKS_CORNER
         = MDBlocks.function( "darkrock_bricks_corner", CornerBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock SMOOTH_DARKROCK_CORNER
+    CornerBlock SMOOTH_DARKROCK_CORNER
         = MDBlocks.function( "smooth_darkrock_corner", CornerBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock DARKROCK_TILES_CORNER
+    CornerBlock DARKROCK_TILES_CORNER
         = MDBlocks.function( "darkrock_tiles_corner", CornerBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock MOSSY_DARKROCK_CORNER
+    CornerBlock MOSSY_DARKROCK_CORNER
         = MDBlocks.function( "mossy_darkrock_corner", CornerBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock MOSSY_DARKROCK_BRICKS_CORNER
+    CornerBlock MOSSY_DARKROCK_BRICKS_CORNER
         = MDBlocks.function( "mossy_darkrock_bricks_corner", CornerBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock MOSSY_DARKROCK_TILES_CORNER
+    CornerBlock MOSSY_DARKROCK_TILES_CORNER
         = MDBlocks.function( "mossy_darkrock_tiles_corner", CornerBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock CRACKED_DARKROCK_BRICKS_CORNER
+    CornerBlock CRACKED_DARKROCK_BRICKS_CORNER
         = MDBlocks.function( "cracked_darkrock_bricks_corner", CornerBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock CRACKED_DARKROCK_TILES_CORNER
+    CornerBlock CRACKED_DARKROCK_TILES_CORNER
         = MDBlocks.function( "cracked_darkrock_tiles_corner", CornerBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -909,28 +906,28 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Murk Bricks Corners
-    public static final CornerBlock MURK_BRICKS_CORNER
+    CornerBlock MURK_BRICKS_CORNER
         = MDBlocks.function( "murk_bricks_corner", CornerBlock::new )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock MURK_TILES_CORNER
+    CornerBlock MURK_TILES_CORNER
         = MDBlocks.function( "murk_tiles_corner", CornerBlock::new )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock CRACKED_MURK_BRICKS_CORNER
+    CornerBlock CRACKED_MURK_BRICKS_CORNER
         = MDBlocks.function( "cracked_murk_bricks_corner", CornerBlock::new )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock CRACKED_MURK_TILES_CORNER
+    CornerBlock CRACKED_MURK_TILES_CORNER
         = MDBlocks.function( "cracked_murk_tiles_corner", CornerBlock::new )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.BLOCKS )
@@ -938,14 +935,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Misc Corners
-    public static final CornerBlock ASPHALT_CONCRETE_CORNER
+    CornerBlock ASPHALT_CONCRETE_CORNER
         = MDBlocks.function( "asphalt_concrete_corner", CornerBlock::new )
                   .asphalt()
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock LIMESTONE_CORNER
+    CornerBlock LIMESTONE_CORNER
         = MDBlocks.function( "limestone_corner", CornerBlock::new )
                   .rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 )
                   .item( MDItemGroup.BLOCKS )
@@ -953,14 +950,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Wooden Corners
-    public static final CornerBlock BLACKWOOD_CORNER
+    CornerBlock BLACKWOOD_CORNER
         = MDBlocks.function( "blackwood_corner", CornerBlock::new )
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.corner() )
                   .create();
 
-    public static final CornerBlock INVER_CORNER
+    CornerBlock INVER_CORNER
         = MDBlocks.function( "inver_corner", CornerBlock::new )
                   .wood( MaterialColor.WOOD )
                   .item( MDItemGroup.BLOCKS )
@@ -968,42 +965,42 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Rock Walls
-    public static final WallBlock ROCK_WALL
+    WallBlock ROCK_WALL
         = MDBlocks.function( "rock_wall", WallBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final WallBlock ROCK_BRICKS_WALL
+    WallBlock ROCK_BRICKS_WALL
         = MDBlocks.function( "rock_bricks_wall", WallBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final WallBlock SMOOTH_ROCK_WALL
+    WallBlock SMOOTH_ROCK_WALL
         = MDBlocks.function( "smooth_rock_wall", WallBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final WallBlock MOSSY_ROCK_WALL
+    WallBlock MOSSY_ROCK_WALL
         = MDBlocks.function( "mossy_rock_wall", WallBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final WallBlock MOSSY_ROCK_BRICKS_WALL
+    WallBlock MOSSY_ROCK_BRICKS_WALL
         = MDBlocks.function( "mossy_rock_bricks_wall", WallBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final WallBlock CRACKED_ROCK_BRICKS_WALL
+    WallBlock CRACKED_ROCK_BRICKS_WALL
         = MDBlocks.function( "cracked_rock_bricks_wall", WallBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
@@ -1011,42 +1008,42 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Darkrock Walls
-    public static final WallBlock DARKROCK_WALL
+    WallBlock DARKROCK_WALL
         = MDBlocks.function( "darkrock_wall", WallBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final WallBlock DARKROCK_BRICKS_WALL
+    WallBlock DARKROCK_BRICKS_WALL
         = MDBlocks.function( "darkrock_bricks_wall", WallBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final WallBlock SMOOTH_DARKROCK_WALL
+    WallBlock SMOOTH_DARKROCK_WALL
         = MDBlocks.function( "smooth_darkrock_wall", WallBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final WallBlock MOSSY_DARKROCK_WALL
+    WallBlock MOSSY_DARKROCK_WALL
         = MDBlocks.function( "mossy_darkrock_wall", WallBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final WallBlock MOSSY_DARKROCK_BRICKS_WALL
+    WallBlock MOSSY_DARKROCK_BRICKS_WALL
         = MDBlocks.function( "mossy_darkrock_bricks_wall", WallBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final WallBlock CRACKED_DARKROCK_BRICKS_WALL
+    WallBlock CRACKED_DARKROCK_BRICKS_WALL
         = MDBlocks.function( "cracked_darkrock_bricks_wall", WallBlock::new )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
@@ -1054,14 +1051,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Murk Bricks Walls
-    public static final WallBlock MURK_BRICKS_WALL
+    WallBlock MURK_BRICKS_WALL
         = MDBlocks.function( "murk_bricks_wall", WallBlock::new )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final WallBlock CRACKED_MURK_BRICKS_WALL
+    WallBlock CRACKED_MURK_BRICKS_WALL
         = MDBlocks.function( "cracked_murk_bricks_wall", WallBlock::new )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
@@ -1069,14 +1066,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Misc Walls
-    public static final WallBlock ASPHALT_CONCRETE_WALL
+    WallBlock ASPHALT_CONCRETE_WALL
         = MDBlocks.function( "asphalt_concrete_wall", WallBlock::new )
                   .asphalt()
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final WallBlock LIMESTONE_WALL
+    WallBlock LIMESTONE_WALL
         = MDBlocks.function( "limestone_wall", WallBlock::new )
                   .rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 )
                   .item( MDItemGroup.DECORATIVES )
@@ -1085,14 +1082,14 @@ public final class MDBuildingBlocks {
 
 
     // Fences
-    public static final FenceBlock BLACKWOOD_FENCE
+    FenceBlock BLACKWOOD_FENCE
         = MDBlocks.function( "blackwood_fence", FenceBlock::new )
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final FenceBlock INVER_FENCE
+    FenceBlock INVER_FENCE
         = MDBlocks.function( "inver_fence", FenceBlock::new )
                   .wood( MaterialColor.WOOD )
                   .item( MDItemGroup.DECORATIVES )
@@ -1100,14 +1097,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Fence Gates
-    public static final FenceGateBlock BLACKWOOD_FENCE_GATE
+    FenceGateBlock BLACKWOOD_FENCE_GATE
         = MDBlocks.function( "blackwood_fence_gate", FenceGateBlock::new )
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final FenceGateBlock INVER_FENCE_GATE
+    FenceGateBlock INVER_FENCE_GATE
         = MDBlocks.function( "inver_fence_gate", FenceGateBlock::new )
                   .wood( MaterialColor.WOOD )
                   .item( MDItemGroup.DECORATIVES )
@@ -1116,21 +1113,21 @@ public final class MDBuildingBlocks {
 
 
     // Doors
-    public static final DoorBlock BLACKWOOD_DOOR
+    DoorBlock BLACKWOOD_DOOR
         = MDBlocks.function( "blackwood_door", DoorBlock::new )
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final DoorBlock INVER_DOOR
+    DoorBlock INVER_DOOR
         = MDBlocks.function( "inver_door", DoorBlock::new )
                   .wood( MaterialColor.WOOD )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final DoorBlock ALUMINIUM_DOOR
+    DoorBlock ALUMINIUM_DOOR
         = MDBlocks.function( "aluminium_door", DoorBlock::new )
                   .metal( MaterialColor.IRON )
                   .item( MDItemGroup.DECORATIVES )
@@ -1138,21 +1135,21 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Trap Doors
-    public static final ExtTrapDoorBlock BLACKWOOD_TRAPDOOR
+    ExtTrapDoorBlock BLACKWOOD_TRAPDOOR
         = MDBlocks.function( "blackwood_trapdoor", ExtTrapDoorBlock::new )
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final ExtTrapDoorBlock INVER_TRAPDOOR
+    ExtTrapDoorBlock INVER_TRAPDOOR
         = MDBlocks.function( "inver_trapdoor", ExtTrapDoorBlock::new )
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final ExtTrapDoorBlock ALUMINIUM_TRAPDOOR
+    ExtTrapDoorBlock ALUMINIUM_TRAPDOOR
         = MDBlocks.function( "aluminium_trapdoor", ExtTrapDoorBlock::new )
                   .metal( MaterialColor.IRON )
                   .item( MDItemGroup.DECORATIVES )
@@ -1161,21 +1158,21 @@ public final class MDBuildingBlocks {
 
 
     // Pillars
-    public static final PillarBlock ROCK_PILLAR
+    PillarBlock ROCK_PILLAR
         = MDBlocks.function( "rock_pillar", props -> new PillarBlock( props, 14 ) )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final PillarBlock DARKROCK_PILLAR
+    PillarBlock DARKROCK_PILLAR
         = MDBlocks.function( "darkrock_pillar", props -> new PillarBlock( props, 14 ) )
                   .rock( MaterialColor.BLACK, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final PillarBlock MURK_PILLAR
+    PillarBlock MURK_PILLAR
         = MDBlocks.function( "murk_pillar", props -> new PillarBlock( props, 14 ) )
                   .rock( MaterialColor.CLAY, 1.5, 6 )
                   .item( MDItemGroup.DECORATIVES )
@@ -1184,7 +1181,7 @@ public final class MDBuildingBlocks {
 
 
     // Glass
-    public static final TranslucentBlock MURKY_GLASS
+    TranslucentBlock MURKY_GLASS
         = MDBlocks.function( "murky_glass", TranslucentBlock::new )
                   .glass()
                   .item( MDItemGroup.BLOCKS )
@@ -1192,7 +1189,7 @@ public final class MDBuildingBlocks {
                   .alias( "dark_glass" )
                   .create();
 
-    public static final PanelBlock MURKY_GLASS_PANE
+    PanelBlock MURKY_GLASS_PANE
         = MDBlocks.function( "murky_glass_pane", TranslucentPanelBlock::new )
                   .glass()
                   .item( MDItemGroup.DECORATIVES )
@@ -1201,14 +1198,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Poles
-    public static final PillarBlock BLACKWOOD_POLE
+    PillarBlock BLACKWOOD_POLE
         = MDBlocks.function( "blackwood_pole", props -> new PillarBlock( props, 4 ) )
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final PillarBlock INVER_POLE
+    PillarBlock INVER_POLE
         = MDBlocks.function( "inver_pole", props -> new PillarBlock( props, 4 ) )
                   .wood( MaterialColor.WOOD )
                   .item( MDItemGroup.DECORATIVES )
@@ -1217,7 +1214,7 @@ public final class MDBuildingBlocks {
 
 
     // Hedges
-    public static final HedgeBlock BLACKWOOD_HEDGE
+    HedgeBlock BLACKWOOD_HEDGE
         = MDBlocks.function( "blackwood_hedge", props -> new ColoredHedgeBlock( props, 0 ) )
                   .leaves( MaterialColor.FOLIAGE, 0.3 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -1225,7 +1222,7 @@ public final class MDBuildingBlocks {
                   .dropSelf()
                   .create();
 
-    public static final HedgeBlock INVER_HEDGE
+    HedgeBlock INVER_HEDGE
         = MDBlocks.function( "inver_hedge", props -> new ColoredHedgeBlock( props, 1 ) )
                   .leaves( MaterialColor.FOLIAGE, 0.3 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -1233,7 +1230,7 @@ public final class MDBuildingBlocks {
                   .dropSelf()
                   .create();
 
-    public static final HedgeBlock RED_INVER_HEDGE
+    HedgeBlock RED_INVER_HEDGE
         = MDBlocks.function( "red_inver_hedge", props -> new ColoredHedgeBlock( props, 2 ) )
                   .leaves( MaterialColor.FOLIAGE, 0.3 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -1241,7 +1238,7 @@ public final class MDBuildingBlocks {
                   .dropSelf()
                   .create();
 
-    public static final HedgeBlock MUXUS_HEDGE
+    HedgeBlock MUXUS_HEDGE
         = MDBlocks.function( "muxus_hedge", HedgeBlock::new )
                   .leaves( MaterialColor.FOLIAGE, 0.3 )
                   .sound( SoundType.SWEET_BERRY_BUSH )
@@ -1251,21 +1248,21 @@ public final class MDBuildingBlocks {
 
 
     // Torches
-    public static final TorchBlock EXTINGUISHED_ANTHRACITE_TORCH
+    TorchBlock EXTINGUISHED_ANTHRACITE_TORCH
         = MDBlocks.function( "extinguished_anthracite_torch", props -> new TorchBlock( false, props ) )
                   .torch( MaterialColor.SNOW, 15 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final ExtinguishableTorchBlock ANTHRACITE_TORCH
+    ExtinguishableTorchBlock ANTHRACITE_TORCH
         = MDBlocks.function( "anthracite_torch", props -> new ExtinguishableTorchBlock( true, EXTINGUISHED_ANTHRACITE_TORCH, props ) )
                   .torch( MaterialColor.BLACK, 0 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final TorchBlock LUMINOSITE_TORCH
+    TorchBlock LUMINOSITE_TORCH
         = MDBlocks.function( "luminosite_torch", props -> new TorchBlock( false, props ) )
                   .torch( MaterialColor.SNOW, 15 )
                   .sound( SoundType.METAL )
@@ -1274,7 +1271,7 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Ladders
-    public static final ExtLadderBlock BLACKWOOD_LADDER
+    ExtLadderBlock BLACKWOOD_LADDER
         = MDBlocks.function( "blackwood_ladder", ExtLadderBlock::new )
                   .props( Material.MISCELLANEOUS )
                   .hardness( 0.4F )
@@ -1283,7 +1280,7 @@ public final class MDBuildingBlocks {
                   .dropSelf()
                   .create();
 
-    public static final ExtLadderBlock INVER_LADDER
+    ExtLadderBlock INVER_LADDER
         = MDBlocks.function( "inver_ladder", ExtLadderBlock::new )
                   .props( Material.MISCELLANEOUS )
                   .hardness( 0.4F )
@@ -1293,21 +1290,21 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Utilities
-    public static final WorkbenchBlock BLACKWOOD_WORKBENCH
+    WorkbenchBlock BLACKWOOD_WORKBENCH
         = MDBlocks.function( "blackwood_workbench", WorkbenchBlock::new )
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final WorkbenchBlock INVER_WORKBENCH
+    WorkbenchBlock INVER_WORKBENCH
         = MDBlocks.function( "inver_workbench", WorkbenchBlock::new )
                   .wood( MaterialColor.WOOD )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final RockFurnaceBlock ROCK_FURNACE
+    RockFurnaceBlock ROCK_FURNACE
         = MDBlocks.function( "rock_furnace", RockFurnaceBlock::new )
                   .rock( MaterialColor.STONE, 1.5, 6 )
                   .light( 15 )
@@ -1316,14 +1313,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Chests
-    public static final ExtChestBlock BLACKWOOD_CHEST
+    ExtChestBlock BLACKWOOD_CHEST
         = MDBlocks.function( "blackwood_chest", BlackwoodChestBlock::new )
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.DECORATIVES )
                   .drops( BlockLoot.chest() )
                   .create();
 
-    public static final ExtChestBlock INVER_CHEST
+    ExtChestBlock INVER_CHEST
         = MDBlocks.function( "inver_chest", InverChestBlock::new )
                   .wood( MaterialColor.WOOD )
                   .item( MDItemGroup.DECORATIVES )
@@ -1331,14 +1328,14 @@ public final class MDBuildingBlocks {
                   .create();
 
     // Misc
-    public static final FallBlock ASH_BLOCK
+    FallBlock ASH_BLOCK
         = MDBlocks.function( "ash_block", props -> new DigableFallBlock( 0x333333, props ) )
                   .ash( MaterialColor.GRAY )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
                   .create();
 
-    public static final FallBlock SALT_DUST_BLOCK
+    FallBlock SALT_DUST_BLOCK
         = MDBlocks.function( "salt_dust_block", props -> new DigableFallBlock( 0xffffff, props ) )
                   .dust( MaterialColor.SNOW, false )
                   .item( MDItemGroup.BLOCKS )
@@ -1347,82 +1344,82 @@ public final class MDBuildingBlocks {
 
     // Portal
 
-    public static final Block DARK_STONE_BRICKS
+    Block DARK_STONE_BRICKS
         = MDBlocks.simple( "dark_stone_bricks" )
                   .rock( MaterialColor.STONE, 2, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final Block INSCRIBED_DARK_STONE_BRICKS
+    Block INSCRIBED_DARK_STONE_BRICKS
         = MDBlocks.simple( "inscribed_dark_stone_bricks" )
                   .rock( MaterialColor.STONE, 2, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final HorizontalFacingBlock DARK_STONE_BRICKS_NATURE
+    HorizontalFacingBlock DARK_STONE_BRICKS_NATURE
         = MDBlocks.function( "dark_stone_bricks_nature", HorizontalFacingBlock::new )
                   .rock( MaterialColor.STONE, 2, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final HorizontalFacingBlock DARK_STONE_BRICKS_CURSE
+    HorizontalFacingBlock DARK_STONE_BRICKS_CURSE
         = MDBlocks.function( "dark_stone_bricks_curse", HorizontalFacingBlock::new )
                   .rock( MaterialColor.STONE, 2, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final HorizontalFacingBlock DARK_STONE_BRICKS_CYEN
+    HorizontalFacingBlock DARK_STONE_BRICKS_CYEN
         = MDBlocks.function( "dark_stone_bricks_cyen", HorizontalFacingBlock::new )
                   .rock( MaterialColor.STONE, 2, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final HorizontalFacingBlock DARK_STONE_BRICKS_FYREN
+    HorizontalFacingBlock DARK_STONE_BRICKS_FYREN
         = MDBlocks.function( "dark_stone_bricks_fyren", HorizontalFacingBlock::new )
                   .rock( MaterialColor.STONE, 2, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final HorizontalFacingBlock DARK_STONE_BRICKS_TIMEN
+    HorizontalFacingBlock DARK_STONE_BRICKS_TIMEN
         = MDBlocks.function( "dark_stone_bricks_timen", HorizontalFacingBlock::new )
                   .rock( MaterialColor.STONE, 2, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final HorizontalFacingBlock DARK_STONE_BRICKS_PORTAL
+    HorizontalFacingBlock DARK_STONE_BRICKS_PORTAL
         = MDBlocks.function( "dark_stone_bricks_portal", HorizontalFacingBlock::new )
                   .rock( MaterialColor.STONE, 2, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final HorizontalFacingBlock DARK_STONE_BRICKS_RGSW
+    HorizontalFacingBlock DARK_STONE_BRICKS_RGSW
         = MDBlocks.function( "dark_stone_bricks_rgsw", HorizontalFacingBlock::new )
                   .rock( MaterialColor.STONE, 2, 6 )
                   .item( MDItemGroup.DECORATIVES )
                   .dropSelf()
                   .create();
 
-    public static final HorizontalPortalFrameBlock HORIZONTAL_PORTAL_FRAME
+    HorizontalPortalFrameBlock HORIZONTAL_PORTAL_FRAME
         = MDBlocks.function( "horizontal_portal_frame", HorizontalPortalFrameBlock::new )
                   .rock( MaterialColor.STONE, 2, 6 )
                   .item()
                   .create();
 
-    public static final VerticalPortalFrameBlock VERTICAL_PORTAL_FRAME
+    VerticalPortalFrameBlock VERTICAL_PORTAL_FRAME
         = MDBlocks.function( "vertical_portal_frame", VerticalPortalFrameBlock::new )
                   .rock( MaterialColor.STONE, 2, 6 )
                   .item()
                   .create();
 
-    public static final PortalCornerBlock PORTAL_CORNER
+    PortalCornerBlock PORTAL_CORNER
         = MDBlocks.function( "portal_corner", PortalCornerBlock::new )
                   .rock( MaterialColor.STONE, 2, 6 )
                   .item()

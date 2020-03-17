@@ -1,0 +1,9 @@
+{
+  "type": "smelting",
+  "ingredient": {
+    "item": "modernity:murky_clay"
+  },
+  "result": "modernity:murky_terracotta",
+  "experience": 0.1,
+  "cookingtime": 200
+}

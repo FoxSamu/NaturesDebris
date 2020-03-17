@@ -1,0 +1,15 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:murky_dirt"
+    },
+    {
+      "item": "modernity:regolith"
+    }
+  ],
+  "result": {
+    "item": "modernity:murky_coarse_dirt",
+    "count": 2
+  }
+}

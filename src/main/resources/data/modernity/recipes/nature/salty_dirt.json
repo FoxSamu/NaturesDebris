@@ -1,0 +1,19 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    " s ",
+    "sds",
+    " s "
+  ],
+  "key": {
+    "d": {
+      "item": "modernity:murky_dirt"
+    },
+    "s": {
+      "item": "modernity:salt_dust"
+    }
+  },
+  "result": {
+    "item": "modernity:asphalt_block"
+  }
+}

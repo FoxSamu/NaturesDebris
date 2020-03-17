@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "cgc",
+    "grg",
+    "cgc"
+  ],
+  "key": {
+    "c": {
+      "item": "modernity:anthracite"
+    },
+    "g": {
+      "item": "modernity:goo_ball"
+    },
+    "r": {
+      "item": "modernity:regolith"
+    }
+  },
+  "result": {
+    "item": "modernity:asphalt_concrete"
+  }
+}

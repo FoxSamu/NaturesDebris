@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 17 - 2020
  * Author: rgsw
  */
 
@@ -29,7 +29,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,8 +40,7 @@ import java.util.function.Supplier;
 /**
  * Object holder for modernity blocks.
  */
-@ObjectHolder( "modernity" )
-public final class MDBlocks {
+public final class MDBlocks implements MDNatureBlocks, MDPlantBlocks, MDTreeBlocks, MDMineralBlocks, MDBuildingBlocks {
     private static final ArrayList<Block> ITEM_BLOCKS = new ArrayList<>();
     private static final RegistryHandler<Block> BLOCKS = new RegistryHandler<>( "modernity" );
     private static final RegistryHandler<Item> ITEMS = new RegistryHandler<>( "modernity" );
