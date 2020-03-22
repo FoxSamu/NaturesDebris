@@ -1,13 +1,14 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 26 - 2019
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
 package modul.module;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class ModuleManager<T> {
     private final T instance;
 
-    private final HashMap<ModuleType<T, ?>, Module> modules = new HashMap<>();
+    private final HashMap<ModuleType<? extends T, ?>, Module> modules = new HashMap<>();
 
     public ModuleManager( T instance, ModuleContext moduleContext ) {
         this.instance = instance;
@@ -37,11 +38,15 @@ public class ModuleManager<T> {
         }
     }
 
-    public <M extends Module> Optional<M> getModule( ModuleType<T, M> type ) {
+    public <M extends Module> Optional<M> getModule( ModuleType<? extends T, M> type ) {
         return Optional.ofNullable( (M) modules.get( type ) );
     }
 
     public T getInstance() {
         return instance;
+    }
+
+    public Collection<Module> getModules() {
+        return modules.values();
     }
 }

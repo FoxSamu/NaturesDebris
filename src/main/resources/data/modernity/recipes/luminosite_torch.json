@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "*",
+    "/"
+  ],
+  "key": {
+    "*": {
+      "item": "modernity:luminosite_shards"
+    },
+    "/": {
+      "item": "modernity:aluminium_ingot"
+    }
+  },
+  "result": {
+    "item": "modernity:luminosite_torch",
+    "count": 6
+  }
+}

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
@@ -29,26 +29,32 @@ import java.util.function.Supplier;
  */
 public class MDItemGroup extends ItemGroup {
     public static final MDItemGroup BLOCKS = builder( "modernity.blocks" )
+                                                 .path( "blocks" )
                                                  .iconItem( () -> MDNatureBlocks.MURKY_GRASS_BLOCK )
                                                  .build();
 
     public static final MDItemGroup DECORATIVES = builder( "modernity.decoratives" )
+                                                      .path( "decoratives" )
                                                       .iconItem( () -> MDPlantBlocks.PEBBLES )
                                                       .build();
 
     public static final MDItemGroup MISC = builder( "modernity.misc" )
+                                               .path( "misc" )
                                                .iconItem( () -> MDItems.ALUMINIUM_INGOT )
                                                .build();
 
     public static final MDItemGroup PLANTS = builder( "modernity.plants" )
+                                                 .path( "plants" )
                                                  .iconItem( () -> MDPlantBlocks.MINT_PLANT )
                                                  .build();
 
     public static final MDItemGroup COMBAT = builder( "modernity.combat" )
+                                                 .path( "combat" )
                                                  .iconItem( () -> MDItems.ALUMINIUM_SWORD )
                                                  .build();
 
     public static final MDItemGroup TOOLS = builder( "modernity.tools" )
+                                                .path( "tools" )
                                                 .iconItem( () -> MDItems.ALUMINIUM_PICKAXE )
                                                 .build();
 

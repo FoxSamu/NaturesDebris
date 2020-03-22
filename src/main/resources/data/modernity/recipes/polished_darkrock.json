@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:smooth_darkrock"
+    }
+  ],
+  "result": {
+    "item": "modernity:polished_darkrock"
+  }
+}

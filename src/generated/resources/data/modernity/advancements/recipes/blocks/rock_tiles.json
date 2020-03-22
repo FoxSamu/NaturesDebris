@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:rock_tiles"
+    ]
+  },
+  "criteria": {
+    "has_smooth_rock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:smooth_rock"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:rock_tiles"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_smooth_rock",
+      "has_the_recipe"
+    ]
+  ]
+}

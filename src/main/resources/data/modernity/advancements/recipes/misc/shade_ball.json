@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:shade_ball"
+    ]
+  },
+  "criteria": {
+    "has_shade_blue_flower": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:shade_blue_flower"
+          }
+        ]
+      }
+    },
+    "has_glazed_goo_ball": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:glazed_goo_ball"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:shade_ball"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_shade_blue_flower",
+      "has_glazed_goo_ball",
+      "has_the_recipe"
+    ]
+  ]
+}

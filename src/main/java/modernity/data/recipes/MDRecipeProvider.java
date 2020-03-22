@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 17 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
@@ -12,6 +12,7 @@ import com.google.common.collect.Sets;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import modernity.api.data.IRecipeData;
 import net.minecraft.advancements.criterion.EnterBlockTrigger;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.ItemPredicate;
@@ -99,7 +100,7 @@ public class MDRecipeProvider implements IDataProvider {
     }
 
     protected void registerRecipes( Consumer<IFinishedRecipe> consumer ) {
-        for( IRecipeDataType type : RecipeData.getRecipes() ) {
+        for( IRecipeData type : RecipeData.getRecipes() ) {
             type.build( consumer );
         }
     }

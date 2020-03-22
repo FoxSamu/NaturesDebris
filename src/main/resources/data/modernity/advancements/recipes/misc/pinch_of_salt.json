@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:pinch_of_salt"
+    ]
+  },
+  "criteria": {
+    "has_salt_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:salt_dust"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:pinch_of_salt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_salt_dust",
+      "has_the_recipe"
+    ]
+  ]
+}

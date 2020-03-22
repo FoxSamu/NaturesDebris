@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:salt_nugget"
+    }
+  ],
+  "result": {
+    "item": "modernity:salt_dust"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:muxus_bush"
+    }
+  },
+  "result": {
+    "item": "modernity:muxus_hedge",
+    "count": 6
+  }
+}

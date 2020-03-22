@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 09 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
@@ -43,7 +43,7 @@ public final class MDDimensions {
     }
 
     static {
-        Modernity.MOD_EVENT_BUS.register( new MDDimensions() );
+        Modernity.FML_EVENT_BUS.register( new MDDimensions() );
     }
 
     private static <T extends ModDimension> T register( String id, T dim ) {

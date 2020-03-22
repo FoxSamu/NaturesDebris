@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:sagerite_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_sagerite_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:sagerite_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:sagerite_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sagerite_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "modernity:mossy_darkrock_bricks"
+  },
+  "result": "modernity:mossy_darkrock_bricks_stairs",
+  "count": 1
+}

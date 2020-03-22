@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:murk_tiles_corner"
+    ]
+  },
+  "criteria": {
+    "has_murk_tiles": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:murk_tiles"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:murk_tiles_corner"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_murk_tiles",
+      "has_the_recipe"
+    ]
+  ]
+}

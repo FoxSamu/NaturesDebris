@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 17 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
@@ -102,6 +102,7 @@ public final class MDMineralBlocks {
                   .sound( MDSoundTypes.CRYSTAL )
                   .item( MDItemGroup.BLOCKS )
                   .drops( new SaltBlockDrops( 1, 5, 4, 4, 9 ) )
+                  .recipeBlock9( () -> MDItems.SALT_NUGGET, 1, null )
                   .create();
 
     public static final Block ALUMINIUM_BLOCK
@@ -111,6 +112,7 @@ public final class MDMineralBlocks {
                   .sound( SoundType.METAL )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
+                  .recipeBlock9( () -> MDItems.ALUMINIUM_INGOT, 1, null )
                   .create();
 
     public static final Block ANTHRACITE_BLOCK
@@ -120,6 +122,7 @@ public final class MDMineralBlocks {
                   .sound( SoundType.STONE )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
+                  .recipeBlock9( () -> MDItems.ANTHRACITE, 1, null )
                   .create();
 
     public static final Block FINNERITE_BLOCK
@@ -129,6 +132,7 @@ public final class MDMineralBlocks {
                   .sound( SoundType.METAL )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
+                  .recipeBlock9( () -> MDItems.FINNERITE, 1, null )
                   .create();
 
     public static final Block IVERITE_BLOCK
@@ -138,6 +142,7 @@ public final class MDMineralBlocks {
                   .sound( SoundType.METAL )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
+                  .recipeBlock9( () -> MDItems.IVERITE, 1, null )
                   .create();
 
     public static final Block SAGERITE_BLOCK
@@ -147,6 +152,7 @@ public final class MDMineralBlocks {
                   .sound( SoundType.METAL )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
+                  .recipeBlock9( () -> MDItems.SAGERITE, 1, null )
                   .create();
 
     public static final Block LUMINOSITE_BLOCK
@@ -157,6 +163,7 @@ public final class MDMineralBlocks {
                   .sound( MDSoundTypes.CRYSTAL )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
+                  .recipeBlock9( () -> MDItems.LUMINOSITE_SHARDS, 1, null )
                   .create();
 
     public static final ExtSlimeBlock GOO_BLOCK
@@ -166,6 +173,7 @@ public final class MDMineralBlocks {
                   .sound( SoundType.SLIME )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
+                  .recipeBlock9( () -> MDItems.GOO_BALL, 1, null )
                   .create();
 
     public static final AxisBlock BLACKBONE_BLOCK
@@ -174,5 +182,6 @@ public final class MDMineralBlocks {
                   .hardness( 2 )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
+                  .recipeBlock9( () -> MDItems.BLACKBONE, 1, null )
                   .create();
 }

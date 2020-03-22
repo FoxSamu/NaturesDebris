@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:mossy_rock_tiles"
+    ]
+  },
+  "criteria": {
+    "has_rock_tiles": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:rock_tiles"
+          }
+        ]
+      }
+    },
+    "has_moss": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:moss"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:mossy_rock_tiles"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rock_tiles",
+      "has_moss",
+      "has_the_recipe"
+    ]
+  ]
+}

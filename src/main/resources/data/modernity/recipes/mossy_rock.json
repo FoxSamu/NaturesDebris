@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:rock"
+    },
+    {
+      "item": "modernity:moss"
+    }
+  ],
+  "result": {
+    "item": "modernity:mossy_rock"
+  }
+}

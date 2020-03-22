@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:darkrock_tiles"
+    },
+    {
+      "item": "modernity:moss"
+    }
+  ],
+  "result": {
+    "item": "modernity:mossy_darkrock_tiles"
+  }
+}

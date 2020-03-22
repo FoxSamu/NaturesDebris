@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:anthracite_torch"
+    ]
+  },
+  "criteria": {
+    "has_anthracite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:anthracite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:anthracite_torch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_anthracite",
+      "has_the_recipe"
+    ]
+  ]
+}

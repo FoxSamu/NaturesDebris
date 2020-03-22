@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#/#",
+    "#/#"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:blackwood_planks"
+    },
+    "/": {
+      "item": "modernity:blackwood_stick"
+    }
+  },
+  "result": {
+    "item": "modernity:blackwood_fence",
+    "count": 3
+  }
+}

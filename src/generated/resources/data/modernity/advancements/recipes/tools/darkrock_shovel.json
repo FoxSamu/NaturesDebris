@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:darkrock_shovel"
+    ]
+  },
+  "criteria": {
+    "has_darkrock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:darkrock"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:darkrock_shovel"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_darkrock",
+      "has_the_recipe"
+    ]
+  ]
+}

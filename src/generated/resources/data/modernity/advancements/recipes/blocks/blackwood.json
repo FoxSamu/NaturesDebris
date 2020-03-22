@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:blackwood"
+    ]
+  },
+  "criteria": {
+    "has_blackwood_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:blackwood_log"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:blackwood"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blackwood_log",
+      "has_the_recipe"
+    ]
+  ]
+}

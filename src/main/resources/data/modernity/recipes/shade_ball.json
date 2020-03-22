@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:shade_blue_flower"
+    },
+    "*": {
+      "item": "modernity:glazed_goo_ball"
+    }
+  },
+  "result": {
+    "item": "modernity:shade_ball"
+  }
+}

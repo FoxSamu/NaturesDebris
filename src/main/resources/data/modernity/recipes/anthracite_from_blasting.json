@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "modernity:anthracite_ore"
+  },
+  "result": "modernity:anthracite",
+  "experience": 0.1,
+  "cookingtime": 100
+}

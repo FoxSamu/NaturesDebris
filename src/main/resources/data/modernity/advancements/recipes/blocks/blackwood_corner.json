@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:blackwood_corner"
+    ]
+  },
+  "criteria": {
+    "has_blackwood_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:blackwood_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:blackwood_corner"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blackwood_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

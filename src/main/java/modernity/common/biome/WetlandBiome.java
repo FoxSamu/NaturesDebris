@@ -2,13 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
 package modernity.common.biome;
 
-import modernity.api.util.BlockPredicates;
+import modernity.common.block.MDBlockPredicates;
 import modernity.common.block.MDBlockTags;
 import modernity.common.block.MDNatureBlocks;
 import modernity.common.block.MDTreeBlocks;
@@ -64,9 +64,9 @@ public class WetlandBiome extends ModernityBiome {
         MurkSurfaceGeneration.addCaveSprings( this );
         MurkSurfaceGeneration.addPebbles( this );
 
-        addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.tag( MDBlockTags.SOIL ), MDNatureBlocks.MURKY_CLAY.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new MinMax( 0, 2 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
-        addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.tag( MDBlockTags.SOIL ), MDNatureBlocks.MUD.getDefaultState() ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new MinMax( 0, 2 ) ) );
-        addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.tag( MDBlockTags.DIRT ), MDNatureBlocks.SALTY_DIRT.getDefaultState() ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new MinMax( 0, 2 ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 4, MDBlockPredicates.tag( MDBlockTags.SOIL ), MDNatureBlocks.MURKY_CLAY.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new MinMax( 0, 2 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 4, MDBlockPredicates.tag( MDBlockTags.SOIL ), MDNatureBlocks.MUD.getDefaultState() ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new MinMax( 0, 2 ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 4, MDBlockPredicates.tag( MDBlockTags.DIRT ), MDNatureBlocks.SALTY_DIRT.getDefaultState() ), new Surface( Heightmap.Type.WORLD_SURFACE_WG ), new MinMax( 0, 2 ) ) );
 
         if( type == Type.WETLAND_FOREST ) {
             addDecorator( new DecorationDecorator( new TreeDecoration( MDTrees.BLACKWOOD ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new MinMax( 1, 3 ) ) );

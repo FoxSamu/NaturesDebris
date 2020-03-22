@@ -2,22 +2,22 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 19 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
 package modernity.common;
 
-import modernity.MDInfo;
-import modernity.MDModules;
+import modernity.api.MDInfo;
 import modernity.ModernityBootstrap;
+import modernity.api.IModernity;
 import modernity.api.dimension.IInitializeDimension;
 import modernity.api.util.SimpleAsyncExecutor;
 import modernity.common.area.core.IWorldAreaManager;
 import modernity.common.area.core.ServerWorldAreaManager;
+import modernity.common.block.dispensing.MDDispenseBehaviors;
 import modernity.common.capability.MDCapabilities;
 import modernity.common.command.MDCommands;
-import modernity.common.block.dispensing.MDDispenseBehaviors;
 import modernity.common.generator.structure.MDStructurePieceTypes;
 import modernity.common.generator.structure.MDStructures;
 import modernity.common.handler.*;
@@ -26,7 +26,6 @@ import modernity.common.net.MDPackets;
 import modernity.common.util.ISidedTickable;
 import modernity.common.world.dimen.MDDimensions;
 import modernity.network.PacketChannel;
-import modul.module.ModuleManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
@@ -73,13 +72,12 @@ import java.util.HashMap;
  * @author RGSW
  * @see ModernityBootstrap
  */
-public abstract class Modernity {
+public abstract class Modernity implements IModernity {
     public static final Logger LOGGER = LogManager.getLogger( "Modernity" );
 
-    private static Modernity instance;
-
-    public static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
+    public static final IEventBus FML_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
     public static final IEventBus FORGE_EVENT_BUS = MinecraftForge.EVENT_BUS;
+    public static final IEventBus EVENT_BUS = IModernity.EVENT_BUS;
 
     private MinecraftServer server;
 
@@ -87,31 +85,26 @@ public abstract class Modernity {
 
     private final PacketChannel networkChannel = new PacketChannel( new ResourceLocation( "modernity:connection" ), 0 );
 
-    private final ModuleManager<Modernity> modules = new ModuleManager<>( this, MDModules.MODERNITY );
-
-    private final SimpleAsyncExecutor executor = new SimpleAsyncExecutor( Runtime.getRuntime().availableProcessors(), "ModernityAsyncThread-%d", thr -> {
-        LOGGER.error( "Failed to execute task", thr );
-    }, true );
-
-    public Modernity() {
-        if( instance != null ) {
-            throw new IllegalStateException( "Modernity is already initialized" );
-        }
-        instance = this;
-    }
+    private final SimpleAsyncExecutor executor = new SimpleAsyncExecutor(
+        Runtime.getRuntime().availableProcessors(),
+        "ModernityAsyncThread-%d",
+        thr -> LOGGER.error( "Failed to execute task", thr ),
+        true
+    );
 
     /**
      * Called after creating the {@link Modernity} instance and after {@link #registerListeners()} to initalize things
      * that need to be initialized as early as possible.
      */
+    @Override
     public void preInit() {
-        modules.init();
     }
 
     /**
      * Called when the Modernity receives {@link FMLCommonSetupEvent}, to register things to vanilla instances (such as
      * loot tables to the loot table manager).
      */
+    @Override
     public void init() {
         MDPackets.register( networkChannel );
         networkChannel.lock();
@@ -200,6 +193,7 @@ public abstract class Modernity {
     /**
      * Called when the Modernity recives {@link FMLLoadCompleteEvent}, to do some post-initialization.
      */
+    @Override
     public void postInit() {
 
     }
@@ -220,6 +214,7 @@ public abstract class Modernity {
     /**
      * Called directly after instantiation to register any necessary event listeners.
      */
+    @Override
     public void registerListeners() {
         FORGE_EVENT_BUS.register( EntitySwimHandler.INSTANCE );
         FORGE_EVENT_BUS.register( CaveHandler.INSTANCE );
@@ -284,10 +279,6 @@ public abstract class Modernity {
         return getWorldAreaManager( (ServerWorld) world );
     }
 
-    public ModuleManager<Modernity> getModules() {
-        return modules;
-    }
-
     /**
      * Returns the {@link LogicalSide} of this proxy.
      */
@@ -334,10 +325,6 @@ public abstract class Modernity {
         return get().getExecutor();
     }
 
-    public static ModuleManager<Modernity> modules() {
-        return get().getModules();
-    }
-
     /**
      * Shortcut for <code>{@linkplain #get() get()}.{@linkplain #getNetworkChannel() getNetworkChannel()}</code>.
      *
@@ -352,7 +339,7 @@ public abstract class Modernity {
      * Returns the only instance of the {@link Modernity} class.
      */
     public static Modernity get() {
-        return instance;
+        return (Modernity) IModernity.get();
     }
 
     /**

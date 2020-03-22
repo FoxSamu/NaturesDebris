@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:cracked_murk_bricks_step_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_cracked_murk_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:cracked_murk_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:cracked_murk_bricks_step_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cracked_murk_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

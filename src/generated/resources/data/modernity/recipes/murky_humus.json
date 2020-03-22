@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:leafy_humus"
+    }
+  ],
+  "result": {
+    "item": "modernity:murky_humus"
+  }
+}

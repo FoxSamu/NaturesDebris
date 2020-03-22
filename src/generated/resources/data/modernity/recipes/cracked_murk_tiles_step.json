@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# ",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:cracked_murk_tiles"
+    }
+  },
+  "result": {
+    "item": "modernity:cracked_murk_tiles_step",
+    "count": 6
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:murk_pillar_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_murky_terracotta": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:murky_terracotta"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:murk_pillar_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_murky_terracotta",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
@@ -12,7 +12,7 @@ import com.google.common.reflect.TypeToken;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
-import modernity.MDInfo;
+import modernity.api.MDInfo;
 import modernity.api.event.ModernityCommandSetupEvent;
 import modernity.api.event.ModernityDebugCommandSetupEvent;
 import modernity.common.command.argument.DimensionArgumentType;

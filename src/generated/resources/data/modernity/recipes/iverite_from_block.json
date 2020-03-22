@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:iverite_block"
+    }
+  ],
+  "result": {
+    "item": "modernity:iverite",
+    "count": 9
+  }
+}

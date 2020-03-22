@@ -2,13 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
 package modernity.common.biome;
 
-import modernity.api.util.BlockPredicates;
+import modernity.common.block.MDBlockPredicates;
 import modernity.common.block.MDNatureBlocks;
 import modernity.common.block.MDTreeBlocks;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
@@ -67,8 +67,8 @@ public class TallForestBiome extends ModernityBiome {
 
         addDecorator( new DecorationDecorator( new LakeDecoration( MDNatureBlocks.MURKY_WATER, null, null, MDNatureBlocks.MURKY_GRASS_BLOCK ), new FixedHeight( 128 ), new Chance( 0.1 ) ) );
 
-        addDecorator( new DecorationDecorator( new DepositDecoration( 2, BlockPredicates.TRUE, MDNatureBlocks.ROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.025 ) ) );
-        addDecorator( new DecorationDecorator( new DepositDecoration( 2, BlockPredicates.TRUE, MDNatureBlocks.DARKROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.0125 ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 2, MDBlockPredicates.TRUE, MDNatureBlocks.ROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.025 ) ) );
+        addDecorator( new DecorationDecorator( new DepositDecoration( 2, MDBlockPredicates.TRUE, MDNatureBlocks.DARKROCK.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.0125 ) ) );
         addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockState::isSolid, MDNatureBlocks.MURKY_COARSE_DIRT.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.3 ) ) );
         addDecorator( new DecorationDecorator( new DepositDecoration( 3, BlockState::isSolid, MDNatureBlocks.MUD.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.2 ) ) );
 

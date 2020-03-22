@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:salt_dust"
+    }
+  ],
+  "result": {
+    "item": "modernity:pinch_of_salt",
+    "count": 9
+  }
+}

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 26 - 2019
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @SuppressWarnings( "unchecked" )
@@ -27,10 +28,18 @@ public class ModuleContext {
     private final List<ModuleType<?, ?>> moduleTypes = new ArrayList<>();
     private final String name;
 
+    private final Supplier<MListFile.Context> contextSupplier;
+
     private boolean loaded;
 
     public ModuleContext( String contextName ) {
         this.name = contextName;
+        contextSupplier = MListFile::context;
+    }
+
+    public ModuleContext( String contextName, Supplier<MListFile.Context> ctxBuilder ) {
+        this.name = contextName;
+        contextSupplier = ctxBuilder;
     }
 
     public void load() {
@@ -45,7 +54,7 @@ public class ModuleContext {
                 InputStream stream = resource.openStream();
 
                 try {
-                    MListFile mlist = MListFile.load( MListFile.context(), stream );
+                    MListFile mlist = MListFile.load( contextSupplier.get(), stream );
 
                     for( String str : mlist ) {
                         ModuleType<?, ?> type = ModuleType.getByName( str );

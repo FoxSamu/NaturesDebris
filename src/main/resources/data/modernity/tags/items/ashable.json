@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "#modernity:sticks",
+    "#modernity:logs",
+    "#modernity:planks",
+    "#modernity:wooden_slabs",
+    "#modernity:wooden_stairs",
+    "#modernity:wooden_steps",
+    "#modernity:wooden_corners",
+    "modernity:blackwood_fence",
+    "modernity:inver_fence",
+    "modernity:blackwood_fence_gate",
+    "modernity:inver_fence_gate",
+    "modernity:blackwood_door",
+    "modernity:inver_door",
+    "modernity:blackwood_pole",
+    "modernity:inver_pole"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "modernity:cracked_darkrock_tiles"
+  },
+  "result": "modernity:cracked_darkrock_tiles_corner",
+  "count": 8
+}

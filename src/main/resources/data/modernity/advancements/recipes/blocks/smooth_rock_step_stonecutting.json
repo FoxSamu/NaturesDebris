@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:smooth_rock_step_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_smooth_rock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:smooth_rock"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:smooth_rock_step_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_smooth_rock",
+      "has_the_recipe"
+    ]
+  ]
+}

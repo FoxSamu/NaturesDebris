@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:iverite"
+    }
+  },
+  "result": {
+    "item": "modernity:iverite_block"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:stripped_inver_wood"
+    ]
+  },
+  "criteria": {
+    "has_stripped_inver_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:stripped_inver_log"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:stripped_inver_wood"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stripped_inver_log",
+      "has_the_recipe"
+    ]
+  ]
+}

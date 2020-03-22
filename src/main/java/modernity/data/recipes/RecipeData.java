@@ -2,15 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 17 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
 package modernity.data.recipes;
 
 import com.google.common.collect.Lists;
-import modernity.common.block.MDTreeBlocks;
-import modernity.data.recipes.type.BarkRecipeType;
+import modernity.api.data.IRecipeData;
 import net.minecraft.advancements.criterion.EnterBlockTrigger;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.ItemPredicate;
@@ -23,22 +22,16 @@ import net.minecraft.util.IItemProvider;
 import java.util.List;
 
 public class RecipeData {
-    private static final List<IRecipeDataType> RECIPES = Lists.newArrayList();
+    private static final List<IRecipeData> RECIPES = Lists.newArrayList();
 
     static {
-        addRecipe( new BarkRecipeType( () -> MDTreeBlocks.BLACKWOOD, () -> MDTreeBlocks.BLACKWOOD_LOG ) );
-        addRecipe( new BarkRecipeType( () -> MDTreeBlocks.STRIPPED_BLACKWOOD, () -> MDTreeBlocks.STRIPPED_BLACKWOOD_LOG ) );
-        addRecipe( new BarkRecipeType( () -> MDTreeBlocks.INVER_WOOD, () -> MDTreeBlocks.INVER_LOG ) );
-        addRecipe( new BarkRecipeType( () -> MDTreeBlocks.STRIPPED_INVER, () -> MDTreeBlocks.STRIPPED_INVER_LOG ) );
-
-
     }
 
-    public static void addRecipe( IRecipeDataType type ) {
+    public static void addRecipe( IRecipeData type ) {
         RECIPES.add( type );
     }
 
-    static List<IRecipeDataType> getRecipes() {
+    static List<IRecipeData> getRecipes() {
         return RECIPES;
     }
 

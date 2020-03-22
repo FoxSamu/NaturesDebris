@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "modernity:asphalt_concrete"
+  },
+  "result": "modernity:asphalt_concrete_wall",
+  "count": 1
+}

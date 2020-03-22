@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:pinch_of_salt"
+    }
+  },
+  "result": {
+    "item": "modernity:salt_dust"
+  }
+}

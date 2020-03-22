@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "modernity:sagerite_ore"
+  },
+  "result": "modernity:sagerite",
+  "experience": 0.2,
+  "cookingtime": 100
+}

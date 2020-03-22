@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:goo_ball_from_drips"
+    ]
+  },
+  "criteria": {
+    "has_goo_drips": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:goo_drips"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:goo_ball_from_drips"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_goo_drips",
+      "has_the_recipe"
+    ]
+  ]
+}

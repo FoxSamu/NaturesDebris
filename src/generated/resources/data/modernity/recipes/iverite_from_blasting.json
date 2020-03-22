@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "modernity:iverite_ore"
+  },
+  "result": "modernity:iverite",
+  "experience": 0.2,
+  "cookingtime": 100
+}

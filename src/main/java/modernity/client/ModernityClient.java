@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 26 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
@@ -36,7 +36,6 @@ import modernity.common.net.SSeedPacket;
 import modernity.common.tileentity.MDTileEntitiyTypes;
 import modernity.common.util.ISidedTickable;
 import modernity.common.world.dimen.MurkSurfaceDimension;
-import modul.module.ModuleType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.resources.IFutureReloadListener;
@@ -57,7 +56,6 @@ import net.minecraftforge.fml.LogicalSide;
  * loading for the client side only.
  */
 public class ModernityClient extends Modernity {
-    public static final ModuleType<Modernity, ShaderManager> SHADER_MANAGER = new ModuleType<>( ShaderManager::new, "Modernity:ShaderManager" );
 
     /** The {@link Minecraft} instance. */
     public final Minecraft mc = Minecraft.getInstance();
@@ -88,6 +86,7 @@ public class ModernityClient extends Modernity {
     private long lastWorldSeed;
 
     private final SoundEffectManager effectManager = new SoundEffectManager();
+    private final ShaderManager shaderManager = new ShaderManager();
 
     @Override
     public void preInit() {
@@ -108,6 +107,7 @@ public class ModernityClient extends Modernity {
         addFutureReloadListener( fluidRenderer );
         addFutureReloadListener( fallenLeafColors );
         addFutureReloadListener( colorProfileManager );
+        addFutureReloadListener( shaderManager );
 
         areaRenderManager = new AreaRenderManager();
         MDAreas.setupClient( areaRenderManager );
@@ -136,8 +136,8 @@ public class ModernityClient extends Modernity {
     @Override
     public void registerListeners() {
         super.registerListeners();
-        MOD_EVENT_BUS.register( TextureStitchHandler.INSTANCE );
-        MOD_EVENT_BUS.register( ParticleRegistryHandler.INSTANCE );
+        FML_EVENT_BUS.register( TextureStitchHandler.INSTANCE );
+        FML_EVENT_BUS.register( ParticleRegistryHandler.INSTANCE );
         FORGE_EVENT_BUS.register( FogHandler.INSTANCE );
         FORGE_EVENT_BUS.register( WorldRenderHandler.INSTANCE );
         FORGE_EVENT_BUS.register( PlayerInCaveHandler.INSTANCE );
@@ -275,6 +275,10 @@ public class ModernityClient extends Modernity {
 
     public SoundEffectManager getSoundEffectManager() {
         return effectManager;
+    }
+
+    public ShaderManager getShaderManager() {
+        return shaderManager;
     }
 
     /**

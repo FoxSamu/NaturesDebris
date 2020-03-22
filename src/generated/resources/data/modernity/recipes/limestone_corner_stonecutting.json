@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "modernity:limestone"
+  },
+  "result": "modernity:limestone_corner",
+  "count": 8
+}

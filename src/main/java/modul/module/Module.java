@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 26 - 2019
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
 package modul.module;
 
-public abstract class Module {
-    protected void onInit() {
+public interface Module {
+    default void onInit() {
     }
 }

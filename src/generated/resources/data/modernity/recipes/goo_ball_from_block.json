@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:goo_block"
+    }
+  ],
+  "result": {
+    "item": "modernity:goo_ball",
+    "count": 9
+  }
+}

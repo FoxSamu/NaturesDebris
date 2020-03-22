@@ -1,5 +1,0 @@
-modernity.client.ModernityClient
-- DIST client
-
-modernity.server.ModernityServer
-- DIST server

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:blackwood_planks"
+    }
+  },
+  "result": {
+    "item": "modernity:blackwood_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:mossy_darkrock"
+    }
+  },
+  "result": {
+    "item": "modernity:mossy_darkrock_slab",
+    "count": 6
+  }
+}

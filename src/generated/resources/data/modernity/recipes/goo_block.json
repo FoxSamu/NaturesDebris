@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:goo_ball"
+    }
+  },
+  "result": {
+    "item": "modernity:goo_block"
+  }
+}

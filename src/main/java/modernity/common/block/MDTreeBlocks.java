@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 17 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
@@ -43,6 +43,7 @@ public final class MDTreeBlocks {
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.BLOCKS )
                   .drops( MDBlockDrops.SIMPLE )
+                  .recipeBlock4( () -> STRIPPED_BLACKWOOD_LOG, 3, null )
                   .create();
 
     public static final AxisBlock BLACKWOOD
@@ -50,6 +51,7 @@ public final class MDTreeBlocks {
                   .wood( MaterialColor.BLACK_TERRACOTTA )
                   .item( MDItemGroup.BLOCKS )
                   .drops( MDBlockDrops.SIMPLE )
+                  .recipeBlock4( () -> BLACKWOOD_LOG, 3, null )
                   .create();
 
     public static final BlackwoodSaplingBlock BLACKWOOD_SAPLING
@@ -87,6 +89,7 @@ public final class MDTreeBlocks {
                   .wood( MaterialColor.WOOD )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
+                  .recipeBlock4( () -> STRIPPED_INVER_LOG, 3, null )
                   .create();
 
     public static final AxisBlock INVER_WOOD
@@ -94,6 +97,7 @@ public final class MDTreeBlocks {
                   .wood( MaterialColor.WOOD )
                   .item( MDItemGroup.BLOCKS )
                   .dropSelf()
+                  .recipeBlock4( () -> INVER_LOG, 3, null )
                   .create();
 
     public static final SimpleSaplingBlock INVER_SAPLING

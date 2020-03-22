@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# ",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:smooth_darkrock"
+    }
+  },
+  "result": {
+    "item": "modernity:smooth_darkrock_step",
+    "count": 6
+  }
+}

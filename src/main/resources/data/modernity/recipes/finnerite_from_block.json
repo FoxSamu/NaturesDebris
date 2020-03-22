@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:finnerite_block"
+    }
+  ],
+  "result": {
+    "item": "modernity:finnerite",
+    "count": 9
+  }
+}

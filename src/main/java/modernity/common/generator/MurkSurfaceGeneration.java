@@ -2,13 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
 package modernity.common.generator;
 
-import modernity.api.util.BlockPredicates;
+import modernity.common.block.MDBlockPredicates;
 import modernity.api.util.IIntScrambler;
 import modernity.api.util.MDDimension;
 import modernity.common.biome.MDBiomes;
@@ -52,7 +52,7 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.WorldGenRegion;
 import net.redgalaxy.exc.InstanceOfUtilityClassException;
 
-import static modernity.api.util.BlockPredicates.*;
+import static modernity.common.block.MDBlockPredicates.*;
 
 /**
  * General utility class for generating the Murk Surface dimension.
@@ -344,8 +344,8 @@ public final class MurkSurfaceGeneration {
     }
 
     public static void addClaySand( ModernityBiome biome ) {
-        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.tag( MDBlockTags.SOIL ), MDNatureBlocks.MURKY_SAND.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 12 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
-        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, BlockPredicates.tag( MDBlockTags.SOIL ), MDNatureBlocks.MURKY_CLAY.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.25 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
+        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, MDBlockPredicates.tag( MDBlockTags.SOIL ), MDNatureBlocks.MURKY_SAND.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Fixed( 12 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
+        biome.addDecorator( new DecorationDecorator( new DepositDecoration( 4, MDBlockPredicates.tag( MDBlockTags.SOIL ), MDNatureBlocks.MURKY_CLAY.getDefaultState() ), new Surface( Heightmap.Type.OCEAN_FLOOR_WG ), new Chance( 0.25 ), new IsBelowHeight( MurkSurfaceGeneration.MAIN_HEIGHT - 1 ) ) );
     }
 
     public static void addCavePlants( ModernityBiome biome ) {

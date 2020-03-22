@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:cracked_rock_tiles_corner"
+    ]
+  },
+  "criteria": {
+    "has_cracked_rock_tiles": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:cracked_rock_tiles"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:cracked_rock_tiles_corner"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cracked_rock_tiles",
+      "has_the_recipe"
+    ]
+  ]
+}

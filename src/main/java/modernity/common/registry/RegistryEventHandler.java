@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 04 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
@@ -21,17 +21,19 @@ import modernity.common.environment.event.MDEnvEvents;
 import modernity.common.event.BlockEvent;
 import modernity.common.event.MDBlockEvents;
 import modernity.common.fluid.MDFluids;
-import modernity.common.generator.biome.MDBiomeProviders;
 import modernity.common.generator.MDChunkGeneratorTypes;
+import modernity.common.generator.biome.MDBiomeProviders;
+import modernity.common.generator.structure.MDStructures;
 import modernity.common.item.MDItems;
 import modernity.common.particle.MDParticleTypes;
 import modernity.common.recipes.MDRecipeSerializers;
 import modernity.common.sound.MDSoundEvents;
 import modernity.common.tileentity.MDTileEntitiyTypes;
 import modernity.common.world.dimen.MDDimensions;
-import modernity.common.generator.structure.MDStructures;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryBuilder;

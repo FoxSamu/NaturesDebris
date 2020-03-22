@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 17 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
@@ -22,6 +22,7 @@ import modernity.common.block.loot.MDBlockDrops;
 import modernity.common.block.misc.PuddleBlock;
 import modernity.common.fluid.MDFluids;
 import modernity.common.item.MDItemGroup;
+import modernity.common.item.MDItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -35,68 +36,52 @@ public final class MDNatureBlocks {
     // Rocks
     public static final Block ROCK
         = MDBlocks.simple( "rock" )
-                  .rock( MaterialColor.STONE, 1.5, 6 )
-                  .item( MDItemGroup.BLOCKS )
-                  .drops( MDBlockDrops.SIMPLE )
-                  .create();
+                  .rock( MaterialColor.STONE, 1.5, 6 ).item( MDItemGroup.BLOCKS )
+                  .drops( MDBlockDrops.SIMPLE ).create();
 
     public static final Block DARKROCK
         = MDBlocks.simple( "darkrock" )
-                  .rock( MaterialColor.BLACK, 1.5, 6 )
-                  .item( MDItemGroup.BLOCKS )
-                  .drops( MDBlockDrops.SIMPLE )
-                  .create();
+                  .rock( MaterialColor.BLACK, 1.5, 6 ).item( MDItemGroup.BLOCKS )
+                  .drops( MDBlockDrops.SIMPLE ).create();
 
     public static final Block UNBREAKABLE_STONE
         = MDBlocks.simple( "unbreakable_stone" )
-                  .bedrock( MaterialColor.BLACK )
-                  .item( MDItemGroup.BLOCKS )
+                  .bedrock( MaterialColor.BLACK ).item( MDItemGroup.BLOCKS )
                   .drops( MDBlockDrops.SIMPLE )
-                  .alias( "modern_bedrock" )
-                  .create();
+                  .alias( "modern_bedrock" ).create();
 
     public static final Block HARDENED_ROCK
         = MDBlocks.simple( "hardened_rock" )
-                  .rock( MaterialColor.BLACK, 3, 15 )
-                  .item( MDItemGroup.BLOCKS )
-                  .drops( MDBlockDrops.SIMPLE )
-                  .create();
+                  .rock( MaterialColor.BLACK, 3, 15 ).item( MDItemGroup.BLOCKS )
+                  .drops( MDBlockDrops.SIMPLE ).create();
 
     public static final Block LIMESTONE
         = MDBlocks.simple( "limestone" )
-                  .rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 )
-                  .item( MDItemGroup.BLOCKS )
-                  .drops( MDBlockDrops.SIMPLE )
-                  .create();
+                  .rock( MaterialColor.WHITE_TERRACOTTA, 1, 4 ).item( MDItemGroup.BLOCKS )
+                  .drops( MDBlockDrops.SIMPLE ).create();
 
     public static final Block ASPHALT_CONCRETE
         = MDBlocks.simple( "asphalt_concrete" )
-                  .asphalt()
-                  .item( MDItemGroup.BLOCKS )
-                  .drops( MDBlockDrops.SIMPLE )
-                  .create();
+                  .asphalt().item( MDItemGroup.BLOCKS )
+                  .recipeAsphalt( () -> MDItems.GOO_BALL, () -> MDItems.ANTHRACITE, () -> MDNatureBlocks.REGOLITH, 1, null )
+                  .drops( MDBlockDrops.SIMPLE ).create();
 
     public static final Block SUMESTONE
         = MDBlocks.simple( "sumestone" )
-                  .rock( MaterialColor.STONE, 1.8, 6 )
-                  .item( MDItemGroup.BLOCKS )
-                  .drops( MDBlockDrops.SIMPLE )
-                  .create();
+                  .rock( MaterialColor.STONE, 1.8, 6 ).item( MDItemGroup.BLOCKS )
+                  .drops( MDBlockDrops.SIMPLE ).create();
 
     public static final Block DARK_SUMESTONE
         = MDBlocks.simple( "dark_sumestone" )
-                  .rock( MaterialColor.STONE, 1.8, 6 )
-                  .item( MDItemGroup.BLOCKS )
-                  .drops( MDBlockDrops.SIMPLE )
-                  .create();
+                  .rock( MaterialColor.STONE, 1.8, 6 ).item( MDItemGroup.BLOCKS )
+                  .drops( MDBlockDrops.SIMPLE ).create();
 
 
     public static final Block MURKY_TERRACOTTA
         = MDBlocks.simple( "murky_terracotta" )
-                  .rock( MaterialColor.CLAY, 1, 5 )
-                  .item( MDItemGroup.BLOCKS )
-                  .drops( MDBlockDrops.SIMPLE )
-                  .create();
+                  .rock( MaterialColor.CLAY, 1, 5 ).item( MDItemGroup.BLOCKS )
+                  .recipeSmelting( () -> MDNatureBlocks.MURKY_CLAY, 0.1, 200, null )
+                  .drops( MDBlockDrops.SIMPLE ).create();
 
 
     // Soils
@@ -137,6 +122,7 @@ public final class MDNatureBlocks {
                   .dirt( MaterialColor.DIRT, false )
                   .item( MDItemGroup.BLOCKS )
                   .drops( MDBlockDrops.SIMPLE )
+                  .recipeAdd( () -> MDNatureBlocks.REGOLITH, () -> MURKY_DIRT, 2, null )
                   .alias( "coarse_dark_dirt" )
                   .create();
 
@@ -145,6 +131,7 @@ public final class MDNatureBlocks {
                 .dirt( MaterialColor.DIRT, false )
                 .item( MDItemGroup.BLOCKS )
                 .drops( MDBlockDrops.SIMPLE )
+                .recipeAdd( () -> MDItems.SALT_DUST, () -> MURKY_DIRT, 1, null )
                 .create();
 
     public static final DirtlikeBlock MURKY_HUMUS =
@@ -152,6 +139,7 @@ public final class MDNatureBlocks {
                 .dirt( MaterialColor.ORANGE_TERRACOTTA, true )
                 .item( MDItemGroup.BLOCKS )
                 .drops( MDBlockDrops.DIRT_LIKE )
+                .recipeOne( () -> MDNatureBlocks.LEAFY_HUMUS, 1, null )
                 .create();
 
     public static final DirtlikeBlock LEAFY_HUMUS

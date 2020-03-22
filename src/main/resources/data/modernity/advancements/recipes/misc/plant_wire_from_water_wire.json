@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:plant_wire_from_water_wire"
+    ]
+  },
+  "criteria": {
+    "has_water_wire": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:water_wire"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:plant_wire_from_water_wire"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_water_wire",
+      "has_the_recipe"
+    ]
+  ]
+}

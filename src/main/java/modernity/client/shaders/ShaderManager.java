@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 26 - 2019
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
@@ -15,8 +15,6 @@ import modernity.api.reflect.MethodAccessor;
 import modernity.client.ModernityClient;
 import modernity.client.shaders.post.MainShader;
 import modernity.client.util.BlitBuffer;
-import modernity.common.Modernity;
-import modul.module.Module;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GameRenderer;
@@ -34,7 +32,7 @@ import java.util.function.Predicate;
  *
  */
 // TODO: Configurations for shaders
-public class ShaderManager extends Module implements ISelectiveResourceReloadListener {
+public class ShaderManager implements ISelectiveResourceReloadListener {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final int MIN_REQUIRED_TEX_UNITS = 6;
 
@@ -169,14 +167,7 @@ public class ShaderManager extends Module implements ISelectiveResourceReloadLis
         get().mainShader.addLight( src );
     }
 
-    @Override
-    protected void onInit() {
-        ModernityClient.get().addFutureReloadListener( this );
-    }
-
     public static ShaderManager get() {
-        return Modernity.modules()
-                        .getModule( ModernityClient.SHADER_MANAGER )
-                        .orElse( null );
+        return ModernityClient.get().getShaderManager();
     }
 }

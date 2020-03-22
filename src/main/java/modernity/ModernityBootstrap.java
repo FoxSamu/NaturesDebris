@@ -2,111 +2,116 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
 package modernity;
 
-import modernity.api.event.ModernityReadyEvent;
+import modernity.api.IModernity;
+import modernity.api.MDInfo;
+import modernity.api.RunMode;
+import modernity.api.event.ModernityInitializedEvent;
 import modernity.client.ModernityClient;
-import modernity.common.Modernity;
 import modernity.common.loot.MDLootTables;
 import modernity.common.registry.RegistryEventHandler;
+import modernity.data.ModernityData;
 import modernity.data.ModernityDataGenerator;
 import modernity.server.ModernityServer;
-import modul.Modul;
-import modul.core.MListFile;
-import modul.core.ModulCore;
-import modul.root.ModulRoot;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.loading.FMLLoader;
-import net.minecraftforge.versions.forge.ForgeVersion;
-import net.redgalaxy.util.Version;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Bootstrap class of the Modernity, which handles setup events and creates the {@link Modernity} instance for the side
- * we're running on ({@link ModernityClient} for the client and {@link ModernityServer} for the dedicated server).
+ * Bootstrap class of the Modernity, which handles setup events and creates the {@link IModernity} instance for the side
+ * we're running on. This is {@link ModernityClient} for the client and {@link ModernityServer} for the dedicated
+ * server. A special {@link ModernityData} instance is created when running in data generation mode.
  */
 @Mod( "modernity" )
-public class ModernityBootstrap implements ModulRoot {
+public class ModernityBootstrap {
     private static final Logger LOGGER = LogManager.getLogger( "ModernityBootstrap" );
 
+    public static final RunMode MODE;
+
     public ModernityBootstrap() {
-        if( FMLLoader.launcherHandlerName().equals( "fmluserdevdata" ) ) {
-            LOGGER.info( "Modernity is running in DataGen mode" );
+        if( MODE == RunMode.DATA ) {
             FMLJavaModLoadingContext.get().getModEventBus().addListener( ModernityDataGenerator::gather );
             MDLootTables.register();
-        } else {
-            ModulCore.start( this );
-            MDModules.load();
-            FMLJavaModLoadingContext.get().getModEventBus().addListener( this::setup );
-            FMLJavaModLoadingContext.get().getModEventBus().addListener( this::loadComplete );
         }
+        LOGGER.info( "Modernity starting in " + MODE + " mode..." );
+
+        IModernity.EVENT_BUS.start();
+        initProxy();
+
+        FMLJavaModLoadingContext.get().getModEventBus().addListener( this::setup );
+        FMLJavaModLoadingContext.get().getModEventBus().addListener( this::loadComplete );
         FMLJavaModLoadingContext.get().getModEventBus().register( RegistryEventHandler.INSTANCE );
         MinecraftForge.EVENT_BUS.register( RegistryEventHandler.INSTANCE );
     }
 
-    @Override
-    public void onStart( Modul modul ) {
-        initProxy( FMLEnvironment.dist == Dist.CLIENT ? LogicalSide.CLIENT : LogicalSide.SERVER );
-    }
-
     /**
-     * Calls {@link Modernity#init()} on our proxy.
+     * Calls {@link IModernity#init()} on our proxy.
      */
     private void setup( FMLCommonSetupEvent event ) {
-        Modernity.get().init();
+        IModernity.get().init();
     }
 
     /**
-     * Calls {@link Modernity#postInit()}.
+     * Calls {@link IModernity#postInit()}.
      */
     private void loadComplete( FMLLoadCompleteEvent event ) {
-        Modernity.get().postInit();
+        IModernity.get().postInit();
     }
 
 
     /**
-     * Initializes the proxy for the specified side. This calls {@link Modernity#registerListeners()}, then {@link
-     * Modernity#preInit()} and casts an event on the forge event bus indicating that the Modernity is initialized.
+     * Initializes the proxy for the specified side. This calls {@link IModernity#registerListeners()}, then {@link
+     * IModernity#preInit()} and casts an event on the forge event bus indicating that the Modernity is initialized.
      */
-    private void initProxy( LogicalSide side ) {
-        MinecraftForge.EVENT_BUS.register( Modernity.get() );
-        Modernity.get().registerListeners();
-        Modernity.get().preInit();
-        LOGGER.info( "Modernity version {} initialized for side {}: {}", MDInfo.VERSION, side, Modernity.get() );
-        MinecraftForge.EVENT_BUS.post( new ModernityReadyEvent( side, Modernity.get() ) );
+    private void initProxy() {
+        IModernity modernity = instantiate();
+        if( modernity != null ) {
+            MinecraftForge.EVENT_BUS.register( modernity );
+            FMLJavaModLoadingContext.get().getModEventBus().register( modernity );
+
+            modernity.registerListeners();
+            modernity.preInit();
+
+            LOGGER.info( "Modernity version {} initialized for {} mode: {}", MDInfo.VERSION, MODE, modernity.getClass().getName() );
+
+            IModernity.EVENT_BUS.post( new ModernityInitializedEvent( MODE, modernity ) );
+        } else {
+            throw new IllegalStateException( "No modernity instance generated... Reflection is broken?" );
+        }
     }
 
-    @Override
-    public MListFile.Context buildCoreContext( MListFile.Context ctx ) {
-        Version modernity = new Version( MDInfo.VERSION, "INDEV" );
-        Version minecraft = new Version( "1.14.4" );
-        Version forge = new Version( ForgeVersion.getVersion() );
-        LogicalSide side = FMLEnvironment.dist == Dist.CLIENT ? LogicalSide.CLIENT : LogicalSide.SERVER;
-
-        return ctx.withCondition( MListFile.prefix( "DIST", str -> str.equalsIgnoreCase( side.name() ) ) )
-                  .withCondition( MListFile.prefix( "VERSION_MODERNITY", str -> Version.compare( str, modernity ) ) )
-                  .withCondition( MListFile.prefix( "VERSION_MINECRAFT", str -> Version.compare( str, minecraft ) ) )
-                  .withCondition( MListFile.prefix( "VERSION_FORGE", str -> Version.compare( str, forge ) ) );
-    }
-
-    @Override
-    public Object instantiate( Class<?> cls ) {
+    private IModernity instantiate() {
         try {
-            return cls.newInstance();
-        } catch( InstantiationException | IllegalAccessException e ) {
-            throw new IllegalStateException( "Unable to instantiate " + cls, e );
+            IModernity inst = (IModernity) Class.forName( MODE.getClassName() ).newInstance();
+            IModernity.set( inst );
+            return inst;
+        } catch( Throwable e ) {
+            throw new IllegalStateException( "Unable to instantiate " + MODE.getClassName(), e );
+        }
+    }
+
+    static {
+        String lhn = FMLLoader.launcherHandlerName();
+        if( lhn.equals( "fmluserdevdata" ) || lhn.equals( "fmldevdata" ) ) {
+            MODE = RunMode.DATA;
+        } else {
+            if( FMLEnvironment.dist == Dist.CLIENT ) {
+                MODE = RunMode.CLIENT;
+            } else {
+                MODE = RunMode.SERVER;
+            }
         }
     }
 }

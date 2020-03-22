@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "modernity:logs/blackwood_logs"
+    }
+  ],
+  "result": {
+    "item": "modernity:blackwood_planks",
+    "count": 4
+  }
+}

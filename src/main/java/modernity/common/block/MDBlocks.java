@@ -2,20 +2,22 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 17 - 2020
+ * Date:   03 - 23 - 2020
  * Author: rgsw
  */
 
 package modernity.common.block;
 
 import com.google.common.collect.Lists;
+import modernity.api.IModernity;
 import modernity.api.block.IColoredBlock;
+import modernity.api.data.IRecipeData;
 import modernity.common.block.base.ICustomBlockItem;
 import modernity.common.block.loot.IBlockDrops;
 import modernity.common.block.loot.MDBlockDrops;
+import modernity.common.recipes.data.RecipeDataTypes;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
-import modernity.data.loot.MDBlockLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -25,10 +27,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.tags.Tag;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.redgalaxy.util.Lazy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,6 +73,10 @@ public final class MDBlocks {
 
     public static Supplier<BlockState> supply( String id ) {
         return new BlockStateSupplier( new ResourceLocation( "modernity", id ) );
+    }
+
+    public static Supplier<IItemProvider> supplyI( String id ) {
+        return Lazy.of( () -> ForgeRegistries.ITEMS.getValue( new ResourceLocation( "modernity", id ) ) );
     }
 
     private static Item createBlockItem( Block t, Item.Properties props ) {
@@ -114,6 +124,7 @@ public final class MDBlocks {
         private Block.Properties blockProps;
         private IBlockDrops drops;
         private final List<String> aliases = Lists.newArrayList();
+        private final List<IRecipeData> recipes = Lists.newArrayList();
 
         BlockConfig( String id ) {
             this.id = id;
@@ -344,6 +355,171 @@ public final class MDBlocks {
             return this;
         }
 
+        public BlockConfig<T> recipe( IRecipeData recipe ) {
+            this.recipes.add( recipe );
+            return this;
+        }
+
+        public BlockConfig<T> recipeBlock4( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.block4( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeBlock9( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.block9( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeOne( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.one( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeOne( Tag<Item> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.one( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeJoin( Supplier<IItemProvider> in1, Supplier<IItemProvider> in2, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.join( in1, in2, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeAdd( Supplier<IItemProvider> add, Supplier<IItemProvider> into, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.add( add, into, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeSlab( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.slab( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeStairs( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.stairs( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeStep( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.step( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeWall( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.wall( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeCorner( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.corner( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeStonecutting( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.stonecutting( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeSmelting( Supplier<IItemProvider> in, double exp, int time, String id ) {
+            this.recipes.add( RecipeDataTypes.smelting( in, supplyI( this.id ), (float) exp, time, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeSmoking( Supplier<IItemProvider> in, double exp, int time, String id ) {
+            this.recipes.add( RecipeDataTypes.smoking( in, supplyI( this.id ), (float) exp, time, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeBlasting( Supplier<IItemProvider> in, double exp, int time, String id ) {
+            this.recipes.add( RecipeDataTypes.blasting( in, supplyI( this.id ), (float) exp, time, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeFence( Supplier<IItemProvider> stick, Supplier<IItemProvider> wood, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.fence( stick, wood, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeDoor( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.door( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeVert( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.vert( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeHoriz( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.horiz( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeVert3( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.vert3( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeHoriz3( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.horiz3( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeTorch( Supplier<IItemProvider> coal, Supplier<IItemProvider> stick, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.torch( coal, stick, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeTorch( Supplier<IItemProvider> coal, Tag<Item> stick, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.torch( coal, stick, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeJoinVert( Supplier<IItemProvider> u, Supplier<IItemProvider> d, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.joinVert( u, d, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeJoinHoriz( Supplier<IItemProvider> l, Supplier<IItemProvider> r, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.joinHoriz( l, r, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeH( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.h( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeX( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.x( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeO4( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.o4( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeO8( Supplier<IItemProvider> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.o8( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeO8( Tag<Item> in, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.o8( in, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeJoin3( Supplier<IItemProvider> in1, Supplier<IItemProvider> in2, Supplier<IItemProvider> in3, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.join3( in1, in2, in3, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
+        public BlockConfig<T> recipeAsphalt( Supplier<IItemProvider> goo, Supplier<IItemProvider> coal, Supplier<IItemProvider> gravel, int outCount, String id ) {
+            this.recipes.add( RecipeDataTypes.asphalt( goo, coal, gravel, supplyI( this.id ), outCount, "", id ) );
+            return this;
+        }
+
         public T create() {
             if( blockFunc == null ) {
                 throw new IllegalStateException( "No block function specified" );
@@ -358,7 +534,10 @@ public final class MDBlocks {
                 ITEM_BLOCKS.add( block );
             }
             if( drops != null ) {
-                MDBlockLootTables.addBlock( block, drops );
+                IModernity.get().getDataService().addBlockDrops( block, drops );
+            }
+            for( IRecipeData recipe : recipes ) {
+                IModernity.get().getDataService().addRecipe( recipe );
             }
 
             return block;

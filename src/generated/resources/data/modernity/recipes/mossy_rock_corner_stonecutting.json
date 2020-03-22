@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "modernity:mossy_rock"
+  },
+  "result": "modernity:mossy_rock_corner",
+  "count": 8
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:asphalt_concrete"
+    ]
+  },
+  "criteria": {
+    "has_goo_ball": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:goo_ball"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:asphalt_concrete"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_goo_ball",
+      "has_the_recipe"
+    ]
+  ]
+}
