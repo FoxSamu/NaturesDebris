@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "modernity:mossy_rock_bricks"
+      "modernity:chiseled_darkrock_stonecutting"
     ]
   },
   "criteria": {
-    "has_mossy_rock": {
+    "has_smooth_darkrock": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "modernity:mossy_rock"
+            "item": "modernity:smooth_darkrock"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "modernity:mossy_rock_bricks"
+        "recipe": "modernity:chiseled_darkrock_stonecutting"
       }
     }
   },
   "requirements": [
     [
-      "has_mossy_rock",
+      "has_smooth_darkrock",
       "has_the_recipe"
     ]
   ]

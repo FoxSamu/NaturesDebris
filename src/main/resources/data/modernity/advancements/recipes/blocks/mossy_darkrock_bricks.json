@@ -6,22 +6,12 @@
     ]
   },
   "criteria": {
-    "has_darkrock_bricks": {
+    "has_mossy_darkrock": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "modernity:darkrock_bricks"
-          }
-        ]
-      }
-    },
-    "has_moss": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "modernity:moss"
+            "item": "modernity:mossy_darkrock"
           }
         ]
       }
@@ -35,8 +25,7 @@
   },
   "requirements": [
     [
-      "has_darkrock_bricks",
-      "has_moss",
+      "has_mossy_darkrock",
       "has_the_recipe"
     ]
   ]

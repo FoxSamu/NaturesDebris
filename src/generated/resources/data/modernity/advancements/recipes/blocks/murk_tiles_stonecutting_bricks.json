@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "modernity:mossy_rock_bricks"
+      "modernity:murk_tiles_stonecutting_bricks"
     ]
   },
   "criteria": {
-    "has_mossy_rock": {
+    "has_murk_bricks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "modernity:mossy_rock"
+            "item": "modernity:murk_bricks"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "modernity:mossy_rock_bricks"
+        "recipe": "modernity:murk_tiles_stonecutting_bricks"
       }
     }
   },
   "requirements": [
     [
-      "has_mossy_rock",
+      "has_murk_bricks",
       "has_the_recipe"
     ]
   ]
