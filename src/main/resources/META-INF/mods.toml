@@ -20,7 +20,7 @@ issueTrackerURL="https://github.com/RedGalaxyDev/TheModernity/issues"
 [[dependencies.modernity]]
     modId="forge"
     mandatory=false
-    versionRange="[28.1.115,)"
+    versionRange="[28.2.1,)"
     ordering="NONE"
     side="BOTH"
 

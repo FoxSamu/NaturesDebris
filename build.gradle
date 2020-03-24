@@ -154,10 +154,10 @@ jar {
     }
 }
 
-version = 'INDEV-0.3.0'
-project.ext.versionName = "The Environment Update"
+version = 'Beta-1.0'
+project.ext.versionName = "The Update Of Nature"
 project.ext.isIDE = true
-group = 'net.rgsw'
+group = 'net.redgalaxy'
 archivesBaseName = 'modernity'
 
 // Use Java 1.8

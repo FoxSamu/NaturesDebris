@@ -1,18 +1,12 @@
 {
   "homepage": "https://www.curseforge.com/minecraft/mc-mods/the-modernity",
   "1.14.4": {
+    "Beta-1.0": "The Update Of Nature. See https://github.com/RedGalaxyDev/TheModernity/releases/tag/v1.0-BETA for full changelog",
     "INDEV-0.3.0": "The Environment Event. See https://github.com/RedGalaxyDev/TheModernity/releases/tag/v0.3.0-INDEV for full changelog",
     "INDEV-0.2.1": "A bugfix update. See https://github.com/RedGalaxyDev/TheModernity/releases/tag/v0.2.1-INDEV for full changelog",
     "INDEV-0.2.0": "The 1.14.4 update. See https://github.com/RedGalaxyDev/TheModernity/releases/tag/v0.2.0-INDEV for full changelog"
   },
-  "1.13.2": {
-    "INDEV-0.1.0": "The building update. See https://github.com/RedGalaxyDev/TheModernity/releases/tag/v0.1.0-INDEV for full changelog",
-    "INDEV-0.0.2": "The wiki update. See https://github.com/RedGalaxyDev/TheModernity/releases/tag/v0.0.2-INDEV for full changelog",
-    "INDEV-0.0.1": "The server update. See https://github.com/RedGalaxyDev/TheModernity/releases/tag/v0.0.1-INDEV for full changelog",
-    "INDEV-0.0.0": "The first release. See https://github.com/RedGalaxyDev/TheModernity/releases/tag/v0.0.0-INDEV for full changelog"
-  },
   "promos":{
-    "1.14.4-latest": "INDEV-0.3.0",
-    "1.13.2-latest": "INDEV-0.1.0"
+    "1.14.4-latest": "Beta-1.0"
   }
 }
