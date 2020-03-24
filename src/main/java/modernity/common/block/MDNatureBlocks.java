@@ -110,7 +110,7 @@ public final class MDNatureBlocks {
         = MDBlocks.function( "murky_sand", props -> new DigableFallBlock( 0x826f52, props ) )
                   .dust( MaterialColor.SAND, false )
                   .item( MDItemGroup.BLOCKS )
-                  .drops( MDBlockDrops.DIRT_LIKE )
+                  .drops( MDBlockDrops.SIMPLE )
                   .alias( "dark_sand" )
                   .create();
 
@@ -118,7 +118,7 @@ public final class MDNatureBlocks {
         = MDBlocks.function( "murky_clay", DigableBlock::new )
                   .clay( MaterialColor.GRAY_TERRACOTTA )
                   .item( MDItemGroup.BLOCKS )
-                  .drops( MDBlockDrops.DIRT_LIKE )
+                  .drops( MDBlockDrops.SIMPLE )
                   .alias( "dark_clay" )
                   .create();
 

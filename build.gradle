@@ -125,17 +125,24 @@ minecraft {
     }
 }
 
+configurations {
+    embed
+    compile.extendsFrom(embed)
+}
+
 dependencies {
     minecraft 'net.minecraftforge:forge:1.14.4-28.2.1'
 
-    compile 'net.rgsw:noise:1.0.3'
-    compile 'net.rgsw:io:1.0.1'
+    embed 'net.rgsw:noise:1.0.3'
+    embed 'net.rgsw:io:1.0.1'
 
     // provided 'dep' // May not exist at runtime
     // deobf 'dep' // Remaps a dependency
 }
 
 jar {
+    from configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
+
     manifest {
         attributes( [
             "Specification-Title"     : "The Modernity",
