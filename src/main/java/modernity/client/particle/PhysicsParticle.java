@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 14 - 2019
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -68,7 +68,7 @@ public abstract class PhysicsParticle extends SpriteTexturedParticle {
         IFluidState fstate = world.getFluidState( pos );
         boolean floating = false;
         if( ! fstate.isEmpty() ) {
-            double height = fstate.func_215679_a( world, pos );
+            double height = fstate.getActualHeight( world, pos );
             if( world.getBlockState( pos.up() ).getBlock() == state.getBlock() ) height = 1;
             if( posY % 1 < height ) {
                 // Float in fluid

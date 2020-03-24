@@ -21,7 +21,7 @@ function initializeCoreMod() {
 function transform( node ) {
     for( var i in node.methods ) {
         var method = node.methods[ i ];
-        if( method.name == "func_222681_b" && method.desc == "()Z" ) {
+        if( (method.name == "func_222681_b" || method.name == "isUsageClient") && method.desc == "()Z" ) {
             var insn = method.instructions.get( 0 );
             method.instructions.insertBefore( insn, new VarInsnNode( Opcodes.ALOAD, 0 ) );
             method.instructions.insertBefore( insn, new MethodInsnNode( Opcodes.INVOKESTATIC, "modernity/common/util/Hooks", "mustSyncHeightmap", "(Lnet/minecraft/world/gen/Heightmap$Type;)Z", false ) );

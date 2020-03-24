@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 23 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -32,6 +32,11 @@ import net.minecraftforge.registries.ObjectHolder;
 public final class MDNatureBlocks {
     public static void init() {
     }
+
+    public static final ExtAirBlock CAVE_AIR
+        = MDBlocks.function( "cave_air", ExtAirBlock::new )
+                  .props( Material.AIR, MaterialColor.AIR )
+                  .create();
 
     // Rocks
     public static final Block ROCK

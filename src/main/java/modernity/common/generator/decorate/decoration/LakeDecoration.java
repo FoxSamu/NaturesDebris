@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -12,7 +12,6 @@ import modernity.api.util.MovingBlockPos;
 import modernity.common.block.MDNatureBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -22,7 +21,7 @@ import net.minecraft.world.gen.ChunkGenerator;
 import java.util.Random;
 
 public class LakeDecoration implements IDecoration {
-    private static final BlockState CAVE_AIR = Blocks.CAVE_AIR.getDefaultState();
+    private static final BlockState CAVE_AIR = MDNatureBlocks.CAVE_AIR.getDefaultState();
 
     private static final ThreadLocal<boolean[]> LAKE_DATA = ThreadLocal.withInitial( () -> new boolean[ 2048 ] );
 

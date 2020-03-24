@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 29 - 2019
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -44,7 +44,7 @@ public class WorkbenchScreen extends ContainerScreen<WorkbenchContainer> impleme
         recipeBookGui.init( width, height, minecraft, tooNarrow, container );
         guiLeft = recipeBookGui.computeMainScreenX( tooNarrow, width, xSize );
         children.add( recipeBookGui );
-        func_212928_a( recipeBookGui );
+        setFocused( recipeBookGui );
         addButton( new ImageButton( guiLeft + 5, height / 2 - 49, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, btn -> {
             recipeBookGui.setupGui( tooNarrow );
             recipeBookGui.toggleVisibility();
@@ -129,7 +129,7 @@ public class WorkbenchScreen extends ContainerScreen<WorkbenchContainer> impleme
     }
 
     @Override
-    public RecipeBookGui func_194310_f() {
+    public RecipeBookGui getRecipeGui() {
         return recipeBookGui;
     }
 }

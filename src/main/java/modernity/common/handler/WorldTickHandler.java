@@ -2,23 +2,26 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 26 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
 package modernity.common.handler;
 
+import modernity.common.advancements.MDCriteriaTriggers;
 import modernity.common.biome.ModernityBiome;
 import modernity.common.environment.event.EnvironmentEventManager;
 import modernity.common.environment.event.MDEnvEvents;
 import modernity.common.environment.event.impl.PrecipitationEnvEvent;
 import modernity.common.environment.precipitation.IPrecipitation;
 import modernity.common.environment.precipitation.IPrecipitationFunction;
+import modernity.common.util.CaveUtil;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.passive.horse.SkeletonHorseEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -43,9 +46,24 @@ public enum WorldTickHandler {
 
     private int updateLCG = new Random().nextInt();
 
+    private int playerCaveTickTime;
+
     @SubscribeEvent
     public void onWorldTick( TickEvent.WorldTickEvent event ) {
         if( event.world.isRemote || event.phase == TickEvent.Phase.START ) return;
+
+        if( ++ playerCaveTickTime >= 20 ) {
+            playerCaveTickTime = 0;
+
+            ServerWorld world = (ServerWorld) event.world;
+
+            for( ServerPlayerEntity player : world.getPlayers() ) {
+                BlockPos pos = player.getPosition();
+                if( CaveUtil.caveHeight( pos.getX(), pos.getZ(), event.world ) - 4 >= pos.getY() ) {
+                    MDCriteriaTriggers.IN_CAVE.trigger( player );
+                }
+            }
+        }
     }
 
     private void updateChunk( ServerWorld world, Chunk chunk, EnvironmentEventManager eventManager ) {

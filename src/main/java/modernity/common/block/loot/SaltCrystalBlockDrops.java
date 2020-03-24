@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -26,7 +26,12 @@ public class SaltCrystalBlockDrops extends SaltBlockDrops {
 
     @Override
     public LootTable.Builder createLootTable( Block block ) {
-        LootPool.Builder saltLoot = createSaltLootPool( block ).acceptCondition( NO_SILK_TOUCH );
+        LootPool.Builder saltLoot = createSaltLootPool( block )
+                                        .acceptCondition( NO_SILK_TOUCH )
+                                        .acceptCondition(
+                                            BlockStateProperty.builder( block )
+                                                              .with( MDBlockStateProperties.AGE_0_11, 11 )
+                                        );
         LootPool.Builder silkLoot =
             LootPool.builder()
                     .name( "silk_touch" )

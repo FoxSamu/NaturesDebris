@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -35,7 +35,7 @@ public final class Hooks {
     }
 
     public static boolean mustSyncHeightmap( Heightmap.Type type ) {
-        return type.func_222683_c();
+        return type.isUsageNotWorldgen();
     }
 
     public static boolean isMotionBlockingNoLeaves( BlockState block ) {

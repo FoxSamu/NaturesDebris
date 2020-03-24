@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 23 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -13,6 +13,7 @@ import modernity.ModernityBootstrap;
 import modernity.api.IModernity;
 import modernity.api.dimension.IInitializeDimension;
 import modernity.api.util.SimpleAsyncExecutor;
+import modernity.common.advancements.MDCriteriaTriggers;
 import modernity.common.area.core.IWorldAreaManager;
 import modernity.common.area.core.ServerWorldAreaManager;
 import modernity.common.block.dispensing.MDDispenseBehaviors;
@@ -98,6 +99,7 @@ public abstract class Modernity implements IModernity {
      */
     @Override
     public void preInit() {
+        MDCriteriaTriggers.init();
     }
 
     /**
@@ -223,6 +225,8 @@ public abstract class Modernity implements IModernity {
         FORGE_EVENT_BUS.register( FuelHandler.INSTANCE );
         FORGE_EVENT_BUS.register( ContainerHandler.INSTANCE );
         FORGE_EVENT_BUS.register( LootTableHandler.INSTANCE );
+        FORGE_EVENT_BUS.register( WorldTickHandler.INSTANCE );
+        FORGE_EVENT_BUS.register( BlockHandler.INSTANCE );
     }
 
     /**

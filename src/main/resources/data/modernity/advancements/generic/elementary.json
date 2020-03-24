@@ -1,0 +1,53 @@
+{
+  "display": {
+    "icon": {
+      "item": "modernity:finnerite"
+    },
+    "title": {
+      "translate": "modernity.advancements.generic.elementary"
+    },
+    "description": {
+      "translate": "modernity.advancements.generic.elementary.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "modernity:generic/murkified_darkness",
+  "criteria": {
+    "finnerite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:finnerite"
+          }
+        ]
+      }
+    },
+    "iverite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:iverite"
+          }
+        ]
+      }
+    },
+    "sagerite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:sagerite"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [ "finnerite", "iverite", "sagerite" ]
+  ]
+}

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -84,7 +84,7 @@ public class PrecipitationParticle extends SpriteTexturedParticle {
                 BlockPos pos = new BlockPos( posX, posY, posZ );
                 double h = Math.max(
                     world.getBlockState( pos ).getCollisionShape( world, pos ).max( Direction.Axis.Y, posX - pos.getX(), posZ - pos.getZ() ),
-                    world.getFluidState( pos ).func_215679_a( world, pos )
+                    world.getFluidState( pos ).getActualHeight( world, pos )
                 );
                 if( h > 0 && posY < pos.getY() + h ) {
                     setExpired();

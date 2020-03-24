@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -158,7 +158,7 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
     }
 
     @Override
-    protected boolean canFlowInto( IFluidState state, IBlockReader world, BlockPos pos, Fluid fluid, Direction facing ) {
+    protected boolean canDisplace( IFluidState state, IBlockReader world, BlockPos pos, Fluid fluid, Direction facing ) {
         return facing == Direction.DOWN && ! fluid.isIn( FluidTags.WATER );
     }
 

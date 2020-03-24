@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 01 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -64,7 +64,7 @@ public final class MDFluids {
     @OnlyIn( Dist.CLIENT )
     public static float getFluidHeight( IBlockReader world, BlockPos pos, Fluid fluid, IFluidState fluidState, int fall ) {
         if( Minecraft.getInstance().world == null ) {
-            return fluidState.func_223408_f();
+            return fluidState.getHeight();
         }
         int weight = 0;
         float height = 0;
@@ -84,13 +84,13 @@ public final class MDFluids {
             if( areEquivalent( state.getFluid(), fluid ) ) {
                 if( state.isSource() ) {
                     if( w < 0 ) {
-                        return state.func_223408_f();
+                        return state.getHeight();
                     } else {
-                        height += state.func_223408_f() * w;
+                        height += state.getHeight() * w;
                         weight += w;
                     }
                 } else {
-                    height += state.func_223408_f();
+                    height += state.getHeight();
                     ++ weight;
                 }
             } else if( ! world.getBlockState( offPos ).getMaterial().isSolid() ) {

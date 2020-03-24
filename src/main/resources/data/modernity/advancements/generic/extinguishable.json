@@ -1,5 +1,4 @@
 {
-  "parent": "modernity:generic/murky_world",
   "display": {
     "icon": {
       "item": "modernity:extinguished_anthracite_torch"
@@ -15,6 +14,7 @@
     "announce_to_chat": true,
     "hidden": false
   },
+  "parent": "modernity:generic/murky_world",
   "criteria": {
     "murky_water": {
       "trigger": "minecraft:placed_block",

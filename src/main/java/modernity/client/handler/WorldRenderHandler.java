@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 20 - 2019
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -174,7 +174,7 @@ public enum WorldRenderHandler {
                     if( particles ) {
                         VoxelShape shape = state.getCollisionShape( world, down );
                         double shapeMax = shape.max( Direction.Axis.Y, px, pz );
-                        double fluidMax = fluid.func_215679_a( world, pos );
+                        double fluidMax = fluid.getActualHeight( world, pos );
                         if( shapeMax >= fluidMax ) {
                             rainY = shapeMax;
                             smokeY = shape.min( Direction.Axis.Y, px, pz );

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -200,7 +200,7 @@ public final class BlockLoot {
 
 
     public static IBlockLoot chest() {
-        return block -> explosionCond( block, ItemLootEntry.builder( block ).acceptFunction( CopyName.func_215893_a( CopyName.Source.BLOCK_ENTITY ) ) );
+        return block -> explosionCond( block, ItemLootEntry.builder( block ).acceptFunction( CopyName.builder( CopyName.Source.BLOCK_ENTITY ) ) );
     }
 
     public static IBlockLoot oreItem( Supplier<IItemProvider> item ) {

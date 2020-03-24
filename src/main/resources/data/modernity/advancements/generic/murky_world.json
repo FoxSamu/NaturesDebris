@@ -14,6 +14,7 @@
     "announce_to_chat": true,
     "hidden": false
   },
+  "parent": "modernity:generic/root",
   "criteria": {
     "entered_modernity": {
       "trigger": "minecraft:changed_dimension",

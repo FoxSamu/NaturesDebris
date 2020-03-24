@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 23 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -13,6 +13,7 @@ import modernity.common.block.base.ExtSlimeBlock;
 import modernity.common.block.base.TranslucentBlock;
 import modernity.common.block.loot.BlockLoot;
 import modernity.common.block.loot.SaltBlockDrops;
+import modernity.common.block.misc.BlackboneBlock;
 import modernity.common.block.misc.OreBlock;
 import modernity.common.block.misc.SaltBlock;
 import modernity.common.item.MDItemGroup;
@@ -21,6 +22,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder( "modernity" )
@@ -40,6 +42,7 @@ public final class MDMineralBlocks {
         = MDBlocks.simple( "aluminium_ore" )
                   .rock( MaterialColor.STONE, 3, 3 )
                   .item( MDItemGroup.BLOCKS )
+                  .tool( ToolType.PICKAXE, 1 )
                   .dropSelf()
                   .create();
 
@@ -55,6 +58,7 @@ public final class MDMineralBlocks {
                   .rock( MaterialColor.STONE, 3, 3 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.oreItem( () -> MDItems.FINNERITE ) )
+                  .tool( ToolType.PICKAXE, 2 )
                   .create();
 
     public static final OreBlock IVERITE_ORE
@@ -62,6 +66,7 @@ public final class MDMineralBlocks {
                   .rock( MaterialColor.STONE, 3, 3 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.oreItem( () -> MDItems.IVERITE ) )
+                  .tool( ToolType.PICKAXE, 2 )
                   .create();
 
     public static final OreBlock SAGERITE_ORE
@@ -69,6 +74,7 @@ public final class MDMineralBlocks {
                   .rock( MaterialColor.STONE, 3, 3 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.oreItem( () -> MDItems.SAGERITE ) )
+                  .tool( ToolType.PICKAXE, 2 )
                   .create();
 
     public static final OreBlock LUMINOSITE_ORE
@@ -76,7 +82,8 @@ public final class MDMineralBlocks {
                   .rock( MaterialColor.STONE, 3, 3 )
                   .light( 4 )
                   .item( MDItemGroup.BLOCKS )
-                  .drops( BlockLoot.oreItem( () -> MDItems.FINNERITE, 1, 2, 0.6F ) )
+                  .drops( BlockLoot.oreItem( () -> MDItems.LUMINOSITE_SHARDS, 1, 2, 0.6F ) )
+                  .tool( ToolType.PICKAXE, 1 )
                   .create();
 
     public static final OreBlock GOO_ORE
@@ -84,7 +91,7 @@ public final class MDMineralBlocks {
                   .rock( MaterialColor.STONE, 3, 3 )
                   .sound( MDSoundTypes.ASPHALT )
                   .item( MDItemGroup.BLOCKS )
-                  .drops( BlockLoot.oreItem( () -> MDItems.FINNERITE, 1, 2, 0.6F ) )
+                  .drops( BlockLoot.oreItem( () -> MDItems.GOO_BALL, 1, 2, 0.6F ) )
                   .create();
 
     public static final OreBlock FOSSIL
@@ -92,6 +99,7 @@ public final class MDMineralBlocks {
                   .rock( MaterialColor.STONE, 1.5F, 5 )
                   .item( MDItemGroup.BLOCKS )
                   .drops( BlockLoot.oreItem( () -> MDItems.BLACKBONE ) )
+                  .tool( ToolType.PICKAXE, 1 )
                   .create();
 
     // Blocks
@@ -177,7 +185,7 @@ public final class MDMineralBlocks {
                   .create();
 
     public static final AxisBlock BLACKBONE_BLOCK
-        = MDBlocks.function( "blackbone_block", AxisBlock::new )
+        = MDBlocks.function( "blackbone_block", BlackboneBlock::new )
                   .props( Material.ROCK, MaterialColor.BLACK )
                   .hardness( 2 )
                   .item( MDItemGroup.BLOCKS )

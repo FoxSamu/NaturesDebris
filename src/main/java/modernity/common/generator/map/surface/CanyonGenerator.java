@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -14,7 +14,6 @@ import modernity.common.fluid.MDFluids;
 import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.map.RangeMapGenerator;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.util.Direction;
 import net.minecraft.world.IWorld;
@@ -252,7 +251,7 @@ public class CanyonGenerator extends RangeMapGenerator<SurfaceGenData> {
         if( pos.getY() <= MurkSurfaceGeneration.CAVE_WATER_LEVEL ) {
             world.setBlockState( pos, MDNatureBlocks.MURKY_WATER.getDefaultState(), 2 );
         } else {
-            world.setBlockState( pos, Blocks.CAVE_AIR.getDefaultState(), 2 );
+            world.setBlockState( pos, MDNatureBlocks.CAVE_AIR.getDefaultState(), 2 );
         }
     }
 

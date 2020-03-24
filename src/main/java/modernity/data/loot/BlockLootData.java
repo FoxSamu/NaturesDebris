@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 23 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -131,15 +131,15 @@ public class BlockLootData implements Consumer<BiConsumer<ResourceLocation, Loot
     }
 
     protected static LootTable.Builder func_218481_e( Block p_218481_0_ ) {
-        return LootTable.builder().addLootPool( applyExplosionCondition( p_218481_0_, LootPool.builder().rolls( ConstantRange.of( 1 ) ).addEntry( ItemLootEntry.builder( p_218481_0_ ).acceptFunction( CopyName.func_215893_a( CopyName.Source.BLOCK_ENTITY ) ) ) ) );
+        return LootTable.builder().addLootPool( applyExplosionCondition( p_218481_0_, LootPool.builder().rolls( ConstantRange.of( 1 ) ).addEntry( ItemLootEntry.builder( p_218481_0_ ).acceptFunction( CopyName.builder( CopyName.Source.BLOCK_ENTITY ) ) ) ) );
     }
 
     protected static LootTable.Builder func_218544_f( Block p_218544_0_ ) {
-        return LootTable.builder().addLootPool( applyExplosionCondition( p_218544_0_, LootPool.builder().rolls( ConstantRange.of( 1 ) ).addEntry( ItemLootEntry.builder( p_218544_0_ ).acceptFunction( CopyName.func_215893_a( CopyName.Source.BLOCK_ENTITY ) ).acceptFunction( CopyNbt.func_215881_a( CopyNbt.Source.BLOCK_ENTITY ).func_216056_a( "Lock", "BlockEntityTag.Lock" ).func_216056_a( "LootTable", "BlockEntityTag.LootTable" ).func_216056_a( "LootTableSeed", "BlockEntityTag.LootTableSeed" ) ).acceptFunction( SetContents.func_215920_b().func_216075_a( DynamicLootEntry.func_216162_a( ShulkerBoxBlock.field_220169_b ) ) ) ) ) );
+        return LootTable.builder().addLootPool( applyExplosionCondition( p_218544_0_, LootPool.builder().rolls( ConstantRange.of( 1 ) ).addEntry( ItemLootEntry.builder( p_218544_0_ ).acceptFunction( CopyName.builder( CopyName.Source.BLOCK_ENTITY ) ).acceptFunction( CopyNbt.func_215881_a( CopyNbt.Source.BLOCK_ENTITY ).func_216056_a( "Lock", "BlockEntityTag.Lock" ).func_216056_a( "LootTable", "BlockEntityTag.LootTable" ).func_216056_a( "LootTableSeed", "BlockEntityTag.LootTableSeed" ) ).acceptFunction( SetContents.func_215920_b().func_216075_a( DynamicLootEntry.func_216162_a( ShulkerBoxBlock.CONTENTS ) ) ) ) ) );
     }
 
     protected static LootTable.Builder func_218559_g( Block p_218559_0_ ) {
-        return LootTable.builder().addLootPool( applyExplosionCondition( p_218559_0_, LootPool.builder().rolls( ConstantRange.of( 1 ) ).addEntry( ItemLootEntry.builder( p_218559_0_ ).acceptFunction( CopyName.func_215893_a( CopyName.Source.BLOCK_ENTITY ) ).acceptFunction( CopyNbt.func_215881_a( CopyNbt.Source.BLOCK_ENTITY ).func_216056_a( "Patterns", "BlockEntityTag.Patterns" ) ) ) ) );
+        return LootTable.builder().addLootPool( applyExplosionCondition( p_218559_0_, LootPool.builder().rolls( ConstantRange.of( 1 ) ).addEntry( ItemLootEntry.builder( p_218559_0_ ).acceptFunction( CopyName.builder( CopyName.Source.BLOCK_ENTITY ) ).acceptFunction( CopyNbt.func_215881_a( CopyNbt.Source.BLOCK_ENTITY ).func_216056_a( "Patterns", "BlockEntityTag.Patterns" ) ) ) ) );
     }
 
     protected static LootTable.Builder func_218476_a( Block p_218476_0_, Item p_218476_1_ ) {

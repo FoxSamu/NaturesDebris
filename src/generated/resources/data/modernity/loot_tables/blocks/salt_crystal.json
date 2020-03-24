@@ -40,6 +40,13 @@
               ]
             }
           }
+        },
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "modernity:salt_crystal",
+          "properties": {
+            "age": "11"
+          }
         }
       ],
       "functions": [

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -252,7 +252,7 @@ public abstract class MoltenRockFluid extends RegularFluid implements ICustomRen
                 return false;
             }
 
-            if( fstate.func_223408_f() >= 0.4444444F ) {
+            if( fstate.getHeight() >= 0.4444444F ) {
                 world.setBlockState( pos, MDNatureBlocks.DARKROCK.getDefaultState() );
                 triggerMixEffects( world, pos );
                 return false;
@@ -263,7 +263,7 @@ public abstract class MoltenRockFluid extends RegularFluid implements ICustomRen
     }
 
     @Override
-    protected boolean canFlowInto( IFluidState state, IBlockReader world, BlockPos pos, Fluid fluid, Direction facing ) {
+    protected boolean canDisplace( IFluidState state, IBlockReader world, BlockPos pos, Fluid fluid, Direction facing ) {
         return facing == Direction.DOWN && ! fluid.isIn( FluidTags.WATER );
     }
 

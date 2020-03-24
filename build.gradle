@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 20 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -76,7 +76,7 @@ repositories {
 
 minecraft {
     // Snapshot mappings: May 26, 2019
-    mappings channel: 'snapshot', version: '20190719-1.14.3'
+    mappings channel: 'snapshot', version: '20190922-1.14.3'
 
     // Access transformer
     accessTransformer = file( 'src/main/resources/META-INF/accesstransformer.cfg' )
@@ -126,7 +126,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.14.4-28.2.0'
+    minecraft 'net.minecraftforge:forge:1.14.4-28.2.1'
 
     compile 'net.rgsw:noise:1.0.3'
     compile 'net.rgsw:io:1.0.1'

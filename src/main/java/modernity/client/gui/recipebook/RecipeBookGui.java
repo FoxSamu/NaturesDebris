@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 21 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -116,6 +116,7 @@ public class RecipeBookGui extends net.minecraft.client.gui.recipebook.RecipeBoo
         };
     }
 
+    @Override
     public void init( int width, int height, Minecraft mc, boolean tooNarrow, RecipeBookContainer<?> container ) {
         this.mc = mc;
         this.screenWidth = width;
@@ -139,7 +140,7 @@ public class RecipeBookGui extends net.minecraft.client.gui.recipebook.RecipeBoo
         int y = ( screenHeight - HEIGHT ) / 2;
 
         helper.clear();
-        mc.player.inventory.func_201571_a( helper );
+        mc.player.inventory.accountStacks( helper );
         container.func_201771_a( helper );
 
 
@@ -272,7 +273,7 @@ public class RecipeBookGui extends net.minecraft.client.gui.recipebook.RecipeBoo
         filtered.removeIf( list -> ! list.containsValidRecipes() );
         String query = searchBar.getText();
         if( ! query.isEmpty() ) {
-            ObjectSet<RecipeList> queryResult = new ObjectLinkedOpenHashSet<>( mc.func_213253_a( SearchTreeManager.RECIPES ).search( query.toLowerCase( Locale.ROOT ) ) );
+            ObjectSet<RecipeList> queryResult = new ObjectLinkedOpenHashSet<>( mc.getSearchTree( SearchTreeManager.RECIPES ).search( query.toLowerCase( Locale.ROOT ) ) );
             filtered.removeIf( list -> ! queryResult.contains( list ) );
         }
 
@@ -315,7 +316,7 @@ public class RecipeBookGui extends net.minecraft.client.gui.recipebook.RecipeBoo
 
     private void updateStackedContents() {
         helper.clear();
-        mc.player.inventory.func_201571_a( helper );
+        mc.player.inventory.accountStacks( helper );
         container.func_201771_a( helper );
         updateCollections( false );
     }

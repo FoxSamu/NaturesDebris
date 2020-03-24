@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 15 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -14,7 +14,6 @@ import modernity.common.generator.MurkSurfaceGeneration;
 import modernity.common.generator.map.MapGenerator;
 import modernity.common.generator.util.NoiseBuffer;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.WorldGenRegion;
 import net.redgalaxy.util.MathUtil;
@@ -25,7 +24,7 @@ import net.rgsw.noise.OpenSimplex3D;
  * Generates the caves in the Modernity's surface dimension.
  */
 public class CaveGenerator extends MapGenerator<SurfaceGenData> {
-    private static final BlockState AIR = Blocks.CAVE_AIR.getDefaultState();
+    private static final BlockState AIR = MDNatureBlocks.CAVE_AIR.getDefaultState();
     private static final BlockState WATER = MDNatureBlocks.MURKY_WATER.getDefaultState();
 
     private static final int SEG_SIZE_X = 2;                                    // The size of a segment along x-axis

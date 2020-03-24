@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 29 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -100,15 +100,7 @@ public abstract class RegularFluid extends Fluid {
         builder.add( FALLING );
     }
 
-    // Missing mapping for getFlow
     @Override
-    protected Vec3d func_215663_a( IBlockReader world, BlockPos pos, IFluidState state ) {
-        return getFlow( world, pos, state );
-    }
-
-    /**
-     * Returns the flow vector for the specified context.
-     */
     public Vec3d getFlow( IBlockReader world, BlockPos pos, IFluidState state ) {
         double xflow = 0.0D;
         double zflow = 0.0D;
@@ -121,21 +113,21 @@ public abstract class RegularFluid extends Fluid {
 
                 IFluidState fluid = world.getFluidState( mpos );
                 if( canFlowTo( fluid ) ) {
-                    float height = fluid.func_223408_f();
+                    float height = fluid.getHeight();
                     float flowWeight = 0;
 
                     if( height == 0 ) {
                         if( ! world.getBlockState( mpos ).getMaterial().blocksMovement() ) {
                             IFluidState fluidBelow = world.getFluidState( mpos.down( fallDirection ) );
                             if( canFlowTo( fluidBelow ) ) {
-                                height = fluidBelow.func_223408_f();
+                                height = fluidBelow.getHeight();
                                 if( height > 0 ) {
-                                    flowWeight = state.func_223408_f() - ( height - getMaxHeight( fluidBelow ) );
+                                    flowWeight = state.getHeight() - ( height - getMaxHeight( fluidBelow ) );
                                 }
                             }
                         }
                     } else if( height > 0 ) {
-                        flowWeight = state.func_223408_f() - height;
+                        flowWeight = state.getHeight() - height;
                     }
 
                     if( flowWeight != 0 ) {
@@ -593,7 +585,7 @@ public abstract class RegularFluid extends Fluid {
      * @param fluid The current fluid
      */
     protected boolean canFlow( IBlockReader world, BlockPos fromPos, BlockState fromBlockState, Direction direction, BlockPos toPos, BlockState toBlockState, IFluidState toFluidState, Fluid fluid ) {
-        return toFluidState.func_215677_a( world, toPos, fluid, direction ) && doBlockShapesAllowFlowing( direction, world, fromPos, fromBlockState, toPos, toBlockState ) && canBreakThrough( world, toPos, toBlockState, fluid );
+        return toFluidState.canDisplace( world, toPos, fluid, direction ) && doBlockShapesAllowFlowing( direction, world, fromPos, fromBlockState, toPos, toBlockState ) && canBreakThrough( world, toPos, toBlockState, fluid );
     }
 
     /**
@@ -642,6 +634,7 @@ public abstract class RegularFluid extends Fluid {
     /**
      * Returns the height of a fluid state.
      */
+    @Override
     public float getHeight( IFluidState state ) {
         return interpolateHeight( state, state.getLevel() / (float) maxLevel );
     }
@@ -700,25 +693,11 @@ public abstract class RegularFluid extends Fluid {
         return fluid.getFluid().isEquivalentTo( world.getFluidState( pos.up() ).getFluid() );
     }
 
-    // Missing mapping for getRenderedHeight
     @Override
-    public float func_215662_a( IFluidState state, IBlockReader world, BlockPos pos ) {
-        return getRenderedHeight( state, world, pos );
-    }
-
-    /**
-     * Returns the rendered height for a fluid state, which is 1 when a similar fluid is above this fluid
-     */
-    public float getRenderedHeight( IFluidState state, IBlockReader world, BlockPos pos ) {
+    public float getActualHeight( IFluidState state, IBlockReader world, BlockPos pos ) {
         return isSimilarFluidUp( state, world, pos )
                ? 1
-               : state.func_223408_f();
-    }
-
-    // Missing mapping for getHeight
-    @Override
-    public float func_223407_a( IFluidState state ) {
-        return getHeight( state );
+               : state.getHeight();
     }
 
     /**
@@ -729,7 +708,7 @@ public abstract class RegularFluid extends Fluid {
                ? VoxelShapes.fullCube()
                : shapeCache.computeIfAbsent(
                    state, s -> {
-                       double h = s.func_215679_a( world, pos );
+                       double h = s.getActualHeight( world, pos );
                        double p = isGas ? 1 : h;
                        double n = ! isGas ? 0 : 1 - h;
                        return VoxelShapes.create( 0, n, 0, 1, p, 1 );
@@ -744,14 +723,6 @@ public abstract class RegularFluid extends Fluid {
     @Override
     public VoxelShape func_215664_b( IFluidState state, IBlockReader world, BlockPos pos ) {
         return getShape( state, world, pos );
-    }
-
-    protected abstract boolean canFlowInto( IFluidState state, IBlockReader world, BlockPos pos, Fluid fluid, Direction facing );
-
-    // Missing mapping for canFlowInto
-    @Override
-    protected boolean func_215665_a( IFluidState state, IBlockReader world, BlockPos pos, Fluid fluid, Direction facing ) {
-        return canFlowInto( state, world, pos, fluid, facing );
     }
 
     /**

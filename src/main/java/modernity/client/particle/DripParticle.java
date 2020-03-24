@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 14 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -67,7 +67,7 @@ public class DripParticle extends SpriteTexturedParticle {
                 motionZ *= 0.98;
                 BlockPos pos = new BlockPos( posX, posY, posZ );
                 IFluidState state = world.getFluidState( pos );
-                if( type.dissolvesIn( state.getFluid() ) && posY < pos.getY() + state.func_215679_a( world, pos ) ) {
+                if( type.dissolvesIn( state.getFluid() ) && posY < pos.getY() + state.getActualHeight( world, pos ) ) {
                     setExpired();
                 }
             }

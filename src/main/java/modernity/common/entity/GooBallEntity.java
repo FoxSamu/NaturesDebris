@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 19 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -46,9 +46,6 @@ public class GooBallEntity extends ThrownItemEntity {
 
     private int hangingTime;
 
-    private int bounces;
-    private int maxBounces;
-
     private boolean poisonous;
 
     private ItemStack renderStack = new ItemStack( MDItems.GOO_BALL );
@@ -60,12 +57,10 @@ public class GooBallEntity extends ThrownItemEntity {
 
     public GooBallEntity( double x, double y, double z, World world ) {
         super( MDEntityTypes.GOO_BALL, x, y, z, world );
-        this.maxBounces = world.rand.nextInt( 3 ) + 2;
     }
 
     public GooBallEntity( LivingEntity ent, World world ) {
         super( MDEntityTypes.GOO_BALL, ent, world );
-        this.maxBounces = world.rand.nextInt( 3 ) + 2;
     }
 
     public void setBounces( int bounces ) {
@@ -74,6 +69,10 @@ public class GooBallEntity extends ThrownItemEntity {
 
     public int getBounces() {
         return dataManager.get( BOUNCES );
+    }
+
+    public void setMaxBounces( int bounces ) {
+        dataManager.set( MAX_BOUNCES, bounces );
     }
 
     public int getMaxBounces() {
@@ -269,18 +268,18 @@ public class GooBallEntity extends ThrownItemEntity {
     @Override
     public void writeAdditional( CompoundNBT compound ) {
         super.writeAdditional( compound );
-        compound.putInt( "bounces", bounces );
-        compound.putInt( "maxBounces", maxBounces );
+        compound.putInt( "bounces", getBounces() );
+        compound.putInt( "maxBounces", getMaxBounces() );
         compound.putInt( "hangingTime", hangingTime );
         compound.putBoolean( "poisonous", poisonous );
-        compound.putBoolean( "bounced", bounces > 0 );
+        compound.putBoolean( "bounced", getBounces() > 0 );
     }
 
     @Override
     public void readAdditional( CompoundNBT compound ) {
         super.readAdditional( compound );
-        bounces = compound.getInt( "bounces" );
-        maxBounces = compound.getInt( "maxBounces" );
+        setBounces( compound.getInt( "bounces" ) );
+        setMaxBounces( compound.getInt( "maxBounces" ) );
         hangingTime = NBTUtil.getOrDefault( compound, "hangingTime", - 1 );
         poisonous = NBTUtil.getOrDefault( compound, "poisonous", false );
 

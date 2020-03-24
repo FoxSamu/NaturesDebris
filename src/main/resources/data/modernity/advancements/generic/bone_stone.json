@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "modernity:blackbone_block"
+    },
+    "title": {
+      "translate": "modernity.advancements.generic.bone_stone"
+    },
+    "description": {
+      "translate": "modernity.advancements.generic.bone_stone.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "modernity:generic/murky_world",
+  "criteria": {
+    "place": {
+      "trigger": "modernity:break_block",
+      "conditions": {
+        "block": "modernity:blackbone_block",
+        "state": { "natural": true }
+      }
+    }
+  },
+  "requirements": [
+    [ "place" ]
+  ]
+}
