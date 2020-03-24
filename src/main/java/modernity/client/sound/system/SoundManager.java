@@ -2,16 +2,18 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 24 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
 package modernity.client.sound.system;
 
 import com.google.common.collect.*;
+import modernity.api.dimension.ISoundEffectDimension;
 import modernity.api.event.SoundEffectEvent;
 import modernity.client.sound.effects.ISoundSourceEffect;
 import net.minecraft.client.GameSettings;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.*;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.resources.IResourceManager;
@@ -21,6 +23,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.dimension.Dimension;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ForgeHooksClient;
@@ -89,6 +92,13 @@ public class SoundManager extends SoundEngine {
             if( handler.getAccessor( name ) == null ) {
                 LOGGER.warn( "Missing sound for event: {}", Registry.SOUND_EVENT.getKey( ev ) );
                 UNABLE_TO_PLAY.add( name );
+            }
+        }
+
+        if( Minecraft.getInstance().world != null ) {
+            Dimension dimen = Minecraft.getInstance().world.dimension;
+            if( dimen instanceof ISoundEffectDimension ) {
+                ( (ISoundEffectDimension) dimen ).cleanupSoundEffects();
             }
         }
 

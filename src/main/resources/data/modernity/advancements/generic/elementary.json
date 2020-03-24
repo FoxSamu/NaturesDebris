@@ -4,10 +4,10 @@
       "item": "modernity:finnerite"
     },
     "title": {
-      "translate": "modernity.advancements.generic.elementary"
+      "translate": "advancements.modernity.generic.elementary"
     },
     "description": {
-      "translate": "modernity.advancements.generic.elementary.desc"
+      "translate": "advancements.modernity.generic.elementary.desc"
     },
     "frame": "task",
     "show_toast": true,

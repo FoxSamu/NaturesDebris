@@ -4,10 +4,10 @@
       "item": "modernity:aluminium_ingot"
     },
     "title": {
-      "translate": "modernity.advancements.generic.metalized"
+      "translate": "advancements.modernity.generic.metalized"
     },
     "description": {
-      "translate": "modernity.advancements.generic.metalized.desc"
+      "translate": "advancements.modernity.generic.metalized.desc"
     },
     "frame": "task",
     "show_toast": true,

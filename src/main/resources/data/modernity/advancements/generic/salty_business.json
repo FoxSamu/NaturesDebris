@@ -4,10 +4,10 @@
       "item": "modernity:salt_crystal"
     },
     "title": {
-      "translate": "modernity.advancements.generic.salty_business"
+      "translate": "advancements.modernity.generic.salty_business"
     },
     "description": {
-      "translate": "modernity.advancements.generic.salty_business.desc"
+      "translate": "advancements.modernity.generic.salty_business.desc"
     },
     "frame": "task",
     "show_toast": true,

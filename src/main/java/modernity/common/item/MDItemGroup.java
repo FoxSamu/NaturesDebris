@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 23 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -22,12 +22,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Supplier;
 
 /**
  * Holder class for Modernity creative tabs.
  */
 public class MDItemGroup extends ItemGroup {
+    private static final ArrayList<MDItemGroup> MD_ITEM_GROUPS = new ArrayList<>();
+
     public static final MDItemGroup BLOCKS = builder( "modernity.blocks" )
                                                  .path( "blocks" )
                                                  .iconItem( () -> MDNatureBlocks.MURKY_GRASS_BLOCK )
@@ -70,6 +74,12 @@ public class MDItemGroup extends ItemGroup {
         super( label );
         this.icon = icon;
         this.sortingBlocks = sortingBlocks;
+
+        MD_ITEM_GROUPS.add( this );
+    }
+
+    public static List<MDItemGroup> getModernityItemGroups() {
+        return Collections.unmodifiableList( MD_ITEM_GROUPS );
     }
 
     @Override

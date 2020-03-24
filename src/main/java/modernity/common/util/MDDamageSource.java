@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 06 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -13,16 +13,29 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
+import java.util.ArrayList;
+import java.util.function.Consumer;
+
 /**
  * Holder class for Modernity damage sources.
  */
 public class MDDamageSource extends DamageSource {
+    public static final ArrayList<String> TRANSLATIONS = new ArrayList<>();
+
     public static final MDDamageSource NETTLES = new MDDamageSource( "nettles" );
     public static final MDDamageSource TURUPT = new MDDamageSource( "turupt" );
     public static final MDDamageSource FOXGLOVE = new MDDamageSource( "foxglove" );
 
     public MDDamageSource( String damageType ) {
         super( damageType );
+        collectTranslations( TRANSLATIONS::add );
+    }
+
+    protected void collectTranslations( Consumer<String> keyConsumer ) {
+        String withoutVictim = "modernity.death." + damageType;
+        String withVictim = withoutVictim + ".player";
+        keyConsumer.accept( withoutVictim );
+        keyConsumer.accept( withVictim );
     }
 
     @Override

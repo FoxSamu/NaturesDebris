@@ -4,10 +4,10 @@
       "item": "modernity:murk_rice_seeds"
     },
     "title": {
-      "translate": "modernity.advancements.generic.seeds_for_your_weeds"
+      "translate": "advancements.modernity.generic.seeds_for_your_weeds"
     },
     "description": {
-      "translate": "modernity.advancements.generic.seeds_for_your_weeds.desc"
+      "translate": "advancements.modernity.generic.seeds_for_your_weeds.desc"
     },
     "frame": "task",
     "show_toast": true,

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   11 - 20 - 2019
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -26,7 +26,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import java.util.ArrayList;
 
 public class PrecipitationEnvEvent extends EffectingEnvEvent {
-    protected static final String TK_STATUS_PREC = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:event.precipitation.status" ) );
+    public static final String TK_STATUS_PREC = Util.makeTranslationKey( "command", new ResourceLocation( "modernity:event.precipitation.status" ) );
     private int level;
     private boolean thunderstorm;
 

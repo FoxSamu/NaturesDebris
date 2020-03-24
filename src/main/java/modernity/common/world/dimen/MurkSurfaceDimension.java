@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 14 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
@@ -482,6 +482,15 @@ public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimen
         }
     }
 
+    @Override
+    @OnlyIn( Dist.CLIENT )
+    public void cleanupSoundEffects() {
+        if( sounds != null ) {
+            sounds.cleanup();
+        }
+        sounds = null;
+    }
+
     @OnlyIn( Dist.CLIENT )
     private static class SoundManager {
         public final LayeredSourceEffect effect = new LayeredSourceEffect();
@@ -494,6 +503,11 @@ public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimen
 
         void setCaveEffect( float eff ) {
             reverb.setGain( eff );
+        }
+
+        void cleanup() {
+            reverb.cleanup();
+            effect.cleanup();
         }
     }
 }

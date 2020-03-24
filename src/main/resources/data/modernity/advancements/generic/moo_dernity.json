@@ -4,10 +4,10 @@
       "item": "leather"
     },
     "title": {
-      "translate": "modernity.advancements.generic.moo_dernity"
+      "translate": "advancements.modernity.generic.moo_dernity"
     },
     "description": {
-      "translate": "modernity.advancements.generic.moo_dernity.desc"
+      "translate": "advancements.modernity.generic.moo_dernity.desc"
     },
     "frame": "challenge",
     "show_toast": true,

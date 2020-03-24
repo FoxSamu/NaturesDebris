@@ -2,12 +2,13 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 23 - 2020
+ * Date:   03 - 24 - 2020
  * Author: rgsw
  */
 
 package modernity.data;
 
+import modernity.data.lang.TranslationKeyProvider;
 import modernity.data.loot.MDLootTableProvider;
 import modernity.data.recipes.MDRecipeProvider;
 import net.minecraft.data.DataGenerator;
@@ -25,5 +26,6 @@ public final class ModernityDataGenerator {
 
         generator.addProvider( new MDLootTableProvider( generator ) );
         generator.addProvider( new MDRecipeProvider( generator ) );
+        generator.addProvider( new TranslationKeyProvider( generator ) );
     }
 }

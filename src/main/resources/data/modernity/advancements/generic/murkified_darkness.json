@@ -4,10 +4,10 @@
       "item": "modernity:darkrock"
     },
     "title": {
-      "translate": "modernity.advancements.generic.murkified_darkness"
+      "translate": "advancements.modernity.generic.murkified_darkness"
     },
     "description": {
-      "translate": "modernity.advancements.generic.murkified_darkness.desc"
+      "translate": "advancements.modernity.generic.murkified_darkness.desc"
     },
     "frame": "task",
     "show_toast": true,

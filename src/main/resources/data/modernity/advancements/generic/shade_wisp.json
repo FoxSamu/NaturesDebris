@@ -4,10 +4,10 @@
       "item": "modernity:shade_ball"
     },
     "title": {
-      "translate": "modernity.advancements.generic.shade_wisp"
+      "translate": "advancements.modernity.generic.shade_wisp"
     },
     "description": {
-      "translate": "modernity.advancements.generic.shade_wisp.desc"
+      "translate": "advancements.modernity.generic.shade_wisp.desc"
     },
     "frame": "task",
     "show_toast": true,

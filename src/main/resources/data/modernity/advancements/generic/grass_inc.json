@@ -4,10 +4,10 @@
       "item": "modernity:murk_grass"
     },
     "title": {
-      "translate": "modernity.advancements.generic.grass_inc"
+      "translate": "advancements.modernity.generic.grass_inc"
     },
     "description": {
-      "translate": "modernity.advancements.generic.grass_inc.desc"
+      "translate": "advancements.modernity.generic.grass_inc.desc"
     },
     "frame": "task",
     "show_toast": true,

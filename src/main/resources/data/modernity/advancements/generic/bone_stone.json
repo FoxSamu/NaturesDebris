@@ -4,10 +4,10 @@
       "item": "modernity:blackbone_block"
     },
     "title": {
-      "translate": "modernity.advancements.generic.bone_stone"
+      "translate": "advancements.modernity.generic.bone_stone"
     },
     "description": {
-      "translate": "modernity.advancements.generic.bone_stone.desc"
+      "translate": "advancements.modernity.generic.bone_stone.desc"
     },
     "frame": "task",
     "show_toast": true,

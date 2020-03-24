@@ -4,10 +4,10 @@
       "item": "modernity:goo_ball"
     },
     "title": {
-      "translate": "modernity.advancements.generic.let_it_goo"
+      "translate": "advancements.modernity.generic.let_it_goo"
     },
     "description": {
-      "translate": "modernity.advancements.generic.let_it_goo.desc"
+      "translate": "advancements.modernity.generic.let_it_goo.desc"
     },
     "frame": "task",
     "show_toast": true,

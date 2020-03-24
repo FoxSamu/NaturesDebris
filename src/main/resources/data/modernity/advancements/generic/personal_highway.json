@@ -4,10 +4,10 @@
       "item": "modernity:asphalt_concrete"
     },
     "title": {
-      "translate": "modernity.advancements.generic.personal_highway"
+      "translate": "advancements.modernity.generic.personal_highway"
     },
     "description": {
-      "translate": "modernity.advancements.generic.personal_highway.desc"
+      "translate": "advancements.modernity.generic.personal_highway.desc"
     },
     "frame": "task",
     "show_toast": true,

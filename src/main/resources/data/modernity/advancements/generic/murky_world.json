@@ -4,10 +4,10 @@
       "item": "modernity:eye_of_the_curse"
     },
     "title": {
-      "translate": "modernity.advancements.generic.murky_world"
+      "translate": "advancements.modernity.generic.murky_world"
     },
     "description": {
-      "translate": "modernity.advancements.generic.murky_world.desc"
+      "translate": "advancements.modernity.generic.murky_world.desc"
     },
     "frame": "task",
     "show_toast": true,
