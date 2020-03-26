@@ -11,6 +11,7 @@ package modernity;
 import modernity.api.IModernity;
 import modernity.api.MDInfo;
 import modernity.api.RunMode;
+import modernity.api.event.ModernityInitializedEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -79,7 +80,7 @@ public class ModernityBootstrap {
 
             LOGGER.info( "Modernity version {} initialized for {} mode: {}", MDInfo.VERSION, MODE, modernity.getClass().getName() );
 
-//            IModernity.EVENT_BUS.post( new ModernityInitializedEvent( MODE, modernity ) );
+            IModernity.EVENT_BUS.post( new ModernityInitializedEvent( MODE, modernity ) );
         } else {
             throw new IllegalStateException( "No modernity instance generated... Reflection is broken?" );
         }
