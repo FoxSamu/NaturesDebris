@@ -8,11 +8,6 @@
 
 package modernity.client.colors.provider;
 
-import modernity.client.colors.IColorProvider;
-import net.rgsw.noise.FractalPerlin2D;
-import net.rgsw.noise.INoise3D;
-import net.rgsw.noise.Perlin2D;
-
 // TODO Re-evaluate
 //public class Perlin2DColorProvider extends InterpolateNoiseColorProvider {
 //    private final int octaves;

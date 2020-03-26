@@ -10,7 +10,6 @@ package modernity.client.particle;
 
 import modernity.api.util.ColorUtil;
 import modernity.client.ModernityClient;
-import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.particles.BasicParticleType;

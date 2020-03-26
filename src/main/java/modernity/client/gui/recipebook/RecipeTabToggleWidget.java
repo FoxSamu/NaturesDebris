@@ -8,24 +8,6 @@
 
 package modernity.client.gui.recipebook;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.recipebook.RecipeBookGui;
-import net.minecraft.client.gui.recipebook.RecipeList;
-import net.minecraft.client.gui.widget.ToggleWidget;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.util.ClientRecipeBook;
-import net.minecraft.client.util.RecipeBookCategories;
-import net.minecraft.inventory.container.RecipeBookContainer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Iterator;
-import java.util.List;
-
 // TODO Re-evaluate
 //@OnlyIn( Dist.CLIENT )
 //public class RecipeTabToggleWidget extends ToggleWidget {

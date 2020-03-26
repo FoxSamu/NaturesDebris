@@ -8,8 +8,8 @@
 
 package modernity.common.block.misc;
 
-import modernity.common.block.fluid.WaterlogType;
 import modernity.api.util.Events;
+import modernity.common.block.fluid.WaterlogType;
 import modernity.common.block.fluid.WaterloggedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

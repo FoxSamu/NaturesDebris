@@ -8,21 +8,6 @@
 
 package modernity.client.gui.recipebook;
 
-import com.google.common.collect.Lists;
-import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.widget.Widget;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipePlacer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Iterator;
-import java.util.List;
 // TODO Re-evaluate
 //public abstract class AbstractRecipeButtonWidget extends Widget implements IRecipePlacer<Ingredient> {
 //    protected final IRecipe<?> recipe;

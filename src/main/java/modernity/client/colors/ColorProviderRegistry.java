@@ -8,11 +8,6 @@
 
 package modernity.client.colors;
 
-import modernity.client.colors.deserializer.*;
-import net.minecraft.util.ResourceLocation;
-
-import java.util.HashMap;
-
 // TODO Re-evaluate
 //public final class ColorProviderRegistry {
 //    private static final HashMap<ResourceLocation, IColorProviderDeserializer> REGISTRY = new HashMap<>();

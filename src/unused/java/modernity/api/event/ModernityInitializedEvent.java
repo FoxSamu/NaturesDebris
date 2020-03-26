@@ -8,8 +8,8 @@
 
 package modernity.api.event;
 
-import modernity.api.RunMode;
 import modernity.api.IModernity;
+import modernity.api.RunMode;
 import modernity.common.Modernity;
 import net.minecraftforge.eventbus.api.Event;
 

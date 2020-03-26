@@ -8,8 +8,6 @@
 
 package modernity.client.colors;
 
-import com.google.gson.JsonElement;
-
 // TODO Re-evaluate
 //@FunctionalInterface
 //public interface IColorProviderDeserializer {

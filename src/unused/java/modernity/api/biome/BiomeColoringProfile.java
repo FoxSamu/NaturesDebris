@@ -8,7 +8,6 @@
 
 package modernity.api.biome;
 
-import com.google.gson.*;
 import modernity.api.util.ColorUtil;
 import modernity.client.ModernityClient;
 import modernity.client.colormap.ColorMap;
@@ -22,7 +21,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.rgsw.noise.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -8,7 +8,6 @@
 
 package modernity.client.gui.recipebook;
 
-import net.minecraft.item.ItemStack;
 // TODO Re-evaluate
 //@FunctionalInterface
 //public interface RecipeButtonSlotConsumer {

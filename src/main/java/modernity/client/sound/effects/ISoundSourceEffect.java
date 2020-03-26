@@ -8,9 +8,6 @@
 
 package modernity.client.sound.effects;
 
-import modernity.client.sound.system.EFXSoundSource;
-import net.minecraft.util.math.Vec3d;
-
 // TODO Re-evaluate
 //@FunctionalInterface
 //public interface ISoundSourceEffect {

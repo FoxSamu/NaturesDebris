@@ -13,7 +13,6 @@ import java.util.Spliterator;
 import java.util.function.DoubleConsumer;
 import java.util.function.IntConsumer;
 import java.util.function.LongConsumer;
-import java.util.stream.*;
 
 public final class StreamUtil {
     private StreamUtil() {

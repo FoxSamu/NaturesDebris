@@ -9,7 +9,6 @@
 package modernity.common.net;
 
 import modernity.api.dimension.IEnvEventsDimension;
-import modernity.api.dimension.IEnvironmentDimension;
 import modernity.common.environment.event.EnvironmentEventManager;
 import modernity.network.Packet;
 import modernity.network.ProcessContext;

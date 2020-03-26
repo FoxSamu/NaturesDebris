@@ -9,7 +9,6 @@
 package modernity.client.environment;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.client.environment.particles.CaveAmbientEffect;
 import modernity.client.environment.particles.IEnvironmentParticleEffect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
@@ -31,7 +30,7 @@ public class EnvironmentParticleManager {
     private final HashSet<IEnvironmentParticleEffect> particleEffects = new HashSet<>();
 
     public EnvironmentParticleManager() {
-        registerEffect( new CaveAmbientEffect() );
+//        registerEffect( new CaveAmbientEffect() );
     }
 
     private int computeRadius() {

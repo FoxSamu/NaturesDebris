@@ -8,25 +8,6 @@
 
 package modernity.client.gui.recipebook;
 
-import com.google.common.collect.Lists;
-import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.AbstractGui;
-import net.minecraft.client.gui.IGuiEventListener;
-import net.minecraft.client.gui.IRenderable;
-import net.minecraft.client.gui.recipebook.RecipeList;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.inventory.container.AbstractFurnaceContainer;
-import net.minecraft.inventory.container.RecipeBookContainer;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Collections;
-import java.util.List;
-
 // TODO Re-evaluate
 //@OnlyIn( Dist.CLIENT )
 //public class RecipeOverlayGui extends AbstractGui implements IRenderable, IGuiEventListener {

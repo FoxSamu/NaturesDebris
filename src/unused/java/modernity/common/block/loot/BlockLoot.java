@@ -21,8 +21,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.state.IProperty;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.world.storage.loot.*;
-import net.minecraft.world.storage.loot.conditions.*;
 import net.minecraft.world.storage.loot.functions.ApplyBonus;
 import net.minecraft.world.storage.loot.functions.CopyName;
 import net.minecraft.world.storage.loot.functions.ExplosionDecay;

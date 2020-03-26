@@ -11,7 +11,6 @@ package modernity.common.block.loot;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.state.IProperty;
-import net.minecraft.world.storage.loot.*;
 import net.minecraft.world.storage.loot.conditions.BlockStateProperty;
 import net.minecraft.world.storage.loot.functions.SetCount;
 

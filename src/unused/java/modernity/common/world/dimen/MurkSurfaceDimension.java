@@ -8,9 +8,7 @@
 
 package modernity.common.world.dimen;
 
-import modernity.api.dimension.*;
 import modernity.api.event.SoundEffectEvent;
-import modernity.client.environment.*;
 import modernity.client.sound.effects.LayeredSourceEffect;
 import modernity.client.sound.effects.SoundEffect;
 import modernity.common.biome.MDBiomes;

@@ -59,15 +59,15 @@ project.ext.gprKey = getVariable( "gprKey" )
 repositories {
     mavenLocal()
     maven {
-        url uri('https://maven.pkg.github.com/RedGalaxySW/Noise')
+        url uri( 'https://maven.pkg.github.com/RedGalaxySW/Noise' )
         credentials {
         }
     }
     maven {
-        url uri('https://maven.pkg.github.com/RedGalaxySW/IOLib')
+        url uri( 'https://maven.pkg.github.com/RedGalaxySW/IOLib' )
         credentials {
             // Make sure you have these properties declared in your computer's gradle.properties file.
-            // It may be any token, as long as that token has the read:packages permission granted.
+            // It may be any token as long as that token has the read:packages permission granted.
             username = project.ext.gprUser
             password = project.ext.gprKey
         }
@@ -127,7 +127,7 @@ minecraft {
 
 configurations {
     embed
-    compile.extendsFrom(embed)
+    compile.extendsFrom( embed )
 }
 
 dependencies {
@@ -141,7 +141,7 @@ dependencies {
 }
 
 jar {
-    from configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
+    from configurations.embed.collect { it.isDirectory() ? it : zipTree( it ) }
 
     manifest {
         attributes( [
@@ -163,7 +163,7 @@ jar {
 
 version = 'Beta-1.0'
 project.ext.versionName = "The Update Of Nature"
-project.ext.isIDE = true
+project.ext.isIDE = !System.getenv().containsKey( "noide" )
 group = 'net.redgalaxy'
 archivesBaseName = 'modernity'
 
@@ -196,10 +196,10 @@ task signJar( dependsOn: 'reobfJar' ) {
 
 task generateSources( type: Copy ) {
     doFirst {
-        project.ext.isIDE = false
         delete "$buildDir/generated-src"
     }
     outputs.upToDateWhen { false }
+
     from( 'src/main/java' ) {
         exclude 'runs/**'
     }
@@ -207,12 +207,12 @@ task generateSources( type: Copy ) {
     filter { line ->
         line.replaceAll( 'DynamicConstants\\.IDE', "$project.isIDE" )
             .replaceAll( 'DynamicConstants\\.SIGNED', "${ canJarBeSigned() && !project.isIDE }" )
-            .replaceAll( 'DynamicConstants\\.VERSION_NAME', "\"${ project.isIDE ? "The IDE version" : project.version }\"" )
-            .replaceAll( 'DynamicConstants\\.VERSION', "\"${ project.isIDE ? "IDE" : project.version }\"" )
-            .replaceAll( 'DynamicConstants\\.SHA1', "\"${ project.isIDE ? "" : getProjectFingerprint() }\"" )
+            .replaceAll( 'DynamicConstants\\.VERSION_NAME', "\"${ project.version }\"" )
+            .replaceAll( 'DynamicConstants\\.VERSION', "\"${ project.version }\"" )
+            .replaceAll( 'DynamicConstants\\.SHA1', "\"${ project.isIDE ? "NO:FI:NG:ER:PR:IN:TA:VA:IL:AB:LE" : getProjectFingerprint() }\"" )
     }
     doLast {
-        println "Generated sources, IDE: $project.ext.isIDE"
+        println "Generated sources, IDE: $project.isIDE"
     }
 }
 
@@ -250,6 +250,7 @@ build {
         project.ext.isIDE = true
     }
 }
+
 
 
 def reobfFile = file( "$buildDir/reobfJar/output.jar" )

@@ -8,9 +8,6 @@
 
 package modernity.client.colors.provider;
 
-import modernity.client.colors.IColorProvider;
-import net.rgsw.noise.INoise3D;
-
 // TODO Re-evaluate
 //public class RandomNoise3DColorProvider extends RandomNoiseColorProvider {
 //    private final int sizeX;

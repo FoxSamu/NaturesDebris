@@ -8,20 +8,6 @@
 
 package modernity.client.gui.recipebook;
 
-import com.google.common.collect.Lists;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.recipebook.IRecipeUpdateListener;
-import net.minecraft.client.gui.recipebook.RecipeBookGui;
-import net.minecraft.client.gui.recipebook.RecipeList;
-import net.minecraft.client.gui.widget.ToggleWidget;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.RecipeBook;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import javax.annotation.Nullable;
-import java.util.List;
 // TODO Re-evaluate
 //@OnlyIn( Dist.CLIENT )
 //public class RecipeBookPage {

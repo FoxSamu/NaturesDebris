@@ -10,7 +10,6 @@ package modernity.client.particle;
 
 import modernity.api.util.ColorUtil;
 import modernity.common.particle.MDParticleTypes;
-import net.minecraft.client.particle.*;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.particles.BasicParticleType;

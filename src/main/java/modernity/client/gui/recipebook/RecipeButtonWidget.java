@@ -8,13 +8,6 @@
 
 package modernity.client.gui.recipebook;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Iterator;
 // TODO Re-evaluate
 //@OnlyIn( Dist.CLIENT )
 //public class RecipeButtonWidget extends AbstractRecipeButtonWidget {

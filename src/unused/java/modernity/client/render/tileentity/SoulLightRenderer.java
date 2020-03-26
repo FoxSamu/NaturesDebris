@@ -8,9 +8,9 @@
 
 package modernity.client.render.tileentity;
 
-import modernity.common.block.misc.SoulLightColor;
 import modernity.client.shaders.LightSource;
 import modernity.client.shaders.ShaderManager;
+import modernity.common.block.misc.SoulLightColor;
 import modernity.common.tileentity.SoulLightTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;

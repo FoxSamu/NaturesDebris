@@ -12,6 +12,9 @@ import modernity.api.IModernity;
 import modernity.api.MDInfo;
 import modernity.api.RunMode;
 import modernity.api.event.ModernityInitializedEvent;
+import modernity.client.ModernityClient;
+import modernity.data.ModernityData;
+import modernity.server.ModernityServer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -23,7 +26,7 @@ import net.minecraftforge.fml.loading.FMLLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-/* TODO Make doc comment
+/**
  * Bootstrap class of the Modernity, which handles setup events and creates the {@link IModernity} instance for the side
  * we're running on. This is {@link ModernityClient} for the client and {@link ModernityServer} for the dedicated
  * server. A special {@link ModernityData} instance is created when running in data generation mode.
@@ -97,6 +100,7 @@ public class ModernityBootstrap {
     }
 
     static {
+        // Determine run mode
         String lhn = FMLLoader.launcherHandlerName();
         if( lhn.equals( "fmluserdevdata" ) || lhn.equals( "fmldevdata" ) ) {
             MODE = RunMode.DATA;

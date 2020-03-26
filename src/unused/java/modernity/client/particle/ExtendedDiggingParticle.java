@@ -15,7 +15,6 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.*;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;

@@ -8,7 +8,6 @@
 
 package modernity.client.shaders.post;
 
-import com.mojang.blaze3d.platform.GLX;
 import modernity.api.util.Matrix4f;
 import modernity.client.shaders.LightSource;
 import modernity.client.shaders.PostProcessingEffect;

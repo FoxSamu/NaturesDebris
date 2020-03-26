@@ -15,7 +15,6 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import modernity.client.model.empty.EmptyModel;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.model.*;
 import net.minecraft.client.renderer.texture.ISprite;
 import net.minecraft.client.renderer.texture.MissingTextureSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -33,7 +32,6 @@ import net.minecraftforge.client.model.data.IModelData;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.*;
 import java.util.function.Function;
 
 public class MergedModel implements IUnbakedModel {

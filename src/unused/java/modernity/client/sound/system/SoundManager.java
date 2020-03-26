@@ -8,13 +8,11 @@
 
 package modernity.client.sound.system;
 
-import com.google.common.collect.*;
 import modernity.api.dimension.ISoundEffectDimension;
 import modernity.api.event.SoundEffectEvent;
 import modernity.client.sound.effects.ISoundSourceEffect;
 import net.minecraft.client.GameSettings;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.*;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;

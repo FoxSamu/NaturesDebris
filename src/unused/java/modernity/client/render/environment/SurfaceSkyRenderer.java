@@ -13,7 +13,6 @@ import modernity.api.dimension.IEnvironmentDimension;
 import modernity.api.reflect.FieldAccessor;
 import modernity.client.environment.EnvironmentRenderingManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.client.world.ClientWorld;

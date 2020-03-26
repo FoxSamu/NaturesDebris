@@ -13,9 +13,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.IntArrayNBT;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.*;
-import net.redgalaxy.util.MathUtil;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.util.math.Vec3i;
 import net.redgalaxy.exc.UnexpectedCaseException;
+import net.redgalaxy.util.MathUtil;
 import org.apache.commons.lang3.Validate;
 
 import java.util.Arrays;

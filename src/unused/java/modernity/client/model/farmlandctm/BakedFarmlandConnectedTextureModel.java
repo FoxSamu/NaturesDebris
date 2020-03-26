@@ -26,7 +26,6 @@ import net.minecraftforge.common.model.TRSRTransformation;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.*;
 
 public class BakedFarmlandConnectedTextureModel implements IBakedModel {
     private static final int CENTER = 0;

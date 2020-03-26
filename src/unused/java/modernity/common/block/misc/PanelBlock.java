@@ -9,11 +9,10 @@
 package modernity.common.block.misc;
 
 import modernity.api.block.fluid.IVanillaBucketTakeable;
-import modernity.common.block.fluid.WaterlogType;
 import modernity.common.block.MDBlockStateProperties;
 import modernity.common.block.fluid.IWaterloggedBlock;
+import modernity.common.block.fluid.WaterlogType;
 import modernity.common.block.tree.LeavesBlock;
-import net.minecraft.block.*;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;

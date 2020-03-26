@@ -8,7 +8,6 @@
 
 package modernity.client.colors;
 
-import modernity.client.colors.deserializer.*;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.HashMap;

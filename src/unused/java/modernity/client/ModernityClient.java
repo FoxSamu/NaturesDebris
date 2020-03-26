@@ -14,7 +14,6 @@ import modernity.client.colors.ColorProfile;
 import modernity.client.colors.ColorProfileManager;
 import modernity.client.colors.ColorProviderRegistry;
 import modernity.client.environment.EnvironmentParticleManager;
-import modernity.client.handler.*;
 import modernity.client.model.MDModelLoaders;
 import modernity.client.render.area.AreaRenderManager;
 import modernity.client.render.block.CustomFluidRenderer;

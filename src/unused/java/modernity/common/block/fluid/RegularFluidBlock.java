@@ -13,7 +13,6 @@ import modernity.api.block.IModernityBucketPickupHandler;
 import modernity.api.block.fluid.IModernityBucketTakeable;
 import modernity.api.block.fluid.IVanillaBucketTakeable;
 import modernity.common.fluid.RegularFluid;
-import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;

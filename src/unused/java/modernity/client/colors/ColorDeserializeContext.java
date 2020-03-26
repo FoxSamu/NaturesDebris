@@ -20,8 +20,6 @@ import modernity.client.colors.provider.SolidColorProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.ResourceLocationException;
 
-import java.util.*;
-
 public class ColorDeserializeContext {
     private final Stack<String> path = new Stack<>();
 

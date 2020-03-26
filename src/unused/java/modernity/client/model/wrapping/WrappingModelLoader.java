@@ -9,7 +9,6 @@
 package modernity.client.model.wrapping;
 
 import com.google.common.collect.Maps;
-import com.google.gson.*;
 import modernity.client.model.ModernityJSONModelLoader;
 import net.minecraft.client.renderer.model.IUnbakedModel;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;

@@ -9,7 +9,6 @@
 package modernity.client.model.empty;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.model.*;
 import net.minecraft.client.renderer.texture.ISprite;
 import net.minecraft.client.renderer.texture.MissingTextureSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -18,7 +17,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
-import java.util.*;
 import java.util.function.Function;
 
 public class EmptyModel implements IUnbakedModel {

@@ -8,9 +8,6 @@
 
 package modernity.client.gui.recipebook;
 
-import net.minecraft.inventory.container.RecipeBookContainer;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
 // TODO Re-evaluate
 //public interface IRecipeBookType {
 //    ResourceLocation getTexture();

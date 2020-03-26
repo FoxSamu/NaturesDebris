@@ -8,9 +8,6 @@
 
 package modernity.client.colors.provider;
 
-import modernity.client.colors.IColorProvider;
-import net.rgsw.noise.INoise3D;
-
 // TODO Re-evaluate
 //public class CellNoise3DColorProvider extends InterpolateNoiseColorProvider {
 //    private final int sizeX;

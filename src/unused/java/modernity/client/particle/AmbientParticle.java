@@ -9,7 +9,6 @@
 package modernity.client.particle;
 
 import modernity.common.particle.RgbParticleData;
-import net.minecraft.client.particle.*;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;

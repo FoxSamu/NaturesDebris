@@ -8,19 +8,6 @@
 
 package modernity.client.handler;
 
-import modernity.api.block.fluid.ICustomRenderFluid;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.fluid.Fluid;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.HashSet;
-import java.util.Set;
-
 // TODO Re-evaluate
 ///**
 // * Handles texture stitching, and forces the texture map to stitch the textures of all {@link ICustomRenderFluid}s.

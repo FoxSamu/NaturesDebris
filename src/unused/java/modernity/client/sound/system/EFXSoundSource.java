@@ -8,9 +8,9 @@
 
 package modernity.client.sound.system;
 
+import modernity.api.event.UpdateSoundSourceEvent;
 import modernity.api.reflect.FieldAccessor;
 import modernity.api.reflect.MethodAccessor;
-import modernity.api.event.UpdateSoundSourceEvent;
 import modernity.client.sound.effects.ISoundSourceEffect;
 import net.minecraft.client.audio.AudioStreamBuffer;
 import net.minecraft.client.audio.IAudioStream;

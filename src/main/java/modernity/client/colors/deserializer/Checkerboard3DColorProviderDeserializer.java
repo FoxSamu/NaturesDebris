@@ -8,15 +8,6 @@
 
 package modernity.client.colors.deserializer;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import modernity.client.colors.ColorDeserializeContext;
-import modernity.client.colors.ColorDeserializeException;
-import modernity.client.colors.IColorProvider;
-import modernity.client.colors.IColorProviderDeserializer;
-import modernity.client.colors.provider.Checkerboard3DColorProvider;
-
 // TODO Re-evaluate
 //public class Checkerboard3DColorProviderDeserializer implements IColorProviderDeserializer {
 //    @Override

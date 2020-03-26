@@ -12,8 +12,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.state.Property;
 
-import java.util.*;
-
 public class IntEnumProperty extends Property<Integer> {
     private final Map<Integer, String> valueToName;
     private final Map<String, Integer> nameToValue;

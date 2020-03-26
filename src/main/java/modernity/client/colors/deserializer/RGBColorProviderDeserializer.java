@@ -8,17 +8,6 @@
 
 package modernity.client.colors.deserializer;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-import modernity.client.colors.ColorDeserializeContext;
-import modernity.client.colors.ColorDeserializeException;
-import modernity.client.colors.IColorProvider;
-import modernity.client.colors.IColorProviderDeserializer;
-import modernity.client.colors.provider.SolidColorProvider;
-import net.redgalaxy.util.ColorUtil;
-
 // TODO Re-evaluate
 //public class RGBColorProviderDeserializer implements IColorProviderDeserializer {
 //    @Override

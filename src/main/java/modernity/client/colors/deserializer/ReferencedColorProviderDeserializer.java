@@ -8,14 +8,6 @@
 
 package modernity.client.colors.deserializer;
 
-import com.google.gson.JsonElement;
-import modernity.client.colors.ColorDeserializeContext;
-import modernity.client.colors.ColorDeserializeException;
-import modernity.client.colors.IColorProvider;
-import modernity.client.colors.IColorProviderDeserializer;
-import modernity.client.colors.provider.ReferencedColorProvider;
-import net.minecraft.util.ResourceLocation;
-
 // TODO Re-evaluate
 //public class ReferencedColorProviderDeserializer implements IColorProviderDeserializer {
 //    @Override
