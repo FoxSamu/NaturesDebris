@@ -14,7 +14,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.0.159', changing: true
     }
 }
 
@@ -75,8 +75,8 @@ repositories {
 }
 
 minecraft {
-    // Snapshot mappings: May 26, 2019
-    mappings channel: 'snapshot', version: '20190922-1.14.3'
+    // Snapshot mappings: March 22, 2020, v1.15.1
+    mappings channel: 'snapshot', version: '20200322-1.15.1'
 
     // Access transformer
     accessTransformer = file( 'src/main/resources/META-INF/accesstransformer.cfg' )
@@ -131,7 +131,7 @@ configurations {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.14.4-28.2.1'
+    minecraft 'net.minecraftforge:forge:1.15.2-31.1.0'
 
     embed 'net.rgsw:noise:1.0.3'
     embed 'net.rgsw:io:1.0.1'
