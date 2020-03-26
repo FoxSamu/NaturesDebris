@@ -11,11 +11,13 @@ package modernity.client;
 import modernity.client.colormap.ColorMap;
 import modernity.client.environment.EnvironmentParticleManager;
 import modernity.common.Modernity;
+import modernity.common.util.ISidedTickable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IFutureReloadListener;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.concurrent.ThreadTaskExecutor;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -115,11 +117,11 @@ public class ModernityClient extends Modernity {
 //        FORGE_EVENT_BUS.register( SoundEventHandler.INSTANCE );
     }
 
-//    @Override
-//    public void callSidedTick( ISidedTickable tickable ) {
-//        tickable.serverTick();
-//        tickable.clientTick();
-//    }
+    @Override
+    public void callSidedTick( ISidedTickable tickable ) {
+        tickable.serverTick();
+        tickable.clientTick();
+    }
 
     /**
      * Adds a reload listener to Minecraft's resource manager when it's reloadable
@@ -131,10 +133,10 @@ public class ModernityClient extends Modernity {
         }
     }
 
-//    @Override
-//    protected ThreadTaskExecutor<Runnable> getClientThreadExecutor() {
-//        return mc;
-//    }
+    @Override
+    protected ThreadTaskExecutor<Runnable> getClientThreadExecutor() {
+        return mc;
+    }
 
     @Override
     public LogicalSide side() {

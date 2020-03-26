@@ -9,15 +9,17 @@
 package modernity.api.data;
 
 import modernity.api.IModernityAPI;
+import modernity.common.block.loot.IBlockDrops;
+import net.minecraft.block.Block;
 
 public interface IDataService extends IModernityAPI {
-    //    void addBlockDrops( Block block, IBlockDrops drops ); // TODO Re-evaluate
+    void addBlockDrops( Block block, IBlockDrops drops );
     void addRecipe( IRecipeData recipe );
 
     IDataService NONE = new IDataService() {
-//        @Override
-//        public void addBlockDrops( Block block, IBlockDrops drops ) {
-//        }
+        @Override
+        public void addBlockDrops( Block block, IBlockDrops drops ) {
+        }
 
         @Override
         public void addRecipe( IRecipeData recipe ) {

@@ -11,12 +11,23 @@ package modernity.common;
 import modernity.ModernityBootstrap;
 import modernity.api.IModernity;
 import modernity.api.MDInfo;
+import modernity.common.command.MDCommands;
+import modernity.common.util.ISidedTickable;
+import modernity.network.PacketChannel;
+import net.minecraft.client.Minecraft;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.concurrent.ThreadTaskExecutor;
+import net.minecraft.util.concurrent.TickDelayedTask;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.redgalaxy.util.SimpleAsyncExecutor;
 import org.apache.logging.log4j.LogManager;
@@ -36,11 +47,11 @@ public abstract class Modernity implements IModernity {
     public static final IEventBus FORGE_EVENT_BUS = MinecraftForge.EVENT_BUS;
     public static final IEventBus EVENT_BUS = IModernity.EVENT_BUS;
 
-//    private MinecraftServer server;
+    private MinecraftServer server;
 
 //    private final HashMap<DimensionType, ServerWorldAreaManager> areaManagers = new HashMap<>();
 
-//    private final PacketChannel networkChannel = new PacketChannel( new ResourceLocation( "modernity:connection" ), 0 );
+    private final PacketChannel networkChannel = new PacketChannel( new ResourceLocation( "modernity:connection" ), 0 );
 
     private final SimpleAsyncExecutor executor = new SimpleAsyncExecutor(
         Runtime.getRuntime().availableProcessors(),
@@ -156,10 +167,10 @@ public abstract class Modernity implements IModernity {
 
     }
 
-//    public void callSidedTick( ISidedTickable tickable ) {
-//        tickable.serverTick();
-//    }
-//
+    public void callSidedTick( ISidedTickable tickable ) {
+        tickable.serverTick();
+    }
+
 //    /**
 //     * Handler for registering dimensions (handles {@link RegisterDimensionsEvent}).
 //     */
@@ -185,39 +196,39 @@ public abstract class Modernity implements IModernity {
 //        FORGE_EVENT_BUS.register( BlockHandler.INSTANCE );
     }
 
-//    /**
-//     * Returns the thread executor for the specified side. This calls {@link #getClientThreadExecutor()} when the
-//     * specified side is {@link LogicalSide#CLIENT}, {@link #getServerThreadExecutor()} otherwise.
-//     */
-//    public ThreadTaskExecutor<? extends Runnable> getThreadExecutor( LogicalSide side ) {
-//        if( side == LogicalSide.CLIENT ) return getClientThreadExecutor();
-//        else return getServerThreadExecutor();
-//    }
-//
-//    /**
-//     * Returns the client thread executor, which is {@link Minecraft}, or null when {@link Minecraft} is not available
-//     * (server case).
-//     */
-//    protected ThreadTaskExecutor<Runnable> getClientThreadExecutor() {
-//        return null;
-//    }
-//
-//    /**
-//     * Returnst the server thread executor, which is a {@link MinecraftServer} instance, or null when no {@link
-//     * MinecraftServer} is running (client case when no world is loaded).
-//     */
-//    protected ThreadTaskExecutor<TickDelayedTask> getServerThreadExecutor() {
-//        if( server == null ) return null;
-//        return server;
-//    }
-//
-//    /**
-//     * Returns the networking channel for Modernity packets.
-//     */
-//    public PacketChannel getNetworkChannel() {
-//        return networkChannel;
-//    }
-//
+    /**
+     * Returns the thread executor for the specified side. This calls {@link #getClientThreadExecutor()} when the
+     * specified side is {@link LogicalSide#CLIENT}, {@link #getServerThreadExecutor()} otherwise.
+     */
+    public ThreadTaskExecutor<? extends Runnable> getThreadExecutor( LogicalSide side ) {
+        if( side == LogicalSide.CLIENT ) return getClientThreadExecutor();
+        else return getServerThreadExecutor();
+    }
+
+    /**
+     * Returns the client thread executor, which is {@link Minecraft}, or null when {@link Minecraft} is not available
+     * (server case).
+     */
+    protected ThreadTaskExecutor<Runnable> getClientThreadExecutor() {
+        return null;
+    }
+
+    /**
+     * Returnst the server thread executor, which is a {@link MinecraftServer} instance, or null when no {@link
+     * MinecraftServer} is running (client case when no world is loaded).
+     */
+    protected ThreadTaskExecutor<TickDelayedTask> getServerThreadExecutor() {
+        if( server == null ) return null;
+        return server;
+    }
+
+    /**
+     * Returns the networking channel for Modernity packets.
+     */
+    public PacketChannel getNetworkChannel() {
+        return networkChannel;
+    }
+
 //    public ServerWorldAreaManager getWorldAreaManager( ServerWorld world ) {
 //        if( server == null ) {
 //            if( ! areaManagers.isEmpty() ) {
@@ -244,31 +255,31 @@ public abstract class Modernity implements IModernity {
      */
     public abstract LogicalSide side();
 
-//    /**
-//     * Handler for {@link FMLServerAboutToStartEvent} to obtain the {@link MinecraftServer} instance.
-//     */
-//    @SubscribeEvent
-//    public void preServerStart( FMLServerAboutToStartEvent event ) {
-//        server = event.getServer();
-//    }
-//
-//    /**
-//     * Handler for {@link FMLServerStartingEvent} to register {@linkplain MDCommands commands}.
-//     */
-//    @SubscribeEvent
-//    public void serverStart( FMLServerStartingEvent event ) {
-//        MDCommands.register( event.getCommandDispatcher() );
-//    }
-//
-//    /**
-//     * Handler for {@link FMLServerStoppedEvent} event to remove any reference to a {@link MinecraftServer} instance.
-//     */
-//    @SubscribeEvent
-//    public void serverStop( FMLServerStoppedEvent event ) {
+    /**
+     * Handler for {@link FMLServerAboutToStartEvent} to obtain the {@link MinecraftServer} instance.
+     */
+    @SubscribeEvent
+    public void preServerStart( FMLServerAboutToStartEvent event ) {
+        server = event.getServer();
+    }
+
+    /**
+     * Handler for {@link FMLServerStartingEvent} to register {@linkplain MDCommands commands}.
+     */
+    @SubscribeEvent
+    public void serverStart( FMLServerStartingEvent event ) {
+        MDCommands.register( event.getCommandDispatcher() );
+    }
+
+    /**
+     * Handler for {@link FMLServerStoppedEvent} event to remove any reference to a {@link MinecraftServer} instance.
+     */
+    @SubscribeEvent
+    public void serverStop( FMLServerStoppedEvent event ) {
 //        areaManagers.clear();
-//        server = null;
-//    }
-//
+        server = null;
+    }
+
 //    @SubscribeEvent
 //    public void worldLoad( WorldEvent.Load event ) {
 //        Dimension dimen = event.getWorld().getDimension();
@@ -294,7 +305,7 @@ public abstract class Modernity implements IModernity {
 //    public static PacketChannel network() {
 //        return get().getNetworkChannel();
 //    }
-//
+
 
     /**
      * Returns the only instance of the {@link Modernity} class.
