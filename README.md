@@ -16,7 +16,7 @@ Features will include (some are not yet implemented):
 Download from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/the-modernity) or [GitHub](https://github.com/RedGalaxyDev/TheModernity/releases)
 
 ## Cryptic Mushroom
-At April 8th, this project was moved under the banner of the Cryptic Mushroom modding group. **A LOT OF THINGS ARE GOING TO CHANGE SOON!!!**
+On April 8th, this project was moved under the banner of the Cryptic Mushroom modding group. **A LOT OF THINGS ARE GOING TO CHANGE SOON!!!**
 
 ## In Development
 The mod is currently in beta phase. There is enough content to play with but things are still incomplete and may not work like expected. The mod is available as build on GitHub and CurseForge...
