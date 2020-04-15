@@ -133,7 +133,7 @@ configurations {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.14.4-28.2.1'
 
-    embed 'net.rgsw:noise:1.0.3'
+    embed 'net.rgsw:noise:1.0.4'
     embed 'net.rgsw:io:1.0.1'
 
     // provided 'dep' // May not exist at runtime
