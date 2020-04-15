@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   04 - 15 - 2020
  * Author: rgsw
  */
 
@@ -10,17 +10,15 @@ package modernity.common.block.farmland;
 
 import modernity.api.util.CTMUtil;
 import modernity.api.util.MovingBlockPos;
+import modernity.client.model.farmlandctm.FarmlandConnectedTextureModel;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.data.IModelData;
-import net.minecraftforge.client.model.data.ModelProperty;
 
 public interface ITopTextureConnectionBlock {
-    @OnlyIn( Dist.CLIENT )
-    ModelProperty<Integer> CONNECTIONS = new ModelProperty<>();
 
     default boolean canConnectTo( IEnviromentBlockReader world, MovingBlockPos pos, BlockState state ) {
         return state.getBlock() == this;
@@ -48,6 +46,6 @@ public interface ITopTextureConnectionBlock {
         if( canConnectTo( world, mpos.setPos( pos ).moveSouth().moveWest(), world.getBlockState( mpos ) ) )
             connections |= CTMUtil.DOWNLEFT;
 
-        data.setData( CONNECTIONS, connections );
+        data.setData( FarmlandConnectedTextureModel.CONNECTIONS, connections );
     }
 }

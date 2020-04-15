@@ -2,14 +2,14 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   02 - 06 - 2020
+ * Date:   04 - 15 - 2020
  * Author: rgsw
  */
 
 package modernity.common.handler;
 
 import com.google.gson.*;
-import net.minecraft.client.Minecraft;
+import modernity.common.Modernity;
 import net.minecraft.resources.IResource;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.JSONUtils;
@@ -49,7 +49,7 @@ public enum LootTableHandler {
     public void onLoadLootTable( LootTableLoadEvent event ) {
         LootTable table = event.getTable();
 
-        IResourceManager manager = Minecraft.getInstance().getResourceManager();
+        IResourceManager manager = Modernity.get().getServer().getResourceManager();
 
         ResourceLocation name = event.getName();
 

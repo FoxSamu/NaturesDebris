@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 24 - 2020
+ * Date:   04 - 15 - 2020
  * Author: rgsw
  */
 
@@ -168,7 +168,8 @@ public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimen
         getSatelliteData().tick();
         getEnvEventManager().tick();
 
-        world.setThunderStrength( 0 );
+        world.thunderingStrength = 0;
+        world.prevThunderingStrength = 0;
     }
 
     @Override
@@ -198,11 +199,13 @@ public class MurkSurfaceDimension extends Dimension implements IEnvironmentDimen
     }
 
     @Override
+    @OnlyIn( Dist.CLIENT )
     protected void generateLightBrightnessTable() {
         LightUtil.genLightBrightnessTable( lightBrightnessTable, 3, 0, 1 );
     }
 
     @Override
+    @OnlyIn( Dist.CLIENT )
     public void getLightmapColors( float partialTicks, float sunBrightness, float skyLight, float blockLight, float[] colors ) {
         LightUtil.updateLightColors( colors, partialTicks, sunBrightness, skyLight, blockLight );
     }

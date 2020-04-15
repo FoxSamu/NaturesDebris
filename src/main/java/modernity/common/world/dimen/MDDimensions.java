@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 23 - 2020
+ * Date:   04 - 15 - 2020
  * Author: rgsw
  */
 
@@ -67,7 +67,7 @@ public final class MDDimensions {
     }
 
     private static void register( ResourceLocation location, ModDimension dimen, boolean skylight ) {
-        if( ! Registry.DIMENSION_TYPE.containsKey( location ) ) {
+        if( ! Registry.DIMENSION_TYPE.getValue( location ).isPresent() ) {
             DimensionManager.registerDimension( location, dimen, null, skylight );
         }
     }

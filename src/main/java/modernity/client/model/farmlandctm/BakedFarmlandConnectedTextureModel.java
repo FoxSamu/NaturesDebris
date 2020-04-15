@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 25 - 2020
+ * Date:   04 - 15 - 2020
  * Author: rgsw
  */
 
@@ -131,7 +131,7 @@ public class BakedFarmlandConnectedTextureModel implements IBakedModel {
     @Override
     public List<BakedQuad> getQuads( @Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nullable IModelData extraData ) {
         if( side == Direction.UP ) {
-            Integer ctmObj = extraData != null ? extraData.getData( ITopTextureConnectionBlock.CONNECTIONS ) : 0;
+            Integer ctmObj = extraData != null ? extraData.getData( FarmlandConnectedTextureModel.CONNECTIONS ) : 0;
             int ctm = ctmObj == null ? 0 : ctmObj;
 
             if( cache[ ctm ] != null ) return cache[ ctm ].quads;
@@ -172,7 +172,7 @@ public class BakedFarmlandConnectedTextureModel implements IBakedModel {
     @Override
     public IModelData getModelData( @Nonnull IEnviromentBlockReader world, @Nonnull BlockPos pos, @Nonnull BlockState state, @Nonnull IModelData tileData ) {
         if( state.getBlock() instanceof ITopTextureConnectionBlock ) {
-            IModelData data = new ModelDataMap.Builder().withProperty( ITopTextureConnectionBlock.CONNECTIONS ).build();
+            IModelData data = new ModelDataMap.Builder().withProperty( FarmlandConnectedTextureModel.CONNECTIONS ).build();
             ( (ITopTextureConnectionBlock) state.getBlock() ).fillModelData(
                 world, pos, state, data
             );

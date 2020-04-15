@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 24 - 2020
+ * Date:   04 - 15 - 2020
  * Author: rgsw
  */
 
@@ -323,6 +323,10 @@ public abstract class Modernity implements IModernity {
 
     public SimpleAsyncExecutor getExecutor() {
         return executor;
+    }
+
+    public MinecraftServer getServer() {
+        return server;
     }
 
     public static SimpleAsyncExecutor executor() {

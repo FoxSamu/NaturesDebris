@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   01 - 16 - 2020
+ * Date:   04 - 15 - 2020
  * Author: rgsw
  */
 
@@ -18,6 +18,7 @@ import net.minecraft.client.renderer.texture.MissingTextureSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.data.ModelProperty;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,6 +31,7 @@ import java.util.function.Function;
 
 public class FarmlandConnectedTextureModel implements IUnbakedModel {
     public static final Logger LOGGER = LogManager.getLogger();
+    public static final ModelProperty<Integer> CONNECTIONS = new ModelProperty<>();
 
     private ResourceLocation all;
     private ResourceLocation center;
