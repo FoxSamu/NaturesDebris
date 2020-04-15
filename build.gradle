@@ -161,8 +161,8 @@ jar {
     }
 }
 
-version = 'Beta-1.0'
-project.ext.versionName = "The Update Of Nature"
+version = 'Beta-1.0.2'
+project.ext.versionName = "The Commands Broke Your Connection Update"
 project.ext.isIDE = true
 group = 'net.redgalaxy'
 archivesBaseName = 'modernity'

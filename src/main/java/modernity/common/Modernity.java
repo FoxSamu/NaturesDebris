@@ -113,6 +113,7 @@ public abstract class Modernity implements IModernity {
         MDStructurePieceTypes.registerPieces();
         MDLootTables.register();
         MDCapabilities.register();
+        MDCommands.initArgumentSerializers();
 
         Biomes.DARK_FOREST.addStructure( MDStructures.FOREST_RUNES, IFeatureConfig.NO_FEATURE_CONFIG );
         Biomes.DARK_FOREST_HILLS.addStructure( MDStructures.FOREST_RUNES, IFeatureConfig.NO_FEATURE_CONFIG );

@@ -2,7 +2,7 @@
  * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 23 - 2020
+ * Date:   04 - 15 - 2020
  * Author: rgsw
  */
 
@@ -96,7 +96,7 @@ public final class MDCommands {
         return ResourceLiteralArgumentBuilder.literal( literal );
     }
 
-    static {
+    public static void initArgumentSerializers() {
         ArgumentTypes.register( "modernity:dimension_type", DimensionArgumentType.class, new ArgumentSerializer<>( DimensionArgumentType::new ) );
         TypeToken<EnumArgumentType<?>> enumTypeToken = new TypeToken<EnumArgumentType<?>>() {
         };
