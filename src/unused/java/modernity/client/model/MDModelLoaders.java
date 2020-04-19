@@ -8,9 +8,9 @@
 
 package modernity.client.model;
 
-import modernity.client.model.bush.BushModelLoader;
+import modernity.client.model.bushold.BushModelLoader;
 import modernity.client.model.empty.EmptyModelLoader;
-import modernity.client.model.farmlandctm.FarmlandConnectedTextureModelLoader;
+import modernity.client.model.farmland.FarmlandConnectedTextureModelLoader;
 import modernity.client.model.merged.MergedModelLoader;
 import modernity.client.model.wrapping.WrappingModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;

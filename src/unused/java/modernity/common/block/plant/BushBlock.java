@@ -9,7 +9,7 @@
 package modernity.common.block.plant;
 
 import modernity.api.util.MovingBlockPos;
-import modernity.client.model.bush.BushModelProperties;
+import modernity.client.model.bushold.BushModelProperties;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;

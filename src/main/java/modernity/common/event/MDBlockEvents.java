@@ -12,12 +12,10 @@ import com.google.common.reflect.TypeToken;
 import modernity.common.event.impl.*;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
-import net.minecraftforge.registries.ObjectHolder;
 
 /**
  * Holder class for Modernity block events.
  */
-@ObjectHolder( "modernity" )
 public final class MDBlockEvents {
     private static final RegistryHandler<BlockEvent<?>> ENTRIES = new RegistryHandler<>( "modernity", true );
 

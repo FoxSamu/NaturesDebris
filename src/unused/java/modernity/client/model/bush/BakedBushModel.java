@@ -6,7 +6,7 @@
  * Author: rgsw
  */
 
-package modernity.client.model.bush;
+package modernity.client.model.bushold;
 
 import modernity.client.model.QuadMaker;
 import modernity.common.block.plant.BushBlock;

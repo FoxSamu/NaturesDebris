@@ -8,6 +8,7 @@
 
 package modernity.common.area.core;
 
+import modernity.common.Modernity;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -49,28 +50,27 @@ public interface IWorldAreaManager {
         return getAreasAt( pos.getX(), pos.getY(), pos.getZ() );
     }
 
-    default boolean isInsideArea( int x, int y, int z, AreaType type ) {
+    default boolean isInsideArea( int x, int y, int z, AreaType<?> type ) {
         return getAreasAt( x, y, z ).anyMatch( area -> area.getType() == type );
     }
 
-    default boolean isInsideArea( Vec3i pos, AreaType type ) {
+    default boolean isInsideArea( Vec3i pos, AreaType<?> type ) {
         return isInsideArea( pos.getX(), pos.getY(), pos.getZ(), type );
     }
 
-    default boolean isInsideArea( Vec3d pos, AreaType type ) {
+    default boolean isInsideArea( Vec3d pos, AreaType<?> type ) {
         return isInsideArea( pos.x, pos.y, pos.z, type );
     }
 
-    default boolean isInsideArea( double x, double y, double z, AreaType type ) {
+    default boolean isInsideArea( double x, double y, double z, AreaType<?> type ) {
         return isInsideArea( MathHelper.floor( x ), MathHelper.floor( y ), MathHelper.floor( z ), type );
     }
 
-    default boolean isInsideArea( Entity entity, AreaType type ) {
+    default boolean isInsideArea( Entity entity, AreaType<?> type ) {
         return isInsideArea( entity.getPosX(), entity.getPosY(), entity.getPosZ(), type );
     }
 
     static Optional<IWorldAreaManager> get( World world ) {
-//        return Optional.ofNullable( Modernity.get().getWorldAreaManager( world ) );
-        return Optional.empty();
+        return Optional.ofNullable( Modernity.get().getWorldAreaManager( world ) );
     }
 }

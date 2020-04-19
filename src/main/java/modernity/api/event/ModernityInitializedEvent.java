@@ -9,7 +9,7 @@
 package modernity.api.event;
 
 import modernity.api.IModernity;
-import modernity.api.RunMode;
+import modernity.api.IRunMode;
 import net.minecraftforge.eventbus.api.Event;
 
 /**
@@ -18,10 +18,10 @@ import net.minecraftforge.eventbus.api.Event;
  * @author RGSW
  */
 public class ModernityInitializedEvent extends Event {
-    public final RunMode mode;
+    public final IRunMode mode;
     public final IModernity modernity;
 
-    public ModernityInitializedEvent( RunMode mode, IModernity modernity ) {
+    public ModernityInitializedEvent( IRunMode mode, IModernity modernity ) {
         this.mode = mode;
         this.modernity = modernity;
     }

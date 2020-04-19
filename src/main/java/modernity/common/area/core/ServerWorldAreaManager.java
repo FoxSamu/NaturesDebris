@@ -10,6 +10,9 @@ package modernity.common.area.core;
 
 import it.unimi.dsi.fastutil.longs.Long2ObjectLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import modernity.common.Modernity;
+import modernity.common.net.SAreaUntrackPacket;
+import modernity.common.net.SAreaUpdatePacket;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -391,9 +394,8 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
     }
 
     public static Optional<ServerWorldAreaManager> get( World world ) {
-        /*if( ! ( world instanceof ServerWorld ) )*/
-        return Optional.empty();
-//        return Optional.ofNullable( Modernity.get().getWorldAreaManager( (ServerWorld) world ) );
+        if( ! ( world instanceof ServerWorld ) ) return Optional.empty();
+        return Optional.ofNullable( Modernity.get().getWorldAreaManager( (ServerWorld) world ) );
     }
 
     private static class AreaHolder {
@@ -423,16 +425,15 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
         }
 
         void unload() {
-            // TODO
-//            Modernity.network().sendToPlayers( new SAreaUntrackPacket( area.getReferenceID(), area.world ), trackers.keySet() );
+            Modernity.network().sendToPlayers( new SAreaUntrackPacket( area.getReferenceID(), area.world ), trackers.keySet() );
         }
 
         void track( ServerPlayerEntity player ) {
             if( ! trackers.containsKey( player ) ) {
                 trackers.put( player, 0 );
-//                if( area.getType().updateInterval > 0 ) { // TODO
-////                  Modernity.network().sendToPlayer( new SAreaUpdatePacket( area, area.world ), player );
-//                }
+                if( area.getType().updateInterval > 0 ) {
+                    Modernity.network().sendToPlayer( new SAreaUpdatePacket( area, area.world ), player );
+                }
             }
             trackers.addTo( player, 1 );
         }
@@ -444,8 +445,7 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
                     if( counter < 0 ) {
                         LOGGER.error( "Trackers count was negative?! Did someone hack the area system? Untracking anyways..." );
                     }
-                    // TODO
-//                    Modernity.network().sendToPlayer( new SAreaUntrackPacket( area.getReferenceID(), area.world ), player );
+                    Modernity.network().sendToPlayer( new SAreaUntrackPacket( area.getReferenceID(), area.world ), player );
                     trackers.removeInt( player );
                 }
             } else {
@@ -458,8 +458,7 @@ public class ServerWorldAreaManager implements IWorldAreaManager {
                 updateCounter++;
                 if( updateCounter >= area.getType().updateInterval ) {
                     updateCounter = 0;
-                    // TODO
-//                    Modernity.network().sendToPlayers( new SAreaUpdatePacket( area, area.world ), trackers.keySet() );
+                    Modernity.network().sendToPlayers( new SAreaUpdatePacket( area, area.world ), trackers.keySet() );
                 }
             }
 

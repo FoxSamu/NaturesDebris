@@ -6,7 +6,7 @@
  * Author: rgsw
  */
 
-package modernity.client.model.bush;
+package modernity.client.model.bushold;
 
 import net.minecraftforge.client.model.data.ModelDataMap;
 import net.minecraftforge.client.model.data.ModelProperty;

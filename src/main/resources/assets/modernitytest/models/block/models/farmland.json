@@ -1,0 +1,15 @@
+{
+  "parent": "block/block",
+  "loader": "modernity:farmland",
+  "textures": {
+    "center": "modernity:block/farmland/podzol_layer_center",
+    "all": "modernity:block/farmland/podzol_layer_full",
+    "cross": "modernity:block/farmland/podzol_layer_cross",
+    "horizontal": "modernity:block/farmland/podzol_layer_horizontal",
+    "vertical": "modernity:block/farmland/podzol_layer_vertical",
+    "particles": "modernity:block/murky_podzol_top"
+  },
+  "tintindex": -1,
+  "uvrotation": 0,
+  "y": 14
+}

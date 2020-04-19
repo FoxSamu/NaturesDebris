@@ -29,6 +29,9 @@ public interface IModernity {
     default void registerListeners() {
     }
 
+    default void setupRegistryHandler() {
+    }
+
     default void preInit() {
     }
 

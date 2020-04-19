@@ -6,7 +6,7 @@
  * Author: rgsw
  */
 
-package modernity.client.model.farmlandctm;
+package modernity.client.model.farmland;
 
 import modernity.api.util.CTMUtil;
 import modernity.client.model.QuadMaker;

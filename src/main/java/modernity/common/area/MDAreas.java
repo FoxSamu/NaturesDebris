@@ -15,11 +15,9 @@ import modernity.common.area.core.AreaType;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.world.World;
-import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.function.BiFunction;
 
-@ObjectHolder( "modernity" )
 public final class MDAreas {
     private static final RegistryHandler<AreaType<?>> ENTRIES = new RegistryHandler<>( "modernity" );
 

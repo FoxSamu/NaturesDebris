@@ -13,7 +13,6 @@ import modernity.common.environment.event.impl.*;
 import modernity.common.registry.RegistryEventHandler;
 import modernity.common.registry.RegistryHandler;
 import net.minecraft.command.CommandSource;
-import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
@@ -22,7 +21,6 @@ import java.util.function.Function;
 /**
  * Holder class for the Modernity's environment event types.
  */
-@ObjectHolder( "modernity" )
 public final class MDEnvEvents {
     private static final RegistryHandler<EnvironmentEventType> ENTRIES = new RegistryHandler<>( "modernity" );
 

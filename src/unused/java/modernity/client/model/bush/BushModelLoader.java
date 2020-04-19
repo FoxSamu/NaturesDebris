@@ -6,7 +6,7 @@
  * Author: rgsw
  */
 
-package modernity.client.model.bush;
+package modernity.client.model.bushold;
 
 import net.minecraft.client.renderer.model.IUnbakedModel;
 import net.minecraft.resources.IResourceManager;

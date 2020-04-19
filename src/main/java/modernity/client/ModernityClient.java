@@ -8,17 +8,34 @@
 
 package modernity.client;
 
+import modernity.api.dimension.IClientTickingDimension;
 import modernity.client.colormap.ColorMap;
 import modernity.client.environment.EnvironmentParticleManager;
+import modernity.client.render.environment.SurfaceCloudRenderer;
+import modernity.client.render.environment.SurfaceSkyRenderer;
+import modernity.client.render.environment.SurfaceWeatherRenderer;
 import modernity.common.Modernity;
+import modernity.common.area.core.ClientWorldAreaManager;
+import modernity.common.area.core.IWorldAreaManager;
+import modernity.common.block.MDBlocks;
+import modernity.common.container.MDContainerTypes;
+import modernity.common.entity.MDEntityTypes;
+import modernity.common.item.MDItems;
+import modernity.common.net.SSeedPacket;
+import modernity.common.tileentity.MDTileEntitiyTypes;
 import modernity.common.util.ISidedTickable;
+import modernity.common.world.dimen.MurkSurfaceDimension;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.resources.IFutureReloadListener;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.concurrent.ThreadTaskExecutor;
+import net.minecraft.world.World;
+import net.minecraft.world.dimension.Dimension;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 
@@ -45,7 +62,7 @@ public class ModernityClient extends Modernity {
 //    private ColorProfile watergrassColors;
 //    private ColorProfile algaeColors;
 
-//    private ClientWorldAreaManager worldAreaManager;
+    private ClientWorldAreaManager worldAreaManager;
 //    private AreaRenderManager areaRenderManager;
 
     private final EnvironmentParticleManager envParticles = new EnvironmentParticleManager();
@@ -90,9 +107,9 @@ public class ModernityClient extends Modernity {
     @Override
     public void init() {
         super.init();
-//        MDEntityTypes.initEntityRenderers();
-//        MDContainerTypes.registerScreens();
-//
+        MDEntityTypes.initEntityRenderers();
+        MDContainerTypes.registerScreens();
+
 //        MDRecipeBookCategories.init();
 //        MDModelLoaders.register();
 //        SoundEventHandler.INSTANCE.init();
@@ -101,9 +118,9 @@ public class ModernityClient extends Modernity {
     @Override
     public void postInit() {
         super.postInit();
-//        MDBlocks.initBlockColors();
-//        MDItems.initItemColors();
-//        MDTileEntitiyTypes.setupClient();
+        MDBlocks.initBlockColors();
+        MDItems.initItemColors();
+        MDTileEntitiyTypes.setupClient();
     }
 
     @Override
@@ -143,30 +160,30 @@ public class ModernityClient extends Modernity {
         return LogicalSide.CLIENT;
     }
 
-//    @SubscribeEvent
-//    public void onWorldLoad( WorldEvent.Load event ) {
-//        if( event.getWorld().isRemote() ) {
-//            Dimension dimen = event.getWorld().getDimension();
-//            if( dimen instanceof MurkSurfaceDimension ) {
-//                dimen.setSkyRenderer( new SurfaceSkyRenderer( lastWorldSeed ) );
-//                dimen.setCloudRenderer( new SurfaceCloudRenderer() );
-//                dimen.setWeatherRenderer( new SurfaceWeatherRenderer() );
-//            }
-//        }
-//    }
+    @SubscribeEvent
+    public void onWorldLoad( WorldEvent.Load event ) {
+        if( event.getWorld().isRemote() ) {
+            Dimension dimen = event.getWorld().getDimension();
+            if( dimen instanceof MurkSurfaceDimension ) {
+                dimen.setSkyRenderer( new SurfaceSkyRenderer( lastWorldSeed ) );
+                dimen.setCloudRenderer( new SurfaceCloudRenderer() );
+                dimen.setWeatherRenderer( new SurfaceWeatherRenderer() );
+            }
+        }
+    }
 
     @SubscribeEvent
     public void onTick( TickEvent.ClientTickEvent event ) {
-//        if( event.phase == TickEvent.Phase.END ) {
-//            if( mc.world != null && ! mc.isGamePaused() ) {
-//                Dimension dimen = mc.world.dimension;
-//                if( dimen instanceof IClientTickingDimension ) {
-//                    ( (IClientTickingDimension) dimen ).tickClient();
-//                }
-//
-//                getWorldAreaManager().tick();
-//            }
-//        }
+        if( event.phase == TickEvent.Phase.END ) {
+            if( mc.world != null && ! mc.isGamePaused() ) {
+                Dimension dimen = mc.world.dimension;
+                if( dimen instanceof IClientTickingDimension ) {
+                    ( (IClientTickingDimension) dimen ).tickClient();
+                }
+
+                getWorldAreaManager().tick();
+            }
+        }
 
         envParticles.tick();
     }
@@ -264,37 +281,37 @@ public class ModernityClient extends Modernity {
         return envParticles;
     }
 
-//    public ClientWorldAreaManager getWorldAreaManager() {
-//        if( worldAreaManager == null ) {
-//            if( mc.world != null ) {
-//                return worldAreaManager = new ClientWorldAreaManager( mc.world );
-//            }
-//        }
-//        if( worldAreaManager != null ) {
-//            if( mc.world == null ) {
-//                return worldAreaManager = null;
-//            } else {
-//                if( mc.world != worldAreaManager.getWorld() ) {
-//                    worldAreaManager = new ClientWorldAreaManager( mc.world );
-//                }
-//            }
-//        }
-//        return worldAreaManager;
-//    }
+    public ClientWorldAreaManager getWorldAreaManager() {
+        if( worldAreaManager == null ) {
+            if( mc.world != null ) {
+                return worldAreaManager = new ClientWorldAreaManager( mc.world );
+            }
+        }
+        if( worldAreaManager != null ) {
+            if( mc.world == null ) {
+                return worldAreaManager = null;
+            } else {
+                if( mc.world != worldAreaManager.getWorld() ) {
+                    worldAreaManager = new ClientWorldAreaManager( mc.world );
+                }
+            }
+        }
+        return worldAreaManager;
+    }
 
-//    @Override
-//    public IWorldAreaManager getWorldAreaManager( World world ) {
-//        if( world == null ) {
-//            return getWorldAreaManager();
-//        }
-//        if( world instanceof ClientWorld ) {
-//            if( world == mc.world ) {
-//                return getWorldAreaManager();
-//            }
-//            return null;
-//        }
-//        return super.getWorldAreaManager( world );
-//    }
+    @Override
+    public IWorldAreaManager getWorldAreaManager( World world ) {
+        if( world == null ) {
+            return getWorldAreaManager();
+        }
+        if( world instanceof ClientWorld ) {
+            if( world == mc.world ) {
+                return getWorldAreaManager();
+            }
+            return null;
+        }
+        return super.getWorldAreaManager( world );
+    }
 
 //    public AreaRenderManager getAreaRenderManager() {
 //        return areaRenderManager;
@@ -307,7 +324,7 @@ public class ModernityClient extends Modernity {
         return lastWorldSeed;
     }
 
-    /* // TODO Doc comment
+    /**
      * Sets the seed of the last joined world. Used in {@link SSeedPacket} to set the received seed.
      */
     public void setLastWorldSeed( long lastWorldSeed ) {

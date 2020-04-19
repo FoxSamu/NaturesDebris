@@ -1,0 +1,6 @@
+{
+  "loader": "modernity:empty",
+  "textures": {
+    "particle": "modernity:block/rock"
+  }
+}

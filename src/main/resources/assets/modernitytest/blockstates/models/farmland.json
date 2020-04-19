@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "modernitytest:block/models/farmland"
+    }
+  }
+}

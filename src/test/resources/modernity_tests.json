@@ -1,0 +1,7 @@
+[
+  {
+    "name": "EmptyModelTest",
+    "class": "modernity.tests.emptymodel.EmptyModelTest",
+    "eventBuses": "main"
+  }
+]

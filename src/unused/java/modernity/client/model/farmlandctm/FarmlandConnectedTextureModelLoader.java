@@ -6,7 +6,7 @@
  * Author: rgsw
  */
 
-package modernity.client.model.farmlandctm;
+package modernity.client.model.farmland;
 
 import net.minecraft.client.renderer.model.IUnbakedModel;
 import net.minecraft.resources.IResourceManager;

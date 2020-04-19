@@ -1,0 +1,14 @@
+{
+  "loader": "forge:composite",
+  "textures": {
+    "particle": "modernity:block/rock"
+  },
+  "parts": {
+    "empty": {
+      "loader": "modernity:empty"
+    },
+    "pole": {
+      "parent": "modernity:block/blackwood_pole"
+    }
+  }
+}

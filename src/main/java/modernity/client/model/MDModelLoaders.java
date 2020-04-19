@@ -1,24 +1,18 @@
-/*
- * Copyright (c) 2020 RedGalaxy
- * All rights reserved. Do not distribute.
- *
- * Date:   01 - 31 - 2020
- * Author: rgsw
- */
-
 package modernity.client.model;
 
+import modernity.client.model.bush.BushModelLoader;
+import modernity.client.model.empty.EmptyModelLoader;
+import modernity.client.model.farmland.FarmlandModelLoader;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 
-// TODO Re-evaluate
-//public final class MDModelLoaders {
-//    private MDModelLoaders() {
-//    }
-//
-//    public static void register() {
-//        ModelLoaderRegistry.registerLoader( new FarmlandConnectedTextureModelLoader() );
-//        ModelLoaderRegistry.registerLoader( new BushModelLoader() );
-//        ModelLoaderRegistry.registerLoader( new WrappingModelLoader() );
-//        ModelLoaderRegistry.registerLoader( new MergedModelLoader() );
-//        ModelLoaderRegistry.registerLoader( new EmptyModelLoader() );
-//    }
-//}
+public final class MDModelLoaders {
+    private MDModelLoaders() {
+    }
+
+    public static void register() {
+        ModelLoaderRegistry.registerLoader( new ResourceLocation( "modernity:empty" ), new EmptyModelLoader() );
+        ModelLoaderRegistry.registerLoader( new ResourceLocation( "modernity:bush" ), new BushModelLoader() );
+        ModelLoaderRegistry.registerLoader( new ResourceLocation( "modernity:farmland" ), new FarmlandModelLoader() );
+    }
+}

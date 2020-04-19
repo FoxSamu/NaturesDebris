@@ -6,7 +6,7 @@
  * Author: rgsw
  */
 
-package modernity.client.model.bush;
+package modernity.client.model.bushold;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.renderer.model.IBakedModel;

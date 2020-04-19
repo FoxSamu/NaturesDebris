@@ -6,7 +6,7 @@
  * Author: rgsw
  */
 
-package modernity.client.model.farmlandctm;
+package modernity.client.model.farmland;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;

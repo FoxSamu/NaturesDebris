@@ -10,6 +10,7 @@ package modernity.common.area.core;
 
 import it.unimi.dsi.fastutil.longs.Long2ObjectLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import modernity.client.ModernityClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
@@ -163,7 +164,6 @@ public class ClientWorldAreaManager implements IWorldAreaManager {
     }
 
     public static Optional<ClientWorldAreaManager> get() {
-        return Optional.empty();
-//        return Optional.ofNullable( ModernityClient.get().getWorldAreaManager() );
+        return Optional.ofNullable( ModernityClient.get().getWorldAreaManager() );
     }
 }

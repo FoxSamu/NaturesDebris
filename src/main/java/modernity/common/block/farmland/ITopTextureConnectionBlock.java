@@ -10,18 +10,15 @@ package modernity.common.block.farmland;
 
 import modernity.api.util.CTMUtil;
 import modernity.api.util.MovingBlockPos;
+import modernity.client.model.farmland.FarmlandBakedModel;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ILightReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.data.IModelData;
-import net.minecraftforge.client.model.data.ModelProperty;
 
 public interface ITopTextureConnectionBlock {
-    @OnlyIn( Dist.CLIENT )
-    ModelProperty<Integer> CONNECTIONS = new ModelProperty<>();
-
     default boolean canConnectTo( ILightReader world, MovingBlockPos pos, BlockState state ) {
         return state.getBlock() == this;
     }
@@ -48,6 +45,6 @@ public interface ITopTextureConnectionBlock {
         if( canConnectTo( world, mpos.setPos( pos ).moveSouth().moveWest(), world.getBlockState( mpos ) ) )
             connections |= CTMUtil.DOWNLEFT;
 
-        data.setData( CONNECTIONS, connections );
+        data.setData( FarmlandBakedModel.CONNECTIONS, connections );
     }
 }

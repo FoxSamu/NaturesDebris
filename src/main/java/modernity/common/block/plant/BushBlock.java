@@ -9,6 +9,7 @@
 package modernity.common.block.plant;
 
 import modernity.api.util.MovingBlockPos;
+import modernity.client.model.bush.BushModelProperties;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -52,40 +53,40 @@ public abstract class BushBlock extends PlantBlock {
 
     @OnlyIn( Dist.CLIENT )
     public void fillModelData( ILightReader world, BlockPos pos, BlockState state, ModelDataMap data ) {
-//        MovingBlockPos mpos = new MovingBlockPos(); // TODO Re-evaluate for new custom model system
+        MovingBlockPos mpos = new MovingBlockPos();
 
-//        if( canConnect( world, mpos.setPos( pos ), Direction.UP ) ) data.setData( BushModelProperties.UP, true );
-//        if( canConnect( world, mpos.setPos( pos ), Direction.DOWN ) ) data.setData( BushModelProperties.DOWN, true );
-//        if( canConnect( world, mpos.setPos( pos ), Direction.NORTH ) ) data.setData( BushModelProperties.NORTH, true );
-//        if( canConnect( world, mpos.setPos( pos ), Direction.EAST ) ) data.setData( BushModelProperties.EAST, true );
-//        if( canConnect( world, mpos.setPos( pos ), Direction.SOUTH ) ) data.setData( BushModelProperties.SOUTH, true );
-//        if( canConnect( world, mpos.setPos( pos ), Direction.WEST ) ) data.setData( BushModelProperties.WEST, true );
-//
-//        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.UP, Direction.NORTH ) )
-//            data.setData( BushModelProperties.UP_NORTH, true );
-//        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.UP, Direction.EAST ) )
-//            data.setData( BushModelProperties.UP_EAST, true );
-//        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.UP, Direction.SOUTH ) )
-//            data.setData( BushModelProperties.UP_SOUTH, true );
-//        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.UP, Direction.WEST ) )
-//            data.setData( BushModelProperties.UP_WEST, true );
-//
-//        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.DOWN, Direction.NORTH ) )
-//            data.setData( BushModelProperties.DOWN_NORTH, true );
-//        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.DOWN, Direction.EAST ) )
-//            data.setData( BushModelProperties.DOWN_EAST, true );
-//        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.DOWN, Direction.SOUTH ) )
-//            data.setData( BushModelProperties.DOWN_SOUTH, true );
-//        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.DOWN, Direction.WEST ) )
-//            data.setData( BushModelProperties.DOWN_WEST, true );
-//
-//        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.NORTH, Direction.EAST ) )
-//            data.setData( BushModelProperties.NORTH_EAST, true );
-//        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.NORTH, Direction.WEST ) )
-//            data.setData( BushModelProperties.NORTH_WEST, true );
-//        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.SOUTH, Direction.EAST ) )
-//            data.setData( BushModelProperties.SOUTH_EAST, true );
-//        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.SOUTH, Direction.WEST ) )
-//            data.setData( BushModelProperties.SOUTH_WEST, true );
+        if( canConnect( world, mpos.setPos( pos ), Direction.UP ) ) data.setData( BushModelProperties.UP, true );
+        if( canConnect( world, mpos.setPos( pos ), Direction.DOWN ) ) data.setData( BushModelProperties.DOWN, true );
+        if( canConnect( world, mpos.setPos( pos ), Direction.NORTH ) ) data.setData( BushModelProperties.NORTH, true );
+        if( canConnect( world, mpos.setPos( pos ), Direction.EAST ) ) data.setData( BushModelProperties.EAST, true );
+        if( canConnect( world, mpos.setPos( pos ), Direction.SOUTH ) ) data.setData( BushModelProperties.SOUTH, true );
+        if( canConnect( world, mpos.setPos( pos ), Direction.WEST ) ) data.setData( BushModelProperties.WEST, true );
+
+        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.UP, Direction.NORTH ) )
+            data.setData( BushModelProperties.UP_NORTH, true );
+        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.UP, Direction.EAST ) )
+            data.setData( BushModelProperties.UP_EAST, true );
+        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.UP, Direction.SOUTH ) )
+            data.setData( BushModelProperties.UP_SOUTH, true );
+        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.UP, Direction.WEST ) )
+            data.setData( BushModelProperties.UP_WEST, true );
+
+        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.DOWN, Direction.NORTH ) )
+            data.setData( BushModelProperties.DOWN_NORTH, true );
+        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.DOWN, Direction.EAST ) )
+            data.setData( BushModelProperties.DOWN_EAST, true );
+        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.DOWN, Direction.SOUTH ) )
+            data.setData( BushModelProperties.DOWN_SOUTH, true );
+        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.DOWN, Direction.WEST ) )
+            data.setData( BushModelProperties.DOWN_WEST, true );
+
+        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.NORTH, Direction.EAST ) )
+            data.setData( BushModelProperties.NORTH_EAST, true );
+        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.NORTH, Direction.WEST ) )
+            data.setData( BushModelProperties.NORTH_WEST, true );
+        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.SOUTH, Direction.EAST ) )
+            data.setData( BushModelProperties.SOUTH_EAST, true );
+        if( canConnectDiagonally( world, mpos.setPos( pos ), Direction.SOUTH, Direction.WEST ) )
+            data.setData( BushModelProperties.SOUTH_WEST, true );
     }
 }
