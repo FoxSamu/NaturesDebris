@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Request a simple feature or enhancement. Do not report bugs using this template!
+about: Request a simple feature or enhancement. Do not report bugs or crashes using this template! For suggestions, ask us on [Discord](https://discord.gg/YvyzTFf)
 title: ''
 labels: 'feature-request'
 assignees: ''
