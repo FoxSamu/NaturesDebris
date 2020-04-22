@@ -1,6 +1,6 @@
 ---
 name: Other
-about: Report an issue that does not fall under any category. Make sure that this is the case: don't use this template if you can use another!!!
+about: Report an issue that does not fall under any category. Make sure that this is the case; don't use this template if you can use another!!!
 title: ''
 labels: ''
 assignees: ''
