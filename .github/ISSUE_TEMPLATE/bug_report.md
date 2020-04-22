@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report a bug. Don't report crashes or request features using this template!
+about: Report a bug in the Modernity. Don't report crashes or request features using this template!
 title: ''
 labels: 'bug'
 assignees: ''
@@ -22,4 +22,3 @@ Vague or duplicate issues are ignored and closed!
 #### Environment
 - Modernity: [modernity version]
 - Forge: [forge version]
-- Did you use other modpacks, mods, resource packs or data packs, please list them here too.
