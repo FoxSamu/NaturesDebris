@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 23 - 2019
+ * Date:   04 - 23 - 2020
  * Author: rgsw
  */
 
@@ -21,7 +21,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.potion.Effects;
@@ -39,7 +38,6 @@ public enum FogHandler {
     INSTANCE;
 
     private final Minecraft mc = Minecraft.getInstance();
-    private final GameRenderer gameRenderer = mc.gameRenderer;
 
     private final FloatBuffer colorBuffer = GLAllocation.createDirectFloatBuffer( 16 );
 
@@ -73,7 +71,7 @@ public enum FogHandler {
             float distance = 5;
             int blindnessDuration = ( (LivingEntity) renderInfo.getRenderViewEntity() ).getActivePotionEffect( Effects.BLINDNESS ).getDuration();
             if( blindnessDuration < 20 ) {
-                distance = MathHelper.lerp( 1 - blindnessDuration / 20F, 5, gameRenderer.getFarPlaneDistance() );
+                distance = MathHelper.lerp( 1 - blindnessDuration / 20F, 5, mc.gameRenderer.getFarPlaneDistance() );
             }
 
             GlStateManager.fogMode( GlStateManager.FogMode.LINEAR );
