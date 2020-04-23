@@ -1,15 +1,18 @@
 ---
-name: Bug report
-about: Report a bug in the Modernity. Don't report crashes or request features using this template!
+name: Compatibility issue
+about: Report a compatibility issue. Only report inconsistent behaviour with other mods. For crashes with other mods, just report a crash report. Do not report bugs that don't involve other mods!!!
 title: ''
-labels: 'bug'
+labels: 'compatibility-issue'
 assignees: ''
 
 ---
 
-Explain the bug:
+Before reporting, make sure that the Modernity behaves incorrectly and not the other mod! Compare against other mods!
+
+Explain the issue:
 - What isn't working?
 - How to reproduce the problem?
+- Which other mods are involved? How?
 
 Be clear and concise.
 
@@ -22,3 +25,8 @@ Vague or duplicate issues are ignored and closed!
 #### Environment
 - Modernity: [modernity version]
 - Forge: [forge version]
+- Mod in modpack: [version]
+- Mod in modpack: [version]
+- ...
+- ...
+- ...
