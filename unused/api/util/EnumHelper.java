@@ -7,7 +7,7 @@
  * Date: 6 - 15 - 2019
  */
 
-package modernity.api.util;
+package modernity.generic.util;
 
 import com.google.common.collect.Lists;
 import net.minecraftforge.fml.common.EnhancedRuntimeException;

@@ -7,9 +7,8 @@
  * Date: 6 - 15 - 2019
  */
 
-package modernity.api.capability;
+package modernity.generic.capability;
 
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.chunk.Chunk;
 

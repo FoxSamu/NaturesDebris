@@ -1,0 +1,3 @@
+archivesBaseName = project.ext.getVariable( "modernity.apiname" )
+
+project.ext.implName = "The Modernity API"

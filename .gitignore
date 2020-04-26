@@ -21,10 +21,5 @@ build
 eclipse
 run
 
-<<<<<<< HEAD
-# Files from Forge MDK
-forge*changelog.txt
-=======
 # Mappings
 mappings
->>>>>>> 60ac3ec7d211c9fe73edb88bf4123b8e878ad575

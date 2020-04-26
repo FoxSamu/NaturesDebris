@@ -7,7 +7,7 @@
  * Date: 6 - 17 - 2019
  */
 
-package modernity.api.util;
+package modernity.generic.util;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;

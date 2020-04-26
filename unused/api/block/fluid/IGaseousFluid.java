@@ -7,7 +7,7 @@
  * Date: 6 - 11 - 2019
  */
 
-package modernity.api.block.fluid;
+package modernity.generic.block.fluid;
 
 public interface IGaseousFluid {
 }

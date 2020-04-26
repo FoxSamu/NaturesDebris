@@ -7,7 +7,7 @@
  * Date: 9 - 1 - 2019
  */
 
-package modernity.api.event;
+package modernity.generic.event;
 
 import net.minecraft.entity.Entity;
 import net.minecraftforge.event.entity.EntityEvent;

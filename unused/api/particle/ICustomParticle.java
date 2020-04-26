@@ -7,7 +7,7 @@
  * Date: 7 - 25 - 2019
  */
 
-package modernity.api.particle;
+package modernity.generic.particle;
 
 public interface ICustomParticle {
 }

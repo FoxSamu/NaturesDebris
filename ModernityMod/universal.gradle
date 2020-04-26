@@ -1,0 +1,9 @@
+jar {
+    appendix = "universal"
+}
+
+task signJar( dependsOn: 'reobfJar' ) {
+    doLast {
+        project.ext.sign( jar.archivePath )
+    }
+}

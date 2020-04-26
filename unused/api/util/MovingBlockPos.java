@@ -7,7 +7,7 @@
  * Date: 7 - 8 - 2019
  */
 
-package modernity.api.util;
+package modernity.generic.util;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Direction;

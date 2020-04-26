@@ -7,7 +7,7 @@
  * Date: 7 - 23 - 2019
  */
 
-package modernity.api.biome;
+package modernity.generic.biome;
 
 import net.minecraft.util.math.BlockPos;
 

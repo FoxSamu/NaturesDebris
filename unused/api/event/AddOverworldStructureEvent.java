@@ -7,7 +7,7 @@
  * Date: 7 - 3 - 2019
  */
 
-package modernity.api.event;
+package modernity.generic.event;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;

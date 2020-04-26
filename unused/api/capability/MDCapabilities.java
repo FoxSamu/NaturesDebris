@@ -7,7 +7,7 @@
  * Date: 6 - 15 - 2019
  */
 
-package modernity.api.capability;
+package modernity.generic.capability;
 
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;

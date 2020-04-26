@@ -7,7 +7,7 @@
  * Date: 7 - 26 - 2019
  */
 
-package modernity.api.util;
+package modernity.generic.util;
 
 public interface ITranslatable {
     String getTranslationKey();

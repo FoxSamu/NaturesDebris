@@ -7,7 +7,7 @@
  * Date: 6 - 11 - 2019
  */
 
-package modernity.api.noise;
+package modernity.generic.noise;
 
 public abstract class NoiseGenerator {
 }

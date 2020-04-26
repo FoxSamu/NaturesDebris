@@ -7,7 +7,7 @@
  * Date: 9 - 8 - 2019
  */
 
-package modernity.api.event;
+package modernity.generic.event;
 
 import com.mojang.datafixers.DSL;
 import com.mojang.datafixers.DataFixer;

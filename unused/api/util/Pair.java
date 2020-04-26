@@ -7,7 +7,7 @@
  * Date: 7 - 10 - 2019
  */
 
-package modernity.api.util;
+package modernity.generic.util;
 
 import java.util.Objects;
 

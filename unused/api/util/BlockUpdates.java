@@ -7,7 +7,7 @@
  * Date: 6 - 11 - 2019
  */
 
-package modernity.api.util;
+package modernity.generic.util;
 
 public final class BlockUpdates {
     public static final int CAUSE_UPDATE = 1;

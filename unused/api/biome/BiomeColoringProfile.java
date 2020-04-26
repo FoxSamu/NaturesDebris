@@ -7,10 +7,10 @@
  * Date: 8 - 26 - 2019
  */
 
-package modernity.api.biome;
+package modernity.generic.biome;
 
 import com.google.gson.*;
-import modernity.api.util.ColorUtil;
+import modernity.generic.util.ColorUtil;
 import modernity.client.util.ProxyClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IResource;

@@ -1,0 +1,6 @@
+rootProject.name = 'TheModernity'
+
+include 'ModernityAPI'
+include 'ModernityCore'
+include 'ModernityMod'
+include 'ModernityTest'

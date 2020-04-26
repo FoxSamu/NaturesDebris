@@ -7,7 +7,7 @@
  * Date: 6 - 11 - 2019
  */
 
-package modernity.api.event;
+package modernity.generic.event;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.command.CommandSource;

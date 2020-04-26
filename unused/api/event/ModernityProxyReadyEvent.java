@@ -7,7 +7,7 @@
  * Date: 7 - 10 - 2019
  */
 
-package modernity.api.event;
+package modernity.generic.event;
 
 import modernity.common.CommonProxy;
 import net.minecraftforge.eventbus.api.Event;

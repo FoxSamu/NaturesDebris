@@ -1,0 +1,7 @@
+dependencies {
+    compile( project( ':ModernityAPI' ) ) {
+        transitive false
+    }
+}
+
+project.ext.implName = "The Modernity Core"

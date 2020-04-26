@@ -7,7 +7,7 @@
  * Date: 6 - 16 - 2019
  */
 
-package modernity.api.err;
+package modernity.generic.err;
 
 public class NoCavesException extends RuntimeException {
     public NoCavesException() {

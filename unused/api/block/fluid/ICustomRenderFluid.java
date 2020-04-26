@@ -7,7 +7,7 @@
  * Date: 8 - 25 - 2019
  */
 
-package modernity.api.block.fluid;
+package modernity.generic.block.fluid;
 
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.util.ResourceLocation;

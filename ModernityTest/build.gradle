@@ -1,0 +1,14 @@
+dependencies {
+    embed( project( ':ModernityAPI' ) ) {
+        transitive false
+    }
+    embed( project( ':ModernityCore' ) ) {
+        transitive false
+    }
+    embed( project( ':ModernityMod' ) ) {
+        transitive false
+    }
+}
+
+project.ext.implName = "The Modernity Test"
+project.ext.isIDE = true

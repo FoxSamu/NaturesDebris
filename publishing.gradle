@@ -1,0 +1,26 @@
+def reobfFile = file( "$buildDir/reobfJar/output.jar" )
+def reobfArtifact = artifacts.add( 'default', reobfFile ) {
+    type 'jar'
+    builtBy 'signJar'
+}
+publishing {
+    publications {
+        mavenJava( MavenPublication ) {
+            groupId = 'redgalaxy'
+            artifactId = 'TheModernity'
+            version = "${ project.version }"
+
+            artifact reobfArtifact
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri( "https://maven.pkg.github.com/RedGalaxySW/TheModernity" )
+            credentials {
+                username = gprUser.toLowerCase()
+                password = gprKey.toLowerCase()
+            }
+        }
+    }
+}

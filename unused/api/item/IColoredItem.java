@@ -7,7 +7,7 @@
  * Date: 6 - 11 - 2019
  */
 
-package modernity.api.item;
+package modernity.generic.item;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;

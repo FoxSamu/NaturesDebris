@@ -7,7 +7,7 @@
  * Date: 6 - 11 - 2019
  */
 
-package modernity.api.util;
+package modernity.generic.util;
 
 public enum EMDDimension {
     SURFACE,

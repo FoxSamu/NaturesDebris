@@ -7,7 +7,7 @@
  * Date: 7 - 3 - 2019
  */
 
-package modernity.api.event;
+package modernity.generic.event;
 
 import net.minecraftforge.eventbus.api.Cancelable;
 import net.minecraftforge.eventbus.api.Event;

@@ -7,7 +7,7 @@
  * Date: 9 - 1 - 2019
  */
 
-package modernity.api.block.fluid;
+package modernity.generic.block.fluid;
 
 import net.minecraft.item.Item;
 

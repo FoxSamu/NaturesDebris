@@ -7,7 +7,7 @@
  * Date: 6 - 26 - 2019
  */
 
-package modernity.api.block.fluid;
+package modernity.generic.block.fluid;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

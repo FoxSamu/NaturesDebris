@@ -7,7 +7,7 @@
  * Date: 6 - 11 - 2019
  */
 
-package modernity.api.util;
+package modernity.generic.util;
 
 import modernity.common.fluid.MDFluids;
 import net.minecraft.fluid.Fluids;

@@ -7,7 +7,7 @@
  * Date: 6 - 16 - 2019
  */
 
-package modernity.api.util;
+package modernity.generic.util;
 
 public class IntArrays {
     public static int[] add( int[] arr, int value ) {

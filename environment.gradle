@@ -1,0 +1,65 @@
+// @formatter:off
+version                     = getVariable( "modernity.version" )
+group                       = getVariable( "modernity.group" )
+archivesBaseName            = getVariable( "modernity.modname" )
+
+sourceCompatibility                         \
+    = targetCompatibility                   \
+    = tasks.compileJava.sourceCompatibility \
+    = tasks.compileJava.targetCompatibility \
+    = '1.8'
+
+ext {
+    SYSENV          = System.getenv()
+    modid           = getVariable( "modernity.modname" )
+    versionName     = getVariable( "modernity.version.name" )
+    isIDE           = false // Boolean.parseBoolean( getVariable( "modernity.ide" ) )
+
+    // Make sure you have these properties declared in your computer's gradle.properties file.
+    // It may be any token, as long as that token has the read:packages permission granted.
+    gprUser         = getVariable( "gprUser" )
+    gprKey          = getVariable( "gprKey" )
+}
+
+def canJarBeSigned() {
+    return getVariable( 'mdKeyStore' ) != null && !project.ext.isIDE
+}
+
+// Returns the public fingerprint, may be empty ("")
+def getProjectFingerprint() {
+    if( canJarBeSigned() ) {
+        return getVariable( 'mdSignSHA1' ).replaceAll( ':', '' ).toLowerCase()
+    }
+    return ''
+}
+
+// Attempts to get a project variable and if none is found it tries to read from a system environment variable
+String getVariable( String key ) {
+    return rootProject.hasProperty( key ) ? rootProject.property( key ) : project.ext.SYSENV.containsKey( key ) ? project.ext.SYSENV[ key ] : System.getProperty( key )
+}
+
+// Signs a jar file
+def sign( File jar ) {
+    if( canJarBeSigned() ) {
+        ant.signjar(
+            destDir:   "${ jar.parentFile }",
+            jar:       "${ jar }",
+            alias:     getVariable( 'mdKeyStoreAlias' ),
+            storetype: "jks",
+            keystore:  getVariable( "mdKeyStore" ),
+            storepass: getVariable( 'mdKeyStorePass' ),
+            keypass:   getVariable( 'mdKeyStoreKeyPass' ),
+            verbose:   true,
+            preservelastmodified: "true"
+        )
+        println "Jar signed: ${ jar }"
+    }
+    else {
+        println "No keystore property found, jar will not be signed"
+    }
+}
+
+project.ext.getVariable = { String key -> return getVariable( key ) }
+project.ext.canJarBeSigned = { return canJarBeSigned() }
+project.ext.getProjectFingerprint = { return getProjectFingerprint() }
+project.ext.sign = { File jar -> return sign( jar ) }
