@@ -21,11 +21,20 @@ The mod is currently in beta phase. There is enough content to play with but thi
 ## Contact and Info
 The Modernity has a [Discord server](https://discord.gg/YvyzTFf) which is currently the main place of communication. Here you can contact the authors directly, get in contact with others who like the Modernity, share your experiences and follow the development.
 
-For issues, you can reference the [issue tracker](https://github.com/RedGalaxyDev/TheModernity/issues). For information about in-game content, see (and feel free to edit) the [wiki on Wikia](https://the-modernity.fandom.com/). For information about development related things, see the [wiki on GitHub](https://github.com/RedGalaxyDev/TheModernity/wiki). For legal information, see the [Terms and Conditions](https://github.com/RedGalaxyDev/TheModernity/wiki/Terms-and-Conditions) or the [Privacy Statement](https://github.com/RedGalaxyDev/TheModernity/wiki/Privacy-Statement).
+For issues, you can reference the [issue tracker](https://github.com/RedGalaxyDev/TheModernity/issues). For information about in-game content, see (and feel free to edit) the [wiki on Wikia](https://the-modernity.fandom.com/). For information about development related things, see the [wiki on GitHub](https://github.com/RedGalaxyDev/TheModernity/wiki).
 
 ## Contribute?
 Bugs may be fixed using pull requests, but we don't accept pull request that add new features (except translations).
 More information about contributing can be found [here](https://github.com/RedGalaxyDev/TheModernity/wiki/Contributing).
+
+## Legal
+For legal information, see the [Terms and Conditions](https://github.com/RedGalaxyDev/TheModernity/wiki/Terms-and-Conditions) or the [Privacy Statement](https://github.com/RedGalaxyDev/TheModernity/wiki/Privacy-Statement).
+
+If you notice any infringement of the terms and conditions, PLEASE LET US KNOW!!! 
+
+- Download links via AdFly or any other link shortener that raises money upon link usage are an infringement
+- Illegal distribution of this mod is an infringement (websites that provide download links must refer you to an official download page, which is either GitHub or CurseForge).
+  - Sharing a jar file locally with your friends is allowed, don't worry
 
 ## Credits
 **Project Leader**: [RedGalaxySW](https://github.com/RedGalaxySW)<br>
