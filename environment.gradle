@@ -13,7 +13,7 @@ ext {
     SYSENV          = System.getenv()
     modid           = getVariable( "modernity.modname" )
     versionName     = getVariable( "modernity.version.name" )
-    isIDE           = false // Boolean.parseBoolean( getVariable( "modernity.ide" ) )
+    isIDE           = isIDE()
 
     // Make sure you have these properties declared in your computer's gradle.properties file.
     // It may be any token, as long as that token has the read:packages permission granted.
@@ -36,6 +36,12 @@ def getProjectFingerprint() {
 // Attempts to get a project variable and if none is found it tries to read from a system environment variable
 String getVariable( String key ) {
     return rootProject.hasProperty( key ) ? rootProject.property( key ) : project.ext.SYSENV.containsKey( key ) ? project.ext.SYSENV[ key ] : System.getProperty( key )
+}
+
+boolean isIDE() {
+    return project.ext.SYSENV.containsKey( "IDE" )
+           ? Boolean.parseBoolean( project.ext.SYSENV[ "IDE" ] as String )
+           : true
 }
 
 // Signs a jar file

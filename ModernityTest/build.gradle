@@ -10,5 +10,13 @@ dependencies {
     }
 }
 
+archivesBaseName = project.ext.getVariable( "modernity.testname" )
+
 project.ext.implName = "The Modernity Test"
 project.ext.isIDE = true
+
+task signJar( dependsOn: 'reobfJar' ) {
+    doLast {
+        project.ext.sign( jar.archivePath )
+    }
+}

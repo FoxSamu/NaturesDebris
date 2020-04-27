@@ -1,7 +1,9 @@
 dependencies {
-    compile( project( ':ModernityAPI' ) ) {
+    embed( project( ':ModernityAPI' ) ) {
         transitive false
     }
 }
+
+archivesBaseName = project.ext.getVariable( "modernity.corename" )
 
 project.ext.implName = "The Modernity Core"

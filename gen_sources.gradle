@@ -1,13 +1,13 @@
 task generateSources( type: Copy ) {
     doFirst {
-        delete "$buildDir/generated-src"
+        delete "$buildDir/generatedSrc"
     }
     outputs.upToDateWhen { false }
 
     from( 'src/main/java' ) {
         exclude 'runs/**'
     }
-    into "$buildDir/generated-src"
+    into "$buildDir/generatedSrc"
     filter { line ->
         line.replaceAll( 'DynamicConstants\\.IDE', "$project.isIDE" )
             .replaceAll( 'DynamicConstants\\.SIGNED', "${ project.canJarBeSigned() && !project.isIDE }" )
@@ -44,6 +44,6 @@ processResources {
 }
 
 compileJava {
-    setSource( "$buildDir/generated-src" )
+    setSource( "$buildDir/generatedSrc" )
     dependsOn generateSources
 }
