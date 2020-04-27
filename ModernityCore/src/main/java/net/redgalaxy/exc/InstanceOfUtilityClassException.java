@@ -1,9 +1,8 @@
 /*
- * Copyright (c) 2019 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy & contributors
  * All rights reserved. Do not distribute.
  *
- * Date:   12 - 15 - 2019
- * Author: rgsw
+ * For a full license, see LICENSE.txt
  */
 
 package net.redgalaxy.exc;

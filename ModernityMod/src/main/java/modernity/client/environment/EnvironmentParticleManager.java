@@ -1,9 +1,8 @@
 /*
- * Copyright (c) 2020 RedGalaxy
+ * Copyright (c) 2020 RedGalaxy & contributors
  * All rights reserved. Do not distribute.
  *
- * Date:   03 - 14 - 2020
- * Author: rgsw
+ * For a full license, see LICENSE.txt
  */
 
 package modernity.client.environment;

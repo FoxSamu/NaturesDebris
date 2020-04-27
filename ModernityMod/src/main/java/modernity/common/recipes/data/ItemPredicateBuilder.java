@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2020 RedGalaxy & contributors
+ * All rights reserved. Do not distribute.
+ *
+ * For a full license, see LICENSE.txt
+ */
+
 package modernity.common.recipes.data;
 
 import com.google.common.collect.Lists;
