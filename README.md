@@ -30,7 +30,7 @@ Features will include (some are not yet implemented):
 - Lots of new mechanics
 - And so much more...
 
-Download from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/the-modernity) or [GitHub](https://github.com/RedGalaxyDev/NaturesDebris/releases)
+Download from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/natures-debris) or [GitHub](https://github.com/RedGalaxyDev/NaturesDebris/releases)
 
 ## In Development
 The mod is currently in beta phase. There is enough content to play with but things are still incomplete and may not work like expected. The mod is available as build on GitHub and CurseForge...
