@@ -9,9 +9,11 @@ TODO:
 
 ---
 
-**The Modernity is being renamed to Nature's Debris!!! It can be a bit confusing, as in the current stages it has two names. Remember: Nature's Debris is already the official name, but The Modernity may still refer to this mod. I strongly encourage everyone updating the name of the mod whereever they have it as soon as possible, AS THERE WILL EVENTUALLY BE A NEW MOD ASSIGNED TO THE OLD NAME! _PLEASE DO THIS TO AVOID CONFUSION!!!_<br>
+**Nature's Debris is being renamed from it's old name 'The Modernity'!!! It can be a bit confusing, as in the current stages it has two names. Remember: Nature's Debris is already the official name, but The Modernity may still refer to this mod. I strongly encourage everyone updating the name of the mod whereever they have it as soon as possible, AS THERE WILL EVENTUALLY BE A NEW MOD ASSIGNED TO THE OLD NAME! _PLEASE DO THIS TO AVOID CONFUSION!!!_<br>
 I'm updating all the names where I can as soon as I can, and it might cause some things not to work for a while. The currently released versions will persist under the old name but get archived as soon as I release a new update.<br>
-More on the rename later, and I'm very sorry if I already confused you with this: I'm ready to discuss all your points and answer all your questions on [Discord](https://discord.gg/YvyzTFf).<br><br>Thanks!**
+More on the rename later, and I'm very sorry if I already confused you with this: I'm ready to discuss all your points and answer all your questions on [Discord](https://discord.gg/YvyzTFf).**
+
+**Thanks!**
 
 ---
 
