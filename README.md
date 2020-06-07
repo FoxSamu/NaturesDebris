@@ -13,6 +13,8 @@ TODO:
 I'm updating all the names where I can as soon as I can, and it might cause some things not to work for a while. The currently released versions will persist under the old name but get archived as soon as I release a new update.<br>
 More on the rename later, and I'm very sorry if I already confused you with this: I'm ready to discuss all your points and answer all your questions on [Discord](https://discord.gg/YvyzTFf).**
 
+**Please open an issue when you come across an old name or link.**
+
 **Thanks!**
 
 ---
