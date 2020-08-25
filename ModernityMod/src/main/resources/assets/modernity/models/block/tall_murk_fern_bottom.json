@@ -1,7 +1,0 @@
-{
-  "parent": "block/tinted_cross",
-  "textures": {
-    "cross": "modernity:block/tall_murk_fern_bottom",
-    "particle": "modernity:block/tall_murk_fern_bottom"
-  }
-}

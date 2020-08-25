@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "side": "modernity:block/limestone",
-    "top": "modernity:block/limestone",
-    "bottom": "modernity:block/limestone"
-  }
-}

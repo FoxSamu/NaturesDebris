@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "side": "modernity:block/blackwood_log",
-    "end": "modernity:block/blackwood_log_top"
-  }
-}

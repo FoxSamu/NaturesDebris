@@ -5,10 +5,10 @@
  * For a full license, see LICENSE.txt
  */
 
-rootProject.name = 'TheModernity'
+rootProject.name = 'NaturesDebris'
 
 include 'IOLib'
-include 'ModernityAPI'
-include 'ModernityCore'
-include 'ModernityMod'
-include 'ModernityTest'
+include 'NaturesDebrisAPI'
+include 'NaturesDebrisCore'
+include 'NaturesDebrisMod'
+include 'NaturesDebrisTest'

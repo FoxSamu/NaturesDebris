@@ -1,0 +1,38 @@
+/*
+ * Copyright (c) 2020 RedGalaxy & contributors
+ * All rights reserved. Do not distribute.
+ *
+ * For a full license, see LICENSE.txt
+ */
+
+dependencies {
+    embed( project( ':NaturesDebrisAPI' ) ) {
+        transitive false
+    }
+    embed( project( ':NaturesDebrisCore' ) ) {
+        transitive false
+    }
+}
+
+apply from: 'universal.gradle'
+apply from: 'client.gradle'
+apply from: 'server.gradle'
+
+project.ext.implName = "Nature's Debris"
+
+build {
+    dependsOn 'signJar'
+    dependsOn 'signClientJar'
+    dependsOn 'signServerJar'
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs += "src/generated/resources"
+        }
+    }
+    old {
+
+    }
+}

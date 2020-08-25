@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "modernity:smooth_darkrock"
-  },
-  "result": "modernity:darkrock_pillar",
-  "count": 1
-}

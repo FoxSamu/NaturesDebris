@@ -1,7 +1,0 @@
-{
-  "parent": "block/template_glass_pane_side",
-  "textures": {
-    "pane": "modernity:block/murky_glass",
-    "edge": "modernity:block/murky_glass_pane_side"
-  }
-}

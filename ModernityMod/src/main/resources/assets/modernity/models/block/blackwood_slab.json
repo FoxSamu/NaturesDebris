@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "side": "modernity:block/blackwood_planks",
-    "top": "modernity:block/blackwood_planks",
-    "bottom": "modernity:block/blackwood_planks"
-  }
-}

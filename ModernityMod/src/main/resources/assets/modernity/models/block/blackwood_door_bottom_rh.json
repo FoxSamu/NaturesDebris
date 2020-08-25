@@ -1,7 +1,0 @@
-{
-  "parent": "block/door_bottom_rh",
-  "textures": {
-    "top": "modernity:block/blackwood_door_top",
-    "bottom": "modernity:block/blackwood_door_bottom"
-  }
-}

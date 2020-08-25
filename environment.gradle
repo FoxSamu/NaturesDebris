@@ -6,9 +6,9 @@
  */
 
 // @formatter:off
-version                     = getVariable( "modernity.version" )
-group                       = getVariable( "modernity.group" )
-archivesBaseName            = getVariable( "modernity.modname" )
+version                     = getVariable("natures.debris.version")
+group                       = getVariable("natures.debris.group")
+archivesBaseName            = getVariable("natures.debris.modname")
 
 sourceCompatibility                         \
     = targetCompatibility                   \
@@ -18,61 +18,64 @@ sourceCompatibility                         \
 
 ext {
     SYSENV          = System.getenv()
-    modid           = getVariable( "modernity.modname" )
-    versionName     = getVariable( "modernity.version.name" )
+    modid           = getVariable("natures.debris.modname")
+    versionName     = getVariable("natures.debris.version.name")
     isIDE           = isIDE()
 
     // Make sure you have these properties declared in your computer's gradle.properties file.
     // It may be any token, as long as that token has the read:packages permission granted.
-    gprUser         = getVariable( "gprUser" )
-    gprKey          = getVariable( "gprKey" )
+    gprUser         = getVariable("gprUser")
+    gprKey          = getVariable("gprKey")
 }
 
 def canJarBeSigned() {
-    return getVariable( 'mdKeyStore' ) != null && !project.ext.isIDE
+    return getVariable('ndKeyStore') != null && !project.ext.isIDE
 }
 
 // Returns the public fingerprint, may be empty ("")
 def getProjectFingerprint() {
-    if( canJarBeSigned() ) {
-        return getVariable( 'mdSignSHA1' ).replaceAll( ':', '' ).toLowerCase()
+    if (canJarBeSigned()) {
+        return getVariable('ndSignSHA1').replaceAll(':', '').toLowerCase()
     }
     return ''
 }
 
 // Attempts to get a project variable and if none is found it tries to read from a system environment variable
-String getVariable( String key ) {
-    return rootProject.hasProperty( key ) ? rootProject.property( key ) : project.ext.SYSENV.containsKey( key ) ? project.ext.SYSENV[ key ] : System.getProperty( key )
+String getVariable(String key) {
+    return rootProject.hasProperty(key)
+           ? rootProject.property(key)
+           : project.ext.SYSENV.containsKey(key)
+             ? project.ext.SYSENV[key]
+             : System.getProperty(key)
 }
 
 boolean isIDE() {
-    return project.ext.SYSENV.containsKey( "IDE" )
-           ? Boolean.parseBoolean( project.ext.SYSENV[ "IDE" ] as String )
+    return project.ext.SYSENV.containsKey("IDE")
+           ? Boolean.parseBoolean(project.ext.SYSENV["IDE"] as String)
            : true
 }
 
 // Signs a jar file
-def sign( File jar ) {
-    if( canJarBeSigned() ) {
+def sign(File jar) {
+    if (canJarBeSigned()) {
         ant.signjar(
-            destDir:   "${ jar.parentFile }",
-            jar:       "${ jar }",
-            alias:     getVariable( 'mdKeyStoreAlias' ),
+            destDir:   "${jar.parentFile}",
+            jar:       "${jar}",
+            alias:     getVariable('ndKeyStoreAlias'),
             storetype: "jks",
-            keystore:  getVariable( "mdKeyStore" ),
-            storepass: getVariable( 'mdKeyStorePass' ),
-            keypass:   getVariable( 'mdKeyStoreKeyPass' ),
+            keystore:  getVariable("ndKeyStore"),
+            storepass: getVariable('ndKeyStorePass'),
+            keypass:   getVariable('ndKeyStoreKeyPass'),
             verbose:   true,
             preservelastmodified: "true"
         )
-        println "Jar signed: ${ jar }"
-    }
-    else {
+        println "Jar signed: ${jar}"
+    } else {
         println "No keystore property found, jar will not be signed"
     }
 }
 
-project.ext.getVariable = { String key -> return getVariable( key ) }
+project.ext.getVariable = { String key -> return getVariable(key) }
 project.ext.canJarBeSigned = { return canJarBeSigned() }
 project.ext.getProjectFingerprint = { return getProjectFingerprint() }
-project.ext.sign = { File jar -> return sign( jar ) }
+project.ext.sign = { File jar -> return sign(jar) }

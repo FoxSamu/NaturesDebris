@@ -1,6 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "modernity:block/creep_of_the_moor"
-  }
-}

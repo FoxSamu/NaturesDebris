@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "modernity:murk_tiles"
-  },
-  "result": "modernity:murk_tiles_step",
-  "count": 4
-}

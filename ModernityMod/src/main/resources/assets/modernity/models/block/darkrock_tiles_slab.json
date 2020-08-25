@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "side": "modernity:block/darkrock_tiles",
-    "top": "modernity:block/darkrock_tiles",
-    "bottom": "modernity:block/darkrock_tiles"
-  }
-}

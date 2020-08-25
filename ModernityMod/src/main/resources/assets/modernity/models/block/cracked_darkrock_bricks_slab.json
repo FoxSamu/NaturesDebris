@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "side": "modernity:block/darkrock_bricks_cracked",
-    "top": "modernity:block/darkrock_bricks_cracked",
-    "bottom": "modernity:block/darkrock_bricks_cracked"
-  }
-}

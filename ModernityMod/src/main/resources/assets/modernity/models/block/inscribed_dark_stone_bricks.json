@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "side": "modernity:block/dark_stone_bricks_inscription",
-    "end": "modernity:block/dark_stone_bricks"
-  }
-}

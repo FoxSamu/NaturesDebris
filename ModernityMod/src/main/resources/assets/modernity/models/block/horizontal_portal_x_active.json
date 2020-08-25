@@ -1,9 +1,0 @@
-{
-  "parent": "modernity:block/abstract_bottom_top",
-  "textures": {
-    "up": "modernity:block/dark_stone_portal_frame_active",
-    "down": "modernity:block/dark_stone_bricks",
-    "particle": "modernity:block/dark_stone_bricks",
-    "side": "modernity:block/dark_stone_bricks"
-  }
-}

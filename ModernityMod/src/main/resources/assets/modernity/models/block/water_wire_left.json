@@ -1,6 +1,0 @@
-{
-  "parent": "modernity:block/abstract_water_wire_left",
-  "textures": {
-    "plant": "modernity:block/water_wire"
-  }
-}

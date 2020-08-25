@@ -1,6 +1,0 @@
-{
-  "parent": "modernity:item/branch_base",
-  "textures": {
-    "branch": "modernity:block/blackwood_branch"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "modernity:block/acid_dirt"
-  }
-}

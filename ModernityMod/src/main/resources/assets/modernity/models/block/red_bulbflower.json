@@ -1,6 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "modernity:block/red_bulbflower"
-  }
-}

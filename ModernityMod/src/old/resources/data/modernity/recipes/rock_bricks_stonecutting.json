@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "modernity:rock"
-  },
-  "result": "modernity:rock_bricks",
-  "count": 1
-}

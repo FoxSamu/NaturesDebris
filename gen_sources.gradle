@@ -5,22 +5,22 @@
  * For a full license, see LICENSE.txt
  */
 
-task generateSources( type: Copy ) {
+task generateSources(type: Copy) {
     doFirst {
         delete "$buildDir/generatedSrc"
     }
     outputs.upToDateWhen { false }
 
-    from( 'src/main/java' ) {
+    from('src/main/java') {
         exclude 'runs/**'
     }
     into "$buildDir/generatedSrc"
     filter { line ->
-        line.replaceAll( 'DynamicConstants\\.IDE', "$project.isIDE" )
-            .replaceAll( 'DynamicConstants\\.SIGNED', "${ project.canJarBeSigned() && !project.isIDE }" )
-            .replaceAll( 'DynamicConstants\\.VERSION_NAME', "\"${ project.version }\"" )
-            .replaceAll( 'DynamicConstants\\.VERSION', "\"${ project.version }\"" )
-            .replaceAll( 'DynamicConstants\\.SHA1', "\"${ project.isIDE ? "NO:FI:NG:ER:PR:IN:TA:VA:IL:AB:LE" : project.getProjectFingerprint() }\"" )
+        line.replaceAll('DynamicConstants\\.IDE', "$project.isIDE")
+            .replaceAll('DynamicConstants\\.SIGNED', "${project.canJarBeSigned() && !project.isIDE}")
+            .replaceAll('DynamicConstants\\.VERSION_NAME', "\"${project.version}\"")
+            .replaceAll('DynamicConstants\\.VERSION', "\"${project.version}\"")
+            .replaceAll('DynamicConstants\\.SHA1', "\"${project.isIDE ? "NO:FI:NG:ER:PR:IN:TA:VA:IL:AB:LE" : project.getProjectFingerprint()}\"")
     }
     doLast {
         println "Generated sources, IDE: $project.isIDE"
@@ -33,15 +33,15 @@ processResources {
     }
     // Import png and ogg apart from other files as we don't want lines to be
     // replaced in such files...
-    from( 'src/main/resources' ) {
+    from('src/main/resources') {
         exclude '**/*.png'
         exclude '**/*.ogg'
         filter { line ->
-            line.replaceAll( '\\$\\{version\\}', "$project.version" )
-                .replaceAll( '\\$\\{verName\\}', "$project.versionName" )
+            line.replaceAll('\\$\\{version\\}', "$project.version")
+                .replaceAll('\\$\\{verName\\}', "$project.versionName")
         }
     }
-    from( 'src/main/resources' ) {
+    from('src/main/resources') {
         include '**/*.png'
         include '**/*.ogg'
     }
@@ -51,6 +51,6 @@ processResources {
 }
 
 compileJava {
-    setSource( "$buildDir/generatedSrc" )
+    setSource("$buildDir/generatedSrc")
     dependsOn generateSources
 }

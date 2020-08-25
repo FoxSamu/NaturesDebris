@@ -1,9 +1,0 @@
-{
-  "parent": "modernity:block/abstract_bottom_top",
-  "textures": {
-    "up": "modernity:block/murky_humus_top",
-    "down": "modernity:block/murky_dirt",
-    "particle": "modernity:block/murky_humus_side",
-    "side": "modernity:block/murky_humus_side"
-  }
-}

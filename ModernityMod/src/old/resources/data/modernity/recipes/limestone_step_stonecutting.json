@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "modernity:limestone"
-  },
-  "result": "modernity:limestone_step",
-  "count": 4
-}

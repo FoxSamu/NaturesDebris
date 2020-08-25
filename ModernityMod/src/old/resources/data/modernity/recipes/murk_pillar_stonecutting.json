@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "modernity:murky_terracotta"
-  },
-  "result": "modernity:murk_pillar",
-  "count": 1
-}

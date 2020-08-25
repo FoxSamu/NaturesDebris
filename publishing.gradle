@@ -13,8 +13,8 @@ def reobfArtifact = artifacts.add( 'default', reobfFile ) {
 publishing {
     publications {
         mavenJava( MavenPublication ) {
-            groupId = 'redgalaxy'
-            artifactId = 'TheModernity'
+            groupId = 'net.shadew'
+            artifactId = 'NaturesDebris'
             version = "${ project.version }"
 
             artifact reobfArtifact
@@ -23,7 +23,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri( "https://maven.pkg.github.com/RedGalaxySW/TheModernity" )
+            url = uri( "https://maven.pkg.github.com/ShadewRG/NaturesDebris" )
             credentials {
                 username = gprUser.toLowerCase()
                 password = gprKey.toLowerCase()

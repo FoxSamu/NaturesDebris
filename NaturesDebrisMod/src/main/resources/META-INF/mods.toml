@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[31.2,)"
+issueTrackerURL = "https://github.com/RedGalaxyDev/TheModernity/issues"
+[[mods]]
+modId = "ndebris"
+version = "${version}"
+displayName = "Nature's Debris"
+updateJSONURL = "https://raw.githubusercontent.com/RedGalaxyDev/NaturesDebris/1.15.2/update.json"
+#displayURL="http://example.com/"
+#logoFile="examplemod.png"
+credits = "Copyright (c) 2020 Shadew and contributors."
+authors = "Shadew"
+description = """\
+    Nature's Debris is a dimension mod for the sandbox game Minecraft. The mod adds a fully fledged dimension into the
+    game, to explore and discover.
+
+    The Nature's Debris dimension is a dark and mysterious world where the ancient forces of nature fused into a \
+    network of natural intelligence... In this world live the remnants of ancient civilization that suffered from \
+    an angry curse that diffused all over the network, which now has the control over the complete world... Only a \
+    strong and tough person with a fresh soul could save the world.
+    """
+
+[[dependencies.ndebris]]
+modId = "forge"
+mandatory = false
+versionRange = "[31.2.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.ndebris]]
+modId = "minecraft"
+mandatory = false
+versionRange = "[1.15.2]"
+ordering = "NONE"
+side = "BOTH"

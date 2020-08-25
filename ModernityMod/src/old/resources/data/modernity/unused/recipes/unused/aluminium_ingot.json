@@ -1,9 +1,0 @@
-{
-  "type": "smelting",
-  "ingredient": {
-    "item": "modernity:aluminium_ore"
-  },
-  "result": "modernity:aluminium_ingot",
-  "experience": 0.3,
-  "cookingtime": 200
-}

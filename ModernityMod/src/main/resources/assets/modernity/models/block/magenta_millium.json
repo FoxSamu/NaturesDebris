@@ -1,7 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "modernity:block/millium_magenta",
-    "particle": "modernity:block/millium_magenta"
-  }
-}

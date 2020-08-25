@@ -1,7 +1,0 @@
-{
-  "parent": "block/door_top_rh",
-  "textures": {
-    "top": "modernity:block/inver_door_top",
-    "bottom": "modernity:block/inver_door_bottom"
-  }
-}

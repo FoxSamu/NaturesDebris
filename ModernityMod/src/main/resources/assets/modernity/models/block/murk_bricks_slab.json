@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "side": "modernity:block/murk_bricks",
-    "top": "modernity:block/murk_bricks",
-    "bottom": "modernity:block/murk_bricks"
-  }
-}

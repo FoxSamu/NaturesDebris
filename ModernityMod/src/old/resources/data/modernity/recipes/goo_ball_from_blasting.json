@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "modernity:goo_ore"
-  },
-  "result": "modernity:goo_ball",
-  "experience": 0.1,
-  "cookingtime": 100
-}

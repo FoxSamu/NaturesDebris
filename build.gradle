@@ -23,7 +23,7 @@ buildscript {
 
 allprojects {
     if( !( project.name.endsWith( "Noise" ) || project.name.endsWith( "IOLib" ) ) ) {
-        project.ext.implName = "The Modernity"
+        project.ext.implName = "Nature's Debris"
 
         apply plugin: 'net.minecraftforge.gradle'
         apply plugin: 'idea'
@@ -74,7 +74,7 @@ allprojects {
 
             internal project( ':IOLib' )
 
-            embed "net.shadew:ptg:1+"
+            embed "net.shadew:ptg:1.2.0"
 
             compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4:api")
             runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
@@ -96,12 +96,12 @@ allprojects {
             manifest {
                 attributes(
                     [
-                        "Specification-Title"     : "The Modernity",
-                        "Specification-Vendor"    : "Red Galaxy",
+                        "Specification-Title"     : "Nature's Debris",
+                        "Specification-Vendor"    : "Shadew",
                         "Specification-Version"   : "${ version }",
                         "Implementation-Title"    : project.ext.implName,
                         "Implementation-Version"  : "${ version }",
-                        "Implementation-Vendor"   : "Red Galaxy",
+                        "Implementation-Vendor"   : "Shadew",
                         "Implementation-Timestamp": new Date().format( "yyyy-MM-dd'T'HH:mm:ssZ" )
                     ]
                 )
@@ -123,9 +123,9 @@ allprojects {
 build {
     dependsOn.clear()
 
-    dependsOn ':ModernityAPI:build'
-    dependsOn ':ModernityMod:build'
-    dependsOn ':ModernityTest:build'
+    dependsOn ':NaturesDebrisAPI:build'
+    dependsOn ':NaturesDebrisMod:build'
+    dependsOn ':NaturesDebrisTest:build'
 }
 
 
@@ -139,7 +139,7 @@ minecraft {
             property 'forge.logging.console.level', 'info'
 
             mods {
-                modernity {
+                ndebris {
                     source sourceSets.main
                 }
             }
@@ -152,7 +152,7 @@ minecraft {
             property 'forge.logging.console.level', 'info'
 
             mods {
-                modernity {
+                ndebris {
                     source sourceSets.main
                 }
             }
@@ -164,10 +164,10 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'info'
 
-            args '--mod', 'modernity', '--all', '--output', file( 'src/generated/resources/' )
+            args '--mod', 'ndebris', '--all', '--output', file( 'src/generated/resources/' )
 
             mods {
-                modernity {
+                ndebris {
                     source sourceSets.main
                 }
             }
@@ -178,26 +178,26 @@ minecraft {
 
 // Depend on all subprojects
 dependencies {
-    internal( project( ':ModernityAPI' ) ) {
+    internal( project( ':NaturesDebrisAPI' ) ) {
         transitive false
     }
-    internal( project( ':ModernityCore' ) ) {
+    internal( project( ':NaturesDebrisCore' ) ) {
         transitive false
     }
-    internal( project( ':ModernityMod' ) ) {
+    internal( project( ':NaturesDebrisMod' ) ) {
         transitive false
     }
-    internal( project( ':ModernityTest' ) ) {
+    internal( project( ':NaturesDebrisTest' ) ) {
         transitive false
     }
 }
 
 // Collect classes and resources from other projects so that running includes all classes
 task collectClasses( type: Copy ) {
-    dependsOn ':ModernityAPI:classes'
-    dependsOn ':ModernityCore:classes'
-    dependsOn ':ModernityMod:classes'
-    dependsOn ':ModernityTest:classes'
+    dependsOn ':NaturesDebrisAPI:classes'
+    dependsOn ':NaturesDebrisCore:classes'
+    dependsOn ':NaturesDebrisMod:classes'
+    dependsOn ':NaturesDebrisTest:classes'
 
     outputs.upToDateWhen { t -> false }
 
@@ -224,10 +224,10 @@ compileJava {
 
 
 task collectResources( type: Copy ) {
-    dependsOn ':ModernityAPI:classes'
-    dependsOn ':ModernityCore:classes'
-    dependsOn ':ModernityMod:classes'
-    dependsOn ':ModernityTest:classes'
+    dependsOn ':NaturesDebrisAPI:classes'
+    dependsOn ':NaturesDebrisCore:classes'
+    dependsOn ':NaturesDebrisMod:classes'
+    dependsOn ':NaturesDebrisTest:classes'
 
     doFirst {
         delete "$buildDir/resources/main"
