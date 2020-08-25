@@ -14,8 +14,7 @@ import it.unimi.dsi.fastutil.shorts.Short2BooleanMap;
 import it.unimi.dsi.fastutil.shorts.Short2BooleanOpenHashMap;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectMap;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
-import modernity.generic.block.fluid.ICustomRenderFluid;
-import modernity.generic.block.fluid.IGaseousFluid;
+import modernity.api.util.math.MathUtil;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.FlowingFluid;
@@ -39,7 +38,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidAttributes;
-import net.redgalaxy.util.MathUtil;
 
 import java.util.Map;
 
@@ -100,17 +98,17 @@ public abstract class RegularFluid extends Fluid {
 
     @Override
     public Vec3d getFlow( IBlockReader world, BlockPos pos, IFluidState state ) {
-        double xflow = 0.0D;
-        double zflow = 0.0D;
+        double xflow = 0;
+        double zflow = 0;
 
         Vec3d normalizedFlow;
 
-        try( BlockPos.PooledMutable mpos = BlockPos.PooledMutable.retain() ) {
-            for( Direction facing : Direction.Plane.HORIZONTAL ) {
-                mpos.setPos( pos ).move( facing );
+        try(BlockPos.PooledMutable mpos = BlockPos.PooledMutable.retain()) {
+            for(Direction facing : Direction.Plane.HORIZONTAL) {
+                mpos.setPos(pos).move(facing);
 
-                IFluidState fluid = world.getFluidState( mpos );
-                if( canFlowTo( fluid ) ) {
+                IFluidState fluid = world.getFluidState(mpos);
+                if(canFlowTo(fluid)) {
                     float height = fluid.getHeight();
                     float flowWeight = 0;
 
@@ -746,16 +744,17 @@ public abstract class RegularFluid extends Fluid {
         if( fluid instanceof ICustomRenderFluid ) {
             still = ( (ICustomRenderFluid) fluid ).getStill();
             flow = ( (ICustomRenderFluid) fluid ).getFlowing();
-            overlay = ( (ICustomRenderFluid) fluid ).getOverlay();
+            overlay = ((ICustomRenderFluid) fluid).getOverlay();
         }
-        FluidAttributes.Builder builder = FluidAttributes.builder( still, flow );
-        if( overlay != null ) {
-            builder.overlay( overlay );
+        FluidAttributes.Builder builder = FluidAttributes.builder(still, flow);
+        if(overlay != null) {
+            builder.overlay(overlay);
         }
-        if( fluid instanceof IGaseousFluid ) {
+        if(fluid instanceof IGaseousFluid) {
             builder.gaseous();
         }
-        addAdditionalAttributes( builder );
-        return builder.build( fluid );
+        addAdditionalAttributes(builder);
+
+        return new MDFluidAttributes(builder, fluid);
     }
 }

@@ -7,10 +7,7 @@
 
 package modernity.common.fluid;
 
-import modernity.common.block.MDNatureBlocks;
-import modernity.common.item.MDItems;
-import modernity.generic.block.fluid.IAluminiumBucketTakeable;
-import modernity.generic.block.fluid.ICustomRenderFluid;
+import modernity.common.block.MDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluid;
@@ -38,7 +35,7 @@ import java.util.Random;
 /**
  * The Modernity variant on water. Murky water generates almost everywhere in the Modernity.
  */
-public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRenderFluid, IAluminiumBucketTakeable {
+public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRenderFluid { // , IAluminiumBucketTakeable
     @Override
     public Fluid getFlowingFluid() {
         return MDFluids.FLOWING_MURKY_WATER;
@@ -54,21 +51,20 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
         return Items.WATER_BUCKET;
     }
 
-    @Override
-    public Item getFilledAluminiumBucket() {
-//        return Items.WATER_BUCKET;
-        return MDItems.ALUMINIUM_WATER_BUCKET;
-    }
+//    @Override
+//    public Item getFilledAluminiumBucket() {
+//        return MDItems.ALUMINIUM_WATER_BUCKET;
+//    }
 
     @Override
-    @OnlyIn( Dist.CLIENT )
-    public void animateTick( World worldIn, BlockPos pos, IFluidState state, Random random ) {
-        if( ! state.isSource() && ! state.get( FALLING ) ) {
-            if( random.nextInt( 64 ) == 0 ) {
-                worldIn.playSound( (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false );
+    @OnlyIn(Dist.CLIENT)
+    public void animateTick(World worldIn, BlockPos pos, IFluidState state, Random random) {
+        if(!state.isSource() && !state.get(FALLING)) {
+            if(random.nextInt(64) == 0) {
+                worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
             }
-        } else if( random.nextInt( 10 ) == 0 ) {
-            worldIn.addParticle( ParticleTypes.UNDERWATER, (float) pos.getX() + random.nextFloat(), (float) pos.getY() + random.nextFloat(), (float) pos.getZ() + random.nextFloat(), 0.0D, 0.0D, 0.0D );
+        } else if(random.nextInt(10) == 0) {
+            worldIn.addParticle(ParticleTypes.UNDERWATER, (float) pos.getX() + random.nextFloat(), (float) pos.getY() + random.nextFloat(), (float) pos.getZ() + random.nextFloat(), 0.0D, 0.0D, 0.0D);
         }
 
     }
@@ -100,12 +96,12 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
 
     @Override
     public BlockState getBlockState( IFluidState state ) {
-        return MDNatureBlocks.MURKY_WATER.getDefaultState().with( blockLevel, getLevelFromState( state ) );
+        return MDBlocks.MURKY_WATER.getDefaultState().with(blockLevel, getLevelFromState(state));
     }
 
     @Override
     public boolean isEquivalentTo( Fluid fluid ) {
-        return MDFluids.isWater( fluid );
+        return fluid instanceof MurkyWaterFluid;
     }
 
     @Override
@@ -144,13 +140,13 @@ public abstract class MurkyWaterFluid extends RegularFluid implements ICustomRen
 
     @Override
     public int getColor( IFluidState state, BlockPos pos, ILightReader world ) {
-        return 0; // TODO Colors
+        return 0xff253db8; // TODO Colors
 //        return ModernityClient.get().getWaterColors().getColor( world, pos );
     }
 
     @Override
     public int getDefaultColor() {
-        return 0; // TODO Colors
+        return 0xff253db8; // TODO Colors
 //        return ModernityClient.get().getWaterColors().getItemColor();
     }
 

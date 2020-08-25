@@ -7,7 +7,6 @@
 
 rootProject.name = 'TheModernity'
 
-include 'Noise'
 include 'IOLib'
 include 'ModernityAPI'
 include 'ModernityCore'

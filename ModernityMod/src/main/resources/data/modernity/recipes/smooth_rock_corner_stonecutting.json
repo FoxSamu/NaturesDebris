@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "modernity:smooth_rock"
-  },
-  "result": "modernity:smooth_rock_corner",
-  "count": 8
-}

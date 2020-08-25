@@ -28,10 +28,10 @@ final class ModernityHolder {
     static IModernity get() {
         if( ! found ) {
             try {
-                Class<?> cls = Class.forName( "modernity.ModernityBootstrap" );
-                Field field = cls.getField( "MODERNITY" );
-                modernity = (IModernity) field.get( null );
-            } catch( Exception exc ) {
+                Class<?> cls = Class.forName("modernity.ModernityBootstrap");
+                Field field = cls.getField("MODERNITY");
+                modernity = (IModernity) field.get(null);
+            } catch(Exception ignored) {
             }
             found = true;
         }

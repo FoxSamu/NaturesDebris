@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "modernity:smooth_rock"
-  },
-  "result": "modernity:chiseled_rock",
-  "count": 1
-}

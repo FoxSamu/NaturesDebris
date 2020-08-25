@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "modernity:darkrock_tiles"
-  },
-  "result": "modernity:darkrock_tiles_step",
-  "count": 4
-}

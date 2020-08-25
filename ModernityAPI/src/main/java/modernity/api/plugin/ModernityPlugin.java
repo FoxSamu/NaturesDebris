@@ -12,6 +12,8 @@
 
 package modernity.api.plugin;
 
+import modernity.api.Side;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -47,9 +49,4 @@ import java.lang.annotation.Target;
 public @interface ModernityPlugin {
     Side value() default Side.COMMON;
 
-    enum Side {
-        COMMON,
-        CLIENT,
-        SERVER
-    }
 }

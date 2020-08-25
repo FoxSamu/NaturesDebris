@@ -44,19 +44,20 @@ allprojects {
 
         repositories {
             mavenLocal()
+            mavenCentral()
             maven {
-                url uri( 'https://maven.pkg.github.com/RedGalaxySW/Noise' )
-                credentials {
-                }
+                name = "Progwml6 maven"
+                url = "https://dvs1.progwml6.com/files/maven/"
             }
             maven {
-                url uri( 'https://maven.pkg.github.com/RedGalaxySW/IOLib' )
-                credentials {
-                    // Make sure you have these properties declared in your computer's gradle.properties file.
-                    // It may be any token as long as that token has the read:packages permission granted.
-                    username = project.ext.gprUser
-                    password = project.ext.gprKey
-                }
+                name = "ModMaven"
+                url = "https://modmaven.k-4u.nl"
+            }
+            maven {
+                url "https://io.terraforged.com/repository/maven/"
+            }
+            flatDir {
+                dirs "$rootDir/dependencies"
             }
         }
 
@@ -69,10 +70,20 @@ allprojects {
         }
 
         dependencies {
-            minecraft 'net.minecraftforge:forge:1.15.2-31.1.0'
+            minecraft 'net.minecraftforge:forge:1.15.2-31.2.0'
 
-            internal project( ':Noise' )
             internal project( ':IOLib' )
+
+            embed "net.shadew:ptg:1+"
+
+            compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4:api")
+            runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
+
+            compileOnly "com.terraforged:TerraForgedAPI:1.15.2-0.0.1"
+            runtimeOnly fg.deobf("local:TerraForged:1.15.2-0.0.13")
+
+            compileOnly fg.deobf("local:BiomesOPlenty:1.15.2-10.0.0.366:api")
+            runtimeOnly fg.deobf("local:BiomesOPlenty:1.15.2-10.0.0.366:universal")
         }
 
         jar {
@@ -188,6 +199,13 @@ task collectClasses( type: Copy ) {
     dependsOn ':ModernityMod:classes'
     dependsOn ':ModernityTest:classes'
 
+    outputs.upToDateWhen { t -> false }
+
+    doFirst {
+        delete "$buildDir/classes/java/main"
+        file( "$buildDir/classes/java/main" ).mkdirs()
+    }
+
     configurations.collectMany {
         it.allDependencies
     }.findAll {
@@ -197,10 +215,10 @@ task collectClasses( type: Copy ) {
         from( "$dep.dependencyProject.buildDir/classes/java/main" )
     }
 
-    into( "build/classes/java/main" )
+    into( "$buildDir/classes/java/main" )
 }
 
-classes {
+compileJava {
     dependsOn 'collectClasses'
 }
 
@@ -211,6 +229,13 @@ task collectResources( type: Copy ) {
     dependsOn ':ModernityMod:classes'
     dependsOn ':ModernityTest:classes'
 
+    doFirst {
+        delete "$buildDir/resources/main"
+        file( "$buildDir/resources/main" ).mkdirs()
+    }
+
+    outputs.upToDateWhen { t -> false }
+
     configurations.collectMany {
         it.allDependencies
     }.findAll {
@@ -220,7 +245,7 @@ task collectResources( type: Copy ) {
         from( "$dep.dependencyProject.buildDir/resources/main" )
     }
 
-    into( "build/resources/main" )
+    into( "$buildDir/resources/main" )
 }
 
 processResources {
@@ -228,9 +253,9 @@ processResources {
 }
 
 
-
 if( project.ext.isIDE ) {
     println "Building for IDE"
-} else {
+}
+else {
     println "Building for production"
 }

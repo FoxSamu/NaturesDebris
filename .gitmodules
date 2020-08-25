@@ -1,7 +1,3 @@
-[submodule "Noise"]
-	path = Noise
-	url = https://github.com/RedGalaxySW/Noise
-
 [submodule "IOLib"]
 	path = IOLib
 	url = https://github.com/RedGalaxySW/IOLib

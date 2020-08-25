@@ -10,7 +10,6 @@ package modernity;
 import modernity.api.plugin.ILifecycleListener;
 import modernity.client.ModernityClient;
 import modernity.common.Modernity;
-import modernity.generic.MDInfo;
 import modernity.plugin.PluginManager;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -31,14 +30,15 @@ public class ModernityBootstrap {
     );
 
     public ModernityBootstrap() {
-        PluginManager.loadPlugins();
-        construct();
-        LOGGER.info( "The Modernity was initialized:" );
-        LOGGER.info( "- Dist:    {}", FMLEnvironment.dist );
-        LOGGER.info( "- Version: {}", MDInfo.VERSION );
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::loadComplete);
 
-        FMLJavaModLoadingContext.get().getModEventBus().addListener( this::setup );
-        FMLJavaModLoadingContext.get().getModEventBus().addListener( this::loadComplete );
+        PluginManager.loadPlugins();
+
+        construct();
+        LOGGER.info("The Modernity was initialized:");
+        LOGGER.info("- Dist:    {}", FMLEnvironment.dist);
+        LOGGER.info("- Version: {}", MDInfo.VERSION);
     }
 
     /**

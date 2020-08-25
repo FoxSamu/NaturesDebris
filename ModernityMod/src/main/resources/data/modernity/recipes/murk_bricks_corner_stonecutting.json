@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "modernity:murk_bricks"
-  },
-  "result": "modernity:murk_bricks_corner",
-  "count": 8
-}

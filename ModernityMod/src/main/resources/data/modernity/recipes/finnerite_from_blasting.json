@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "modernity:finnerite_ore"
-  },
-  "result": "modernity:finnerite",
-  "experience": 0.2,
-  "cookingtime": 100
-}

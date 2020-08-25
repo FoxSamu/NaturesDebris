@@ -9,10 +9,10 @@ package modernity.common.block.fluid;
 
 import com.google.common.collect.Lists;
 import modernity.common.fluid.RegularFluid;
-import modernity.generic.block.IModernityBucketPickupHandler;
-import modernity.generic.block.fluid.IModernityBucketTakeable;
-import modernity.generic.block.fluid.IVanillaBucketTakeable;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.IBucketPickupHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -38,8 +38,8 @@ import java.util.Random;
 /**
  * Describes a fluid wrapper block that allows the fluid being gaseous (inverse gravity) and custom flow quanta...
  */
-@SuppressWarnings( "deprecation" )
-public class RegularFluidBlock extends Block implements IBucketPickupHandler, IModernityBucketPickupHandler {
+@SuppressWarnings("deprecation")
+public class RegularFluidBlock extends Block implements IBucketPickupHandler { // , IModernityBucketPickupHandler
 
     // The fluid this block represents
     protected final RegularFluid fluid;
@@ -173,28 +173,28 @@ public class RegularFluidBlock extends Block implements IBucketPickupHandler, IM
 
     @Override
     public Fluid pickupFluid( IWorld world, BlockPos pos, BlockState state ) {
-        if( fluid instanceof IVanillaBucketTakeable && state.get( level ) == 0 ) { // Only pick up source blocks
-            world.setBlockState( pos, Blocks.AIR.getDefaultState(), 11 );
-            return fluid;
-        } else {
-            return Fluids.EMPTY;
-        }
+//        if( fluid instanceof IVanillaBucketTakeable && state.get( level ) == 0 ) { // Only pick up source blocks
+//            world.setBlockState( pos, Blocks.AIR.getDefaultState(), 11 );
+//            return fluid;
+//        } else {
+        return Fluids.EMPTY;
+//        }
     }
 
     @Override
-    public void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity ) {
-        if( this.fluid.isIn( FluidTags.LAVA ) ) {
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        if(this.fluid.isIn(FluidTags.LAVA)) {
             entity.setInLava();
         }
     }
 
-    @Override
-    public Fluid pickupFluidModernity( IWorld world, BlockPos pos, BlockState state ) {
-        if( fluid instanceof IModernityBucketTakeable && state.get( level ) == 0 ) { // Only pick up source blocks
-            world.setBlockState( pos, Blocks.AIR.getDefaultState(), 11 );
-            return fluid;
-        } else {
-            return Fluids.EMPTY;
-        }
-    }
+//    @Override
+//    public Fluid pickupFluidModernity( IWorld world, BlockPos pos, BlockState state ) {
+//        if( fluid instanceof IModernityBucketTakeable && state.get( level ) == 0 ) { // Only pick up source blocks
+//            world.setBlockState( pos, Blocks.AIR.getDefaultState(), 11 );
+//            return fluid;
+//        } else {
+//            return Fluids.EMPTY;
+//        }
+//    }
 }

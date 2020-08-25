@@ -7,6 +7,7 @@
 
 package modernity.plugin;
 
+import modernity.api.IModernity;
 import net.minecraftforge.api.distmarker.Dist;
 import org.objectweb.asm.Type;
 
@@ -25,10 +26,19 @@ class ASMPluginData {
 
     PluginHolder makeHolder() throws PluginException {
         try {
-            Class<?> cls = Class.forName( classType.getClassName() );
-            return new PluginHolder( cls );
-        } catch( ClassNotFoundException exc ) {
-            throw new PluginException( "Unable to find plugin class: " + classType.getClassName() );
+            Class<?> cls = Class.forName(classType.getClassName());
+            return new PluginHolder(cls);
+        } catch(ClassNotFoundException exc) {
+            throw new PluginException("Unable to find plugin class: " + classType.getClassName());
+        }
+    }
+
+    void registerEventSubscriber() throws Exception {
+        try {
+            Class<?> cls = Class.forName(classType.getClassName());
+            IModernity.eventBus().register(cls);
+        } catch(ClassNotFoundException exc) {
+            throw new Exception("Unable to find event subscriber class: " + classType.getClassName());
         }
     }
 }

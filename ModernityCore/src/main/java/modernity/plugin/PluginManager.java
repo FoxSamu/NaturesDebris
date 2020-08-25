@@ -10,6 +10,8 @@ package modernity.plugin;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import modernity.api.Side;
+import modernity.api.event.ModernityEventSubscriber;
 import modernity.api.plugin.ILifecycleListener;
 import modernity.api.plugin.ModernityPlugin;
 import net.minecraftforge.api.distmarker.Dist;
@@ -26,46 +28,62 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 public final class PluginManager {
-    private static final Logger LOGGER = LogManager.getLogger( "Modernity Plugin Manager" );
+    private static final Logger LOGGER = LogManager.getLogger("Modernity Plugin Manager");
 
     private static final Set<PluginHolder> PLUGINS = Sets.newHashSet();
     private static final Set<ASMPluginData> PLUGIN_ASM = Sets.newHashSet();
+    private static final Set<ASMPluginData> EVENT_SUB_ASM = Sets.newHashSet();
     private static List<ILifecycleListener> lifecycleListeners;
 
     private static final List<PluginException> PLUGIN_ERRORS = Lists.newArrayList();
 
-    private static final Type PLUGIN_ANNOTATION = Type.getType( ModernityPlugin.class );
-    private static final Type SIDE_TYPE = Type.getType( ModernityPlugin.Side.class );
+    private static final Type PLUGIN_ANNOTATION = Type.getType(ModernityPlugin.class);
+    private static final Type EVENT_SUB_ANNOTATION = Type.getType(ModernityEventSubscriber.class);
+    private static final Type SIDE_TYPE = Type.getType(Side.class);
+
 
     private PluginManager() {
     }
 
     /**
-     * Loads all Modernity plugins (classes annotated with {@link ModernityPlugin @ModernityPlugin}). This uses Forge's
-     * {@link ModFileScanData} to find annotated classes.
+     * Loads all Modernity plugins (classes annotated with {@link ModernityPlugin @ModernityPlugin}) and all Modernity
+     * event bus subscribers (classes annotated with {@link ModernityEventSubscriber @ModernityEventSubscriber}). This
+     * uses Forge's {@link ModFileScanData} to find annotated classes.
      */
     public static void loadPlugins() {
-        LOGGER.info( "Loading plugins..." );
+        LOGGER.info("Loading plugins...");
 
         // Search for ASM data
         List<ModFileScanData> scanData = ModList.get().getAllScanData();
-        for( ModFileScanData data : scanData ) {
-            analyze( data );
+        for(ModFileScanData data : scanData) {
+            analyze(data);
         }
 
-        // Load all necessary classes from ASM data
-        for( ASMPluginData data : PLUGIN_ASM ) {
+        // Subscribe all event subscribers
+        for(ASMPluginData data : EVENT_SUB_ASM) {
             try {
-                if( data.shouldLoad( FMLEnvironment.dist ) ) {
-                    PLUGINS.add( data.makeHolder() );
+                if(data.shouldLoad(FMLEnvironment.dist)) {
+                    data.registerEventSubscriber();
                 }
-            } catch( PluginException exc ) {
-                PLUGIN_ERRORS.add( exc );
+            } catch(Exception exc) {
+                LOGGER.error("Unable to create ModernityEventSubscriber: " + exc.getMessage());
             }
         }
 
-        // Clear this as we don't need these references anymore
+        // Load all necessary classes from ASM data
+        for(ASMPluginData data : PLUGIN_ASM) {
+            try {
+                if(data.shouldLoad(FMLEnvironment.dist)) {
+                    PLUGINS.add(data.makeHolder());
+                }
+            } catch(PluginException exc) {
+                PLUGIN_ERRORS.add(exc);
+            }
+        }
+
+        // Clear these as we don't need these memory references anymore (saves some memory)
         PLUGIN_ASM.clear();
+        EVENT_SUB_ASM.clear();
 
         // Instantiates all plugins queued for loading
         for( PluginHolder holder : PLUGINS ) {
@@ -135,12 +153,16 @@ public final class PluginManager {
         for( ModFileScanData.AnnotationData annotationData : annotations ) {
 
             if( annotationData.getTargetType() == ElementType.TYPE ) {
-                if( PLUGIN_ANNOTATION.equals( annotationData.getAnnotationType() ) ) {
-
-                    PLUGIN_ASM.add( new ASMPluginData(
+                if(PLUGIN_ANNOTATION.equals(annotationData.getAnnotationType())) {
+                    PLUGIN_ASM.add(new ASMPluginData(
                         annotationData.getClassType(),
-                        distFromAnotationValue( annotationData.getAnnotationData().get( "side" ) )
-                    ) );
+                        distFromAnotationValue(annotationData.getAnnotationData().get("side"))
+                    ));
+                } else if(EVENT_SUB_ANNOTATION.equals(annotationData.getAnnotationType())) {
+                    EVENT_SUB_ASM.add(new ASMPluginData(
+                        annotationData.getClassType(),
+                        distFromAnotationValue(annotationData.getAnnotationData().get("side"))
+                    ));
                 }
             }
 
@@ -148,10 +170,10 @@ public final class PluginManager {
     }
 
     /**
-     * Computes the dist from the ASM value of {@link ModernityPlugin#value}. Returns null for invalid or common dist.
-     * Given array should be a String array with two non-null strings.
+     * Computes the dist from the ASM value of {@link Side}. Returns null for invalid or common side. Given array should
+     * be a String array with two non-null strings.
      *
-     * @param value The ASM value of {@link ModernityPlugin#value}.
+     * @param value The ASM value of {@link Side}.
      * @return The side's {@link Dist}, or null for a common side.
      */
     private static Dist distFromAnotationValue( Object value ) {
