@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:smooth_rock"
+    }
+  ],
+  "result": {
+    "item": "modernity:polished_rock"
+  }
+}

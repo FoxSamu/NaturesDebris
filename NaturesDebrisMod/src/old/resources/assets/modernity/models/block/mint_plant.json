@@ -1,0 +1,7 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "modernity:block/mint_plant",
+    "particle": "modernity:block/mint_plant"
+  }
+}

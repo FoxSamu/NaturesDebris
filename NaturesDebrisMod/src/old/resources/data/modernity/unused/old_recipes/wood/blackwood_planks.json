@@ -1,0 +1,23 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    [
+      {
+        "item": "modernity:blackwood"
+      },
+      {
+        "item": "modernity:blackwood_log"
+      },
+      {
+        "item": "modernity:stripped_blackwood"
+      },
+      {
+        "item": "modernity:stripped_blackwood_log"
+      }
+    ]
+  ],
+  "result": {
+    "item": "modernity:blackwood_planks",
+    "count": 4
+  }
+}

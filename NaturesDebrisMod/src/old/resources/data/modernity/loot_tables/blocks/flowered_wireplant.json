@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "base",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:survives_explosion"
+                },
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "item": "minecraft:shears"
+                  }
+                }
+              ],
+              "name": "modernity:flowered_wireplant"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "modernity:plant_wire"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

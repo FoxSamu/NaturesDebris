@@ -1,0 +1,10 @@
+{
+  "parent": "modernity:block/abstract_grass",
+  "textures": {
+    "up": "modernity:block/murky_grass_block_top",
+    "down": "modernity:block/murky_dirt",
+    "particle": "modernity:block/murky_dirt",
+    "side": "modernity:block/murky_grass_block_side",
+    "overlay": "modernity:block/murky_grass_block_overlay"
+  }
+}

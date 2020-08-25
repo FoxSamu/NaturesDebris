@@ -1,0 +1,19 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "o",
+    "/"
+  ],
+  "key": {
+    "o": {
+      "item": "modernity:anthracite"
+    },
+    "/": {
+      "tag": "modernity:stick"
+    }
+  },
+  "result": {
+    "item": "modernity:anthracite_torch",
+    "count": 4
+  }
+}

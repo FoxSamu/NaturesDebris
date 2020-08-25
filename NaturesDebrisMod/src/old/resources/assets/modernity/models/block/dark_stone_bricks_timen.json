@@ -1,0 +1,7 @@
+{
+  "parent": "modernity:block/abstract_facing",
+  "textures": {
+    "side": "modernity:block/dark_stone_bricks",
+    "front": "modernity:block/dark_stone_bricks_timen"
+  }
+}

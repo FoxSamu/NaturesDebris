@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:cracked_darkrock_bricks"
+    }
+  },
+  "result": {
+    "item": "modernity:cracked_darkrock_bricks_stairs",
+    "count": 4
+  }
+}

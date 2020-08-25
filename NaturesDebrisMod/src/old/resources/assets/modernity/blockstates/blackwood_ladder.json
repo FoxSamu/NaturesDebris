@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "modernity:block/blackwood_ladder" },
+    "facing=east": { "model": "modernity:block/blackwood_ladder", "y": 90 },
+    "facing=south": { "model": "modernity:block/blackwood_ladder", "y": 180 },
+    "facing=west": { "model": "modernity:block/blackwood_ladder", "y": 270 }
+  }
+}

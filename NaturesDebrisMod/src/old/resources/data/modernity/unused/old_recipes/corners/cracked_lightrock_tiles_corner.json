@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "# #",
+    "   ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:cracked_lightrock_tiles"
+    }
+  },
+  "result": {
+    "item": "modernity:cracked_lightrock_tiles_corner",
+    "count": 32
+  }
+}

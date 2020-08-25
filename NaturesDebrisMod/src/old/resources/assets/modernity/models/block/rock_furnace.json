@@ -1,0 +1,9 @@
+{
+  "parent": "modernity:block/abstract_facing_column",
+  "textures": {
+    "side": "modernity:block/rock_furnace_side",
+    "top": "modernity:block/rock_furnace_top",
+    "bottom": "modernity:block/rock_furnace_bottom",
+    "front": "modernity:block/rock_furnace_front"
+  }
+}

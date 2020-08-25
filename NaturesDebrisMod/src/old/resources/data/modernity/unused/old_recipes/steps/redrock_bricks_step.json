@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "# ",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:redrock_bricks"
+    }
+  },
+  "result": {
+    "item": "modernity:redrock_bricks_step",
+    "count": 4
+  }
+}

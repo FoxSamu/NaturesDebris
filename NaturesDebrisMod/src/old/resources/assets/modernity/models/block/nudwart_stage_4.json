@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/square_cross",
+  "textures": {
+    "texture": "modernity:block/nudwart_stage_4"
+  }
+}

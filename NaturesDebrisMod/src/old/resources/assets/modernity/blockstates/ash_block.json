@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "modernity:block/ash_block"
+      },
+      {
+        "model": "modernity:block/ash_block",
+        "y": 90
+      },
+      {
+        "model": "modernity:block/ash_block",
+        "y": 180
+      },
+      {
+        "model": "modernity:block/ash_block",
+        "y": 270
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "type=root": {
+      "model": "modernity:block/murk_lavender_bottom"
+    },
+    "type=end": {
+      "model": "modernity:block/murk_lavender_top"
+    }
+  }
+}

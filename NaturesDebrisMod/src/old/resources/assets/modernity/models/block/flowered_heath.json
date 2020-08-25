@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/abstract_heath",
+  "textures": {
+    "heath": "modernity:block/flowered_heath"
+  }
+}

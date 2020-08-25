@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "item": "modernity:aluminium_ingot"
+    },
+    "title": {
+      "translate": "advancements.modernity.generic.metalized"
+    },
+    "description": {
+      "translate": "advancements.modernity.generic.metalized.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "modernity:generic/murkified_darkness",
+  "criteria": {
+    "get": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:aluminium_ingot"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["get"]
+  ]
+}

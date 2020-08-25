@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:finnerite_from_block"
+    ]
+  },
+  "criteria": {
+    "has_finnerite_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:finnerite_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:finnerite_from_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_finnerite_block",
+      "has_the_recipe"
+    ]
+  ]
+}

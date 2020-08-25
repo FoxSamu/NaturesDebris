@@ -1,0 +1,9 @@
+{
+  "parent": "modernity:block/abstract_facing_column",
+  "textures": {
+    "side": "modernity:block/inver_workbench_side",
+    "top": "modernity:block/inver_workbench_top",
+    "bottom": "modernity:block/inver_planks",
+    "front": "modernity:block/inver_workbench_front"
+  }
+}

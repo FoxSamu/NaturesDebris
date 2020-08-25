@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:ash_block"
+    }
+  ],
+  "result": {
+    "item": "modernity:ash",
+    "count": 9
+  }
+}

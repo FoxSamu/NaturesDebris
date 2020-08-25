@@ -1,0 +1,7 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "modernity:block/blackwood_sapling",
+    "particle": "modernity:block/blackwood_sapling"
+  }
+}

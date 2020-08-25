@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:murky_glass"
+    ]
+  },
+  "criteria": {
+    "has_murky_sand": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:murky_sand"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:murky_glass"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_murky_sand",
+      "has_the_recipe"
+    ]
+  ]
+}

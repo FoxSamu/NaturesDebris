@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:smooth_rock"
+    }
+  },
+  "result": {
+    "item": "modernity:smooth_rock_slab",
+    "count": 6
+  }
+}

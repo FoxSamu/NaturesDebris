@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "facing=west": { "model": "modernity:block/luminosite_torch_wall" },
+    "facing=north": { "model": "modernity:block/luminosite_torch_wall", "y": 90 },
+    "facing=east": { "model": "modernity:block/luminosite_torch_wall", "y": 180 },
+    "facing=south": { "model": "modernity:block/luminosite_torch_wall", "y": 270 },
+    "facing=down": { "model": "modernity:block/luminosite_torch" }
+  }
+}

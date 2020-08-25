@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:shade_blue"
+    }
+  ],
+  "result": {
+    "item": "modernity:shade_blue_flower",
+    "count": 2
+  }
+}

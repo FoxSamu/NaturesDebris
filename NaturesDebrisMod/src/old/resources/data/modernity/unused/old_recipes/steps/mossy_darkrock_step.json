@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "# ",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:mossy_darkrock"
+    }
+  },
+  "result": {
+    "item": "modernity:mossy_darkrock_step",
+    "count": 4
+  }
+}

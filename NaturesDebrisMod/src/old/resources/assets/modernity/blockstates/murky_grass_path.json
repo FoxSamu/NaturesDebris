@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "modernity:block/murky_grass_path"
+      },
+      {
+        "model": "modernity:block/murky_grass_path",
+        "y": 90
+      },
+      {
+        "model": "modernity:block/murky_grass_path",
+        "y": 180
+      },
+      {
+        "model": "modernity:block/murky_grass_path",
+        "y": 270
+      }
+    ]
+  }
+}

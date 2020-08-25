@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "item": "modernity:darkrock"
+    },
+    "title": {
+      "translate": "advancements.modernity.generic.murkified_darkness"
+    },
+    "description": {
+      "translate": "advancements.modernity.generic.murkified_darkness.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "modernity:generic/murky_world",
+  "criteria": {
+    "in_cave": {
+      "trigger": "modernity:in_cave",
+      "conditions": {
+        "dimension": "modernity:murk_surface"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "in_cave"
+    ]
+  ]
+}

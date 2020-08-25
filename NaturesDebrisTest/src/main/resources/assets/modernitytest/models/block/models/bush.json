@@ -1,0 +1,9 @@
+{
+  "parent": "block/block",
+  "loader": "modernity:bush",
+  "textures": {
+    "bush": "modernity:block/muxus_leaves"
+  },
+  "tintindex": -1,
+  "rounding": 3
+}

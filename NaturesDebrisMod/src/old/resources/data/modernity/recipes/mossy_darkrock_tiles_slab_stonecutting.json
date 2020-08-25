@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "modernity:mossy_darkrock_tiles"
+  },
+  "result": "modernity:mossy_darkrock_tiles_slab",
+  "count": 2
+}

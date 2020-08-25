@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "modernity:smooth_rock"
+  },
+  "result": "modernity:smooth_rock_slab",
+  "count": 2
+}

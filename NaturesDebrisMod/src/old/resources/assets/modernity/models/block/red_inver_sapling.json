@@ -1,0 +1,7 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "modernity:block/red_inver_sapling",
+    "particle": "modernity:block/red_inver_sapling"
+  }
+}

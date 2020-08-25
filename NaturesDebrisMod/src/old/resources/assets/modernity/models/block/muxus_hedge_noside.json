@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/abstract_hedge_noside",
+  "textures": {
+    "hedge": "modernity:block/muxus_leaves"
+  }
+}

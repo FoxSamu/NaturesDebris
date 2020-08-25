@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/outer_step",
+  "textures": {
+    "stairs": "modernity:block/murk_bricks"
+  }
+}

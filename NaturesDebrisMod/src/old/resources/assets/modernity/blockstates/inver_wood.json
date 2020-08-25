@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "modernity:block/inver_wood"
+    },
+    "axis=z": {
+      "model": "modernity:block/inver_wood", "x": 90
+    },
+    "axis=x": {
+      "model": "modernity:block/inver_wood", "x": 90, "y": 90
+    }
+  }
+}

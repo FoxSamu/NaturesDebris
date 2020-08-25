@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "end=false": {
+      "model": "modernity:block/hanging_moss"
+    },
+    "end=true": {
+      "model": "modernity:block/hanging_moss_end"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:iverite_block"
+    ]
+  },
+  "criteria": {
+    "has_iverite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:iverite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:iverite_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_iverite",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "# #",
+    "   ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:polished_lightrock"
+    }
+  },
+  "result": {
+    "item": "modernity:polished_lightrock_corner",
+    "count": 32
+  }
+}

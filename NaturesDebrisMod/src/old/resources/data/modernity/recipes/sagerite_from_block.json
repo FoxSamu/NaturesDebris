@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:sagerite_block"
+    }
+  ],
+  "result": {
+    "item": "modernity:sagerite",
+    "count": 9
+  }
+}

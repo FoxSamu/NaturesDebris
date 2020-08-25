@@ -1,0 +1,35 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "0": "modernity:block/dark_stone_portal_side",
+    "1": "modernity:block/dark_stone_portal_top",
+    "2": "modernity:block/dark_stone_bricks",
+    "3": "modernity:block/dark_stone_portal_eye_exhausted",
+    "particle": "modernity:block/dark_stone_portal_side"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 8, 16],
+      "faces": {
+        "north": { "uv": [0, 8, 16, 16], "texture": "#0" },
+        "east": { "uv": [0, 8, 16, 16], "texture": "#0" },
+        "south": { "uv": [0, 8, 16, 16], "texture": "#0" },
+        "west": { "uv": [0, 8, 16, 16], "texture": "#0" },
+        "up": { "uv": [0, 0, 16, 16], "texture": "#1" },
+        "down": { "uv": [0, 0, 16, 16], "texture": "#2" }
+      }
+    },
+    {
+      "from": [5, 8, 5],
+      "to": [11, 10, 11],
+      "faces": {
+        "north": { "uv": [5, 3, 11, 5], "rotation": 180, "texture": "#3" },
+        "east": { "uv": [11, 5, 13, 11], "rotation": 90, "texture": "#3" },
+        "south": { "uv": [5, 11, 11, 13], "texture": "#3" },
+        "west": { "uv": [3, 5, 5, 11], "rotation": 270, "texture": "#3" },
+        "up": { "uv": [5, 5, 11, 11], "texture": "#3" }
+      }
+    }
+  ]
+}

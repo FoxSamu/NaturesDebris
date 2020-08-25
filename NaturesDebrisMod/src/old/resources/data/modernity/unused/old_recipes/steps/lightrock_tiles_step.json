@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "# ",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:lightrock_tiles"
+    }
+  },
+  "result": {
+    "item": "modernity:lightrock_tiles_step",
+    "count": 4
+  }
+}

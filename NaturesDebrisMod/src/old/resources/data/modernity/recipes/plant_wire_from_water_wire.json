@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:water_wire"
+    }
+  ],
+  "result": {
+    "item": "modernity:plant_wire",
+    "count": 3
+  }
+}

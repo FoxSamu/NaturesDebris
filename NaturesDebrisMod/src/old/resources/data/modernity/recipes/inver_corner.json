@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "   ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:inver_planks"
+    }
+  },
+  "result": {
+    "item": "modernity:inver_corner",
+    "count": 16
+  }
+}

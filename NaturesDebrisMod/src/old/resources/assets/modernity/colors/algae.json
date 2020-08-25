@@ -1,0 +1,59 @@
+{
+  "heightmap": {
+    "type": "cave",
+    "low": -12,
+    "high": 0,
+    "above": {
+      "biomes": {
+        "#modernity:forest_like": {
+          "cellnoise": {
+            "a": [45, 69, 22],
+            "b": [22, 82, 44]
+          }
+        },
+        "#modernity:meadow_like": {
+          "cellnoise": {
+            "a": [65, 100, 32],
+            "b": [25, 110, 33]
+          }
+        },
+        "#modernity:moor_like": {
+          "cellnoise": {
+            "a": [32, 100, 42],
+            "b": [85, 99, 44]
+          }
+        },
+        "#modernity:swamp": {
+          "cellnoise": {
+            "a": [54, 71, 0],
+            "b": [25, 56, 2]
+          }
+        },
+        "#modernity:wetland": {
+          "cellnoise": {
+            "a": [78, 102, 0],
+            "b": [39, 87, 20]
+          }
+        },
+        "#modernity:lake": {
+          "cellnoise": {
+            "a": [44, 74, 0],
+            "b": [4, 46, 11]
+          }
+        },
+        "default|item": {
+          "cellnoise": {
+            "a": [65, 100, 32],
+            "b": [25, 110, 33]
+          }
+        }
+      }
+    },
+    "below": {
+      "cellnoise": {
+        "a": [54, 71, 0],
+        "b": [6, 46, 29]
+      }
+    }
+  }
+}

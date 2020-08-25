@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "leather"
+    },
+    "title": {
+      "translate": "advancements.modernity.generic.moo_dernity"
+    },
+    "description": {
+      "translate": "advancements.modernity.generic.moo_dernity.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "modernity:generic/murky_world",
+  "criteria": {
+    "kill_cow": {
+      "trigger": "player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "cow",
+          "location": {
+            "dimension": "murk_surface"
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_cow"
+    ]
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "mmm",
+    "m m"
+  ],
+  "key": {
+    "m": {
+      "item": "modernity:aluminium_ingot"
+    }
+  },
+  "result": {
+    "item": "modernity:aluminium_helmet"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "modernity:cracked_darkrock_bricks"
+  },
+  "result": "modernity:cracked_darkrock_bricks_wall",
+  "count": 1
+}

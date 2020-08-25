@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "modernity:block/asphalt_concrete"
+      },
+      {
+        "model": "modernity:block/asphalt_concrete",
+        "y": 90
+      },
+      {
+        "model": "modernity:block/asphalt_concrete",
+        "y": 180
+      },
+      {
+        "model": "modernity:block/asphalt_concrete",
+        "y": 270
+      }
+    ]
+  }
+}

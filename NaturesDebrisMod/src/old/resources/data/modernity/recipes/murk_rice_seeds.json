@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "modernity:murk_rice"
+    }
+  ],
+  "result": {
+    "item": "modernity:murk_rice_seeds",
+    "count": 3
+  }
+}

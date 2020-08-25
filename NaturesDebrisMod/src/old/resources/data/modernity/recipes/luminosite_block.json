@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:luminosite_shards"
+    }
+  },
+  "result": {
+    "item": "modernity:luminosite_block"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "item": "modernity:asphalt_concrete"
+    },
+    "title": {
+      "translate": "advancements.modernity.generic.personal_highway"
+    },
+    "description": {
+      "translate": "advancements.modernity.generic.personal_highway.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "modernity:generic/murky_world",
+  "criteria": {
+    "get": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:asphalt_concrete"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["get"]
+  ]
+}

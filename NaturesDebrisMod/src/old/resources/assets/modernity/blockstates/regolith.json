@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "modernity:block/regolith"
+      },
+      {
+        "model": "modernity:block/regolith",
+        "y": 90
+      },
+      {
+        "model": "modernity:block/regolith",
+        "y": 180
+      },
+      {
+        "model": "modernity:block/regolith",
+        "y": 270
+      }
+    ]
+  }
+}

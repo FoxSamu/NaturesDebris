@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "modernity:block/blackwood_workbench",
+      "y": 0,
+      "uvlock": true
+    },
+    "facing=south": {
+      "model": "modernity:block/blackwood_workbench",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east": {
+      "model": "modernity:block/blackwood_workbench",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west": {
+      "model": "modernity:block/blackwood_workbench",
+      "y": 270,
+      "uvlock": true
+    }
+  }
+}

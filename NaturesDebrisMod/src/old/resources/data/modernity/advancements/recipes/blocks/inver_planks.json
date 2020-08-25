@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:inver_planks"
+    ]
+  },
+  "criteria": {
+    "has_logs/inver_logs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "modernity:logs/inver_logs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:inver_planks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_logs/inver_logs",
+      "has_the_recipe"
+    ]
+  ]
+}

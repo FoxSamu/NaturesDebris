@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "side": "modernity:block/rock_mossy",
+    "top": "modernity:block/rock_mossy",
+    "bottom": "modernity:block/rock_mossy"
+  }
+}

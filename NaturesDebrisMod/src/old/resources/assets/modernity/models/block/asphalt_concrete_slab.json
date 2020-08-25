@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "side": "modernity:block/asphalt_concrete",
+    "top": "modernity:block/asphalt_concrete",
+    "bottom": "modernity:block/asphalt_concrete"
+  }
+}

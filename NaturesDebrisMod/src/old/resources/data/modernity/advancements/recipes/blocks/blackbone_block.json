@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "modernity:blackbone_block"
+    ]
+  },
+  "criteria": {
+    "has_blackbone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "modernity:blackbone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "modernity:blackbone_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blackbone",
+      "has_the_recipe"
+    ]
+  ]
+}

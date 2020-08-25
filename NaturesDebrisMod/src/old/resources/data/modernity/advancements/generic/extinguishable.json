@@ -1,0 +1,41 @@
+{
+  "display": {
+    "icon": {
+      "item": "modernity:extinguished_anthracite_torch"
+    },
+    "title": {
+      "translate": "advancements.modernity.generic.extinguishable"
+    },
+    "description": {
+      "translate": "advancements.modernity.generic.extinguishable.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "modernity:generic/murky_world",
+  "criteria": {
+    "murky_water": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "modernity:anthracite_torch",
+        "state": {
+          "waterlogged": "murky_water"
+        }
+      }
+    },
+    "water": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "modernity:anthracite_torch",
+        "state": {
+          "waterlogged": "water"
+        }
+      }
+    }
+  },
+  "requirements": [
+    ["murky_water", "water"]
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "type=double": {
+      "model": "$[full_name]"
+    },
+    "type=down": {
+      "model": "$[slab_name]"
+    },
+    "type=up": {
+      "model": "$[slab_name]",
+      "x": 180, "uvlock": true
+    },
+    "type=north": {
+      "model": "$[slab_name]",
+      "x": 270, "uvlock": true
+    },
+    "type=south": {
+      "model": "$[slab_name]",
+      "x": 90, "uvlock": true
+    },
+    "type=east": {
+      "model": "$[slab_name]",
+      "x": 270, "y": 90, "uvlock": true
+    },
+    "type=west": {
+      "model": "$[slab_name]",
+      "x": 90, "y": 90, "uvlock": true
+    }
+  }
+}

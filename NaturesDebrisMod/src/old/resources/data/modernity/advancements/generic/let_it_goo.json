@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "modernity:goo_ball"
+    },
+    "title": {
+      "translate": "advancements.modernity.generic.let_it_goo"
+    },
+    "description": {
+      "translate": "advancements.modernity.generic.let_it_goo.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "modernity:generic/murky_world",
+  "criteria": {
+    "hurt": {
+      "trigger": "minecraft:player_hurt_entity",
+      "conditions": {
+        "damage": {
+          "blocked": false,
+          "type": {
+            "direct_entity": {
+              "type": "modernity:goo_ball",
+              "nbt": "{\"bounced\": true}"
+            }
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    ["hurt"]
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "block/tinted_cross",
+  "textures": {
+    "cross": "modernity:block/murk_grass_top",
+    "particle": "modernity:block/murk_grass_top"
+  }
+}

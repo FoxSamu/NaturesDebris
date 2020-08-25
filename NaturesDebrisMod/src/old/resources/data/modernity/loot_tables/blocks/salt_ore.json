@@ -1,0 +1,83 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "base",
+      "rolls": {
+        "min": 2.0,
+        "max": 4.0,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "modernity:salt_crystal"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "modernity:salt_dust"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "name": "modernity:salt_nugget"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "enchantments": [
+                {
+                  "enchantment": "minecraft:silk_touch",
+                  "levels": {
+                    "min": 1
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:apply_bonus",
+          "enchantment": "minecraft:fortune",
+          "formula": "minecraft:binomial_with_bonus_count",
+          "parameters": {
+            "extra": 0,
+            "probability": 0.4
+          }
+        }
+      ]
+    },
+    {
+      "name": "silk_touch",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "modernity:salt_ore"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

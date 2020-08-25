@@ -1,0 +1,61 @@
+{
+  "textures": {
+    "particle": "#cross"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 8],
+      "to": [16, 16, 8],
+      "rotation": { "angle": 45, "axis": "x", "origin": [8, 8, 8], "rescale": true },
+      "faces": {
+        "north": { "uv": [0, 0, 16, 16], "texture": "#cross", "tintindex": 0 },
+        "south": { "uv": [0, 0, 16, 16], "texture": "#cross", "tintindex": 0 }
+      }
+    },
+    {
+      "from": [0, 0, 8],
+      "to": [16, 16, 8],
+      "rotation": { "angle": -45, "axis": "x", "origin": [8, 8, 8], "rescale": true },
+      "faces": {
+        "north": { "uv": [0, 0, 16, 16], "texture": "#cross", "tintindex": 0 },
+        "south": { "uv": [0, 0, 16, 16], "texture": "#cross", "tintindex": 0 }
+      }
+    },
+    {
+      "from": [0, 0, 8],
+      "to": [16, 16, 8],
+      "rotation": { "angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true },
+      "faces": {
+        "north": { "uv": [0, 0, 16, 16], "texture": "#cross", "tintindex": 0 },
+        "south": { "uv": [0, 0, 16, 16], "texture": "#cross", "tintindex": 0 }
+      }
+    },
+    {
+      "from": [8, 0, 0],
+      "to": [8, 16, 16],
+      "rotation": { "angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true },
+      "faces": {
+        "east": { "uv": [0, 0, 16, 16], "texture": "#cross", "tintindex": 0 },
+        "west": { "uv": [0, 0, 16, 16], "texture": "#cross", "tintindex": 0 }
+      }
+    },
+    {
+      "from": [8, 0, 0],
+      "to": [8, 16, 16],
+      "rotation": { "angle": -45, "axis": "z", "origin": [8, 8, 8], "rescale": true },
+      "faces": {
+        "east": { "uv": [0, 0, 16, 16], "rotation": 90, "texture": "#cross", "tintindex": 0 },
+        "west": { "uv": [0, 0, 16, 16], "rotation": 270, "texture": "#cross", "tintindex": 0 }
+      }
+    },
+    {
+      "from": [8, 0, 0],
+      "to": [8, 16, 16],
+      "rotation": { "angle": 45, "axis": "z", "origin": [8, 8, 8], "rescale": true },
+      "faces": {
+        "east": { "uv": [0, 0, 16, 16], "rotation": 90, "texture": "#cross", "tintindex": 0 },
+        "west": { "uv": [0, 0, 16, 16], "rotation": 270, "texture": "#cross", "tintindex": 0 }
+      }
+    }
+  ]
+}

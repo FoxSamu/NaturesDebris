@@ -1,0 +1,6 @@
+{
+  "parent": "block/fence_inventory",
+  "textures": {
+    "texture": "modernity:block/inver_planks"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/abstract_hedge_center",
+  "textures": {
+    "hedge": "modernity:block/inver_leaves"
+  }
+}

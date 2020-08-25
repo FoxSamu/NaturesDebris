@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "modernity:murk_tiles"
+    }
+  },
+  "result": {
+    "item": "modernity:murk_tiles_slab",
+    "count": 6
+  }
+}

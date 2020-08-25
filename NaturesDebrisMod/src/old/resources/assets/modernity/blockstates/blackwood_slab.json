@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "type=double": {
+      "model": "modernity:block/blackwood_planks"
+    },
+    "type=down": {
+      "model": "modernity:block/blackwood_slab"
+    },
+    "type=up": {
+      "model": "modernity:block/blackwood_slab",
+      "x": 180, "uvlock": true
+    },
+    "type=north": {
+      "model": "modernity:block/blackwood_slab",
+      "x": 270, "uvlock": true
+    },
+    "type=south": {
+      "model": "modernity:block/blackwood_slab",
+      "x": 90, "uvlock": true
+    },
+    "type=east": {
+      "model": "modernity:block/blackwood_slab",
+      "x": 270, "y": 90, "uvlock": true
+    },
+    "type=west": {
+      "model": "modernity:block/blackwood_slab",
+      "x": 90, "y": 90, "uvlock": true
+    }
+  }
+}

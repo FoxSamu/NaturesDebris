@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:block/flat",
+  "textures": {
+    "texture": "modernity:block/redwold"
+  }
+}

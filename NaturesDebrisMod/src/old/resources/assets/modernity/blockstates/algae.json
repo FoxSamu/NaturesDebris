@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "density=1": { "model": "modernity:block/algae_density_1" },
+    "density=2": { "model": "modernity:block/algae_density_2" },
+    "density=3": { "model": "modernity:block/algae_density_3" },
+    "density=4": { "model": "modernity:block/algae_density_4" },
+    "density=5": { "model": "modernity:block/algae_density_5" },
+    "density=6": { "model": "modernity:block/algae_density_6" },
+    "density=7": { "model": "modernity:block/algae_density_7" },
+    "density=8": { "model": "modernity:block/algae_density_8" },
+    "density=9": { "model": "modernity:block/algae_density_9" },
+    "density=10": { "model": "modernity:block/algae_density_10" },
+    "density=11": { "model": "modernity:block/algae_density_11" },
+    "density=12": { "model": "modernity:block/algae_density_12" },
+    "density=13": { "model": "modernity:block/algae_density_13" },
+    "density=14": { "model": "modernity:block/algae_density_14" },
+    "density=15": { "model": "modernity:block/algae_density_15" },
+    "density=16": { "model": "modernity:block/algae_density_16" }
+  }
+}

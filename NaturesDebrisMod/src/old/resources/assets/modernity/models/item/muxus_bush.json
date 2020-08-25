@@ -1,0 +1,6 @@
+{
+  "parent": "modernity:item/abstract_bush_item",
+  "textures": {
+    "texture": "modernity:block/muxus_leaves"
+  }
+}
