@@ -1,6 +1,7 @@
 package natures.debris.common.util;
 
 import io.netty.buffer.Unpooled;
+import natures.debris.common.command.NdDebugCommand;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public final class Hooks {
     public static void onSendPath(World world, MobEntity ent, @Nullable Path path, float maxDist) {
-        if (world instanceof ServerWorld && path != null) {
+        if (NdDebugCommand.sendMobPaths() && world instanceof ServerWorld && path != null) {
             PacketBuffer buf = new PacketBuffer(Unpooled.buffer());
             buf.writeInt(ent.getEntityId());
             buf.writeFloat(maxDist);

@@ -4,8 +4,10 @@ import natures.debris.NdInfo;
 import natures.debris.api.INaturesDebris;
 import natures.debris.api.INaturesDebrisInfo;
 import natures.debris.api.util.ISidedTickable;
+import natures.debris.common.handler.CommandRegistryHandler;
 import natures.debris.common.handler.RegistryHandler;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class NaturesDebris implements INaturesDebris {
@@ -22,6 +24,7 @@ public class NaturesDebris implements INaturesDebris {
 
     protected void registerEventListeners() {
         FMLJavaModLoadingContext.get().getModEventBus().register(new RegistryHandler());
+        MinecraftForge.EVENT_BUS.register(new CommandRegistryHandler());
     }
 
     @Override
