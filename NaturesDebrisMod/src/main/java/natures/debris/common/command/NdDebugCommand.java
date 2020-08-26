@@ -6,7 +6,7 @@ import net.minecraft.util.text.StringTextComponent;
 
 import static net.minecraft.command.Commands.*;
 
-public class NdDebugCommand {
+public final class NdDebugCommand {
     private static boolean sendMobPaths = false;
 
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
