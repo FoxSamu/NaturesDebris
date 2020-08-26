@@ -44,7 +44,12 @@ public final class NdInfo {
      * Boolean indicating we are running from the IDE. Unused, but planned for the {@code /mddebug} command. Injected by
      * gradle and otherwise true.
      */
-    public static final boolean IDE = DynamicConstants.IDE;
+    public static final boolean IDE = Boolean.parseBoolean(System.getProperty("natures.debris.ide", "false"));
+
+    /**
+     * Boolean indicating we are running the data generator.
+     */
+    public static final boolean DATAGEN = Boolean.parseBoolean(System.getProperty("natures.debris.datagen", "false"));
 
     /**
      * Boolean indicating the current JAR is signed, if there is any jar, and otherwise false. Unused, but planned for

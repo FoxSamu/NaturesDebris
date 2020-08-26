@@ -25,6 +25,7 @@ task serverJar(type: Jar) {
     appendix = "server"
 
     exclude( "natures/debris/client/**" )
+    exclude( "natures/debris/data/**" )
     exclude( "assets/**" )
 }
 

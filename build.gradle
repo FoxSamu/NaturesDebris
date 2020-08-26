@@ -22,7 +22,7 @@ buildscript {
 // ==================
 
 allprojects {
-    if( !( project.name.endsWith( "Noise" ) || project.name.endsWith( "IOLib" ) ) ) {
+    if( !( project.name.endsWith( "IOLib" ) ) ) {
         project.ext.implName = "Nature's Debris"
 
         apply plugin: 'net.minecraftforge.gradle'
@@ -137,6 +137,7 @@ minecraft {
 
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'info'
+            property 'natures.debris.ide', 'true'
 
             mods {
                 ndebris {
@@ -150,6 +151,7 @@ minecraft {
 
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'info'
+            property 'natures.debris.ide', 'true'
 
             mods {
                 ndebris {
@@ -163,8 +165,10 @@ minecraft {
 
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'info'
+            property 'natures.debris.ide', 'true'
+            property 'natures.debris.datagen', 'true'
 
-            args '--mod', 'ndebris', '--all', '--output', file( 'src/generated/resources/' )
+            args '--mod', 'ndebris', '--all', '--output', file( 'NaturesDebrisMod/src/generated/resources/' )
 
             mods {
                 ndebris {

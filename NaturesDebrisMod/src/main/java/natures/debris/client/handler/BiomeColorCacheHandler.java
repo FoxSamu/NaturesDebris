@@ -12,11 +12,8 @@ import java.util.List;
 public final class BiomeColorCacheHandler {
     private static final List<BiomeColorCache> CACHES = new ArrayList<>();
 
-    private BiomeColorCacheHandler() {
-    }
-
     @SubscribeEvent
-    public static void onWorldLoad(WorldEvent.Load load) {
+    public void onWorldLoad(WorldEvent.Load load) {
         if (load.getWorld() instanceof ClientWorld) {
             for (BiomeColorCache cache : CACHES) {
                 cache.reset();
@@ -25,7 +22,7 @@ public final class BiomeColorCacheHandler {
     }
 
     @SubscribeEvent
-    public static void onChunkLoad(ChunkEvent.Load load) {
+    public void onChunkLoad(ChunkEvent.Load load) {
         if (load.getWorld() instanceof ClientWorld) {
             for (BiomeColorCache cache : CACHES) {
                 cache.chunkLoad(load.getChunk().getPos());

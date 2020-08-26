@@ -26,7 +26,7 @@ public class Bootstrap {
     private static final Logger LOGGER = LogManager.getLogger("Nature's Debris Bootstrap");
 
     public static final NaturesDebris INSTANCE = DistExecutor.runForDist(
-        () -> NaturesDebrisClient::new,
+        () -> NaturesDebrisClient::make,
         () -> NaturesDebris::new
     );
 
@@ -69,7 +69,10 @@ public class Bootstrap {
         lifecyclePhase = LifecyclePhase.COMPLETING;
         INSTANCE.complete();
         PluginManager.getLifecycleListeners().forEach(listener -> listener.ndebrisLoaded(INSTANCE));
-        INSTANCE.setLoaded();
         lifecyclePhase = LifecyclePhase.LOADED;
+    }
+
+    public static LifecyclePhase getLifecyclePhase() {
+        return lifecyclePhase;
     }
 }

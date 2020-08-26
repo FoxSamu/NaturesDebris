@@ -17,16 +17,76 @@ import javax.annotation.Nonnull;
 @ObjectHolder("ndebris")
 public final class NdBlocks {
     public static final Block ROCK = inj();
+    public static final Block MOSSY_ROCK = inj();
+    public static final Block ROCK_BRICKS = inj();
+    public static final Block MOSSY_ROCK_BRICKS = inj();
+    public static final Block CRACKED_ROCK_BRICKS = inj();
+    public static final Block ROCK_TILES = inj();
+    public static final Block MOSSY_ROCK_TILES = inj();
+    public static final Block CRACKED_ROCK_TILES = inj();
+    public static final Block SMOOTH_ROCK = inj();
+    public static final Block POLISHED_ROCK = inj();
+
+    public static final Block DARKROCK = inj();
+    public static final Block MOSSY_DARKROCK = inj();
+    public static final Block DARKROCK_BRICKS = inj();
+    public static final Block MOSSY_DARKROCK_BRICKS = inj();
+    public static final Block CRACKED_DARKROCK_BRICKS = inj();
+    public static final Block DARKROCK_TILES = inj();
+    public static final Block MOSSY_DARKROCK_TILES = inj();
+    public static final Block CRACKED_DARKROCK_TILES = inj();
+    public static final Block SMOOTH_DARKROCK = inj();
+    public static final Block POLISHED_DARKROCK = inj();
 
     public static void register(IForgeRegistry<Block> registry) {
         registry.registerAll(
-            rock("rock", 1.5, 6, false)
+            rock("rock", 1.5, 6, false),
+            rock("mossy_rock", 1.5, 6, false),
+            rock("rock_bricks", 2, 6, false),
+            rock("mossy_rock_bricks", 2, 6, false),
+            rock("cracked_rock_bricks", 2, 6, false),
+            rock("rock_tiles", 2, 6, false),
+            rock("mossy_rock_tiles", 2, 6, false),
+            rock("cracked_rock_tiles", 2, 6, false),
+            rock("smooth_rock", 1.5, 6, false),
+            rock("polished_rock", 2, 6, false),
+
+            rock("darkrock", 1.5, 6, true),
+            rock("mossy_darkrock", 1.5, 6, true),
+            rock("darkrock_bricks", 2, 6, true),
+            rock("mossy_darkrock_bricks", 2, 6, true),
+            rock("cracked_darkrock_bricks", 2, 6, true),
+            rock("darkrock_tiles", 2, 6, true),
+            rock("mossy_darkrock_tiles", 2, 6, true),
+            rock("cracked_darkrock_tiles", 2, 6, true),
+            rock("smooth_darkrock", 1.5, 6, true),
+            rock("polished_darkrock", 2, 6, true)
         );
     }
 
     public static void registerItems(IForgeRegistry<Item> registry) {
         registry.registerAll(
-            item(ROCK, ItemGroup.BUILDING_BLOCKS)
+            item(ROCK, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_ROCK, ItemGroup.BUILDING_BLOCKS),
+            item(ROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_ROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
+            item(CRACKED_ROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
+            item(ROCK_TILES, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_ROCK_TILES, ItemGroup.BUILDING_BLOCKS),
+            item(CRACKED_ROCK_TILES, ItemGroup.BUILDING_BLOCKS),
+            item(SMOOTH_ROCK, ItemGroup.BUILDING_BLOCKS),
+            item(POLISHED_ROCK, ItemGroup.BUILDING_BLOCKS),
+
+            item(DARKROCK, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_DARKROCK, ItemGroup.BUILDING_BLOCKS),
+            item(DARKROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_DARKROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
+            item(CRACKED_DARKROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
+            item(DARKROCK_TILES, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_DARKROCK_TILES, ItemGroup.BUILDING_BLOCKS),
+            item(CRACKED_DARKROCK_TILES, ItemGroup.BUILDING_BLOCKS),
+            item(SMOOTH_DARKROCK, ItemGroup.BUILDING_BLOCKS),
+            item(POLISHED_DARKROCK, ItemGroup.BUILDING_BLOCKS)
         );
     }
 

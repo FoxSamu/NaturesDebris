@@ -17,5 +17,9 @@ public enum LifecyclePhase {
     CONSTRUCTING,
     SETTING_UP,
     COMPLETING,
-    LOADED
+    LOADED;
+
+    public static LifecyclePhase get() {
+        return APIDelegate.getLifecyclePhase();
+    }
 }

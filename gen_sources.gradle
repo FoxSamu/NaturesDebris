@@ -22,9 +22,6 @@ task generateSources(type: Copy) {
             .replaceAll('DynamicConstants\\.VERSION', "\"${project.version}\"")
             .replaceAll('DynamicConstants\\.SHA1', "\"${project.isIDE ? "NO:FI:NG:ER:PR:IN:TA:VA:IL:AB:LE" : project.getProjectFingerprint()}\"")
     }
-    doLast {
-        println "Generated sources, IDE: $project.isIDE"
-    }
 }
 
 processResources {
