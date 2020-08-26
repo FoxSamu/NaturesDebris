@@ -1,7 +1,22 @@
 {
   "variants": {
-    "": {
-      "model": "ndebris:block/cracked_darkrock_tiles"
-    }
+    "": [
+      {
+        "model": "ndebris:block/cracked_darkrock_tiles",
+        "weight": 32
+      },
+      {
+        "model": "ndebris:block/cracked_darkrock_tiles_alt_1",
+        "weight": 4
+      },
+      {
+        "model": "ndebris:block/cracked_darkrock_tiles_alt_2",
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_darkrock_tiles_alt_3",
+        "weight": 2
+      }
+    ]
   }
 }

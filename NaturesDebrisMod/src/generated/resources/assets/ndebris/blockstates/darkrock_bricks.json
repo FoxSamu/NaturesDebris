@@ -1,7 +1,18 @@
 {
   "variants": {
-    "": {
-      "model": "ndebris:block/darkrock_bricks"
-    }
+    "": [
+      {
+        "model": "ndebris:block/darkrock_bricks",
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/darkrock_bricks_alt_1",
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/darkrock_bricks_alt_2",
+        "weight": 2
+      }
+    ]
   }
 }

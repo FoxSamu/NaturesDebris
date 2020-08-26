@@ -1,7 +1,22 @@
 {
   "variants": {
-    "": {
-      "model": "ndebris:block/rock_tiles"
-    }
+    "": [
+      {
+        "model": "ndebris:block/rock_tiles",
+        "weight": 32
+      },
+      {
+        "model": "ndebris:block/rock_tiles_alt_1",
+        "weight": 4
+      },
+      {
+        "model": "ndebris:block/rock_tiles_alt_2",
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/rock_tiles_alt_3",
+        "weight": 2
+      }
+    ]
   }
 }

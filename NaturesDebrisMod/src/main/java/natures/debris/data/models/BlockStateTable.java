@@ -21,29 +21,38 @@ public final class BlockStateTable {
 
         register(NdBlocks.ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.MOSSY_ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
-        register(NdBlocks.ROCK_BRICKS, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
-        register(NdBlocks.MOSSY_ROCK_BRICKS, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
-        register(NdBlocks.CRACKED_ROCK_BRICKS, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
-        register(NdBlocks.ROCK_TILES, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
-        register(NdBlocks.MOSSY_ROCK_TILES, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
-        register(NdBlocks.CRACKED_ROCK_TILES, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(NdBlocks.ROCK_BRICKS, block -> cubeAllRandomized(name(block, "block/%s"), 16, 2, 2));
+        register(NdBlocks.MOSSY_ROCK_BRICKS, block -> cubeAllRandomized(name(block, "block/%s"), 16, 2, 2));
+        register(NdBlocks.CRACKED_ROCK_BRICKS, block -> cubeAllRandomized(name(block, "block/%s"), 16, 2, 2));
+        register(NdBlocks.ROCK_TILES, block -> cubeAllRandomized(name(block, "block/%s"), 32, 2, 4, 2));
+        register(NdBlocks.MOSSY_ROCK_TILES, block -> cubeAllRandomized(name(block, "block/%s"), 32, 2, 4, 2));
+        register(NdBlocks.CRACKED_ROCK_TILES, block -> cubeAllRandomized(name(block, "block/%s"), 32, 2, 4, 2));
         register(NdBlocks.SMOOTH_ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.POLISHED_ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
 
         register(NdBlocks.DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.MOSSY_DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
-        register(NdBlocks.DARKROCK_BRICKS, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
-        register(NdBlocks.MOSSY_DARKROCK_BRICKS, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
-        register(NdBlocks.CRACKED_DARKROCK_BRICKS, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
-        register(NdBlocks.DARKROCK_TILES, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
-        register(NdBlocks.MOSSY_DARKROCK_TILES, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
-        register(NdBlocks.CRACKED_DARKROCK_TILES, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(NdBlocks.DARKROCK_BRICKS, block -> cubeAllRandomized(name(block, "block/%s"), 16, 2, 2));
+        register(NdBlocks.MOSSY_DARKROCK_BRICKS, block -> cubeAllRandomized(name(block, "block/%s"), 16, 2, 2));
+        register(NdBlocks.CRACKED_DARKROCK_BRICKS, block -> cubeAllRandomized(name(block, "block/%s"), 16, 2, 2));
+        register(NdBlocks.DARKROCK_TILES, block -> cubeAllRandomized(name(block, "block/%s"), 32, 2, 4, 2));
+        register(NdBlocks.MOSSY_DARKROCK_TILES, block -> cubeAllRandomized(name(block, "block/%s"), 32, 2, 4, 2));
+        register(NdBlocks.CRACKED_DARKROCK_TILES, block -> cubeAllRandomized(name(block, "block/%s"), 32, 2, 4, 2));
         register(NdBlocks.SMOOTH_DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.POLISHED_DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
     }
 
     private static IBlockStateGen simple(String name, IModelGen model) {
         return VariantBlockStateGen.create(ModelInfo.create(name, model));
+    }
+
+    private static IBlockStateGen cubeAllRandomized(String name, int... weights) {
+        ModelInfo[] random = new ModelInfo[weights.length];
+        for (int i = 0; i < random.length; i++) {
+            String n = name + (i == 0 ? "" : "_alt_" + i);
+            random[i] = ModelInfo.create(n, cubeAll(n)).weight(weights[i]);
+        }
+        return VariantBlockStateGen.create(random);
     }
 
     private static IBlockStateGen rotateY(String name, IModelGen model) {
