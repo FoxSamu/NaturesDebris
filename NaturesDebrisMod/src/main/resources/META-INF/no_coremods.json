@@ -5,5 +5,6 @@
   "prerendershaders": "core/prerendershaders.js",
   "rain": "core/rain.js",
   "getunbaked": "core/getunbaked.js",
-  "recipecategory": "core/recipecategory.js"
+  "recipecategory": "core/recipecategory.js",
+  "debug": "META-INF/debug.js"
 }

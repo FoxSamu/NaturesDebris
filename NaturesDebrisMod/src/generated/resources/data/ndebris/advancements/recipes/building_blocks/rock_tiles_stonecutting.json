@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "ndebris:rock_tiles_4x4"
+      "ndebris:rock_tiles_stonecutting"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "ndebris:rock_tiles_4x4"
+        "recipe": "ndebris:rock_tiles_stonecutting"
       }
     }
   },

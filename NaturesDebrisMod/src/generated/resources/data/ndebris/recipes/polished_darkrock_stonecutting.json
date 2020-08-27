@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "ndebris:smooth_darkrock"
+  },
+  "result": "ndebris:polished_darkrock",
+  "count": 1
+}

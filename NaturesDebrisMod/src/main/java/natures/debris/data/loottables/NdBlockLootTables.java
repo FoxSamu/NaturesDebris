@@ -30,6 +30,8 @@ public class NdBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(NdBlocks.CRACKED_ROCK_TILES);
         registerDropSelfLootTable(NdBlocks.SMOOTH_ROCK);
         registerDropSelfLootTable(NdBlocks.POLISHED_ROCK);
+        registerDropSelfLootTable(NdBlocks.CHISELED_ROCK);
+        registerDropSelfLootTable(NdBlocks.ROCK_PILLAR);
 
         registerDropSelfLootTable(NdBlocks.DARKROCK);
         registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK);
@@ -41,6 +43,8 @@ public class NdBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(NdBlocks.CRACKED_DARKROCK_TILES);
         registerDropSelfLootTable(NdBlocks.SMOOTH_DARKROCK);
         registerDropSelfLootTable(NdBlocks.POLISHED_DARKROCK);
+        registerDropSelfLootTable(NdBlocks.CHISELED_DARKROCK);
+        registerDropSelfLootTable(NdBlocks.DARKROCK_PILLAR);
     }
 
     @Override

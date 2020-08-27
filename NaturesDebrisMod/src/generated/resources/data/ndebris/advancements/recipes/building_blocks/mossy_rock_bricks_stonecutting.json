@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "ndebris:rock_tiles_4x4"
+      "ndebris:mossy_rock_bricks_stonecutting"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "ndebris:smooth_rock"
+            "item": "ndebris:mossy_rock"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "ndebris:rock_tiles_4x4"
+        "recipe": "ndebris:mossy_rock_bricks_stonecutting"
       }
     }
   },

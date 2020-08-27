@@ -27,6 +27,8 @@ public final class ItemModelTable {
         register(NdBlocks.CRACKED_ROCK_TILES, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.SMOOTH_ROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.POLISHED_ROCK, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CHISELED_ROCK, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.ROCK_PILLAR, item -> inherit(name(item, "block/%s")));
 
         register(NdBlocks.DARKROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.MOSSY_DARKROCK, item -> inherit(name(item, "block/%s")));
@@ -38,6 +40,8 @@ public final class ItemModelTable {
         register(NdBlocks.CRACKED_DARKROCK_TILES, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.SMOOTH_DARKROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.POLISHED_DARKROCK, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CHISELED_DARKROCK, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.DARKROCK_PILLAR, item -> inherit(name(item, "block/%s")));
     }
 
 
