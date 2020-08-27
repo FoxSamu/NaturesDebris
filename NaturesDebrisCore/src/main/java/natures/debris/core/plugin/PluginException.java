@@ -5,7 +5,7 @@
  * For a full license, see LICENSE.txt
  */
 
-package natures.debris.plugin;
+package natures.debris.core.plugin;
 
 /**
  * Checked exception that is thrown for any failures in plugin loading.

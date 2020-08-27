@@ -5,7 +5,7 @@
  * For a full license, see LICENSE.txt
  */
 
-package natures.debris.plugin;
+package natures.debris.core.plugin;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;

@@ -5,7 +5,7 @@
  * For a full license, see LICENSE.txt
  */
 
-package natures.debris.util.reflect;
+package natures.debris.core.util.reflect;
 
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 

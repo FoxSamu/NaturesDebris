@@ -5,7 +5,7 @@
  * For a full license, see LICENSE.txt
  */
 
-package natures.debris.plugin;
+package natures.debris.core.plugin;
 
 import natures.debris.api.plugin.NaturesDebrisPlugin;
 

@@ -11,7 +11,7 @@ import natures.debris.api.LifecyclePhase;
 import natures.debris.api.plugin.ILifecycleListener;
 import natures.debris.client.NaturesDebrisClient;
 import natures.debris.common.NaturesDebris;
-import natures.debris.plugin.PluginManager;
+import natures.debris.core.plugin.PluginManager;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;

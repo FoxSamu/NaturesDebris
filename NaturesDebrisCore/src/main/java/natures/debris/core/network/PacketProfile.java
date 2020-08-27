@@ -5,7 +5,7 @@
  * For a full license, see LICENSE.txt
  */
 
-package natures.debris.network;
+package natures.debris.core.network;
 
 import java.util.EnumMap;
 import java.util.function.Supplier;

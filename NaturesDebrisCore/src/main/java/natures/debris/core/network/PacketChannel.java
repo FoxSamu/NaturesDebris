@@ -5,9 +5,9 @@
  * For a full license, see LICENSE.txt
  */
 
-package natures.debris.network;
+package natures.debris.core.network;
 
-import natures.debris.util.DimensionRegion;
+import natures.debris.core.util.DimensionRegion;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.NetworkManager;

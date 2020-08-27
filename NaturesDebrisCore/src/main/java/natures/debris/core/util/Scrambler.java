@@ -5,7 +5,7 @@
  * For a full license, see LICENSE.txt
  */
 
-package natures.debris.util;
+package natures.debris.core.util;
 
 import natures.debris.api.util.exc.InstanceOfUtilityClassException;
 

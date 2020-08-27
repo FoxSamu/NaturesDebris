@@ -5,7 +5,7 @@
  * For a full license, see LICENSE.txt
  */
 
-package natures.debris.plugin;
+package natures.debris.core.plugin;
 
 import natures.debris.api.INaturesDebris;
 import net.minecraftforge.api.distmarker.Dist;

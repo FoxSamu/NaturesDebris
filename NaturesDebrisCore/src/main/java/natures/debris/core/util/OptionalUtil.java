@@ -5,7 +5,7 @@
  * For a full license, see LICENSE.txt
  */
 
-package natures.debris.util;
+package natures.debris.core.util;
 
 import java.util.Map;
 import java.util.Optional;
