@@ -22,88 +22,76 @@ buildscript {
 // ==================
 
 allprojects {
-    if( !( project.name.endsWith( "IOLib" ) ) ) {
-        project.ext.implName = "Nature's Debris"
+    project.ext.implName = "Nature's Debris"
+    apply plugin: 'net.minecraftforge.gradle'
+    apply plugin: 'idea'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+    apply from: "$rootDir/environment.gradle"
+    minecraft {
+        // Snapshot mappings: March 22, 2020, v1.15.1
+        mappings channel: 'snapshot', version: '20200322-1.15.1'
 
-        apply plugin: 'net.minecraftforge.gradle'
-        apply plugin: 'idea'
-        apply plugin: 'maven-publish'
-        apply plugin: 'signing'
-
-        // Initialize basic environment properties
-        apply from: "$rootDir/environment.gradle"
-
-        // ForgeGradle setup
-        minecraft {
-            // Snapshot mappings: March 22, 2020, v1.15.1
-            mappings channel: 'snapshot', version: '20200322-1.15.1'
-
-            // Access transformer
-            accessTransformer = file( 'src/main/resources/META-INF/accesstransformer.cfg' )
-        }
-
-        repositories {
-            mavenLocal()
-            mavenCentral()
-            maven {
-                name = "Progwml6 maven"
-                url = "https://dvs1.progwml6.com/files/maven/"
-            }
-            maven {
-                name = "ModMaven"
-                url = "https://modmaven.k-4u.nl"
-            }
-            maven {
-                url "https://io.terraforged.com/repository/maven/"
-            }
-            flatDir {
-                dirs "$rootDir/dependencies"
-            }
-        }
-
-        configurations {
-            embed // External deps embedded into the JAR file
-            compile.extendsFrom( embed )
-        }
-
-        dependencies {
-            minecraft 'net.minecraftforge:forge:1.15.2-31.2.0'
-
-            embed "net.shadew:ptg:1.2.0"
-
-            compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4:api")
-            runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
-
-            compileOnly "com.terraforged:TerraForgedAPI:1.15.2-0.0.1"
-            runtimeOnly fg.deobf("local:TerraForged:1.15.2-0.0.13")
-
-            compileOnly fg.deobf("local:BiomesOPlenty:1.15.2-10.0.0.366:api")
-            runtimeOnly fg.deobf("local:BiomesOPlenty:1.15.2-10.0.0.366:universal")
-        }
-
-        jar {
-            doFirst {
-                // Include necessary dependencies
-                from configurations.embed.collect { it.isDirectory() ? it : zipTree( it ) }
-            }
-
-            manifest {
-                attributes(
-                    [
-                        "Specification-Title"     : "Nature's Debris",
-                        "Specification-Vendor"    : "Shadew",
-                        "Specification-Version"   : "${ version }",
-                        "Implementation-Title"    : project.ext.implName,
-                        "Implementation-Version"  : "${ version }",
-                        "Implementation-Vendor"   : "Shadew",
-                        "Implementation-Timestamp": new Date().format( "yyyy-MM-dd'T'HH:mm:ssZ" )
-                    ]
-                )
-            }
-        }
-
-        apply from: "$rootDir/gen_sources.gradle"
+        // Access transformer
+        accessTransformer = file( 'src/main/resources/META-INF/accesstransformer.cfg' )
     }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {
+            name = "Progwml6 maven"
+            url = "https://dvs1.progwml6.com/files/maven/"
+        }
+        maven {
+            name = "ModMaven"
+            url = "https://modmaven.k-4u.nl"
+        }
+        maven {
+            url "https://io.terraforged.com/repository/maven/"
+        }
+        flatDir {
+            dirs "$rootDir/dependencies"
+        }
+    }
+    configurations {
+        embed // External deps embedded into the JAR file
+        compile.extendsFrom( embed )
+    }
+    dependencies {
+        minecraft 'net.minecraftforge:forge:1.15.2-31.2.0'
+
+        embed "net.shadew:ptg:1.2.0"
+
+        compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4:api")
+        runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
+
+        compileOnly "com.terraforged:TerraForgedAPI:1.15.2-0.0.1"
+        runtimeOnly fg.deobf("local:TerraForged:1.15.2-0.0.13")
+
+        compileOnly fg.deobf("local:BiomesOPlenty:1.15.2-10.0.0.366:api")
+        runtimeOnly fg.deobf("local:BiomesOPlenty:1.15.2-10.0.0.366:universal")
+    }
+    jar {
+        doFirst {
+            // Include necessary dependencies
+            from configurations.embed.collect { it.isDirectory() ? it : zipTree( it ) }
+        }
+
+        manifest {
+            attributes(
+                [
+                    "Specification-Title"     : "Nature's Debris",
+                    "Specification-Vendor"    : "Shadew",
+                    "Specification-Version"   : "${ version }",
+                    "Implementation-Title"    : project.ext.implName,
+                    "Implementation-Version"  : "${ version }",
+                    "Implementation-Vendor"   : "Shadew",
+                    "Implementation-Timestamp": new Date().format( "yyyy-MM-dd'T'HH:mm:ssZ" )
+                ]
+            )
+        }
+    }
+    apply from: "$rootDir/gen_sources.gradle"
 }
 
 
