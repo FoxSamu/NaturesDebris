@@ -33,6 +33,17 @@ public class NdBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(NdBlocks.CHISELED_ROCK);
         registerDropSelfLootTable(NdBlocks.ROCK_PILLAR);
 
+        registerLootTable(NdBlocks.ROCK_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.MOSSY_ROCK_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.ROCK_BRICKS_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.MOSSY_ROCK_BRICKS_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.CRACKED_ROCK_BRICKS_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.ROCK_TILES_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.MOSSY_ROCK_TILES_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.CRACKED_ROCK_TILES_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.SMOOTH_ROCK_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.POLISHED_ROCK_SLAB, BlockLootTables::droppingSlab);
+
         registerDropSelfLootTable(NdBlocks.DARKROCK);
         registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK);
         registerDropSelfLootTable(NdBlocks.DARKROCK_BRICKS);
@@ -45,6 +56,17 @@ public class NdBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(NdBlocks.POLISHED_DARKROCK);
         registerDropSelfLootTable(NdBlocks.CHISELED_DARKROCK);
         registerDropSelfLootTable(NdBlocks.DARKROCK_PILLAR);
+
+        registerLootTable(NdBlocks.DARKROCK_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.MOSSY_DARKROCK_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.DARKROCK_BRICKS_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.MOSSY_DARKROCK_BRICKS_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.CRACKED_DARKROCK_BRICKS_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.DARKROCK_TILES_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.MOSSY_DARKROCK_TILES_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.CRACKED_DARKROCK_TILES_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.SMOOTH_DARKROCK_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.POLISHED_DARKROCK_SLAB, BlockLootTables::droppingSlab);
     }
 
     @Override

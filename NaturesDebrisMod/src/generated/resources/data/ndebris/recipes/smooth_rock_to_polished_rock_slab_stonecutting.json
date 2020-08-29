@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "ndebris:smooth_rock"
+  },
+  "result": "ndebris:polished_rock_slab",
+  "count": 2
+}

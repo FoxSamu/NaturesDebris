@@ -1,6 +1,7 @@
 package natures.debris.data.models;
 
 import natures.debris.common.block.NdBlocks;
+import natures.debris.common.item.NdItems;
 import natures.debris.data.models.modelgen.IModelGen;
 import net.minecraft.item.Item;
 import net.minecraft.util.IItemProvider;
@@ -30,6 +31,17 @@ public final class ItemModelTable {
         register(NdBlocks.CHISELED_ROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.ROCK_PILLAR, item -> inherit(name(item, "block/%s")));
 
+        register(NdBlocks.ROCK_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MOSSY_ROCK_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.ROCK_BRICKS_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MOSSY_ROCK_BRICKS_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_ROCK_BRICKS_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.ROCK_TILES_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MOSSY_ROCK_TILES_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_ROCK_TILES_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.SMOOTH_ROCK_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_ROCK_SLAB, item -> inherit(name(item, "block/%s")));
+
         register(NdBlocks.DARKROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.MOSSY_DARKROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.DARKROCK_BRICKS, item -> inherit(name(item, "block/%s")));
@@ -42,6 +54,19 @@ public final class ItemModelTable {
         register(NdBlocks.POLISHED_DARKROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.CHISELED_DARKROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.DARKROCK_PILLAR, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.DARKROCK_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MOSSY_DARKROCK_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.DARKROCK_BRICKS_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MOSSY_DARKROCK_BRICKS_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_DARKROCK_BRICKS_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.DARKROCK_TILES_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MOSSY_DARKROCK_TILES_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_DARKROCK_TILES_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.SMOOTH_DARKROCK_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_DARKROCK_SLAB, item -> inherit(name(item, "block/%s")));
+
+        register(NdItems.MUSIC_DISC_DARK, item -> generated(name(item, "item/%s")));
     }
 
 

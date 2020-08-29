@@ -1,0 +1,58 @@
+{
+  "variants": {
+    "type=bottom": [
+      {
+        "model": "ndebris:block/cracked_rock_tiles_slab",
+        "weight": 32
+      },
+      {
+        "model": "ndebris:block/cracked_rock_tiles_slab_alt_1",
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_tiles_slab_alt_2",
+        "weight": 4
+      },
+      {
+        "model": "ndebris:block/cracked_rock_tiles_slab_alt_3",
+        "weight": 2
+      }
+    ],
+    "type=double": [
+      {
+        "model": "ndebris:block/cracked_rock_tiles",
+        "weight": 32
+      },
+      {
+        "model": "ndebris:block/cracked_rock_tiles_alt_1",
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_tiles_alt_2",
+        "weight": 4
+      },
+      {
+        "model": "ndebris:block/cracked_rock_tiles_alt_3",
+        "weight": 2
+      }
+    ],
+    "type=top": [
+      {
+        "model": "ndebris:block/cracked_rock_tiles_slab_top",
+        "weight": 32
+      },
+      {
+        "model": "ndebris:block/cracked_rock_tiles_slab_top_alt_1",
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_tiles_slab_top_alt_2",
+        "weight": 4
+      },
+      {
+        "model": "ndebris:block/cracked_rock_tiles_slab_top_alt_3",
+        "weight": 2
+      }
+    ]
+  }
+}

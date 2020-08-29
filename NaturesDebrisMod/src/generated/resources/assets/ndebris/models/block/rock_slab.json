@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "ndebris:block/rock",
+    "top": "ndebris:block/rock",
+    "side": "ndebris:block/rock"
+  }
+}

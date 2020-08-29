@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ndebris:block/polished_rock_slab"
+    },
+    "type=double": {
+      "model": "ndebris:block/polished_rock"
+    },
+    "type=top": {
+      "model": "ndebris:block/polished_rock_slab_top"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ndebris:block/mossy_darkrock_slab"
+    },
+    "type=double": {
+      "model": "ndebris:block/mossy_darkrock"
+    },
+    "type=top": {
+      "model": "ndebris:block/mossy_darkrock_slab_top"
+    }
+  }
+}

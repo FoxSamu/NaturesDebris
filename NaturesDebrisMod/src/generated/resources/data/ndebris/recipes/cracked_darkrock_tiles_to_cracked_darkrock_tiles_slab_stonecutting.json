@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "ndebris:cracked_darkrock_tiles"
+  },
+  "result": "ndebris:cracked_darkrock_tiles_slab",
+  "count": 2
+}

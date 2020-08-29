@@ -1,0 +1,10 @@
+{
+  "music_disc.dark": {
+    "sounds": [
+      {
+        "name": "ndebris:records/dark",
+        "stream": true
+      }
+    ]
+  }
+}

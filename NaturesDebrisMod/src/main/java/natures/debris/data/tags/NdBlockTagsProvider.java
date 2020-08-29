@@ -1,5 +1,6 @@
 package natures.debris.data.tags;
 
+import natures.debris.common.block.NdBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.TagsProvider;
@@ -18,9 +19,29 @@ public class NdBlockTagsProvider extends TagsProvider<Block> {
 
     @Override
     protected void registerTags() {
-//        getBuilder(BlockTags.ENDERMAN_HOLDABLE).replace(false).add(
-//
-//        );
+        getBuilder(BlockTags.SLABS).replace(false).add(
+            NdBlocks.ROCK_SLAB,
+            NdBlocks.MOSSY_ROCK_SLAB,
+            NdBlocks.ROCK_BRICKS_SLAB,
+            NdBlocks.MOSSY_ROCK_BRICKS_SLAB,
+            NdBlocks.CRACKED_ROCK_BRICKS_SLAB,
+            NdBlocks.ROCK_TILES_SLAB,
+            NdBlocks.MOSSY_ROCK_TILES_SLAB,
+            NdBlocks.CRACKED_ROCK_TILES_SLAB,
+            NdBlocks.SMOOTH_ROCK_SLAB,
+            NdBlocks.POLISHED_ROCK_SLAB,
+
+            NdBlocks.DARKROCK_SLAB,
+            NdBlocks.MOSSY_DARKROCK_SLAB,
+            NdBlocks.DARKROCK_BRICKS_SLAB,
+            NdBlocks.MOSSY_DARKROCK_BRICKS_SLAB,
+            NdBlocks.CRACKED_DARKROCK_BRICKS_SLAB,
+            NdBlocks.DARKROCK_TILES_SLAB,
+            NdBlocks.MOSSY_DARKROCK_TILES_SLAB,
+            NdBlocks.CRACKED_DARKROCK_TILES_SLAB,
+            NdBlocks.SMOOTH_DARKROCK_SLAB,
+            NdBlocks.POLISHED_DARKROCK_SLAB
+        );
     }
 
     @Override

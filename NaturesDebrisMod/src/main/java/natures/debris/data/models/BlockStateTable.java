@@ -32,6 +32,17 @@ public final class BlockStateTable {
         register(NdBlocks.CHISELED_ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.ROCK_PILLAR, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_top"), name(block, "block/%s_side"))));
 
+        register(NdBlocks.ROCK_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 1));
+        register(NdBlocks.MOSSY_ROCK_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 1));
+        register(NdBlocks.ROCK_BRICKS_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 16, 2, 2));
+        register(NdBlocks.MOSSY_ROCK_BRICKS_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 16, 2, 2));
+        register(NdBlocks.CRACKED_ROCK_BRICKS_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 16, 2, 2));
+        register(NdBlocks.ROCK_TILES_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 32, 2, 4, 2));
+        register(NdBlocks.MOSSY_ROCK_TILES_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 32, 2, 4, 2));
+        register(NdBlocks.CRACKED_ROCK_TILES_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 32, 2, 4, 2));
+        register(NdBlocks.SMOOTH_ROCK_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 1));
+        register(NdBlocks.POLISHED_ROCK_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 1));
+
         register(NdBlocks.DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.MOSSY_DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.DARKROCK_BRICKS, block -> cubeAllRandomized(name(block, "block/%s"), 16, 2, 2));
@@ -44,6 +55,17 @@ public final class BlockStateTable {
         register(NdBlocks.POLISHED_DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.CHISELED_DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.DARKROCK_PILLAR, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_top"), name(block, "block/%s_side"))));
+
+        register(NdBlocks.DARKROCK_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 1));
+        register(NdBlocks.MOSSY_DARKROCK_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 1));
+        register(NdBlocks.DARKROCK_BRICKS_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 16, 2, 2));
+        register(NdBlocks.MOSSY_DARKROCK_BRICKS_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 16, 2, 2));
+        register(NdBlocks.CRACKED_DARKROCK_BRICKS_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 16, 2, 2));
+        register(NdBlocks.DARKROCK_TILES_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 32, 2, 4, 2));
+        register(NdBlocks.MOSSY_DARKROCK_TILES_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 32, 2, 4, 2));
+        register(NdBlocks.CRACKED_DARKROCK_TILES_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 32, 2, 4, 2));
+        register(NdBlocks.SMOOTH_DARKROCK_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 1));
+        register(NdBlocks.POLISHED_DARKROCK_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 1));
     }
 
     private static IBlockStateGen simple(String name, IModelGen model) {
@@ -57,6 +79,23 @@ public final class BlockStateTable {
             random[i] = ModelInfo.create(n, cubeAll(n)).weight(weights[i]);
         }
         return VariantBlockStateGen.create(random);
+    }
+
+    private static IBlockStateGen slabRandomized(String name, int... weights) {
+        ModelInfo[] lo = new ModelInfo[weights.length];
+        ModelInfo[] hi = new ModelInfo[weights.length];
+        ModelInfo[] dbl = new ModelInfo[weights.length];
+        for (int i = 0; i < lo.length; i++) {
+            String ln = name + (i == 0 ? "_slab" : "_slab_alt_" + i);
+            String hn = name + (i == 0 ? "_slab_top" : "_slab_top_alt_" + i);
+            String n = name + (i == 0 ? "" : "_alt_" + i);
+            lo[i] = ModelInfo.create(ln, slab(n)).weight(weights[i]);
+            hi[i] = ModelInfo.create(hn, slabTop(n)).weight(weights[i]);
+            dbl[i] = ModelInfo.create(n).weight(weights[i]);
+        }
+        return VariantBlockStateGen.create("type=bottom", lo)
+                                   .variant("type=top", hi)
+                                   .variant("type=double", dbl);
     }
 
     private static IBlockStateGen rotateY(String name, IModelGen model) {
@@ -109,6 +148,18 @@ public final class BlockStateTable {
         assert id != null;
 
         return String.format("%s:%s", id.getNamespace(), String.format(nameFormat, id.getPath()));
+    }
+
+    private static String name(Block block, String nameFormat, String omitSuffix) {
+        ResourceLocation id = block.getRegistryName();
+        assert id != null;
+
+        String path = id.getPath();
+        if (path.endsWith(omitSuffix)) {
+            path = path.substring(0, path.length() - omitSuffix.length());
+        }
+
+        return String.format("%s:%s", id.getNamespace(), String.format(nameFormat, path));
     }
 
     private static String name(Block block) {
