@@ -15,11 +15,13 @@ import java.util.function.Supplier;
 @ObjectHolder("ndebris")
 public final class NdItems {
     public static final Item MUSIC_DISC_DARK = inj();
+    public static final Item MUSIC_DISC_M1 = inj();
 
     public static void register(IForgeRegistry<Item> registry) {
         registry.registerAll(
-            // Don't add this to music disks tag - it should not drop from creepers
-            musicDisc("music_disc_dark", () -> NdSoundEvents.MUSIC_DISC_DARK, 0)
+            // Don't add these to music disks tag - it should not drop from creepers
+            musicDisc("music_disc_dark", () -> NdSoundEvents.MUSIC_DISC_DARK, 0),
+            musicDisc("music_disc_m1", () -> NdSoundEvents.MUSIC_DISC_M1, 0)
         );
     }
 

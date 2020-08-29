@@ -85,7 +85,6 @@ allprojects {
             doFirst {
                 // Include necessary dependencies
                 from configurations.embed.collect { it.isDirectory() ? it : zipTree( it ) }
-                from configurations.internal.collect { it.isDirectory() ? it : zipTree( it ) }
             }
 
             manifest {

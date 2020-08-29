@@ -67,6 +67,7 @@ public final class ItemModelTable {
         register(NdBlocks.POLISHED_DARKROCK_SLAB, item -> inherit(name(item, "block/%s")));
 
         register(NdItems.MUSIC_DISC_DARK, item -> generated(name(item, "item/%s")));
+        register(NdItems.MUSIC_DISC_M1, item -> generated(name(item, "item/%s")));
     }
 
 
