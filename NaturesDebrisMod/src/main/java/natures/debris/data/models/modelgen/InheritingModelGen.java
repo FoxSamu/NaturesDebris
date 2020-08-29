@@ -74,6 +74,27 @@ public class InheritingModelGen implements IModelGen {
                    .texture("side", texture);
     }
 
+    public static InheritingModelGen stairs(String texture) {
+        return new InheritingModelGen("block/stairs")
+                   .texture("bottom", texture)
+                   .texture("top", texture)
+                   .texture("side", texture);
+    }
+
+    public static InheritingModelGen stairsInner(String texture) {
+        return new InheritingModelGen("block/inner_stairs")
+                   .texture("bottom", texture)
+                   .texture("top", texture)
+                   .texture("side", texture);
+    }
+
+    public static InheritingModelGen stairsOuter(String texture) {
+        return new InheritingModelGen("block/outer_stairs")
+                   .texture("bottom", texture)
+                   .texture("top", texture)
+                   .texture("side", texture);
+    }
+
     public static InheritingModelGen cubeMirroredAll(String texture) {
         return new InheritingModelGen("block/cube_mirrored_all")
                    .texture("all", texture);

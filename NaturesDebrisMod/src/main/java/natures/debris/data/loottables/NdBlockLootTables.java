@@ -44,6 +44,17 @@ public class NdBlockLootTables extends BlockLootTables {
         registerLootTable(NdBlocks.SMOOTH_ROCK_SLAB, BlockLootTables::droppingSlab);
         registerLootTable(NdBlocks.POLISHED_ROCK_SLAB, BlockLootTables::droppingSlab);
 
+        registerDropSelfLootTable(NdBlocks.ROCK_STAIRS);
+        registerDropSelfLootTable(NdBlocks.MOSSY_ROCK_STAIRS);
+        registerDropSelfLootTable(NdBlocks.ROCK_BRICKS_STAIRS);
+        registerDropSelfLootTable(NdBlocks.MOSSY_ROCK_BRICKS_STAIRS);
+        registerDropSelfLootTable(NdBlocks.CRACKED_ROCK_BRICKS_STAIRS);
+        registerDropSelfLootTable(NdBlocks.ROCK_TILES_STAIRS);
+        registerDropSelfLootTable(NdBlocks.MOSSY_ROCK_TILES_STAIRS);
+        registerDropSelfLootTable(NdBlocks.CRACKED_ROCK_TILES_STAIRS);
+        registerDropSelfLootTable(NdBlocks.SMOOTH_ROCK_STAIRS);
+        registerDropSelfLootTable(NdBlocks.POLISHED_ROCK_STAIRS);
+
         registerDropSelfLootTable(NdBlocks.DARKROCK);
         registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK);
         registerDropSelfLootTable(NdBlocks.DARKROCK_BRICKS);
@@ -67,6 +78,17 @@ public class NdBlockLootTables extends BlockLootTables {
         registerLootTable(NdBlocks.CRACKED_DARKROCK_TILES_SLAB, BlockLootTables::droppingSlab);
         registerLootTable(NdBlocks.SMOOTH_DARKROCK_SLAB, BlockLootTables::droppingSlab);
         registerLootTable(NdBlocks.POLISHED_DARKROCK_SLAB, BlockLootTables::droppingSlab);
+
+        registerDropSelfLootTable(NdBlocks.DARKROCK_STAIRS);
+        registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK_STAIRS);
+        registerDropSelfLootTable(NdBlocks.DARKROCK_BRICKS_STAIRS);
+        registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK_BRICKS_STAIRS);
+        registerDropSelfLootTable(NdBlocks.CRACKED_DARKROCK_BRICKS_STAIRS);
+        registerDropSelfLootTable(NdBlocks.DARKROCK_TILES_STAIRS);
+        registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK_TILES_STAIRS);
+        registerDropSelfLootTable(NdBlocks.CRACKED_DARKROCK_TILES_STAIRS);
+        registerDropSelfLootTable(NdBlocks.SMOOTH_DARKROCK_STAIRS);
+        registerDropSelfLootTable(NdBlocks.POLISHED_DARKROCK_STAIRS);
     }
 
     @Override

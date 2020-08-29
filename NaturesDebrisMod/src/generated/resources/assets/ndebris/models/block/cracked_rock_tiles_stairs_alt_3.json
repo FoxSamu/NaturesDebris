@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "ndebris:block/cracked_rock_tiles_alt_3",
+    "top": "ndebris:block/cracked_rock_tiles_alt_3",
+    "side": "ndebris:block/cracked_rock_tiles_alt_3"
+  }
+}

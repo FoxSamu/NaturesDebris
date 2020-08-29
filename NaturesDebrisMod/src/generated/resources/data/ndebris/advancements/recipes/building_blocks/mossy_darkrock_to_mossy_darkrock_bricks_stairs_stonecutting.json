@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "ndebris:mossy_darkrock_to_mossy_darkrock_bricks_stairs_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_mossy_darkrock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ndebris:mossy_darkrock"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "ndebris:mossy_darkrock_to_mossy_darkrock_bricks_stairs_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mossy_darkrock",
+      "has_the_recipe"
+    ]
+  ]
+}

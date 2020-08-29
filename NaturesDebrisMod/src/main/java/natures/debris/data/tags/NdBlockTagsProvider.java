@@ -42,6 +42,30 @@ public class NdBlockTagsProvider extends TagsProvider<Block> {
             NdBlocks.SMOOTH_DARKROCK_SLAB,
             NdBlocks.POLISHED_DARKROCK_SLAB
         );
+
+        getBuilder(BlockTags.STAIRS).replace(false).add(
+            NdBlocks.ROCK_STAIRS,
+            NdBlocks.MOSSY_ROCK_STAIRS,
+            NdBlocks.ROCK_BRICKS_STAIRS,
+            NdBlocks.MOSSY_ROCK_BRICKS_STAIRS,
+            NdBlocks.CRACKED_ROCK_BRICKS_STAIRS,
+            NdBlocks.ROCK_TILES_STAIRS,
+            NdBlocks.MOSSY_ROCK_TILES_STAIRS,
+            NdBlocks.CRACKED_ROCK_TILES_STAIRS,
+            NdBlocks.SMOOTH_ROCK_STAIRS,
+            NdBlocks.POLISHED_ROCK_STAIRS,
+
+            NdBlocks.DARKROCK_STAIRS,
+            NdBlocks.MOSSY_DARKROCK_STAIRS,
+            NdBlocks.DARKROCK_BRICKS_STAIRS,
+            NdBlocks.MOSSY_DARKROCK_BRICKS_STAIRS,
+            NdBlocks.CRACKED_DARKROCK_BRICKS_STAIRS,
+            NdBlocks.DARKROCK_TILES_STAIRS,
+            NdBlocks.MOSSY_DARKROCK_TILES_STAIRS,
+            NdBlocks.CRACKED_DARKROCK_TILES_STAIRS,
+            NdBlocks.SMOOTH_DARKROCK_STAIRS,
+            NdBlocks.POLISHED_DARKROCK_STAIRS
+        );
     }
 
     @Override

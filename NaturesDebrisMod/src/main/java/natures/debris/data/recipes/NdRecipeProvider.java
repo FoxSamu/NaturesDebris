@@ -42,6 +42,17 @@ public class NdRecipeProvider extends RecipeProvider {
         generic3x1("smooth_rock_slab_3x1", NdBlocks.SMOOTH_ROCK, NdBlocks.SMOOTH_ROCK_SLAB, 6);
         generic3x1("polished_rock_slab_3x1", NdBlocks.POLISHED_ROCK, NdBlocks.POLISHED_ROCK_SLAB, 6);
 
+        stairs("rock_stairs_stairs", NdBlocks.ROCK, NdBlocks.ROCK_STAIRS, 4);
+        stairs("mossy_rock_stairs_stairs", NdBlocks.MOSSY_ROCK, NdBlocks.MOSSY_ROCK_STAIRS, 4);
+        stairs("rock_bricks_stairs_stairs", NdBlocks.ROCK_BRICKS, NdBlocks.ROCK_BRICKS_STAIRS, 4);
+        stairs("mossy_rock_bricks_stairs_stairs", NdBlocks.MOSSY_ROCK_BRICKS, NdBlocks.MOSSY_ROCK_BRICKS_STAIRS, 4);
+        stairs("cracked_rock_bricks_stairs_stairs", NdBlocks.CRACKED_ROCK_BRICKS, NdBlocks.CRACKED_ROCK_BRICKS_STAIRS, 4);
+        stairs("rock_tiles_stairs_stairs", NdBlocks.ROCK_TILES, NdBlocks.ROCK_TILES_STAIRS, 4);
+        stairs("mossy_rock_tiles_stairs_stairs", NdBlocks.MOSSY_ROCK_TILES, NdBlocks.MOSSY_ROCK_TILES_STAIRS, 4);
+        stairs("cracked_rock_tiles_stairs_stairs", NdBlocks.CRACKED_ROCK_TILES, NdBlocks.CRACKED_ROCK_TILES_STAIRS, 4);
+        stairs("smooth_rock_stairs_stairs", NdBlocks.SMOOTH_ROCK, NdBlocks.SMOOTH_ROCK_STAIRS, 4);
+        stairs("polished_rock_stairs_stairs", NdBlocks.POLISHED_ROCK, NdBlocks.POLISHED_ROCK_STAIRS, 4);
+
         // Darkrock
         generic4x4("darkrock_bricks_4x4", NdBlocks.DARKROCK, NdBlocks.DARKROCK_BRICKS, 4);
         generic4x4("mossy_darkrock_bricks_4x4", NdBlocks.MOSSY_DARKROCK, NdBlocks.MOSSY_DARKROCK_BRICKS, 4);
@@ -62,6 +73,17 @@ public class NdRecipeProvider extends RecipeProvider {
         generic3x1("cracked_darkrock_tiles_slab_3x1", NdBlocks.CRACKED_DARKROCK_TILES, NdBlocks.CRACKED_DARKROCK_TILES_SLAB, 6);
         generic3x1("smooth_darkrock_slab_3x1", NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_SLAB, 6);
         generic3x1("polished_darkrock_slab_3x1", NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_SLAB, 6);
+
+        stairs("darkrock_slab_stairs", NdBlocks.DARKROCK, NdBlocks.DARKROCK_STAIRS, 4);
+        stairs("mossy_darkrock_slab_stairs", NdBlocks.MOSSY_DARKROCK, NdBlocks.MOSSY_DARKROCK_STAIRS, 4);
+        stairs("darkrock_bricks_slab_stairs", NdBlocks.DARKROCK_BRICKS, NdBlocks.DARKROCK_BRICKS_STAIRS, 4);
+        stairs("mossy_darkrock_bricks_slab_stairs", NdBlocks.MOSSY_DARKROCK_BRICKS, NdBlocks.MOSSY_DARKROCK_BRICKS_STAIRS, 4);
+        stairs("cracked_darkrock_bricks_slab_stairs", NdBlocks.CRACKED_DARKROCK_BRICKS, NdBlocks.CRACKED_DARKROCK_BRICKS_STAIRS, 4);
+        stairs("darkrock_tiles_slab_stairs", NdBlocks.DARKROCK_TILES, NdBlocks.DARKROCK_TILES_STAIRS, 4);
+        stairs("mossy_darkrock_tiles_slab_stairs", NdBlocks.MOSSY_DARKROCK_TILES, NdBlocks.MOSSY_DARKROCK_TILES_STAIRS, 4);
+        stairs("cracked_darkrock_tiles_slab_stairs", NdBlocks.CRACKED_DARKROCK_TILES, NdBlocks.CRACKED_DARKROCK_TILES_STAIRS, 4);
+        stairs("smooth_darkrock_slab_stairs", NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_STAIRS, 4);
+        stairs("polished_darkrock_slab_stairs", NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_STAIRS, 4);
     }
 
     private void generic4x4(String id, IItemProvider from, IItemProvider to, int count) {
@@ -95,6 +117,16 @@ public class NdRecipeProvider extends RecipeProvider {
     private void generic3x1(String id, IItemProvider from, IItemProvider to, int count) {
         ShapedRecipeBuilder.shapedRecipe(to, count)
                            .key('#', from)
+                           .patternLine("###")
+                           .addCriterion("has_ingredient", hasItem(from))
+                           .build(consumer, NaturesDebris.resLoc(id));
+    }
+
+    private void stairs(String id, IItemProvider from, IItemProvider to, int count) {
+        ShapedRecipeBuilder.shapedRecipe(to, count)
+                           .key('#', from)
+                           .patternLine("#  ")
+                           .patternLine("## ")
                            .patternLine("###")
                            .addCriterion("has_ingredient", hasItem(from))
                            .build(consumer, NaturesDebris.resLoc(id));

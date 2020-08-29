@@ -42,6 +42,17 @@ public final class ItemModelTable {
         register(NdBlocks.SMOOTH_ROCK_SLAB, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.POLISHED_ROCK_SLAB, item -> inherit(name(item, "block/%s")));
 
+        register(NdBlocks.ROCK_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MOSSY_ROCK_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.ROCK_BRICKS_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MOSSY_ROCK_BRICKS_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_ROCK_BRICKS_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.ROCK_TILES_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MOSSY_ROCK_TILES_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_ROCK_TILES_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.SMOOTH_ROCK_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_ROCK_STAIRS, item -> inherit(name(item, "block/%s")));
+
         register(NdBlocks.DARKROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.MOSSY_DARKROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.DARKROCK_BRICKS, item -> inherit(name(item, "block/%s")));
@@ -65,6 +76,19 @@ public final class ItemModelTable {
         register(NdBlocks.CRACKED_DARKROCK_TILES_SLAB, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.SMOOTH_DARKROCK_SLAB, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.POLISHED_DARKROCK_SLAB, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.DARKROCK_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MOSSY_DARKROCK_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.DARKROCK_BRICKS_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MOSSY_DARKROCK_BRICKS_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_DARKROCK_BRICKS_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.DARKROCK_TILES_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MOSSY_DARKROCK_TILES_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_DARKROCK_TILES_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.SMOOTH_DARKROCK_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_DARKROCK_STAIRS, item -> inherit(name(item, "block/%s")));
+
+
 
         register(NdItems.MUSIC_DISC_DARK, item -> generated(name(item, "item/%s")));
         register(NdItems.MUSIC_DISC_M1, item -> generated(name(item, "item/%s")));

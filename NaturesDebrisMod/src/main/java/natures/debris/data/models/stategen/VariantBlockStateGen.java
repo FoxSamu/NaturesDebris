@@ -36,7 +36,7 @@ public class VariantBlockStateGen implements IBlockStateGen {
     }
 
     public VariantBlockStateGen variant(String variant, ModelInfo... models) {
-        variants.put(variant, models);
+        variants.put(variant, models.clone());
         return this;
     }
 
@@ -46,5 +46,9 @@ public class VariantBlockStateGen implements IBlockStateGen {
 
     public static VariantBlockStateGen create(ModelInfo... models) {
         return new VariantBlockStateGen().variant("", models);
+    }
+
+    public static VariantBlockStateGen create() {
+        return new VariantBlockStateGen();
     }
 }

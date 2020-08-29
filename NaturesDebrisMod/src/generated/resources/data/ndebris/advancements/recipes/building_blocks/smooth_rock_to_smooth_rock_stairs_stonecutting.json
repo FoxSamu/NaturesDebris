@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "ndebris:smooth_rock_to_smooth_rock_stairs_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_smooth_rock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ndebris:smooth_rock"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "ndebris:smooth_rock_to_smooth_rock_stairs_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_smooth_rock",
+      "has_the_recipe"
+    ]
+  ]
+}

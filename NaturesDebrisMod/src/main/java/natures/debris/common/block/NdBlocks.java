@@ -42,6 +42,17 @@ public final class NdBlocks {
     public static final Block SMOOTH_ROCK_SLAB = inj();
     public static final Block POLISHED_ROCK_SLAB = inj();
 
+    public static final Block ROCK_STAIRS = inj();
+    public static final Block MOSSY_ROCK_STAIRS = inj();
+    public static final Block ROCK_BRICKS_STAIRS = inj();
+    public static final Block MOSSY_ROCK_BRICKS_STAIRS = inj();
+    public static final Block CRACKED_ROCK_BRICKS_STAIRS = inj();
+    public static final Block ROCK_TILES_STAIRS = inj();
+    public static final Block MOSSY_ROCK_TILES_STAIRS = inj();
+    public static final Block CRACKED_ROCK_TILES_STAIRS = inj();
+    public static final Block SMOOTH_ROCK_STAIRS = inj();
+    public static final Block POLISHED_ROCK_STAIRS = inj();
+
     public static final Block DARKROCK = inj();
     public static final Block MOSSY_DARKROCK = inj();
     public static final Block DARKROCK_BRICKS = inj();
@@ -65,6 +76,17 @@ public final class NdBlocks {
     public static final Block CRACKED_DARKROCK_TILES_SLAB = inj();
     public static final Block SMOOTH_DARKROCK_SLAB = inj();
     public static final Block POLISHED_DARKROCK_SLAB = inj();
+
+    public static final Block DARKROCK_STAIRS = inj();
+    public static final Block MOSSY_DARKROCK_STAIRS = inj();
+    public static final Block DARKROCK_BRICKS_STAIRS = inj();
+    public static final Block MOSSY_DARKROCK_BRICKS_STAIRS = inj();
+    public static final Block CRACKED_DARKROCK_BRICKS_STAIRS = inj();
+    public static final Block DARKROCK_TILES_STAIRS = inj();
+    public static final Block MOSSY_DARKROCK_TILES_STAIRS = inj();
+    public static final Block CRACKED_DARKROCK_TILES_STAIRS = inj();
+    public static final Block SMOOTH_DARKROCK_STAIRS = inj();
+    public static final Block POLISHED_DARKROCK_STAIRS = inj();
 
     public static void register(IForgeRegistry<Block> registry) {
         registry.registerAll(
@@ -92,6 +114,17 @@ public final class NdBlocks {
             rockSlab("smooth_rock_slab", 1.5, 6, false),
             rockSlab("polished_rock_slab", 2, 6, false),
 
+            rockStairs("rock_stairs", 1.5, 6, false),
+            rockStairs("mossy_rock_stairs", 1.5, 6, false),
+            rockStairs("rock_bricks_stairs", 2, 6, false),
+            rockStairs("mossy_rock_bricks_stairs", 2, 6, false),
+            rockStairs("cracked_rock_bricks_stairs", 2, 6, false),
+            rockStairs("rock_tiles_stairs", 2, 6, false),
+            rockStairs("mossy_rock_tiles_stairs", 2, 6, false),
+            rockStairs("cracked_rock_tiles_stairs", 2, 6, false),
+            rockStairs("smooth_rock_stairs", 1.5, 6, false),
+            rockStairs("polished_rock_stairs", 2, 6, false),
+
             rock("darkrock", 1.5, 6, true),
             rock("mossy_darkrock", 1.5, 6, true),
             rock("darkrock_bricks", 2, 6, true),
@@ -105,16 +138,27 @@ public final class NdBlocks {
             rock("chiseled_darkrock", 2, 6, true),
             rockPillar("darkrock_pillar", 2, 6, true),
 
-            rockSlab("darkrock_slab", 1.5, 6, false),
-            rockSlab("mossy_darkrock_slab", 1.5, 6, false),
-            rockSlab("darkrock_bricks_slab", 2, 6, false),
-            rockSlab("mossy_darkrock_bricks_slab", 2, 6, false),
-            rockSlab("cracked_darkrock_bricks_slab", 2, 6, false),
-            rockSlab("darkrock_tiles_slab", 2, 6, false),
-            rockSlab("mossy_darkrock_tiles_slab", 2, 6, false),
-            rockSlab("cracked_darkrock_tiles_slab", 2, 6, false),
-            rockSlab("smooth_darkrock_slab", 1.5, 6, false),
-            rockSlab("polished_darkrock_slab", 2, 6, false)
+            rockSlab("darkrock_slab", 1.5, 6, true),
+            rockSlab("mossy_darkrock_slab", 1.5, 6, true),
+            rockSlab("darkrock_bricks_slab", 2, 6, true),
+            rockSlab("mossy_darkrock_bricks_slab", 2, 6, true),
+            rockSlab("cracked_darkrock_bricks_slab", 2, 6, true),
+            rockSlab("darkrock_tiles_slab", 2, 6, true),
+            rockSlab("mossy_darkrock_tiles_slab", 2, 6, true),
+            rockSlab("cracked_darkrock_tiles_slab", 2, 6, true),
+            rockSlab("smooth_darkrock_slab", 1.5, 6, true),
+            rockSlab("polished_darkrock_slab", 2, 6, true),
+
+            rockStairs("darkrock_stairs", 1.5, 6, true),
+            rockStairs("mossy_darkrock_stairs", 1.5, 6, true),
+            rockStairs("darkrock_bricks_stairs", 2, 6, true),
+            rockStairs("mossy_darkrock_bricks_stairs", 2, 6, true),
+            rockStairs("cracked_darkrock_bricks_stairs", 2, 6, true),
+            rockStairs("darkrock_tiles_stairs", 2, 6, true),
+            rockStairs("mossy_darkrock_tiles_stairs", 2, 6, true),
+            rockStairs("cracked_darkrock_tiles_stairs", 2, 6, true),
+            rockStairs("smooth_darkrock_stairs", 1.5, 6, true),
+            rockStairs("polished_darkrock_stairs", 2, 6, true)
         );
     }
 
@@ -144,6 +188,17 @@ public final class NdBlocks {
             item(SMOOTH_ROCK_SLAB, ItemGroup.BUILDING_BLOCKS),
             item(POLISHED_ROCK_SLAB, ItemGroup.BUILDING_BLOCKS),
 
+            item(ROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_ROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(ROCK_BRICKS_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_ROCK_BRICKS_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(CRACKED_ROCK_BRICKS_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(ROCK_TILES_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_ROCK_TILES_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(CRACKED_ROCK_TILES_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(SMOOTH_ROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(POLISHED_ROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
+
             item(DARKROCK, ItemGroup.BUILDING_BLOCKS),
             item(MOSSY_DARKROCK, ItemGroup.BUILDING_BLOCKS),
             item(DARKROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
@@ -166,7 +221,18 @@ public final class NdBlocks {
             item(MOSSY_DARKROCK_TILES_SLAB, ItemGroup.BUILDING_BLOCKS),
             item(CRACKED_DARKROCK_TILES_SLAB, ItemGroup.BUILDING_BLOCKS),
             item(SMOOTH_DARKROCK_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(POLISHED_DARKROCK_SLAB, ItemGroup.BUILDING_BLOCKS)
+            item(POLISHED_DARKROCK_SLAB, ItemGroup.BUILDING_BLOCKS),
+
+            item(DARKROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_DARKROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(DARKROCK_BRICKS_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_DARKROCK_BRICKS_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(CRACKED_DARKROCK_BRICKS_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(DARKROCK_TILES_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_DARKROCK_TILES_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(CRACKED_DARKROCK_TILES_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(SMOOTH_DARKROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(POLISHED_DARKROCK_STAIRS, ItemGroup.BUILDING_BLOCKS)
         );
     }
 
@@ -192,6 +258,14 @@ public final class NdBlocks {
 
     private static Block rockSlab(String id, double hardness, double resistance, boolean dark) {
         return block(id, new SlabBlock(
+            Block.Properties.create(Material.ROCK, dark ? MaterialColor.BLACK : MaterialColor.STONE)
+                            .hardnessAndResistance((float) hardness, (float) resistance)
+                            .harvestTool(ToolType.PICKAXE)
+        ));
+    }
+
+    private static Block rockStairs(String id, double hardness, double resistance, boolean dark) {
+        return block(id, new SimpleStairsBlock(
             Block.Properties.create(Material.ROCK, dark ? MaterialColor.BLACK : MaterialColor.STONE)
                             .hardnessAndResistance((float) hardness, (float) resistance)
                             .harvestTool(ToolType.PICKAXE)

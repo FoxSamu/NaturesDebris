@@ -62,6 +62,17 @@ public class NdStonecuttingRecipeProvider extends RecipeProvider {
         register(NdBlocks.SMOOTH_ROCK, NdBlocks.SMOOTH_ROCK_SLAB, 2);
         register(NdBlocks.POLISHED_ROCK, NdBlocks.POLISHED_ROCK_SLAB, 2);
 
+        register(NdBlocks.ROCK, NdBlocks.ROCK_STAIRS);
+        register(NdBlocks.MOSSY_ROCK, NdBlocks.MOSSY_ROCK_STAIRS);
+        register(NdBlocks.ROCK_BRICKS, NdBlocks.ROCK_BRICKS_STAIRS);
+        register(NdBlocks.MOSSY_ROCK_BRICKS, NdBlocks.MOSSY_ROCK_BRICKS_STAIRS);
+        register(NdBlocks.CRACKED_ROCK_BRICKS, NdBlocks.CRACKED_ROCK_BRICKS_STAIRS);
+        register(NdBlocks.ROCK_TILES, NdBlocks.ROCK_TILES_STAIRS);
+        register(NdBlocks.MOSSY_ROCK_TILES, NdBlocks.MOSSY_ROCK_TILES_STAIRS);
+        register(NdBlocks.CRACKED_ROCK_TILES, NdBlocks.CRACKED_ROCK_TILES_STAIRS);
+        register(NdBlocks.SMOOTH_ROCK, NdBlocks.SMOOTH_ROCK_STAIRS);
+        register(NdBlocks.POLISHED_ROCK, NdBlocks.POLISHED_ROCK_STAIRS);
+
         // Darkrock
         register(NdBlocks.DARKROCK, NdBlocks.DARKROCK_BRICKS);
         register(NdBlocks.DARKROCK, NdBlocks.DARKROCK_PILLAR);
@@ -80,6 +91,17 @@ public class NdStonecuttingRecipeProvider extends RecipeProvider {
         register(NdBlocks.CRACKED_DARKROCK_TILES, NdBlocks.CRACKED_DARKROCK_TILES_SLAB, 2);
         register(NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_SLAB, 2);
         register(NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_SLAB, 2);
+
+        register(NdBlocks.DARKROCK, NdBlocks.DARKROCK_STAIRS);
+        register(NdBlocks.MOSSY_DARKROCK, NdBlocks.MOSSY_DARKROCK_STAIRS);
+        register(NdBlocks.DARKROCK_BRICKS, NdBlocks.DARKROCK_BRICKS_STAIRS);
+        register(NdBlocks.MOSSY_DARKROCK_BRICKS, NdBlocks.MOSSY_DARKROCK_BRICKS_STAIRS);
+        register(NdBlocks.CRACKED_DARKROCK_BRICKS, NdBlocks.CRACKED_DARKROCK_BRICKS_STAIRS);
+        register(NdBlocks.DARKROCK_TILES, NdBlocks.DARKROCK_TILES_STAIRS);
+        register(NdBlocks.MOSSY_DARKROCK_TILES, NdBlocks.MOSSY_DARKROCK_TILES_STAIRS);
+        register(NdBlocks.CRACKED_DARKROCK_TILES, NdBlocks.CRACKED_DARKROCK_TILES_STAIRS);
+        register(NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_STAIRS);
+        register(NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_STAIRS);
 
         compile();
         flush();
