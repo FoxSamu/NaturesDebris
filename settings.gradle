@@ -7,7 +7,6 @@
 
 rootProject.name = 'NaturesDebris'
 
-include 'IOLib'
 include 'NaturesDebrisAPI'
 include 'NaturesDebrisCore'
 include 'NaturesDebrisMod'

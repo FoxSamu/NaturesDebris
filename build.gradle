@@ -64,15 +64,10 @@ allprojects {
         configurations {
             embed // External deps embedded into the JAR file
             compile.extendsFrom( embed )
-
-            internal // Internal deps (subprojects) embedded into the JAR file
-            compile.extendsFrom( internal )
         }
 
         dependencies {
             minecraft 'net.minecraftforge:forge:1.15.2-31.2.0'
-
-            internal project( ':IOLib' )
 
             embed "net.shadew:ptg:1.2.0"
 
@@ -182,16 +177,16 @@ minecraft {
 
 // Depend on all subprojects
 dependencies {
-    internal( project( ':NaturesDebrisAPI' ) ) {
+    embed( project( ':NaturesDebrisAPI' ) ) {
         transitive false
     }
-    internal( project( ':NaturesDebrisCore' ) ) {
+    embed( project( ':NaturesDebrisCore' ) ) {
         transitive false
     }
-    internal( project( ':NaturesDebrisMod' ) ) {
+    embed( project( ':NaturesDebrisMod' ) ) {
         transitive false
     }
-    internal( project( ':NaturesDebrisTest' ) ) {
+    embed( project( ':NaturesDebrisTest' ) ) {
         transitive false
     }
 }
