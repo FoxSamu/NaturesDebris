@@ -1,0 +1,8 @@
+{
+  "parent": "ndebris:block/inner_step",
+  "textures": {
+    "bottom": "ndebris:block/smooth_darkrock",
+    "top": "ndebris:block/smooth_darkrock",
+    "side": "ndebris:block/smooth_darkrock"
+  }
+}

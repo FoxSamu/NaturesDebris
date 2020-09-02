@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## "
+  ],
+  "key": {
+    "#": {
+      "item": "ndebris:mossy_darkrock"
+    }
+  },
+  "result": {
+    "item": "ndebris:mossy_darkrock_step",
+    "count": 6
+  }
+}

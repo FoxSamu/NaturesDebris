@@ -1,16 +1,18 @@
 package natures.debris.data.loottables;
 
-import natures.debris.common.block.NdBlocks;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import net.minecraftforge.registries.ForgeRegistries;
+
 import net.minecraft.block.Block;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.world.storage.loot.ConstantRange;
 import net.minecraft.world.storage.loot.LootPool;
 import net.minecraft.world.storage.loot.LootTable;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import natures.debris.common.block.NdBlocks;
 
 public class NdBlockLootTables extends BlockLootTables {
 
@@ -32,6 +34,7 @@ public class NdBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(NdBlocks.POLISHED_ROCK);
         registerDropSelfLootTable(NdBlocks.CHISELED_ROCK);
         registerDropSelfLootTable(NdBlocks.ROCK_PILLAR);
+        registerDropSelfLootTable(NdBlocks.ROCK_LANTERN);
 
         registerLootTable(NdBlocks.ROCK_SLAB, BlockLootTables::droppingSlab);
         registerLootTable(NdBlocks.MOSSY_ROCK_SLAB, BlockLootTables::droppingSlab);
@@ -55,6 +58,17 @@ public class NdBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(NdBlocks.SMOOTH_ROCK_STAIRS);
         registerDropSelfLootTable(NdBlocks.POLISHED_ROCK_STAIRS);
 
+        registerDropSelfLootTable(NdBlocks.ROCK_STEP);
+        registerDropSelfLootTable(NdBlocks.MOSSY_ROCK_STEP);
+        registerDropSelfLootTable(NdBlocks.ROCK_BRICKS_STEP);
+        registerDropSelfLootTable(NdBlocks.MOSSY_ROCK_BRICKS_STEP);
+        registerDropSelfLootTable(NdBlocks.CRACKED_ROCK_BRICKS_STEP);
+        registerDropSelfLootTable(NdBlocks.ROCK_TILES_STEP);
+        registerDropSelfLootTable(NdBlocks.MOSSY_ROCK_TILES_STEP);
+        registerDropSelfLootTable(NdBlocks.CRACKED_ROCK_TILES_STEP);
+        registerDropSelfLootTable(NdBlocks.SMOOTH_ROCK_STEP);
+        registerDropSelfLootTable(NdBlocks.POLISHED_ROCK_STEP);
+
         registerDropSelfLootTable(NdBlocks.DARKROCK);
         registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK);
         registerDropSelfLootTable(NdBlocks.DARKROCK_BRICKS);
@@ -67,6 +81,7 @@ public class NdBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(NdBlocks.POLISHED_DARKROCK);
         registerDropSelfLootTable(NdBlocks.CHISELED_DARKROCK);
         registerDropSelfLootTable(NdBlocks.DARKROCK_PILLAR);
+        registerDropSelfLootTable(NdBlocks.DARKROCK_LANTERN);
 
         registerLootTable(NdBlocks.DARKROCK_SLAB, BlockLootTables::droppingSlab);
         registerLootTable(NdBlocks.MOSSY_DARKROCK_SLAB, BlockLootTables::droppingSlab);
@@ -89,6 +104,17 @@ public class NdBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(NdBlocks.CRACKED_DARKROCK_TILES_STAIRS);
         registerDropSelfLootTable(NdBlocks.SMOOTH_DARKROCK_STAIRS);
         registerDropSelfLootTable(NdBlocks.POLISHED_DARKROCK_STAIRS);
+
+        registerDropSelfLootTable(NdBlocks.DARKROCK_STEP);
+        registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK_STEP);
+        registerDropSelfLootTable(NdBlocks.DARKROCK_BRICKS_STEP);
+        registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK_BRICKS_STEP);
+        registerDropSelfLootTable(NdBlocks.CRACKED_DARKROCK_BRICKS_STEP);
+        registerDropSelfLootTable(NdBlocks.DARKROCK_TILES_STEP);
+        registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK_TILES_STEP);
+        registerDropSelfLootTable(NdBlocks.CRACKED_DARKROCK_TILES_STEP);
+        registerDropSelfLootTable(NdBlocks.SMOOTH_DARKROCK_STEP);
+        registerDropSelfLootTable(NdBlocks.POLISHED_DARKROCK_STEP);
     }
 
     @Override

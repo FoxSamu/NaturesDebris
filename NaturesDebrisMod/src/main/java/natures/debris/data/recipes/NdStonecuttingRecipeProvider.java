@@ -3,9 +3,12 @@ package natures.debris.data.recipes;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.mojang.datafixers.util.Pair;
-import natures.debris.common.NaturesDebris;
-import natures.debris.common.block.NdBlocks;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Consumer;
+
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
@@ -14,11 +17,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
+import com.mojang.datafixers.util.Pair;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
+import natures.debris.common.NaturesDebris;
+import natures.debris.common.block.NdBlocks;
 
 /**
  * Recipe provider designed for generating stonecutter recipes. This provider automatically derives all other possible
@@ -73,6 +75,17 @@ public class NdStonecuttingRecipeProvider extends RecipeProvider {
         register(NdBlocks.SMOOTH_ROCK, NdBlocks.SMOOTH_ROCK_STAIRS);
         register(NdBlocks.POLISHED_ROCK, NdBlocks.POLISHED_ROCK_STAIRS);
 
+        register(NdBlocks.ROCK, NdBlocks.ROCK_STEP, 4);
+        register(NdBlocks.MOSSY_ROCK, NdBlocks.MOSSY_ROCK_STEP, 4);
+        register(NdBlocks.ROCK_BRICKS, NdBlocks.ROCK_BRICKS_STEP, 4);
+        register(NdBlocks.MOSSY_ROCK_BRICKS, NdBlocks.MOSSY_ROCK_BRICKS_STEP, 4);
+        register(NdBlocks.CRACKED_ROCK_BRICKS, NdBlocks.CRACKED_ROCK_BRICKS_STEP, 4);
+        register(NdBlocks.ROCK_TILES, NdBlocks.ROCK_TILES_STEP, 4);
+        register(NdBlocks.MOSSY_ROCK_TILES, NdBlocks.MOSSY_ROCK_TILES_STEP, 4);
+        register(NdBlocks.CRACKED_ROCK_TILES, NdBlocks.CRACKED_ROCK_TILES_STEP, 4);
+        register(NdBlocks.SMOOTH_ROCK, NdBlocks.SMOOTH_ROCK_STEP, 4);
+        register(NdBlocks.POLISHED_ROCK, NdBlocks.POLISHED_ROCK_STEP, 4);
+
         // Darkrock
         register(NdBlocks.DARKROCK, NdBlocks.DARKROCK_BRICKS);
         register(NdBlocks.DARKROCK, NdBlocks.DARKROCK_PILLAR);
@@ -102,6 +115,17 @@ public class NdStonecuttingRecipeProvider extends RecipeProvider {
         register(NdBlocks.CRACKED_DARKROCK_TILES, NdBlocks.CRACKED_DARKROCK_TILES_STAIRS);
         register(NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_STAIRS);
         register(NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_STAIRS);
+
+        register(NdBlocks.DARKROCK, NdBlocks.DARKROCK_STEP);
+        register(NdBlocks.MOSSY_DARKROCK, NdBlocks.MOSSY_DARKROCK_STEP);
+        register(NdBlocks.DARKROCK_BRICKS, NdBlocks.DARKROCK_BRICKS_STEP);
+        register(NdBlocks.MOSSY_DARKROCK_BRICKS, NdBlocks.MOSSY_DARKROCK_BRICKS_STEP);
+        register(NdBlocks.CRACKED_DARKROCK_BRICKS, NdBlocks.CRACKED_DARKROCK_BRICKS_STEP);
+        register(NdBlocks.DARKROCK_TILES, NdBlocks.DARKROCK_TILES_STEP);
+        register(NdBlocks.MOSSY_DARKROCK_TILES, NdBlocks.MOSSY_DARKROCK_TILES_STEP);
+        register(NdBlocks.CRACKED_DARKROCK_TILES, NdBlocks.CRACKED_DARKROCK_TILES_STEP);
+        register(NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_STEP);
+        register(NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_STEP);
 
         compile();
         flush();

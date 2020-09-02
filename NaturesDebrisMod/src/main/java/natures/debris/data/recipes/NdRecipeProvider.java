@@ -1,12 +1,17 @@
 package natures.debris.data.recipes;
 
-import natures.debris.common.NaturesDebris;
-import natures.debris.common.block.NdBlocks;
-import net.minecraft.data.*;
+import java.util.function.Consumer;
+
+import net.minecraft.data.CookingRecipeBuilder;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.data.RecipeProvider;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 
-import java.util.function.Consumer;
+import natures.debris.common.NaturesDebris;
+import natures.debris.common.block.NdBlocks;
 
 public class NdRecipeProvider extends RecipeProvider {
     private Consumer<IFinishedRecipe> consumer;
@@ -53,6 +58,17 @@ public class NdRecipeProvider extends RecipeProvider {
         stairs("smooth_rock_stairs_stairs", NdBlocks.SMOOTH_ROCK, NdBlocks.SMOOTH_ROCK_STAIRS, 4);
         stairs("polished_rock_stairs_stairs", NdBlocks.POLISHED_ROCK, NdBlocks.POLISHED_ROCK_STAIRS, 4);
 
+        step("rock_step_step", NdBlocks.ROCK, NdBlocks.ROCK_STEP, 6);
+        step("mossy_rock_step_step", NdBlocks.MOSSY_ROCK, NdBlocks.MOSSY_ROCK_STEP, 6);
+        step("rock_bricks_step_step", NdBlocks.ROCK_BRICKS, NdBlocks.ROCK_BRICKS_STEP, 6);
+        step("mossy_rock_bricks_step_step", NdBlocks.MOSSY_ROCK_BRICKS, NdBlocks.MOSSY_ROCK_BRICKS_STEP, 6);
+        step("cracked_rock_bricks_step_step", NdBlocks.CRACKED_ROCK_BRICKS, NdBlocks.CRACKED_ROCK_BRICKS_STEP, 6);
+        step("rock_tiles_step_step", NdBlocks.ROCK_TILES, NdBlocks.ROCK_TILES_STEP, 6);
+        step("mossy_rock_tiles_step_step", NdBlocks.MOSSY_ROCK_TILES, NdBlocks.MOSSY_ROCK_TILES_STEP, 6);
+        step("cracked_rock_tiles_step_step", NdBlocks.CRACKED_ROCK_TILES, NdBlocks.CRACKED_ROCK_TILES_STEP, 6);
+        step("smooth_rock_step_step", NdBlocks.SMOOTH_ROCK, NdBlocks.SMOOTH_ROCK_STEP, 6);
+        step("polished_rock_step_step", NdBlocks.POLISHED_ROCK, NdBlocks.POLISHED_ROCK_STEP, 6);
+
         // Darkrock
         generic4x4("darkrock_bricks_4x4", NdBlocks.DARKROCK, NdBlocks.DARKROCK_BRICKS, 4);
         generic4x4("mossy_darkrock_bricks_4x4", NdBlocks.MOSSY_DARKROCK, NdBlocks.MOSSY_DARKROCK_BRICKS, 4);
@@ -74,16 +90,27 @@ public class NdRecipeProvider extends RecipeProvider {
         generic3x1("smooth_darkrock_slab_3x1", NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_SLAB, 6);
         generic3x1("polished_darkrock_slab_3x1", NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_SLAB, 6);
 
-        stairs("darkrock_slab_stairs", NdBlocks.DARKROCK, NdBlocks.DARKROCK_STAIRS, 4);
-        stairs("mossy_darkrock_slab_stairs", NdBlocks.MOSSY_DARKROCK, NdBlocks.MOSSY_DARKROCK_STAIRS, 4);
-        stairs("darkrock_bricks_slab_stairs", NdBlocks.DARKROCK_BRICKS, NdBlocks.DARKROCK_BRICKS_STAIRS, 4);
-        stairs("mossy_darkrock_bricks_slab_stairs", NdBlocks.MOSSY_DARKROCK_BRICKS, NdBlocks.MOSSY_DARKROCK_BRICKS_STAIRS, 4);
-        stairs("cracked_darkrock_bricks_slab_stairs", NdBlocks.CRACKED_DARKROCK_BRICKS, NdBlocks.CRACKED_DARKROCK_BRICKS_STAIRS, 4);
-        stairs("darkrock_tiles_slab_stairs", NdBlocks.DARKROCK_TILES, NdBlocks.DARKROCK_TILES_STAIRS, 4);
-        stairs("mossy_darkrock_tiles_slab_stairs", NdBlocks.MOSSY_DARKROCK_TILES, NdBlocks.MOSSY_DARKROCK_TILES_STAIRS, 4);
-        stairs("cracked_darkrock_tiles_slab_stairs", NdBlocks.CRACKED_DARKROCK_TILES, NdBlocks.CRACKED_DARKROCK_TILES_STAIRS, 4);
-        stairs("smooth_darkrock_slab_stairs", NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_STAIRS, 4);
-        stairs("polished_darkrock_slab_stairs", NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_STAIRS, 4);
+        stairs("darkrock_stairs_stairs", NdBlocks.DARKROCK, NdBlocks.DARKROCK_STAIRS, 4);
+        stairs("mossy_darkrock_stairs_stairs", NdBlocks.MOSSY_DARKROCK, NdBlocks.MOSSY_DARKROCK_STAIRS, 4);
+        stairs("darkrock_bricks_stairs_stairs", NdBlocks.DARKROCK_BRICKS, NdBlocks.DARKROCK_BRICKS_STAIRS, 4);
+        stairs("mossy_darkrock_bricks_stairs_stairs", NdBlocks.MOSSY_DARKROCK_BRICKS, NdBlocks.MOSSY_DARKROCK_BRICKS_STAIRS, 4);
+        stairs("cracked_darkrock_bricks_stairs_stairs", NdBlocks.CRACKED_DARKROCK_BRICKS, NdBlocks.CRACKED_DARKROCK_BRICKS_STAIRS, 4);
+        stairs("darkrock_tiles_stairs_stairs", NdBlocks.DARKROCK_TILES, NdBlocks.DARKROCK_TILES_STAIRS, 4);
+        stairs("mossy_darkrock_tiles_stairs_stairs", NdBlocks.MOSSY_DARKROCK_TILES, NdBlocks.MOSSY_DARKROCK_TILES_STAIRS, 4);
+        stairs("cracked_darkrock_tiles_stairs_stairs", NdBlocks.CRACKED_DARKROCK_TILES, NdBlocks.CRACKED_DARKROCK_TILES_STAIRS, 4);
+        stairs("smooth_darkrock_stairs_stairs", NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_STAIRS, 4);
+        stairs("polished_darkrock_stairs_stairs", NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_STAIRS, 4);
+
+        step("darkrock_step_step", NdBlocks.DARKROCK, NdBlocks.DARKROCK_STEP, 6);
+        step("mossy_darkrock_step_step", NdBlocks.MOSSY_DARKROCK, NdBlocks.MOSSY_DARKROCK_STEP, 6);
+        step("darkrock_bricks_step_step", NdBlocks.DARKROCK_BRICKS, NdBlocks.DARKROCK_BRICKS_STEP, 6);
+        step("mossy_darkrock_bricks_step_step", NdBlocks.MOSSY_DARKROCK_BRICKS, NdBlocks.MOSSY_DARKROCK_BRICKS_STEP, 6);
+        step("cracked_darkrock_bricks_step_step", NdBlocks.CRACKED_DARKROCK_BRICKS, NdBlocks.CRACKED_DARKROCK_BRICKS_STEP, 6);
+        step("darkrock_tiles_step_step", NdBlocks.DARKROCK_TILES, NdBlocks.DARKROCK_TILES_STEP, 6);
+        step("mossy_darkrock_tiles_step_step", NdBlocks.MOSSY_DARKROCK_TILES, NdBlocks.MOSSY_DARKROCK_TILES_STEP, 6);
+        step("cracked_darkrock_tiles_step_step", NdBlocks.CRACKED_DARKROCK_TILES, NdBlocks.CRACKED_DARKROCK_TILES_STEP, 6);
+        step("smooth_darkrock_step_step", NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_STEP, 6);
+        step("polished_darkrock_step_step", NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_STEP, 6);
     }
 
     private void generic4x4(String id, IItemProvider from, IItemProvider to, int count) {
@@ -128,6 +155,15 @@ public class NdRecipeProvider extends RecipeProvider {
                            .patternLine("#  ")
                            .patternLine("## ")
                            .patternLine("###")
+                           .addCriterion("has_ingredient", hasItem(from))
+                           .build(consumer, NaturesDebris.resLoc(id));
+    }
+
+    private void step(String id, IItemProvider from, IItemProvider to, int count) {
+        ShapedRecipeBuilder.shapedRecipe(to, count)
+                           .key('#', from)
+                           .patternLine("#  ")
+                           .patternLine("## ")
                            .addCriterion("has_ingredient", hasItem(from))
                            .build(consumer, NaturesDebris.resLoc(id));
     }

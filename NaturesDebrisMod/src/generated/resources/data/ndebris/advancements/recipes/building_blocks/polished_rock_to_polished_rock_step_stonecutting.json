@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "ndebris:polished_rock_to_polished_rock_step_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_polished_rock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ndebris:polished_rock"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "ndebris:polished_rock_to_polished_rock_step_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_rock",
+      "has_the_recipe"
+    ]
+  ]
+}

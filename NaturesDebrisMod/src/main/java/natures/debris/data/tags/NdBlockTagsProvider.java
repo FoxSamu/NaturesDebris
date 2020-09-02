@@ -1,6 +1,7 @@
 package natures.debris.data.tags;
 
-import natures.debris.common.block.NdBlocks;
+import java.nio.file.Path;
+
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.TagsProvider;
@@ -9,7 +10,8 @@ import net.minecraft.tags.TagCollection;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
-import java.nio.file.Path;
+import natures.debris.common.block.NdBlocks;
+import natures.debris.common.tags.NdBlockTags;
 
 public class NdBlockTagsProvider extends TagsProvider<Block> {
     @SuppressWarnings("deprecation") // We need Registry.BLOCK. Sorry Forge...
@@ -65,6 +67,30 @@ public class NdBlockTagsProvider extends TagsProvider<Block> {
             NdBlocks.CRACKED_DARKROCK_TILES_STAIRS,
             NdBlocks.SMOOTH_DARKROCK_STAIRS,
             NdBlocks.POLISHED_DARKROCK_STAIRS
+        );
+
+        getBuilder(NdBlockTags.STEPS).replace(false).add(
+            NdBlocks.ROCK_STEP,
+            NdBlocks.MOSSY_ROCK_STEP,
+            NdBlocks.ROCK_BRICKS_STEP,
+            NdBlocks.MOSSY_ROCK_BRICKS_STEP,
+            NdBlocks.CRACKED_ROCK_BRICKS_STEP,
+            NdBlocks.ROCK_TILES_STEP,
+            NdBlocks.MOSSY_ROCK_TILES_STEP,
+            NdBlocks.CRACKED_ROCK_TILES_STEP,
+            NdBlocks.SMOOTH_ROCK_STEP,
+            NdBlocks.POLISHED_ROCK_STEP,
+
+            NdBlocks.DARKROCK_STEP,
+            NdBlocks.MOSSY_DARKROCK_STEP,
+            NdBlocks.DARKROCK_BRICKS_STEP,
+            NdBlocks.MOSSY_DARKROCK_BRICKS_STEP,
+            NdBlocks.CRACKED_DARKROCK_BRICKS_STEP,
+            NdBlocks.DARKROCK_TILES_STEP,
+            NdBlocks.MOSSY_DARKROCK_TILES_STEP,
+            NdBlocks.CRACKED_DARKROCK_TILES_STEP,
+            NdBlocks.SMOOTH_DARKROCK_STEP,
+            NdBlocks.POLISHED_DARKROCK_STEP
         );
     }
 

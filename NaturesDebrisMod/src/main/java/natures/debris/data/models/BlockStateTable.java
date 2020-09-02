@@ -1,17 +1,18 @@
 package natures.debris.data.models;
 
-import natures.debris.common.block.NdBlocks;
-import natures.debris.data.models.modelgen.IModelGen;
-import natures.debris.data.models.stategen.IBlockStateGen;
-import natures.debris.data.models.stategen.ModelInfo;
-import natures.debris.data.models.stategen.VariantBlockStateGen;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+
 import net.minecraft.block.Block;
 import net.minecraft.state.properties.Half;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.function.BiConsumer;
-import java.util.function.Function;
+import natures.debris.common.block.NdBlocks;
+import natures.debris.data.models.modelgen.IModelGen;
+import natures.debris.data.models.stategen.IBlockStateGen;
+import natures.debris.data.models.stategen.ModelInfo;
+import natures.debris.data.models.stategen.VariantBlockStateGen;
 
 import static natures.debris.data.models.modelgen.InheritingModelGen.*;
 
@@ -32,6 +33,7 @@ public final class BlockStateTable {
         register(NdBlocks.SMOOTH_ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.POLISHED_ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.CHISELED_ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(NdBlocks.ROCK_LANTERN, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.ROCK_PILLAR, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_top"), name(block, "block/%s_side"))));
 
         register(NdBlocks.ROCK_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 1));
@@ -56,6 +58,17 @@ public final class BlockStateTable {
         register(NdBlocks.SMOOTH_ROCK_STAIRS, block -> stairsRandomized(name(block, "block/%s", "_stairs"), 1));
         register(NdBlocks.POLISHED_ROCK_STAIRS, block -> stairsRandomized(name(block, "block/%s", "_stairs"), 1));
 
+        register(NdBlocks.ROCK_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 1));
+        register(NdBlocks.MOSSY_ROCK_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 1));
+        register(NdBlocks.ROCK_BRICKS_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 16, 2, 2));
+        register(NdBlocks.MOSSY_ROCK_BRICKS_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 16, 2, 2));
+        register(NdBlocks.CRACKED_ROCK_BRICKS_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 16, 2, 2));
+        register(NdBlocks.ROCK_TILES_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 32, 2, 4, 2));
+        register(NdBlocks.MOSSY_ROCK_TILES_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 32, 2, 4, 2));
+        register(NdBlocks.CRACKED_ROCK_TILES_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 32, 2, 4, 2));
+        register(NdBlocks.SMOOTH_ROCK_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 1));
+        register(NdBlocks.POLISHED_ROCK_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 1));
+
         register(NdBlocks.DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.MOSSY_DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.DARKROCK_BRICKS, block -> cubeAllRandomized(name(block, "block/%s"), 16, 2, 2));
@@ -67,6 +80,7 @@ public final class BlockStateTable {
         register(NdBlocks.SMOOTH_DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.POLISHED_DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.CHISELED_DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(NdBlocks.DARKROCK_LANTERN, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.DARKROCK_PILLAR, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_top"), name(block, "block/%s_side"))));
 
         register(NdBlocks.DARKROCK_SLAB, block -> slabRandomized(name(block, "block/%s", "_slab"), 1));
@@ -90,6 +104,17 @@ public final class BlockStateTable {
         register(NdBlocks.CRACKED_DARKROCK_TILES_STAIRS, block -> stairsRandomized(name(block, "block/%s", "_stairs"), 32, 2, 4, 2));
         register(NdBlocks.SMOOTH_DARKROCK_STAIRS, block -> stairsRandomized(name(block, "block/%s", "_stairs"), 1));
         register(NdBlocks.POLISHED_DARKROCK_STAIRS, block -> stairsRandomized(name(block, "block/%s", "_stairs"), 1));
+
+        register(NdBlocks.DARKROCK_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 1));
+        register(NdBlocks.MOSSY_DARKROCK_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 1));
+        register(NdBlocks.DARKROCK_BRICKS_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 16, 2, 2));
+        register(NdBlocks.MOSSY_DARKROCK_BRICKS_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 16, 2, 2));
+        register(NdBlocks.CRACKED_DARKROCK_BRICKS_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 16, 2, 2));
+        register(NdBlocks.DARKROCK_TILES_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 32, 2, 4, 2));
+        register(NdBlocks.MOSSY_DARKROCK_TILES_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 32, 2, 4, 2));
+        register(NdBlocks.CRACKED_DARKROCK_TILES_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 32, 2, 4, 2));
+        register(NdBlocks.SMOOTH_DARKROCK_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 1));
+        register(NdBlocks.POLISHED_DARKROCK_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 1));
     }
 
     private static IBlockStateGen simple(String name, IModelGen model) {
@@ -165,6 +190,70 @@ public final class BlockStateTable {
                                          .uvlock(true)
                                          .weight(weights[i]);
                     stairs[i] = ModelInfo.create(sn, stairsM[i] ? null : stairs(tn))
+                                         .rotate(x, y)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+
+                    innerM[i] = true;
+                    outerM[i] = true;
+                    stairsM[i] = true;
+                }
+
+                gen.variant(state + ",shape=straight", stairs);
+                gen.variant(state + ",shape=inner_left", innerL);
+                gen.variant(state + ",shape=inner_right", innerR);
+                gen.variant(state + ",shape=outer_left", outerL);
+                gen.variant(state + ",shape=outer_right", outerR);
+            }
+            if (y == 270) y = 0;
+            else y += 90;
+        }
+        return gen;
+    }
+
+    private static IBlockStateGen stepRandomized(String name, int... weights) {
+        ModelInfo[] innerL = new ModelInfo[weights.length];
+        ModelInfo[] outerL = new ModelInfo[weights.length];
+        ModelInfo[] innerR = new ModelInfo[weights.length];
+        ModelInfo[] outerR = new ModelInfo[weights.length];
+        ModelInfo[] stairs = new ModelInfo[weights.length];
+        boolean[] innerM = new boolean[weights.length];
+        boolean[] outerM = new boolean[weights.length];
+        boolean[] stairsM = new boolean[weights.length];
+
+        VariantBlockStateGen gen = VariantBlockStateGen.create();
+        int y = 270;
+        for (Direction dir : Direction.Plane.HORIZONTAL) {
+            for (Half half : Half.values()) {
+                int x = half == Half.TOP ? 180 : 0;
+                String state = String.format("facing=%s,half=%s", dir.getName(), half.getName());
+
+                for (int i = 0; i < innerL.length; i++) {
+                    String in = name + (i == 0 ? "_step_inner" : "_step_inner_alt_" + i);
+                    String on = name + (i == 0 ? "_step_outer" : "_step_outer_alt_" + i);
+                    String sn = name + (i == 0 ? "_step" : "_step_alt_" + i);
+                    String tn = name + (i == 0 ? "" : "_alt_" + i);
+
+                    int yp = y == 0 ? 270 : y - 90;
+                    int yn = y == 270 ? 0 : y + 90;
+
+                    innerL[i] = ModelInfo.create(in, innerM[i] ? null : stepInner(tn))
+                                         .rotate(x, x == 180 ? y : yp)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+                    outerL[i] = ModelInfo.create(on, outerM[i] ? null : stepOuter(tn))
+                                         .rotate(x, x == 180 ? y : yp)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+                    innerR[i] = ModelInfo.create(in)
+                                         .rotate(x, x == 180 ? yn : y)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+                    outerR[i] = ModelInfo.create(on)
+                                         .rotate(x, x == 180 ? yn : y)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+                    stairs[i] = ModelInfo.create(sn, stairsM[i] ? null : step(tn))
                                          .rotate(x, y)
                                          .uvlock(true)
                                          .weight(weights[i]);

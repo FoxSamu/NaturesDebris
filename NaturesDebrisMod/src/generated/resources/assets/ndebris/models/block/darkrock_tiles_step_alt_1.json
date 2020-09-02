@@ -1,0 +1,8 @@
+{
+  "parent": "ndebris:block/step",
+  "textures": {
+    "bottom": "ndebris:block/darkrock_tiles_alt_1",
+    "top": "ndebris:block/darkrock_tiles_alt_1",
+    "side": "ndebris:block/darkrock_tiles_alt_1"
+  }
+}

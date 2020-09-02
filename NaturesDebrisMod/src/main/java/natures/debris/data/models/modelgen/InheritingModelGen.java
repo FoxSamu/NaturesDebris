@@ -2,11 +2,12 @@ package natures.debris.data.models.modelgen;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.mojang.datafixers.util.Pair;
-import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import net.minecraft.util.ResourceLocation;
+import com.mojang.datafixers.util.Pair;
 
 public class InheritingModelGen implements IModelGen {
     private final ResourceLocation parent;
@@ -90,6 +91,27 @@ public class InheritingModelGen implements IModelGen {
 
     public static InheritingModelGen stairsOuter(String texture) {
         return new InheritingModelGen("block/outer_stairs")
+                   .texture("bottom", texture)
+                   .texture("top", texture)
+                   .texture("side", texture);
+    }
+
+    public static InheritingModelGen step(String texture) {
+        return new InheritingModelGen("ndebris:block/step")
+                   .texture("bottom", texture)
+                   .texture("top", texture)
+                   .texture("side", texture);
+    }
+
+    public static InheritingModelGen stepInner(String texture) {
+        return new InheritingModelGen("ndebris:block/inner_step")
+                   .texture("bottom", texture)
+                   .texture("top", texture)
+                   .texture("side", texture);
+    }
+
+    public static InheritingModelGen stepOuter(String texture) {
+        return new InheritingModelGen("ndebris:block/outer_step")
                    .texture("bottom", texture)
                    .texture("top", texture)
                    .texture("side", texture);

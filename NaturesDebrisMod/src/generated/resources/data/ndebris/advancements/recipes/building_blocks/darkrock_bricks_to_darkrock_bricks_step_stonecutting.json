@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "ndebris:darkrock_bricks_to_darkrock_bricks_step_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_darkrock_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ndebris:darkrock_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "ndebris:darkrock_bricks_to_darkrock_bricks_step_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_darkrock_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}
