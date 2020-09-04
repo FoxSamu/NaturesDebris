@@ -22,6 +22,9 @@ public class NdBlockLootTables extends BlockLootTables {
 
     @Override
     protected void addTables() {
+        registerDropSelfLootTable(NdBlocks.MURKY_DIRT);
+        registerLootTable(NdBlocks.MURKY_GRASS_BLOCK, block -> droppingWithSilkTouch(block, NdBlocks.MURKY_DIRT));
+
         registerDropSelfLootTable(NdBlocks.ROCK);
         registerDropSelfLootTable(NdBlocks.MOSSY_ROCK);
         registerDropSelfLootTable(NdBlocks.ROCK_BRICKS);

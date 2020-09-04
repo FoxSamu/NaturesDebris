@@ -1,0 +1,9 @@
+{
+  "parent": "ndebris:block/grass_block",
+  "textures": {
+    "top": "ndebris:block/murky_grass_block_top",
+    "bottom": "ndebris:block/murky_dirt",
+    "side": "ndebris:block/murky_grass_block_side",
+    "overlay": "ndebris:block/murky_grass_block_overlay"
+  }
+}

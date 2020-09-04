@@ -22,6 +22,9 @@ public final class BlockStateTable {
     public static void registerBlockStates(BiConsumer<Block, IBlockStateGen> c) {
         consumer = c;
 
+        register(NdBlocks.MURKY_DIRT, block -> rotateXY(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(NdBlocks.MURKY_GRASS_BLOCK, block -> rotateY(name(block, "block/%s"), grassBlock(name(block, "block/%s_top"), name(block, "block/%s_side"), name(block, "block/murky_dirt"), name(block, "block/%s_overlay"))));
+
         register(NdBlocks.ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.MOSSY_ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.ROCK_BRICKS, block -> cubeAllRandomized(name(block, "block/%s"), 16, 2, 2));

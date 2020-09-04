@@ -182,7 +182,7 @@ public class InheritingModelGen implements IModelGen {
     }
 
     public static InheritingModelGen grassBlock(String top, String side, String bottom, String overlay) {
-        return new InheritingModelGen("midnight:block/grass_block")
+        return new InheritingModelGen("ndebris:block/grass_block")
                    .texture("top", top)
                    .texture("bottom", bottom)
                    .texture("side", side)

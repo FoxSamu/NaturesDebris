@@ -1,17 +1,28 @@
 package natures.debris.client;
 
-import natures.debris.NdInfo;
+import net.minecraftforge.common.MinecraftForge;
+
+import net.minecraft.client.Minecraft;
+
 import natures.debris.api.INaturesDebris;
 import natures.debris.api.INaturesDebrisClient;
 import natures.debris.api.util.ISidedTickable;
-import natures.debris.client.handler.BiomeColorCacheHandler;
 import natures.debris.common.NaturesDebris;
+import natures.debris.common.block.NdBlocks;
+import natures.debris.client.handler.BiomeColorCacheHandler;
+import natures.debris.client.util.BiomeColorCache;
+import natures.debris.NdInfo;
 import natures.debris.data.NaturesDebrisData;
-import net.minecraft.client.Minecraft;
-import net.minecraftforge.common.MinecraftForge;
 
 public class NaturesDebrisClient extends NaturesDebris implements INaturesDebrisClient {
     protected final Minecraft minecraft = Minecraft.getInstance();
+
+    private final BiomeColorCache grassColorCache = new BiomeColorCache();
+
+    @Override
+    public void setup() {
+        NdBlocks.setupClient();
+    }
 
     @Override
     protected void registerEventListeners() {

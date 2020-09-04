@@ -2,6 +2,8 @@ package natures.debris.common.block;
 
 import javax.annotation.Nonnull;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
@@ -9,8 +11,14 @@ import net.minecraftforge.registries.ObjectHolder;
 import net.minecraft.block.Block;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -20,6 +28,9 @@ import natures.debris.common.NaturesDebris;
 
 @ObjectHolder("ndebris")
 public final class NdBlocks {
+    public static final Block MURKY_DIRT = inj();
+    public static final Block MURKY_GRASS_BLOCK = inj();
+
     public static final Block ROCK = inj();
     public static final Block MOSSY_ROCK = inj();
     public static final Block ROCK_BRICKS = inj();
@@ -117,6 +128,11 @@ public final class NdBlocks {
     public static void register(IForgeRegistry<Block> registry) {
         registry.registerAll(
             rock("rock", 1.5, 6, false),
+            rock("darkrock", 1.5, 6, true),
+            dirt("murky_dirt", 0.5, MaterialColor.DIRT, SoundType.GROUND),
+            grass("murky_grass_block", 0.6, MaterialColor.GRASS, SoundType.PLANT),
+
+
             rock("mossy_rock", 1.5, 6, false),
             rock("rock_bricks", 2, 6, false),
             rock("mossy_rock_bricks", 2, 6, false),
@@ -164,7 +180,6 @@ public final class NdBlocks {
             rockStep("polished_rock_step", 2, 6, false),
 
 
-            rock("darkrock", 1.5, 6, true),
             rock("mossy_darkrock", 1.5, 6, true),
             rock("darkrock_bricks", 2, 6, true),
             rock("mossy_darkrock_bricks", 2, 6, true),
@@ -216,6 +231,10 @@ public final class NdBlocks {
     public static void registerItems(IForgeRegistry<Item> registry) {
         registry.registerAll(
             item(ROCK, ItemGroup.BUILDING_BLOCKS),
+            item(DARKROCK, ItemGroup.BUILDING_BLOCKS),
+            item(MURKY_DIRT, ItemGroup.BUILDING_BLOCKS),
+            item(MURKY_GRASS_BLOCK, ItemGroup.BUILDING_BLOCKS),
+
             item(MOSSY_ROCK, ItemGroup.BUILDING_BLOCKS),
             item(ROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
             item(MOSSY_ROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
@@ -263,7 +282,6 @@ public final class NdBlocks {
             item(POLISHED_ROCK_STEP, ItemGroup.BUILDING_BLOCKS),
 
 
-            item(DARKROCK, ItemGroup.BUILDING_BLOCKS),
             item(MOSSY_DARKROCK, ItemGroup.BUILDING_BLOCKS),
             item(DARKROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
             item(MOSSY_DARKROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
@@ -309,6 +327,23 @@ public final class NdBlocks {
             item(CRACKED_DARKROCK_TILES_STEP, ItemGroup.BUILDING_BLOCKS),
             item(SMOOTH_DARKROCK_STEP, ItemGroup.BUILDING_BLOCKS),
             item(POLISHED_DARKROCK_STEP, ItemGroup.BUILDING_BLOCKS)
+        );
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void setupClient() {
+        RenderTypeLookup.setRenderLayer(MURKY_GRASS_BLOCK, RenderType.getCutoutMipped());
+
+        BlockColors blockColors = Minecraft.getInstance().getBlockColors();
+        ItemColors itemColors = Minecraft.getInstance().getItemColors();
+
+        blockColors.register(
+            (state, world, pos, index) -> 0x11783F,
+            MURKY_GRASS_BLOCK
+        );
+        itemColors.register(
+            (item, index) -> 0x11783F,
+            MURKY_GRASS_BLOCK
         );
     }
 
@@ -362,6 +397,25 @@ public final class NdBlocks {
             Block.Properties.create(Material.ROCK, dark ? MaterialColor.BLACK : MaterialColor.STONE)
                             .hardnessAndResistance((float) hardness, (float) resistance)
                             .harvestTool(ToolType.PICKAXE)
+        ));
+    }
+
+    private static Block dirt(String id, double strength, MaterialColor color, SoundType sound) {
+        return block(id, new MurkyDirtBlock(
+            Block.Properties.create(Material.EARTH, color)
+                            .hardnessAndResistance((float) strength)
+                            .sound(sound)
+                            .harvestTool(ToolType.SHOVEL)
+        ));
+    }
+
+    private static Block grass(String id, double strength, MaterialColor color, SoundType sound) {
+        return block(id, new MurkyGrassBlock(
+            Block.Properties.create(Material.EARTH, color)
+                            .hardnessAndResistance((float) strength)
+                            .sound(sound)
+                            .harvestTool(ToolType.SHOVEL)
+                            .tickRandomly()
         ));
     }
 

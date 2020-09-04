@@ -2,6 +2,8 @@ package natures.debris.data.tags;
 
 import java.nio.file.Path;
 
+import net.minecraftforge.common.Tags;
+
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.TagsProvider;
@@ -91,6 +93,11 @@ public class NdBlockTagsProvider extends TagsProvider<Block> {
             NdBlocks.CRACKED_DARKROCK_TILES_STEP,
             NdBlocks.SMOOTH_DARKROCK_STEP,
             NdBlocks.POLISHED_DARKROCK_STEP
+        );
+
+        getBuilder(Tags.Blocks.DIRT).replace(false).add(
+            NdBlocks.MURKY_DIRT,
+            NdBlocks.MURKY_GRASS_BLOCK
         );
     }
 

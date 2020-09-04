@@ -19,6 +19,9 @@ public final class ItemModelTable {
     public static void registerItemModels(BiConsumer<Item, IModelGen> c) {
         consumer = c;
 
+        register(NdBlocks.MURKY_DIRT, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MURKY_GRASS_BLOCK, item -> inherit(name(item, "block/%s")));
+
         register(NdBlocks.ROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.MOSSY_ROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.ROCK_BRICKS, item -> inherit(name(item, "block/%s")));
