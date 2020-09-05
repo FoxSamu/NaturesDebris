@@ -189,6 +189,13 @@ public class InheritingModelGen implements IModelGen {
                    .texture("overlay", overlay);
     }
 
+    public static InheritingModelGen farmlandBlock(String top, String side, String bottom) {
+        return new InheritingModelGen("ndebris:block/farmland_block")
+                   .texture("top", top)
+                   .texture("bottom", bottom)
+                   .texture("side", side);
+    }
+
     public static InheritingModelGen generated(String... layers) {
         InheritingModelGen gen = new InheritingModelGen("item/generated");
         for (int i = 0, l = layers.length; i < l; i++) {

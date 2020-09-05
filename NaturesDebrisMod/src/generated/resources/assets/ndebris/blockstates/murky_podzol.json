@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ndebris:block/murky_podzol"
+      },
+      {
+        "model": "ndebris:block/murky_podzol",
+        "y": 90
+      },
+      {
+        "model": "ndebris:block/murky_podzol",
+        "y": 180
+      },
+      {
+        "model": "ndebris:block/murky_podzol",
+        "y": 270
+      }
+    ]
+  }
+}

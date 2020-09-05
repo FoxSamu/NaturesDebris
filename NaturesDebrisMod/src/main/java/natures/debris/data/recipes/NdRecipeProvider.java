@@ -7,6 +7,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 
@@ -23,6 +24,10 @@ public class NdRecipeProvider extends RecipeProvider {
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
         this.consumer = consumer;
+
+        // Nature blocks
+        genericShapeless("murky_humus_shapeless", NdBlocks.LEAFY_HUMUS, NdBlocks.MURKY_HUMUS, 1);
+        smelting("murky_terracotta_smelting", NdBlocks.ROCK_TILES, NdBlocks.CRACKED_ROCK_TILES, 0.35);
 
         // For stonecutting recipes, see NdStonecuttingRecipeProvider
 
@@ -120,6 +125,13 @@ public class NdRecipeProvider extends RecipeProvider {
                            .patternLine("##")
                            .addCriterion("has_ingredient", hasItem(from))
                            .build(consumer, NaturesDebris.resLoc(id));
+    }
+
+    private void genericShapeless(String id, IItemProvider from, IItemProvider to, int count) {
+        ShapelessRecipeBuilder.shapelessRecipe(to, count)
+                              .addIngredient(from)
+                              .addCriterion("has_ingredient", hasItem(from))
+                              .build(consumer, NaturesDebris.resLoc(id));
     }
 
     private void generic1x2(String id, IItemProvider from, IItemProvider to, int count) {

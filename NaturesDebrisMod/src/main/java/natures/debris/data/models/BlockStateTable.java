@@ -23,7 +23,15 @@ public final class BlockStateTable {
         consumer = c;
 
         register(NdBlocks.MURKY_DIRT, block -> rotateXY(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(NdBlocks.MURKY_CLAY, block -> rotateXY(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(NdBlocks.MURKY_TERRACOTTA, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(NdBlocks.MURKY_SAND, block -> rotateXY(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(NdBlocks.MURKY_COARSE_DIRT, block -> rotateXY(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.MURKY_GRASS_BLOCK, block -> rotateY(name(block, "block/%s"), grassBlock(name(block, "block/%s_top"), name(block, "block/%s_side"), name(block, "block/murky_dirt"), name(block, "block/%s_overlay"))));
+        register(NdBlocks.MURKY_HUMUS, block -> rotateY(name(block, "block/%s"), cubeBottomTop(name(block, "block/murky_dirt"), name(block, "block/%s_top"), name(block, "block/%s_side"))));
+        register(NdBlocks.MURKY_PODZOL, block -> rotateY(name(block, "block/%s"), cubeBottomTop(name(block, "block/murky_dirt"), name(block, "block/%s_top"), name(block, "block/%s_side"))));
+        register(NdBlocks.LEAFY_HUMUS, block -> rotateY(name(block, "block/%s"), cubeBottomTop(name(block, "block/murky_dirt"), name(block, "block/%s_top"), name(block, "block/%s_side"))));
+        register(NdBlocks.MURKY_GRASS_PATH, block -> rotateY(name(block, "block/%s"), farmlandBlock(name(block, "block/%s_top"), name(block, "block/%s_side"), name(block, "block/murky_dirt"))));
 
         register(NdBlocks.ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.MOSSY_ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));

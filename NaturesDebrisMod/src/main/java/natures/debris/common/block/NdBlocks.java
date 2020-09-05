@@ -25,11 +25,20 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
 
 import natures.debris.common.NaturesDebris;
+import natures.debris.common.item.HookedShovelItem;
 
 @ObjectHolder("ndebris")
 public final class NdBlocks {
     public static final Block MURKY_DIRT = inj();
     public static final Block MURKY_GRASS_BLOCK = inj();
+    public static final Block MURKY_COARSE_DIRT = inj();
+    public static final Block MURKY_HUMUS = inj();
+    public static final Block MURKY_PODZOL = inj();
+    public static final Block LEAFY_HUMUS = inj();
+    public static final Block MURKY_SAND = inj();
+    public static final Block MURKY_CLAY = inj();
+    public static final Block MURKY_TERRACOTTA = inj();
+    public static final Block MURKY_GRASS_PATH = inj();
 
     public static final Block ROCK = inj();
     public static final Block MOSSY_ROCK = inj();
@@ -131,6 +140,14 @@ public final class NdBlocks {
             rock("darkrock", 1.5, 6, true),
             dirt("murky_dirt", 0.5, MaterialColor.DIRT, SoundType.GROUND),
             grass("murky_grass_block", 0.6, MaterialColor.GRASS, SoundType.PLANT),
+            dirt("murky_coarse_dirt", 0.5, MaterialColor.DIRT, SoundType.GROUND),
+            humus("murky_humus", 0.5, MaterialColor.BLACK_TERRACOTTA, SoundType.GROUND),
+            leafyHumus("leafy_humus", 0.5, MaterialColor.DIRT, SoundType.PLANT),
+            dirt("murky_podzol", 0.5, MaterialColor.DIRT, SoundType.GROUND),
+            sand("murky_sand", 0.5, MaterialColor.SAND, SoundType.SAND),
+            clay("murky_clay"),
+            terracotta("murky_terracotta"),
+            grassPath("murky_grass_path", 0.5, MaterialColor.GRASS, SoundType.PLANT),
 
 
             rock("mossy_rock", 1.5, 6, false),
@@ -234,6 +251,14 @@ public final class NdBlocks {
             item(DARKROCK, ItemGroup.BUILDING_BLOCKS),
             item(MURKY_DIRT, ItemGroup.BUILDING_BLOCKS),
             item(MURKY_GRASS_BLOCK, ItemGroup.BUILDING_BLOCKS),
+            item(MURKY_COARSE_DIRT, ItemGroup.BUILDING_BLOCKS),
+            item(MURKY_HUMUS, ItemGroup.BUILDING_BLOCKS),
+            item(MURKY_PODZOL, ItemGroup.BUILDING_BLOCKS),
+            item(MURKY_SAND, ItemGroup.BUILDING_BLOCKS),
+            item(MURKY_CLAY, ItemGroup.BUILDING_BLOCKS),
+            item(LEAFY_HUMUS, ItemGroup.BUILDING_BLOCKS),
+            item(MURKY_TERRACOTTA, ItemGroup.BUILDING_BLOCKS),
+            item(MURKY_GRASS_PATH, ItemGroup.BUILDING_BLOCKS),
 
             item(MOSSY_ROCK, ItemGroup.BUILDING_BLOCKS),
             item(ROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
@@ -330,6 +355,10 @@ public final class NdBlocks {
         );
     }
 
+    public static void setup() {
+        HookedShovelItem.registerShovelAction(NdBlocks.MURKY_GRASS_BLOCK, NdBlocks.MURKY_GRASS_PATH.getDefaultState());
+    }
+
     @OnlyIn(Dist.CLIENT)
     public static void setupClient() {
         RenderTypeLookup.setRenderLayer(MURKY_GRASS_BLOCK, RenderType.getCutoutMipped());
@@ -338,6 +367,7 @@ public final class NdBlocks {
         ItemColors itemColors = Minecraft.getInstance().getItemColors();
 
         blockColors.register(
+            // TODO Biome colors coming later
             (state, world, pos, index) -> 0x11783F,
             MURKY_GRASS_BLOCK
         );
@@ -409,6 +439,35 @@ public final class NdBlocks {
         ));
     }
 
+    private static Block grassPath(String id, double strength, MaterialColor color, SoundType sound) {
+        return block(id, new MurkyGrassPathBlock(
+            Block.Properties.create(Material.EARTH, color)
+                            .hardnessAndResistance((float) strength)
+                            .sound(sound)
+                            .harvestTool(ToolType.SHOVEL)
+        ));
+    }
+
+    private static Block humus(String id, double strength, MaterialColor color, SoundType sound) {
+        return block(id, new MurkyHumusBlock(
+            Block.Properties.create(Material.EARTH, color)
+                            .hardnessAndResistance((float) strength)
+                            .sound(sound)
+                            .harvestTool(ToolType.SHOVEL)
+                            .tickRandomly()
+        ));
+    }
+
+    private static Block leafyHumus(String id, double strength, MaterialColor color, SoundType sound) {
+        return block(id, new LeafyHumusBlock(
+            Block.Properties.create(Material.EARTH, color)
+                            .hardnessAndResistance((float) strength)
+                            .sound(sound)
+                            .harvestTool(ToolType.SHOVEL)
+                            .tickRandomly()
+        ));
+    }
+
     private static Block grass(String id, double strength, MaterialColor color, SoundType sound) {
         return block(id, new MurkyGrassBlock(
             Block.Properties.create(Material.EARTH, color)
@@ -416,6 +475,34 @@ public final class NdBlocks {
                             .sound(sound)
                             .harvestTool(ToolType.SHOVEL)
                             .tickRandomly()
+        ));
+    }
+
+    private static Block sand(String id, double strength, MaterialColor color, SoundType sound) {
+        return block(id, new MurkySandBlock(
+            Block.Properties.create(Material.EARTH, color)
+                            .hardnessAndResistance((float) strength)
+                            .sound(sound)
+                            .harvestTool(ToolType.SHOVEL)
+                            .tickRandomly()
+        ));
+    }
+
+    private static Block clay(String id) {
+        return block(id, new Block(
+            Block.Properties.create(Material.CLAY, MaterialColor.BLUE_TERRACOTTA)
+                            .hardnessAndResistance(.5f)
+                            .sound(SoundType.GROUND)
+                            .harvestTool(ToolType.SHOVEL)
+        ));
+    }
+
+    private static Block terracotta(String id) {
+        return block(id, new Block(
+            Block.Properties.create(Material.ROCK, MaterialColor.BLUE_TERRACOTTA)
+                            .hardnessAndResistance(1.25f, 4.2f)
+                            .sound(SoundType.STONE)
+                            .harvestTool(ToolType.PICKAXE)
         ));
     }
 

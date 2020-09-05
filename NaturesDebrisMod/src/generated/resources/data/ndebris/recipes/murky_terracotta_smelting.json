@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ndebris:rock_tiles"
+  },
+  "result": "ndebris:cracked_rock_tiles",
+  "experience": 0.35,
+  "cookingtime": 200
+}

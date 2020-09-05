@@ -97,7 +97,11 @@ public class NdBlockTagsProvider extends TagsProvider<Block> {
 
         getBuilder(Tags.Blocks.DIRT).replace(false).add(
             NdBlocks.MURKY_DIRT,
-            NdBlocks.MURKY_GRASS_BLOCK
+            NdBlocks.MURKY_GRASS_BLOCK,
+            NdBlocks.MURKY_COARSE_DIRT,
+            NdBlocks.MURKY_HUMUS,
+            NdBlocks.LEAFY_HUMUS,
+            NdBlocks.MURKY_PODZOL
         );
     }
 

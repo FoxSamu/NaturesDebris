@@ -1,14 +1,17 @@
 package natures.debris.common;
 
-import natures.debris.NdInfo;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import net.minecraft.util.ResourceLocation;
+
 import natures.debris.api.INaturesDebris;
 import natures.debris.api.INaturesDebrisInfo;
 import natures.debris.api.util.ISidedTickable;
+import natures.debris.common.block.NdBlocks;
 import natures.debris.common.handler.CommandRegistryHandler;
 import natures.debris.common.handler.RegistryHandler;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import natures.debris.NdInfo;
 
 public class NaturesDebris implements INaturesDebris {
     public void construct() {
@@ -16,6 +19,7 @@ public class NaturesDebris implements INaturesDebris {
     }
 
     public void setup() {
+        NdBlocks.setup();
     }
 
     public void complete() {

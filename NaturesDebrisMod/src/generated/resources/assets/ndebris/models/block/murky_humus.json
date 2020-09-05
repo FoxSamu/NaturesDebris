@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "ndebris:block/murky_dirt",
+    "top": "ndebris:block/murky_humus_top",
+    "side": "ndebris:block/murky_humus_side"
+  }
+}

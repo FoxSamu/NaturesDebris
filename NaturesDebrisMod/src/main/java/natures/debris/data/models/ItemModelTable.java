@@ -21,6 +21,14 @@ public final class ItemModelTable {
 
         register(NdBlocks.MURKY_DIRT, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.MURKY_GRASS_BLOCK, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MURKY_COARSE_DIRT, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MURKY_HUMUS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MURKY_PODZOL, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MURKY_CLAY, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MURKY_TERRACOTTA, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MURKY_SAND, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.MURKY_GRASS_PATH, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.LEAFY_HUMUS, item -> inherit(name(item, "block/%s")));
 
         register(NdBlocks.ROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.MOSSY_ROCK, item -> inherit(name(item, "block/%s")));

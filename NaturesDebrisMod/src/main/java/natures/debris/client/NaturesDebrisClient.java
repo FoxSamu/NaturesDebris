@@ -21,6 +21,7 @@ public class NaturesDebrisClient extends NaturesDebris implements INaturesDebris
 
     @Override
     public void setup() {
+        super.setup();
         NdBlocks.setupClient();
     }
 

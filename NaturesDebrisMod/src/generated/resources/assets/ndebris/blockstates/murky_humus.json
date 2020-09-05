@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ndebris:block/murky_humus"
+      },
+      {
+        "model": "ndebris:block/murky_humus",
+        "y": 90
+      },
+      {
+        "model": "ndebris:block/murky_humus",
+        "y": 180
+      },
+      {
+        "model": "ndebris:block/murky_humus",
+        "y": 270
+      }
+    ]
+  }
+}
