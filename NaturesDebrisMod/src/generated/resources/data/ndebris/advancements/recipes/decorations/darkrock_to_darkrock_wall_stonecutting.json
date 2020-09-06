@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "ndebris:darkrock_to_darkrock_wall_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_darkrock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ndebris:darkrock"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "ndebris:darkrock_to_darkrock_wall_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_darkrock",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "ndebris:darkrock"
+  },
+  "result": "ndebris:darkrock_bricks_wall",
+  "count": 1
+}

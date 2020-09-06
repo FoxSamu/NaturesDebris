@@ -95,6 +95,30 @@ public class NdItemTagsProvider extends TagsProvider<Item> {
             NdItemTags.WOODEN_STEPS
         );
 
+        getBuilder(ItemTags.WALLS).replace(false).add(
+            NdBlocks.ROCK_WALL.asItem(),
+            NdBlocks.MOSSY_ROCK_WALL.asItem(),
+            NdBlocks.ROCK_BRICKS_WALL.asItem(),
+            NdBlocks.MOSSY_ROCK_BRICKS_WALL.asItem(),
+            NdBlocks.CRACKED_ROCK_BRICKS_WALL.asItem(),
+            NdBlocks.ROCK_TILES_WALL.asItem(),
+            NdBlocks.MOSSY_ROCK_TILES_WALL.asItem(),
+            NdBlocks.CRACKED_ROCK_TILES_WALL.asItem(),
+            NdBlocks.SMOOTH_ROCK_WALL.asItem(),
+            NdBlocks.POLISHED_ROCK_WALL.asItem(),
+
+            NdBlocks.DARKROCK_WALL.asItem(),
+            NdBlocks.MOSSY_DARKROCK_WALL.asItem(),
+            NdBlocks.DARKROCK_BRICKS_WALL.asItem(),
+            NdBlocks.MOSSY_DARKROCK_BRICKS_WALL.asItem(),
+            NdBlocks.CRACKED_DARKROCK_BRICKS_WALL.asItem(),
+            NdBlocks.DARKROCK_TILES_WALL.asItem(),
+            NdBlocks.MOSSY_DARKROCK_TILES_WALL.asItem(),
+            NdBlocks.CRACKED_DARKROCK_TILES_WALL.asItem(),
+            NdBlocks.SMOOTH_DARKROCK_WALL.asItem(),
+            NdBlocks.POLISHED_DARKROCK_WALL.asItem()
+        );
+
         getBuilder(ItemTags.WOODEN_SLABS).replace(false).add(
             NdBlocks.BLACKWOOD_SLAB.asItem(),
             NdBlocks.INVER_SLAB.asItem()
@@ -108,6 +132,11 @@ public class NdItemTagsProvider extends TagsProvider<Item> {
         getBuilder(NdItemTags.WOODEN_STEPS).replace(false).add(
             NdBlocks.BLACKWOOD_STEP.asItem(),
             NdBlocks.INVER_STEP.asItem()
+        );
+
+        getBuilder(ItemTags.WOODEN_FENCES).replace(false).add(
+            NdBlocks.BLACKWOOD_FENCE.asItem(),
+            NdBlocks.INVER_FENCE.asItem()
         );
 
         getBuilder(NdItemTags.BLACKWOOD_LOGS).replace(false).add(

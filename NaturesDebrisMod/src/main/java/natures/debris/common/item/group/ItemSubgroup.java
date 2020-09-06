@@ -24,6 +24,9 @@ public class ItemSubgroup {
     public static final ItemSubgroup DARKROCK_STEPS = new ItemSubgroup();
 
     public static final ItemSubgroup DECORATIONS = new ItemSubgroup();
+    public static final ItemSubgroup FENCES = new ItemSubgroup();
+    public static final ItemSubgroup ROCK_WALLS = new ItemSubgroup();
+    public static final ItemSubgroup DARKROCK_WALLS = new ItemSubgroup();
 
     private final Map<Item, ItemWeightPair> items = Maps.newHashMap();
     private int nextWeight = 0;

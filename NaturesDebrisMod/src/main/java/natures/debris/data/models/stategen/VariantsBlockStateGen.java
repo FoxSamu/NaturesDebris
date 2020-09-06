@@ -2,15 +2,17 @@ package natures.debris.data.models.stategen;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import natures.debris.data.models.modelgen.IModelGen;
-import net.minecraft.block.Block;
-import net.minecraft.util.ResourceLocation;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
-public class VariantBlockStateGen implements IBlockStateGen {
+import net.minecraft.block.Block;
+import net.minecraft.util.ResourceLocation;
+
+import natures.debris.data.models.modelgen.IModelGen;
+
+public class VariantsBlockStateGen implements IBlockStateGen {
     private final Map<String, ModelInfo[]> variants = new HashMap<>();
 
     @Override
@@ -35,20 +37,20 @@ public class VariantBlockStateGen implements IBlockStateGen {
         }
     }
 
-    public VariantBlockStateGen variant(String variant, ModelInfo... models) {
+    public VariantsBlockStateGen variant(String variant, ModelInfo... models) {
         variants.put(variant, models.clone());
         return this;
     }
 
-    public static VariantBlockStateGen create(String variant, ModelInfo... models) {
-        return new VariantBlockStateGen().variant(variant, models);
+    public static VariantsBlockStateGen variants(String variant, ModelInfo... models) {
+        return new VariantsBlockStateGen().variant(variant, models);
     }
 
-    public static VariantBlockStateGen create(ModelInfo... models) {
-        return new VariantBlockStateGen().variant("", models);
+    public static VariantsBlockStateGen variants(ModelInfo... models) {
+        return new VariantsBlockStateGen().variant("", models);
     }
 
-    public static VariantBlockStateGen create() {
-        return new VariantBlockStateGen();
+    public static VariantsBlockStateGen variants() {
+        return new VariantsBlockStateGen();
     }
 }

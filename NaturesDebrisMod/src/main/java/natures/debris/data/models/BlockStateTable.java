@@ -12,7 +12,9 @@ import natures.debris.common.block.NdBlocks;
 import natures.debris.data.models.modelgen.IModelGen;
 import natures.debris.data.models.stategen.IBlockStateGen;
 import natures.debris.data.models.stategen.ModelInfo;
-import natures.debris.data.models.stategen.VariantBlockStateGen;
+import natures.debris.data.models.stategen.MultipartBlockStateGen;
+import natures.debris.data.models.stategen.Selector;
+import natures.debris.data.models.stategen.VariantsBlockStateGen;
 
 import static natures.debris.data.models.modelgen.InheritingModelGen.*;
 
@@ -50,6 +52,8 @@ public final class BlockStateTable {
         register(NdBlocks.INVER_STAIRS, block -> woodenStairs(name(block, "block/%s", "_stairs"), name(block, "block/%s_planks", "_stairs"), 1));
         register(NdBlocks.BLACKWOOD_STEP, block -> woodenStep(name(block, "block/%s", "_step"), name(block, "block/%s_planks", "_step"), 1));
         register(NdBlocks.INVER_STEP, block -> woodenStep(name(block, "block/%s", "_step"), name(block, "block/%s_planks", "_step"), 1));
+        register(NdBlocks.BLACKWOOD_FENCE, block -> fence(name(block, "block/%s"), name(block, "block/%s_planks", "_fence")));
+        register(NdBlocks.INVER_FENCE, block -> fence(name(block, "block/%s"), name(block, "block/%s_planks", "_fence")));
 
         register(NdBlocks.ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.MOSSY_ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
@@ -98,6 +102,17 @@ public final class BlockStateTable {
         register(NdBlocks.SMOOTH_ROCK_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 1));
         register(NdBlocks.POLISHED_ROCK_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 1));
 
+        register(NdBlocks.ROCK_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 1));
+        register(NdBlocks.MOSSY_ROCK_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 1));
+        register(NdBlocks.ROCK_BRICKS_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 16, 2, 2));
+        register(NdBlocks.MOSSY_ROCK_BRICKS_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 16, 2, 2));
+        register(NdBlocks.CRACKED_ROCK_BRICKS_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 16, 2, 2));
+        register(NdBlocks.ROCK_TILES_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 32, 2, 4, 2));
+        register(NdBlocks.MOSSY_ROCK_TILES_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 32, 2, 4, 2));
+        register(NdBlocks.CRACKED_ROCK_TILES_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 32, 2, 4, 2));
+        register(NdBlocks.SMOOTH_ROCK_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 1));
+        register(NdBlocks.POLISHED_ROCK_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 1));
+
         register(NdBlocks.DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.MOSSY_DARKROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.DARKROCK_BRICKS, block -> cubeAllRandomized(name(block, "block/%s"), 16, 2, 2));
@@ -144,10 +159,75 @@ public final class BlockStateTable {
         register(NdBlocks.CRACKED_DARKROCK_TILES_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 32, 2, 4, 2));
         register(NdBlocks.SMOOTH_DARKROCK_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 1));
         register(NdBlocks.POLISHED_DARKROCK_STEP, block -> stepRandomized(name(block, "block/%s", "_step"), 1));
+
+        register(NdBlocks.DARKROCK_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 1));
+        register(NdBlocks.MOSSY_DARKROCK_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 1));
+        register(NdBlocks.DARKROCK_BRICKS_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 16, 2, 2));
+        register(NdBlocks.MOSSY_DARKROCK_BRICKS_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 16, 2, 2));
+        register(NdBlocks.CRACKED_DARKROCK_BRICKS_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 16, 2, 2));
+        register(NdBlocks.DARKROCK_TILES_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 32, 2, 4, 2));
+        register(NdBlocks.MOSSY_DARKROCK_TILES_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 32, 2, 4, 2));
+        register(NdBlocks.CRACKED_DARKROCK_TILES_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 32, 2, 4, 2));
+        register(NdBlocks.SMOOTH_DARKROCK_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 1));
+        register(NdBlocks.POLISHED_DARKROCK_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 1));
     }
 
     private static IBlockStateGen simple(String name, IModelGen model) {
-        return VariantBlockStateGen.create(ModelInfo.create(name, model));
+        return VariantsBlockStateGen.variants(ModelInfo.create(name, model));
+    }
+
+    private static IBlockStateGen fence(String name, String texName) {
+        return MultipartBlockStateGen.multipart()
+                                     .part(ModelInfo.create(name + "_post", fencePost(texName)))
+                                     .part(
+                                         Selector.and().condition("north", "true"),
+                                         ModelInfo.create(name + "_side", fenceSide(texName))
+                                     )
+                                     .part(
+                                         Selector.and().condition("east", "true"),
+                                         ModelInfo.create(name + "_side", fenceSide(texName))
+                                                  .rotate(0, 90)
+                                                  .uvlock(true)
+                                     )
+                                     .part(
+                                         Selector.and().condition("south", "true"),
+                                         ModelInfo.create(name + "_side", fenceSide(texName))
+                                                  .rotate(0, 180)
+                                                  .uvlock(true)
+                                     )
+                                     .part(
+                                         Selector.and().condition("west", "true"),
+                                         ModelInfo.create(name + "_side", fenceSide(texName))
+                                                  .rotate(0, 270)
+                                                  .uvlock(true)
+                                     );
+    }
+
+    private static IBlockStateGen wallRandomized(String name, int... weights) {
+        ModelInfo[] post = new ModelInfo[weights.length];
+        ModelInfo[] sideN = new ModelInfo[weights.length];
+        ModelInfo[] sideE = new ModelInfo[weights.length];
+        ModelInfo[] sideS = new ModelInfo[weights.length];
+        ModelInfo[] sideW = new ModelInfo[weights.length];
+
+        for (int i = 0; i < weights.length; i++) {
+            String n = name + (i == 0 ? "_wall" : "_wall_alt_" + i);
+            String tn = name + (i == 0 ? "" : "_alt_" + i);
+
+            int w = weights[i];
+            post[i] = ModelInfo.create(n + "_post", wallPost(tn)).weight(w);
+            sideN[i] = ModelInfo.create(n + "_side", wallSide(tn)).uvlock(true).rotate(0, 0).weight(w);
+            sideE[i] = ModelInfo.create(n + "_side", wallSide(tn)).uvlock(true).rotate(0, 90).weight(w);
+            sideS[i] = ModelInfo.create(n + "_side", wallSide(tn)).uvlock(true).rotate(0, 180).weight(w);
+            sideW[i] = ModelInfo.create(n + "_side", wallSide(tn)).uvlock(true).rotate(0, 270).weight(w);
+        }
+
+        return MultipartBlockStateGen.multipart()
+                                     .part(Selector.and().condition("up", "true"), post)
+                                     .part(Selector.and().condition("north", "true"), sideN)
+                                     .part(Selector.and().condition("east", "true"), sideE)
+                                     .part(Selector.and().condition("south", "true"), sideS)
+                                     .part(Selector.and().condition("west", "true"), sideW);
     }
 
     private static IBlockStateGen cubeAllRandomized(String name, int... weights) {
@@ -156,7 +236,7 @@ public final class BlockStateTable {
             String n = name + (i == 0 ? "" : "_alt_" + i);
             random[i] = ModelInfo.create(n, cubeAll(n)).weight(weights[i]);
         }
-        return VariantBlockStateGen.create(random);
+        return VariantsBlockStateGen.variants(random);
     }
 
     private static IBlockStateGen slabRandomized(String name, int... weights) {
@@ -171,9 +251,9 @@ public final class BlockStateTable {
             hi[i] = ModelInfo.create(hn, slabTop(n)).weight(weights[i]);
             dbl[i] = ModelInfo.create(n).weight(weights[i]);
         }
-        return VariantBlockStateGen.create("type=bottom", lo)
-                                   .variant("type=top", hi)
-                                   .variant("type=double", dbl);
+        return VariantsBlockStateGen.variants("type=bottom", lo)
+                                    .variant("type=top", hi)
+                                    .variant("type=double", dbl);
     }
 
     private static IBlockStateGen stairsRandomized(String name, int... weights) {
@@ -186,7 +266,7 @@ public final class BlockStateTable {
         boolean[] outerM = new boolean[weights.length];
         boolean[] stairsM = new boolean[weights.length];
 
-        VariantBlockStateGen gen = VariantBlockStateGen.create();
+        VariantsBlockStateGen gen = VariantsBlockStateGen.variants();
         int y = 270;
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             for (Half half : Half.values()) {
@@ -250,7 +330,7 @@ public final class BlockStateTable {
         boolean[] outerM = new boolean[weights.length];
         boolean[] stairsM = new boolean[weights.length];
 
-        VariantBlockStateGen gen = VariantBlockStateGen.create();
+        VariantsBlockStateGen gen = VariantsBlockStateGen.variants();
         int y = 270;
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             for (Half half : Half.values()) {
@@ -316,9 +396,9 @@ public final class BlockStateTable {
             hi[i] = ModelInfo.create(hn, slabTop(n)).weight(weights[i]);
             dbl[i] = ModelInfo.create(n).weight(weights[i]);
         }
-        return VariantBlockStateGen.create("type=bottom", lo)
-                                   .variant("type=top", hi)
-                                   .variant("type=double", dbl);
+        return VariantsBlockStateGen.variants("type=bottom", lo)
+                                    .variant("type=top", hi)
+                                    .variant("type=double", dbl);
     }
 
     private static IBlockStateGen woodenStairs(String modelName, String name, int... weights) {
@@ -331,7 +411,7 @@ public final class BlockStateTable {
         boolean[] outerM = new boolean[weights.length];
         boolean[] stairsM = new boolean[weights.length];
 
-        VariantBlockStateGen gen = VariantBlockStateGen.create();
+        VariantsBlockStateGen gen = VariantsBlockStateGen.variants();
         int y = 270;
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             for (Half half : Half.values()) {
@@ -395,7 +475,7 @@ public final class BlockStateTable {
         boolean[] outerM = new boolean[weights.length];
         boolean[] stairsM = new boolean[weights.length];
 
-        VariantBlockStateGen gen = VariantBlockStateGen.create();
+        VariantsBlockStateGen gen = VariantsBlockStateGen.variants();
         int y = 270;
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             for (Half half : Half.values()) {
@@ -450,7 +530,7 @@ public final class BlockStateTable {
     }
 
     private static IBlockStateGen rotateY(String name, IModelGen model) {
-        return VariantBlockStateGen.create(
+        return VariantsBlockStateGen.variants(
             ModelInfo.create(name, model).rotate(0, 0),
             ModelInfo.create(name, model).rotate(0, 90),
             ModelInfo.create(name, model).rotate(0, 180),
@@ -459,7 +539,7 @@ public final class BlockStateTable {
     }
 
     private static IBlockStateGen rotateXY(String name, IModelGen model) {
-        return VariantBlockStateGen.create(
+        return VariantsBlockStateGen.variants(
             ModelInfo.create(name, model).rotate(0, 0),
             ModelInfo.create(name, model).rotate(0, 90),
             ModelInfo.create(name, model).rotate(0, 180),
@@ -480,14 +560,14 @@ public final class BlockStateTable {
     }
 
     private static IBlockStateGen doublePlant(String lower, IModelGen lowerModel, String upper, IModelGen upperModel) {
-        return VariantBlockStateGen.create("half=lower", ModelInfo.create(lower, lowerModel))
-                                   .variant("half=upper", ModelInfo.create(upper, upperModel));
+        return VariantsBlockStateGen.variants("half=lower", ModelInfo.create(lower, lowerModel))
+                                    .variant("half=upper", ModelInfo.create(upper, upperModel));
     }
 
     private static IBlockStateGen rotatedPillar(String name, IModelGen model) {
-        return VariantBlockStateGen.create("axis=y", ModelInfo.create(name, model).rotate(0, 0))
-                                   .variant("axis=z", ModelInfo.create(name, model).rotate(90, 0))
-                                   .variant("axis=x", ModelInfo.create(name, model).rotate(90, 90));
+        return VariantsBlockStateGen.variants("axis=y", ModelInfo.create(name, model).rotate(0, 0))
+                                    .variant("axis=z", ModelInfo.create(name, model).rotate(90, 0))
+                                    .variant("axis=x", ModelInfo.create(name, model).rotate(90, 90));
     }
 
     private static void register(Block block, Function<Block, IBlockStateGen> genFactory) {

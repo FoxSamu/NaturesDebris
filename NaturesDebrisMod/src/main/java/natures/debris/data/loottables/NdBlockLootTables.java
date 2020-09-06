@@ -50,6 +50,8 @@ public class NdBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(NdBlocks.INVER_STAIRS);
         registerDropSelfLootTable(NdBlocks.BLACKWOOD_STEP);
         registerDropSelfLootTable(NdBlocks.INVER_STEP);
+        registerDropSelfLootTable(NdBlocks.BLACKWOOD_FENCE);
+        registerDropSelfLootTable(NdBlocks.INVER_FENCE);
 
         registerDropSelfLootTable(NdBlocks.ROCK);
         registerDropSelfLootTable(NdBlocks.MOSSY_ROCK);
@@ -98,6 +100,17 @@ public class NdBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(NdBlocks.SMOOTH_ROCK_STEP);
         registerDropSelfLootTable(NdBlocks.POLISHED_ROCK_STEP);
 
+        registerDropSelfLootTable(NdBlocks.ROCK_WALL);
+        registerDropSelfLootTable(NdBlocks.MOSSY_ROCK_WALL);
+        registerDropSelfLootTable(NdBlocks.ROCK_BRICKS_WALL);
+        registerDropSelfLootTable(NdBlocks.MOSSY_ROCK_BRICKS_WALL);
+        registerDropSelfLootTable(NdBlocks.CRACKED_ROCK_BRICKS_WALL);
+        registerDropSelfLootTable(NdBlocks.ROCK_TILES_WALL);
+        registerDropSelfLootTable(NdBlocks.MOSSY_ROCK_TILES_WALL);
+        registerDropSelfLootTable(NdBlocks.CRACKED_ROCK_TILES_WALL);
+        registerDropSelfLootTable(NdBlocks.SMOOTH_ROCK_WALL);
+        registerDropSelfLootTable(NdBlocks.POLISHED_ROCK_WALL);
+
         registerDropSelfLootTable(NdBlocks.DARKROCK);
         registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK);
         registerDropSelfLootTable(NdBlocks.DARKROCK_BRICKS);
@@ -144,6 +157,17 @@ public class NdBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(NdBlocks.CRACKED_DARKROCK_TILES_STEP);
         registerDropSelfLootTable(NdBlocks.SMOOTH_DARKROCK_STEP);
         registerDropSelfLootTable(NdBlocks.POLISHED_DARKROCK_STEP);
+
+        registerDropSelfLootTable(NdBlocks.DARKROCK_WALL);
+        registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK_WALL);
+        registerDropSelfLootTable(NdBlocks.DARKROCK_BRICKS_WALL);
+        registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK_BRICKS_WALL);
+        registerDropSelfLootTable(NdBlocks.CRACKED_DARKROCK_BRICKS_WALL);
+        registerDropSelfLootTable(NdBlocks.DARKROCK_TILES_WALL);
+        registerDropSelfLootTable(NdBlocks.MOSSY_DARKROCK_TILES_WALL);
+        registerDropSelfLootTable(NdBlocks.CRACKED_DARKROCK_TILES_WALL);
+        registerDropSelfLootTable(NdBlocks.SMOOTH_DARKROCK_WALL);
+        registerDropSelfLootTable(NdBlocks.POLISHED_DARKROCK_WALL);
     }
 
     @Override

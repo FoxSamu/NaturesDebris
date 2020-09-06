@@ -1,0 +1,108 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_post",
+          "weight": 16
+        },
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_alt_1_post",
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_alt_2_post",
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_side",
+          "weight": 16
+        },
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_alt_1_side",
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_alt_2_side",
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_side",
+          "y": 90,
+          "weight": 16
+        },
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_alt_1_side",
+          "y": 90,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_alt_2_side",
+          "y": 90,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_side",
+          "y": 180,
+          "weight": 16
+        },
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_alt_1_side",
+          "y": 180,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_alt_2_side",
+          "y": 180,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_side",
+          "y": 270,
+          "weight": 16
+        },
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_alt_1_side",
+          "y": 270,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/darkrock_bricks_wall_alt_2_side",
+          "y": 270,
+          "weight": 2
+        }
+      ]
+    }
+  ]
+}

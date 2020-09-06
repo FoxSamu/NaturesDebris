@@ -213,4 +213,34 @@ public class InheritingModelGen implements IModelGen {
         return new InheritingModelGen("block/tinted_cross")
                    .texture("cross", texture);
     }
+
+    public static InheritingModelGen fenceSide(String texture) {
+        return new InheritingModelGen("block/fence_side")
+                   .texture("texture", texture);
+    }
+
+    public static InheritingModelGen fencePost(String texture) {
+        return new InheritingModelGen("block/fence_post")
+                   .texture("texture", texture);
+    }
+
+    public static InheritingModelGen fenceInventory(String texture) {
+        return new InheritingModelGen("block/fence_inventory")
+                   .texture("texture", texture);
+    }
+
+    public static InheritingModelGen wallSide(String texture) {
+        return new InheritingModelGen("block/template_wall_side")
+                   .texture("wall", texture);
+    }
+
+    public static InheritingModelGen wallPost(String texture) {
+        return new InheritingModelGen("block/template_wall_post")
+                   .texture("wall", texture);
+    }
+
+    public static InheritingModelGen wallInventory(String texture) {
+        return new InheritingModelGen("block/wall_inventory")
+                   .texture("wall", texture);
+    }
 }

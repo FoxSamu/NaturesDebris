@@ -47,6 +47,8 @@ public final class ItemModelTable {
         register(NdBlocks.INVER_STAIRS, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.BLACKWOOD_STEP, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.INVER_STEP, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.BLACKWOOD_FENCE, item -> fenceInventory(name(item, "block/%s_planks", "_fence")));
+        register(NdBlocks.INVER_FENCE, item -> fenceInventory(name(item, "block/%s_planks", "_fence")));
 
         register(NdBlocks.ROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.MOSSY_ROCK, item -> inherit(name(item, "block/%s")));
@@ -95,6 +97,17 @@ public final class ItemModelTable {
         register(NdBlocks.SMOOTH_ROCK_STEP, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.POLISHED_ROCK_STEP, item -> inherit(name(item, "block/%s")));
 
+        register(NdBlocks.ROCK_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.MOSSY_ROCK_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.ROCK_BRICKS_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.MOSSY_ROCK_BRICKS_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.CRACKED_ROCK_BRICKS_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.ROCK_TILES_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.MOSSY_ROCK_TILES_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.CRACKED_ROCK_TILES_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.SMOOTH_ROCK_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.POLISHED_ROCK_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+
         register(NdBlocks.DARKROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.MOSSY_DARKROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.DARKROCK_BRICKS, item -> inherit(name(item, "block/%s")));
@@ -142,6 +155,17 @@ public final class ItemModelTable {
         register(NdBlocks.SMOOTH_DARKROCK_STEP, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.POLISHED_DARKROCK_STEP, item -> inherit(name(item, "block/%s")));
 
+        register(NdBlocks.DARKROCK_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.MOSSY_DARKROCK_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.DARKROCK_BRICKS_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.MOSSY_DARKROCK_BRICKS_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.CRACKED_DARKROCK_BRICKS_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.DARKROCK_TILES_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.MOSSY_DARKROCK_TILES_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.CRACKED_DARKROCK_TILES_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.SMOOTH_DARKROCK_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.POLISHED_DARKROCK_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+
 
 
         register(NdItems.MUSIC_DISC_DARK, item -> generated(name(item, "item/%s")));
@@ -167,6 +191,18 @@ public final class ItemModelTable {
         ResourceLocation id = item.getRegistryName();
         assert id != null;
         return id.toString();
+    }
+
+    private static String name(Item item, String nameFormat, String omitSuffix) {
+        ResourceLocation id = item.getRegistryName();
+        assert id != null;
+
+        String path = id.getPath();
+        if (path.endsWith(omitSuffix)) {
+            path = path.substring(0, path.length() - omitSuffix.length());
+        }
+
+        return String.format("%s:%s", id.getNamespace(), String.format(nameFormat, path));
     }
 
     private ItemModelTable() {

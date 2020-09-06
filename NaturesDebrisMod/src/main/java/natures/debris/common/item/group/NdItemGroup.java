@@ -33,6 +33,14 @@ public class NdItemGroup extends ItemGroup {
         ItemSubgroup.ROCK_STEPS,
         ItemSubgroup.DARKROCK_STEPS
     );
+    public static final NdItemGroup DECORATIONS = new NdItemGroup(
+        "decorations",
+        () -> NdBlocks.INVER_FENCE.asItem().getDefaultInstance(),
+        ItemSubgroup.DECORATIONS,
+        ItemSubgroup.FENCES,
+        ItemSubgroup.ROCK_WALLS,
+        ItemSubgroup.DARKROCK_WALLS
+    );
 
     private final ItemSubgroup[] subgroups;
     private final Supplier<ItemStack> iconFactory;

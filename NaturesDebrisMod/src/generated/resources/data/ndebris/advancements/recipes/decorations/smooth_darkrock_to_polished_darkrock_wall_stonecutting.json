@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "ndebris:smooth_darkrock_to_polished_darkrock_wall_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_smooth_darkrock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ndebris:smooth_darkrock"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "ndebris:smooth_darkrock_to_polished_darkrock_wall_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_smooth_darkrock",
+      "has_the_recipe"
+    ]
+  ]
+}

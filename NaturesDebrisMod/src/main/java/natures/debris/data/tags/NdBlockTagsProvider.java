@@ -97,6 +97,35 @@ public class NdBlockTagsProvider extends TagsProvider<Block> {
             NdBlockTags.WOODEN_STEPS
         );
 
+        getBuilder(BlockTags.WALLS).replace(false).add(
+            NdBlocks.ROCK_WALL,
+            NdBlocks.MOSSY_ROCK_WALL,
+            NdBlocks.ROCK_BRICKS_WALL,
+            NdBlocks.MOSSY_ROCK_BRICKS_WALL,
+            NdBlocks.CRACKED_ROCK_BRICKS_WALL,
+            NdBlocks.ROCK_TILES_WALL,
+            NdBlocks.MOSSY_ROCK_TILES_WALL,
+            NdBlocks.CRACKED_ROCK_TILES_WALL,
+            NdBlocks.SMOOTH_ROCK_WALL,
+            NdBlocks.POLISHED_ROCK_WALL,
+
+            NdBlocks.DARKROCK_WALL,
+            NdBlocks.MOSSY_DARKROCK_WALL,
+            NdBlocks.DARKROCK_BRICKS_WALL,
+            NdBlocks.MOSSY_DARKROCK_BRICKS_WALL,
+            NdBlocks.CRACKED_DARKROCK_BRICKS_WALL,
+            NdBlocks.DARKROCK_TILES_WALL,
+            NdBlocks.MOSSY_DARKROCK_TILES_WALL,
+            NdBlocks.CRACKED_DARKROCK_TILES_WALL,
+            NdBlocks.SMOOTH_DARKROCK_WALL,
+            NdBlocks.POLISHED_DARKROCK_WALL
+        );
+
+        getBuilder(BlockTags.WOODEN_FENCES).replace(false).add(
+            NdBlocks.BLACKWOOD_FENCE,
+            NdBlocks.INVER_FENCE
+        );
+
         getBuilder(BlockTags.WOODEN_SLABS).replace(false).add(
             NdBlocks.BLACKWOOD_SLAB,
             NdBlocks.INVER_SLAB
