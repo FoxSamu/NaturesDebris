@@ -8,6 +8,8 @@ import natures.debris.common.NaturesDebris;
 
 public final class NdBlockTags {
     public static final Tag<Block> STEPS = tag("steps");
+    public static final Tag<Block> BLACKWOOD_LOGS = tag("blackwood_logs");
+    public static final Tag<Block> INVER_LOGS = tag("inver_logs");
 
     private static Tag<Block> tag(String id) {
         return new BlockTags.Wrapper(NaturesDebris.resLoc(id));

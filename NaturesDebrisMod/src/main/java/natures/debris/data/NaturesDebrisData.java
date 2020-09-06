@@ -1,17 +1,20 @@
 package natures.debris.data;
 
-import natures.debris.client.NaturesDebrisClient;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import net.minecraft.data.DataGenerator;
+
 import natures.debris.common.handler.RegistryHandler;
+import natures.debris.client.NaturesDebrisClient;
 import natures.debris.data.loottables.NdLootTableProvider;
 import natures.debris.data.models.NdStateModelProvider;
 import natures.debris.data.recipes.NdRecipeProvider;
 import natures.debris.data.recipes.NdStonecuttingRecipeProvider;
 import natures.debris.data.tags.NdBlockTagsProvider;
 import natures.debris.data.tags.NdFluidTagsProvider;
-import net.minecraft.data.DataGenerator;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import natures.debris.data.tags.NdItemTagsProvider;
 
 public class NaturesDebrisData extends NaturesDebrisClient {
     @Override
@@ -30,6 +33,7 @@ public class NaturesDebrisData extends NaturesDebrisClient {
             gen.addProvider(new NdLootTableProvider(gen));
             gen.addProvider(new NdBlockTagsProvider(gen));
             gen.addProvider(new NdFluidTagsProvider(gen));
+            gen.addProvider(new NdItemTagsProvider(gen));
             gen.addProvider(new NdRecipeProvider(gen));
             gen.addProvider(new NdStonecuttingRecipeProvider(gen));
         }

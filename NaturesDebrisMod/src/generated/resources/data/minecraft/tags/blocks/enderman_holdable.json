@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "ndebris:murky_dirt",
+    "ndebris:murky_grass_block",
+    "ndebris:murky_coarse_dirt",
+    "ndebris:murky_humus",
+    "ndebris:leafy_humus",
+    "ndebris:murky_podzol",
+    "ndebris:murky_sand",
+    "ndebris:murky_clay"
+  ]
+}

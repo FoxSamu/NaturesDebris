@@ -33,6 +33,15 @@ public class NdBlockLootTables extends BlockLootTables {
         registerLootTable(NdBlocks.MURKY_PODZOL, block -> droppingWithSilkTouch(block, NdBlocks.MURKY_DIRT));
         registerLootTable(NdBlocks.LEAFY_HUMUS, block -> droppingWithSilkTouch(block, NdBlocks.MURKY_DIRT));
 
+        registerDropSelfLootTable(NdBlocks.BLACKWOOD_LOG);
+        registerDropSelfLootTable(NdBlocks.INVER_LOG);
+        registerDropSelfLootTable(NdBlocks.BLACKWOOD);
+        registerDropSelfLootTable(NdBlocks.INVER_WOOD);
+        registerDropSelfLootTable(NdBlocks.STRIPPED_BLACKWOOD_LOG);
+        registerDropSelfLootTable(NdBlocks.STRIPPED_INVER_LOG);
+        registerDropSelfLootTable(NdBlocks.STRIPPED_BLACKWOOD);
+        registerDropSelfLootTable(NdBlocks.STRIPPED_INVER_WOOD);
+
         registerDropSelfLootTable(NdBlocks.ROCK);
         registerDropSelfLootTable(NdBlocks.MOSSY_ROCK);
         registerDropSelfLootTable(NdBlocks.ROCK_BRICKS);

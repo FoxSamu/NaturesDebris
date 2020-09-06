@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "ndebris:rock_slab",
+    "ndebris:mossy_rock_slab",
+    "ndebris:rock_bricks_slab",
+    "ndebris:mossy_rock_bricks_slab",
+    "ndebris:cracked_rock_bricks_slab",
+    "ndebris:rock_tiles_slab",
+    "ndebris:mossy_rock_tiles_slab",
+    "ndebris:cracked_rock_tiles_slab",
+    "ndebris:smooth_rock_slab",
+    "ndebris:polished_rock_slab",
+    "ndebris:darkrock_slab",
+    "ndebris:mossy_darkrock_slab",
+    "ndebris:darkrock_bricks_slab",
+    "ndebris:mossy_darkrock_bricks_slab",
+    "ndebris:cracked_darkrock_bricks_slab",
+    "ndebris:darkrock_tiles_slab",
+    "ndebris:mossy_darkrock_tiles_slab",
+    "ndebris:cracked_darkrock_tiles_slab",
+    "ndebris:smooth_darkrock_slab",
+    "ndebris:polished_darkrock_slab"
+  ]
+}

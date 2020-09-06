@@ -30,6 +30,15 @@ public final class ItemModelTable {
         register(NdBlocks.MURKY_GRASS_PATH, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.LEAFY_HUMUS, item -> inherit(name(item, "block/%s")));
 
+        register(NdBlocks.BLACKWOOD_LOG, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.INVER_LOG, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.BLACKWOOD, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.INVER_WOOD, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.STRIPPED_BLACKWOOD_LOG, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.STRIPPED_INVER_LOG, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.STRIPPED_BLACKWOOD, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.STRIPPED_INVER_WOOD, item -> inherit(name(item, "block/%s")));
+
         register(NdBlocks.ROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.MOSSY_ROCK, item -> inherit(name(item, "block/%s")));
         register(NdBlocks.ROCK_BRICKS, item -> inherit(name(item, "block/%s")));

@@ -103,6 +103,36 @@ public class NdBlockTagsProvider extends TagsProvider<Block> {
             NdBlocks.LEAFY_HUMUS,
             NdBlocks.MURKY_PODZOL
         );
+
+        getBuilder(NdBlockTags.BLACKWOOD_LOGS).replace(false).add(
+            NdBlocks.BLACKWOOD_LOG,
+            NdBlocks.STRIPPED_BLACKWOOD_LOG,
+            NdBlocks.BLACKWOOD,
+            NdBlocks.STRIPPED_BLACKWOOD
+        );
+
+        getBuilder(NdBlockTags.INVER_LOGS).replace(false).add(
+            NdBlocks.INVER_LOG,
+            NdBlocks.STRIPPED_INVER_LOG,
+            NdBlocks.INVER_WOOD,
+            NdBlocks.STRIPPED_INVER_WOOD
+        );
+
+        getBuilder(BlockTags.LOGS).replace(false).add(
+            NdBlockTags.BLACKWOOD_LOGS,
+            NdBlockTags.INVER_LOGS
+        );
+
+        getBuilder(BlockTags.ENDERMAN_HOLDABLE).replace(false).add(
+            NdBlocks.MURKY_DIRT,
+            NdBlocks.MURKY_GRASS_BLOCK,
+            NdBlocks.MURKY_COARSE_DIRT,
+            NdBlocks.MURKY_HUMUS,
+            NdBlocks.LEAFY_HUMUS,
+            NdBlocks.MURKY_PODZOL,
+            NdBlocks.MURKY_SAND,
+            NdBlocks.MURKY_CLAY
+        );
     }
 
     @Override

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ndebris:blackwood_log"
+  },
+  "result": "minecraft:charcoal",
+  "experience": 0.35,
+  "cookingtime": 200
+}

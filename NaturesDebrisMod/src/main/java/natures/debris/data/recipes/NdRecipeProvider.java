@@ -8,6 +8,7 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 
@@ -28,6 +29,13 @@ public class NdRecipeProvider extends RecipeProvider {
         // Nature blocks
         genericShapeless("murky_humus_shapeless", NdBlocks.LEAFY_HUMUS, NdBlocks.MURKY_HUMUS, 1);
         smelting("murky_terracotta_smelting", NdBlocks.ROCK_TILES, NdBlocks.CRACKED_ROCK_TILES, 0.35);
+
+        // Wood blocks
+        generic4x4("blackwood_4x4", NdBlocks.BLACKWOOD_LOG, NdBlocks.BLACKWOOD, 3);
+        generic4x4("inver_wood_4x4", NdBlocks.INVER_LOG, NdBlocks.INVER_WOOD, 3);
+        generic4x4("stripped_blackwood_4x4", NdBlocks.STRIPPED_BLACKWOOD_LOG, NdBlocks.STRIPPED_BLACKWOOD, 3);
+        generic4x4("stripped_inver_wood_4x4", NdBlocks.STRIPPED_INVER_LOG, NdBlocks.STRIPPED_INVER_WOOD, 3);
+        smelting("charcoal_from_blackwood_log_smelting", NdBlocks.BLACKWOOD_LOG, Items.CHARCOAL, 0.35);
 
         // For stonecutting recipes, see NdStonecuttingRecipeProvider
 

@@ -33,6 +33,15 @@ public final class BlockStateTable {
         register(NdBlocks.LEAFY_HUMUS, block -> rotateY(name(block, "block/%s"), cubeBottomTop(name(block, "block/murky_dirt"), name(block, "block/%s_top"), name(block, "block/%s_side"))));
         register(NdBlocks.MURKY_GRASS_PATH, block -> rotateY(name(block, "block/%s"), farmlandBlock(name(block, "block/%s_top"), name(block, "block/%s_side"), name(block, "block/murky_dirt"))));
 
+        register(NdBlocks.BLACKWOOD_LOG, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_top"), name(block, "block/%s_side"))));
+        register(NdBlocks.INVER_LOG, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_top"), name(block, "block/%s_side"))));
+        register(NdBlocks.STRIPPED_BLACKWOOD_LOG, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_top"), name(block, "block/%s_side"))));
+        register(NdBlocks.STRIPPED_INVER_LOG, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_top"), name(block, "block/%s_side"))));
+        register(NdBlocks.BLACKWOOD, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_log_side"), name(block, "block/%s_log_side"))));
+        register(NdBlocks.INVER_WOOD, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_log_side", "_wood"), name(block, "block/%s_log_side", "_wood"))));
+        register(NdBlocks.STRIPPED_BLACKWOOD, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_log_side"), name(block, "block/%s_log_side"))));
+        register(NdBlocks.STRIPPED_INVER_WOOD, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_log_side", "_wood"), name(block, "block/%s_log_side", "_wood"))));
+
         register(NdBlocks.ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.MOSSY_ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.ROCK_BRICKS, block -> cubeAllRandomized(name(block, "block/%s"), 16, 2, 2));

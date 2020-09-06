@@ -1,6 +1,7 @@
 package natures.debris.common.block;
 
 import javax.annotation.Nonnull;
+import java.util.function.Supplier;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -26,6 +27,8 @@ import net.minecraft.util.ResourceLocation;
 
 import natures.debris.common.NaturesDebris;
 import natures.debris.common.item.HookedShovelItem;
+import natures.debris.common.item.group.ItemSubgroup;
+import natures.debris.common.item.group.NdItemGroup;
 
 @ObjectHolder("ndebris")
 public final class NdBlocks {
@@ -39,6 +42,15 @@ public final class NdBlocks {
     public static final Block MURKY_CLAY = inj();
     public static final Block MURKY_TERRACOTTA = inj();
     public static final Block MURKY_GRASS_PATH = inj();
+
+    public static final Block BLACKWOOD_LOG = inj();
+    public static final Block INVER_LOG = inj();
+    public static final Block STRIPPED_BLACKWOOD_LOG = inj();
+    public static final Block STRIPPED_INVER_LOG = inj();
+    public static final Block BLACKWOOD = inj();
+    public static final Block INVER_WOOD = inj();
+    public static final Block STRIPPED_BLACKWOOD = inj();
+    public static final Block STRIPPED_INVER_WOOD = inj();
 
     public static final Block ROCK = inj();
     public static final Block MOSSY_ROCK = inj();
@@ -150,6 +162,16 @@ public final class NdBlocks {
             grassPath("murky_grass_path", 0.5, MaterialColor.GRASS, SoundType.PLANT),
 
 
+            stripableLog("blackwood_log", MaterialColor.BLACK_TERRACOTTA, () -> STRIPPED_BLACKWOOD_LOG),
+            stripableLog("inver_log", MaterialColor.WOOD, () -> STRIPPED_INVER_LOG),
+            stripableLog("blackwood", MaterialColor.BLACK_TERRACOTTA, () -> STRIPPED_BLACKWOOD),
+            stripableLog("inver_wood", MaterialColor.BLACK_TERRACOTTA, () -> STRIPPED_INVER_WOOD),
+            log("stripped_blackwood_log", MaterialColor.BLACK_TERRACOTTA),
+            log("stripped_inver_log", MaterialColor.WOOD),
+            log("stripped_blackwood", MaterialColor.BLACK_TERRACOTTA),
+            log("stripped_inver_wood", MaterialColor.WOOD),
+
+
             rock("mossy_rock", 1.5, 6, false),
             rock("rock_bricks", 2, 6, false),
             rock("mossy_rock_bricks", 2, 6, false),
@@ -247,111 +269,120 @@ public final class NdBlocks {
 
     public static void registerItems(IForgeRegistry<Item> registry) {
         registry.registerAll(
-            item(ROCK, ItemGroup.BUILDING_BLOCKS),
-            item(DARKROCK, ItemGroup.BUILDING_BLOCKS),
-            item(MURKY_DIRT, ItemGroup.BUILDING_BLOCKS),
-            item(MURKY_GRASS_BLOCK, ItemGroup.BUILDING_BLOCKS),
-            item(MURKY_COARSE_DIRT, ItemGroup.BUILDING_BLOCKS),
-            item(MURKY_HUMUS, ItemGroup.BUILDING_BLOCKS),
-            item(MURKY_PODZOL, ItemGroup.BUILDING_BLOCKS),
-            item(MURKY_SAND, ItemGroup.BUILDING_BLOCKS),
-            item(MURKY_CLAY, ItemGroup.BUILDING_BLOCKS),
-            item(LEAFY_HUMUS, ItemGroup.BUILDING_BLOCKS),
-            item(MURKY_TERRACOTTA, ItemGroup.BUILDING_BLOCKS),
-            item(MURKY_GRASS_PATH, ItemGroup.BUILDING_BLOCKS),
+            item(ROCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
+            item(DARKROCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
+            item(MURKY_DIRT, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
+            item(MURKY_GRASS_BLOCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
+            item(MURKY_SAND, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
+            item(MURKY_HUMUS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
+            item(LEAFY_HUMUS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
+            item(MURKY_PODZOL, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
+            item(MURKY_COARSE_DIRT, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
+            item(MURKY_CLAY, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
+            item(MURKY_GRASS_PATH, ItemGroup.DECORATIONS),
+            item(MURKY_TERRACOTTA, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
 
-            item(MOSSY_ROCK, ItemGroup.BUILDING_BLOCKS),
-            item(ROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_ROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_ROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
-            item(ROCK_TILES, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_ROCK_TILES, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_ROCK_TILES, ItemGroup.BUILDING_BLOCKS),
-            item(SMOOTH_ROCK, ItemGroup.BUILDING_BLOCKS),
-            item(POLISHED_ROCK, ItemGroup.BUILDING_BLOCKS),
-            item(CHISELED_ROCK, ItemGroup.BUILDING_BLOCKS),
-            item(ROCK_PILLAR, ItemGroup.BUILDING_BLOCKS),
-            item(ROCK_LANTERN, ItemGroup.BUILDING_BLOCKS),
+            item(BLACKWOOD_LOG, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
+            item(INVER_LOG, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
+            item(BLACKWOOD, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
+            item(INVER_WOOD, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
+            item(STRIPPED_BLACKWOOD_LOG, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
+            item(STRIPPED_INVER_LOG, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
+            item(STRIPPED_BLACKWOOD, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
+            item(STRIPPED_INVER_WOOD, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
 
-            item(ROCK_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_ROCK_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(ROCK_BRICKS_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_ROCK_BRICKS_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_ROCK_BRICKS_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(ROCK_TILES_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_ROCK_TILES_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_ROCK_TILES_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(SMOOTH_ROCK_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(POLISHED_ROCK_SLAB, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_ROCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
+            item(ROCK_BRICKS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
+            item(MOSSY_ROCK_BRICKS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
+            item(CRACKED_ROCK_BRICKS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
+            item(ROCK_TILES, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
+            item(MOSSY_ROCK_TILES, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
+            item(CRACKED_ROCK_TILES, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
+            item(SMOOTH_ROCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
+            item(POLISHED_ROCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
+            item(CHISELED_ROCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
+            item(ROCK_PILLAR, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
+            item(ROCK_LANTERN, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
 
-            item(ROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_ROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(ROCK_BRICKS_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_ROCK_BRICKS_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_ROCK_BRICKS_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(ROCK_TILES_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_ROCK_TILES_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_ROCK_TILES_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(SMOOTH_ROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(POLISHED_ROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(ROCK_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_SLABS),
+            item(MOSSY_ROCK_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_SLABS),
+            item(ROCK_BRICKS_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_SLABS),
+            item(MOSSY_ROCK_BRICKS_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_SLABS),
+            item(CRACKED_ROCK_BRICKS_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_SLABS),
+            item(ROCK_TILES_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_SLABS),
+            item(MOSSY_ROCK_TILES_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_SLABS),
+            item(CRACKED_ROCK_TILES_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_SLABS),
+            item(SMOOTH_ROCK_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_SLABS),
+            item(POLISHED_ROCK_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_SLABS),
 
-            item(ROCK_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_ROCK_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(ROCK_BRICKS_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_ROCK_BRICKS_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_ROCK_BRICKS_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(ROCK_TILES_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_ROCK_TILES_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_ROCK_TILES_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(SMOOTH_ROCK_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(POLISHED_ROCK_STEP, ItemGroup.BUILDING_BLOCKS),
+            item(ROCK_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STAIRS),
+            item(MOSSY_ROCK_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STAIRS),
+            item(ROCK_BRICKS_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STAIRS),
+            item(MOSSY_ROCK_BRICKS_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STAIRS),
+            item(CRACKED_ROCK_BRICKS_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STAIRS),
+            item(ROCK_TILES_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STAIRS),
+            item(MOSSY_ROCK_TILES_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STAIRS),
+            item(CRACKED_ROCK_TILES_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STAIRS),
+            item(SMOOTH_ROCK_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STAIRS),
+            item(POLISHED_ROCK_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STAIRS),
+
+            item(ROCK_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STEPS),
+            item(MOSSY_ROCK_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STEPS),
+            item(ROCK_BRICKS_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STEPS),
+            item(MOSSY_ROCK_BRICKS_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STEPS),
+            item(CRACKED_ROCK_BRICKS_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STEPS),
+            item(ROCK_TILES_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STEPS),
+            item(MOSSY_ROCK_TILES_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STEPS),
+            item(CRACKED_ROCK_TILES_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STEPS),
+            item(SMOOTH_ROCK_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STEPS),
+            item(POLISHED_ROCK_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK_STEPS),
 
 
-            item(MOSSY_DARKROCK, ItemGroup.BUILDING_BLOCKS),
-            item(DARKROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_DARKROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_DARKROCK_BRICKS, ItemGroup.BUILDING_BLOCKS),
-            item(DARKROCK_TILES, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_DARKROCK_TILES, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_DARKROCK_TILES, ItemGroup.BUILDING_BLOCKS),
-            item(SMOOTH_DARKROCK, ItemGroup.BUILDING_BLOCKS),
-            item(POLISHED_DARKROCK, ItemGroup.BUILDING_BLOCKS),
-            item(CHISELED_DARKROCK, ItemGroup.BUILDING_BLOCKS),
-            item(DARKROCK_PILLAR, ItemGroup.BUILDING_BLOCKS),
-            item(DARKROCK_LANTERN, ItemGroup.BUILDING_BLOCKS),
+            item(MOSSY_DARKROCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK),
+            item(DARKROCK_BRICKS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK),
+            item(MOSSY_DARKROCK_BRICKS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK),
+            item(CRACKED_DARKROCK_BRICKS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK),
+            item(DARKROCK_TILES, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK),
+            item(MOSSY_DARKROCK_TILES, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK),
+            item(CRACKED_DARKROCK_TILES, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK),
+            item(SMOOTH_DARKROCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK),
+            item(POLISHED_DARKROCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK),
+            item(CHISELED_DARKROCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK),
+            item(DARKROCK_PILLAR, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK),
+            item(DARKROCK_LANTERN, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK),
 
-            item(DARKROCK_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_DARKROCK_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(DARKROCK_BRICKS_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_DARKROCK_BRICKS_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_DARKROCK_BRICKS_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(DARKROCK_TILES_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_DARKROCK_TILES_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_DARKROCK_TILES_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(SMOOTH_DARKROCK_SLAB, ItemGroup.BUILDING_BLOCKS),
-            item(POLISHED_DARKROCK_SLAB, ItemGroup.BUILDING_BLOCKS),
+            item(DARKROCK_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_SLABS),
+            item(MOSSY_DARKROCK_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_SLABS),
+            item(DARKROCK_BRICKS_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_SLABS),
+            item(MOSSY_DARKROCK_BRICKS_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_SLABS),
+            item(CRACKED_DARKROCK_BRICKS_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_SLABS),
+            item(DARKROCK_TILES_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_SLABS),
+            item(MOSSY_DARKROCK_TILES_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_SLABS),
+            item(CRACKED_DARKROCK_TILES_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_SLABS),
+            item(SMOOTH_DARKROCK_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_SLABS),
+            item(POLISHED_DARKROCK_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_SLABS),
 
-            item(DARKROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_DARKROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(DARKROCK_BRICKS_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_DARKROCK_BRICKS_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_DARKROCK_BRICKS_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(DARKROCK_TILES_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_DARKROCK_TILES_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_DARKROCK_TILES_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(SMOOTH_DARKROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
-            item(POLISHED_DARKROCK_STAIRS, ItemGroup.BUILDING_BLOCKS),
+            item(DARKROCK_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STAIRS),
+            item(MOSSY_DARKROCK_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STAIRS),
+            item(DARKROCK_BRICKS_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STAIRS),
+            item(MOSSY_DARKROCK_BRICKS_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STAIRS),
+            item(CRACKED_DARKROCK_BRICKS_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STAIRS),
+            item(DARKROCK_TILES_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STAIRS),
+            item(MOSSY_DARKROCK_TILES_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STAIRS),
+            item(CRACKED_DARKROCK_TILES_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STAIRS),
+            item(SMOOTH_DARKROCK_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STAIRS),
+            item(POLISHED_DARKROCK_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STAIRS),
 
-            item(DARKROCK_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_DARKROCK_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(DARKROCK_BRICKS_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_DARKROCK_BRICKS_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_DARKROCK_BRICKS_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(DARKROCK_TILES_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(MOSSY_DARKROCK_TILES_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(CRACKED_DARKROCK_TILES_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(SMOOTH_DARKROCK_STEP, ItemGroup.BUILDING_BLOCKS),
-            item(POLISHED_DARKROCK_STEP, ItemGroup.BUILDING_BLOCKS)
+            item(DARKROCK_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STEPS),
+            item(MOSSY_DARKROCK_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STEPS),
+            item(DARKROCK_BRICKS_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STEPS),
+            item(MOSSY_DARKROCK_BRICKS_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STEPS),
+            item(CRACKED_DARKROCK_BRICKS_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STEPS),
+            item(DARKROCK_TILES_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STEPS),
+            item(MOSSY_DARKROCK_TILES_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STEPS),
+            item(CRACKED_DARKROCK_TILES_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STEPS),
+            item(SMOOTH_DARKROCK_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STEPS),
+            item(POLISHED_DARKROCK_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.DARKROCK_STEPS)
         );
     }
 
@@ -506,16 +537,68 @@ public final class NdBlocks {
         ));
     }
 
-    private static BlockItem item(Block block, Item.Properties props) {
+    private static Block log(String id, MaterialColor color) {
+        return block(id, new RotatedPillarBlock(
+            Block.Properties.create(Material.WOOD, color)
+                            .hardnessAndResistance(2)
+                            .harvestTool(ToolType.AXE)
+        ));
+    }
+
+    private static Block stripableLog(String id, MaterialColor color, Supplier<Block> stripped) {
+        return block(id, new StrippableLogBlock(
+            Block.Properties.create(Material.WOOD, color)
+                            .hardnessAndResistance(2)
+                            .harvestTool(ToolType.AXE),
+            stripped
+        ));
+    }
+
+    private static Block bark(String id, MaterialColor color) {
+        return block(id, new Block(
+            Block.Properties.create(Material.WOOD, color)
+                            .hardnessAndResistance(2)
+                            .harvestTool(ToolType.AXE)
+        ));
+    }
+
+    private static Block stripableBark(String id, MaterialColor color, Supplier<Block> stripped) {
+        return block(id, new StrippableBlock(
+            Block.Properties.create(Material.WOOD, color)
+                            .hardnessAndResistance(2)
+                            .harvestTool(ToolType.AXE),
+            stripped
+        ));
+    }
+
+    private static BlockItem item(Block block, Item.Properties props, ItemSubgroup subgroup, int index) {
         ResourceLocation id = block.getRegistryName();
         assert id != null;
         BlockItem item = new BlockItem(block, props);
         item.setRegistryName(id);
+        if (subgroup != null) {
+            if (index == -1)
+                subgroup.addItem(item);
+            else
+                subgroup.addItem(item, index);
+        }
         return item;
     }
 
+    private static BlockItem item(Block block, Item.Properties props, ItemSubgroup subgroup) {
+        return item(block, props, subgroup, -1);
+    }
+
+    private static BlockItem item(Block block, ItemGroup group, ItemSubgroup subgroup, int index) {
+        return item(block, new Item.Properties().group(group), subgroup, index);
+    }
+
+    private static BlockItem item(Block block, ItemGroup group, ItemSubgroup subgroup) {
+        return item(block, new Item.Properties().group(group), subgroup);
+    }
+
     private static BlockItem item(Block block, ItemGroup group) {
-        return item(block, new Item.Properties().group(group));
+        return item(block, new Item.Properties().group(group), null);
     }
 
     @Nonnull
