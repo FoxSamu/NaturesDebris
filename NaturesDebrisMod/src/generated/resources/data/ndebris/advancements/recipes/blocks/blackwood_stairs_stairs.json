@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "ndebris:charcoal_from_blackwood_log_smelting"
+      "ndebris:blackwood_stairs_stairs"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "ndebris:blackwood_log"
+            "item": "ndebris:blackwood_planks"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "ndebris:charcoal_from_blackwood_log_smelting"
+        "recipe": "ndebris:blackwood_stairs_stairs"
       }
     }
   },

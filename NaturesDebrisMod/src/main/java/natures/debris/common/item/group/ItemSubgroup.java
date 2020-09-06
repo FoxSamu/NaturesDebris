@@ -9,13 +9,17 @@ import net.minecraft.item.Item;
 
 public class ItemSubgroup {
     public static final ItemSubgroup NATURE = new ItemSubgroup();
-    public static final ItemSubgroup WOOD = new ItemSubgroup();
+    public static final ItemSubgroup LOGS = new ItemSubgroup();
+    public static final ItemSubgroup PLANKS = new ItemSubgroup();
     public static final ItemSubgroup ROCK = new ItemSubgroup();
     public static final ItemSubgroup DARKROCK = new ItemSubgroup();
+    public static final ItemSubgroup PLANK_SLABS = new ItemSubgroup();
     public static final ItemSubgroup ROCK_SLABS = new ItemSubgroup();
     public static final ItemSubgroup DARKROCK_SLABS = new ItemSubgroup();
+    public static final ItemSubgroup PLANK_STAIRS = new ItemSubgroup();
     public static final ItemSubgroup ROCK_STAIRS = new ItemSubgroup();
     public static final ItemSubgroup DARKROCK_STAIRS = new ItemSubgroup();
+    public static final ItemSubgroup PLANK_STEPS = new ItemSubgroup();
     public static final ItemSubgroup ROCK_STEPS = new ItemSubgroup();
     public static final ItemSubgroup DARKROCK_STEPS = new ItemSubgroup();
 

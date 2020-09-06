@@ -8,6 +8,7 @@ import natures.debris.common.NaturesDebris;
 
 public final class NdItemTags {
     public static final Tag<Item> STEPS = tag("steps");
+    public static final Tag<Item> WOODEN_STEPS = tag("wooden_steps");
     public static final Tag<Item> BLACKWOOD_LOGS = tag("blackwood_logs");
     public static final Tag<Item> INVER_LOGS = tag("inver_logs");
 

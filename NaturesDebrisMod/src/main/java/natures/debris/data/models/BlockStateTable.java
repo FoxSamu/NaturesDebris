@@ -42,6 +42,15 @@ public final class BlockStateTable {
         register(NdBlocks.STRIPPED_BLACKWOOD, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_log_side"), name(block, "block/%s_log_side"))));
         register(NdBlocks.STRIPPED_INVER_WOOD, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_log_side", "_wood"), name(block, "block/%s_log_side", "_wood"))));
 
+        register(NdBlocks.BLACKWOOD_PLANKS, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(NdBlocks.INVER_PLANKS, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(NdBlocks.BLACKWOOD_SLAB, block -> woodenSlab(name(block, "block/%s", "_slab"), name(block, "block/%s_planks", "_slab"), 1));
+        register(NdBlocks.INVER_SLAB, block -> woodenSlab(name(block, "block/%s", "_slab"), name(block, "block/%s_planks", "_slab"), 1));
+        register(NdBlocks.BLACKWOOD_STAIRS, block -> woodenStairs(name(block, "block/%s", "_stairs"), name(block, "block/%s_planks", "_stairs"), 1));
+        register(NdBlocks.INVER_STAIRS, block -> woodenStairs(name(block, "block/%s", "_stairs"), name(block, "block/%s_planks", "_stairs"), 1));
+        register(NdBlocks.BLACKWOOD_STEP, block -> woodenStep(name(block, "block/%s", "_step"), name(block, "block/%s_planks", "_step"), 1));
+        register(NdBlocks.INVER_STEP, block -> woodenStep(name(block, "block/%s", "_step"), name(block, "block/%s_planks", "_step"), 1));
+
         register(NdBlocks.ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.MOSSY_ROCK, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(NdBlocks.ROCK_BRICKS, block -> cubeAllRandomized(name(block, "block/%s"), 16, 2, 2));
@@ -252,6 +261,151 @@ public final class BlockStateTable {
                     String in = name + (i == 0 ? "_step_inner" : "_step_inner_alt_" + i);
                     String on = name + (i == 0 ? "_step_outer" : "_step_outer_alt_" + i);
                     String sn = name + (i == 0 ? "_step" : "_step_alt_" + i);
+                    String tn = name + (i == 0 ? "" : "_alt_" + i);
+
+                    int yp = y == 0 ? 270 : y - 90;
+                    int yn = y == 270 ? 0 : y + 90;
+
+                    innerL[i] = ModelInfo.create(in, innerM[i] ? null : stepInner(tn))
+                                         .rotate(x, x == 180 ? y : yp)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+                    outerL[i] = ModelInfo.create(on, outerM[i] ? null : stepOuter(tn))
+                                         .rotate(x, x == 180 ? y : yp)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+                    innerR[i] = ModelInfo.create(in)
+                                         .rotate(x, x == 180 ? yn : y)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+                    outerR[i] = ModelInfo.create(on)
+                                         .rotate(x, x == 180 ? yn : y)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+                    stairs[i] = ModelInfo.create(sn, stairsM[i] ? null : step(tn))
+                                         .rotate(x, y)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+
+                    innerM[i] = true;
+                    outerM[i] = true;
+                    stairsM[i] = true;
+                }
+
+                gen.variant(state + ",shape=straight", stairs);
+                gen.variant(state + ",shape=inner_left", innerL);
+                gen.variant(state + ",shape=inner_right", innerR);
+                gen.variant(state + ",shape=outer_left", outerL);
+                gen.variant(state + ",shape=outer_right", outerR);
+            }
+            if (y == 270) y = 0;
+            else y += 90;
+        }
+        return gen;
+    }
+
+    private static IBlockStateGen woodenSlab(String modelName, String name, int... weights) {
+        ModelInfo[] lo = new ModelInfo[weights.length];
+        ModelInfo[] hi = new ModelInfo[weights.length];
+        ModelInfo[] dbl = new ModelInfo[weights.length];
+        for (int i = 0; i < lo.length; i++) {
+            String ln = modelName + (i == 0 ? "_slab" : "_slab_alt_" + i);
+            String hn = modelName + (i == 0 ? "_slab_top" : "_slab_top_alt_" + i);
+            String n = name + (i == 0 ? "" : "_alt_" + i);
+            lo[i] = ModelInfo.create(ln, slab(n)).weight(weights[i]);
+            hi[i] = ModelInfo.create(hn, slabTop(n)).weight(weights[i]);
+            dbl[i] = ModelInfo.create(n).weight(weights[i]);
+        }
+        return VariantBlockStateGen.create("type=bottom", lo)
+                                   .variant("type=top", hi)
+                                   .variant("type=double", dbl);
+    }
+
+    private static IBlockStateGen woodenStairs(String modelName, String name, int... weights) {
+        ModelInfo[] innerL = new ModelInfo[weights.length];
+        ModelInfo[] outerL = new ModelInfo[weights.length];
+        ModelInfo[] innerR = new ModelInfo[weights.length];
+        ModelInfo[] outerR = new ModelInfo[weights.length];
+        ModelInfo[] stairs = new ModelInfo[weights.length];
+        boolean[] innerM = new boolean[weights.length];
+        boolean[] outerM = new boolean[weights.length];
+        boolean[] stairsM = new boolean[weights.length];
+
+        VariantBlockStateGen gen = VariantBlockStateGen.create();
+        int y = 270;
+        for (Direction dir : Direction.Plane.HORIZONTAL) {
+            for (Half half : Half.values()) {
+                int x = half == Half.TOP ? 180 : 0;
+                String state = String.format("facing=%s,half=%s", dir.getName(), half.getName());
+
+                for (int i = 0; i < innerL.length; i++) {
+                    String in = modelName + (i == 0 ? "_stairs_inner" : "_stairs_inner_alt_" + i);
+                    String on = modelName + (i == 0 ? "_stairs_outer" : "_stairs_outer_alt_" + i);
+                    String sn = modelName + (i == 0 ? "_stairs" : "_stairs_alt_" + i);
+                    String tn = name + (i == 0 ? "" : "_alt_" + i);
+
+                    int yp = y == 0 ? 270 : y - 90;
+                    int yn = y == 270 ? 0 : y + 90;
+
+                    innerL[i] = ModelInfo.create(in, innerM[i] ? null : stairsInner(tn))
+                                         .rotate(x, x == 180 ? y : yp)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+                    outerL[i] = ModelInfo.create(on, outerM[i] ? null : stairsOuter(tn))
+                                         .rotate(x, x == 180 ? y : yp)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+                    innerR[i] = ModelInfo.create(in)
+                                         .rotate(x, x == 180 ? yn : y)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+                    outerR[i] = ModelInfo.create(on)
+                                         .rotate(x, x == 180 ? yn : y)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+                    stairs[i] = ModelInfo.create(sn, stairsM[i] ? null : stairs(tn))
+                                         .rotate(x, y)
+                                         .uvlock(true)
+                                         .weight(weights[i]);
+
+                    innerM[i] = true;
+                    outerM[i] = true;
+                    stairsM[i] = true;
+                }
+
+                gen.variant(state + ",shape=straight", stairs);
+                gen.variant(state + ",shape=inner_left", innerL);
+                gen.variant(state + ",shape=inner_right", innerR);
+                gen.variant(state + ",shape=outer_left", outerL);
+                gen.variant(state + ",shape=outer_right", outerR);
+            }
+            if (y == 270) y = 0;
+            else y += 90;
+        }
+        return gen;
+    }
+
+    private static IBlockStateGen woodenStep(String modelName, String name, int... weights) {
+        ModelInfo[] innerL = new ModelInfo[weights.length];
+        ModelInfo[] outerL = new ModelInfo[weights.length];
+        ModelInfo[] innerR = new ModelInfo[weights.length];
+        ModelInfo[] outerR = new ModelInfo[weights.length];
+        ModelInfo[] stairs = new ModelInfo[weights.length];
+        boolean[] innerM = new boolean[weights.length];
+        boolean[] outerM = new boolean[weights.length];
+        boolean[] stairsM = new boolean[weights.length];
+
+        VariantBlockStateGen gen = VariantBlockStateGen.create();
+        int y = 270;
+        for (Direction dir : Direction.Plane.HORIZONTAL) {
+            for (Half half : Half.values()) {
+                int x = half == Half.TOP ? 180 : 0;
+                String state = String.format("facing=%s,half=%s", dir.getName(), half.getName());
+
+                for (int i = 0; i < innerL.length; i++) {
+                    String in = modelName + (i == 0 ? "_step_inner" : "_step_inner_alt_" + i);
+                    String on = modelName + (i == 0 ? "_step_outer" : "_step_outer_alt_" + i);
+                    String sn = modelName + (i == 0 ? "_step" : "_step_alt_" + i);
                     String tn = name + (i == 0 ? "" : "_alt_" + i);
 
                     int yp = y == 0 ? 270 : y - 90;

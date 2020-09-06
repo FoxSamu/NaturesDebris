@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ndebris:block/inver_slab"
+    },
+    "type=double": {
+      "model": "ndebris:block/inver_planks"
+    },
+    "type=top": {
+      "model": "ndebris:block/inver_slab_top"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "ndebris:block/outer_step",
+  "textures": {
+    "bottom": "ndebris:block/blackwood_planks",
+    "top": "ndebris:block/blackwood_planks",
+    "side": "ndebris:block/blackwood_planks"
+  }
+}

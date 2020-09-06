@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "ndebris:blackwood_logs"
+    }
+  ],
+  "result": {
+    "item": "ndebris:blackwood_planks",
+    "count": 4
+  }
+}

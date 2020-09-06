@@ -91,19 +91,39 @@ public class NdItemTagsProvider extends TagsProvider<Item> {
             NdBlocks.CRACKED_DARKROCK_TILES_STEP.asItem(),
             NdBlocks.SMOOTH_DARKROCK_STEP.asItem(),
             NdBlocks.POLISHED_DARKROCK_STEP.asItem()
+        ).add(
+            NdItemTags.WOODEN_STEPS
         );
+
+        getBuilder(ItemTags.WOODEN_SLABS).replace(false).add(
+            NdBlocks.BLACKWOOD_SLAB.asItem(),
+            NdBlocks.INVER_SLAB.asItem()
+        );
+
+        getBuilder(ItemTags.WOODEN_STAIRS).replace(false).add(
+            NdBlocks.BLACKWOOD_STAIRS.asItem(),
+            NdBlocks.INVER_STAIRS.asItem()
+        );
+
+        getBuilder(NdItemTags.WOODEN_STEPS).replace(false).add(
+            NdBlocks.BLACKWOOD_STEP.asItem(),
+            NdBlocks.INVER_STEP.asItem()
+        );
+
         getBuilder(NdItemTags.BLACKWOOD_LOGS).replace(false).add(
             NdBlocks.BLACKWOOD_LOG.asItem(),
             NdBlocks.STRIPPED_BLACKWOOD_LOG.asItem(),
             NdBlocks.BLACKWOOD.asItem(),
             NdBlocks.STRIPPED_BLACKWOOD.asItem()
         );
+
         getBuilder(NdItemTags.INVER_LOGS).replace(false).add(
             NdBlocks.INVER_LOG.asItem(),
             NdBlocks.STRIPPED_INVER_LOG.asItem(),
             NdBlocks.INVER_WOOD.asItem(),
             NdBlocks.STRIPPED_INVER_WOOD.asItem()
         );
+
         getBuilder(ItemTags.LOGS).replace(false).add(
             NdItemTags.BLACKWOOD_LOGS,
             NdItemTags.INVER_LOGS

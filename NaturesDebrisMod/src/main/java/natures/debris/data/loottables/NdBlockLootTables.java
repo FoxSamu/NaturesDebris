@@ -42,6 +42,15 @@ public class NdBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(NdBlocks.STRIPPED_BLACKWOOD);
         registerDropSelfLootTable(NdBlocks.STRIPPED_INVER_WOOD);
 
+        registerDropSelfLootTable(NdBlocks.BLACKWOOD_PLANKS);
+        registerDropSelfLootTable(NdBlocks.INVER_PLANKS);
+        registerLootTable(NdBlocks.BLACKWOOD_SLAB, BlockLootTables::droppingSlab);
+        registerLootTable(NdBlocks.INVER_SLAB, BlockLootTables::droppingSlab);
+        registerDropSelfLootTable(NdBlocks.BLACKWOOD_STAIRS);
+        registerDropSelfLootTable(NdBlocks.INVER_STAIRS);
+        registerDropSelfLootTable(NdBlocks.BLACKWOOD_STEP);
+        registerDropSelfLootTable(NdBlocks.INVER_STEP);
+
         registerDropSelfLootTable(NdBlocks.ROCK);
         registerDropSelfLootTable(NdBlocks.MOSSY_ROCK);
         registerDropSelfLootTable(NdBlocks.ROCK_BRICKS);

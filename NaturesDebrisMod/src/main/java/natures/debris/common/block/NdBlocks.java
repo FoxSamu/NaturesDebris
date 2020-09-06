@@ -52,6 +52,15 @@ public final class NdBlocks {
     public static final Block STRIPPED_BLACKWOOD = inj();
     public static final Block STRIPPED_INVER_WOOD = inj();
 
+    public static final Block BLACKWOOD_PLANKS = inj();
+    public static final Block INVER_PLANKS = inj();
+    public static final Block BLACKWOOD_SLAB = inj();
+    public static final Block INVER_SLAB = inj();
+    public static final Block BLACKWOOD_STAIRS = inj();
+    public static final Block INVER_STAIRS = inj();
+    public static final Block BLACKWOOD_STEP = inj();
+    public static final Block INVER_STEP = inj();
+
     public static final Block ROCK = inj();
     public static final Block MOSSY_ROCK = inj();
     public static final Block ROCK_BRICKS = inj();
@@ -171,6 +180,15 @@ public final class NdBlocks {
             log("stripped_blackwood", MaterialColor.BLACK_TERRACOTTA),
             log("stripped_inver_wood", MaterialColor.WOOD),
 
+            wood("blackwood_planks", MaterialColor.BLACK_TERRACOTTA),
+            wood("inver_planks", MaterialColor.WOOD),
+            woodSlab("blackwood_slab", MaterialColor.BLACK_TERRACOTTA),
+            woodSlab("inver_slab", MaterialColor.WOOD),
+            woodStairs("blackwood_stairs", MaterialColor.BLACK_TERRACOTTA),
+            woodStairs("inver_stairs", MaterialColor.WOOD),
+            woodStep("blackwood_step", MaterialColor.BLACK_TERRACOTTA),
+            woodStep("inver_step", MaterialColor.WOOD),
+
 
             rock("mossy_rock", 1.5, 6, false),
             rock("rock_bricks", 2, 6, false),
@@ -282,14 +300,23 @@ public final class NdBlocks {
             item(MURKY_GRASS_PATH, ItemGroup.DECORATIONS),
             item(MURKY_TERRACOTTA, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
 
-            item(BLACKWOOD_LOG, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
-            item(INVER_LOG, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
-            item(BLACKWOOD, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
-            item(INVER_WOOD, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
-            item(STRIPPED_BLACKWOOD_LOG, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
-            item(STRIPPED_INVER_LOG, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
-            item(STRIPPED_BLACKWOOD, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
-            item(STRIPPED_INVER_WOOD, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.WOOD),
+            item(BLACKWOOD_LOG, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.LOGS),
+            item(INVER_LOG, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.LOGS),
+            item(BLACKWOOD, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.LOGS),
+            item(INVER_WOOD, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.LOGS),
+            item(STRIPPED_BLACKWOOD_LOG, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.LOGS),
+            item(STRIPPED_INVER_LOG, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.LOGS),
+            item(STRIPPED_BLACKWOOD, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.LOGS),
+            item(STRIPPED_INVER_WOOD, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.LOGS),
+
+            item(BLACKWOOD_PLANKS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.PLANKS),
+            item(INVER_PLANKS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.PLANKS),
+            item(BLACKWOOD_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.PLANK_SLABS),
+            item(INVER_SLAB, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.PLANK_SLABS),
+            item(BLACKWOOD_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.PLANK_STAIRS),
+            item(INVER_STAIRS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.PLANK_STAIRS),
+            item(BLACKWOOD_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.PLANK_STEPS),
+            item(INVER_STEP, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.PLANK_STEPS),
 
             item(MOSSY_ROCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
             item(ROCK_BRICKS, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.ROCK),
@@ -554,7 +581,7 @@ public final class NdBlocks {
         ));
     }
 
-    private static Block bark(String id, MaterialColor color) {
+    private static Block wood(String id, MaterialColor color) {
         return block(id, new Block(
             Block.Properties.create(Material.WOOD, color)
                             .hardnessAndResistance(2)
@@ -562,12 +589,27 @@ public final class NdBlocks {
         ));
     }
 
-    private static Block stripableBark(String id, MaterialColor color, Supplier<Block> stripped) {
-        return block(id, new StrippableBlock(
+    private static Block woodSlab(String id, MaterialColor color) {
+        return block(id, new SlabBlock(
             Block.Properties.create(Material.WOOD, color)
                             .hardnessAndResistance(2)
-                            .harvestTool(ToolType.AXE),
-            stripped
+                            .harvestTool(ToolType.AXE)
+        ));
+    }
+
+    private static Block woodStairs(String id, MaterialColor color) {
+        return block(id, new SimpleStairsBlock(
+            Block.Properties.create(Material.WOOD, color)
+                            .hardnessAndResistance(2)
+                            .harvestTool(ToolType.AXE)
+        ));
+    }
+
+    private static Block woodStep(String id, MaterialColor color) {
+        return block(id, new StepBlock(
+            Block.Properties.create(Material.WOOD, color)
+                            .hardnessAndResistance(2)
+                            .harvestTool(ToolType.AXE)
         ));
     }
 

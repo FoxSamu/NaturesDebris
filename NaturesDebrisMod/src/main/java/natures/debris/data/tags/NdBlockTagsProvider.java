@@ -93,6 +93,23 @@ public class NdBlockTagsProvider extends TagsProvider<Block> {
             NdBlocks.CRACKED_DARKROCK_TILES_STEP,
             NdBlocks.SMOOTH_DARKROCK_STEP,
             NdBlocks.POLISHED_DARKROCK_STEP
+        ).add(
+            NdBlockTags.WOODEN_STEPS
+        );
+
+        getBuilder(BlockTags.WOODEN_SLABS).replace(false).add(
+            NdBlocks.BLACKWOOD_SLAB,
+            NdBlocks.INVER_SLAB
+        );
+
+        getBuilder(BlockTags.WOODEN_STAIRS).replace(false).add(
+            NdBlocks.BLACKWOOD_STAIRS,
+            NdBlocks.INVER_STAIRS
+        );
+
+        getBuilder(NdBlockTags.WOODEN_STEPS).replace(false).add(
+            NdBlocks.BLACKWOOD_STEP,
+            NdBlocks.INVER_STEP
         );
 
         getBuilder(Tags.Blocks.DIRT).replace(false).add(

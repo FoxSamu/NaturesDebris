@@ -8,12 +8,14 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
-import net.minecraft.item.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 
 import natures.debris.common.NaturesDebris;
 import natures.debris.common.block.NdBlocks;
+import natures.debris.common.tags.NdItemTags;
 
 public class NdRecipeProvider extends RecipeProvider {
     private Consumer<IFinishedRecipe> consumer;
@@ -27,7 +29,7 @@ public class NdRecipeProvider extends RecipeProvider {
         this.consumer = consumer;
 
         // Nature blocks
-        genericShapeless("murky_humus_shapeless", NdBlocks.LEAFY_HUMUS, NdBlocks.MURKY_HUMUS, 1);
+        shapeless("murky_humus_shapeless", NdBlocks.LEAFY_HUMUS, NdBlocks.MURKY_HUMUS, 1);
         smelting("murky_terracotta_smelting", NdBlocks.ROCK_TILES, NdBlocks.CRACKED_ROCK_TILES, 0.35);
 
         // Wood blocks
@@ -35,7 +37,15 @@ public class NdRecipeProvider extends RecipeProvider {
         generic4x4("inver_wood_4x4", NdBlocks.INVER_LOG, NdBlocks.INVER_WOOD, 3);
         generic4x4("stripped_blackwood_4x4", NdBlocks.STRIPPED_BLACKWOOD_LOG, NdBlocks.STRIPPED_BLACKWOOD, 3);
         generic4x4("stripped_inver_wood_4x4", NdBlocks.STRIPPED_INVER_LOG, NdBlocks.STRIPPED_INVER_WOOD, 3);
-        smelting("charcoal_from_blackwood_log_smelting", NdBlocks.BLACKWOOD_LOG, Items.CHARCOAL, 0.35);
+
+        shapeless("blackwood_planks_shapeless", NdItemTags.BLACKWOOD_LOGS, NdBlocks.BLACKWOOD_PLANKS, 4);
+
+        generic3x1("blackwood_slab_3x1", NdBlocks.BLACKWOOD_PLANKS, NdBlocks.BLACKWOOD_SLAB, 6);
+        generic3x1("inver_slab_3x1", NdBlocks.INVER_PLANKS, NdBlocks.INVER_SLAB, 6);
+        stairs("blackwood_stairs_stairs", NdBlocks.BLACKWOOD_PLANKS, NdBlocks.BLACKWOOD_STAIRS, 4);
+        stairs("inver_stairs_stairs", NdBlocks.INVER_PLANKS, NdBlocks.INVER_STAIRS, 4);
+        step("blackwood_stairs_step", NdBlocks.BLACKWOOD_PLANKS, NdBlocks.BLACKWOOD_STEP, 6);
+        step("inver_stairs_step", NdBlocks.INVER_PLANKS, NdBlocks.INVER_STEP, 6);
 
         // For stonecutting recipes, see NdStonecuttingRecipeProvider
 
@@ -135,10 +145,17 @@ public class NdRecipeProvider extends RecipeProvider {
                            .build(consumer, NaturesDebris.resLoc(id));
     }
 
-    private void genericShapeless(String id, IItemProvider from, IItemProvider to, int count) {
+    private void shapeless(String id, IItemProvider from, IItemProvider to, int count) {
         ShapelessRecipeBuilder.shapelessRecipe(to, count)
                               .addIngredient(from)
                               .addCriterion("has_ingredient", hasItem(from))
+                              .build(consumer, NaturesDebris.resLoc(id));
+    }
+
+    private void shapeless(String id, Tag<Item> tag, IItemProvider to, int count) {
+        ShapelessRecipeBuilder.shapelessRecipe(to, count)
+                              .addIngredient(tag)
+                              .addCriterion("has_ingredient", hasItem(tag))
                               .build(consumer, NaturesDebris.resLoc(id));
     }
 

@@ -19,13 +19,17 @@ public class NdItemGroup extends ItemGroup {
         "blocks",
         () -> NdBlocks.MURKY_GRASS_BLOCK.asItem().getDefaultInstance(),
         ItemSubgroup.NATURE,
-        ItemSubgroup.WOOD,
+        ItemSubgroup.LOGS,
+        ItemSubgroup.PLANKS,
         ItemSubgroup.ROCK,
         ItemSubgroup.DARKROCK,
+        ItemSubgroup.PLANK_SLABS,
         ItemSubgroup.ROCK_SLABS,
         ItemSubgroup.DARKROCK_SLABS,
+        ItemSubgroup.PLANK_STAIRS,
         ItemSubgroup.ROCK_STAIRS,
         ItemSubgroup.DARKROCK_STAIRS,
+        ItemSubgroup.PLANK_STEPS,
         ItemSubgroup.ROCK_STEPS,
         ItemSubgroup.DARKROCK_STEPS
     );
