@@ -8,6 +8,7 @@ import net.minecraft.data.DataGenerator;
 
 import natures.debris.common.handler.RegistryHandler;
 import natures.debris.client.NaturesDebrisClient;
+import natures.debris.data.lang.NdLanguageProvider;
 import natures.debris.data.loottables.NdLootTableProvider;
 import natures.debris.data.models.NdStateModelProvider;
 import natures.debris.data.recipes.NdRecipeProvider;
@@ -28,6 +29,7 @@ public class NaturesDebrisData extends NaturesDebrisClient {
         DataGenerator gen = evt.getGenerator();
         if (evt.includeClient()) {
             gen.addProvider(new NdStateModelProvider(gen));
+            gen.addProvider(new NdLanguageProvider(gen));
         }
         if (evt.includeServer()) {
             gen.addProvider(new NdLootTableProvider(gen));

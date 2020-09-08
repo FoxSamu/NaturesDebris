@@ -1,7 +1,10 @@
 package natures.debris.common.item.group;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
@@ -15,6 +18,8 @@ import net.minecraft.util.NonNullList;
 import natures.debris.common.block.NdBlocks;
 
 public class NdItemGroup extends ItemGroup {
+    private static final List<NdItemGroup> GROUPS = Lists.newArrayList();
+
     public static final NdItemGroup BUILDING_BLOCKS = new NdItemGroup(
         "blocks",
         () -> NdBlocks.MURKY_GRASS_BLOCK.asItem().getDefaultInstance(),
@@ -49,12 +54,14 @@ public class NdItemGroup extends ItemGroup {
         super(label);
         this.iconFactory = iconFactory;
         this.subgroups = subgroups;
+        GROUPS.add(this);
     }
 
     public NdItemGroup(int index, String label, Supplier<ItemStack> iconFactory, ItemSubgroup... subgroups) {
         super(index, label);
         this.iconFactory = iconFactory;
         this.subgroups = subgroups;
+        GROUPS.add(this);
     }
 
     @Override
@@ -87,5 +94,9 @@ public class NdItemGroup extends ItemGroup {
     @Override
     public ItemStack createIcon() {
         return iconFactory.get();
+    }
+
+    public static List<NdItemGroup> getGroups() {
+        return Collections.unmodifiableList(GROUPS);
     }
 }

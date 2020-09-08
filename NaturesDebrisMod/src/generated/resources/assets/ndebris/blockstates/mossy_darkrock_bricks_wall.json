@@ -26,14 +26,17 @@
       "apply": [
         {
           "model": "ndebris:block/mossy_darkrock_bricks_wall_side",
+          "uvlock": true,
           "weight": 16
         },
         {
           "model": "ndebris:block/mossy_darkrock_bricks_wall_alt_1_side",
+          "uvlock": true,
           "weight": 2
         },
         {
           "model": "ndebris:block/mossy_darkrock_bricks_wall_alt_2_side",
+          "uvlock": true,
           "weight": 2
         }
       ]
@@ -46,16 +49,19 @@
         {
           "model": "ndebris:block/mossy_darkrock_bricks_wall_side",
           "y": 90,
+          "uvlock": true,
           "weight": 16
         },
         {
           "model": "ndebris:block/mossy_darkrock_bricks_wall_alt_1_side",
           "y": 90,
+          "uvlock": true,
           "weight": 2
         },
         {
           "model": "ndebris:block/mossy_darkrock_bricks_wall_alt_2_side",
           "y": 90,
+          "uvlock": true,
           "weight": 2
         }
       ]
@@ -68,16 +74,19 @@
         {
           "model": "ndebris:block/mossy_darkrock_bricks_wall_side",
           "y": 180,
+          "uvlock": true,
           "weight": 16
         },
         {
           "model": "ndebris:block/mossy_darkrock_bricks_wall_alt_1_side",
           "y": 180,
+          "uvlock": true,
           "weight": 2
         },
         {
           "model": "ndebris:block/mossy_darkrock_bricks_wall_alt_2_side",
           "y": 180,
+          "uvlock": true,
           "weight": 2
         }
       ]
@@ -90,16 +99,19 @@
         {
           "model": "ndebris:block/mossy_darkrock_bricks_wall_side",
           "y": 270,
+          "uvlock": true,
           "weight": 16
         },
         {
           "model": "ndebris:block/mossy_darkrock_bricks_wall_alt_1_side",
           "y": 270,
+          "uvlock": true,
           "weight": 2
         },
         {
           "model": "ndebris:block/mossy_darkrock_bricks_wall_alt_2_side",
           "y": 270,
+          "uvlock": true,
           "weight": 2
         }
       ]

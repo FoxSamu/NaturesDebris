@@ -13,7 +13,8 @@
         "north": "true"
       },
       "apply": {
-        "model": "ndebris:block/mossy_darkrock_wall_side"
+        "model": "ndebris:block/mossy_darkrock_wall_side",
+        "uvlock": true
       }
     },
     {
@@ -22,7 +23,8 @@
       },
       "apply": {
         "model": "ndebris:block/mossy_darkrock_wall_side",
-        "y": 90
+        "y": 90,
+        "uvlock": true
       }
     },
     {
@@ -31,7 +33,8 @@
       },
       "apply": {
         "model": "ndebris:block/mossy_darkrock_wall_side",
-        "y": 180
+        "y": 180,
+        "uvlock": true
       }
     },
     {
@@ -40,7 +43,8 @@
       },
       "apply": {
         "model": "ndebris:block/mossy_darkrock_wall_side",
-        "y": 270
+        "y": 270,
+        "uvlock": true
       }
     }
   ]
