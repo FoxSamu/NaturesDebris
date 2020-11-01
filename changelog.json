@@ -1,0 +1,16 @@
+{
+  "version": {
+    "number": "1.0-beta.2",
+    "name": "The Update of Life, The Universe and Everything",
+    "minecraft": "1.15.2",
+    "stable": false
+  },
+  "description": [
+    "Nature's Debris, updated to a new level, completely rewritten."
+  ],
+  "changelog": [
+    "Updated to Minecraft 1.15.2",
+    "Introduced the Plugin API",
+    "New Rock and Darkrock textures"
+  ]
+}

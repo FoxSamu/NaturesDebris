@@ -7,15 +7,14 @@
 
 package runs;
 
-import net.rgsw.io.BMFFile;
 
-import java.io.*;
+import java.io.IOException;
 
 public final class DatabaseFileTest {
     private DatabaseFileTest() {
     }
 
-    private static BMFFile file;
+//    private static BMFFile file;
 
     public static void main(String[] args) throws IOException {
         open();
@@ -45,24 +44,24 @@ public final class DatabaseFileTest {
     }
 
     public static void open() throws IOException {
-        file = BMFFile.open(new File("database.data"), 16, BMFFile.Compression.DEFLATE);
+//        file = BMFFile.open(new File("database.data"), 16, BMFFile.Compression.DEFLATE);
     }
 
     public static void close() throws IOException {
-        file.close();
+//        file.close();
     }
 
     public static void put(long key, String value) throws IOException {
-        OutputStream stream = file.writeEntry(key);
-        DataOutput out = new DataOutputStream(stream);
-        out.writeUTF(value);
-        stream.close();
+//        OutputStream stream = file.writeEntry(key);
+//        DataOutput out = new DataOutputStream(stream);
+//        out.writeUTF(value);
+//        stream.close();
     }
 
     public static void get(long key) throws IOException {
-        InputStream stream = file.readEntry(key);
-        DataInput in = new DataInputStream(stream);
-        System.out.println(in.readUTF());
-        stream.close();
+//        InputStream stream = file.readEntry(key);
+//        DataInput in = new DataInputStream(stream);
+//        System.out.println(in.readUTF());
+//        stream.close();
     }
 }

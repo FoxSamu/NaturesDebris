@@ -36,3 +36,5 @@ task signClientJar( dependsOn: 'reobfClientJar' ) {
 def reobfClientJar = project.reobf.create('clientJar')
 reobfClientJar.dependsOn('createMcpToSrg')
 reobfClientJar.setMappings(tasks.createMcpToSrg.getOutput())
+
+project.shade.create("clientJar")

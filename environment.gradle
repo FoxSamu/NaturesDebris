@@ -26,6 +26,8 @@ ext {
     // It may be any token, as long as that token has the read:packages permission granted.
     gprUser         = getVariable("gprUser")
     gprKey          = getVariable("gprKey")
+
+    timeOfExecution = new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
 }
 
 def canJarBeSigned() {

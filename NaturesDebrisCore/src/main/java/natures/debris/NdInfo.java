@@ -7,10 +7,11 @@
 
 package natures.debris;
 
-import natures.debris.api.INaturesDebrisInfo;
-import natures.debris.api.util.exc.InstanceOfUtilityClassException;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+
+import natures.debris.api.INaturesDebrisInfo;
+import natures.debris.api.util.exc.InstanceOfUtilityClassException;
 
 /**
  * Class that holds constants about Nature's Debris, which are usually replaced by Gradle. Most constants are used in
@@ -22,23 +23,27 @@ public final class NdInfo {
     /**
      * The mod ID of Nature's Debris, which is {@code ndebris}.
      */
+    @DynamicConstant("mod_id")
     public static final String ID = "ndebris";
 
     /**
      * The version of Nature's Debris, injected by gradle and otherwise "IDE".
      */
-    public static final String VERSION = DynamicConstants.VERSION;
+    @DynamicConstant("version")
+    public static final String VERSION = "IDE";
 
     /**
-     * The version name of Nature's Debris, injected by gradle and otherwise "The IDE Version.
+     * The version name of Nature's Debris, injected by gradle and otherwise "The IDE Version".
      */
-    public static final String VERSION_NAME = DynamicConstants.VERSION_NAME;
+    @DynamicConstant("version_name")
+    public static final String VERSION_NAME = "The IDE Version";
 
     /**
      * SHA1 of Nature's Debris. Unused, but planned for the {@code /mddebug} command. Injected by gradle and otherwise
      * {@code NO:FI:NG:ER:PR:IN:TA:VA:IL:AB:LE}.
      */
-    public static final String SHA1 = DynamicConstants.SHA1;
+    @DynamicConstant("sha1")
+    public static final String SHA1 = "NO:FI:NG:ER:PR:IN:TA:VA:IL:AB:LE";
 
     /**
      * Boolean indicating we are running from the IDE. Unused, but planned for the {@code /mddebug} command. Injected by
@@ -55,19 +60,11 @@ public final class NdInfo {
      * Boolean indicating the current JAR is signed, if there is any jar, and otherwise false. Unused, but planned for
      * the {@code /mddebug} command. Injected by gradle and otherwise false.
      */
-    public static final boolean SIGNED = DynamicConstants.SIGNED;
+    @DynamicConstant("signed")
+    public static final boolean SIGNED = false;
 
     private NdInfo() {
-        throw new InstanceOfUtilityClassException("No MDInfo instances for you!");
-    }
-
-    // Bunch of constants gradle would replace the uses of
-    private static final class DynamicConstants {
-        static final boolean IDE = true;
-        static final boolean SIGNED = false;
-        static final String VERSION = "IDE";
-        static final String VERSION_NAME = "The IDE Version";
-        static final String SHA1 = "NO:FI:NG:ER:PR:IN:TA:VA:IL:AB:LE";
+        throw new InstanceOfUtilityClassException();
     }
 
     private static class Instance implements INaturesDebrisInfo {
