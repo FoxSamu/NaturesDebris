@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_side_tall",
+  "textures": {
+    "wall": "ndebris:block/cracked_darkrock_bricks_alt_2"
+  }
+}

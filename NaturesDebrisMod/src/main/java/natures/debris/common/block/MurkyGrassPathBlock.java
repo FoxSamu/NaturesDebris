@@ -2,9 +2,6 @@ package natures.debris.common.block;
 
 import java.util.Random;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FenceGateBlock;
@@ -27,9 +24,9 @@ public class MurkyGrassPathBlock extends Block {
         super(props);
     }
 
-    @Override
-    public boolean isTransparent(BlockState state) {
-        return true;
+    @Override // isTransparent
+    public boolean func_220074_n(BlockState state) {
+        return false;
     }
 
     @Override
@@ -49,7 +46,7 @@ public class MurkyGrassPathBlock extends Block {
     }
 
     @Override
-    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
         world.setBlockState(pos, nudgeEntitiesWithNewState(state, NdBlocks.MURKY_DIRT.getDefaultState(), world, pos));
     }
 
@@ -67,11 +64,5 @@ public class MurkyGrassPathBlock extends Block {
     @Override
     public boolean allowsMovement(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
         return false;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public boolean isViewBlocking(BlockState state, IBlockReader world, BlockPos pos) {
-        return true;
     }
 }

@@ -14,6 +14,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import natures.debris.common.block.NdBlocks;
 
@@ -49,29 +51,38 @@ public class NdItemGroup extends ItemGroup {
 
     private final ItemSubgroup[] subgroups;
     private final Supplier<ItemStack> iconFactory;
+    private final String label;
+    private final ITextComponent translation;
 
     public NdItemGroup(String label, Supplier<ItemStack> iconFactory, ItemSubgroup... subgroups) {
         super(label);
+        this.label = label;
         this.iconFactory = iconFactory;
         this.subgroups = subgroups;
+        this.translation = new TranslationTextComponent("itemgroup.ndebris." + label);
         GROUPS.add(this);
     }
 
     public NdItemGroup(int index, String label, Supplier<ItemStack> iconFactory, ItemSubgroup... subgroups) {
         super(index, label);
+        this.label = label;
         this.iconFactory = iconFactory;
         this.subgroups = subgroups;
+        this.translation = new TranslationTextComponent("itemgroup.ndebris." + label);
         GROUPS.add(this);
     }
 
-    @Override
-    public String getPath() {
-        return super.getPath();
+    public String getLabel() {
+        return label;
     }
 
     @Override
-    public String getTranslationKey() {
-        return "itemgroup.ndebris." + this.getTabLabel();
+    public ITextComponent getTranslationKey() {
+        return translation;
+    }
+
+    public String getTranslationKeyRaw() {
+        return "itemgroup.ndebris." + label;
     }
 
     @Override

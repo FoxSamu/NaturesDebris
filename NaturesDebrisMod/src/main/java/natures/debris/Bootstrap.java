@@ -7,26 +7,28 @@
 
 package natures.debris;
 
-import natures.debris.api.LifecyclePhase;
-import natures.debris.api.plugin.ILifecycleListener;
-import natures.debris.client.NaturesDebrisClient;
-import natures.debris.common.NaturesDebris;
-import natures.debris.core.plugin.PluginManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import natures.debris.api.LifecyclePhase;
+import natures.debris.api.plugin.ILifecycleListener;
+import natures.debris.core.plugin.PluginManager;
+import natures.debris.common.NaturesDebris;
+import natures.debris.client.NaturesDebrisClient;
 
 @Mod("ndebris")
 public class Bootstrap {
     private static final Logger LOGGER = LogManager.getLogger("Nature's Debris Bootstrap");
 
-    public static final NaturesDebris INSTANCE = DistExecutor.runForDist(
-        () -> NaturesDebrisClient::make,
+    public static final NaturesDebris INSTANCE = DistExecutor.safeRunForDist(
+        () -> NaturesDebrisClient::new,
         () -> NaturesDebris::new
     );
 

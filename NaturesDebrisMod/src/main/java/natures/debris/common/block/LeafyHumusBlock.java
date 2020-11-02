@@ -33,7 +33,7 @@ public class LeafyHumusBlock extends MurkyDirtBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
         if (!canSustainDeadLeaves(state, world, pos)) {
             if (!world.isAreaLoaded(pos, 3)) return;
             world.setBlockState(pos, getDecayBlock());

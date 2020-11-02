@@ -1,5 +1,10 @@
 package natures.debris.common.block;
 
+import java.util.Random;
+
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.StairsBlock;
@@ -11,13 +16,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Random;
 
 public class SimpleStairsBlock extends StairsBlock {
     public SimpleStairsBlock(Properties properties) {
@@ -39,12 +39,7 @@ public class SimpleStairsBlock extends StairsBlock {
 
     @Override
     public float getExplosionResistance() {
-        return blockResistance;
-    }
-
-    @Override
-    public int tickRate(IWorldReader world) {
-        return 10;
+        return resistance;
     }
 
     @Override
@@ -63,11 +58,11 @@ public class SimpleStairsBlock extends StairsBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         return ActionResultType.PASS;
     }
 

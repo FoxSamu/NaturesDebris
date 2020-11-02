@@ -15,6 +15,7 @@ import java.util.function.Supplier;
 /**
  * A lazy-load value.
  */
+// TODO Move this to ShwUtil
 public class Lazy<T> implements Supplier<T> {
     private T value;
     private Supplier<? extends T> supplier;

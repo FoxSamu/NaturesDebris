@@ -1,12 +1,14 @@
 package natures.debris.common.sound;
 
 import com.google.common.collect.Lists;
-import natures.debris.common.NaturesDebris;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.List;
+
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+
+import natures.debris.core.util.IRegistry;
+import natures.debris.common.NaturesDebris;
 
 public final class NdSoundEvents {
     private static final List<SoundEvent> PREREGISTRY = Lists.newArrayList();
@@ -15,7 +17,7 @@ public final class NdSoundEvents {
     public static final SoundEvent MUSIC_DISC_M1 = sound("music_disc.m1");
 
 
-    public static void register(IForgeRegistry<SoundEvent> registry) {
+    public static void registerSoundEvents(IRegistry<SoundEvent> registry) {
         PREREGISTRY.forEach(registry::register);
         PREREGISTRY.clear(); // Cleanup used memory...
     }

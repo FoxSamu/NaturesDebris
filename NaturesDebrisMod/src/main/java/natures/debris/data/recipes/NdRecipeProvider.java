@@ -8,15 +8,12 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
-import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 
 import natures.debris.common.NaturesDebris;
 import natures.debris.common.block.NdBlocks;
-import natures.debris.common.tags.NdItemTags;
 
 public class NdRecipeProvider extends RecipeProvider {
     private Consumer<IFinishedRecipe> consumer;
@@ -34,12 +31,20 @@ public class NdRecipeProvider extends RecipeProvider {
         smelting("murky_terracotta_smelting", NdBlocks.ROCK_TILES, NdBlocks.CRACKED_ROCK_TILES, 0.35);
 
         // Wood blocks
-        generic4x4("blackwood_4x4", NdBlocks.BLACKWOOD_LOG, NdBlocks.BLACKWOOD, 3);
-        generic4x4("inver_wood_4x4", NdBlocks.INVER_LOG, NdBlocks.INVER_WOOD, 3);
-        generic4x4("stripped_blackwood_4x4", NdBlocks.STRIPPED_BLACKWOOD_LOG, NdBlocks.STRIPPED_BLACKWOOD, 3);
-        generic4x4("stripped_inver_wood_4x4", NdBlocks.STRIPPED_INVER_LOG, NdBlocks.STRIPPED_INVER_WOOD, 3);
+        generic2x2("blackwood_2x2", NdBlocks.BLACKWOOD_LOG, NdBlocks.BLACKWOOD, 3);
+        generic2x2("inver_wood_2x2", NdBlocks.INVER_LOG, NdBlocks.INVER_WOOD, 3);
+        generic2x2("stripped_blackwood_2x2", NdBlocks.STRIPPED_BLACKWOOD_LOG, NdBlocks.STRIPPED_BLACKWOOD, 3);
+        generic2x2("stripped_inver_wood_2x2", NdBlocks.STRIPPED_INVER_LOG, NdBlocks.STRIPPED_INVER_WOOD, 3);
 
-        shapeless("blackwood_planks_shapeless", NdItemTags.BLACKWOOD_LOGS, NdBlocks.BLACKWOOD_PLANKS, 4);
+        shapeless("blackwood_planks_from_log", NdBlocks.BLACKWOOD_LOG, NdBlocks.BLACKWOOD_PLANKS, 4);
+        shapeless("blackwood_planks_from_wood", NdBlocks.BLACKWOOD, NdBlocks.BLACKWOOD_PLANKS, 4);
+        shapeless("blackwood_planks_from_stripped_log", NdBlocks.STRIPPED_BLACKWOOD_LOG, NdBlocks.BLACKWOOD_PLANKS, 4);
+        shapeless("blackwood_planks_from_stripped_wood", NdBlocks.STRIPPED_BLACKWOOD, NdBlocks.BLACKWOOD_PLANKS, 4);
+
+        shapeless("inver_planks_from_log", NdBlocks.INVER_LOG, NdBlocks.INVER_PLANKS, 4);
+        shapeless("inver_planks_from_wood", NdBlocks.INVER_WOOD, NdBlocks.INVER_PLANKS, 4);
+        shapeless("inver_planks_from_stripped_log", NdBlocks.STRIPPED_INVER_LOG, NdBlocks.INVER_PLANKS, 4);
+        shapeless("inver_planks_from_stripped_wood", NdBlocks.STRIPPED_INVER_WOOD, NdBlocks.INVER_PLANKS, 4);
 
         generic3x1("blackwood_slab_3x1", NdBlocks.BLACKWOOD_PLANKS, NdBlocks.BLACKWOOD_SLAB, 6);
         generic3x1("inver_slab_3x1", NdBlocks.INVER_PLANKS, NdBlocks.INVER_SLAB, 6);
@@ -53,9 +58,9 @@ public class NdRecipeProvider extends RecipeProvider {
         // For stonecutting recipes, see NdStonecuttingRecipeProvider
 
         // Rock
-        generic4x4("rock_bricks_4x4", NdBlocks.ROCK, NdBlocks.ROCK_BRICKS, 4);
-        generic4x4("mossy_rock_bricks_4x4", NdBlocks.MOSSY_ROCK, NdBlocks.MOSSY_ROCK_BRICKS, 4);
-        generic4x4("rock_tiles_4x4", NdBlocks.SMOOTH_ROCK, NdBlocks.ROCK_TILES, 4);
+        generic2x2("rock_bricks_2x2", NdBlocks.ROCK, NdBlocks.ROCK_BRICKS, 4);
+        generic2x2("mossy_rock_bricks_2x2", NdBlocks.MOSSY_ROCK, NdBlocks.MOSSY_ROCK_BRICKS, 4);
+        generic2x2("rock_tiles_2x2", NdBlocks.SMOOTH_ROCK, NdBlocks.ROCK_TILES, 4);
         generic1x3("rock_pillar_1x3", NdBlocks.ROCK, NdBlocks.ROCK_PILLAR, 3);
         generic1x2("chiseled_rock_1x2", NdBlocks.SMOOTH_ROCK_SLAB, NdBlocks.CHISELED_ROCK, 1);
         smelting("smooth_rock_smelting", NdBlocks.ROCK, NdBlocks.SMOOTH_ROCK, 0.1);
@@ -107,9 +112,9 @@ public class NdRecipeProvider extends RecipeProvider {
         generic3x2("polished_rock_wall_3x2", NdBlocks.POLISHED_ROCK, NdBlocks.POLISHED_ROCK_WALL, 6);
 
         // Darkrock
-        generic4x4("darkrock_bricks_4x4", NdBlocks.DARKROCK, NdBlocks.DARKROCK_BRICKS, 4);
-        generic4x4("mossy_darkrock_bricks_4x4", NdBlocks.MOSSY_DARKROCK, NdBlocks.MOSSY_DARKROCK_BRICKS, 4);
-        generic4x4("darkrock_tiles_4x4", NdBlocks.SMOOTH_DARKROCK, NdBlocks.DARKROCK_TILES, 4);
+        generic2x2("darkrock_bricks_2x2", NdBlocks.DARKROCK, NdBlocks.DARKROCK_BRICKS, 4);
+        generic2x2("mossy_darkrock_bricks_2x2", NdBlocks.MOSSY_DARKROCK, NdBlocks.MOSSY_DARKROCK_BRICKS, 4);
+        generic2x2("darkrock_tiles_2x2", NdBlocks.SMOOTH_DARKROCK, NdBlocks.DARKROCK_TILES, 4);
         generic1x3("darkrock_pillar_1x3", NdBlocks.DARKROCK, NdBlocks.DARKROCK_PILLAR, 3);
         generic1x2("chiseled_darkrock_1x2", NdBlocks.SMOOTH_DARKROCK_SLAB, NdBlocks.CHISELED_DARKROCK, 1);
         smelting("smooth_darkrock_smelting", NdBlocks.DARKROCK, NdBlocks.SMOOTH_DARKROCK, 0.1);
@@ -161,7 +166,7 @@ public class NdRecipeProvider extends RecipeProvider {
         generic3x2("polished_darkrock_wall_3x2", NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_WALL, 6);
     }
 
-    private void generic4x4(String id, IItemProvider from, IItemProvider to, int count) {
+    private void generic2x2(String id, IItemProvider from, IItemProvider to, int count) {
         ShapedRecipeBuilder.shapedRecipe(to, count)
                            .key('#', from)
                            .patternLine("##")
@@ -174,13 +179,6 @@ public class NdRecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(to, count)
                               .addIngredient(from)
                               .addCriterion("has_ingredient", hasItem(from))
-                              .build(consumer, NaturesDebris.resLoc(id));
-    }
-
-    private void shapeless(String id, Tag<Item> tag, IItemProvider to, int count) {
-        ShapelessRecipeBuilder.shapelessRecipe(to, count)
-                              .addIngredient(tag)
-                              .addCriterion("has_ingredient", hasItem(tag))
                               .build(consumer, NaturesDebris.resLoc(id));
     }
 

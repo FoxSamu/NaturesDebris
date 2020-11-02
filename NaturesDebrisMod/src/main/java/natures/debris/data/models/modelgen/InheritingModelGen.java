@@ -234,6 +234,11 @@ public class InheritingModelGen implements IModelGen {
                    .texture("wall", texture);
     }
 
+    public static InheritingModelGen wallSideTall(String texture) {
+        return new InheritingModelGen("block/template_wall_side_tall")
+                   .texture("wall", texture);
+    }
+
     public static InheritingModelGen wallPost(String texture) {
         return new InheritingModelGen("block/template_wall_post")
                    .texture("wall", texture);

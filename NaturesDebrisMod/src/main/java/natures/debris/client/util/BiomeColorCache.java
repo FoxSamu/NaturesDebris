@@ -1,16 +1,18 @@
 package natures.debris.client.util;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
-import natures.debris.client.handler.BiomeColorCacheHandler;
+
+import java.util.Arrays;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.function.IntSupplier;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.SectionPos;
 import net.minecraft.world.level.ColorResolver;
 
-import java.util.Arrays;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-import java.util.function.IntSupplier;
+import natures.debris.client.handler.BiomeColorCacheHandler;
 
 public class BiomeColorCache {
     private final Object2ObjectLinkedOpenHashMap<SectionPos, int[]> cache = new Object2ObjectLinkedOpenHashMap<>();
@@ -24,7 +26,7 @@ public class BiomeColorCache {
         if (pos == null) pos = BlockPos.ZERO;
         if (Minecraft.getInstance().world == null) return 0xFFFFFF;
         BlockPos finalPos = pos;
-        return getColor(pos, () -> Minecraft.getInstance().world.getBlockColorRaw(finalPos, resolver));
+        return getColor(pos, () -> Minecraft.getInstance().world.calculateColor(finalPos, resolver));
     }
 
     public int getColor(BlockPos pos, IntSupplier supplier) {

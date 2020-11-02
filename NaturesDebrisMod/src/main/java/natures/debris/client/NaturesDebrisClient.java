@@ -11,8 +11,6 @@ import natures.debris.common.NaturesDebris;
 import natures.debris.common.block.NdBlocks;
 import natures.debris.client.handler.BiomeColorCacheHandler;
 import natures.debris.client.util.BiomeColorCache;
-import natures.debris.NdInfo;
-import natures.debris.data.NaturesDebrisData;
 
 public class NaturesDebrisClient extends NaturesDebris implements INaturesDebrisClient {
     protected final Minecraft minecraft = Minecraft.getInstance();
@@ -23,6 +21,10 @@ public class NaturesDebrisClient extends NaturesDebris implements INaturesDebris
     public void setup() {
         super.setup();
         NdBlocks.setupClient();
+    }
+
+    public BiomeColorCache getGrassColorCache() {
+        return grassColorCache;
     }
 
     @Override
@@ -41,11 +43,4 @@ public class NaturesDebrisClient extends NaturesDebris implements INaturesDebris
         return (NaturesDebrisClient) INaturesDebris.get();
     }
 
-    public static NaturesDebrisClient make() {
-        if (NdInfo.DATAGEN) {
-            return new NaturesDebrisData();
-        } else {
-            return new NaturesDebrisClient();
-        }
-    }
 }

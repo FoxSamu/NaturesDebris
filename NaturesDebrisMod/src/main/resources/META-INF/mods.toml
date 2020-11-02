@@ -1,6 +1,8 @@
 modLoader = "javafml"
-loaderVersion = "[31.2,)"
-issueTrackerURL = "https://github.com/RedGalaxyDev/TheModernity/issues"
+loaderVersion = "[34.1,)"
+issueTrackerURL = "https://github.com/RedGalaxyDev/NaturesDebris/issues"
+license = "Custom License, see GitHub"
+
 [[mods]]
 modId = "ndebris"
 version = "${version}"
@@ -23,13 +25,13 @@ strong and tough person with a fresh soul could save the world.
 [[dependencies.ndebris]]
 modId = "forge"
 mandatory = false
-versionRange = "[31.2.0,)"
+versionRange = "[34.1.0,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.ndebris]]
 modId = "minecraft"
 mandatory = false
-versionRange = "[1.15.2]"
+versionRange = "[1.16.3]"
 ordering = "NONE"
 side = "BOTH"

@@ -21,7 +21,7 @@
     },
     {
       "when": {
-        "north": "true"
+        "north": "low"
       },
       "apply": [
         {
@@ -43,7 +43,7 @@
     },
     {
       "when": {
-        "east": "true"
+        "east": "low"
       },
       "apply": [
         {
@@ -68,7 +68,7 @@
     },
     {
       "when": {
-        "south": "true"
+        "south": "low"
       },
       "apply": [
         {
@@ -93,7 +93,7 @@
     },
     {
       "when": {
-        "west": "true"
+        "west": "low"
       },
       "apply": [
         {
@@ -110,6 +110,103 @@
         },
         {
           "model": "ndebris:block/cracked_darkrock_bricks_wall_alt_2_side",
+          "y": 270,
+          "uvlock": true,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "north": "tall"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/cracked_darkrock_bricks_wall_side_tall",
+          "uvlock": true,
+          "weight": 16
+        },
+        {
+          "model": "ndebris:block/cracked_darkrock_bricks_wall_alt_1_side_tall",
+          "uvlock": true,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/cracked_darkrock_bricks_wall_alt_2_side_tall",
+          "uvlock": true,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "east": "tall"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/cracked_darkrock_bricks_wall_side_tall",
+          "y": 90,
+          "uvlock": true,
+          "weight": 16
+        },
+        {
+          "model": "ndebris:block/cracked_darkrock_bricks_wall_alt_1_side_tall",
+          "y": 90,
+          "uvlock": true,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/cracked_darkrock_bricks_wall_alt_2_side_tall",
+          "y": 90,
+          "uvlock": true,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "south": "tall"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/cracked_darkrock_bricks_wall_side_tall",
+          "y": 180,
+          "uvlock": true,
+          "weight": 16
+        },
+        {
+          "model": "ndebris:block/cracked_darkrock_bricks_wall_alt_1_side_tall",
+          "y": 180,
+          "uvlock": true,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/cracked_darkrock_bricks_wall_alt_2_side_tall",
+          "y": 180,
+          "uvlock": true,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "west": "tall"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/cracked_darkrock_bricks_wall_side_tall",
+          "y": 270,
+          "uvlock": true,
+          "weight": 16
+        },
+        {
+          "model": "ndebris:block/cracked_darkrock_bricks_wall_alt_1_side_tall",
+          "y": 270,
+          "uvlock": true,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/cracked_darkrock_bricks_wall_alt_2_side_tall",
           "y": 270,
           "uvlock": true,
           "weight": 2

@@ -36,3 +36,31 @@ sourceSets {
 
     }
 }
+
+
+task genData(type: JavaExec) {
+    dependsOn ':NaturesDebrisAPI:compileJava'
+    dependsOn ':NaturesDebrisCore:compileJava'
+    dependsOn 'compileJava'
+
+    // We must give the classpath as a raw path, otherwise gradle adds :classes as a dependency to this task. Since we
+    // are a dependency of :classes itself this causes a circular dependency and therefore we must not have :classes as
+    // dependency. Make sure not to use 'sourceSets.main.runtimeClasspath' or something relevant here
+    classpath files("$rootDir/NaturesDebrisAPI/build/classes/java/main")         \
+                   + files("$rootDir/NaturesDebrisCore/build/classes/java/main") \
+                   + files("$rootDir/NaturesDebrisMod/build/classes/java/main")  \
+                   + configurations.runtime
+
+    main "natures.debris.data.DataGen"
+    args(
+        "--all",
+        "--output", "$projectDir/src/generated/resources",
+        "--gameDir", "."
+    )
+    workingDir file("$rootDir/run")
+}
+
+processResources {
+    if (!System.getenv().containsKey("SKIP_DATAGEN"))
+        dependsOn 'genData'
+}

@@ -7,17 +7,18 @@
 
 package natures.debris.core.network;
 
-import natures.debris.core.util.DimensionRegion;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.dimension.DimensionType;
+import com.sun.javafx.geom.Vec3d;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.LogicalSidedProvider;
 import net.minecraftforge.fml.network.NetworkDirection;
@@ -26,11 +27,18 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 
-import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
+
+import natures.debris.core.util.DimensionRegion;
 
 /**
  * A packet channel sends packets over a {@link SimpleChannel}.
@@ -186,7 +194,7 @@ public class PacketChannel {
      * @param pkt   The packet to send.
      * @param dimen The dimension to send to.
      */
-    public void sendToDimen(IPacket pkt, DimensionType dimen) {
+    public void sendToDimen(IPacket pkt, RegistryKey<World> dimen) {
         send(pkt, PacketDistributor.DIMENSION.with(() -> dimen), NetworkSide.SERVER);
     }
 
@@ -207,7 +215,7 @@ public class PacketChannel {
      * @param rad   The radius of the spherical area.
      * @param dimen The dimension to send to.
      */
-    public void sendToRange(IPacket pkt, Vec3d pt, double rad, DimensionType dimen) {
+    public void sendToRange(IPacket pkt, Vec3d pt, double rad, RegistryKey<World> dimen) {
         send(pkt, PacketDistributor.NEAR.with(PacketDistributor.TargetPoint.p(pt.x, pt.y, pt.z, rad * rad, dimen)), NetworkSide.SERVER);
     }
 
@@ -221,7 +229,7 @@ public class PacketChannel {
      * @param dimen   The dimension to send to.
      * @param exclude The player to exclude.
      */
-    public void sendToRange(IPacket pkt, Vec3d pt, double rad, DimensionType dimen, ServerPlayerEntity exclude) {
+    public void sendToRange(IPacket pkt, Vec3d pt, double rad, RegistryKey<World> dimen, ServerPlayerEntity exclude) {
         send(pkt, PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(exclude, pt.x, pt.y, pt.z, rad * rad, dimen)), NetworkSide.SERVER);
     }
 
@@ -296,7 +304,7 @@ public class PacketChannel {
      * @param box   The area cuboid.
      * @param dimen The dimension to send to.
      */
-    public void sendToRegion(IPacket pkt, AxisAlignedBB box, DimensionType dimen) {
+    public void sendToRegion(IPacket pkt, AxisAlignedBB box, RegistryKey<World> dimen) {
         DimensionRegion region = new DimensionRegion(box, dimen);
         send(pkt, IN_REGION.with(() -> region), NetworkSide.SERVER);
     }

@@ -8,9 +8,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import net.minecraft.block.Block;
 import net.minecraft.data.loot.BlockLootTables;
-import net.minecraft.world.storage.loot.ConstantRange;
-import net.minecraft.world.storage.loot.LootPool;
-import net.minecraft.world.storage.loot.LootTable;
+import net.minecraft.loot.ConstantRange;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
 
 import natures.debris.common.block.NdBlocks;
 

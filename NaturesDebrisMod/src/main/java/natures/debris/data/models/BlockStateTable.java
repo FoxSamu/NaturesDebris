@@ -209,6 +209,10 @@ public final class BlockStateTable {
         ModelInfo[] sideE = new ModelInfo[weights.length];
         ModelInfo[] sideS = new ModelInfo[weights.length];
         ModelInfo[] sideW = new ModelInfo[weights.length];
+        ModelInfo[] sideTallN = new ModelInfo[weights.length];
+        ModelInfo[] sideTallE = new ModelInfo[weights.length];
+        ModelInfo[] sideTallS = new ModelInfo[weights.length];
+        ModelInfo[] sideTallW = new ModelInfo[weights.length];
 
         for (int i = 0; i < weights.length; i++) {
             String n = name + (i == 0 ? "_wall" : "_wall_alt_" + i);
@@ -220,14 +224,22 @@ public final class BlockStateTable {
             sideE[i] = ModelInfo.create(n + "_side", wallSide(tn)).uvlock(true).rotate(0, 90).weight(w);
             sideS[i] = ModelInfo.create(n + "_side", wallSide(tn)).uvlock(true).rotate(0, 180).weight(w);
             sideW[i] = ModelInfo.create(n + "_side", wallSide(tn)).uvlock(true).rotate(0, 270).weight(w);
+            sideTallN[i] = ModelInfo.create(n + "_side_tall", wallSideTall(tn)).uvlock(true).rotate(0, 0).weight(w);
+            sideTallE[i] = ModelInfo.create(n + "_side_tall", wallSideTall(tn)).uvlock(true).rotate(0, 90).weight(w);
+            sideTallS[i] = ModelInfo.create(n + "_side_tall", wallSideTall(tn)).uvlock(true).rotate(0, 180).weight(w);
+            sideTallW[i] = ModelInfo.create(n + "_side_tall", wallSideTall(tn)).uvlock(true).rotate(0, 270).weight(w);
         }
 
         return MultipartBlockStateGen.multipart()
                                      .part(Selector.and().condition("up", "true"), post)
-                                     .part(Selector.and().condition("north", "true"), sideN)
-                                     .part(Selector.and().condition("east", "true"), sideE)
-                                     .part(Selector.and().condition("south", "true"), sideS)
-                                     .part(Selector.and().condition("west", "true"), sideW);
+                                     .part(Selector.and().condition("north", "low"), sideN)
+                                     .part(Selector.and().condition("east", "low"), sideE)
+                                     .part(Selector.and().condition("south", "low"), sideS)
+                                     .part(Selector.and().condition("west", "low"), sideW)
+                                     .part(Selector.and().condition("north", "tall"), sideTallN)
+                                     .part(Selector.and().condition("east", "tall"), sideTallE)
+                                     .part(Selector.and().condition("south", "tall"), sideTallS)
+                                     .part(Selector.and().condition("west", "tall"), sideTallW);
     }
 
     private static IBlockStateGen cubeAllRandomized(String name, int... weights) {
@@ -271,7 +283,7 @@ public final class BlockStateTable {
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             for (Half half : Half.values()) {
                 int x = half == Half.TOP ? 180 : 0;
-                String state = String.format("facing=%s,half=%s", dir.getName(), half.getName());
+                String state = String.format("facing=%s,half=%s", dir.getString(), half.getString());
 
                 for (int i = 0; i < innerL.length; i++) {
                     String in = name + (i == 0 ? "_stairs_inner" : "_stairs_inner_alt_" + i);
@@ -335,7 +347,7 @@ public final class BlockStateTable {
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             for (Half half : Half.values()) {
                 int x = half == Half.TOP ? 180 : 0;
-                String state = String.format("facing=%s,half=%s", dir.getName(), half.getName());
+                String state = String.format("facing=%s,half=%s", dir.getString(), half.getString());
 
                 for (int i = 0; i < innerL.length; i++) {
                     String in = name + (i == 0 ? "_step_inner" : "_step_inner_alt_" + i);
@@ -416,7 +428,7 @@ public final class BlockStateTable {
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             for (Half half : Half.values()) {
                 int x = half == Half.TOP ? 180 : 0;
-                String state = String.format("facing=%s,half=%s", dir.getName(), half.getName());
+                String state = String.format("facing=%s,half=%s", dir.getString(), half.getString());
 
                 for (int i = 0; i < innerL.length; i++) {
                     String in = modelName + (i == 0 ? "_stairs_inner" : "_stairs_inner_alt_" + i);
@@ -480,7 +492,7 @@ public final class BlockStateTable {
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             for (Half half : Half.values()) {
                 int x = half == Half.TOP ? 180 : 0;
-                String state = String.format("facing=%s,half=%s", dir.getName(), half.getName());
+                String state = String.format("facing=%s,half=%s", dir.getString(), half.getString());
 
                 for (int i = 0; i < innerL.length; i++) {
                     String in = modelName + (i == 0 ? "_step_inner" : "_step_inner_alt_" + i);

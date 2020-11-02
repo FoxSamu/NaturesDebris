@@ -7,7 +7,7 @@
 
 package natures.debris.api.util.expression;
 
-import natures.debris.api.util.math.MathUtil;
+import net.shadew.util.misc.MathUtil;
 
 public final class DefaultFunctions {
     public static final ExpressionParser.Func ABS = pars -> Math.abs(pars[0].evaluate());

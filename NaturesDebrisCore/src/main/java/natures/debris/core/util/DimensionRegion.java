@@ -7,17 +7,18 @@
 
 package natures.debris.core.util;
 
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.World;
 
 /**
  * Represents a region in a specific dimension.
  */
 public class DimensionRegion {
     private final AxisAlignedBB box;
-    private final DimensionType dimen;
+    private final RegistryKey<World> dimen;
 
-    public DimensionRegion(AxisAlignedBB box, DimensionType dimen) {
+    public DimensionRegion(AxisAlignedBB box, RegistryKey<World> dimen) {
         this.box = box;
         this.dimen = dimen;
     }
@@ -26,7 +27,7 @@ public class DimensionRegion {
         return box;
     }
 
-    public DimensionType getDimension() {
+    public RegistryKey<World> getDimension() {
         return dimen;
     }
 }

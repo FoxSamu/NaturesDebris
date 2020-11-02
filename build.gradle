@@ -34,7 +34,7 @@ allprojects {
 
     minecraft {
         // Snapshot mappings: March 22, 2020, v1.15.1
-        mappings channel: 'snapshot', version: '20200322-1.15.1'
+        mappings channel: 'snapshot', version: '20201003-mixed-1.16.3'
 
         // Access transformer
         accessTransformer = file('$rootDir/NaturesDebrisCore/src/main/resources/META-INF/accesstransformer.cfg')
@@ -42,6 +42,7 @@ allprojects {
 
     modutil {
         shade('net.shadew.ptg', 'natures.debris.internal.net.shadew.ptg')
+        shade('net.shadew.util', 'natures.debris.internal.net.shadew.util')
 
         changelogJson file("$rootDir/changelog.json")
 
@@ -73,6 +74,10 @@ allprojects {
             url = "http://maven.shadew.net/"
         }
         maven {
+            name = "tterrag's maven"
+            url = "https://maven.tterrag.com/"
+        }
+        maven {
             url "https://io.terraforged.com/repository/maven/"
         }
         flatDir {
@@ -86,18 +91,19 @@ allprojects {
     }
 
     dependencies {
-        minecraft 'net.minecraftforge:forge:1.15.2-31.2.0'
+        minecraft 'net.minecraftforge:forge:1.16.3-34.1.0'
 
-        embed "net.shadew:ptg:1.2.2"
+        embed("net.shadew:ptg:1.2.2") {
+            transitive false
+        }
 
-        compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4:api")
-        runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
+        embed "net.shadew:shwutil:1.3"
 
-        compileOnly "com.terraforged:TerraForgedAPI:1.15.2-0.0.1"
-        runtimeOnly fg.deobf("local:TerraForged:1.15.2-0.0.13")
+        compileOnly fg.deobf("mezz.jei:jei-1.16.3:7.3.2.36:api")
+        runtimeOnly fg.deobf("mezz.jei:jei-1.16.3:7.3.2.36")
 
-        compileOnly fg.deobf("local:BiomesOPlenty:1.15.2-10.0.0.366:api")
-        runtimeOnly fg.deobf("local:BiomesOPlenty:1.15.2-10.0.0.366:universal")
+        compileOnly fg.deobf("com.github.glitchfiend:biomesoplenty:1.16.3-12.0.0.404:api-obf")
+        compile fg.deobf("com.github.glitchfiend:biomesoplenty:1.16.3-12.0.0.404:universal-obf")
     }
 
     jar {
@@ -164,23 +170,6 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'info'
             property 'natures.debris.ide', 'true'
-
-            mods {
-                ndebris {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        data {
-            workingDirectory project.file('run/data')
-
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-            property 'forge.logging.console.level', 'info'
-            property 'natures.debris.ide', 'true'
-            property 'natures.debris.datagen', 'true'
-
-            args '--mod', 'ndebris', '--all', '--output', file('NaturesDebrisMod/src/generated/resources/')
 
             mods {
                 ndebris {

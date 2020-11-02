@@ -45,14 +45,14 @@ public class MurkyHumusBlock extends MurkyDirtBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
         int blocked = 0;
         if (canBecomeLeafy(state, world, pos)) {
             BlockPos.Mutable mpos = new BlockPos.Mutable();
             for (int i = 1; i < 14; i++) {
                 mpos.setPos(pos).move(Direction.UP, i);
 
-                if (world.getBlockState(mpos).isSolidSide(world, mpos, Direction.DOWN) || world.getBlockState(mpos).isSolidSide(world, mpos, Direction.UP)) {
+                if (world.getBlockState(mpos).isSideSolidFullSquare(world, mpos, Direction.DOWN) || world.getBlockState(mpos).isSideSolidFullSquare(world, mpos, Direction.UP)) {
                     blocked |= 1;
                 }
 
@@ -65,7 +65,7 @@ public class MurkyHumusBlock extends MurkyDirtBlock {
                     int mask = 2 << dir.getHorizontalIndex();
                     mpos.move(dir);
 
-                    if (world.getBlockState(mpos).isSolidSide(world, mpos, Direction.DOWN) || world.getBlockState(mpos).isSolidSide(world, mpos, Direction.UP)) {
+                    if (world.getBlockState(mpos).isSideSolidFullSquare(world, mpos, Direction.DOWN) || world.getBlockState(mpos).isSideSolidFullSquare(world, mpos, Direction.UP)) {
                         blocked |= mask;
                     }
                     if (world.getBlockState(mpos).isIn(BlockTags.LEAVES) && (blocked & (mask | 1)) != (mask | 1)) {

@@ -25,7 +25,7 @@ public class StrippableBlock extends Block {
 
     @Override
     @SuppressWarnings("deprecation")
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rtr) {
+    public ActionResultType onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rtr) {
         ItemStack heldItem = player.getHeldItem(hand);
         if (heldItem.getItem() instanceof AxeItem) {
             world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1, 1);
@@ -37,6 +37,6 @@ public class StrippableBlock extends Block {
             }
             return ActionResultType.SUCCESS;
         }
-        return super.onBlockActivated(state, world, pos, player, hand, rtr);
+        return super.onUse(state, world, pos, player, hand, rtr);
     }
 }

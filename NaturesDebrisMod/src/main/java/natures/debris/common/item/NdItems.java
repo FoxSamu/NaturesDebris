@@ -1,23 +1,25 @@
 package natures.debris.common.item;
 
-import natures.debris.common.NaturesDebris;
-import natures.debris.common.sound.NdSoundEvents;
+import javax.annotation.Nonnull;
+import java.util.function.Supplier;
+
+import net.minecraftforge.registries.ObjectHolder;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.MusicDiscItem;
 import net.minecraft.util.SoundEvent;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.ObjectHolder;
 
-import javax.annotation.Nonnull;
-import java.util.function.Supplier;
+import natures.debris.core.util.IRegistry;
+import natures.debris.common.NaturesDebris;
+import natures.debris.common.sound.NdSoundEvents;
 
 @ObjectHolder("ndebris")
-public final class NdItems {
+public abstract class NdItems {
     public static final Item MUSIC_DISC_DARK = inj();
     public static final Item MUSIC_DISC_M1 = inj();
 
-    public static void register(IForgeRegistry<Item> registry) {
+    public static void registerItems(IRegistry<Item> registry) {
         registry.registerAll(
             // Don't add these to music disks tag - it should not drop from creepers
             musicDisc("music_disc_dark", () -> NdSoundEvents.MUSIC_DISC_DARK, 0),

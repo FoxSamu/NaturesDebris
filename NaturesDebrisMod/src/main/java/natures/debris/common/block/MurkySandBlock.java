@@ -18,7 +18,7 @@ public class MurkySandBlock extends FallingBlock {
     @Override
     public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
         PlantType type = plantable.getPlantType(world, pos);
-        if (type == PlantType.Beach) {
+        if (type == PlantType.BEACH) {
             return world.getBlockState(pos.east()).getMaterial() == Material.WATER ||
                        world.getBlockState(pos.west()).getMaterial() == Material.WATER ||
                        world.getBlockState(pos.north()).getMaterial() == Material.WATER ||

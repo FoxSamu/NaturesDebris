@@ -6,7 +6,6 @@ import java.util.function.Supplier;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
 import net.minecraft.block.Block;
@@ -27,13 +26,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
 
+import natures.debris.core.util.IRegistry;
 import natures.debris.common.NaturesDebris;
-import natures.debris.common.item.HookedShovelItem;
 import natures.debris.common.item.group.ItemSubgroup;
 import natures.debris.common.item.group.NdItemGroup;
 
 @ObjectHolder("ndebris")
-public final class NdBlocks {
+public abstract class NdBlocks {
     public static final Block MURKY_DIRT = inj();
     public static final Block MURKY_GRASS_BLOCK = inj();
     public static final Block MURKY_COARSE_DIRT = inj();
@@ -181,7 +180,7 @@ public final class NdBlocks {
     public static final Block SMOOTH_DARKROCK_WALL = inj();
     public static final Block POLISHED_DARKROCK_WALL = inj();
 
-    public static void register(IForgeRegistry<Block> registry) {
+    public static void registerBlocks(IRegistry<Block> registry) {
         registry.registerAll(
             rock("rock", 1.5, 6, false),
             rock("darkrock", 1.5, 6, true),
@@ -335,7 +334,7 @@ public final class NdBlocks {
         );
     }
 
-    public static void registerItems(IForgeRegistry<Item> registry) {
+    public static void registerItems(IRegistry<Item> registry) {
         registry.registerAll(
             item(ROCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
             item(DARKROCK, NdItemGroup.BUILDING_BLOCKS, ItemSubgroup.NATURE),
@@ -488,7 +487,6 @@ public final class NdBlocks {
     }
 
     public static void setup() {
-        HookedShovelItem.registerShovelAction(NdBlocks.MURKY_GRASS_BLOCK, NdBlocks.MURKY_GRASS_PATH.getDefaultState());
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -526,7 +524,9 @@ public final class NdBlocks {
             Block.Properties.create(Material.ROCK, dark ? MaterialColor.BLACK : MaterialColor.STONE)
                             .hardnessAndResistance((float) hardness, (float) resistance)
                             .harvestTool(ToolType.PICKAXE)
-                            .lightValue(15)
+                            .sound(SoundType.BONE)
+                            .luminance(state -> 15)
+                            .emissiveLighting((state, world, pos) -> true)
         ));
     }
 
@@ -577,6 +577,7 @@ public final class NdBlocks {
                             .hardnessAndResistance((float) strength)
                             .sound(sound)
                             .harvestTool(ToolType.SHOVEL)
+                            .blockVision((state, world, pos) -> true)
         ));
     }
 
@@ -623,6 +624,7 @@ public final class NdBlocks {
     private static Block clay(String id) {
         return block(id, new Block(
             Block.Properties.create(Material.CLAY, MaterialColor.BLUE_TERRACOTTA)
+                            .sound(SoundType.GROUND)
                             .hardnessAndResistance(.5f)
                             .sound(SoundType.GROUND)
                             .harvestTool(ToolType.SHOVEL)
@@ -641,6 +643,7 @@ public final class NdBlocks {
     private static Block log(String id, MaterialColor color) {
         return block(id, new RotatedPillarBlock(
             Block.Properties.create(Material.WOOD, color)
+                            .sound(SoundType.WOOD)
                             .hardnessAndResistance(2)
                             .harvestTool(ToolType.AXE)
         ));
@@ -649,6 +652,7 @@ public final class NdBlocks {
     private static Block stripableLog(String id, MaterialColor color, Supplier<Block> stripped) {
         return block(id, new StrippableLogBlock(
             Block.Properties.create(Material.WOOD, color)
+                            .sound(SoundType.WOOD)
                             .hardnessAndResistance(2)
                             .harvestTool(ToolType.AXE),
             stripped
@@ -658,6 +662,7 @@ public final class NdBlocks {
     private static Block wood(String id, MaterialColor color) {
         return block(id, new Block(
             Block.Properties.create(Material.WOOD, color)
+                            .sound(SoundType.WOOD)
                             .hardnessAndResistance(2)
                             .harvestTool(ToolType.AXE)
         ));
@@ -666,6 +671,7 @@ public final class NdBlocks {
     private static Block woodSlab(String id, MaterialColor color) {
         return block(id, new SlabBlock(
             Block.Properties.create(Material.WOOD, color)
+                            .sound(SoundType.WOOD)
                             .hardnessAndResistance(2)
                             .harvestTool(ToolType.AXE)
         ));
@@ -674,6 +680,7 @@ public final class NdBlocks {
     private static Block woodStairs(String id, MaterialColor color) {
         return block(id, new SimpleStairsBlock(
             Block.Properties.create(Material.WOOD, color)
+                            .sound(SoundType.WOOD)
                             .hardnessAndResistance(2)
                             .harvestTool(ToolType.AXE)
         ));
@@ -682,6 +689,7 @@ public final class NdBlocks {
     private static Block woodStep(String id, MaterialColor color) {
         return block(id, new StepBlock(
             Block.Properties.create(Material.WOOD, color)
+                            .sound(SoundType.WOOD)
                             .hardnessAndResistance(2)
                             .harvestTool(ToolType.AXE)
         ));
@@ -690,6 +698,7 @@ public final class NdBlocks {
     private static Block fence(String id, MaterialColor color) {
         return block(id, new FenceBlock(
             Block.Properties.create(Material.WOOD, color)
+                            .sound(SoundType.WOOD)
                             .hardnessAndResistance(2)
                             .harvestTool(ToolType.AXE)
         ));

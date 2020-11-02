@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import net.minecraft.state.IProperty;
+import net.minecraft.state.Property;
 
 public class Selector {
     private final boolean or;
@@ -23,7 +23,7 @@ public class Selector {
     }
 
     @SafeVarargs
-    public final <T extends Comparable<T>> Selector condition(IProperty<T> property, T... values) {
+    public final <T extends Comparable<T>> Selector condition(Property<T> property, T... values) {
         return condition(
             property.getName(),
             Stream.of(values)

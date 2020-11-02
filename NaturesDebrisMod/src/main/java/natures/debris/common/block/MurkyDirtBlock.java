@@ -18,12 +18,12 @@ public class MurkyDirtBlock extends Block {
     @Override
     public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
         PlantType type = plantable.getPlantType(world, pos);
-        if (type == PlantType.Beach) {
+        if (type == PlantType.BEACH) {
             return world.getBlockState(pos.east()).getMaterial() == Material.WATER ||
                        world.getBlockState(pos.west()).getMaterial() == Material.WATER ||
                        world.getBlockState(pos.north()).getMaterial() == Material.WATER ||
                        world.getBlockState(pos.south()).getMaterial() == Material.WATER;
         }
-        return type == PlantType.Plains || super.canSustainPlant(state, world, pos, facing, plantable);
+        return type == PlantType.PLAINS || super.canSustainPlant(state, world, pos, facing, plantable);
     }
 }

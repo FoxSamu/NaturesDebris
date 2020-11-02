@@ -6,8 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.IWaterLoggable;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
@@ -103,8 +103,8 @@ public class StepBlock extends Block implements IWaterLoggable {
         );
     }
 
-    @Override
-    public boolean isTransparent(BlockState state) {
+    @Override // isTransparent
+    public boolean func_220074_n(BlockState state) {
         return true;
     }
 
@@ -136,7 +136,7 @@ public class StepBlock extends Block implements IWaterLoggable {
                    : Half.TOP;
         }
 
-        IFluidState fstate = ctx.getWorld().getFluidState(pos);
+        FluidState fstate = ctx.getWorld().getFluidState(pos);
         BlockState bstate = getDefaultState().with(FACING, ctx.getPlacementHorizontalFacing())
                                              .with(HALF, half)
                                              .with(WATERLOGGED, fstate.getFluid() == Fluids.WATER);
@@ -247,7 +247,7 @@ public class StepBlock extends Block implements IWaterLoggable {
     }
 
     @Override
-    public IFluidState getFluidState(BlockState state) {
+    public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED)
                ? Fluids.WATER.getStillFluidState(false)
                : super.getFluidState(state);

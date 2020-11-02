@@ -35,7 +35,7 @@ public class PacketRegistry {
     }
 
     // Helper constructor used in PacketProfile
-    @SuppressWarnings("unused")
+    @SuppressWarnings({"unused", "RedundantSuppression"})
     PacketRegistry(NetworkSide side) {
     }
 
@@ -190,7 +190,6 @@ public class PacketRegistry {
      * @throws NullPointerException     When the registered factory returned {@code null}.
      */
     @Nonnull
-    @SuppressWarnings("ConstantConditions")
     public IPacket getPacket(@Nonnegative int id) {
         if (id < 0) {
             throw new IllegalArgumentException("Packet ID negative: " + id);

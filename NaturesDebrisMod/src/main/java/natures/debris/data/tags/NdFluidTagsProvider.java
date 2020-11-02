@@ -1,14 +1,12 @@
 package natures.debris.data.tags;
 
+import java.nio.file.Path;
+
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.TagsProvider;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.TagCollection;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-
-import java.nio.file.Path;
 
 public class NdFluidTagsProvider extends TagsProvider<Fluid> {
     @SuppressWarnings("deprecation") // We need Registry.FLUID. Sorry Forge...
@@ -21,11 +19,6 @@ public class NdFluidTagsProvider extends TagsProvider<Fluid> {
 //        getBuilder(FluidTags.WATER).replace(false).add(
 //
 //        );
-    }
-
-    @Override
-    protected void setCollection(TagCollection<Fluid> collection) {
-        FluidTags.setCollection(collection);
     }
 
     @Override
