@@ -77,12 +77,6 @@ allprojects {
             name = "tterrag's maven"
             url = "https://maven.tterrag.com/"
         }
-        maven {
-            url "https://io.terraforged.com/repository/maven/"
-        }
-        flatDir {
-            dirs "$rootDir/dependencies"
-        }
     }
 
     configurations {
@@ -261,12 +255,4 @@ task collectResources(type: Copy) {
 
 processResources {
     dependsOn 'collectResources'
-}
-
-
-if (project.ext.isIDE) {
-    println "Building for IDE"
-}
-else {
-    println "Building for production"
 }
