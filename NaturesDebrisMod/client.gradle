@@ -18,7 +18,8 @@ task clientJar(type: Jar) {
             "Implementation-Title"    : project.ext.implName,
             "Implementation-Version"  : "${ version }",
             "Implementation-Vendor"   : "Shadew",
-            "Implementation-Timestamp": new Date().format( "yyyy-MM-dd'T'HH:mm:ssZ" )
+            "Implementation-Timestamp": new Date().format( "yyyy-MM-dd'T'HH:mm:ssZ" ),
+            "MixinConnector"          : "natures.debris.core.MixinConnector"
         ] )
     }
 

@@ -81,6 +81,16 @@ public final class OptionalUtil {
         return t == null ? null : func.test(t) ? t : null;
     }
 
+    public static <T> boolean testOrFalse(T t, Predicate<? super T> func) {
+        Validate.notNull(func, "func");
+        return t != null && func.test(t);
+    }
+
+    public static <T> boolean testOrTrue(T t, Predicate<? super T> func) {
+        Validate.notNull(func, "func");
+        return t == null || func.test(t);
+    }
+
     public static <T> void ifPresent(T t, Consumer<? super T> func) {
         Validate.notNull(func, "func");
         if (t != null)

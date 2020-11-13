@@ -7,10 +7,10 @@
 
 package natures.debris.core.util.reflect;
 
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 /**
  * Wraps a {@link Method} and suppresses any exceptions using {@link RuntimeException}s upon usage.
@@ -29,6 +29,20 @@ public class MethodAccessor<T, R> {
         method.setAccessible(true);
     }
 
+    private Method findMethod(Class<? super T> cls, String name, String deobfName, Class<?>... params) {
+        try {
+            return ObfuscationReflectionHelper.findMethod(cls, name, params);
+        } catch (ObfuscationReflectionHelper.UnableToFindMethodException exc) {
+            try {
+                Method m = cls.getDeclaredMethod(deobfName, params);
+                m.setAccessible(true);
+                return m;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     /**
      * Loads a method from a class
      *
@@ -36,8 +50,8 @@ public class MethodAccessor<T, R> {
      * @param name   The field name. Use SRG mapping for Minecraft classes.
      * @param params The parameter classes.
      */
-    public MethodAccessor(Class<? super T> cls, String name, Class<?>... params) {
-        this.method = ObfuscationReflectionHelper.findMethod(cls, name, params);
+    public MethodAccessor(Class<? super T> cls, String name, String deobfName, Class<?>... params) {
+        this.method = findMethod(cls, name, deobfName, params);
         method.setAccessible(true);
     }
 

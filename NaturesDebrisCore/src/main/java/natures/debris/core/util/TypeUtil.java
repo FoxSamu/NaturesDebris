@@ -25,47 +25,41 @@ public final class TypeUtil {
     }
 
     public static <T> T castOrNull(Object o, Class<T> cls) {
-        if (!cls.isInstance(o)) return null;
-        return cls.cast(o);
+        return cls.isInstance(o) ? cls.cast(o) : null;
     }
 
     public static <T> Optional<T> castOptional(Object o, Class<T> cls) {
-        if (!cls.isInstance(o)) return Optional.empty();
-        return Optional.of(cls.cast(o));
+        return cls.isInstance(o) ? Optional.of(cls.cast(o)) : Optional.empty();
     }
 
     public static <T> T castOrElse(Object o, Class<T> cls, Supplier<T> orElse) {
-        if (!cls.isInstance(o)) return orElse.get();
-        return cls.cast(o);
+        return cls.isInstance(o) ? cls.cast(o) : orElse.get();
     }
 
     public static <T> T castOrElse(Object o, Class<T> cls, T orElse) {
-        if (!cls.isInstance(o)) return orElse;
-        return cls.cast(o);
+        return cls.isInstance(o) ? cls.cast(o) : orElse;
     }
 
     public static <T> void invokeAs(Object o, Class<T> cls, Consumer<T> fn) {
-        if (!cls.isInstance(o)) return;
-        fn.accept(cls.cast(o));
+        if (cls.isInstance(o))
+            fn.accept(cls.cast(o));
     }
 
     public static <T, U> U invokeOrNull(Object o, Class<T> cls, Function<T, U> fn) {
-        if (!cls.isInstance(o)) return null;
-        return fn.apply(cls.cast(o));
+        return cls.isInstance(o)
+               ? fn.apply(cls.cast(o))
+               : null;
     }
 
     public static <T, U> U invokeOrElse(Object o, Class<T> cls, Function<T, U> fn, Supplier<U> orElse) {
-        if (!cls.isInstance(o)) return orElse.get();
-        return fn.apply(cls.cast(o));
+        return cls.isInstance(o) ? fn.apply(cls.cast(o)) : orElse.get();
     }
 
     public static <T, U> U invokeOrElse(Object o, Class<T> cls, Function<T, U> fn, U orElse) {
-        if (!cls.isInstance(o)) return orElse;
-        return fn.apply(cls.cast(o));
+        return cls.isInstance(o) ? fn.apply(cls.cast(o)) : orElse;
     }
 
     public static <T, U> Optional<U> invokeOptional(Object o, Class<T> cls, Function<T, U> fn) {
-        if (!cls.isInstance(o)) return Optional.empty();
-        return Optional.of(fn.apply(cls.cast(o)));
+        return cls.isInstance(o) ? Optional.of(fn.apply(cls.cast(o))) : Optional.empty();
     }
 }

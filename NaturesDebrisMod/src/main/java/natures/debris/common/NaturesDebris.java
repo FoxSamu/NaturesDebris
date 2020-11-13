@@ -10,6 +10,7 @@ import natures.debris.api.util.ISidedTickable;
 import natures.debris.core.NaturesDebrisCore;
 import natures.debris.common.block.NdBlocks;
 import natures.debris.common.handler.CommandRegistryHandler;
+import natures.debris.common.handler.PlantHandler;
 import natures.debris.common.handler.RegistryHandler;
 import natures.debris.NdInfo;
 
@@ -29,6 +30,7 @@ public class NaturesDebris extends NaturesDebrisCore {
     protected void registerEventListeners() {
         FMLJavaModLoadingContext.get().getModEventBus().register(new RegistryHandler());
         MinecraftForge.EVENT_BUS.register(new CommandRegistryHandler());
+        CORE_EVENT_BUS.register(new PlantHandler());
     }
 
     @Override

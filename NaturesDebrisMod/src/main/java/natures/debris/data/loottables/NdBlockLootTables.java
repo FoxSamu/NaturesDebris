@@ -168,6 +168,8 @@ public class NdBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(NdBlocks.CRACKED_DARKROCK_TILES_WALL);
         registerDropSelfLootTable(NdBlocks.SMOOTH_DARKROCK_WALL);
         registerDropSelfLootTable(NdBlocks.POLISHED_DARKROCK_WALL);
+
+        registerDropSelfLootTable(NdBlocks.TEST_PLANT);
     }
 
     @Override

@@ -170,6 +170,8 @@ public final class BlockStateTable {
         register(NdBlocks.CRACKED_DARKROCK_TILES_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 32, 2, 4, 2));
         register(NdBlocks.SMOOTH_DARKROCK_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 1));
         register(NdBlocks.POLISHED_DARKROCK_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 1));
+
+        register(NdBlocks.TEST_PLANT, block -> simple(name(block, "block/%s"), cross(name(block, "block/%s"))));
     }
 
     private static IBlockStateGen simple(String name, IModelGen model) {

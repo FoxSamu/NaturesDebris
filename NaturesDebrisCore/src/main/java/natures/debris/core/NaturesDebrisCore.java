@@ -14,4 +14,8 @@ public abstract class NaturesDebrisCore implements INaturesDebris {
     public INaturesDebrisInfo info() {
         return NdInfo.INSTANCE;
     }
+
+    public static NaturesDebrisCore get() {
+        return (NaturesDebrisCore) INaturesDebris.get();
+    }
 }

@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "package": "natures.debris.core.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "ndebris.refmap.json",
+  "mixins": [
+    "FlowingFluidMixin"
+  ],
+  "minVersion": "0.8.1"
+}

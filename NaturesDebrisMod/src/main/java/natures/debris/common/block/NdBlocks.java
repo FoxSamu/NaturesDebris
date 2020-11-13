@@ -8,6 +8,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.registries.ObjectHolder;
 
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.RotatedPillarBlock;
@@ -28,6 +29,9 @@ import net.minecraft.util.ResourceLocation;
 
 import natures.debris.core.util.IRegistry;
 import natures.debris.common.NaturesDebris;
+import natures.debris.common.block.plant.PlantBlock;
+import natures.debris.common.block.plant.TestPlantBlock;
+import natures.debris.common.block.plant.fluid.WaterFlowThroughFluidLogic;
 import natures.debris.common.item.group.ItemSubgroup;
 import natures.debris.common.item.group.NdItemGroup;
 
@@ -180,6 +184,8 @@ public abstract class NdBlocks {
     public static final Block SMOOTH_DARKROCK_WALL = inj();
     public static final Block POLISHED_DARKROCK_WALL = inj();
 
+    public static final Block TEST_PLANT = inj();
+
     public static void registerBlocks(IRegistry<Block> registry) {
         registry.registerAll(
             rock("rock", 1.5, 6, false),
@@ -330,7 +336,9 @@ public abstract class NdBlocks {
             rockWall("mossy_darkrock_tiles_wall", 2, 6, true),
             rockWall("cracked_darkrock_tiles_wall", 2, 6, true),
             rockWall("smooth_darkrock_wall", 1.5, 6, true),
-            rockWall("polished_darkrock_wall", 2, 6, true)
+            rockWall("polished_darkrock_wall", 2, 6, true),
+
+            testPlant("test_plant")
         );
     }
 
@@ -482,7 +490,9 @@ public abstract class NdBlocks {
             item(MOSSY_DARKROCK_TILES_WALL, NdItemGroup.DECORATIONS, ItemSubgroup.DARKROCK_WALLS),
             item(CRACKED_DARKROCK_TILES_WALL, NdItemGroup.DECORATIONS, ItemSubgroup.DARKROCK_WALLS),
             item(SMOOTH_DARKROCK_WALL, NdItemGroup.DECORATIONS, ItemSubgroup.DARKROCK_WALLS),
-            item(POLISHED_DARKROCK_WALL, NdItemGroup.DECORATIONS, ItemSubgroup.DARKROCK_WALLS)
+            item(POLISHED_DARKROCK_WALL, NdItemGroup.DECORATIONS, ItemSubgroup.DARKROCK_WALLS),
+
+            item(TEST_PLANT, NdItemGroup.DECORATIONS, ItemSubgroup.DECORATIONS)
         );
     }
 
@@ -507,8 +517,21 @@ public abstract class NdBlocks {
         );
     }
 
-    private static Block block(String id, Block block) {
-        return block.setRegistryName(NaturesDebris.resLoc(id));
+    private static <B extends Block> B block(String id, B block) {
+        block.setRegistryName(NaturesDebris.resLoc(id));
+        return block;
+    }
+
+    private static PlantBlock testPlant(String id) {
+        return block(id, new TestPlantBlock(
+            PlantBlock.Properties.create(Material.TALL_PLANTS)
+                                 .nonOpaque()
+                                 .blockVision((state, world, pos) -> true)
+                                 .suffocates((state, world, pos) -> false)
+                                 .zeroHardnessAndResistance()
+                                 .fluidLogic(WaterFlowThroughFluidLogic.INSTANCE)
+                                 .offset(AbstractBlock.OffsetType.XYZ)
+        ));
     }
 
     private static Block rock(String id, double hardness, double resistance, boolean dark) {

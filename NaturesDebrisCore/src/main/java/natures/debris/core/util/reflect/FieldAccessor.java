@@ -7,11 +7,11 @@
 
 package natures.debris.core.util.reflect;
 
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.function.Supplier;
+
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 /**
  * Wraps a {@link Field} and suppresses any exceptions using {@link RuntimeException}s upon usage.
@@ -39,14 +39,28 @@ public class FieldAccessor<T, R> {
         field.setAccessible(true);
     }
 
+    private Field findField(Class<? super T> cls, String name, String deobfName) {
+        try {
+            return ObfuscationReflectionHelper.findField(cls, name);
+        } catch (ObfuscationReflectionHelper.UnableToFindFieldException exc) {
+            try {
+                Field f = cls.getDeclaredField(deobfName);
+                f.setAccessible(true);
+                return f;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     /**
      * Loads a field from a class
      *
      * @param cls  The class to load from
      * @param name The field name. Use SRG mapping for Minecraft classes.
      */
-    public FieldAccessor(Class<? super T> cls, String name) {
-        this.field = ObfuscationReflectionHelper.findField(cls, name);
+    public FieldAccessor(Class<? super T> cls, String name, String deobfName) {
+        this.field = findField(cls, name, deobfName);
         try {
             Field modifiers = field.getClass().getDeclaredField("modifiers");
             modifiers.setAccessible(true);
