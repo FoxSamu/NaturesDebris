@@ -31,7 +31,7 @@ import natures.debris.core.util.IRegistry;
 import natures.debris.common.NaturesDebris;
 import natures.debris.common.block.plant.PlantBlock;
 import natures.debris.common.block.plant.TestPlantBlock;
-import natures.debris.common.block.plant.fluid.WaterFlowThroughFluidLogic;
+import natures.debris.common.block.plant.fluid.LevelledFluidLogic;
 import natures.debris.common.item.group.ItemSubgroup;
 import natures.debris.common.item.group.NdItemGroup;
 
@@ -529,7 +529,7 @@ public abstract class NdBlocks {
                                  .blockVision((state, world, pos) -> true)
                                  .suffocates((state, world, pos) -> false)
                                  .zeroHardnessAndResistance()
-                                 .fluidLogic(WaterFlowThroughFluidLogic.INSTANCE)
+                                 .fluidLogic(LevelledFluidLogic.INSTANCE)
                                  .offset(AbstractBlock.OffsetType.XYZ)
         ));
     }

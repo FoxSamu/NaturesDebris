@@ -7,8 +7,8 @@ import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 
-public class WaterFlowThroughFluidLogic implements IFluidLogic {
-    public static final WaterFlowThroughFluidLogic INSTANCE = new WaterFlowThroughFluidLogic();
+public class LevelledFluidLogic implements IFluidLogic {
+    public static final LevelledFluidLogic INSTANCE = new LevelledFluidLogic();
 
     @Override
     public FluidReaction fluidReplace(BlockState state, FluidState fluid) {

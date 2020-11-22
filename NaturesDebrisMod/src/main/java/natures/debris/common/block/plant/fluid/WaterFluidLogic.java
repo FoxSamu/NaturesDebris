@@ -4,8 +4,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 
-public class WaterOnlyFluidLogic implements IFluidLogic {
-    public static final WaterOnlyFluidLogic INSTANCE = new WaterOnlyFluidLogic();
+public class WaterFluidLogic implements IFluidLogic {
+    public static final WaterFluidLogic INSTANCE = new WaterFluidLogic();
 
     @Override
     public FluidReaction fluidReplace(BlockState state, FluidState fluid) {
