@@ -7,11 +7,15 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SnowBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.lighting.LightEngine;
 import net.minecraft.world.server.ServerWorld;
 
-public class LeafyHumusBlock extends MurkyDirtBlock {
+import natures.debris.common.block.soil.Fertility;
+import natures.debris.common.block.soil.ISoil;
+
+public class LeafyHumusBlock extends MurkyDirtBlock implements ISoil {
     public LeafyHumusBlock(Properties props) {
         super(props);
     }
@@ -38,5 +42,30 @@ public class LeafyHumusBlock extends MurkyDirtBlock {
             if (!world.isAreaLoaded(pos, 3)) return;
             world.setBlockState(pos, getDecayBlock());
         }
+    }
+
+    @Override
+    public Fertility getFertility(IWorld world, BlockPos pos, BlockState state) {
+        return Fertility.FERTILE;
+    }
+
+    @Override
+    public void setFertility(IWorld world, BlockPos pos, BlockState state, Fertility fertility) {
+
+    }
+
+    @Override
+    public int getLevel(IWorld world, BlockPos pos, BlockState state) {
+        return 1;
+    }
+
+    @Override
+    public void setLevel(IWorld world, BlockPos pos, BlockState state, int level) {
+
+    }
+
+    @Override
+    public boolean isWet(IWorld world, BlockPos pos, BlockState state) {
+        return false;
     }
 }

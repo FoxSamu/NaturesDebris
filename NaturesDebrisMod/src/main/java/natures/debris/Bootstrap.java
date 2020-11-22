@@ -28,7 +28,7 @@ public class Bootstrap {
     private static final Logger LOGGER = LogManager.getLogger("Nature's Debris Bootstrap");
 
     public static final NaturesDebris INSTANCE = DistExecutor.safeRunForDist(
-        () -> NaturesDebrisClient::new,
+        () -> NaturesDebrisClient::make,
         () -> NaturesDebris::new
     );
 

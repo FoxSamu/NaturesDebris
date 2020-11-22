@@ -36,28 +36,49 @@ sourceSets {
 
     }
 }
-
-
 task genData(type: JavaExec) {
     dependsOn ':NaturesDebrisAPI:compileJava'
     dependsOn ':NaturesDebrisCore:compileJava'
     dependsOn 'compileJava'
+    dependsOn 'copyBaseResources'
 
     // We must give the classpath as a raw path, otherwise gradle adds :classes as a dependency to this task. Since we
     // are a dependency of :classes itself this causes a circular dependency and therefore we must not have :classes as
     // dependency. Make sure not to use 'sourceSets.main.runtimeClasspath' or something relevant here
-    classpath files("$rootDir/NaturesDebrisAPI/build/classes/java/main")         \
-                   + files("$rootDir/NaturesDebrisCore/build/classes/java/main") \
-                   + files("$rootDir/NaturesDebrisMod/build/classes/java/main")  \
-                   + configurations.runtime
+    classpath configurations.runtime
 
-    main "natures.debris.data.DataGen"
+    main "net.minecraftforge.userdev.LaunchTesting"
     args(
         "--all",
         "--output", "$projectDir/src/generated/resources",
-        "--gameDir", "."
+        "--mod", "ndebris"
     )
-    workingDir file("$rootDir/run")
+    jvmArgs(
+        "-Dforge.logging.console.level=info",
+        "-Dnatures.debris.ide=true",
+        "-Dnatures.debris.datagen=true",
+        "-Dforge.logging.markers=SCAN,REGISTRIES,REGISTRYDUMP"
+    )
+    environment(
+        MOD_CLASSES: "ndebris%%${project(":NaturesDebrisMod").projectDir}/build/resources/main;" +
+            "ndebris%%${project(":NaturesDebrisMod").projectDir}/build/classes/java/main;" +
+            "ndebris%%${project(":NaturesDebrisCore").projectDir}/build/resources/main;" +
+            "ndebris%%${project(":NaturesDebrisCore").projectDir}/build/classes/java/main;" +
+            "ndebris%%${project(":NaturesDebrisAPI").projectDir}/build/resources/main;" +
+            "ndebris%%${project(":NaturesDebrisAPI").projectDir}/build/classes/java/main",
+        MCP_MAPPINGS: "snapshot_20201012-mixed-1.16.3",
+        MCP_VERSION: "20201102.104115",
+        FORGE_VERSION: "35.0.15",
+        FORGE_GROUP: "net.minecraftforge",
+        target: "fmluserdevdata",
+        MC_VERSION: "1.16.4"
+    )
+    workingDir file("$rootDir/run/data")
+}
+
+task copyBaseResources(type: Copy) {
+    into "$buildDir/resources/main"
+    from "$projectDir/src/main/resources"
 }
 
 processResources {

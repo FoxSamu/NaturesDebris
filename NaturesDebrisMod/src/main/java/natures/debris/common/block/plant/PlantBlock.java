@@ -1,5 +1,6 @@
 package natures.debris.common.block.plant;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.function.Function;
@@ -76,7 +77,7 @@ public abstract class PlantBlock extends Block implements ILiquidContainer, IBuc
     }
 
 
-    @Nullable
+    @Nonnull
     public BlockPos getRootPos(IBlockReader world, BlockPos pos, BlockState state) {
         return pos;
     }
