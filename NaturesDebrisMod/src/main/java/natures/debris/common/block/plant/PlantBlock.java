@@ -4,8 +4,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.ToolType;
@@ -20,6 +23,7 @@ import net.minecraft.block.ILiquidContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
@@ -30,6 +34,7 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -88,7 +93,27 @@ public abstract class PlantBlock extends Block implements ILiquidContainer, IBuc
     }
 
     public boolean spawn(IWorld world, BlockPos pos) {
-        return world.isAirBlock(pos) && placeAt(world, pos, getDefaultState(), 3);
+        return spawn(world, pos, getDefaultState(), 0);
+    }
+
+    public boolean spawn(IWorld world, BlockPos pos, int meta) {
+        return spawn(world, pos, getDefaultState(), meta);
+    }
+
+    public boolean spawn(IWorld world, BlockPos pos, BlockState origin) {
+        return spawn(world, pos, origin, 0);
+    }
+
+    public boolean spawn(IWorld world, BlockPos pos, BlockState origin, int meta) {
+        return canSpawnIn(world, pos) && placeAt(world, pos, origin, 3);
+    }
+
+    public boolean canSpawnIn(IWorld world, BlockPos pos) {
+        if (world.isAirBlock(pos)) {
+            return true;
+        }
+        BlockState state = world.getBlockState(pos);
+        return state.getMaterial().isLiquid();
     }
 
     public boolean kill(IWorld world, BlockPos pos) {
@@ -98,6 +123,131 @@ public abstract class PlantBlock extends Block implements ILiquidContainer, IBuc
 
     // Growing
     // ========================================================================
+
+    protected static BlockPos randomInLocalBox(int minX, int maxX, int minY, int maxY, int minZ, int maxZ, BlockPos pos, Random rand) {
+        int rx = rand.nextInt(maxX - minX + 1) + minX;
+        int ry = rand.nextInt(maxY - minY + 1) + minY;
+        int rz = rand.nextInt(maxZ - minZ + 1) + minZ;
+
+        return pos.add(rx, ry, rz);
+    }
+
+    protected static BlockPos randomInLocalBox(int radius, int minY, int maxY, BlockPos pos, Random rand) {
+        return randomInLocalBox(-radius, radius, minY, maxY, -radius, radius, pos, rand);
+    }
+
+    protected static BlockPos randomInLocalBox(int radiusXZ, int radiusY, BlockPos pos, Random rand) {
+        return randomInLocalBox(radiusXZ, -radiusY, radiusY, pos, rand);
+    }
+
+    protected static BlockPos randomInLocalBox(int radius, BlockPos pos, Random rand) {
+        return randomInLocalBox(radius, radius, pos, rand);
+    }
+
+    protected static BlockPos randomHOffset(int minY, int maxY, BlockPos pos, Random rand) {
+        Direction dir = Direction.byHorizontalIndex(rand.nextInt(4));
+        int ry = rand.nextInt(maxY - minY + 1) + minY;
+        return pos.offset(dir).add(0, ry, 0);
+    }
+
+    protected static BlockPos randomHOffset(int radiusY, BlockPos pos, Random rand) {
+        return randomHOffset(-radiusY, radiusY, pos, rand);
+    }
+
+    protected static BlockPos randomMultiHOffset(int minY, int maxY, int iterations, BlockPos pos, Random rand) {
+        int offX = 0, offZ = 0;
+        while ((offX == 0 && offZ == 0) || iterations > 0) {
+            Direction dir = Direction.byHorizontalIndex(rand.nextInt(4));
+            offX += dir.getXOffset();
+            offZ += dir.getZOffset();
+            iterations--;
+        }
+        int ry = rand.nextInt(maxY - minY + 1) + minY;
+        return pos.add(offX, ry, offZ);
+    }
+
+    protected static BlockPos randomMultiHOffset(int radiusY, int iterations, BlockPos pos, Random rand) {
+        return randomMultiHOffset(-radiusY, radiusY, iterations, pos, rand);
+    }
+
+    protected static BlockPos findFeasibleHeight(int minY, int maxY, int itrs, IWorld world, BlockPos pos, Predicate<BlockPos> empty, Predicate<BlockPos> stable) {
+        BlockPos.Mutable mpos = new BlockPos.Mutable();
+        int y = 0;
+        int dir = 0;
+        while (itrs > 0) {
+            itrs--;
+            mpos.setPos(pos).move(0, y, 0);
+            if (y < minY || y > maxY)
+                return null;
+            if (!empty.test(mpos)) {
+                if (dir < 0)
+                    return null; // Recursing, we go back up to the place that pushed us down
+                dir = 1;
+                y++;
+            } else {
+                if (stable.test(mpos))
+                    return mpos.toImmutable();
+                if (dir > 0)
+                    return null; // Recursing, we go back down to the place that pushed us up
+                dir = -1;
+                y--;
+            }
+        }
+        return null;
+    }
+
+    protected static BlockPos findFeasibleHeight(int minY, int maxY, IWorld world, BlockPos pos, Predicate<BlockPos> empty, Predicate<BlockPos> stable) {
+        return findFeasibleHeight(minY, maxY, Math.max(minY, maxY) + 2, world, pos, empty, stable);
+    }
+
+    protected static BlockPos findFeasibleHeight(int radius, IWorld world, BlockPos pos, Predicate<BlockPos> empty, Predicate<BlockPos> stable) {
+        return findFeasibleHeight(-radius, radius, world, pos, empty, stable);
+    }
+
+    @Nullable
+    protected BlockPos spreadingPos(IWorld world, BlockPos pos, BlockState state, Random rand) {
+        return null;
+    }
+
+    @Nullable
+    protected BlockState spreadingState(IWorld world, BlockPos pos, BlockState origin, Random rand) {
+        return getDefaultState();
+    }
+
+    protected int spreadingMeta(IWorld world, BlockPos pos, BlockState origin, Random rand) {
+        return 0;
+    }
+
+    public final boolean spread(IWorld world, BlockPos pos, int iterations, int maxSuccess) {
+        if (isThisPlant(world, pos)) {
+            BlockState state = world.getBlockState(pos);
+            Random rand = world.getRandom();
+
+            int success = 0;
+            while (iterations > 0 && success < maxSuccess) {
+                BlockState growState = spreadingState(world, pos, state, rand);
+                if (growState == null) {
+                    iterations--;
+                    continue;
+                }
+
+                BlockPos toPos = spreadingPos(world, pos, growState, rand);
+                if (toPos == null) {
+                    iterations--;
+                    continue;
+                }
+
+                int meta = spreadingMeta(world, toPos, growState, rand);
+
+                if (spawn(world, toPos, growState, meta)) {
+                    success++;
+                }
+                iterations--;
+            }
+            return success > 0;
+        }
+        return false;
+    }
 
     @Override
     public boolean ticksRandomly(BlockState state) {
@@ -151,6 +301,7 @@ public abstract class PlantBlock extends Block implements ILiquidContainer, IBuc
         return replaceable(world, pos, state);
     }
 
+    @Nullable
     public BlockState placementState(World world, BlockPos pos, BlockState state, BlockItemUseContext ctx) {
         return updateState(world, pos, state);
     }
@@ -236,6 +387,8 @@ public abstract class PlantBlock extends Block implements ILiquidContainer, IBuc
         World world = ctx.getWorld();
         BlockPos pos = ctx.getPos();
         BlockState state = placementState(world, pos, getDefaultState(), ctx);
+        if (state == null)
+            return null;
 
         if (!canPlace(world, pos, state))
             return null;
@@ -290,6 +443,13 @@ public abstract class PlantBlock extends Block implements ILiquidContainer, IBuc
         return offsetType;
     }
 
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public long getPositionRandom(BlockState state, BlockPos pos) {
+        BlockPos root = getRootPos(Minecraft.getInstance().world, pos, state);
+        return MathHelper.getCoordinateRandom(root.getX(), root.getY(), root.getZ());
+    }
+
 
     // Waterlogging implementation
     // ========================================================================
@@ -330,13 +490,13 @@ public abstract class PlantBlock extends Block implements ILiquidContainer, IBuc
             case DESTROY:
                 world.destroyBlock(pos, true);
             case REMOVE:
-                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3 | 8);
 
                 break;
 
             case FLOOD:
                 BlockState newState = fluidLogic.withFluidState(state, Fluids.EMPTY.getDefaultState());
-                world.setBlockState(pos, newState, 11);
+                world.setBlockState(pos, newState, 3 | 8);
         }
         return fstate.getFluid();
     }

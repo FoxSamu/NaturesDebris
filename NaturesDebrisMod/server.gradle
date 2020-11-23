@@ -27,6 +27,7 @@ task serverJar(type: Jar) {
 
     exclude( "natures/debris/client/**" )
     exclude( "natures/debris/data/**" )
+    exclude( "natures/debris/dev/**" )
     exclude( "assets/**" )
 }
 

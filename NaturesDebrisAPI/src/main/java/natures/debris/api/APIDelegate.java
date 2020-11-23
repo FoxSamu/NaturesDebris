@@ -12,10 +12,10 @@
 
 package natures.debris.api;
 
+import java.lang.reflect.Field;
+
 import net.minecraftforge.eventbus.api.BusBuilder;
 import net.minecraftforge.eventbus.api.IEventBus;
-
-import java.lang.reflect.Field;
 
 /**
  * Class that uses reflection to delegate API methods to the mod itself, when available.
@@ -32,7 +32,7 @@ final class APIDelegate {
         if (!found) {
             try {
                 Class<?> cls = Class.forName("natures.debris.Bootstrap");
-                Field field = cls.getField("INSTANCE");
+                Field field = cls.getDeclaredField("INSTANCE");
                 instance = (INaturesDebris) field.get(null);
             } catch (Exception ignored) {
             }

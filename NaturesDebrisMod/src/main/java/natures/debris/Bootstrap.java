@@ -25,16 +25,18 @@ import natures.debris.client.NaturesDebrisClient;
 
 @Mod("ndebris")
 public class Bootstrap {
-    private static final Logger LOGGER = LogManager.getLogger("Nature's Debris Bootstrap");
+    public static final Logger LOGGER = LogManager.getLogger("Nature's Debris Bootstrap");
 
-    public static final NaturesDebris INSTANCE = DistExecutor.safeRunForDist(
-        () -> NaturesDebrisClient::make,
-        () -> NaturesDebris::new
-    );
+    public static NaturesDebris INSTANCE;
 
     private static LifecyclePhase lifecyclePhase = LifecyclePhase.UNLOADED;
 
     public Bootstrap() {
+        INSTANCE = DistExecutor.safeRunForDist(
+            () -> NaturesDebrisClient::make,
+            () -> NaturesDebris::new
+        );
+
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::loadComplete);
 
@@ -42,8 +44,9 @@ public class Bootstrap {
 
         construct();
         LOGGER.info("Nature's Debris was initialized:");
-        LOGGER.info("- Dist:    {}", FMLEnvironment.dist);
-        LOGGER.info("- Version: {}", NdInfo.VERSION);
+        LOGGER.info("- Dist:     {}", FMLEnvironment.dist);
+        LOGGER.info("- Version:  {}", NdInfo.VERSION);
+        LOGGER.info("- Instance: {}", INSTANCE.getClass().getSimpleName());
     }
 
     /**

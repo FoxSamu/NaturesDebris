@@ -26,6 +26,8 @@ task clientJar(type: Jar) {
     appendix = "client"
 
     exclude( "natures/debris/server/**" )
+    exclude( "natures/debris/data/**" )
+    exclude( "natures/debris/dev/**" )
 }
 
 task signClientJar( dependsOn: 'reobfClientJar' ) {

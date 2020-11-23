@@ -526,7 +526,7 @@ public abstract class NdBlocks {
         return block(id, new TestPlantBlock(
             PlantBlock.Properties.create(Material.TALL_PLANTS)
                                  .nonOpaque()
-                                 .blockVision((state, world, pos) -> true)
+                                 .blockVision((state, world, pos) -> false)
                                  .suffocates((state, world, pos) -> false)
                                  .zeroHardnessAndResistance()
                                  .fluidLogic(LevelledFluidLogic.INSTANCE)
