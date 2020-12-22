@@ -188,6 +188,8 @@ public abstract class NdBlocks {
 
     public static final Block MURK_GRASS = inj();
     public static final Block DOUBLE_MURK_GRASS = inj();
+    public static final Block MURK_FERN = inj();
+    public static final Block DOUBLE_MURK_FERN = inj();
 
     public static void registerBlocks(IRegistry<Block> registry) {
         registry.registerAll(
@@ -342,7 +344,9 @@ public abstract class NdBlocks {
             rockWall("polished_darkrock_wall", 2, 6, true),
 
             grass1("murk_grass"),
-            grass2("double_murk_grass")
+            grass2("double_murk_grass"),
+            grass1("murk_fern"),
+            grass2("double_murk_fern")
         );
     }
 
@@ -497,7 +501,9 @@ public abstract class NdBlocks {
             item(POLISHED_DARKROCK_WALL, NdItemGroup.DECORATIONS, ItemSubgroup.DARKROCK_WALLS),
 
             item(MURK_GRASS, NdItemGroup.DECORATIONS, ItemSubgroup.DECORATIONS),
-            item(DOUBLE_MURK_GRASS, NdItemGroup.DECORATIONS, ItemSubgroup.DECORATIONS)
+            item(DOUBLE_MURK_GRASS, NdItemGroup.DECORATIONS, ItemSubgroup.DECORATIONS),
+            item(MURK_FERN, NdItemGroup.DECORATIONS, ItemSubgroup.DECORATIONS),
+            item(DOUBLE_MURK_FERN, NdItemGroup.DECORATIONS, ItemSubgroup.DECORATIONS)
         );
     }
 
@@ -509,6 +515,8 @@ public abstract class NdBlocks {
         RenderTypeLookup.setRenderLayer(MURKY_GRASS_BLOCK, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(MURK_GRASS, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DOUBLE_MURK_GRASS, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(MURK_FERN, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DOUBLE_MURK_FERN, RenderType.getCutout());
 
         BlockColors blockColors = Minecraft.getInstance().getBlockColors();
         ItemColors itemColors = Minecraft.getInstance().getItemColors();
@@ -518,13 +526,17 @@ public abstract class NdBlocks {
             (state, world, pos, index) -> 0x508A48,
             MURKY_GRASS_BLOCK,
             MURK_GRASS,
-            DOUBLE_MURK_GRASS
+            DOUBLE_MURK_GRASS,
+            MURK_FERN,
+            DOUBLE_MURK_FERN
         );
         itemColors.register(
             (item, index) -> 0x508A48,
             MURKY_GRASS_BLOCK,
             MURK_GRASS,
-            DOUBLE_MURK_GRASS
+            DOUBLE_MURK_GRASS,
+            MURK_FERN,
+            DOUBLE_MURK_FERN
         );
     }
 

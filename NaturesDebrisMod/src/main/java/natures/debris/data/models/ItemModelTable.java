@@ -168,6 +168,8 @@ public final class ItemModelTable {
 
         register(NdBlocks.MURK_GRASS, item -> generated(name(item, "block/%s")));
         register(NdBlocks.DOUBLE_MURK_GRASS, item -> generated(name(item, "block/%s_top")));
+        register(NdBlocks.MURK_FERN, item -> generated(name(item, "block/%s")));
+        register(NdBlocks.DOUBLE_MURK_FERN, item -> generated(name(item, "block/%s_top")));
 
 
 

@@ -173,6 +173,8 @@ public final class BlockStateTable {
 
         register(NdBlocks.MURK_GRASS, block -> simple(name(block, "block/%s"), tintedCross(name(block, "block/%s"))));
         register(NdBlocks.DOUBLE_MURK_GRASS, block -> doublePlant(name(block, "block/%s_bottom"), tintedCross(name(block, "block/%s_bottom")), name(block, "block/%s_top"), tintedCross(name(block, "block/%s_top"))));
+        register(NdBlocks.MURK_FERN, block -> simple(name(block, "block/%s"), tintedCross(name(block, "block/%s"))));
+        register(NdBlocks.DOUBLE_MURK_FERN, block -> doublePlant(name(block, "block/%s_bottom"), tintedCross(name(block, "block/%s_bottom")), name(block, "block/%s_top"), tintedCross(name(block, "block/%s_top"))));
     }
 
     private static IBlockStateGen simple(String name, IModelGen model) {
