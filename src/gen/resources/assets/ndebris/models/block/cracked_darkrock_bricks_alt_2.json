@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ndebris:block/cracked_darkrock_bricks_alt_2"
+  }
+}

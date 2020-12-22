@@ -1,0 +1,834 @@
+{
+  "variants": {
+    "facing=north,half=bottom,shape=outer_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "y": 270,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=south,half=top,shape=inner_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=north,half=top,shape=inner_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "x": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "x": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "x": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=south,half=top,shape=inner_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=north,half=bottom,shape=outer_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "y": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=east,half=top,shape=inner_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=east,half=top,shape=inner_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "x": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "x": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "x": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=west,half=bottom,shape=inner_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "y": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=west,half=top,shape=inner_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=north,half=top,shape=inner_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=east,half=bottom,shape=inner_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "y": 270,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=west,half=bottom,shape=inner_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "y": 90,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=east,half=bottom,shape=outer_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=north,half=top,shape=outer_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=north,half=bottom,shape=inner_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "y": 270,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=south,half=bottom,shape=straight": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step",
+        "y": 90,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_1",
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_2",
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=south,half=bottom,shape=inner_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "y": 90,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=east,half=top,shape=outer_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "x": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "x": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "x": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=west,half=bottom,shape=straight": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step",
+        "y": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_1",
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_2",
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=north,half=top,shape=outer_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "x": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "x": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "x": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=west,half=top,shape=inner_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=south,half=top,shape=outer_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=west,half=top,shape=outer_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=east,half=top,shape=outer_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=east,half=bottom,shape=inner_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=south,half=bottom,shape=inner_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=west,half=top,shape=straight": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_1",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_2",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=west,half=top,shape=outer_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=south,half=top,shape=straight": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_1",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_2",
+        "x": 180,
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=east,half=top,shape=straight": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step",
+        "x": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_1",
+        "x": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_2",
+        "x": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=west,half=bottom,shape=outer_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "y": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=south,half=top,shape=outer_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "x": 180,
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=east,half=bottom,shape=straight": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step",
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_1",
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_2",
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=west,half=bottom,shape=outer_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "y": 90,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=east,half=bottom,shape=outer_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "y": 270,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=north,half=bottom,shape=straight": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step",
+        "y": 270,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_1",
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_2",
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=north,half=top,shape=straight": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_1",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_alt_2",
+        "x": 180,
+        "y": 270,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=north,half=bottom,shape=inner_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner",
+        "y": 180,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_1",
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_inner_alt_2",
+        "y": 180,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=south,half=bottom,shape=outer_right": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "y": 90,
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "y": 90,
+        "uvlock": true,
+        "weight": 2
+      }
+    ],
+    "facing=south,half=bottom,shape=outer_left": [
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer",
+        "uvlock": true,
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_1",
+        "uvlock": true,
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/cracked_rock_bricks_step_outer_alt_2",
+        "uvlock": true,
+        "weight": 2
+      }
+    ]
+  }
+}

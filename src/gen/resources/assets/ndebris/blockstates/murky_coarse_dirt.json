@@ -1,0 +1,78 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ndebris:block/murky_coarse_dirt"
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "y": 90
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "y": 180
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "y": 270
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "x": 90
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "x": 180
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "x": 270
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "ndebris:block/murky_coarse_dirt",
+        "x": 270,
+        "y": 270
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ndebris:blackwood_log",
+    "ndebris:stripped_blackwood_log",
+    "ndebris:blackwood",
+    "ndebris:stripped_blackwood"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ndebris:inver_log",
+    "ndebris:stripped_inver_log",
+    "ndebris:inver_wood",
+    "ndebris:stripped_inver_wood"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ndebris:inver_wood"
+    }
+  ],
+  "result": {
+    "item": "ndebris:inver_planks",
+    "count": 4
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "ndebris:block/darkrock_tiles",
+    "top": "ndebris:block/darkrock_tiles",
+    "side": "ndebris:block/darkrock_tiles"
+  }
+}

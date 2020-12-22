@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "ndebris:block/rock_pillar_top",
+    "side": "ndebris:block/rock_pillar_side"
+  }
+}

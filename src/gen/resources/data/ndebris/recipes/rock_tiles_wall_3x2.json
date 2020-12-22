@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ndebris:rock_tiles"
+    }
+  },
+  "result": {
+    "item": "ndebris:rock_tiles_wall",
+    "count": 6
+  }
+}

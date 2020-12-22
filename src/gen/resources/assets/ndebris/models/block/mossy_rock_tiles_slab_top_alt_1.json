@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "ndebris:block/mossy_rock_tiles_alt_1",
+    "top": "ndebris:block/mossy_rock_tiles_alt_1",
+    "side": "ndebris:block/mossy_rock_tiles_alt_1"
+  }
+}

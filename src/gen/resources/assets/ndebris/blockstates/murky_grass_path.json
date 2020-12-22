@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ndebris:block/murky_grass_path"
+      },
+      {
+        "model": "ndebris:block/murky_grass_path",
+        "y": 90
+      },
+      {
+        "model": "ndebris:block/murky_grass_path",
+        "y": 180
+      },
+      {
+        "model": "ndebris:block/murky_grass_path",
+        "y": 270
+      }
+    ]
+  }
+}

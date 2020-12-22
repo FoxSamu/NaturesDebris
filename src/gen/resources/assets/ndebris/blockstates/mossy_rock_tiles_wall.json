@@ -1,0 +1,267 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_post",
+          "weight": 32
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_1_post",
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_2_post",
+          "weight": 4
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_3_post",
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "north": "low"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_side",
+          "uvlock": true,
+          "weight": 32
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_1_side",
+          "uvlock": true,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_2_side",
+          "uvlock": true,
+          "weight": 4
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_3_side",
+          "uvlock": true,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "east": "low"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_side",
+          "y": 90,
+          "uvlock": true,
+          "weight": 32
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_1_side",
+          "y": 90,
+          "uvlock": true,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_2_side",
+          "y": 90,
+          "uvlock": true,
+          "weight": 4
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_3_side",
+          "y": 90,
+          "uvlock": true,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "south": "low"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_side",
+          "y": 180,
+          "uvlock": true,
+          "weight": 32
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_1_side",
+          "y": 180,
+          "uvlock": true,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_2_side",
+          "y": 180,
+          "uvlock": true,
+          "weight": 4
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_3_side",
+          "y": 180,
+          "uvlock": true,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "west": "low"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_side",
+          "y": 270,
+          "uvlock": true,
+          "weight": 32
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_1_side",
+          "y": 270,
+          "uvlock": true,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_2_side",
+          "y": 270,
+          "uvlock": true,
+          "weight": 4
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_3_side",
+          "y": 270,
+          "uvlock": true,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "north": "tall"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_side_tall",
+          "uvlock": true,
+          "weight": 32
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_1_side_tall",
+          "uvlock": true,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_2_side_tall",
+          "uvlock": true,
+          "weight": 4
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_3_side_tall",
+          "uvlock": true,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "east": "tall"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_side_tall",
+          "y": 90,
+          "uvlock": true,
+          "weight": 32
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_1_side_tall",
+          "y": 90,
+          "uvlock": true,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_2_side_tall",
+          "y": 90,
+          "uvlock": true,
+          "weight": 4
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_3_side_tall",
+          "y": 90,
+          "uvlock": true,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "south": "tall"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_side_tall",
+          "y": 180,
+          "uvlock": true,
+          "weight": 32
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_1_side_tall",
+          "y": 180,
+          "uvlock": true,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_2_side_tall",
+          "y": 180,
+          "uvlock": true,
+          "weight": 4
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_3_side_tall",
+          "y": 180,
+          "uvlock": true,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "west": "tall"
+      },
+      "apply": [
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_side_tall",
+          "y": 270,
+          "uvlock": true,
+          "weight": 32
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_1_side_tall",
+          "y": 270,
+          "uvlock": true,
+          "weight": 2
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_2_side_tall",
+          "y": 270,
+          "uvlock": true,
+          "weight": 4
+        },
+        {
+          "model": "ndebris:block/mossy_rock_tiles_wall_alt_3_side_tall",
+          "y": 270,
+          "uvlock": true,
+          "weight": 2
+        }
+      ]
+    }
+  ]
+}

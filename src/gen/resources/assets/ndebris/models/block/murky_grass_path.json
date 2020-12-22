@@ -1,0 +1,8 @@
+{
+  "parent": "ndebris:block/farmland_block",
+  "textures": {
+    "top": "ndebris:block/murky_grass_path_top",
+    "bottom": "ndebris:block/murky_dirt",
+    "side": "ndebris:block/murky_grass_path_side"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "ndebris:block/outer_step",
+  "textures": {
+    "bottom": "ndebris:block/mossy_darkrock",
+    "top": "ndebris:block/mossy_darkrock",
+    "side": "ndebris:block/mossy_darkrock"
+  }
+}

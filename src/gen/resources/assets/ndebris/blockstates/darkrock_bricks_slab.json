@@ -1,0 +1,46 @@
+{
+  "variants": {
+    "type=bottom": [
+      {
+        "model": "ndebris:block/darkrock_bricks_slab",
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/darkrock_bricks_slab_alt_1",
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/darkrock_bricks_slab_alt_2",
+        "weight": 2
+      }
+    ],
+    "type=double": [
+      {
+        "model": "ndebris:block/darkrock_bricks",
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/darkrock_bricks_alt_1",
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/darkrock_bricks_alt_2",
+        "weight": 2
+      }
+    ],
+    "type=top": [
+      {
+        "model": "ndebris:block/darkrock_bricks_slab_top",
+        "weight": 16
+      },
+      {
+        "model": "ndebris:block/darkrock_bricks_slab_top_alt_1",
+        "weight": 2
+      },
+      {
+        "model": "ndebris:block/darkrock_bricks_slab_top_alt_2",
+        "weight": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "ndebris:block/step",
+  "textures": {
+    "bottom": "ndebris:block/rock_tiles",
+    "top": "ndebris:block/rock_tiles",
+    "side": "ndebris:block/rock_tiles"
+  }
+}

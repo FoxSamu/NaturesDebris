@@ -1,0 +1,18 @@
+{
+  "music_disc.dark": {
+    "sounds": [
+      {
+        "name": "ndebris:records/dark",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.m1": {
+    "sounds": [
+      {
+        "name": "ndebris:records/minus_one",
+        "stream": true
+      }
+    ]
+  }
+}

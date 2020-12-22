@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## "
+  ],
+  "key": {
+    "#": {
+      "item": "ndebris:inver_planks"
+    }
+  },
+  "result": {
+    "item": "ndebris:inver_step",
+    "count": 6
+  }
+}

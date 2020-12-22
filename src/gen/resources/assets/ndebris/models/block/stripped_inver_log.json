@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "ndebris:block/stripped_inver_log_top",
+    "side": "ndebris:block/stripped_inver_log_side"
+  }
+}

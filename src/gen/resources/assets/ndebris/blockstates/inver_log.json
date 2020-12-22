@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=z": {
+      "model": "ndebris:block/inver_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "ndebris:block/inver_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "ndebris:block/inver_log"
+    }
+  }
+}

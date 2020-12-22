@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "ndebris:rock_stairs",
+    "ndebris:mossy_rock_stairs",
+    "ndebris:rock_bricks_stairs",
+    "ndebris:mossy_rock_bricks_stairs",
+    "ndebris:cracked_rock_bricks_stairs",
+    "ndebris:rock_tiles_stairs",
+    "ndebris:mossy_rock_tiles_stairs",
+    "ndebris:cracked_rock_tiles_stairs",
+    "ndebris:smooth_rock_stairs",
+    "ndebris:polished_rock_stairs",
+    "ndebris:darkrock_stairs",
+    "ndebris:mossy_darkrock_stairs",
+    "ndebris:darkrock_bricks_stairs",
+    "ndebris:mossy_darkrock_bricks_stairs",
+    "ndebris:cracked_darkrock_bricks_stairs",
+    "ndebris:darkrock_tiles_stairs",
+    "ndebris:mossy_darkrock_tiles_stairs",
+    "ndebris:cracked_darkrock_tiles_stairs",
+    "ndebris:smooth_darkrock_stairs",
+    "ndebris:polished_darkrock_stairs"
+  ]
+}

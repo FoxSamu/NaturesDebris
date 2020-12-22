@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ndebris:block/leafy_humus"
+      },
+      {
+        "model": "ndebris:block/leafy_humus",
+        "y": 90
+      },
+      {
+        "model": "ndebris:block/leafy_humus",
+        "y": 180
+      },
+      {
+        "model": "ndebris:block/leafy_humus",
+        "y": 270
+      }
+    ]
+  }
+}

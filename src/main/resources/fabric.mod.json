@@ -1,29 +1,32 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "ndebris",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Nature's Debris",
+  "description": "NYI",
   "authors": [
-    "Me!"
+    "Shadew"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://shadew.net/",
+    "sources": "https://github.com/ShadewEnder"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "Custom License",
+  "icon": "assets/ndebris/icon.png",
 
   "environment": "*",
   "entrypoints": {
+    "client": [
+      "net.shadew.ndebris.client.NaturesDebrisClient"
+    ],
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.shadew.ndebris.common.NaturesDebris"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "ndebris.mixins.json"
   ],
 
   "depends": {

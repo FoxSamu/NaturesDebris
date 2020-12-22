@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "ndebris:blackwood_log"
+    }
+  },
+  "result": {
+    "item": "ndebris:blackwood",
+    "count": 3
+  }
+}
