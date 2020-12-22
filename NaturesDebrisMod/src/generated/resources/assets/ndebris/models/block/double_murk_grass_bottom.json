@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/tinted_cross",
+  "textures": {
+    "cross": "ndebris:block/double_murk_grass_bottom"
+  }
+}

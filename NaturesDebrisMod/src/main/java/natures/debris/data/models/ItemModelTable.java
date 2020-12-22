@@ -166,7 +166,8 @@ public final class ItemModelTable {
         register(NdBlocks.SMOOTH_DARKROCK_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
         register(NdBlocks.POLISHED_DARKROCK_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
 
-        register(NdBlocks.TEST_PLANT, item -> generated(name(item, "block/%s")));
+        register(NdBlocks.MURK_GRASS, item -> generated(name(item, "block/%s")));
+        register(NdBlocks.DOUBLE_MURK_GRASS, item -> generated(name(item, "block/%s_top")));
 
 
 

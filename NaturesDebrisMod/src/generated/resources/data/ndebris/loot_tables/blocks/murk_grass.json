@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ndebris:test_plant"
+          "name": "ndebris:murk_grass"
         }
       ],
       "conditions": [

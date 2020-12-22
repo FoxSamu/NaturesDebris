@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import natures.debris.core.event.FluidStateChangeEvent;
-import natures.debris.common.block.plant.PlantBlock;
+import natures.debris.common.block.plantold.PlantBlock;
 
 public class PlantHandler {
     @SubscribeEvent

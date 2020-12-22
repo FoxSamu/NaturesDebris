@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ndebris:block/test_plant"
+    "layer0": "ndebris:block/murk_grass"
   }
 }

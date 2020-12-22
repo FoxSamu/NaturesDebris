@@ -29,9 +29,11 @@ import net.minecraft.util.ResourceLocation;
 
 import natures.debris.core.util.IRegistry;
 import natures.debris.common.NaturesDebris;
-import natures.debris.common.block.plant.PlantBlock;
-import natures.debris.common.block.plant.TestPlantBlock;
-import natures.debris.common.block.plant.fluid.LevelledFluidLogic;
+import natures.debris.common.block.plant.MurkGrass1Block;
+import natures.debris.common.block.plant.MurkGrass2Block;
+import natures.debris.common.block.plantold.PlantBlock;
+import natures.debris.common.block.plantold.TestPlantBlock;
+import natures.debris.common.block.plantold.sys.fluid.LevelledFluidLogic;
 import natures.debris.common.item.group.ItemSubgroup;
 import natures.debris.common.item.group.NdItemGroup;
 
@@ -184,7 +186,8 @@ public abstract class NdBlocks {
     public static final Block SMOOTH_DARKROCK_WALL = inj();
     public static final Block POLISHED_DARKROCK_WALL = inj();
 
-    public static final Block TEST_PLANT = inj();
+    public static final Block MURK_GRASS = inj();
+    public static final Block DOUBLE_MURK_GRASS = inj();
 
     public static void registerBlocks(IRegistry<Block> registry) {
         registry.registerAll(
@@ -338,7 +341,8 @@ public abstract class NdBlocks {
             rockWall("smooth_darkrock_wall", 1.5, 6, true),
             rockWall("polished_darkrock_wall", 2, 6, true),
 
-            testPlant("test_plant")
+            grass1("murk_grass"),
+            grass2("double_murk_grass")
         );
     }
 
@@ -492,7 +496,8 @@ public abstract class NdBlocks {
             item(SMOOTH_DARKROCK_WALL, NdItemGroup.DECORATIONS, ItemSubgroup.DARKROCK_WALLS),
             item(POLISHED_DARKROCK_WALL, NdItemGroup.DECORATIONS, ItemSubgroup.DARKROCK_WALLS),
 
-            item(TEST_PLANT, NdItemGroup.DECORATIONS, ItemSubgroup.DECORATIONS)
+            item(MURK_GRASS, NdItemGroup.DECORATIONS, ItemSubgroup.DECORATIONS),
+            item(DOUBLE_MURK_GRASS, NdItemGroup.DECORATIONS, ItemSubgroup.DECORATIONS)
         );
     }
 
@@ -502,18 +507,24 @@ public abstract class NdBlocks {
     @OnlyIn(Dist.CLIENT)
     public static void setupClient() {
         RenderTypeLookup.setRenderLayer(MURKY_GRASS_BLOCK, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(MURK_GRASS, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DOUBLE_MURK_GRASS, RenderType.getCutout());
 
         BlockColors blockColors = Minecraft.getInstance().getBlockColors();
         ItemColors itemColors = Minecraft.getInstance().getItemColors();
 
         blockColors.register(
             // TODO Biome colors coming later
-            (state, world, pos, index) -> 0x11783F,
-            MURKY_GRASS_BLOCK
+            (state, world, pos, index) -> 0x508A48,
+            MURKY_GRASS_BLOCK,
+            MURK_GRASS,
+            DOUBLE_MURK_GRASS
         );
         itemColors.register(
-            (item, index) -> 0x11783F,
-            MURKY_GRASS_BLOCK
+            (item, index) -> 0x508A48,
+            MURKY_GRASS_BLOCK,
+            MURK_GRASS,
+            DOUBLE_MURK_GRASS
         );
     }
 
@@ -531,6 +542,26 @@ public abstract class NdBlocks {
                                  .zeroHardnessAndResistance()
                                  .fluidLogic(LevelledFluidLogic.INSTANCE)
                                  .offset(AbstractBlock.OffsetType.XYZ)
+        ));
+    }
+
+    private static Block grass1(String id) {
+        return block(id, new MurkGrass1Block(
+            Block.Properties.create(Material.TALL_PLANTS)
+                            .nonOpaque()
+                            .blockVision((state, world, pos) -> false)
+                            .suffocates((state, world, pos) -> false)
+                            .zeroHardnessAndResistance()
+        ));
+    }
+
+    private static Block grass2(String id) {
+        return block(id, new MurkGrass2Block(
+            Block.Properties.create(Material.TALL_PLANTS)
+                            .nonOpaque()
+                            .blockVision((state, world, pos) -> false)
+                            .suffocates((state, world, pos) -> false)
+                            .zeroHardnessAndResistance()
         ));
     }
 

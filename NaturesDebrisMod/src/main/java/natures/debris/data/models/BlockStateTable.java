@@ -171,7 +171,8 @@ public final class BlockStateTable {
         register(NdBlocks.SMOOTH_DARKROCK_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 1));
         register(NdBlocks.POLISHED_DARKROCK_WALL, block -> wallRandomized(name(block, "block/%s", "_wall"), 1));
 
-        register(NdBlocks.TEST_PLANT, block -> simple(name(block, "block/%s"), cross(name(block, "block/%s"))));
+        register(NdBlocks.MURK_GRASS, block -> simple(name(block, "block/%s"), tintedCross(name(block, "block/%s"))));
+        register(NdBlocks.DOUBLE_MURK_GRASS, block -> doublePlant(name(block, "block/%s_bottom"), tintedCross(name(block, "block/%s_bottom")), name(block, "block/%s_top"), tintedCross(name(block, "block/%s_top"))));
     }
 
     private static IBlockStateGen simple(String name, IModelGen model) {

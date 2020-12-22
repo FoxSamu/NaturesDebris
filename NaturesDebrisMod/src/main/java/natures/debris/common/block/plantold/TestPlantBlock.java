@@ -1,4 +1,4 @@
-package natures.debris.common.block.plant;
+package natures.debris.common.block.plantold;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -12,7 +12,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.server.ServerWorld;
 
-public class TestPlantBlock extends DoubleVerticalPlantBlock {
+public class TestPlantBlock extends TallVerticalPlantBlock {
     public TestPlantBlock(Properties props) {
         super(props, GrowDir.UP);
 
@@ -35,7 +35,7 @@ public class TestPlantBlock extends DoubleVerticalPlantBlock {
     protected BlockPos spreadingPos(IWorld world, BlockPos pos, BlockState state, Random rand) {
         return findFeasibleHeight(
             3, world, randomMultiHOffset(1, 2, pos, rand),
-            p -> canSpawnIn(world, p),
+            p -> canSpawnIn(world, p, 0),
             p -> canGenerate(world, pos, state)
         );
     }

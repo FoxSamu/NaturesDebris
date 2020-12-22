@@ -1,4 +1,4 @@
-package natures.debris.common.block.plant.fluid;
+package natures.debris.common.block.plantold.sys.fluid;
 
 /**
  * The reaction of a plant when meeting a certain fluid. This is the value returned by {@link IFluidLogic#fluidReplace},

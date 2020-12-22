@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ndebris:block/double_murk_grass_top"
+  }
+}

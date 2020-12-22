@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "ndebris:block/double_murk_grass_top"
+    },
+    "half=lower": {
+      "model": "ndebris:block/double_murk_grass_bottom"
+    }
+  }
+}

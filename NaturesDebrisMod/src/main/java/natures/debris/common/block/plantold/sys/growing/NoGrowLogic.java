@@ -1,4 +1,4 @@
-package natures.debris.common.block.plant.growing;
+package natures.debris.common.block.plantold.sys.growing;
 
 import java.util.Random;
 
@@ -6,7 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 
-import natures.debris.common.block.plant.PlantBlock;
+import natures.debris.common.block.plantold.PlantBlock;
 
 public class NoGrowLogic implements IGrowLogic {
     public static final NoGrowLogic INSTANCE = new NoGrowLogic();

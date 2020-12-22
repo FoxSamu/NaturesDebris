@@ -1,4 +1,4 @@
-package natures.debris.common.block.plant.growing;
+package natures.debris.common.block.plantold.sys.growing;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;

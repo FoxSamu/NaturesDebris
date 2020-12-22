@@ -1,4 +1,4 @@
-package natures.debris.common.block.plant;
+package natures.debris.common.block.plantold;
 
 import javax.annotation.Nullable;
 
@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.monster.piglin.PiglinTasks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.BlockItemUseContext;
@@ -15,6 +16,7 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -25,6 +27,9 @@ import net.minecraft.world.World;
 
 import natures.debris.core.util.WorldEvents;
 
+/**
+ * A double vertical plant, which is exactly two blocks high.
+ */
 public class DoubleVerticalPlantBlock extends VerticalPlantBlock {
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
@@ -93,11 +98,11 @@ public class DoubleVerticalPlantBlock extends VerticalPlantBlock {
 
     @Override
     public boolean spawn(IWorld world, BlockPos pos, BlockState origin, int meta) {
-        if (!world.isAirBlock(pos))
+        if (!canSpawnIn(world, pos, 0))
             return false;
 
         BlockPos off = growOffset(pos);
-        if (!world.isAirBlock(off))
+        if (!canSpawnIn(world, off, 1))
             return false;
 
         BlockState lower = getDefaultState().with(HALF, DoubleBlockHalf.LOWER);
@@ -114,24 +119,8 @@ public class DoubleVerticalPlantBlock extends VerticalPlantBlock {
         BlockState state = world.getBlockState(pos);
         BlockPos root = getRootPos(world, pos, state);
         BlockPos end = growOffset(root);
-        BlockState fromRoot = world.getBlockState(root);
 
-        boolean removed = removeAt(world, root, 3 | 16) && removeAt(world, end, 3);
-        if (removed) {
-            BlockState toRoot = world.getBlockState(root);
-            doManualBlockUpdate(world, root, fromRoot, toRoot, 3, 512);
-        }
-
-        return removed;
-    }
-
-    @Override
-    public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!world.isRemote && state.get(HALF) == DoubleBlockHalf.LOWER) {
-            spawnDrops(state, world, pos, null, player, player.getHeldItemMainhand());
-        }
-
-        super.onBlockHarvested(world, pos, state, player);
+        return removeDoubleAt(world, root, end, 3);
     }
 
     @Override
@@ -140,43 +129,59 @@ public class DoubleVerticalPlantBlock extends VerticalPlantBlock {
         player.addExhaustion(0.005f);
     }
 
-    protected final void destroyInCreative(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        DoubleBlockHalf half = state.get(HALF);
-        if (half == DoubleBlockHalf.UPPER) {
-            BlockPos off = growOffset(pos, -1);
-            BlockState other = world.getBlockState(off);
-
-            if (other.getBlock() == state.getBlock() && other.get(HALF) == DoubleBlockHalf.LOWER) {
-                removeAt(world, off, 3 | 32);
-                world.playEvent(player, WorldEvents.DESTROY, off, getStateId(other));
-            }
-        }
-    }
-
     @Override
     public boolean removedByPlayer(BlockState state, World world, BlockPos pos, PlayerEntity player, boolean willHarvest, FluidState fluid) {
+        BlockPos root = getRootPos(world, pos, state);
+        BlockPos end = growOffset(root);
         if (!world.isRemote) {
-            if (player.isCreative()) {
-                BlockPos root = getRootPos(world, pos, state);
-                BlockPos end = growOffset(root);
-                BlockState fromRoot = world.getBlockState(root);
+            // Exclude caused player from events, player client will play these events itself (see below)
+            world.playEvent(player, WorldEvents.DESTROY, root, getStateId(world.getBlockState(root)));
+            world.playEvent(player, WorldEvents.DESTROY, end, getStateId(world.getBlockState(end)));
 
-                world.playEvent(pos == root ? player : null, WorldEvents.DESTROY, root, getStateId(world.getBlockState(root)));
-                world.playEvent(pos == end ? player : null, WorldEvents.DESTROY, end, getStateId(world.getBlockState(end)));
-
-                removeAt(world, root, 3 | 16 | 32);
-                removeAt(world, end, 3 | 32);
-
-                BlockState toRoot = world.getBlockState(root);
-                doManualBlockUpdate(world, root, fromRoot, toRoot, 3 | 32, 512);
-                return true;
+            if (!removeDoubleAt(world, root, end, 3 | 32)) {
+                return false;
             }
-        }
 
-        onBlockHarvested(world, pos, state, player);
-        return removeAt(world, pos, world.isRemote ? 3 | 8 : 3);
+            if (!player.isCreative()) {
+                spawnDrops(state, world, pos, null, player, player.getHeldItemMainhand());
+            }
+
+            // From: onBlockHarvested
+            // We don't reach onBlockHarvested so we do it here
+            if (isIn(BlockTags.GUARDED_BY_PIGLINS)) {
+                PiglinTasks.onGuardedBlockInteracted(player, false);
+            }
+
+            return true;
+        } else {
+            // Play these events manually on client, we don't need to send a useless packet on the server when we
+            // can predict this is gonna happen
+            world.playEvent(null, WorldEvents.DESTROY, root, getStateId(world.getBlockState(root)));
+            world.playEvent(null, WorldEvents.DESTROY, end, getStateId(world.getBlockState(end)));
+
+            return removeDoubleAt(world, root, end, 3 | 8);
+        }
     }
 
+    protected final boolean removeDoubleAt(IWorld world, BlockPos root, BlockPos end, int flags) {
+        BlockState fromRoot = world.getBlockState(root);
+        if (removeAt(world, root, flags | 16) && removeAt(world, end, flags)) {
+            if ((flags & 16) == 0) {
+                // Ensure we cause a block update for the lower block when needed (we skipped it ITFP)
+                BlockState toRoot = world.getBlockState(root);
+                doManualBlockUpdate(world, root, fromRoot, toRoot, flags, 512);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // This allows us to trigger updatePostPlacement manually on neighbors
+    // When removing this plant, we remove the lower block without updating neighbors, so that the upper block won't
+    // destroy and drop an item without waiting for us to remove it (we might not want it to play the destroy effect at
+    // all). However, removing the lower block without neighbor updates also means that observers and other relevant
+    // blocks won't respond to our change either. Hence, after removing the upper block we call this function for the
+    // lower block so that neighbors still get notified for removal of the lower block
     private static void doManualBlockUpdate(IWorld world, BlockPos pos, BlockState fromState, BlockState toState, int flags, int iterationDepth) {
         int f = flags & ~(32 | 1);
         fromState.prepare(world, pos, f, iterationDepth - 1);
