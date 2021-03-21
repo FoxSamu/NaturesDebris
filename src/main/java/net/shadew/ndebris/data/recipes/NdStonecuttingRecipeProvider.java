@@ -126,16 +126,16 @@ public class NdStonecuttingRecipeProvider extends AbstractRecipesProvider {
         register(NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_STAIRS);
         register(NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_STAIRS);
 
-        register(NdBlocks.DARKROCK, NdBlocks.DARKROCK_STEP);
-        register(NdBlocks.MOSSY_DARKROCK, NdBlocks.MOSSY_DARKROCK_STEP);
-        register(NdBlocks.DARKROCK_BRICKS, NdBlocks.DARKROCK_BRICKS_STEP);
-        register(NdBlocks.MOSSY_DARKROCK_BRICKS, NdBlocks.MOSSY_DARKROCK_BRICKS_STEP);
-        register(NdBlocks.CRACKED_DARKROCK_BRICKS, NdBlocks.CRACKED_DARKROCK_BRICKS_STEP);
-        register(NdBlocks.DARKROCK_TILES, NdBlocks.DARKROCK_TILES_STEP);
-        register(NdBlocks.MOSSY_DARKROCK_TILES, NdBlocks.MOSSY_DARKROCK_TILES_STEP);
-        register(NdBlocks.CRACKED_DARKROCK_TILES, NdBlocks.CRACKED_DARKROCK_TILES_STEP);
-        register(NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_STEP);
-        register(NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_STEP);
+        register(NdBlocks.DARKROCK, NdBlocks.DARKROCK_STEP, 4);
+        register(NdBlocks.MOSSY_DARKROCK, NdBlocks.MOSSY_DARKROCK_STEP, 4);
+        register(NdBlocks.DARKROCK_BRICKS, NdBlocks.DARKROCK_BRICKS_STEP, 4);
+        register(NdBlocks.MOSSY_DARKROCK_BRICKS, NdBlocks.MOSSY_DARKROCK_BRICKS_STEP, 4);
+        register(NdBlocks.CRACKED_DARKROCK_BRICKS, NdBlocks.CRACKED_DARKROCK_BRICKS_STEP, 4);
+        register(NdBlocks.DARKROCK_TILES, NdBlocks.DARKROCK_TILES_STEP, 4);
+        register(NdBlocks.MOSSY_DARKROCK_TILES, NdBlocks.MOSSY_DARKROCK_TILES_STEP, 4);
+        register(NdBlocks.CRACKED_DARKROCK_TILES, NdBlocks.CRACKED_DARKROCK_TILES_STEP, 4);
+        register(NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_STEP, 4);
+        register(NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_STEP, 4);
 
         register(NdBlocks.DARKROCK, NdBlocks.DARKROCK_WALL);
         register(NdBlocks.MOSSY_DARKROCK, NdBlocks.MOSSY_DARKROCK_WALL);
@@ -147,6 +147,93 @@ public class NdStonecuttingRecipeProvider extends AbstractRecipesProvider {
         register(NdBlocks.CRACKED_DARKROCK_TILES, NdBlocks.CRACKED_DARKROCK_TILES_WALL);
         register(NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_WALL);
         register(NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_WALL);
+
+        // Limestone
+        register(NdBlocks.LIMESTONE, NdBlocks.LIMESTONE_BRICKS);
+        register(NdBlocks.LIMESTONE, NdBlocks.LIMESTONE_PILLAR);
+        register(NdBlocks.LIMESTONE, NdBlocks.POLISHED_LIMESTONE);
+        register(NdBlocks.POLISHED_LIMESTONE, NdBlocks.LIMESTONE_TILES);
+        register(NdBlocks.POLISHED_LIMESTONE, NdBlocks.CARVED_LIMESTONE);
+
+        register(NdBlocks.LIMESTONE, NdBlocks.LIMESTONE_SLAB, 2);
+        register(NdBlocks.LIMESTONE_BRICKS, NdBlocks.LIMESTONE_BRICKS_SLAB, 2);
+        register(NdBlocks.CRACKED_LIMESTONE_BRICKS, NdBlocks.CRACKED_LIMESTONE_BRICKS_SLAB, 2);
+        register(NdBlocks.LIMESTONE_TILES, NdBlocks.LIMESTONE_TILES_SLAB, 2);
+        register(NdBlocks.CRACKED_LIMESTONE_TILES, NdBlocks.CRACKED_LIMESTONE_TILES_SLAB, 2);
+        register(NdBlocks.POLISHED_LIMESTONE, NdBlocks.POLISHED_LIMESTONE_SLAB, 2);
+
+        register(NdBlocks.LIMESTONE, NdBlocks.LIMESTONE_STAIRS);
+        register(NdBlocks.LIMESTONE_BRICKS, NdBlocks.LIMESTONE_BRICKS_STAIRS);
+        register(NdBlocks.CRACKED_LIMESTONE_BRICKS, NdBlocks.CRACKED_LIMESTONE_BRICKS_STAIRS);
+        register(NdBlocks.LIMESTONE_TILES, NdBlocks.LIMESTONE_TILES_STAIRS);
+        register(NdBlocks.CRACKED_LIMESTONE_TILES, NdBlocks.CRACKED_LIMESTONE_TILES_STAIRS);
+        register(NdBlocks.POLISHED_LIMESTONE, NdBlocks.POLISHED_LIMESTONE_STAIRS);
+
+        register(NdBlocks.LIMESTONE, NdBlocks.LIMESTONE_STEP, 4);
+        register(NdBlocks.LIMESTONE_BRICKS, NdBlocks.LIMESTONE_BRICKS_STEP, 4);
+        register(NdBlocks.CRACKED_LIMESTONE_BRICKS, NdBlocks.CRACKED_LIMESTONE_BRICKS_STEP, 4);
+        register(NdBlocks.LIMESTONE_TILES, NdBlocks.LIMESTONE_TILES_STEP, 4);
+        register(NdBlocks.CRACKED_LIMESTONE_TILES, NdBlocks.CRACKED_LIMESTONE_TILES_STEP, 4);
+        register(NdBlocks.POLISHED_LIMESTONE, NdBlocks.POLISHED_LIMESTONE_STEP, 4);
+
+        register(NdBlocks.LIMESTONE, NdBlocks.LIMESTONE_WALL);
+        register(NdBlocks.LIMESTONE_BRICKS, NdBlocks.LIMESTONE_BRICKS_WALL);
+        register(NdBlocks.CRACKED_LIMESTONE_BRICKS, NdBlocks.CRACKED_LIMESTONE_BRICKS_WALL);
+        register(NdBlocks.LIMESTONE_TILES, NdBlocks.LIMESTONE_TILES_WALL);
+        register(NdBlocks.CRACKED_LIMESTONE_TILES, NdBlocks.CRACKED_LIMESTONE_TILES_WALL);
+        register(NdBlocks.POLISHED_LIMESTONE, NdBlocks.POLISHED_LIMESTONE_WALL);
+
+        // Sumestone
+        register(NdBlocks.SUMESTONE, NdBlocks.SUMESTONE_BRICKS);
+        register(NdBlocks.SUMESTONE, NdBlocks.SUMESTONE_PILLAR);
+        register(NdBlocks.SUMESTONE, NdBlocks.POLISHED_SUMESTONE);
+        register(NdBlocks.SUMESTONE, NdBlocks.CHISELED_SUMESTONE);
+
+        register(NdBlocks.SUMESTONE, NdBlocks.SUMESTONE_SLAB, 2);
+        register(NdBlocks.SUMESTONE_BRICKS, NdBlocks.SUMESTONE_BRICKS_SLAB, 2);
+        register(NdBlocks.CRACKED_SUMESTONE_BRICKS, NdBlocks.CRACKED_SUMESTONE_BRICKS_SLAB, 2);
+        register(NdBlocks.POLISHED_SUMESTONE, NdBlocks.POLISHED_SUMESTONE_SLAB, 2);
+
+        register(NdBlocks.SUMESTONE, NdBlocks.SUMESTONE_STAIRS);
+        register(NdBlocks.SUMESTONE_BRICKS, NdBlocks.SUMESTONE_BRICKS_STAIRS);
+        register(NdBlocks.CRACKED_SUMESTONE_BRICKS, NdBlocks.CRACKED_SUMESTONE_BRICKS_STAIRS);
+        register(NdBlocks.POLISHED_SUMESTONE, NdBlocks.POLISHED_SUMESTONE_STAIRS);
+
+        register(NdBlocks.SUMESTONE, NdBlocks.SUMESTONE_STEP, 4);
+        register(NdBlocks.SUMESTONE_BRICKS, NdBlocks.SUMESTONE_BRICKS_STEP, 4);
+        register(NdBlocks.CRACKED_SUMESTONE_BRICKS, NdBlocks.CRACKED_SUMESTONE_BRICKS_STEP, 4);
+        register(NdBlocks.POLISHED_SUMESTONE, NdBlocks.POLISHED_SUMESTONE_STEP, 4);
+
+        register(NdBlocks.SUMESTONE, NdBlocks.SUMESTONE_WALL);
+        register(NdBlocks.SUMESTONE_BRICKS, NdBlocks.SUMESTONE_BRICKS_WALL);
+        register(NdBlocks.CRACKED_SUMESTONE_BRICKS, NdBlocks.CRACKED_SUMESTONE_BRICKS_WALL);
+        register(NdBlocks.POLISHED_SUMESTONE, NdBlocks.POLISHED_SUMESTONE_WALL);
+
+        // Dark Sumestone
+        register(NdBlocks.DARK_SUMESTONE, NdBlocks.DARK_SUMESTONE_BRICKS);
+        register(NdBlocks.DARK_SUMESTONE, NdBlocks.DARK_SUMESTONE_PILLAR);
+        register(NdBlocks.DARK_SUMESTONE, NdBlocks.POLISHED_DARK_SUMESTONE);
+        register(NdBlocks.DARK_SUMESTONE, NdBlocks.CHISELED_DARK_SUMESTONE);
+
+        register(NdBlocks.DARK_SUMESTONE, NdBlocks.DARK_SUMESTONE_SLAB, 2);
+        register(NdBlocks.DARK_SUMESTONE_BRICKS, NdBlocks.DARK_SUMESTONE_BRICKS_SLAB, 2);
+        register(NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS, NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_SLAB, 2);
+        register(NdBlocks.POLISHED_DARK_SUMESTONE, NdBlocks.POLISHED_DARK_SUMESTONE_SLAB, 2);
+
+        register(NdBlocks.DARK_SUMESTONE, NdBlocks.DARK_SUMESTONE_STAIRS);
+        register(NdBlocks.DARK_SUMESTONE_BRICKS, NdBlocks.DARK_SUMESTONE_BRICKS_STAIRS);
+        register(NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS, NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_STAIRS);
+        register(NdBlocks.POLISHED_DARK_SUMESTONE, NdBlocks.POLISHED_DARK_SUMESTONE_STAIRS);
+
+        register(NdBlocks.DARK_SUMESTONE, NdBlocks.DARK_SUMESTONE_STEP, 4);
+        register(NdBlocks.DARK_SUMESTONE_BRICKS, NdBlocks.DARK_SUMESTONE_BRICKS_STEP, 4);
+        register(NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS, NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_STEP, 4);
+        register(NdBlocks.POLISHED_DARK_SUMESTONE, NdBlocks.POLISHED_DARK_SUMESTONE_STEP, 4);
+
+        register(NdBlocks.DARK_SUMESTONE, NdBlocks.DARK_SUMESTONE_WALL);
+        register(NdBlocks.DARK_SUMESTONE_BRICKS, NdBlocks.DARK_SUMESTONE_BRICKS_WALL);
+        register(NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS, NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_WALL);
+        register(NdBlocks.POLISHED_DARK_SUMESTONE, NdBlocks.POLISHED_DARK_SUMESTONE_WALL);
 
         compile();
         flush();

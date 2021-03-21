@@ -8,6 +8,7 @@ import net.shadew.ndebris.common.NaturesDebris;
 public class NaturesDebrisClient extends NaturesDebris implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        onInitialize();
         NdClientBlocks.setupBlocksClient();
     }
 }

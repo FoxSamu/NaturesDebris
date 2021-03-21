@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "type=bottom": [
+      {
+        "model": "ndebris:block/dark_sumestone_bricks_slab"
+      },
+      {
+        "model": "ndebris:block/dark_sumestone_bricks_slab_alt_1"
+      }
+    ],
+    "type=double": [
+      {
+        "model": "ndebris:block/dark_sumestone_bricks"
+      },
+      {
+        "model": "ndebris:block/dark_sumestone_bricks_alt_1"
+      }
+    ],
+    "type=top": [
+      {
+        "model": "ndebris:block/dark_sumestone_bricks_slab_top"
+      },
+      {
+        "model": "ndebris:block/dark_sumestone_bricks_slab_top_alt_1"
+      }
+    ]
+  }
+}

@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import net.shadew.ndebris.common.NaturesDebris;
 import net.shadew.ndebris.data.loottables.NdLootTablesProvider;
 import net.shadew.ndebris.data.models.NdStateModelProvider;
 import net.shadew.ndebris.data.recipes.NdRecipeProvider;
@@ -54,6 +55,7 @@ public class DataMain {
                 genReports,
                 genValidate
             );
+            new NaturesDebris().onInitialize();
             gen.run();
         } else {
             opts.printHelpOn(System.out);

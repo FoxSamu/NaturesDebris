@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ndebris:block/polished_sumestone_slab"
+    },
+    "type=double": {
+      "model": "ndebris:block/polished_sumestone"
+    },
+    "type=top": {
+      "model": "ndebris:block/polished_sumestone_slab_top"
+    }
+  }
+}

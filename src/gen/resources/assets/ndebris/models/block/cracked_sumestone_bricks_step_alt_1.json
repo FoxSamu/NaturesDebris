@@ -1,0 +1,8 @@
+{
+  "parent": "ndebris:block/step",
+  "textures": {
+    "bottom": "ndebris:block/cracked_sumestone_bricks_alt_1",
+    "top": "ndebris:block/cracked_sumestone_bricks_alt_1",
+    "side": "ndebris:block/cracked_sumestone_bricks_alt_1"
+  }
+}

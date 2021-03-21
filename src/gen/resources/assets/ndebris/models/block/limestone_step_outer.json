@@ -1,0 +1,8 @@
+{
+  "parent": "ndebris:block/outer_step",
+  "textures": {
+    "bottom": "ndebris:block/limestone",
+    "top": "ndebris:block/limestone",
+    "side": "ndebris:block/limestone"
+  }
+}

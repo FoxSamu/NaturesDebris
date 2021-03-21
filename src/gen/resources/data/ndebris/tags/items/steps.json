@@ -21,6 +21,20 @@
     "ndebris:cracked_darkrock_tiles_step",
     "ndebris:smooth_darkrock_step",
     "ndebris:polished_darkrock_step",
+    "ndebris:limestone_step",
+    "ndebris:limestone_bricks_step",
+    "ndebris:cracked_limestone_bricks_step",
+    "ndebris:limestone_tiles_step",
+    "ndebris:cracked_limestone_tiles_step",
+    "ndebris:polished_limestone_step",
+    "ndebris:sumestone_step",
+    "ndebris:sumestone_bricks_step",
+    "ndebris:cracked_sumestone_bricks_step",
+    "ndebris:polished_sumestone_step",
+    "ndebris:dark_sumestone_step",
+    "ndebris:dark_sumestone_bricks_step",
+    "ndebris:cracked_dark_sumestone_bricks_step",
+    "ndebris:polished_dark_sumestone_step",
     "#ndebris:wooden_steps"
   ]
 }

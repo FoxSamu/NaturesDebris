@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ndebris:dark_sumestone"
+    }
+  },
+  "result": {
+    "item": "ndebris:dark_sumestone_stairs",
+    "count": 4
+  }
+}

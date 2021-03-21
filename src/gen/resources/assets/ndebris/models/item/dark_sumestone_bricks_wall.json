@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "ndebris:block/dark_sumestone_bricks"
+  }
+}

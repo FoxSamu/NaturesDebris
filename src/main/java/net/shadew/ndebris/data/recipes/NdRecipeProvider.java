@@ -163,6 +163,97 @@ public class NdRecipeProvider extends AbstractRecipesProvider {
         generic3x2("cracked_darkrock_tiles_wall_3x2", NdBlocks.CRACKED_DARKROCK_TILES, NdBlocks.CRACKED_DARKROCK_TILES_WALL, 6);
         generic3x2("smooth_darkrock_wall_3x2", NdBlocks.SMOOTH_DARKROCK, NdBlocks.SMOOTH_DARKROCK_WALL, 6);
         generic3x2("polished_darkrock_wall_3x2", NdBlocks.POLISHED_DARKROCK, NdBlocks.POLISHED_DARKROCK_WALL, 6);
+
+        // Limestone
+        generic2x2("limestone_bricks_2x2", NdBlocks.LIMESTONE, NdBlocks.LIMESTONE_BRICKS, 4);
+        generic2x2("limestone_tiles_2x2", NdBlocks.POLISHED_LIMESTONE, NdBlocks.LIMESTONE_TILES, 4);
+        generic1x3("limestone_pillar_1x3", NdBlocks.LIMESTONE, NdBlocks.LIMESTONE_PILLAR, 3);
+        shapeless("carved_limestone_shapeless", NdBlocks.POLISHED_LIMESTONE, NdBlocks.CARVED_LIMESTONE, 1);
+        shapeless("polished_limestone_shapeless", NdBlocks.LIMESTONE, NdBlocks.POLISHED_LIMESTONE, 1);
+        smelting("cracked_limestone_bricks_smelting", NdBlocks.LIMESTONE_BRICKS, NdBlocks.CRACKED_LIMESTONE_BRICKS, 0.1);
+        smelting("cracked_limestone_tiles_smelting", NdBlocks.LIMESTONE_TILES, NdBlocks.CRACKED_LIMESTONE_TILES, 0.1);
+
+        generic3x1("limestone_slab_3x1", NdBlocks.LIMESTONE, NdBlocks.LIMESTONE_SLAB, 6);
+        generic3x1("limestone_bricks_slab_3x1", NdBlocks.LIMESTONE_BRICKS, NdBlocks.LIMESTONE_BRICKS_SLAB, 6);
+        generic3x1("cracked_limestone_bricks_slab_3x1", NdBlocks.CRACKED_LIMESTONE_BRICKS, NdBlocks.CRACKED_LIMESTONE_BRICKS_SLAB, 6);
+        generic3x1("limestone_tiles_slab_3x1", NdBlocks.LIMESTONE_TILES, NdBlocks.LIMESTONE_TILES_SLAB, 6);
+        generic3x1("cracked_limestone_tiles_slab_3x1", NdBlocks.CRACKED_LIMESTONE_TILES, NdBlocks.CRACKED_LIMESTONE_TILES_SLAB, 6);
+        generic3x1("polished_limestone_slab_3x1", NdBlocks.POLISHED_LIMESTONE, NdBlocks.POLISHED_LIMESTONE_SLAB, 6);
+
+        stairs("limestone_stairs_stairs", NdBlocks.LIMESTONE, NdBlocks.LIMESTONE_STAIRS, 4);
+        stairs("limestone_bricks_stairs_stairs", NdBlocks.LIMESTONE_BRICKS, NdBlocks.LIMESTONE_BRICKS_STAIRS, 4);
+        stairs("cracked_limestone_bricks_stairs_stairs", NdBlocks.CRACKED_LIMESTONE_BRICKS, NdBlocks.CRACKED_LIMESTONE_BRICKS_STAIRS, 4);
+        stairs("limestone_tiles_stairs_stairs", NdBlocks.LIMESTONE_TILES, NdBlocks.LIMESTONE_TILES_STAIRS, 4);
+        stairs("cracked_limestone_tiles_stairs_stairs", NdBlocks.CRACKED_LIMESTONE_TILES, NdBlocks.CRACKED_LIMESTONE_TILES_STAIRS, 4);
+        stairs("polished_limestone_stairs_stairs", NdBlocks.POLISHED_LIMESTONE, NdBlocks.POLISHED_LIMESTONE_STAIRS, 4);
+
+        step("limestone_step_step", NdBlocks.LIMESTONE, NdBlocks.LIMESTONE_STEP, 6);
+        step("limestone_bricks_step_step", NdBlocks.LIMESTONE_BRICKS, NdBlocks.LIMESTONE_BRICKS_STEP, 6);
+        step("cracked_limestone_bricks_step_step", NdBlocks.CRACKED_LIMESTONE_BRICKS, NdBlocks.CRACKED_LIMESTONE_BRICKS_STEP, 6);
+        step("limestone_tiles_step_step", NdBlocks.LIMESTONE_TILES, NdBlocks.LIMESTONE_TILES_STEP, 6);
+        step("cracked_limestone_tiles_step_step", NdBlocks.CRACKED_LIMESTONE_TILES, NdBlocks.CRACKED_LIMESTONE_TILES_STEP, 6);
+        step("polished_limestone_step_step", NdBlocks.POLISHED_LIMESTONE, NdBlocks.POLISHED_LIMESTONE_STEP, 6);
+
+        generic3x2("limestone_wall_3x2", NdBlocks.LIMESTONE, NdBlocks.LIMESTONE_WALL, 6);
+        generic3x2("limestone_bricks_wall_3x2", NdBlocks.LIMESTONE_BRICKS, NdBlocks.LIMESTONE_BRICKS_WALL, 6);
+        generic3x2("cracked_limestone_bricks_wall_3x2", NdBlocks.CRACKED_LIMESTONE_BRICKS, NdBlocks.CRACKED_LIMESTONE_BRICKS_WALL, 6);
+        generic3x2("limestone_tiles_wall_3x2", NdBlocks.LIMESTONE_TILES, NdBlocks.LIMESTONE_TILES_WALL, 6);
+        generic3x2("cracked_limestone_tiles_wall_3x2", NdBlocks.CRACKED_LIMESTONE_TILES, NdBlocks.CRACKED_LIMESTONE_TILES_WALL, 6);
+        generic3x2("polished_limestone_wall_3x2", NdBlocks.POLISHED_LIMESTONE, NdBlocks.POLISHED_LIMESTONE_WALL, 6);
+
+        // Sumestone
+        generic2x2("sumestone_bricks_2x2", NdBlocks.SUMESTONE, NdBlocks.SUMESTONE_BRICKS, 4);
+        generic1x3("sumestone_pillar_1x3", NdBlocks.SUMESTONE, NdBlocks.SUMESTONE_PILLAR, 3);
+        generic1x2("chiseled_sumestone_1x2", NdBlocks.SUMESTONE_SLAB, NdBlocks.CHISELED_SUMESTONE, 1);
+        shapeless("polished_sumestone_shapeless", NdBlocks.SUMESTONE, NdBlocks.POLISHED_SUMESTONE, 1);
+        smelting("cracked_sumestone_bricks_smelting", NdBlocks.SUMESTONE_BRICKS, NdBlocks.CRACKED_SUMESTONE_BRICKS, 0.1);
+
+        generic3x1("sumestone_slab_3x1", NdBlocks.SUMESTONE, NdBlocks.SUMESTONE_SLAB, 6);
+        generic3x1("sumestone_bricks_slab_3x1", NdBlocks.SUMESTONE_BRICKS, NdBlocks.SUMESTONE_BRICKS_SLAB, 6);
+        generic3x1("cracked_sumestone_bricks_slab_3x1", NdBlocks.CRACKED_SUMESTONE_BRICKS, NdBlocks.CRACKED_SUMESTONE_BRICKS_SLAB, 6);
+        generic3x1("polished_sumestone_slab_3x1", NdBlocks.POLISHED_SUMESTONE, NdBlocks.POLISHED_SUMESTONE_SLAB, 6);
+
+        stairs("sumestone_stairs_stairs", NdBlocks.SUMESTONE, NdBlocks.SUMESTONE_STAIRS, 4);
+        stairs("sumestone_bricks_stairs_stairs", NdBlocks.SUMESTONE_BRICKS, NdBlocks.SUMESTONE_BRICKS_STAIRS, 4);
+        stairs("cracked_sumestone_bricks_stairs_stairs", NdBlocks.CRACKED_SUMESTONE_BRICKS, NdBlocks.CRACKED_SUMESTONE_BRICKS_STAIRS, 4);
+        stairs("polished_sumestone_stairs_stairs", NdBlocks.POLISHED_SUMESTONE, NdBlocks.POLISHED_SUMESTONE_STAIRS, 4);
+
+        step("sumestone_step_step", NdBlocks.SUMESTONE, NdBlocks.SUMESTONE_STEP, 6);
+        step("sumestone_bricks_step_step", NdBlocks.SUMESTONE_BRICKS, NdBlocks.SUMESTONE_BRICKS_STEP, 6);
+        step("cracked_sumestone_bricks_step_step", NdBlocks.CRACKED_SUMESTONE_BRICKS, NdBlocks.CRACKED_SUMESTONE_BRICKS_STEP, 6);
+        step("polished_sumestone_step_step", NdBlocks.POLISHED_SUMESTONE, NdBlocks.POLISHED_SUMESTONE_STEP, 6);
+
+        generic3x2("sumestone_wall_3x2", NdBlocks.SUMESTONE, NdBlocks.SUMESTONE_WALL, 6);
+        generic3x2("sumestone_bricks_wall_3x2", NdBlocks.SUMESTONE_BRICKS, NdBlocks.SUMESTONE_BRICKS_WALL, 6);
+        generic3x2("cracked_sumestone_bricks_wall_3x2", NdBlocks.CRACKED_SUMESTONE_BRICKS, NdBlocks.CRACKED_SUMESTONE_BRICKS_WALL, 6);
+        generic3x2("polished_sumestone_wall_3x2", NdBlocks.POLISHED_SUMESTONE, NdBlocks.POLISHED_SUMESTONE_WALL, 6);
+
+        // Dark Sumestone
+        generic2x2("dark_sumestone_bricks_2x2", NdBlocks.DARK_SUMESTONE, NdBlocks.DARK_SUMESTONE_BRICKS, 4);
+        generic1x3("dark_sumestone_pillar_1x3", NdBlocks.DARK_SUMESTONE, NdBlocks.DARK_SUMESTONE_PILLAR, 3);
+        generic1x2("chiseled_dark_sumestone_1x2", NdBlocks.DARK_SUMESTONE_SLAB, NdBlocks.CHISELED_DARK_SUMESTONE, 1);
+        shapeless("polished_dark_sumestone_shapeless", NdBlocks.DARK_SUMESTONE, NdBlocks.POLISHED_DARK_SUMESTONE, 1);
+        smelting("cracked_dark_sumestone_bricks_smelting", NdBlocks.DARK_SUMESTONE_BRICKS, NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS, 0.1);
+
+        generic3x1("dark_sumestone_slab_3x1", NdBlocks.DARK_SUMESTONE, NdBlocks.DARK_SUMESTONE_SLAB, 6);
+        generic3x1("dark_sumestone_bricks_slab_3x1", NdBlocks.DARK_SUMESTONE_BRICKS, NdBlocks.DARK_SUMESTONE_BRICKS_SLAB, 6);
+        generic3x1("cracked_dark_sumestone_bricks_slab_3x1", NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS, NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_SLAB, 6);
+        generic3x1("polished_dark_sumestone_slab_3x1", NdBlocks.POLISHED_DARK_SUMESTONE, NdBlocks.POLISHED_DARK_SUMESTONE_SLAB, 6);
+
+        stairs("dark_sumestone_stairs_stairs", NdBlocks.DARK_SUMESTONE, NdBlocks.DARK_SUMESTONE_STAIRS, 4);
+        stairs("dark_sumestone_bricks_stairs_stairs", NdBlocks.DARK_SUMESTONE_BRICKS, NdBlocks.DARK_SUMESTONE_BRICKS_STAIRS, 4);
+        stairs("cracked_dark_sumestone_bricks_stairs_stairs", NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS, NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_STAIRS, 4);
+        stairs("polished_dark_sumestone_stairs_stairs", NdBlocks.POLISHED_DARK_SUMESTONE, NdBlocks.POLISHED_DARK_SUMESTONE_STAIRS, 4);
+
+        step("dark_sumestone_step_step", NdBlocks.DARK_SUMESTONE, NdBlocks.DARK_SUMESTONE_STEP, 6);
+        step("dark_sumestone_bricks_step_step", NdBlocks.DARK_SUMESTONE_BRICKS, NdBlocks.DARK_SUMESTONE_BRICKS_STEP, 6);
+        step("cracked_dark_sumestone_bricks_step_step", NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS, NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_STEP, 6);
+        step("polished_dark_sumestone_step_step", NdBlocks.POLISHED_DARK_SUMESTONE, NdBlocks.POLISHED_DARK_SUMESTONE_STEP, 6);
+
+        generic3x2("dark_sumestone_wall_3x2", NdBlocks.DARK_SUMESTONE, NdBlocks.DARK_SUMESTONE_WALL, 6);
+        generic3x2("dark_sumestone_bricks_wall_3x2", NdBlocks.DARK_SUMESTONE_BRICKS, NdBlocks.DARK_SUMESTONE_BRICKS_WALL, 6);
+        generic3x2("cracked_dark_sumestone_bricks_wall_3x2", NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS, NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_WALL, 6);
+        generic3x2("polished_dark_sumestone_wall_3x2", NdBlocks.POLISHED_DARK_SUMESTONE, NdBlocks.POLISHED_DARK_SUMESTONE_WALL, 6);
     }
 
     private void generic2x2(String id, ItemConvertible from, ItemConvertible to, int count) {

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "ndebris:block/dark_sumestone_bricks_alt_1",
+    "top": "ndebris:block/dark_sumestone_bricks_alt_1",
+    "side": "ndebris:block/dark_sumestone_bricks_alt_1"
+  }
+}

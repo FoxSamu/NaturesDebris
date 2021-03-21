@@ -20,6 +20,20 @@
     "ndebris:mossy_darkrock_tiles_wall",
     "ndebris:cracked_darkrock_tiles_wall",
     "ndebris:smooth_darkrock_wall",
-    "ndebris:polished_darkrock_wall"
+    "ndebris:polished_darkrock_wall",
+    "ndebris:limestone_wall",
+    "ndebris:limestone_bricks_wall",
+    "ndebris:cracked_limestone_bricks_wall",
+    "ndebris:limestone_tiles_wall",
+    "ndebris:cracked_limestone_tiles_wall",
+    "ndebris:polished_limestone_wall",
+    "ndebris:sumestone_wall",
+    "ndebris:sumestone_bricks_wall",
+    "ndebris:cracked_sumestone_bricks_wall",
+    "ndebris:polished_sumestone_wall",
+    "ndebris:dark_sumestone_wall",
+    "ndebris:dark_sumestone_bricks_wall",
+    "ndebris:cracked_dark_sumestone_bricks_wall",
+    "ndebris:polished_dark_sumestone_wall"
   ]
 }

@@ -10,12 +10,44 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+
+repositories {
+    maven { url "https://jitpack.io" }
+    maven { url "https://maven.dblsaiko.net/" }
+    maven { url "http://server.bbkr.space:8081/artifactory/libs-release/" }
+    maven { url 'https://maven.blamejared.com' }
+    maven { url "https://maven.fabricmc.net/" }
+    jcenter()
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    modRuntime("io.github.prospector:modmenu:1.16.1") {
+        exclude group: "net.fabricmc"
+        exclude group: "net.fabricmc.fabric-api"
+    }
+    modRuntime("com.github.joaoh1:OkZoomer:master-SNAPSHOT") {
+        exclude group: "net.fabricmc"
+        exclude group: "net.fabricmc.fabric-api"
+    }
+    modImplementation("me.shedaniel:RoughlyEnoughItems:5.8.7") {
+        exclude group: "net.fabricmc"
+        exclude group: "net.fabricmc.fabric-api"
+    }
+    modImplementation("me.shedaniel:RoughlyEnoughItems-api:5.8.7") {
+        exclude group: "net.fabricmc"
+        exclude group: "net.fabricmc.fabric-api"
+    }
+    modImplementation("grondag:canvas-mc116:1.0.+") {
+        exclude group: "net.fabricmc"
+        exclude group: "net.fabricmc.fabric-api"
+        exclude group: "me.shedaniel"
+    }
 }
 
 processResources {

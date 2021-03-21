@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ndebris:block/cracked_sumestone_bricks"
+      },
+      {
+        "model": "ndebris:block/cracked_sumestone_bricks_alt_1"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ndebris:polished_limestone"
+    }
+  ],
+  "result": {
+    "item": "ndebris:carved_limestone"
+  }
+}

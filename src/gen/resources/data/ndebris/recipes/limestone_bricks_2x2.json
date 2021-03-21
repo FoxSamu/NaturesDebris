@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "ndebris:limestone"
+    }
+  },
+  "result": {
+    "item": "ndebris:limestone_bricks",
+    "count": 4
+  }
+}

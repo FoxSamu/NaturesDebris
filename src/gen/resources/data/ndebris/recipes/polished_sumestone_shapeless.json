@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ndebris:sumestone"
+    }
+  ],
+  "result": {
+    "item": "ndebris:polished_sumestone"
+  }
+}

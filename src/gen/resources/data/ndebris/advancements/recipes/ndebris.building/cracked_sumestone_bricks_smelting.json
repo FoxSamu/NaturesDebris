@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "ndebris:cracked_sumestone_bricks_smelting"
+    ]
+  },
+  "criteria": {
+    "has_ingredient": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ndebris:sumestone_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "ndebris:cracked_sumestone_bricks_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ingredient",
+      "has_the_recipe"
+    ]
+  ]
+}

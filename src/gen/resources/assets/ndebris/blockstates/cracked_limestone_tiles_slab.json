@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ndebris:block/cracked_limestone_tiles_slab"
+    },
+    "type=double": {
+      "model": "ndebris:block/cracked_limestone_tiles"
+    },
+    "type=top": {
+      "model": "ndebris:block/cracked_limestone_tiles_slab_top"
+    }
+  }
+}

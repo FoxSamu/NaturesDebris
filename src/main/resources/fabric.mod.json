@@ -13,7 +13,7 @@
     "sources": "https://github.com/ShadewEnder"
   },
 
-  "license": "Custom License",
+  "license": "All Rights Reserved",
   "icon": "assets/ndebris/icon.png",
 
   "environment": "*",
@@ -21,8 +21,8 @@
     "client": [
       "net.shadew.ndebris.client.NaturesDebrisClient"
     ],
-    "main": [
-      "net.shadew.ndebris.common.NaturesDebris"
+    "server": [
+      "net.shadew.ndebris.server.NaturesDebrisServer"
     ]
   },
   "mixins": [
@@ -30,11 +30,10 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.7.4",
+    "fabricloader": ">=0.11.1",
     "fabric": "*",
-    "minecraft": "1.16.x"
+    "minecraft": "1.16.5"
   },
   "suggests": {
-    "another-mod": "*"
   }
 }

@@ -167,7 +167,99 @@ public final class ItemModelTable {
         register(NdBlocks.SMOOTH_DARKROCK_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
         register(NdBlocks.POLISHED_DARKROCK_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
 
-//        register(NdBlocks.TEST_PLANT, item -> generated(name(item, "block/%s")));
+        register(NdBlocks.LIMESTONE, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.LIMESTONE_BRICKS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_LIMESTONE_BRICKS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.LIMESTONE_TILES, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_LIMESTONE_TILES, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_LIMESTONE, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CARVED_LIMESTONE, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.LIMESTONE_PILLAR, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.LIMESTONE_LANTERN, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.LIMESTONE_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.LIMESTONE_BRICKS_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_LIMESTONE_BRICKS_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.LIMESTONE_TILES_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_LIMESTONE_TILES_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_LIMESTONE_SLAB, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.LIMESTONE_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.LIMESTONE_BRICKS_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_LIMESTONE_BRICKS_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.LIMESTONE_TILES_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_LIMESTONE_TILES_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_LIMESTONE_STAIRS, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.LIMESTONE_STEP, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.LIMESTONE_BRICKS_STEP, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_LIMESTONE_BRICKS_STEP, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.LIMESTONE_TILES_STEP, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_LIMESTONE_TILES_STEP, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_LIMESTONE_STEP, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.LIMESTONE_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.LIMESTONE_BRICKS_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.CRACKED_LIMESTONE_BRICKS_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.LIMESTONE_TILES_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.CRACKED_LIMESTONE_TILES_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.POLISHED_LIMESTONE_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+
+        register(NdBlocks.SUMESTONE, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.SUMESTONE_BRICKS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_SUMESTONE_BRICKS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_SUMESTONE, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CHISELED_SUMESTONE, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.SUMESTONE_PILLAR, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.SUMESTONE_LANTERN, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.SUMESTONE_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.SUMESTONE_BRICKS_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_SUMESTONE_BRICKS_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_SUMESTONE_SLAB, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.SUMESTONE_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.SUMESTONE_BRICKS_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_SUMESTONE_BRICKS_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_SUMESTONE_STAIRS, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.SUMESTONE_STEP, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.SUMESTONE_BRICKS_STEP, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_SUMESTONE_BRICKS_STEP, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_SUMESTONE_STEP, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.SUMESTONE_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.SUMESTONE_BRICKS_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.CRACKED_SUMESTONE_BRICKS_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.POLISHED_SUMESTONE_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+
+        register(NdBlocks.DARK_SUMESTONE, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.DARK_SUMESTONE_BRICKS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_DARK_SUMESTONE, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CHISELED_DARK_SUMESTONE, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.DARK_SUMESTONE_PILLAR, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.DARK_SUMESTONE_LANTERN, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.DARK_SUMESTONE_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.DARK_SUMESTONE_BRICKS_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_SLAB, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_DARK_SUMESTONE_SLAB, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.DARK_SUMESTONE_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.DARK_SUMESTONE_BRICKS_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_STAIRS, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_DARK_SUMESTONE_STAIRS, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.DARK_SUMESTONE_STEP, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.DARK_SUMESTONE_BRICKS_STEP, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_STEP, item -> inherit(name(item, "block/%s")));
+        register(NdBlocks.POLISHED_DARK_SUMESTONE_STEP, item -> inherit(name(item, "block/%s")));
+
+        register(NdBlocks.DARK_SUMESTONE_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.DARK_SUMESTONE_BRICKS_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
+        register(NdBlocks.POLISHED_DARK_SUMESTONE_WALL, item -> wallInventory(name(item, "block/%s", "_wall")));
 
 
 

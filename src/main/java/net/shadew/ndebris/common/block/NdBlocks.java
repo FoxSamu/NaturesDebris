@@ -1,11 +1,8 @@
 package net.shadew.ndebris.common.block;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
-import net.fabricmc.fabric.impl.tool.attribute.ToolManagerImpl;
 import net.minecraft.block.*;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.registry.Registry;
 
@@ -13,11 +10,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import net.shadew.ndebris.common.NaturesDebris;
-import net.shadew.ndebris.common.item.NdItemGroup;
 
 public abstract class NdBlocks {
     public static final Block ROCK = rock("rock", 1.5, 6, false);
     public static final Block DARKROCK = rock("darkrock", 1.5, 6, true);
+    public static final Block LIMESTONE = limestone("limestone", 1, 4);
+    public static final Block SUMESTONE = sumestone("sumestone", 2, 6, false);
+    public static final Block DARK_SUMESTONE = sumestone("dark_sumestone", 2, 6, true);
     public static final Block MURKY_DIRT = dirt("murky_dirt", 0.5, MaterialColor.DIRT, BlockSoundGroup.GRAVEL);
     public static final Block MURKY_GRASS_BLOCK = grass("murky_grass_block", 0.6, MaterialColor.GRASS, BlockSoundGroup.GRASS);
     public static final Block MURKY_COARSE_DIRT = dirt("murky_coarse_dirt", 0.5, MaterialColor.DIRT, BlockSoundGroup.GRAVEL);
@@ -30,10 +29,10 @@ public abstract class NdBlocks {
     public static final Block MURKY_GRASS_PATH = grassPath("murky_grass_path", 0.5, MaterialColor.GRASS, BlockSoundGroup.GRASS);
 
 
-    public static final Block BLACKWOOD_LOG = stripableLog("blackwood_log", MaterialColor.BLACK_TERRACOTTA, block("stripped_blackwood_log"));
-    public static final Block INVER_LOG = stripableLog("inver_log", MaterialColor.WOOD, block("stripped_inver_log"));
-    public static final Block BLACKWOOD = stripableLog("blackwood", MaterialColor.BLACK_TERRACOTTA, block("stripped_blackwood"));
-    public static final Block INVER_WOOD = stripableLog("inver_wood", MaterialColor.BLACK_TERRACOTTA, block("stripped_inver_wood"));
+    public static final Block BLACKWOOD_LOG = strippableLog("blackwood_log", MaterialColor.BLACK_TERRACOTTA, block("stripped_blackwood_log"));
+    public static final Block INVER_LOG = strippableLog("inver_log", MaterialColor.WOOD, block("stripped_inver_log"));
+    public static final Block BLACKWOOD = strippableLog("blackwood", MaterialColor.BLACK_TERRACOTTA, block("stripped_blackwood"));
+    public static final Block INVER_WOOD = strippableLog("inver_wood", MaterialColor.BLACK_TERRACOTTA, block("stripped_inver_wood"));
     public static final Block STRIPPED_BLACKWOOD_LOG = log("stripped_blackwood_log", MaterialColor.BLACK_TERRACOTTA);
     public static final Block STRIPPED_INVER_LOG = log("stripped_inver_log", MaterialColor.WOOD);
     public static final Block STRIPPED_BLACKWOOD = log("stripped_blackwood", MaterialColor.BLACK_TERRACOTTA);
@@ -168,216 +167,295 @@ public abstract class NdBlocks {
     public static final Block POLISHED_DARKROCK_WALL = rockWall("polished_darkrock_wall", 2, 6, true);
 
 
+    public static final Block LIMESTONE_BRICKS = limestone("limestone_bricks", 1, 4);
+    public static final Block CRACKED_LIMESTONE_BRICKS = limestone("cracked_limestone_bricks", 1, 4);
+    public static final Block LIMESTONE_TILES = limestone("limestone_tiles", 1, 4);
+    public static final Block CRACKED_LIMESTONE_TILES = limestone("cracked_limestone_tiles", 1, 4);
+    public static final Block POLISHED_LIMESTONE = limestone("polished_limestone", 1, 4);
+    public static final Block CARVED_LIMESTONE = limestone("carved_limestone", 1, 4);
+    public static final Block LIMESTONE_PILLAR = limestonePillar("limestone_pillar", 1, 4);
+    public static final Block LIMESTONE_LANTERN = limestoneLantern("limestone_lantern", 1, 4);
 
-    private static <T extends Block> T register(String id, ItemGroup tab, T block) {
+    public static final Block LIMESTONE_SLAB = limestoneSlab("limestone_slab", 1, 4);
+    public static final Block LIMESTONE_BRICKS_SLAB = limestoneSlab("limestone_bricks_slab", 1, 4);
+    public static final Block CRACKED_LIMESTONE_BRICKS_SLAB = limestoneSlab("cracked_limestone_bricks_slab", 1, 4);
+    public static final Block LIMESTONE_TILES_SLAB = limestoneSlab("limestone_tiles_slab", 1, 4);
+    public static final Block CRACKED_LIMESTONE_TILES_SLAB = limestoneSlab("cracked_limestone_tiles_slab", 1, 4);
+    public static final Block POLISHED_LIMESTONE_SLAB = limestoneSlab("polished_limestone_slab", 1, 4);
+
+    public static final Block LIMESTONE_STAIRS = limestoneStairs("limestone_stairs", 1, 4);
+    public static final Block LIMESTONE_BRICKS_STAIRS = limestoneStairs("limestone_bricks_stairs", 1, 4);
+    public static final Block CRACKED_LIMESTONE_BRICKS_STAIRS = limestoneStairs("cracked_limestone_bricks_stairs", 1, 4);
+    public static final Block LIMESTONE_TILES_STAIRS = limestoneStairs("limestone_tiles_stairs", 1, 4);
+    public static final Block CRACKED_LIMESTONE_TILES_STAIRS = limestoneStairs("cracked_limestone_tiles_stairs", 1, 4);
+    public static final Block POLISHED_LIMESTONE_STAIRS = limestoneStairs("polished_limestone_stairs", 1, 4);
+
+    public static final Block LIMESTONE_STEP = limestoneStep("limestone_step", 1, 4);
+    public static final Block LIMESTONE_BRICKS_STEP = limestoneStep("limestone_bricks_step", 1, 4);
+    public static final Block CRACKED_LIMESTONE_BRICKS_STEP = limestoneStep("cracked_limestone_bricks_step", 1, 4);
+    public static final Block LIMESTONE_TILES_STEP = limestoneStep("limestone_tiles_step", 1, 4);
+    public static final Block CRACKED_LIMESTONE_TILES_STEP = limestoneStep("cracked_limestone_tiles_step", 1, 4);
+    public static final Block POLISHED_LIMESTONE_STEP = limestoneStep("polished_limestone_step", 1, 4);
+
+    public static final Block LIMESTONE_WALL = limestoneWall("limestone_wall", 1, 4);
+    public static final Block LIMESTONE_BRICKS_WALL = limestoneWall("limestone_bricks_wall", 1, 4);
+    public static final Block CRACKED_LIMESTONE_BRICKS_WALL = limestoneWall("cracked_limestone_bricks_wall", 1, 4);
+    public static final Block LIMESTONE_TILES_WALL = limestoneWall("limestone_tiles_wall", 1, 4);
+    public static final Block CRACKED_LIMESTONE_TILES_WALL = limestoneWall("cracked_limestone_tiles_wall", 1, 4);
+    public static final Block POLISHED_LIMESTONE_WALL = limestoneWall("polished_limestone_wall", 1, 4);
+
+
+    public static final Block SUMESTONE_BRICKS = sumestone("sumestone_bricks", 2, 6, false);
+    public static final Block CRACKED_SUMESTONE_BRICKS = sumestone("cracked_sumestone_bricks", 2, 6, false);
+    public static final Block POLISHED_SUMESTONE = sumestone("polished_sumestone", 2, 6, false);
+    public static final Block CHISELED_SUMESTONE = sumestone("chiseled_sumestone", 2, 6, false);
+    public static final Block SUMESTONE_PILLAR = sumestonePillar("sumestone_pillar", 2, 6, false);
+    public static final Block SUMESTONE_LANTERN = sumestoneLantern("sumestone_lantern", 2, 6, false);
+
+    public static final Block SUMESTONE_SLAB = sumestoneSlab("sumestone_slab", 2, 6, false);
+    public static final Block SUMESTONE_BRICKS_SLAB = sumestoneSlab("sumestone_bricks_slab", 2, 6, false);
+    public static final Block CRACKED_SUMESTONE_BRICKS_SLAB = sumestoneSlab("cracked_sumestone_bricks_slab", 2, 6, false);
+    public static final Block POLISHED_SUMESTONE_SLAB = sumestoneSlab("polished_sumestone_slab", 2, 6, false);
+
+    public static final Block SUMESTONE_STAIRS = sumestoneStairs("sumestone_stairs", 2, 6, false);
+    public static final Block SUMESTONE_BRICKS_STAIRS = sumestoneStairs("sumestone_bricks_stairs", 2, 6, false);
+    public static final Block CRACKED_SUMESTONE_BRICKS_STAIRS = sumestoneStairs("cracked_sumestone_bricks_stairs", 2, 6, false);
+    public static final Block POLISHED_SUMESTONE_STAIRS = sumestoneStairs("polished_sumestone_stairs", 2, 6, false);
+
+    public static final Block SUMESTONE_STEP = sumestoneStep("sumestone_step", 2, 6, false);
+    public static final Block SUMESTONE_BRICKS_STEP = sumestoneStep("sumestone_bricks_step", 2, 6, false);
+    public static final Block CRACKED_SUMESTONE_BRICKS_STEP = sumestoneStep("cracked_sumestone_bricks_step", 2, 6, false);
+    public static final Block POLISHED_SUMESTONE_STEP = sumestoneStep("polished_sumestone_step", 2, 6, false);
+
+    public static final Block SUMESTONE_WALL = sumestoneWall("sumestone_wall", 2, 6, false);
+    public static final Block SUMESTONE_BRICKS_WALL = sumestoneWall("sumestone_bricks_wall", 2, 6, false);
+    public static final Block CRACKED_SUMESTONE_BRICKS_WALL = sumestoneWall("cracked_sumestone_bricks_wall", 2, 6, false);
+    public static final Block POLISHED_SUMESTONE_WALL = sumestoneWall("polished_sumestone_wall", 2, 6, false);
+
+
+    public static final Block DARK_SUMESTONE_BRICKS = sumestone("dark_sumestone_bricks", 2, 6, true);
+    public static final Block CRACKED_DARK_SUMESTONE_BRICKS = sumestone("cracked_dark_sumestone_bricks", 2, 6, true);
+    public static final Block POLISHED_DARK_SUMESTONE = sumestone("polished_dark_sumestone", 2, 6, true);
+    public static final Block CHISELED_DARK_SUMESTONE = sumestone("chiseled_dark_sumestone", 2, 6, true);
+    public static final Block DARK_SUMESTONE_PILLAR = sumestonePillar("dark_sumestone_pillar", 2, 6, true);
+    public static final Block DARK_SUMESTONE_LANTERN = sumestoneLantern("dark_sumestone_lantern", 2, 6, true);
+
+    public static final Block DARK_SUMESTONE_SLAB = sumestoneSlab("dark_sumestone_slab", 2, 6, true);
+    public static final Block DARK_SUMESTONE_BRICKS_SLAB = sumestoneSlab("dark_sumestone_bricks_slab", 2, 6, true);
+    public static final Block CRACKED_DARK_SUMESTONE_BRICKS_SLAB = sumestoneSlab("cracked_dark_sumestone_bricks_slab", 2, 6, true);
+    public static final Block POLISHED_DARK_SUMESTONE_SLAB = sumestoneSlab("polished_dark_sumestone_slab", 2, 6, true);
+
+    public static final Block DARK_SUMESTONE_STAIRS = sumestoneStairs("dark_sumestone_stairs", 2, 6, true);
+    public static final Block DARK_SUMESTONE_BRICKS_STAIRS = sumestoneStairs("dark_sumestone_bricks_stairs", 2, 6, true);
+    public static final Block CRACKED_DARK_SUMESTONE_BRICKS_STAIRS = sumestoneStairs("cracked_dark_sumestone_bricks_stairs", 2, 6, true);
+    public static final Block POLISHED_DARK_SUMESTONE_STAIRS = sumestoneStairs("polished_dark_sumestone_stairs", 2, 6, true);
+
+    public static final Block DARK_SUMESTONE_STEP = sumestoneStep("dark_sumestone_step", 2, 6, true);
+    public static final Block DARK_SUMESTONE_BRICKS_STEP = sumestoneStep("dark_sumestone_bricks_step", 2, 6, true);
+    public static final Block CRACKED_DARK_SUMESTONE_BRICKS_STEP = sumestoneStep("cracked_dark_sumestone_bricks_step", 2, 6, true);
+    public static final Block POLISHED_DARK_SUMESTONE_STEP = sumestoneStep("polished_dark_sumestone_step", 2, 6, true);
+
+    public static final Block DARK_SUMESTONE_WALL = sumestoneWall("dark_sumestone_wall", 2, 6, true);
+    public static final Block DARK_SUMESTONE_BRICKS_WALL = sumestoneWall("dark_sumestone_bricks_wall", 2, 6, true);
+    public static final Block CRACKED_DARK_SUMESTONE_BRICKS_WALL = sumestoneWall("cracked_dark_sumestone_bricks_wall", 2, 6, true);
+    public static final Block POLISHED_DARK_SUMESTONE_WALL = sumestoneWall("polished_dark_sumestone_wall", 2, 6, true);
+
+
+    //
+    // FACTORY METHODS
+    //
+
+    private static <T extends Block> T register(String id, T block) {
         Registry.register(Registry.BLOCK, NaturesDebris.id(id), block);
-        Registry.register(Registry.ITEM, NaturesDebris.id(id), new BlockItem(block, new Item.Settings().group(tab)));
-        return block;
-    }
-
-    private static <T extends Block> T stonelike(String id, T block) {
-        register(id, NdItemGroup.BUILDING, block);
-        ToolManagerImpl.entry(block).setBreakByHand(false);
-        ToolManagerImpl.entry(block).putBreakByTool(FabricToolTags.PICKAXES, 0);
         return block;
     }
 
     private static Block rock(String id, double hardness, double resistance, boolean dark) {
-        return stonelike(id, new Block(
-            Block.Settings.of(Material.STONE, dark ? MaterialColor.BLACK : MaterialColor.STONE)
-                          .strength((float) hardness, (float) resistance)
-                          .requiresTool()
-        ));
+        return register(id, new Block(NdBlockTypes.rock(dark, hardness, resistance)));
     }
 
     private static Block rockLantern(String id, double hardness, double resistance, boolean dark) {
-        return stonelike(id, new Block(
-            Block.Settings.of(Material.STONE, dark ? MaterialColor.BLACK : MaterialColor.STONE)
-                          .strength((float) hardness, (float) resistance)
-                          .requiresTool()
-                          .sounds(BlockSoundGroup.BONE)
-                          .luminance(state -> 15)
-                          .emissiveLighting((state, world, pos) -> true)
+        return register(id, new Block(
+            NdBlockTypes.rock(dark, hardness, resistance, BlockSoundGroup.BONE)
+                        .luminance(state -> 15)
+                        .emissiveLighting((state, world, pos) -> true)
         ));
     }
 
     private static Block rockPillar(String id, double hardness, double resistance, boolean dark) {
-        return stonelike(id, new PillarBlock(
-            Block.Settings.of(Material.STONE, dark ? MaterialColor.BLACK : MaterialColor.STONE)
-                          .strength((float) hardness, (float) resistance)
-                          .requiresTool()
-        ));
+        return register(id, new PillarBlock(NdBlockTypes.rock(dark, hardness, resistance)));
     }
 
     private static Block rockSlab(String id, double hardness, double resistance, boolean dark) {
-        return stonelike(id, new SlabBlock(
-            Block.Settings.of(Material.STONE, dark ? MaterialColor.BLACK : MaterialColor.STONE)
-                          .strength((float) hardness, (float) resistance)
-                          .requiresTool()
-        ));
+        return register(id, new SlabBlock(NdBlockTypes.rock(dark, hardness, resistance)));
     }
 
     private static Block rockStairs(String id, double hardness, double resistance, boolean dark) {
-        return stonelike(id, new SimpleStairsBlock(
-            Block.Settings.of(Material.STONE, dark ? MaterialColor.BLACK : MaterialColor.STONE)
-                          .strength((float) hardness, (float) resistance)
-                          .requiresTool()
-        ));
+        return register(id, new SimpleStairsBlock(NdBlockTypes.rock(dark, hardness, resistance)));
     }
 
     private static Block rockStep(String id, double hardness, double resistance, boolean dark) {
-        return stonelike(id, new StepBlock(
-            Block.Settings.of(Material.STONE, dark ? MaterialColor.BLACK : MaterialColor.STONE)
-                          .strength((float) hardness, (float) resistance)
-                          .requiresTool()
-        ));
+        return register(id, new StepBlock(NdBlockTypes.rock(dark, hardness, resistance)));
     }
 
     private static Block rockWall(String id, double hardness, double resistance, boolean dark) {
-        return stonelike(id, new WallBlock(
-            Block.Settings.of(Material.STONE, dark ? MaterialColor.BLACK : MaterialColor.STONE)
-                          .strength((float) hardness, (float) resistance)
-                          .requiresTool()
+        return register(id, new WallBlock(NdBlockTypes.rock(dark, hardness, resistance)));
+    }
+
+    private static Block limestone(String id, double hardness, double resistance) {
+        return register(id, new Block(NdBlockTypes.limestone(hardness, resistance)));
+    }
+
+    private static Block limestoneLantern(String id, double hardness, double resistance) {
+        return register(id, new Block(
+            NdBlockTypes.limestone(hardness, resistance, BlockSoundGroup.BONE)
+                        .luminance(state -> 15)
+                        .emissiveLighting((state, world, pos) -> true)
         ));
     }
 
-    private static <T extends Block> T dirtlike(String id, T block) {
-        register(id, NdItemGroup.BUILDING, block);
-        ToolManagerImpl.entry(block).putBreakByTool(FabricToolTags.SHOVELS, 0);
-        return block;
+    private static Block limestonePillar(String id, double hardness, double resistance) {
+        return register(id, new PillarBlock(NdBlockTypes.limestone(hardness, resistance)));
+    }
+
+    private static Block limestoneSlab(String id, double hardness, double resistance) {
+        return register(id, new SlabBlock(NdBlockTypes.limestone(hardness, resistance)));
+    }
+
+    private static Block limestoneStairs(String id, double hardness, double resistance) {
+        return register(id, new SimpleStairsBlock(NdBlockTypes.limestone(hardness, resistance)));
+    }
+
+    private static Block limestoneStep(String id, double hardness, double resistance) {
+        return register(id, new StepBlock(NdBlockTypes.limestone(hardness, resistance)));
+    }
+
+    private static Block limestoneWall(String id, double hardness, double resistance) {
+        return register(id, new WallBlock(NdBlockTypes.limestone(hardness, resistance)));
+    }
+
+    private static Block sumestone(String id, double hardness, double resistance, boolean dark) {
+        return register(id, new Block(NdBlockTypes.sumestone(dark, hardness, resistance)));
+    }
+
+    private static Block sumestoneLantern(String id, double hardness, double resistance, boolean dark) {
+        return register(id, new Block(
+            NdBlockTypes.sumestone(dark, hardness, resistance, BlockSoundGroup.BONE)
+                        .luminance(state -> 15)
+                        .emissiveLighting((state, world, pos) -> true)
+        ));
+    }
+
+    private static Block sumestonePillar(String id, double hardness, double resistance, boolean dark) {
+        return register(id, new PillarBlock(NdBlockTypes.sumestone(dark, hardness, resistance)));
+    }
+
+    private static Block sumestoneSlab(String id, double hardness, double resistance, boolean dark) {
+        return register(id, new SlabBlock(NdBlockTypes.sumestone(dark, hardness, resistance)));
+    }
+
+    private static Block sumestoneStairs(String id, double hardness, double resistance, boolean dark) {
+        return register(id, new SimpleStairsBlock(NdBlockTypes.sumestone(dark, hardness, resistance)));
+    }
+
+    private static Block sumestoneStep(String id, double hardness, double resistance, boolean dark) {
+        return register(id, new StepBlock(NdBlockTypes.sumestone(dark, hardness, resistance)));
+    }
+
+    private static Block sumestoneWall(String id, double hardness, double resistance, boolean dark) {
+        return register(id, new WallBlock(NdBlockTypes.sumestone(dark, hardness, resistance)));
     }
 
     private static Block dirt(String id, double strength, MaterialColor color, BlockSoundGroup sound) {
-        return dirtlike(id, new MurkyDirtBlock(
-            Block.Settings.of(Material.SOIL, color)
-                          .strength((float) strength)
-                          .sounds(sound)
-        ));
+        return register(id, new MurkyDirtBlock(NdBlockTypes.soil(strength, color, sound)));
     }
 
     private static Block grassPath(String id, double strength, MaterialColor color, BlockSoundGroup sound) {
-        return dirtlike(id, new MurkyGrassPathBlock(
-            Block.Settings.of(Material.SOIL, color)
-                          .strength((float) strength)
-                          .sounds(sound)
-                          .blockVision((state, world, pos) -> true)
+        return register(id, new MurkyGrassPathBlock(
+            NdBlockTypes.soil(strength, color, sound)
+                        .blockVision((state, world, pos) -> true)
         ));
     }
 
     private static Block humus(String id, double strength, MaterialColor color, BlockSoundGroup sound) {
-        return dirtlike(id, new MurkyHumusBlock(
-            Block.Settings.of(Material.SOIL, color)
-                          .strength((float) strength)
-                          .sounds(sound)
-                          .ticksRandomly()
+        return register(id, new MurkyHumusBlock(
+            NdBlockTypes.soil(strength, color, sound)
+                        .ticksRandomly()
         ));
     }
 
     private static Block leafyHumus(String id, double strength, MaterialColor color, BlockSoundGroup sound) {
-        return dirtlike(id, new LeafyHumusBlock(
-            Block.Settings.of(Material.SOIL, color)
-                          .strength((float) strength)
-                          .sounds(sound)
-                          .ticksRandomly()
+        return register(id, new LeafyHumusBlock(
+            NdBlockTypes.soil(strength, color, sound)
+                        .ticksRandomly()
         ));
     }
 
     private static Block grass(String id, double strength, MaterialColor color, BlockSoundGroup sound) {
-        return dirtlike(id, new MurkyGrassBlock(
-            Block.Settings.of(Material.SOIL, color)
-                          .strength((float) strength)
-                          .sounds(sound)
-                          .ticksRandomly()
+        return register(id, new MurkyGrassBlock(
+            NdBlockTypes.soil(strength, color, sound)
+                        .ticksRandomly()
         ));
     }
 
     private static Block sand(String id, double strength, MaterialColor color, BlockSoundGroup sound) {
-        return dirtlike(id, new MurkySandBlock(
-            Block.Settings.of(Material.SOIL, color)
-                          .strength((float) strength)
-                          .sounds(sound)
-                          .ticksRandomly()
+        return register(id, new MurkySandBlock(
+            NdBlockTypes.soil(strength, color, sound)
+                        .ticksRandomly()
         ));
     }
 
     private static Block clay(String id) {
-        return dirtlike(id, new Block(
-            Block.Settings.of(Material.ORGANIC_PRODUCT, MaterialColor.BLUE_TERRACOTTA)
-                          .strength(.5f)
-                          .sounds(BlockSoundGroup.GRAVEL)
+        return register(id, new Block(
+            FabricBlockSettings.of(Material.ORGANIC_PRODUCT, MaterialColor.BLUE_TERRACOTTA)
+                               .strength(.5f)
+                               .sounds(BlockSoundGroup.GRAVEL)
+                               .breakByTool(FabricToolTags.SHOVELS)
         ));
     }
 
     private static Block terracotta(String id) {
-        return stonelike(id, new Block(
-            Block.Settings.of(Material.STONE, MaterialColor.BLUE_TERRACOTTA)
-                          .strength(1.25f, 4.2f)
-                          .sounds(BlockSoundGroup.STONE)
+        return register(id, new Block(
+            FabricBlockSettings.of(Material.STONE, MaterialColor.BLUE_TERRACOTTA)
+                               .strength(1.25f, 4.2f)
+                               .sounds(BlockSoundGroup.STONE)
+                               .requiresTool()
+                               .breakByTool(FabricToolTags.PICKAXES)
         ));
-    }
-
-    private static <T extends Block> T woodlike(String id, T block) {
-        register(id, NdItemGroup.BUILDING, block);
-        ToolManagerImpl.entry(block).putBreakByTool(FabricToolTags.AXES, 0);
-        return block;
     }
 
     private static Block log(String id, MaterialColor color) {
-        return woodlike(id, new PillarBlock(
-            Block.Settings.of(Material.WOOD, color)
-                          .sounds(BlockSoundGroup.WOOD)
-                          .strength(2)
-        ));
+        return register(id, new PillarBlock(NdBlockTypes.wood(color, 2)));
     }
 
-    private static Block stripableLog(String id, MaterialColor color, Supplier<Block> stripped) {
-        return woodlike(id, new StrippableLogBlock(
-            Block.Settings.of(Material.WOOD, color)
-                          .sounds(BlockSoundGroup.WOOD)
-                          .strength(2),
-            stripped
-        ));
+    private static Block strippableLog(String id, MaterialColor color, Supplier<Block> stripped) {
+        return register(id, new StrippableLogBlock(NdBlockTypes.wood(color, 2), stripped));
     }
 
     private static Block wood(String id, MaterialColor color) {
-        return woodlike(id, new Block(
-            Block.Settings.of(Material.WOOD, color)
-                          .sounds(BlockSoundGroup.WOOD)
-                          .strength(2)
-        ));
+        return register(id, new Block(NdBlockTypes.wood(color, 2)));
     }
 
     private static Block woodSlab(String id, MaterialColor color) {
-        return woodlike(id, new SlabBlock(
-            Block.Settings.of(Material.WOOD, color)
-                          .sounds(BlockSoundGroup.WOOD)
-                          .strength(2)
-        ));
+        return register(id, new SlabBlock(NdBlockTypes.wood(color, 2)));
     }
 
     private static Block woodStairs(String id, MaterialColor color) {
-        return woodlike(id, new SimpleStairsBlock(
-            Block.Settings.of(Material.WOOD, color)
-                          .sounds(BlockSoundGroup.WOOD)
-                          .strength(2)
-        ));
+        return register(id, new SimpleStairsBlock(NdBlockTypes.wood(color, 2)));
     }
 
     private static Block woodStep(String id, MaterialColor color) {
-        return woodlike(id, new StepBlock(
-            Block.Settings.of(Material.WOOD, color)
-                          .sounds(BlockSoundGroup.WOOD)
-                          .strength(2)
-        ));
+        return register(id, new StepBlock(NdBlockTypes.wood(color, 2)));
     }
 
     private static Block fence(String id, MaterialColor color) {
-        return woodlike(id, new FenceBlock(
-            Block.Settings.of(Material.WOOD, color)
-                          .sounds(BlockSoundGroup.WOOD)
-                          .strength(2)
-        ));
+        return register(id, new FenceBlock(NdBlockTypes.wood(color, 2)));
     }
+
+
+    //
+    // SUPPLIERS
+    //
 
     public static Supplier<Block> block(String id) {
         return () -> Registry.BLOCK.get(NaturesDebris.id(id));

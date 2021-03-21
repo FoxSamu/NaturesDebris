@@ -41,7 +41,24 @@ public class NdBlockTagsProvider extends AbstractTagProvider<Block> {
             .add(NdBlocks.MOSSY_DARKROCK_TILES_SLAB)
             .add(NdBlocks.CRACKED_DARKROCK_TILES_SLAB)
             .add(NdBlocks.SMOOTH_DARKROCK_SLAB)
-            .add(NdBlocks.POLISHED_DARKROCK_SLAB);
+            .add(NdBlocks.POLISHED_DARKROCK_SLAB)
+
+            .add(NdBlocks.LIMESTONE_SLAB)
+            .add(NdBlocks.LIMESTONE_BRICKS_SLAB)
+            .add(NdBlocks.CRACKED_LIMESTONE_BRICKS_SLAB)
+            .add(NdBlocks.LIMESTONE_TILES_SLAB)
+            .add(NdBlocks.CRACKED_LIMESTONE_TILES_SLAB)
+            .add(NdBlocks.POLISHED_LIMESTONE_SLAB)
+
+            .add(NdBlocks.SUMESTONE_SLAB)
+            .add(NdBlocks.SUMESTONE_BRICKS_SLAB)
+            .add(NdBlocks.CRACKED_SUMESTONE_BRICKS_SLAB)
+            .add(NdBlocks.POLISHED_SUMESTONE_SLAB)
+
+            .add(NdBlocks.DARK_SUMESTONE_SLAB)
+            .add(NdBlocks.DARK_SUMESTONE_BRICKS_SLAB)
+            .add(NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_SLAB)
+            .add(NdBlocks.POLISHED_DARK_SUMESTONE_SLAB);
 
         getOrCreateTagBuilder(BlockTags.STAIRS)
             .add(NdBlocks.ROCK_STAIRS)
@@ -64,7 +81,24 @@ public class NdBlockTagsProvider extends AbstractTagProvider<Block> {
             .add(NdBlocks.MOSSY_DARKROCK_TILES_STAIRS)
             .add(NdBlocks.CRACKED_DARKROCK_TILES_STAIRS)
             .add(NdBlocks.SMOOTH_DARKROCK_STAIRS)
-            .add(NdBlocks.POLISHED_DARKROCK_STAIRS);
+            .add(NdBlocks.POLISHED_DARKROCK_STAIRS)
+
+            .add(NdBlocks.LIMESTONE_STAIRS)
+            .add(NdBlocks.LIMESTONE_BRICKS_STAIRS)
+            .add(NdBlocks.CRACKED_LIMESTONE_BRICKS_STAIRS)
+            .add(NdBlocks.LIMESTONE_TILES_STAIRS)
+            .add(NdBlocks.CRACKED_LIMESTONE_TILES_STAIRS)
+            .add(NdBlocks.POLISHED_LIMESTONE_STAIRS)
+
+            .add(NdBlocks.SUMESTONE_STAIRS)
+            .add(NdBlocks.SUMESTONE_BRICKS_STAIRS)
+            .add(NdBlocks.CRACKED_SUMESTONE_BRICKS_STAIRS)
+            .add(NdBlocks.POLISHED_SUMESTONE_STAIRS)
+
+            .add(NdBlocks.DARK_SUMESTONE_STAIRS)
+            .add(NdBlocks.DARK_SUMESTONE_BRICKS_STAIRS)
+            .add(NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_STAIRS)
+            .add(NdBlocks.POLISHED_DARK_SUMESTONE_STAIRS);
 
         getOrCreateTagBuilder(NdBlockTags.STEPS)
             .add(NdBlocks.ROCK_STEP)
@@ -89,6 +123,23 @@ public class NdBlockTagsProvider extends AbstractTagProvider<Block> {
             .add(NdBlocks.SMOOTH_DARKROCK_STEP)
             .add(NdBlocks.POLISHED_DARKROCK_STEP)
 
+            .add(NdBlocks.LIMESTONE_STEP)
+            .add(NdBlocks.LIMESTONE_BRICKS_STEP)
+            .add(NdBlocks.CRACKED_LIMESTONE_BRICKS_STEP)
+            .add(NdBlocks.LIMESTONE_TILES_STEP)
+            .add(NdBlocks.CRACKED_LIMESTONE_TILES_STEP)
+            .add(NdBlocks.POLISHED_LIMESTONE_STEP)
+
+            .add(NdBlocks.SUMESTONE_STEP)
+            .add(NdBlocks.SUMESTONE_BRICKS_STEP)
+            .add(NdBlocks.CRACKED_SUMESTONE_BRICKS_STEP)
+            .add(NdBlocks.POLISHED_SUMESTONE_STEP)
+
+            .add(NdBlocks.DARK_SUMESTONE_STEP)
+            .add(NdBlocks.DARK_SUMESTONE_BRICKS_STEP)
+            .add(NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_STEP)
+            .add(NdBlocks.POLISHED_DARK_SUMESTONE_STEP)
+
             .addTag(NdBlockTags.WOODEN_STEPS);
 
         getOrCreateTagBuilder(BlockTags.WALLS)
@@ -112,7 +163,24 @@ public class NdBlockTagsProvider extends AbstractTagProvider<Block> {
             .add(NdBlocks.MOSSY_DARKROCK_TILES_WALL)
             .add(NdBlocks.CRACKED_DARKROCK_TILES_WALL)
             .add(NdBlocks.SMOOTH_DARKROCK_WALL)
-            .add(NdBlocks.POLISHED_DARKROCK_WALL);
+            .add(NdBlocks.POLISHED_DARKROCK_WALL)
+
+            .add(NdBlocks.LIMESTONE_WALL)
+            .add(NdBlocks.LIMESTONE_BRICKS_WALL)
+            .add(NdBlocks.CRACKED_LIMESTONE_BRICKS_WALL)
+            .add(NdBlocks.LIMESTONE_TILES_WALL)
+            .add(NdBlocks.CRACKED_LIMESTONE_TILES_WALL)
+            .add(NdBlocks.POLISHED_LIMESTONE_WALL)
+
+            .add(NdBlocks.SUMESTONE_WALL)
+            .add(NdBlocks.SUMESTONE_BRICKS_WALL)
+            .add(NdBlocks.CRACKED_SUMESTONE_BRICKS_WALL)
+            .add(NdBlocks.POLISHED_SUMESTONE_WALL)
+
+            .add(NdBlocks.DARK_SUMESTONE_WALL)
+            .add(NdBlocks.DARK_SUMESTONE_BRICKS_WALL)
+            .add(NdBlocks.CRACKED_DARK_SUMESTONE_BRICKS_WALL)
+            .add(NdBlocks.POLISHED_DARK_SUMESTONE_WALL);
 
         getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
             .add(NdBlocks.BLACKWOOD_FENCE)

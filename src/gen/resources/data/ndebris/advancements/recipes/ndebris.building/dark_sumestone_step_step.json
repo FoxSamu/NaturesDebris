@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "ndebris:dark_sumestone_step_step"
+    ]
+  },
+  "criteria": {
+    "has_ingredient": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ndebris:dark_sumestone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "ndebris:dark_sumestone_step_step"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ingredient",
+      "has_the_recipe"
+    ]
+  ]
+}

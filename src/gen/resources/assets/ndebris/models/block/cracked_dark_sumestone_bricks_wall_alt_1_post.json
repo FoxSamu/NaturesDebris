@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_post",
+  "textures": {
+    "wall": "ndebris:block/cracked_dark_sumestone_bricks_alt_1"
+  }
+}
